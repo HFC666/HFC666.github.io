@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-07T14:43:47.413Z</updated>
+  <updated>2020-07-07T15:09:44.717Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>统计学</title>
+    <link href="http://yoursite.com/2020/07/07/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
+    <id>http://yoursite.com/2020/07/07/%E7%BB%9F%E8%AE%A1%E5%AD%A6/</id>
+    <published>2020-07-07T14:52:00.000Z</published>
+    <updated>2020-07-07T15:09:44.717Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;第一章-导论&quot;&gt;&lt;a href=&quot;#第一章-导论&quot; class=&quot;headerlink&quot; title=&quot;第一章 导论&quot;&gt;&lt;/a&gt;第一章 导论&lt;/h2&gt;&lt;h3 id=&quot;统计数据的类型&quot;&gt;&lt;a href=&quot;#统计数据的类型&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="统计学" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>Python面向对象编程实例之学员管理系统</title>
