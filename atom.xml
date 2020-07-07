@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Serendipity</title>
+  
+  <subtitle>Serendipity</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-07-07T00:59:12.980Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>独自赏晴雨</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>独自赏晴雨的第一篇博客</title>
+    <link href="http://yoursite.com/2020/07/07/%E7%8B%AC%E8%87%AA%E8%B5%8F%E6%99%B4%E9%9B%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2020/07/07/%E7%8B%AC%E8%87%AA%E8%B5%8F%E6%99%B4%E9%9B%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</id>
+    <published>2020-07-07T00:54:09.000Z</published>
+    <updated>2020-07-07T00:59:12.980Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;github&quot;&gt;&lt;a href=&quot;#github&quot; class=&quot;headerlink&quot; title=&quot;github&quot;&gt;&lt;/a&gt;github&lt;/h1&gt;&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/07/07/hello-world/"/>
+    <id>http://yoursite.com/2020/07/07/hello-world/</id>
+    <published>2020-07-07T00:51:13.651Z</published>
+    <updated>2020-07-07T00:51:13.651Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
