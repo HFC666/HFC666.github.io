@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="独自赏晴雨的第一篇博客, Serendipity">
+    <meta name="keywords" content="如何使用R语言绘制地图, Serendipity">
     <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>独自赏晴雨的第一篇博客 | Serendipity</title>
+    <title>如何使用R语言绘制地图 | Serendipity</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">独自赏晴雨的第一篇博客</h1>
+                    <h1 class="description center-align post-title">如何使用R语言绘制地图</h1>
                 </div>
             </div>
         </div>
@@ -429,9 +429,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/R%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">R语言</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -459,74 +463,36 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="github"><a href="#github" class="headerlink" title="github"></a>github</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>仓库(Repository)</strong></p>
-<p>仓库用来存放项目代码，每个项目对应一个仓库，多个开源项目则有多个仓库。</p>
-<p><strong>收藏(Star)</strong></p>
-<p>收藏项目，方便下次查看</p>
-<p><strong>复制克隆项目(Fork)</strong></p>
-<p><img src="http://image-hfc.test.upcdn.net/1.jpg" alt=""></p>
-<p><strong><em>注意：该fork时的项目是独立存在的。</em></strong></p>
-<p><strong>发起请求 (Pull Request)</strong></p>
-<p>发起请求，这个其实是基于<code>Fork</code>的，还是上面那个例子，如果别人在你的基础上做了改进，后来觉得改进的不错，应该把这些改进让更多的人收益，于是就想把自己的改进合并到原有的项目中，这时候它就可以发起一个<code>Pull Request(简称PR)</code>,原有项目创建人，也就是你，就可以收到这个请求，这时候你仔细<code>review</code>他的代码，并且测试觉得OK了，就会接受他的PR，这时候他做的改进项目就拥有了。</p>
-<p><strong>关注(Watch)</strong></p>
-<p>关注项目，当项目更新可以接收到通知。</p>
-<p><strong>事务卡片(Issue)</strong></p>
-<p>发现代码<code>Bug</code>,但是目前没有成型代码，需要讨论时用</p>
-<p><strong>Github主页</strong></p>
-<p>账号创建成功或点击网址导航栏github图标都可以进入github主页，该页左侧主要显示用户动态以及关注用户或关注仓库的动态，右侧显示所有的git库。</p>
-<p><strong>仓库主页</strong></p>
-<p>仓库主页主要显示项目的信息，如，项目代码，版本，收藏/关注/fork情况等。</p>
-<p><strong>个人主页</strong></p>
-<p>个人信息，头像，个人简介，关注我的人，我关注的人，我关注的git库，我的开源项目，我贡献的开源项目等信息。</p>
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="Git工作区域"><a href="#Git工作区域" class="headerlink" title="Git工作区域"></a>Git工作区域</h2><p><strong>Git Repository (Git 仓库)</strong></p>
-<p>最终确定的文件保存到仓库，成为一个新的版本，并且对其他人可见。</p>
-<p><strong>暂存区</strong></p>
-<p>暂存已经修改的文件最后统一提交到<code>git</code>仓库中。</p>
-<p><strong>工作区 （Working Directory)</strong></p>
-<p>添加、编辑、修改文件等动作</p>
-<h2 id="添加文件流程"><a href="#添加文件流程" class="headerlink" title="添加文件流程"></a>添加文件流程</h2><p><img src="http://image-hfc.test.upcdn.net/2.jpg" alt=""></p>
-<h2 id="Git基础设置"><a href="#Git基础设置" class="headerlink" title="Git基础设置"></a>Git基础设置</h2><p><strong>设置用户名</strong></p>
-<p><code>git config --global user.name &#39;EchoHFC&#39;</code></p>
-<p><strong>设置用户名邮箱</strong></p>
-<p><code>git config --global user.email &#39;3495343534@qq.com&#39;</code></p>
-<p><strong>查看设置</strong></p>
-<p><code>git config --list</code></p>
-<h2 id="向仓库中添加文件"><a href="#向仓库中添加文件" class="headerlink" title="向仓库中添加文件"></a>向仓库中添加文件</h2><p><strong>初始化仓库</strong></p>
-<p><code>git init</code></p>
-<p><strong>创建文件</strong></p>
-<p><code>touch a1.py</code></p>
-<p><strong>添加到暂存区</strong></p>
-<p><code>git add a1.py</code></p>
-<p><strong>添加到仓库</strong></p>
-<p><code>git commit -m &#39;first&#39;</code></p>
-<p><strong>修改仓库文件</strong></p>
-<ol>
-<li><code>vim a1.py</code></li>
-<li><code>git add a1.py</code></li>
-<li><code>git commit -m &#39;xiugai&#39;</code></li>
+                <h4 id="导入所需要的R包"><a href="#导入所需要的R包" class="headerlink" title="导入所需要的R包"></a>导入所需要的<code>R</code>包</h4><pre><code class="R">library(readxl)
+library(ggplot2)
+library(ggmap)
+library(sp)
+library(maptools)
+library(maps)
+library(mapdata)
+library(mapproj)
+library(ggrepel)</code></pre>
+<h4 id="地图文件-shp-的处理"><a href="#地图文件-shp-的处理" class="headerlink" title="地图文件(shp)的处理"></a>地图文件(<code>shp</code>)的处理</h4><ol>
+<li>读入<a href="http://image-hfc.test.upcdn.net/山东省地图文件.zip" target="_blank" rel="noopener">地图文件</a>，解压此文件之后会产生许多文件，但读取时只读取<code>shp</code>文件即可</li>
 </ol>
-<p><strong>删除仓库文件</strong></p>
-<ol>
-<li>删除文件 <code>rm -rf a1.py</code></li>
-<li>从 <code>Git</code> 中删除文件 <code>git rm a1.py</code></li>
-<li>提交操作 <code>git commit -m &#39;shanchu&#39;</code></li>
+<pre><code class="R">mydat &lt;- readShapePoly(&#39;文件路径.shp&#39;)#以多边形的格式读入地图文件</code></pre>
+<ol start="2">
+<li>将地图数据转化为数据框</li>
 </ol>
-<h2 id="Git-管理远程仓库"><a href="#Git-管理远程仓库" class="headerlink" title="Git 管理远程仓库"></a>Git 管理远程仓库</h2><h3 id="Git-远程仓库"><a href="#Git-远程仓库" class="headerlink" title="Git 远程仓库"></a>Git 远程仓库</h3><p><img src="http://image-hfc.test.upcdn.net/3.jpg" alt=""></p>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>备份，实现代码共享集中化管理</p>
-<p><img src="http://image-hfc.test.upcdn.net/4.jpg" alt=""></p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="克隆项目"><a href="#克隆项目" class="headerlink" title="克隆项目"></a>克隆项目</h4><p><code>git clone 仓库地址</code></p>
-<h4 id="修改文件（同上）"><a href="#修改文件（同上）" class="headerlink" title="修改文件（同上）"></a>修改文件（同上）</h4><h4 id="提交到远程仓库"><a href="#提交到远程仓库" class="headerlink" title="提交到远程仓库"></a>提交到远程仓库</h4><p><code>git push</code></p>
-<p><img src="http://image-hfc.test.upcdn.net/5.jpg" alt=""></p>
-<h2 id="Github-Pages-搭建网站"><a href="#Github-Pages-搭建网站" class="headerlink" title="Github Pages 搭建网站"></a>Github Pages 搭建网站</h2><h3 id="个人站点"><a href="#个人站点" class="headerlink" title="个人站点"></a>个人站点</h3><h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><p><code>https://用户名.github.io</code></p>
-<h4 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h4><ol>
-<li>创建个人站点 -&gt; 新建仓库（注：仓库名必须是[用户名.github.io]）</li>
-<li>在仓库下新建 <code>index.html</code>的文件即可</li>
-</ol>
-<h3 id="Project-Pages-项目站点"><a href="#Project-Pages-项目站点" class="headerlink" title="Project Pages 项目站点"></a>Project Pages 项目站点</h3><p><code>https://用户名.github.io/仓库名</code></p>
-<h4 id="搭建步骤-1"><a href="#搭建步骤-1" class="headerlink" title="搭建步骤"></a>搭建步骤</h4><ol>
-<li>进入项目主页</li>
-<li>在<code>settings</code>页面，点击<code>Launch automatic page generator</code>来自动生成主题界面。</li>
-</ol>
+<pre><code class="R">shandong &lt;- fortify(mydat)</code></pre>
+<h4 id="需要向地图上添加的点的处理"><a href="#需要向地图上添加的点的处理" class="headerlink" title="需要向地图上添加的点的处理"></a>需要向地图上添加的点的处理</h4><pre><code class="R">location &lt;- read_excel(&#39;filename&#39;, sheet)#读入点的经纬度数据，sheet表示第几张表</code></pre>
+<h4 id="绘制地图"><a href="#绘制地图" class="headerlink" title="绘制地图"></a>绘制地图</h4><pre><code class="R">p &lt;- ggplot(shandong,aes(x=long,y=lat))+geom_polygon(aes(group=group),color=&#39;white&#39;,fill=&#39;lightblue&#39;,size=1)#绘制地图，在笛卡尔坐标系下
+p1 &lt;- p+theme(panel.background = element_rect(fill = &#39;white&#39;))+coord_map()#设置面板背景颜色为白色，coord_map()将笛卡尔坐标系转化为地理坐标系
+p2 &lt;- p1+theme(panel.grid = element_blank())#设置刻度线为空
+p3 &lt;- p2+theme(axis.title = element_blank())#设置坐标轴标签为空
+p4 &lt;- p3+theme(axis.ticks = element_blank())#设置坐标轴刻度为空
+p5 &lt;- p4+theme(axis.text = element_blank())#设置坐标轴刻度值为空
+p6 &lt;- p5+theme(plot.background = element_rect(fill = &#39;white&#39;))+theme(legend.background = element_rect(fill = &#39;white&#39;))#设置绘图区背景为白色，图例背景为白的
+p7 &lt;- p6+geom_point(data=location, aes(longitude,latitude),color=&#39;black&#39;)#将点加到地图上
+p7</code></pre>
+<p><img src="http://image-hfc.test.upcdn.net/Rplot.png" alt="Rplot"></p>
+<p><a href="http://image-hfc.test.upcdn.net/F.zip" target="_blank" rel="noopener">完整的项目代码以及数据</a></p>
+<p><strong>下载之后用<code>Rstudio</code>打开里面的脚本运行即可</strong></p>
 
             </div>
             <hr/>
@@ -552,7 +518,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/07/07/%E7%8B%AC%E8%87%AA%E8%B5%8F%E6%99%B4%E9%9B%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">http://yoursite.com/2020/07/07/%E7%8B%AC%E8%87%AA%E8%B5%8F%E6%99%B4%E9%9B%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</a>
+                    <a href="http://yoursite.com/2020/07/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8R%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9C%B0%E5%9B%BE/">http://yoursite.com/2020/07/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8R%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9C%B0%E5%9B%BE/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -589,7 +555,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/R%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">R语言</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -755,9 +725,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8R%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9C%B0%E5%9B%BE/">
                     <div class="card-image">
@@ -782,9 +753,9 @@ lib
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -793,6 +764,7 @@ lib
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -811,19 +783,26 @@ lib
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/07/hello-world/">
+                <a href="/2020/07/07/%E7%8B%AC%E8%87%AA%E8%B5%8F%E6%99%B4%E9%9B%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="独自赏晴雨的第一篇博客">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">独自赏晴雨的第一篇博客</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            github基本概念仓库(Repository)
+仓库用来存放项目代码，每个项目对应一个仓库，多个开源项目则有多个仓库。
+收藏(Star)
+收藏项目，方便下次查看
+复制克隆项目(Fork)
+
+注意：该fork时的项目是独立存在的。
+发起请求
                         
                     </div>
                     <div class="publish-info">
