@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Serendipity" type="application/atom+xml">
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Serendipity" type="application/atom+xml">
 </head>
 
 
@@ -463,7 +463,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="导入所需要的R包"><a href="#导入所需要的R包" class="headerlink" title="导入所需要的R包"></a>导入所需要的<code>R</code>包</h4><pre><code class="R">library(readxl)
+                <h4 id="导入所需要的R包"><a href="#导入所需要的R包" class="headerlink" title="导入所需要的R包"></a>导入所需要的<code>R</code>包</h4><pre class=" language-lang-R"><code class="language-lang-R">library(readxl)
 library(ggplot2)
 library(ggmap)
 library(sp)
@@ -471,25 +471,30 @@ library(maptools)
 library(maps)
 library(mapdata)
 library(mapproj)
-library(ggrepel)</code></pre>
+library(ggrepel)
+</code></pre>
 <h4 id="地图文件-shp-的处理"><a href="#地图文件-shp-的处理" class="headerlink" title="地图文件(shp)的处理"></a>地图文件(<code>shp</code>)的处理</h4><ol>
 <li>读入<a href="http://image-hfc.test.upcdn.net/山东省地图文件.zip" target="_blank" rel="noopener">地图文件</a>，解压此文件之后会产生许多文件，但读取时只读取<code>shp</code>文件即可</li>
 </ol>
-<pre><code class="R">mydat &lt;- readShapePoly(&#39;文件路径.shp&#39;)#以多边形的格式读入地图文件</code></pre>
-<ol start="2">
+<pre class=" language-lang-R"><code class="language-lang-R">mydat <- readShapePoly('文件路径.shp')#以多边形的格式读入地图文件
+</code></pre>
+<ol>
 <li>将地图数据转化为数据框</li>
 </ol>
-<pre><code class="R">shandong &lt;- fortify(mydat)</code></pre>
-<h4 id="需要向地图上添加的点的处理"><a href="#需要向地图上添加的点的处理" class="headerlink" title="需要向地图上添加的点的处理"></a>需要向地图上添加的点的处理</h4><pre><code class="R">location &lt;- read_excel(&#39;filename&#39;, sheet)#读入点的经纬度数据，sheet表示第几张表</code></pre>
-<h4 id="绘制地图"><a href="#绘制地图" class="headerlink" title="绘制地图"></a>绘制地图</h4><pre><code class="R">p &lt;- ggplot(shandong,aes(x=long,y=lat))+geom_polygon(aes(group=group),color=&#39;white&#39;,fill=&#39;lightblue&#39;,size=1)#绘制地图，在笛卡尔坐标系下
-p1 &lt;- p+theme(panel.background = element_rect(fill = &#39;white&#39;))+coord_map()#设置面板背景颜色为白色，coord_map()将笛卡尔坐标系转化为地理坐标系
-p2 &lt;- p1+theme(panel.grid = element_blank())#设置刻度线为空
-p3 &lt;- p2+theme(axis.title = element_blank())#设置坐标轴标签为空
-p4 &lt;- p3+theme(axis.ticks = element_blank())#设置坐标轴刻度为空
-p5 &lt;- p4+theme(axis.text = element_blank())#设置坐标轴刻度值为空
-p6 &lt;- p5+theme(plot.background = element_rect(fill = &#39;white&#39;))+theme(legend.background = element_rect(fill = &#39;white&#39;))#设置绘图区背景为白色，图例背景为白的
-p7 &lt;- p6+geom_point(data=location, aes(longitude,latitude),color=&#39;black&#39;)#将点加到地图上
-p7</code></pre>
+<pre class=" language-lang-R"><code class="language-lang-R">shandong <- fortify(mydat)
+</code></pre>
+<h4 id="需要向地图上添加的点的处理"><a href="#需要向地图上添加的点的处理" class="headerlink" title="需要向地图上添加的点的处理"></a>需要向地图上添加的点的处理</h4><pre class=" language-lang-R"><code class="language-lang-R">location <- read_excel('filename', sheet)#读入点的经纬度数据，sheet表示第几张表
+</code></pre>
+<h4 id="绘制地图"><a href="#绘制地图" class="headerlink" title="绘制地图"></a>绘制地图</h4><pre class=" language-lang-R"><code class="language-lang-R">p <- ggplot(shandong,aes(x=long,y=lat))+geom_polygon(aes(group=group),color='white',fill='lightblue',size=1)#绘制地图，在笛卡尔坐标系下
+p1 <- p+theme(panel.background = element_rect(fill = 'white'))+coord_map()#设置面板背景颜色为白色，coord_map()将笛卡尔坐标系转化为地理坐标系
+p2 <- p1+theme(panel.grid = element_blank())#设置刻度线为空
+p3 <- p2+theme(axis.title = element_blank())#设置坐标轴标签为空
+p4 <- p3+theme(axis.ticks = element_blank())#设置坐标轴刻度为空
+p5 <- p4+theme(axis.text = element_blank())#设置坐标轴刻度值为空
+p6 <- p5+theme(plot.background = element_rect(fill = 'white'))+theme(legend.background = element_rect(fill = 'white'))#设置绘图区背景为白色，图例背景为白的
+p7 <- p6+geom_point(data=location, aes(longitude,latitude),color='black')#将点加到地图上
+p7
+</code></pre>
 <p><img src="http://image-hfc.test.upcdn.net/Rplot.png" alt="Rplot"></p>
 <p><a href="http://image-hfc.test.upcdn.net/F.zip" target="_blank" rel="noopener">完整的项目代码以及数据</a></p>
 <p><strong>下载之后用<code>Rstudio</code>打开里面的脚本运行即可</strong></p>

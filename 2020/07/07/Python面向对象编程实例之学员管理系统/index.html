@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Serendipity" type="application/atom+xml">
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Serendipity" type="application/atom+xml">
 </head>
 
 
@@ -502,13 +502,14 @@
 <li>学员信息包括：姓名、性别、手机号；</li>
 <li>添加<code>__str__</code>魔法方法，方便查看学员对象信息</li>
 </ul>
-<h4 id="程序代码："><a href="#程序代码：" class="headerlink" title="程序代码："></a>程序代码：</h4><pre><code class="python">class Student(object):
+<h4 id="程序代码："><a href="#程序代码：" class="headerlink" title="程序代码："></a>程序代码：</h4><pre class=" language-lang-python"><code class="language-lang-python">class Student(object):
     def __init__(self, name, gender, tel):
         self.name = name
         self.gender = gender
         self.tel = tel
     def __str__(self):
-        return f&#39;{self.name}, {self.gender}, {self.tel}&#39;</code></pre>
+        return f'{self.name}, {self.gender}, {self.tel}'
+</code></pre>
 <h3 id="3-2-managerSystem-py"><a href="#3-2-managerSystem-py" class="headerlink" title="3.2 managerSystem.py"></a>3.2 <code>managerSystem.py</code></h3><p>需求</p>
 <ul>
 <li>存储数据的位置：文件(<code>student.data</code>)<ul>
@@ -528,10 +529,11 @@
 </ul>
 </li>
 </ul>
-<h4 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h4><pre><code class="python">class StudentManager(object):
+<h4 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h4><pre class=" language-lang-python"><code class="language-lang-python">class StudentManager(object):
     def __init__(self):
         # 存储数据所⽤用的列列表
-        self.student_list = []</code></pre>
+        self.student_list = []
+</code></pre>
 <h4 id="管理系统框架"><a href="#管理系统框架" class="headerlink" title="管理系统框架"></a>管理系统框架</h4><p>需求：系统功能循环使用，用户输入不同的功能序号执行不同的功能。</p>
 <ul>
 <li>步骤<ul>
@@ -546,7 +548,7 @@
 </ul>
 </li>
 </ul>
-<pre><code class="python">class StudentManager(object):
+<pre class=" language-lang-python"><code class="language-lang-python">class StudentManager(object):
     def __init__(self):
         # 存储数据所⽤用的列列表
         self.student_list = []
@@ -558,7 +560,7 @@
             # 2. 显示功能菜单
             self.show_menu()
             # 3. ⽤用户输⼊入功能序号
-            menu_num = int(input(&#39;请输⼊入您需要的功能序号：&#39;))
+            menu_num = int(input('请输⼊入您需要的功能序号：'))
             # 4 根据⽤用户输⼊入的功能序号执⾏行行不不同的功能
             if menu_num == 1:
                 # 添加学员
@@ -585,14 +587,14 @@
     # 2.1 显示功能菜单
     @staticmethod
     def show_menu():
-        print(&#39;请选择如下功能-----------------&#39;)
-        print(&#39;1:添加学员&#39;)
-        print(&#39;2:删除学员&#39;)
-        print(&#39;3:修改学员信息&#39;)
-        print(&#39;4:查询学员信息&#39;)
-        print(&#39;5:显示所有学员信息&#39;)
-        print(&#39;6:保存学员信息&#39;)
-        print(&#39;7:退出系统&#39;)
+        print('请选择如下功能-----------------')
+        print('1:添加学员')
+        print('2:删除学员')
+        print('3:修改学员信息')
+        print('4:查询学员信息')
+        print('5:显示所有学员信息')
+        print('6:保存学员信息')
+        print('7:退出系统')
     # 2.2 添加学员
     def add_student(self):
         pass
@@ -613,13 +615,15 @@
         pass
     # 2.8 加载学员信息
     def load_student(self):
-        pass</code></pre>
-<h3 id="3-3-main-py"><a href="#3-3-main-py" class="headerlink" title="3.3 main.py"></a>3.3 <code>main.py</code></h3><pre><code class="python"># 1. 导⼊入managerSystem模块
+        pass
+</code></pre>
+<h3 id="3-3-main-py"><a href="#3-3-main-py" class="headerlink" title="3.3 main.py"></a>3.3 <code>main.py</code></h3><pre class=" language-lang-python"><code class="language-lang-python"># 1. 导⼊入managerSystem模块
 from managerSystem import *
 # 2. 启动学员管理理系统
-if __name__ == &#39;__main__&#39;:
+if __name__ == '__main__':
     student_manager = StudentManager()
-    student_manager.run()</code></pre>
+    student_manager.run()
+</code></pre>
 <h3 id="3-4-定义系统功能函数"><a href="#3-4-定义系统功能函数" class="headerlink" title="3.4 定义系统功能函数"></a>3.4 定义系统功能函数</h3><h4 id="添加功能"><a href="#添加功能" class="headerlink" title="添加功能"></a>添加功能</h4><ul>
 <li>需求：用户输入学员姓名、性别、手机号，将学员添加到系统。</li>
 <li>步骤<ul>
@@ -630,23 +634,24 @@ if __name__ == &#39;__main__&#39;:
 </li>
 <li>代码</li>
 </ul>
-<pre><code class="python"># 添加学员函数内部需要创建学员对象，故先导⼊入student模块
+<pre class=" language-lang-python"><code class="language-lang-python"># 添加学员函数内部需要创建学员对象，故先导⼊入student模块
 from student import *
 class StudentManager(object):
     ......
     # 2.2 添加学员
     def add_student(self):
         # 1. ⽤用户输⼊入姓名、性别、⼿手机号
-        name = input(&#39;请输⼊入您的姓名：&#39;)
-        gender = input(&#39;请输⼊入您的性别：&#39;)
-        tel = input(&#39;请输⼊入您的⼿手机号：&#39;)
+        name = input('请输⼊入您的姓名：')
+        gender = input('请输⼊入您的性别：')
+        tel = input('请输⼊入您的⼿手机号：')
         # 2. 创建学员对象：先导⼊入学员模块，再创建对象
         student = Student(name, gender, tel)
         # 3. 将该学员对象添加到列列表
         self.student_list.append(student)
         # 打印信息
         print(self.student_list)
-        print(student)</code></pre>
+        print(student)
+</code></pre>
 <h4 id="删除功能"><a href="#删除功能" class="headerlink" title="删除功能"></a>删除功能</h4><ul>
 <li>需求：用户输入目标学员姓名，如果学员存在则删除该学员</li>
 <li>步骤<ul>
@@ -656,19 +661,20 @@ class StudentManager(object):
 </li>
 <li>代码</li>
 </ul>
-<pre><code class="python">    # 2.3 删除学员：删除指定姓名的学员
+<pre class=" language-lang-python"><code class="language-lang-python">    # 2.3 删除学员：删除指定姓名的学员
     def del_student(self):
         # 1. ⽤用户输⼊入⽬目标学员姓名
-        del_name = input(&#39;请输⼊入要删除的学员姓名：&#39;)
+        del_name = input('请输⼊入要删除的学员姓名：')
         # 2. 如果⽤用户输⼊入的⽬目标学员存在则删除，否则提示学员不不存在
         for i in self.student_list:
             if i.name == del_name:
                 self.student_list.remove(i)
                     break
         else:
-            print(&#39;查无此人！&#39;)
+            print('查无此人！')
         # 打印学员列列表，验证删除功能
-        print(self.student_list)</code></pre>
+        print(self.student_list)
+</code></pre>
 <h4 id="修改学员信息"><a href="#修改学员信息" class="headerlink" title="修改学员信息"></a>修改学员信息</h4><ul>
 <li><p>需求：用户输入目标学员姓名，如果学员存在则修改该学员信息</p>
 </li>
@@ -679,21 +685,22 @@ class StudentManager(object):
 </ul>
 </li>
 <li><p>代码</p>
-<pre><code class="python">    # 2.4 修改学员信息
+<pre class=" language-lang-python"><code class="language-lang-python">    # 2.4 修改学员信息
     def modify_student(self):
     # 1. ⽤用户输⼊入⽬目标学员姓名
-        modify_name = input(&#39;请输⼊入要修改的学员的姓名：&#39;)
+        modify_name = input('请输⼊入要修改的学员的姓名：')
         # 2. 如果⽤用户输⼊入的⽬目标学员存在则修改姓名、性别、⼿手机号等数据，否则提示学员不不存在
         for i in self.student_list:
             if i.name == modify_name:
-                i.name = input(&#39;请输⼊入学员姓名：&#39;)
-                i.gender = input(&#39;请输⼊入学员性别：&#39;)
-                i.tel = input(&#39;请输⼊入学员⼿手机号：&#39;)
-                print(f&#39;修改该学员信息成功，姓名{i.name},性别{i.gender}, ⼿手机号
-{i.tel}&#39;)
+                i.name = input('请输⼊入学员姓名：')
+                i.gender = input('请输⼊入学员性别：')
+                i.tel = input('请输⼊入学员⼿手机号：')
+                print(f'修改该学员信息成功，姓名{i.name},性别{i.gender}, ⼿手机号
+{i.tel}')
                 break
         else:
-            print(&#39;查无此人！&#39;)</code></pre>
+            print('查无此人！')
+</code></pre>
 </li>
 </ul>
 <h4 id="查询学员信息"><a href="#查询学员信息" class="headerlink" title="查询学员信息"></a>查询学员信息</h4><ul>
@@ -705,17 +712,18 @@ class StudentManager(object):
 </li>
 <li>代码</li>
 </ul>
-<pre><code class="python">    # 2.5 查询学员信息
+<pre class=" language-lang-python"><code class="language-lang-python">    # 2.5 查询学员信息
     def search_student(self):
         # 1. ⽤用户输⼊入⽬目标学员姓名
-        search_name = input(&#39;请输⼊入要查询的学员的姓名：&#39;)
+        search_name = input('请输⼊入要查询的学员的姓名：')
         # 2. 如果⽤用户输⼊入的⽬目标学员存在，则打印学员信息，否则提示学员不不存在
         for i in self.student_list:
             if i.name == search_name:
-            print(f&#39;姓名{i.name},性别{i.gender}, ⼿手机号{i.tel}&#39;)
+            print(f'姓名{i.name},性别{i.gender}, ⼿手机号{i.tel}')
             break
         else:
-        print(&#39;查无此人!&#39;)</code></pre>
+        print('查无此人!')
+</code></pre>
 <h4 id="显示所有学员信息"><a href="#显示所有学员信息" class="headerlink" title="显示所有学员信息"></a>显示所有学员信息</h4><ul>
 <li>打印所有学员信息</li>
 <li>步骤<ul>
@@ -724,11 +732,12 @@ class StudentManager(object):
 </li>
 <li>代码</li>
 </ul>
-<pre><code class="python">    # 2.6 显示所有学员信息
+<pre class=" language-lang-python"><code class="language-lang-python">    # 2.6 显示所有学员信息
     def show_student(self):
-        print(&#39;姓名\t性别\t手机号&#39;)
+        print('姓名\t性别\t手机号')
         for i in self.student_list:
-            print(f&#39;{i.name}\t{i.gender}\t{i.tel}&#39;)</code></pre>
+            print(f'{i.name}\t{i.gender}\t{i.tel}')
+</code></pre>
 <h4 id="保存学员信息"><a href="#保存学员信息" class="headerlink" title="保存学员信息"></a>保存学员信息</h4><ul>
 <li>需求：将修改后的学员数据保存到存储数据的文件。</li>
 <li>步骤<ul>
@@ -746,7 +755,7 @@ class StudentManager(object):
 <ul>
 <li>拓展<code>__dict__</code></li>
 </ul>
-<pre><code class="python">class A(object):
+<pre class=" language-lang-python"><code class="language-lang-python">class A(object):
     a = 0
     def __init__(self):
         self.b = 1
@@ -754,25 +763,27 @@ aa = A()
 # 返回类内部所有属性和方法对应的字典
 print(A.__dict__)
 # 返回实例属性和值组成的字典
-print(aa.__dict__)</code></pre>
+print(aa.__dict__)
+</code></pre>
 <p>在<code>python</code>中</p>
 <ul>
 <li>代码</li>
 </ul>
-<pre><code class="python">    # 2.7 保存学员信息
+<pre class=" language-lang-python"><code class="language-lang-python">    # 2.7 保存学员信息
     def save_student(self):
         # 1. 打开⽂文件
-        f = open(&#39;student.data&#39;, &#39;w&#39;)
+        f = open('student.data', 'w')
         # 2. ⽂文件写⼊入学员数据
         # 注意1：⽂文件写⼊入的数据不不能是学员对象的内存地址，需要把学员数据转换成列列表字典数据再做存储
         new_list = [i.__dict__ for i in self.student_list]
-        # [{&#39;name&#39;: &#39;aa&#39;, &#39;gender&#39;: &#39;nv&#39;, &#39;tel&#39;: &#39;111&#39;}]
+        # [{'name': 'aa', 'gender': 'nv', 'tel': '111'}]
         print(new_list)
         # 注意2：⽂文件内数据要求为字符串串类型，故需要先转换数据类型为字符串串才能⽂文件写⼊入数
 据
         f.write(str(new_list))
         # 3. 关闭⽂文件
-        f.close()</code></pre>
+        f.close()
+</code></pre>
 <h4 id="加载学员信息"><a href="#加载学员信息" class="headerlink" title="加载学员信息"></a>加载学员信息</h4><ul>
 <li>需求：每次进⼊入系统后，修改的数据是文件里面的数据</li>
 <li>步骤<ul>
@@ -788,35 +799,38 @@ print(aa.__dict__)</code></pre>
 </li>
 <li>代码</li>
 </ul>
-<pre><code class="python">    # 2.8 加载学员信息
+<pre class=" language-lang-python"><code class="language-lang-python">    # 2.8 加载学员信息
     def load_student(self):
-        # 尝试以&quot;r&quot;模式打开数据⽂文件，⽂文件不不存在则提示⽤用户；⽂文件存在（没有异常）则读取数据
+        # 尝试以"r"模式打开数据⽂文件，⽂文件不不存在则提示⽤用户；⽂文件存在（没有异常）则读取数据
         try:
-            f = open(&#39;student.data&#39;, &#39;r&#39;)
+            f = open('student.data', 'r')
         except:
-            f = open(&#39;student.data&#39;, &#39;w&#39;)
+            f = open('student.data', 'w')
         else:
             # 1. 读取数据
             data = f.read()
             # 2. ⽂文件中读取的数据都是字符串串且字符串串内部为字典数据，故需要转换数据类型再转换字典为对象后存储到学员列列表
             new_list = eval(data)
-            self.student_list = [Student(i[&#39;name&#39;], i[&#39;gender&#39;], i[&#39;tel&#39;]) for i in new_list]
+            self.student_list = [Student(i['name'], i['gender'], i['tel']) for i in new_list]
         finally:
             # 3. 关闭⽂文件
-            f.close()</code></pre>
-<h2 id="四-完整的项目代码"><a href="#四-完整的项目代码" class="headerlink" title="四. 完整的项目代码"></a>四. 完整的项目代码</h2><h3 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a><code>main.py</code></h3><pre><code class="python">from managerSystem import *
+            f.close()
+</code></pre>
+<h2 id="四-完整的项目代码"><a href="#四-完整的项目代码" class="headerlink" title="四. 完整的项目代码"></a>四. 完整的项目代码</h2><h3 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a><code>main.py</code></h3><pre class=" language-lang-python"><code class="language-lang-python">from managerSystem import *
 
-if __name__ == &#39;__main__&#39;:
+if __name__ == '__main__':
     student_manager = StudentManager()
-    student_manager.run()</code></pre>
-<h3 id="student-py"><a href="#student-py" class="headerlink" title="student.py"></a><code>student.py</code></h3><pre><code class="python">class Student(object):
+    student_manager.run()
+</code></pre>
+<h3 id="student-py"><a href="#student-py" class="headerlink" title="student.py"></a><code>student.py</code></h3><pre class=" language-lang-python"><code class="language-lang-python">class Student(object):
     def __init__(self, name, gender, tel):
         self.name = name
         self.gender = gender
         self.tel = tel
     def __str__(self):
-        return f&#39;{self.name}, {self.gender}, {self.tel}&#39;</code></pre>
-<h3 id="managerSystem-py"><a href="#managerSystem-py" class="headerlink" title="managerSystem.py"></a><code>managerSystem.py</code></h3><pre><code class="python">from student import *
+        return f'{self.name}, {self.gender}, {self.tel}'
+</code></pre>
+<h3 id="managerSystem-py"><a href="#managerSystem-py" class="headerlink" title="managerSystem.py"></a><code>managerSystem.py</code></h3><pre class=" language-lang-python"><code class="language-lang-python">from student import *
 def StudentManager(object):
     def __init__(self):
         self.student_list = []
@@ -824,7 +838,7 @@ def StudentManager(object):
         self.load_student()
         while True:
             self.show_menu()
-            menu_num = int(input(&quot;请输入您需要的功能序号：&quot;))
+            menu_num = int(input("请输入您需要的功能序号："))
             if menu_num == 1:
                 self.add_student()
             elif menu_num == 2:
@@ -841,66 +855,67 @@ def StudentManager(object):
                 break
     @staticsmethod
     def show_menu():
-        print(&#39;请选择如下功能-----------------&#39;)
-        print(&#39;1:添加学员&#39;)
-        print(&#39;2:删除学员&#39;)
-        print(&#39;3:修改学员信息&#39;)
-        print(&#39;4:查询学员信息&#39;)
-        print(&#39;5:显示所有学员信息&#39;)
-        print(&#39;6:保存学员信息&#39;)
-        print(&#39;7:退出系统&#39;)
+        print('请选择如下功能-----------------')
+        print('1:添加学员')
+        print('2:删除学员')
+        print('3:修改学员信息')
+        print('4:查询学员信息')
+        print('5:显示所有学员信息')
+        print('6:保存学员信息')
+        print('7:退出系统')
     def add_student(self):
-        name = input(&quot;请输入姓名：&quot;)
-        gender = input(&quot;请输入性别：&quot;)
-        tel = input(&quot;请输入手机号：&quot;)
+        name = input("请输入姓名：")
+        gender = input("请输入性别：")
+        tel = input("请输入手机号：")
         student = Student(name, gender, tel)
         self.student_list.append(student)
     def del_student(self):
-        del_name = input(&quot;请输入要删除的学员姓名：&quot;)
+        del_name = input("请输入要删除的学员姓名：")
         for i in self.student_list:
             if i.name == del_name:
                 self.student_list.remove(i)
                 break
         else:
-            print(&quot;查无此人&quot;)
+            print("查无此人")
     def modify_student():
-        modify_name = input(&quot;请输入要修改的学员的姓名：&quot;)
+        modify_name = input("请输入要修改的学员的姓名：")
         for i in self.student_list:
             if i.name == modify_name:
-                i.name = input(&quot;请输入姓名：&quot;)
-                i.gender = input(&quot;请输入性别：&quot;)
-                i.tel = input(&quot;请输入手机号：&quot;)
-                print(f&#39;修改学员信息成功，姓名：{i.name},性别：{i.gender}，手机号：{i.tel}&#39;)
+                i.name = input("请输入姓名：")
+                i.gender = input("请输入性别：")
+                i.tel = input("请输入手机号：")
+                print(f'修改学员信息成功，姓名：{i.name},性别：{i.gender}，手机号：{i.tel}')
         else:
-            print(&quot;查无此人&quot;)
+            print("查无此人")
     def search_student():
-        search_name = input(&quot;请输入要查询的学员的姓名：&quot;)
+        search_name = input("请输入要查询的学员的姓名：")
         for i in self.student_list:
             if i.name == search_name:
-                print(f&#39;姓名：{i.name},性别：{i.gender}，手机号：{i.tel}&#39;)
+                print(f'姓名：{i.name},性别：{i.gender}，手机号：{i.tel}')
                 break
         else:
-            print(&quot;查无此人&quot;)
+            print("查无此人")
     def show_student():
-        print(&quot;姓名\t性别\t手机号&quot;)
+        print("姓名\t性别\t手机号")
         for i in self.student_list:
-            print(f&#39;{i.name}\t{i.gender}\t{i.tel}&#39;)
+            print(f'{i.name}\t{i.gender}\t{i.tel}')
     def save_student():
-        f = open(&#39;student.data&#39;, &#39;w&#39;)
+        f = open('student.data', 'w')
         new_list = [i.__dict__ for i in self.student_list]
         f.write(str(new_list))
         f.close()
     def load_student():
         try:
-            f = open(&#39;student.data&#39;, &#39;r&#39;)
+            f = open('student.data', 'r')
         except:
-            f = open(&#39;student.data&#39;, &#39;w&#39;)
+            f = open('student.data', 'w')
         else:
             data = f.read()
             new_list = eval(data)
-            self.student_list = [Student(i[&#39;name&#39;], i[&#39;gender&#39;], i[&#39;tel&#39;]) for i in new_list]
+            self.student_list = [Student(i['name'], i['gender'], i['tel']) for i in new_list]
         finally:
-            f.close()</code></pre>
+            f.close()
+</code></pre>
 <p><a href="http://image-hfc.test.upcdn.net/StudentManagerSystem.zip" target="_blank" rel="noopener">完整代码下载</a></p>
 
             </div>
