@@ -1,0 +1,1390 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="统计学第二部分, Serendipity">
+    <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>统计学第二部分 | Serendipity</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Serendipity" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Serendipity</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Serendipity</div>
+        <div class="logo-desc">
+            
+            我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/HFC666" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/HFC666" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">统计学第二部分</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/">
+                                <span class="chip bg-color">统计学</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-07-08
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="第十章-方差分析"><a href="#第十章-方差分析" class="headerlink" title="第十章 方差分析"></a>第十章 方差分析</h2><h3 id="方差分析引论"><a href="#方差分析引论" class="headerlink" title="方差分析引论"></a>方差分析引论</h3><p>在方差分析中，所检验的对象称为<strong>因素</strong>或<strong>因子</strong>。因素的不同表现称为水平或处理。</p>
+<h4 id="误差分解"><a href="#误差分解" class="headerlink" title="误差分解"></a>误差分解</h4><p><img src="http://image-hfc.test.upcdn.net/85.jpg" alt=""></p>
+<h4 id="方差分析的基本假定"><a href="#方差分析的基本假定" class="headerlink" title="方差分析的基本假定"></a>方差分析的基本假定</h4><ol>
+<li>每个总体都应该服从正态分布。</li>
+<li>各个总体的方差$\sigma^2$必须相同。</li>
+<li>观测值是独立的。</li>
+</ol>
+<p><img src="http://image-hfc.test.upcdn.net/86.jpg" alt=""></p>
+<h3 id="单因素方差分析"><a href="#单因素方差分析" class="headerlink" title="单因素方差分析"></a>单因素方差分析</h3><p>当方差分析中只涉及一个分类型自变量时称为<strong>单因素方差分析</strong>。</p>
+<script type="math/tex; mode=display">
+\overline{\overline{x}}=\frac{\sum_{i=1}^{k}\sum_{j=1}^{n_i}x_{ij}}{n}=\frac{\sum_{i=1}^{k}n_i\overline{x_i}}{n}</script><script type="math/tex; mode=display">
+SST = \sum_{i=1}^{k}\sum_{j=1}^{n_i}(x_{ij}-\overline{\overline{x}})^2</script><script type="math/tex; mode=display">
+SSA=\sum_{i=1}^{k}\sum_{j=1}^{n_i}(\overline{x_i}-\overline{\overline{x}})=\sum_{i=1}^{k}n_i(\overline{x_i}-\overline{\overline{x}})^2\\</script><script type="math/tex; mode=display">
+SSE=\sum_{i=1}^{k}\sum_{j=1}^{n_i}(x_{ij}-\overline{x})^2</script><script type="math/tex; mode=display">
+SST=SSA+SSE</script><script type="math/tex; mode=display">
+MST = \frac{SST}{n-1}</script><script type="math/tex; mode=display">
+MSA = \frac{SSA}{k-1}\\</script><script type="math/tex; mode=display">
+MSE = \frac{SSE}{n-k}</script><p><strong>构造的统计量</strong></p>
+<script type="math/tex; mode=display">
+F=\frac{MSA}{MSE}\sim F(k-1,n-k)</script><p><strong>方差分析和卡方检验都是单侧检验，应该是右单侧检验。</strong></p>
+<h4 id="关系强度的测量"><a href="#关系强度的测量" class="headerlink" title="关系强度的测量"></a>关系强度的测量</h4><script type="math/tex; mode=display">
+R^2=\frac{SSA}{SST}</script><p>$R^2$为判定系数，$R$为相关系数或者关系强度。</p>
+<h4 id="方差分析中的多重比较"><a href="#方差分析中的多重比较" class="headerlink" title="方差分析中的多重比较"></a>方差分析中的多重比较</h4><p>费希尔的最小显著差异方法，缩写为$LSD$</p>
+<ol>
+<li><p>第一步：提出假设：$H_0:\mu_i=\mu_j;H_1:\mu_i\neq\mu_j$</p>
+</li>
+<li><p>第二部：计算检验统计量：$\overline{x_i}-\overline{x_j}$</p>
+</li>
+<li>计算$LSD$，其公式为：$LSD=t_{\alpha/2}\sqrt{MSE(\frac{1}{n_i}+\frac{1}{n_j})}$，式中$t_{\alpha/2}$为$t$分布的临界值，自由度为$n-k$。</li>
+<li>根据显著性水平$\alpha$做出决策。如果$|\overline{x_i}-\overline{x_j}|&gt;LSD$，则拒绝$H_0$,反之不拒绝。</li>
+</ol>
+<h3 id="双因素方差分析"><a href="#双因素方差分析" class="headerlink" title="双因素方差分析"></a>双因素方差分析</h3><h4 id="无交互作用的双因素方差分析"><a href="#无交互作用的双因素方差分析" class="headerlink" title="无交互作用的双因素方差分析"></a>无交互作用的双因素方差分析</h4><p>又称为<strong>无重复双因素方差分析</strong></p>
+<h5 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h5><p><img src="http://image-hfc.test.upcdn.net/87.jpg" alt=""></p>
+<p>$\overline{x_{i.}}$是行因素的第$i$个水平各观测值的平均值，其计算公式为：</p>
+<script type="math/tex; mode=display">
+\overline{x_{i.}}=\frac{\sum_{j=1}^r}{r},\qquad i=1,2,\dots,k</script><p>$\overline{x_{.j}}$是列因素的第$j$个水平各观测值的平均值，其计算公式为：</p>
+<script type="math/tex; mode=display">
+\overline{x_{.j}}=\frac{\sum_{j=1}^k}{r},\qquad j=1,2,\dots,r</script><p>$\overline{\overline{x}}$是全部$kr$个样本数据的总平均值，其计算公式为：</p>
+<script type="math/tex; mode=display">
+\overline{\overline{x}}=\frac{\sum_{i=1}^k{\sum_{j=1}^r}{x_{ij}}}{kr}</script><h5 id="分析步骤"><a href="#分析步骤" class="headerlink" title="分析步骤"></a>分析步骤</h5><p><img src="http://image-hfc.test.upcdn.net/88.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/89.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/90.jpg" alt=""></p>
+<h5 id="关系强度的测量-1"><a href="#关系强度的测量-1" class="headerlink" title="关系强度的测量"></a>关系强度的测量</h5><script type="math/tex; mode=display">
+R^2=\frac{SSR+SSC}{SST}</script><h4 id="有交互作用的双因素方差分析"><a href="#有交互作用的双因素方差分析" class="headerlink" title="有交互作用的双因素方差分析"></a>有交互作用的双因素方差分析</h4><p>有称为<strong>可重复双因素方差分析</strong></p>
+<h5 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h5><p>类似于</p>
+<p><img src="http://image-hfc.test.upcdn.net/91.jpg" alt=""></p>
+<h5 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h5><p><img src="http://image-hfc.test.upcdn.net/92.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/93.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/94.jpg" alt="总是截图是不是有点懒" title="总是截图是不是有点懒"></p>
+<h2 id="第十一章-一元线性回归"><a href="#第十一章-一元线性回归" class="headerlink" title="第十一章 一元线性回归"></a>第十一章 一元线性回归</h2><h3 id="变量间关系的度量"><a href="#变量间关系的度量" class="headerlink" title="变量间关系的度量"></a>变量间关系的度量</h3><h4 id="变量间的关系"><a href="#变量间的关系" class="headerlink" title="变量间的关系"></a>变量间的关系</h4><h5 id="函数关系"><a href="#函数关系" class="headerlink" title="函数关系"></a>函数关系</h5><p><strong>一一对应</strong></p>
+<h5 id="相关关系"><a href="#相关关系" class="headerlink" title="相关关系"></a>相关关系</h5><p>变量之间存在的不确定的数量关系，称为<strong>相关关系</strong></p>
+<h4 id="相关关系的描述与测度"><a href="#相关关系的描述与测度" class="headerlink" title="相关关系的描述与测度"></a>相关关系的描述与测度</h4><ol>
+<li>散点图</li>
+<li>相关系数</li>
+</ol>
+<p><strong>相关系数</strong>是根据样本数据计算的度量两个变量之间线性关系强度的统计量。若相关系数是根据总体全部数据计算的，则称为总体相关系数，记为$\rho$；若是根据样本数据计算的，则称为样本相关系数，记为$r$。样本相关系数的计算公式为：</p>
+<script type="math/tex; mode=display">
+r=\frac{n\sum{xy}-\sum{x}\sum{y}}{\sqrt{n\sum{x^2}-(\sum{x})^2}\times \sqrt{n\sum{y^2}-(\sum{y})^2}}</script><p>按上述计算公式计算的相关系数也称为<strong>线性相关系数</strong>，或称为<strong>Pearson 相关系数</strong>。</p>
+<p><img src="http://image-hfc.test.upcdn.net/95.jpg" alt=""></p>
+<p>对于一个具体的$r$的取值，根据经验可将相关程度分为以下几种情况：当$|r|\ge0.8$时，可视为高度相关；$0.5\le|r| &lt;0.8$时，可视为中度相关；$0.3\le|r| &lt;0.5$时，视为低度相关；当$|r|&lt;0.3$时，说明两个变量之间的相关程度极弱，可视为不相关。</p>
+<h4 id="相关关系的显著性检验"><a href="#相关关系的显著性检验" class="headerlink" title="相关关系的显著性检验"></a>相关关系的显著性检验</h4><h5 id="r-的抽样分布"><a href="#r-的抽样分布" class="headerlink" title="$r$的抽样分布"></a>$r$的抽样分布</h5><p>当$\rho$为较大的正值时,$r$呈现出左偏分布；当$\rho$为较大的负值时，$r$呈现右偏分布。只有当$\rho$接近0，而样本量$n$很大时，才能认为$r$是接近正态分布的随机变量。</p>
+<h5 id="r-的显著性检验"><a href="#r-的显著性检验" class="headerlink" title="$r$的显著性检验"></a>$r$的显著性检验</h5><p>费希尔的$t$检验，既可以用于小样本，也可以用于大样本。</p>
+<ol>
+<li>第一步：提出假设</li>
+</ol>
+<p>$H_0:\rho=0;H_1:\rho \neq 0$</p>
+<ol>
+<li>第二步：计算检验的统计量</li>
+</ol>
+<script type="math/tex; mode=display">
+t = |r|\sqrt{\frac{n-2}{1-r^2}}\sim t(n-2)</script><ol>
+<li>第三步：进行决策：根据给定的显著性水平$\alpha$和自由度$df=n-2$查$t$分布表，得出$t_{\alpha/2}(n-2)$的临界值。若$|t|&gt;t_{\alpha/2}$，则拒绝原假设$H_0$，表明总体的两个变量之间存在着显著的线性关系。</li>
+</ol>
+<h3 id="一元线性回归"><a href="#一元线性回归" class="headerlink" title="一元线性回归"></a>一元线性回归</h3><h4 id="一元线性回归模型"><a href="#一元线性回归模型" class="headerlink" title="一元线性回归模型"></a>一元线性回归模型</h4><h5 id="回归模型"><a href="#回归模型" class="headerlink" title="回归模型"></a>回归模型</h5><p>在回归分析中，被预测或被解释的变量称为<strong>因变量</strong>，用$y$来表示。用来预测或解释因变量的一个或多个变量称为<strong>自变量</strong>，用$x$表示。</p>
+<script type="math/tex; mode=display">
+y = \beta_0+\beta_1x+\varepsilon</script><h6 id="假定"><a href="#假定" class="headerlink" title="假定"></a>假定</h6><ol>
+<li>因变量$y$与自变量$x$之间有线性关系。</li>
+<li>在重复抽样中，自变量$x$的取值是固定的，即假定$x$是非随机的。</li>
+<li>误差项$\varepsilon$是一个期望值为0的随机变量，即$E(\varepsilon)=0$，这意味着$E(y)=\beta_0+\beta_1x$</li>
+<li>对于所有的$x$值，$\varepsilon$的方差$\sigma^2$都相同。这意味着对于一个特定的$x$值,$y$的方差也都等于$\sigma^2$。</li>
+<li>误差项$\varepsilon$时一个服从正态分布的随机变量，且独立，即$\varepsilon\sim N(0,\sigma^2)$。独立性意味着对于一个特定的$x$值，它所对应的$\varepsilon$与其他$x$值所对应的$\varepsilon$不相关。</li>
+</ol>
+<p><img src="http://image-hfc.test.upcdn.net/96.jpg" alt=""></p>
+<h5 id="回归方程"><a href="#回归方程" class="headerlink" title="回归方程"></a>回归方程</h5><p>一元线性回归方程的形式为：</p>
+<script type="math/tex; mode=display">
+E(y)=\beta_0+\beta_1x</script><h5 id="估计的回归方程"><a href="#估计的回归方程" class="headerlink" title="估计的回归方程"></a>估计的回归方程</h5><p>估计的回归方程形式为：</p>
+<script type="math/tex; mode=display">
+\widehat{y}=\widehat{\beta_0}+\widehat{\beta_1}x</script><h4 id="参数的最小二乘估计"><a href="#参数的最小二乘估计" class="headerlink" title="参数的最小二乘估计"></a>参数的最小二乘估计</h4><p><img src="http://image-hfc.test.upcdn.net/97.jpg" alt=""></p>
+<p><strong>上述证明过程存在错误：求导后应该没有平方</strong></p>
+<h4 id="回归直线的拟合优度"><a href="#回归直线的拟合优度" class="headerlink" title="回归直线的拟合优度"></a>回归直线的拟合优度</h4><h5 id="判定系数"><a href="#判定系数" class="headerlink" title="判定系数"></a>判定系数</h5><p><img src="http://image-hfc.test.upcdn.net/98.jpg" alt=""></p>
+<p>即：$总平方和(SST)=残差平方和(SSE)+回归平方和(SSR)$</p>
+<script type="math/tex; mode=display">
+R^2=\frac{SSA}{SST}</script><h5 id="估计标准误差"><a href="#估计标准误差" class="headerlink" title="估计标准误差"></a>估计标准误差</h5><p><strong>估计标准误差</strong>就是度量各实际观测点在直线周围散布状况的一个统计量，它是均方残差($MSE$)的平方根。</p>
+<script type="math/tex; mode=display">
+s_e=\sqrt{\frac{SSE}{n-2}}=\sqrt{MSE}</script><h4 id="显著性检验"><a href="#显著性检验" class="headerlink" title="显著性检验"></a>显著性检验</h4><h5 id="线性关系检验"><a href="#线性关系检验" class="headerlink" title="线性关系检验"></a>线性关系检验</h5><p>构造统计量</p>
+<script type="math/tex; mode=display">
+F=\frac{SSR/1}{SSE/(n-2)}=\frac{MSA}{MSE}\sim F(1,n-2)</script><p>注：$SSR$的自由度为$k$，$SSE$的自由度为$n-k-1$，$k$代表自变量的个数，故一元线性回归$k=1$。</p>
+<p>确定显著性水平$\alpha$，若$F&gt;F_{\alpha}$，则拒绝原假设，此时$\beta_1\neq0$，表明线性关系是显著的。</p>
+<h5 id="回归系数的检验"><a href="#回归系数的检验" class="headerlink" title="回归系数的检验"></a>回归系数的检验</h5><p>$H_0:\beta_1=0$</p>
+<p><img src="http://image-hfc.test.upcdn.net/99.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/100.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/101.jpg" alt=""></p>
+<h3 id="利用回归方程进行预测"><a href="#利用回归方程进行预测" class="headerlink" title="利用回归方程进行预测"></a>利用回归方程进行预测</h3><h4 id="点估计"><a href="#点估计" class="headerlink" title="点估计"></a>点估计</h4><p>带入方程即可。</p>
+<h4 id="区间估计"><a href="#区间估计" class="headerlink" title="区间估计"></a>区间估计</h4><h5 id="置信区间估计"><a href="#置信区间估计" class="headerlink" title="置信区间估计"></a>置信区间估计</h5><p>是对$x$的一个给定值$x_0$，求出$y$平均值的区间估计。</p>
+<p><img src="http://image-hfc.test.upcdn.net/102.jpg" alt=""></p>
+<h5 id="预测区间估计"><a href="#预测区间估计" class="headerlink" title="预测区间估计"></a>预测区间估计</h5><p>是对$x$的一个给定值$x_0$，求出$y$的一个个别值的区间估计。</p>
+<p><img src="http://image-hfc.test.upcdn.net/103.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/104.jpg" alt=""></p>
+<h3 id="残差分析"><a href="#残差分析" class="headerlink" title="残差分析"></a>残差分析</h3><h4 id="残差图"><a href="#残差图" class="headerlink" title="残差图"></a>残差图</h4><p><img src="http://image-hfc.test.upcdn.net/105.jpg" alt=""></p>
+<h4 id="标准化残差"><a href="#标准化残差" class="headerlink" title="标准化残差"></a>标准化残差</h4><p>是残差除以它的标准差后得到的数值，也称Person 残差或半学生化残差：</p>
+<script type="math/tex; mode=display">
+z_{e_i}=\frac{e_i}{s_e}</script><h2 id="第十二章-多元线性回归"><a href="#第十二章-多元线性回归" class="headerlink" title="第十二章 多元线性回归"></a>第十二章 多元线性回归</h2><h3 id="多元线性回归模型"><a href="#多元线性回归模型" class="headerlink" title="多元线性回归模型"></a>多元线性回归模型</h3><h4 id="多元回归模型与回归方程"><a href="#多元回归模型与回归方程" class="headerlink" title="多元回归模型与回归方程"></a>多元回归模型与回归方程</h4><h5 id="多元回归模型"><a href="#多元回归模型" class="headerlink" title="多元回归模型"></a>多元回归模型</h5><script type="math/tex; mode=display">
+y=\beta_0+\beta_1x_1+\beta_2x_2+\dots+\beta_kx_k+\varepsilon</script><h5 id="多元回归方程"><a href="#多元回归方程" class="headerlink" title="多元回归方程"></a>多元回归方程</h5><script type="math/tex; mode=display">
+E(y)=\beta_0+\beta_1x_1+\beta_2x_2+\dots+\beta_kx_k</script><h4 id="估计的多元回归方程"><a href="#估计的多元回归方程" class="headerlink" title="估计的多元回归方程"></a>估计的多元回归方程</h4><script type="math/tex; mode=display">
+\widehat{y}=\widehat\beta_0+\widehat\beta_1x_1+\widehat\beta_2x_2+\dots+\widehat\beta_kx_k</script><h4 id="参数的最小二乘估计-1"><a href="#参数的最小二乘估计-1" class="headerlink" title="参数的最小二乘估计"></a>参数的最小二乘估计</h4><p><img src="http://image-hfc.test.upcdn.net/106.jpg" alt=""></p>
+<h3 id="回归方程的拟合优度"><a href="#回归方程的拟合优度" class="headerlink" title="回归方程的拟合优度"></a>回归方程的拟合优度</h3><h4 id="多重判定系数"><a href="#多重判定系数" class="headerlink" title="多重判定系数"></a>多重判定系数</h4><p><strong>多重判定系数</strong>：</p>
+<script type="math/tex; mode=display">
+R^2=\frac{SSR}{SST}=1-\frac{SSE}{SST}</script><p><strong>修正后的多重判定系数</strong>：</p>
+<script type="math/tex; mode=display">
+R_a^2=1-(1-R^2)(\frac{n-1}{n-k-1})</script><h4 id="估计标准误差-1"><a href="#估计标准误差-1" class="headerlink" title="估计标准误差"></a>估计标准误差</h4><script type="math/tex; mode=display">
+s_e=\sqrt{\frac{\sum{(y_i-\widehat{y_i})^2}}{n-k-1}}=\sqrt{\frac{SSE}{n-k-1}}=\sqrt{MSE}</script><h3 id="显著性检验-1"><a href="#显著性检验-1" class="headerlink" title="显著性检验"></a>显著性检验</h3><h4 id="线性关系检验-1"><a href="#线性关系检验-1" class="headerlink" title="线性关系检验"></a>线性关系检验</h4><ol>
+<li>第一步：提出假设</li>
+</ol>
+<script type="math/tex; mode=display">
+H_0:\beta_1=\beta_2=\dots=\beta_k=0\\
+H_1:至少有一个不为0</script><ol>
+<li>第二步：计算检验的统计量$F$</li>
+</ol>
+<script type="math/tex; mode=display">
+F=\frac{SSR/k}{SSE/(n-k-1)}\sim F(k,n-k-1)</script><ol>
+<li>判断</li>
+</ol>
+<h4 id="回归系数的检验和判断"><a href="#回归系数的检验和判断" class="headerlink" title="回归系数的检验和判断"></a>回归系数的检验和判断</h4><p><img src="http://image-hfc.test.upcdn.net/107.jpg" alt=""></p>
+<h3 id="多重共线性"><a href="#多重共线性" class="headerlink" title="多重共线性"></a>多重共线性</h3><p>当回归模型中两个或两个以上的自变量彼此相关时，则称回归模型存在<strong>多重共线性</strong>。</p>
+<ol>
+<li>模型中各对自变量之间显著相关。</li>
+<li>当模型的线性关系检验($F$检验)显著时，几乎所有的回归系数$\beta_i$的$t$检验不显著。</li>
+<li>回归系数的正负号与预期的相反。</li>
+<li>容忍度与方差扩大因子。</li>
+</ol>
+<p><img src="http://image-hfc.test.upcdn.net/108.jpg" alt=""></p>
+<h4 id="多重共线性问题的处理"><a href="#多重共线性问题的处理" class="headerlink" title="多重共线性问题的处理"></a>多重共线性问题的处理</h4><p><img src="http://image-hfc.test.upcdn.net/109.jpg" alt=""></p>
+<h3 id="利用回归方程进行预测-1"><a href="#利用回归方程进行预测-1" class="headerlink" title="利用回归方程进行预测"></a>利用回归方程进行预测</h3><p>利用计算机</p>
+<h3 id="变量选择与逐步回归"><a href="#变量选择与逐步回归" class="headerlink" title="变量选择与逐步回归"></a>变量选择与逐步回归</h3><p><img src="http://image-hfc.test.upcdn.net/110.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/111.jpg" alt=""></p>
+<h2 id="第十三章-事件序列分析和预测"><a href="#第十三章-事件序列分析和预测" class="headerlink" title="第十三章 事件序列分析和预测"></a>第十三章 事件序列分析和预测</h2><h3 id="事件序列及其分解"><a href="#事件序列及其分解" class="headerlink" title="事件序列及其分解"></a>事件序列及其分解</h3><p><strong>平稳序列</strong>是基本上不存在趋势的序列。这类序列中的各观察值基本上在某个固定的水平上波动，虽然在不同的时间段波动的程度不同，但并不存在某种规律，其波动可以看成随机性的。非平稳序列是包含趋势、季节性或周期性的序列、它可能只含有其中的一种成分，也可能是几种成分的组合。</p>
+<p><strong>趋势</strong>是时间序列在长时间内呈现出来的某种持续上升或持续下降的变动，也称长期趋势。时间序列中的趋势可以是线性的，也可以是非线性的。</p>
+<p><strong>季节性</strong>也称<strong>季节变动</strong>，他是时间序列在一年内重复出现的周期性波动。</p>
+<p><strong>周期性</strong>也称<strong>循环波动</strong>，是时间序列中呈现出来的围绕长期趋势的波浪形或震荡式变动。循环波动无固定规律，变动周期多在一年以上，且周期长短不一。</p>
+<p>时间序列除去上述三点后，剩余的部分称为<strong>随机性</strong>，或者<strong>不规则波动</strong>。</p>
+<p>趋势($T$),季节性($S$),周期性($C$),循环波动($I$)。</p>
+<p><strong>乘法模型</strong>：</p>
+<script type="math/tex; mode=display">
+Y_t=T_t\times S_t \times C_t \times I_t</script><h3 id="时间序列的描述性分析"><a href="#时间序列的描述性分析" class="headerlink" title="时间序列的描述性分析"></a>时间序列的描述性分析</h3><h4 id="增长率分析"><a href="#增长率分析" class="headerlink" title="增长率分析"></a>增长率分析</h4><h5 id="增长率"><a href="#增长率" class="headerlink" title="增长率"></a>增长率</h5><p><strong>增长率</strong>也称增长速度，他是时间序列中报告期观察值与基期观察值之比减去1后的结果，用<code>%</code>表示。</p>
+<p>环比增长率：</p>
+<script type="math/tex; mode=display">
+G_i = \frac{Y_i-Y_{i-1}}{Y_{i-1}},\qquad i=1,2,\dots,n</script><p>定基增长率：</p>
+<script type="math/tex; mode=display">
+G_i=\frac{Y_i-Y_0}{Y_0},\qquad i=1,2,\dots,n</script><p>$Y_0$表示用于对比的固定基期的观察值。</p>
+<h5 id="平均增长率"><a href="#平均增长率" class="headerlink" title="平均增长率"></a>平均增长率</h5><p><strong>环比</strong>的<strong>几何平均数</strong>减去<strong>1</strong>的结果</p>
+<script type="math/tex; mode=display">
+\overline{G}=\sqrt[n]{(\frac{Y_1}{Y_0})(\frac{Y_2}{Y_1})\dots(\frac{Y_n}{Y_{n-1}})}-1=\sqrt[n]{\frac{Y_n}{Y_0}}-1</script><h3 id="时间序列预测的程序"><a href="#时间序列预测的程序" class="headerlink" title="时间序列预测的程序"></a>时间序列预测的程序</h3><h4 id="确定时间序列成分"><a href="#确定时间序列成分" class="headerlink" title="确定时间序列成分"></a>确定时间序列成分</h4><h5 id="确定趋势成分"><a href="#确定趋势成分" class="headerlink" title="确定趋势成分"></a>确定趋势成分</h5><p>绘制拟合曲线</p>
+<h5 id="确定季节成分"><a href="#确定季节成分" class="headerlink" title="确定季节成分"></a>确定季节成分</h5><p>绘制年度折叠时间序列图。</p>
+<p><img src="http://image-hfc.test.upcdn.net/112.jpg" alt=""></p>
+<h4 id="选择预测方法"><a href="#选择预测方法" class="headerlink" title="选择预测方法"></a>选择预测方法</h4><p><img src="http://image-hfc.test.upcdn.net/113.jpg" alt=""></p>
+<h4 id="预测方法的评估"><a href="#预测方法的评估" class="headerlink" title="预测方法的评估"></a>预测方法的评估</h4><p>设时间序列第$i$各观测值为$Y_i$，预测值为$F_i$。</p>
+<h5 id="平均误差"><a href="#平均误差" class="headerlink" title="平均误差"></a>平均误差</h5><script type="math/tex; mode=display">
+ME=\frac{\sum_{i=1}^{n}(Y_i-F_i)}{n}</script><h5 id="平均绝对误差"><a href="#平均绝对误差" class="headerlink" title="平均绝对误差"></a>平均绝对误差</h5><script type="math/tex; mode=display">
+MAD=\frac{\sum_{i=1}^{n}|(Y_i-F_i)|}{n}</script><h5 id="均方误差"><a href="#均方误差" class="headerlink" title="均方误差"></a>均方误差</h5><script type="math/tex; mode=display">
+MSE=\frac{\sum_{i=1}^{n}(Y_i-F_i)^2}{n}</script><h5 id="平均百分比误差"><a href="#平均百分比误差" class="headerlink" title="平均百分比误差"></a>平均百分比误差</h5><script type="math/tex; mode=display">
+MPE=\frac{\sum_{i=1}^{n}(\frac{Y_i-F_i}{Y_i}\times100)}{n}</script><h5 id="平均绝对百分比误差"><a href="#平均绝对百分比误差" class="headerlink" title="平均绝对百分比误差"></a>平均绝对百分比误差</h5><script type="math/tex; mode=display">
+MPE=\frac{\sum_{i=1}^{n}(\frac{|Y_i-F_i|}{Y_i}\times100)}{n}</script><h3 id="平稳序列的预测"><a href="#平稳序列的预测" class="headerlink" title="平稳序列的预测"></a>平稳序列的预测</h3><p>平稳序列只包含随机成分，对时间序列进行平滑以消除其随机波动。</p>
+<h4 id="简单平均法"><a href="#简单平均法" class="headerlink" title="简单平均法"></a>简单平均法</h4><p>简单平均法是根据已有的$t$期观察值通过简单平均来预测下一期数值。</p>
+<script type="math/tex; mode=display">
+F_{t+1}=\frac{1}{t}(Y_1+Y_2+\dots+Y_t)=\frac{1}{t}\sum_{i=1}^t{Y_i}</script><p>到了$t+1$期后，有了$t+1$期的真实值，便可以计算出$t+1$期的预测误差$e_{t+1}$为：</p>
+<script type="math/tex; mode=display">
+e_{t+1}=Y_{t+1}-F_{t+1}</script><p>于是,$t+2$期的预测值为：</p>
+<script type="math/tex; mode=display">
+F_{t+2}=\frac{1}{t}(Y_1+Y_2+\dots+Y_t+Y_{t+1})=\frac{1}{t+1}\sum_{i=1}^{t+1}{Y_i}</script><h4 id="移动平均法"><a href="#移动平均法" class="headerlink" title="移动平均法"></a>移动平均法</h4><p><strong>移动平均法</strong>是通过对时间序列逐期递移求得平均数作为预测值的一种预测方法，其方法有<strong>简单移动平均法</strong>和<strong>加权移动平均法</strong>。</p>
+<h5 id="简单移动平均法"><a href="#简单移动平均法" class="headerlink" title="简单移动平均法"></a>简单移动平均法</h5><p><img src="http://image-hfc.test.upcdn.net/114.jpg" alt="" title="不想打字了"></p>
+<h5 id="加权移动平均法"><a href="#加权移动平均法" class="headerlink" title="加权移动平均法"></a>加权移动平均法</h5><p>加权移动平均法，是对观察值分别给予不同的权数，按不同权数求得移动平均值，并以最后的移动平均值为基础，确定预测值的方法。采用加权移动平均法，是因为观察期的近期观察值对预测值有较大影响，它更能反映近期市场变化的趋势。所以，对于接近预测期的观察值给予较大权数值，对于距离预测期较远的观察值则相应给予较小的权数值，以不同的权数值调节各观察值对预测值所起的作用，使预测值能够更近似地反映市场未来的发展趋势。</p>
+<p><img src="http://image-hfc.test.upcdn.net/d52a2834349b033b889a4bfc15ce36d3d539bd82" alt=""></p>
+<h4 id="指数平滑法"><a href="#指数平滑法" class="headerlink" title="指数平滑法"></a>指数平滑法</h4><p><strong>指数平滑法</strong>是通过对过去的观察值加权平均进行预测的一种方法，该方法$t+1$期的预测值等于$t$期的实际观察值与$t$期的预测值的加权平均值。</p>
+<p><img src="http://image-hfc.test.upcdn.net/115.jpg" style="zoom:150%;" /></p>
+<h3 id="趋势型序列的预测"><a href="#趋势型序列的预测" class="headerlink" title="趋势型序列的预测"></a>趋势型序列的预测</h3><h4 id="线性趋势的预测"><a href="#线性趋势的预测" class="headerlink" title="线性趋势的预测"></a>线性趋势的预测</h4><p><img src="http://image-hfc.test.upcdn.net/116.jpg" alt=""></p>
+<h4 id="非线性趋势的预测"><a href="#非线性趋势的预测" class="headerlink" title="非线性趋势的预测"></a>非线性趋势的预测</h4><h5 id="指数曲线"><a href="#指数曲线" class="headerlink" title="指数曲线"></a>指数曲线</h5><p><img src="http://image-hfc.test.upcdn.net/117.jpg" alt=""></p>
+<h5 id="多阶曲线"><a href="#多阶曲线" class="headerlink" title="多阶曲线"></a>多阶曲线</h5><p><img src="http://image-hfc.test.upcdn.net/118.jpg" alt=""></p>
+<h3 id="复合型序列的分解预测"><a href="#复合型序列的分解预测" class="headerlink" title="复合型序列的分解预测"></a>复合型序列的分解预测</h3><p><a href="https://blog.csdn.net/weixin_40159138/article/details/90603344" target="_blank" rel="noopener">个人感觉这篇文章讲的比较好</a></p>
+<p><img src="http://image-hfc.test.upcdn.net/119.jpg" alt=""></p>
+<h4 id="确定并分离季节成分"><a href="#确定并分离季节成分" class="headerlink" title="确定并分离季节成分"></a>确定并分离季节成分</h4><p><img src="http://image-hfc.test.upcdn.net/120.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/121.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/122.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/123.jpg" alt=""></p>
+<h4 id="建立预测模型并进行预测"><a href="#建立预测模型并进行预测" class="headerlink" title="建立预测模型并进行预测"></a>建立预测模型并进行预测</h4><p><img src="http://image-hfc.test.upcdn.net/124.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/125.jpg" alt=""></p>
+<h2 id="第十四章-指数"><a href="#第十四章-指数" class="headerlink" title="第十四章 指数"></a>第十四章 指数</h2><h3 id="基本问题"><a href="#基本问题" class="headerlink" title="基本问题"></a>基本问题</h3><h4 id="指数概念"><a href="#指数概念" class="headerlink" title="指数概念"></a>指数概念</h4><p>指数，或称统计指数，是分析社会经济现象数量变化的一种重要的统计方法。</p>
+<h4 id="指数分类"><a href="#指数分类" class="headerlink" title="指数分类"></a>指数分类</h4><ol>
+<li>按照考察对象的范围不同，可分为个体指数和总指数。</li>
+<li>根据所反映的指标的性质不同，可分为数量指标指数和质量指标指数。</li>
+<li>按照计算形式不同，可分为简单指数和加权指数。</li>
+</ol>
+<h4 id="指数编制中的问题"><a href="#指数编制中的问题" class="headerlink" title="指数编制中的问题"></a>指数编制中的问题</h4><ol>
+<li>选择项目</li>
+<li>确定权数</li>
+<li>计算方法</li>
+</ol>
+<h3 id="总指数编制方法"><a href="#总指数编制方法" class="headerlink" title="总指数编制方法"></a>总指数编制方法</h3><h4 id="简单指数"><a href="#简单指数" class="headerlink" title="简单指数"></a>简单指数</h4><h5 id="简单综合指数"><a href="#简单综合指数" class="headerlink" title="简单综合指数"></a>简单综合指数</h5><p><img src="http://image-hfc.test.upcdn.net/126.jpg" alt=""></p>
+<h5 id="简单平均指数"><a href="#简单平均指数" class="headerlink" title="简单平均指数"></a>简单平均指数</h5><p><img src="http://image-hfc.test.upcdn.net/127.jpg" alt=""></p>
+<h4 id="加权指数"><a href="#加权指数" class="headerlink" title="加权指数"></a>加权指数</h4><h5 id="加权综合指数"><a href="#加权综合指数" class="headerlink" title="加权综合指数"></a>加权综合指数</h5><h6 id="拉氏指数"><a href="#拉氏指数" class="headerlink" title="拉氏指数"></a>拉氏指数</h6><p><img src="http://image-hfc.test.upcdn.net/128.jpg" alt=""></p>
+<h6 id="帕氏指数"><a href="#帕氏指数" class="headerlink" title="帕氏指数"></a>帕氏指数</h6><p><img src="http://image-hfc.test.upcdn.net/129.jpg" alt=""></p>
+<h5 id="加权平均指数"><a href="#加权平均指数" class="headerlink" title="加权平均指数"></a>加权平均指数</h5><p><img src="http://image-hfc.test.upcdn.net/130.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/131.jpg" alt=""></p>
+<h3 id="指数体系"><a href="#指数体系" class="headerlink" title="指数体系"></a>指数体系</h3><h4 id="总体指数体系分析"><a href="#总体指数体系分析" class="headerlink" title="总体指数体系分析"></a>总体指数体系分析</h4><p><img src="http://image-hfc.test.upcdn.net/132.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/133.jpg" alt=""></p>
+<h4 id="平均数变动因素分解"><a href="#平均数变动因素分解" class="headerlink" title="平均数变动因素分解"></a>平均数变动因素分解</h4><p><img src="http://image-hfc.test.upcdn.net/134.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/135.jpg" alt=""></p>
+<h3 id="综合评价指数"><a href="#综合评价指数" class="headerlink" title="综合评价指数"></a>综合评价指数</h3><h4 id="综合评价指数的构建方法"><a href="#综合评价指数的构建方法" class="headerlink" title="综合评价指数的构建方法"></a>综合评价指数的构建方法</h4><p><img src="http://image-hfc.test.upcdn.net/136.jpg" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/137.jpg" alt=""></p>
+<p><a href="http://image-hfc.test.upcdn.net/%E7%BB%9F%E8%AE%A1%E5%AD%A6%EF%BC%88%E7%AC%AC6%E7%89%88%EF%BC%89%E8%B4%BE%E4%BF%8A%E5%B9%B3.pdf" target="_blank" rel="noopener">参考教材链接</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">独自赏晴雨</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com/2020/07/08/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/">http://yoursite.com/2020/07/08/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">独自赏晴雨</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/">
+                                    <span class="chip bg-color">统计学</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/07/08/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="统计学第二部分">
+                        
+                        <span class="card-title">统计学第二部分</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            统计学笔记2
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            独自赏晴雨
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/">
+                        <span class="chip bg-color">统计学</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/07/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="统计学第一部分">
+                        
+                        <span class="card-title">统计学第一部分</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            统计学笔记
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            独自赏晴雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/">
+                        <span class="chip bg-color">统计学</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="882152847"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">独自赏晴雨</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "7";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/HFC666" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:3495343534@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3495343534" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 3495343534" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
