@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>JavaScript 初识</title>
+      <link href="/2020/07/09/JavaScript-%E5%88%9D%E8%AF%86/"/>
+      <url>/2020/07/09/JavaScript-%E5%88%9D%E8%AF%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="初识JavaScript"><a href="#初识JavaScript" class="headerlink" title="初识JavaScript"></a>初识<code>JavaScript</code></h1><p><strong>由于在网站上<code>html</code>和<code>JavaScript</code>默认会被执行，所以代码都以图片的形式呈现。</strong></p><h2 id="JS的组成"><a href="#JS的组成" class="headerlink" title="JS的组成"></a><code>JS</code>的组成</h2><ol><li><code>ECMAScript</code>：<code>JavaScript</code>语法，规定了<code>JS</code>编程语法和基础核心知识，是所有浏览器厂商共同遵守的一套<code>JS</code>语法工业标准。</li><li><code>DOM</code>：页面文档对象模型，是<code>W3C</code>组织推荐的处理可扩展标记语言的标准编程接口。通过<code>DOM</code>提供的接口可以对页面上的各种元素进行操作（大小、位置、颜色等）。</li><li><code>BOM</code>：浏览器对象模型，它提供了独立于内容的、可以与浏览器窗口进行互动的对象结构。通过<code>BOM</code>可以操作浏览器窗口，比如弹窗框、控制浏览器跳转、获取分辨率等。</li></ol><h2 id="JS初体验"><a href="#JS初体验" class="headerlink" title="JS初体验"></a><code>JS</code>初体验</h2><p><code>JS</code>有$3$种书写位置，分别为行内、内嵌和外部。</p><p><code>html</code>中的代码</p><p><img src="http://image-hfc.test.upcdn.net/image-20200709212127172.png" alt="image-20200709212127172"></p><p><code>JS</code>代码</p><p><img src="http://image-hfc.test.upcdn.net/image-20200709212204341.png" alt="image-20200709212204341"></p><h3 id="JS中注释"><a href="#JS中注释" class="headerlink" title="JS中注释"></a><code>JS</code>中注释</h3><p><img src="http://image-hfc.test.upcdn.net/image-20200709212225053.png" alt="image-20200709212225053"></p><h3 id="输入输出语句"><a href="#输入输出语句" class="headerlink" title="输入输出语句"></a>输入输出语句</h3><div class="table-container"><table><thead><tr><th>方法</th><th>说明</th><th>归属</th></tr></thead><tbody><tr><td><code>alert(msg)</code></td><td>浏览器弹出警示框</td><td>浏览器</td></tr><tr><td><code>console.log(msg)</code></td><td>浏览器控制台打印输出信息</td><td>浏览器</td></tr><tr><td><code>prompt(info)</code></td><td>浏览器弹出输入框、用户可以输入</td><td>浏览器</td></tr></tbody></table></div><p><img src="http://image-hfc.test.upcdn.net/image-20200709212250372.png" alt="image-20200709212250372"></p><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量概述"><a href="#变量概述" class="headerlink" title="变量概述"></a>变量概述</h3><h4 id="什么是变量"><a href="#什么是变量" class="headerlink" title="什么是变量"></a>什么是变量</h4><p>白话：变量就是一个装东西的盒子。</p><p>通俗：变量是用于存放数据的<strong>容器</strong>。我们通过<strong>变量名</strong>获取数据，甚至数据可以修改。</p><h4 id="变量在内存中的存储"><a href="#变量在内存中的存储" class="headerlink" title="变量在内存中的存储"></a>变量在内存中的存储</h4><p>本质：变量是程序在内存中申请的一块用来存放数据的空间。</p><h3 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h3><p>变量在使用时分为两步：</p><ol><li>声明变量</li><li>赋值</li></ol><h4 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200709212307928.png" alt="image-20200709212307928"></p><ul><li><code>var</code>是一个<code>JS</code>关键字，用来声明变量(<code>variable</code>变量的意思)。使用该关键字声明变量后，计算机会自动为变量分配内存空间，不需要程序员管。</li><li><code>age</code>时程序员定义的变量名，我们要通过变量名来访问内存中分配的空间。</li></ul><h4 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200709212322117.png" alt="image-20200709212322117"></p><h4 id="变量的初始化"><a href="#变量的初始化" class="headerlink" title="变量的初始化"></a>变量的初始化</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200709212330350.png" alt="image-20200709212330350"></p><p>声明一个变量并赋值，我们称之为<strong>变量的初始化。</strong></p><p><img src="http://image-hfc.test.upcdn.net/image-20200709212351711.png" alt="image-20200709212351711"></p><h3 id="变量的使用-1"><a href="#变量的使用-1" class="headerlink" title="变量的使用"></a>变量的使用</h3><ol><li>弹出一个输入框，提示用户输入姓名。</li><li>弹出一个对话框，输出用户刚才输入的姓名。</li></ol><p><img src="http://image-hfc.test.upcdn.net/image-20200709212408780.png" alt="image-20200709212408780"></p><h3 id="变量的语法拓展"><a href="#变量的语法拓展" class="headerlink" title="变量的语法拓展"></a>变量的语法拓展</h3><p><img src="http://image-hfc.test.upcdn.net/image-20200709212429865.png" alt="image-20200709212429865"></p><ul><li>只声明，不赋值，输出变量，结果是<code>undefined</code>。</li><li>不声明，不赋值，输出变量，出错</li><li>不声明，赋值，输出变量，可以使用（不提倡）</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> -JavaScript -web开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Python爬虫入门</title>
       <link href="/2020/07/08/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/"/>
       <url>/2020/07/08/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
