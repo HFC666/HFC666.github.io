@@ -920,90 +920,10 @@ print(resp.content.decode('utf-8'))
 </div>
 <h3 id="lxml库"><a href="#lxml库" class="headerlink" title="lxml库"></a>lxml库</h3><p>lxml是一个HTML/XML的解析器，主要功能是如何解析和提取HTML/XML数据。</p>
 <p>lxml和正则一样，也是用C语言实现的，是一款高性能的Python HTML/XML解析器。</p>
-<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><pre class=" language-lang-python"><code class="language-lang-python">from lxml import etree
-text = """
-<table class="tablelist" cellpadding="0" cellspacing="0">
-    <tbody>
-        <tr class="h">
-            <td class="l" width="374">职位名称</td>
-            <td>职位类别</td>
-            <td>人数</td>
-            <td>地点</td>
-            <td>发布时间</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=33824&keywords=python&tid=87&lid=2218">22989-金融云区块链高级研发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-25</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=29938&keywords=python&tid=87&lid=2218">22989-金融云高级后台开发</a></td>
-            <td>技术类</td>
-            <td>2</td>
-            <td>深圳</td>
-            <td>2017-11-25</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=31236&keywords=python&tid=87&lid=2218">SNG16-腾讯音乐运营开发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>2</td>
-            <td>深圳</td>
-            <td>2017-11-25</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=31235&keywords=python&tid=87&lid=2218">SNG16-腾讯音乐业务运维工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-25</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=34531&keywords=python&tid=87&lid=2218">TEG03-高级研发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=34532&keywords=python&tid=87&lid=2218">TEG03-高级图像算法研发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=31648&keywords=python&tid=87&lid=2218">TEG11-高级AI开发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>4</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=32218&keywords=python&tid=87&lid=2218">15851-后台开发工程师</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=32217&keywords=python&tid=87&lid=2218">15851-后台开发工程师</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=34511&keywords=python&tid=87&lid=2218">SNG11-高级业务运维工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-    </tbody>
-</table>
-"""
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200710234900041.png" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200710234931313.png" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200710235005597.png" alt=""></p>
+<pre class=" language-lang-python"><code class="language-lang-python">
 #转化为etree中的对象
 html = etree.HTML(text)
 print(type(html))
@@ -1210,307 +1130,11 @@ spider()
 </table>
 </div>
 <h3 id="解析器"><a href="#解析器" class="headerlink" title="解析器"></a>解析器</h3><p><img src="http://image-hfc.test.upcdn.net/oljqmGFK29kWViP.jpg" alt=""></p>
-<h3 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h3><pre class=" language-lang-python"><code class="language-lang-python">from bs4 import BeautifulSoup
-html = """
-<table class="tablelist" cellpadding="0" cellspacing="0">
-    <tbody>
-        <tr class="h">
-            <td class="l" width="374">职位名称</td>
-            <td>职位类别</td>
-            <td>人数</td>
-            <td>地点</td>
-            <td>发布时间</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=33824&keywords=python&tid=87&lid=2218">22989-金融云区块链高级研发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-25</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=29938&keywords=python&tid=87&lid=2218">22989-金融云高级后台开发</a></td>
-            <td>技术类</td>
-            <td>2</td>
-            <td>深圳</td>
-            <td>2017-11-25</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=31236&keywords=python&tid=87&lid=2218">SNG16-腾讯音乐运营开发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>2</td>
-            <td>深圳</td>
-            <td>2017-11-25</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=31235&keywords=python&tid=87&lid=2218">SNG16-腾讯音乐业务运维工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-25</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=34531&keywords=python&tid=87&lid=2218">TEG03-高级研发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=34532&keywords=python&tid=87&lid=2218">TEG03-高级图像算法研发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=31648&keywords=python&tid=87&lid=2218">TEG11-高级AI开发工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>4</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=32218&keywords=python&tid=87&lid=2218">15851-后台开发工程师</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="even">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=32217&keywords=python&tid=87&lid=2218">15851-后台开发工程师</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-        <tr class="odd">
-            <td class="l square"><a target="_blank" href="position_detail.php?id=34511&keywords=python&tid=87&lid=2218">SNG11-高级业务运维工程师（深圳）</a></td>
-            <td>技术类</td>
-            <td>1</td>
-            <td>深圳</td>
-            <td>2017-11-24</td>
-        </tr>
-    </tbody>
-</table>
-"""
-bs = BeautifulSoup(html, "lxml")#使用lxml解析器
+<h3 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h3><p><img src="http://image-hfc.test.upcdn.net/image-20200710234641433.png" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200710234728966.png" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200710234802712.png" alt=""></p>
+<pre class=" language-lang-python"><code class="language-lang-python">bs = BeautifulSoup(html, "lxml")#使用lxml解析器
 print(bs.prettify())#以树状结构打印
-<html>
- <body>
-  <table cellpadding="0" cellspacing="0" class="tablelist">
-   <tbody>
-    <tr class="h">
-     <td class="l" width="374">
-      职位名称
-     </td>
-     <td>
-      职位类别
-     </td>
-     <td>
-      人数
-     </td>
-     <td>
-      地点
-     </td>
-     <td>
-      发布时间
-     </td>
-    </tr>
-    <tr class="even">
-     <td class="l square">
-      <a href="position_detail.php?id=33824&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       22989-金融云区块链高级研发工程师（深圳）
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      1
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-25
-     </td>
-    </tr>
-    <tr class="odd">
-     <td class="l square">
-      <a href="position_detail.php?id=29938&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       22989-金融云高级后台开发
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      2
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-25
-     </td>
-    </tr>
-    <tr class="even">
-     <td class="l square">
-      <a href="position_detail.php?id=31236&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       SNG16-腾讯音乐运营开发工程师（深圳）
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      2
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-25
-     </td>
-    </tr>
-    <tr class="odd">
-     <td class="l square">
-      <a href="position_detail.php?id=31235&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       SNG16-腾讯音乐业务运维工程师（深圳）
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      1
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-25
-     </td>
-    </tr>
-    <tr class="even">
-     <td class="l square">
-      <a href="position_detail.php?id=34531&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       TEG03-高级研发工程师（深圳）
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      1
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-24
-     </td>
-    </tr>
-    <tr class="odd">
-     <td class="l square">
-      <a href="position_detail.php?id=34532&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       TEG03-高级图像算法研发工程师（深圳）
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      1
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-24
-     </td>
-    </tr>
-    <tr class="even">
-     <td class="l square">
-      <a href="position_detail.php?id=31648&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       TEG11-高级AI开发工程师（深圳）
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      4
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-24
-     </td>
-    </tr>
-    <tr class="odd">
-     <td class="l square">
-      <a href="position_detail.php?id=32218&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       15851-后台开发工程师
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      1
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-24
-     </td>
-    </tr>
-    <tr class="even">
-     <td class="l square">
-      <a href="position_detail.php?id=32217&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       15851-后台开发工程师
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      1
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-24
-     </td>
-    </tr>
-    <tr class="odd">
-     <td class="l square">
-      <a href="position_detail.php?id=34511&amp;keywords=python&amp;tid=87&amp;lid=2218" target="_blank">
-       SNG11-高级业务运维工程师（深圳）
-      </a>
-     </td>
-     <td>
-      技术类
-     </td>
-     <td>
-      1
-     </td>
-     <td>
-      深圳
-     </td>
-     <td>
-      2017-11-24
-     </td>
-    </tr>
-   </tbody>
-  </table>
- </body>
-</html>
 bs = BeautifulSoup(html, "lxml")
 # print(bs.prettify())
 # 获取所有的tr标签
@@ -1594,22 +1218,8 @@ print(movies)
 </tbody>
 </table>
 </div>
-<h3 id="简单使用："><a href="#简单使用：" class="headerlink" title="简单使用："></a>简单使用：</h3><pre class=" language-lang-python"><code class="language-lang-python">from bs4 import BeautifulSoup
-
-html = """
-<html><head><title>The Dormouse's story</title><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Serendipity" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
-<body>
-<p class="title" name="dromouse"><b>The Dormouse's story</b></p>
-<p class="story">Once upon a time there were three little sisters; and their names were
-<a href="http://example.com/elsie" target="_blank" rel="noopener" class="sister" id="link1"><!-- Elsie --></a>,
-<a href="http://example.com/lacie" target="_blank" rel="noopener" class="sister" id="link2">Lacie</a> and
-<a href="http://example.com/tillie" target="_blank" rel="noopener" class="sister" id="link3">Tillie</a>;
-and they lived at the bottom of a well.</p>
-<p class="story">...</p>
-"""
-
-#创建 Beautiful Soup 对象
+<h3 id="简单使用："><a href="#简单使用：" class="headerlink" title="简单使用："></a>简单使用：</h3><p><img src="http://image-hfc.test.upcdn.net/image-20200710234602362.png" alt=""></p>
+<pre class=" language-lang-python"><code class="language-lang-python">#创建 Beautiful Soup 对象
 # 使用lxml来进行解析
 soup = BeautifulSoup(html,"lxml")
 
@@ -1623,21 +1233,8 @@ print(soup.prettify())
 <li>Comment</li>
 </ol>
 <h3 id="1-Tag："><a href="#1-Tag：" class="headerlink" title="1. Tag："></a>1. Tag：</h3><p>Tag 通俗点讲就是 HTML 中的一个个标签。示例代码如下：</p>
-<pre class=" language-lang-python"><code class="language-lang-python">(from bs4 import BeautifulSoup)
-
-html = """
-<html><head><title>The Dormouse's story</title></head>
-<body>
-<p class="title" name="dromouse"><b>The Dormouse's story</b></p>
-<p class="story">Once upon a time there were three little sisters; and their names were
-<a href="http://example.com/elsie" target="_blank" rel="noopener" class="sister" id="link1"><!-- Elsie --></a>,
-<a href="http://example.com/lacie" target="_blank" rel="noopener" class="sister" id="link2">Lacie</a> and
-<a href="http://example.com/tillie" target="_blank" rel="noopener" class="sister" id="link3">Tillie</a>;
-and they lived at the bottom of a well.</p>
-<p class="story">...</p>
-"""
-
-#创建 Beautiful Soup 对象
+<p><img src="http://image-hfc.test.upcdn.net/image-20200710234543757.png" alt=""></p>
+<pre class=" language-lang-python"><code class="language-lang-python">#创建 Beautiful Soup 对象
 soup = BeautifulSoup(html,'lxml')
 
 
@@ -1645,7 +1242,8 @@ print (soup.title)
 # <title>The Dormouse's story</title>
 
 print (soup.head)
-# <head><title>The Dormouse's story</title></head>
+# <head><title>The Dormouse's story</title><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Serendipity" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 print (soup.a)
 # <a class="sister" href="http://example.com/elsie" target="_blank" rel="noopener" id="link1"><!-- Elsie --></a>
@@ -1696,21 +1294,8 @@ type(comment)
 <pre class=" language-lang-python"><code class="language-lang-python">comment
 # 'Hey, buddy. Want to buy a used parser'
 </code></pre>
-<h3 id="遍历文档树："><a href="#遍历文档树：" class="headerlink" title="遍历文档树："></a>遍历文档树：</h3><h3 id="1-contents和children："><a href="#1-contents和children：" class="headerlink" title="1. contents和children："></a>1. contents和children：</h3><pre class=" language-lang-python"><code class="language-lang-python">html_doc = """
-<html><head><title>The Dormouse's story</title></head>
-
-<p class="title"><b>The Dormouse's story</b></p>
-
-<p class="story">Once upon a time there were three little sisters; and their names were
-<a href="http://example.com/elsie" target="_blank" rel="noopener" class="sister" id="link1">Elsie</a>,
-<a href="http://example.com/lacie" target="_blank" rel="noopener" class="sister" id="link2">Lacie</a> and
-<a href="http://example.com/tillie" target="_blank" rel="noopener" class="sister" id="link3">Tillie</a>;
-and they lived at the bottom of a well.</p>
-
-<p class="story">...</p>
-"""
-
-from bs4 import BeautifulSoup
+<h3 id="遍历文档树："><a href="#遍历文档树：" class="headerlink" title="遍历文档树："></a>遍历文档树：</h3><h3 id="1-contents和children："><a href="#1-contents和children：" class="headerlink" title="1. contents和children："></a>1. contents和children：</h3><p><img src="http://image-hfc.test.upcdn.net/image-20200710234519434.png" alt=""></p>
+<pre class=" language-lang-python"><code class="language-lang-python">from bs4 import BeautifulSoup
 soup = BeautifulSoup(html_doc,'lxml')
 
 head_tag = soup.head
@@ -2025,25 +1610,8 @@ ret = re.sub('\$\d+', '0', text)
 print(ret)
 </code></pre>
 <p><code>sub</code>小案例：提取职位信息</p>
-<pre class=" language-lang-python"><code class="language-lang-python">html = """
-<div>
-<p>基本要求：</p>
-<p>1、精通HTML5、CSS3、 JavaScript等Web前端开发技术，对html5页面适配充分了解，熟悉不同浏览器间的差异，熟练写出兼容各种浏览器的代码；</p>
-<p>2、熟悉运用常见JS开发框架，如JQuery、vue、angular，能快速高效实现各种交互效果；</p>
-<p>3、熟悉编写能够自动适应HTML5界面，能让网页格式自动适应各款各大小的手机；</p>
-<p>4、利用HTML5相关技术开发移动平台、PC终端的前端页面，实现HTML5模板化；</p>
-<p>5、熟悉手机端和PC端web实现的差异，有移动平台web前端开发经验，了解移动互联网产品和行业，有在Android,iOS等平台下HTML5+CSS+JavaScript（或移动JS框架）开发经验者优先考虑；6、良好的沟通能力和团队协作精神，对移动互联网行业有浓厚兴趣，有较强的研究能力和学习能力；</p>
-<p>7、能够承担公司前端培训工作，对公司各业务线的前端（HTML5\CSS3）工作进行支撑和指导。</p>
-<p><br></p>
-<p>岗位职责：</p>
-<p>1、利用html5及相关技术开发移动平台、微信、APP等前端页面，各类交互的实现；</p>
-<p>2、持续的优化前端体验和页面响应速度，并保证兼容性和执行效率；</p>
-<p>3、根据产品需求，分析并给出最优的页面前端结构解决方案；</p>
-<p>4、协助后台及客户端开发人员完成功能开发和调试；</p>
-<p>5、移动端主流浏览器的适配、移动端界面自适应研发。</p>
-</div>
-"""
-ret = re.sub('<.*?>', '', html)
+<p><img src="http://image-hfc.test.upcdn.net/image-20200710233818407.png" alt=""></p>
+<pre class=" language-lang-python"><code class="language-lang-python">ret = re.sub('<.*?>', '', html)
 print(ret)
 </code></pre>
 <h4 id="split"><a href="#split" class="headerlink" title="split"></a><code>split</code></h4><p>使用正则表达式来分割字符串</p>
