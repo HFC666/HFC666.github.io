@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Julia 中的函数, Serendipity">
+    <meta name="keywords" content="julia中的控制流, Serendipity">
     <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Julia 中的函数 | Serendipity</title>
+    <title>julia中的控制流 | Serendipity</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Julia 中的函数</h1>
+                    <h1 class="description center-align post-title">julia中的控制流</h1>
                 </div>
             </div>
         </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-12
+                    2020-07-13
                 </div>
                 
 
@@ -463,173 +463,295 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f1(x,y)              
-       x + y   #可以不加return，当然也可以写成return x+y，默认在最后一行中有自动添加return                      
-       end                           
-f1 (generic function with 1 method)  
-
-julia> f1(3,4)                       
-7
-</code></pre>
-<p>函数的最后一行是不需要加<code>return</code>的，<code>return</code>一般用于在函数中间的返回时使用。因为<code>Julia</code>的代码都是表达式（在后面的元编程一节中会讲到），表达式是有返回值的，要么是<code>nothing</code>，要么是别的，因此函数最后一行默认就是返回值，无需再加<code>return</code>，如果一个函数不想有返回值，那再最后一行写个<code>nothing</code>即可。</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f2(x,y)             
-       z = x+y                      
-       nothing                      
-       end                          
-f2 (generic function with 1 method) 
-
-julia> f2(1,2)
-</code></pre>
-<p>可以指定函数输出的类型</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function g(x,y)::Int8
-       return x * y
-       end
-g (generic function with 1 method)
-
-julia> typeof(g(2,3))
-Int8
-</code></pre>
-<p>符号也可以当作函数使用</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> +(1,2,3)                      
-6                                    
-
-julia> f2 = +                        
-+ (generic function with 166 methods)
-
-julia> f2(1,2,3)                     
-6
-</code></pre>
-<p>给函数添加说明</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">"simple add function"
-function funcAdd(x,y)
-    x + y
-end
-
-julia> @doc funcAdd
-  simple add function
-</code></pre>
-<p><strong>匿名函数</strong></p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> map(x->x*2+1, [1,2,3,4])
-4-element Array{Int64,1}:      
- 3                             
- 5                             
- 7                             
- 9 
-julia> minVal(x,y) = (x<y) ? x : y
-minVal (generic function with 1 method)
-
-julia> minVal(3,4)
+                <h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p><code>Julia</code>中提供的控制流</p>
+<ul>
+<li>复合表达式：<code>begin</code>和<code>(;)</code></li>
+<li>条件求值：<code>if-elseif-else</code>和<code>?:(ternary operator)</code></li>
+<li>短路求值：<code>&amp;&amp;</code>，<code>||</code>和<code>chained comparisons</code></li>
+<li>重复求值：循环：<code>while</code>和<code>for</code></li>
+<li>异常处理：<code>try-catch</code>，<code>error</code>和<code>throw</code></li>
+<li>任务{也称为协理}：<code>yieldto</code></li>
+</ul>
+<h3 id="复合表达式"><a href="#复合表达式" class="headerlink" title="复合表达式"></a>复合表达式</h3><h4 id="begin块"><a href="#begin块" class="headerlink" title="begin块"></a><code>begin</code>块</h4><pre class=" language-lang-julia"><code class="language-lang-julia">julia> z = begin
+       x = 1    
+       y = 2    
+       x + y    
+       end      
 3
 </code></pre>
-<p>多返回值</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f3(x,y)              
-       x+y, x-y                      
-       end                           
-f3 (generic function with 1 method)  
-
-julia> f3(3,4)                       
-(7, -1)
+<h4 id="链式"><a href="#链式" class="headerlink" title="(;)链式"></a><code>(;)</code>链式</h4><pre class=" language-lang-julia"><code class="language-lang-julia">julia> z = (x = 1; y = 2; x + y)
+3
 </code></pre>
-<p>可变参数</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f4(x...)
-       r1 = length(x)
-       r2 = x[r1]
-       return r1, r2
-       end
-f4 (generic function with 1 method)
+<p>这两种表示方法的值，都是最后一个表达式的值。</p>
+<h3 id="条件求值"><a href="#条件求值" class="headerlink" title="条件求值"></a>条件求值</h3><pre class=" language-lang-julia"><code class="language-lang-julia">julia> x = 10                           
+10                                      
 
-julia> println(f4(1,3,6,2,9,4))
-(6, 4)
-</code></pre>
-<p>默认参数  关键字参数</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f5(x;y=1)
-       return x + y
-       end
-f5 (generic function with 2 methods)
+julia> y = 20                           
+20                                      
 
-julia> f5(1,3)
-4
-
-julia> f5(1,y=10)
-11
-#第一函数时;后面的为关键字参数，只有关键字参数才能采取x = ?的方式传递，另外默认参数要放在其他参数后
-julia> function f6(x;y,z=3)        
-       return x+y+z                
-       end                         
-f6 (generic function with 1 method)
-
-julia> f6(1,y=2,z = 3)
-6                     
-
-julia> f6(1,y=2)      
-6                                     
-#有多个关键字参数，关键字参数必须通过x = ?的形式传递
-
-
-#额外的关键字参数
-julia> function f(x;y=0,kargs...)   
-       dit = Dict(kargs)            
-       return dit                   
-       end                          
-f (generic function with 1 method)  
-julia> f(2,y=10,m=10,n=10)        
-Dict{Symbol,Int64} with 2 entries:
-  :m => 10                        
-  :n => 10 
-julia>  function f(x,y=0;kargs...)  return Dict(kargs)  end 
-f (generic function with 2 methods)                         
-
-julia> f(10,10,m=20)                                        
-Dict{Symbol,Int64} with 1 entry:                            
-  :m => 20
-</code></pre>
-<p>参数类型<code>Julia</code>虽然属于动态语言，但函数定义时可指定其参数类型</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f7(x::Int8)         
-       x + 3                        
-       end                          
-f7 (generic function with 1 method) 
-
-julia> f7(Int8(10))                 
-13
-</code></pre>
-<p>函数的其他使用方法</p>
-<p><strong><code>map</code></strong></p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function funcAbs(x)              
-       x >=0 ? x : -x                   
+julia> if x < y                         
+       println("x is less than y")      
+       elseif x > y                     
+       println("x is greater than y")   
+       else                             
+       println("x is equal to y")       
        end                              
-funcAbs (generic function with 1 method)
-
-julia> map(funcAbs, -3:3)               
-7-element Array{Int64,1}:               
- 3                                      
- 2                                      
- 1                                      
- 0                                      
- 1                                      
- 2                                      
- 3
+x is less than y
 </code></pre>
-<p><strong><code>reduce</code></strong></p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function add(x,y)            
-       x + y                        
+<p>判断的条件必须是<code>true</code>或<code>false</code>中的一个</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> if 1                                                   
+       println("test...")                                     
+       end                                                    
+ERROR: TypeError: non-boolean (Int64) used in boolean context 
+Stacktrace:                                                   
+ [1] top-level scope at REPL[12]:1
+</code></pre>
+<h3 id="短路求值"><a href="#短路求值" class="headerlink" title="短路求值"></a>短路求值</h3><pre class=" language-lang-julia"><code class="language-lang-julia">julia> x             
+10                   
+
+julia> x > 5 && x<20 
+true                 
+
+julia> x > 5 || x<10 
+true
+</code></pre>
+<h3 id="条件循环"><a href="#条件循环" class="headerlink" title="条件循环"></a>条件循环</h3><h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a><code>while</code>循环</h4><pre class=" language-lang-julia"><code class="language-lang-julia">i = 5
+while i<=5
+    println(i)
+    i+=1
+end
+1
+2
+3
+4
+5
+</code></pre>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a><code>for</code>循环</h4><pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i = 1:5  
+       println(i)   
+       end          
+1                   
+2                   
+3                   
+4                   
+5
+</code></pre>
+<p><code>for</code>还可以遍历任何容器</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i in [1,2,3,4,5] 
+       println(i)           
+       end                  
+1                           
+2                           
+3                           
+4                           
+5
+</code></pre>
+<p><code>for</code>的其他用法</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i in "abcd"  
+       println(i)       
+       end              
+a                       
+b                       
+c                       
+d                       
+
+julia> for i in 1:2:10  
+       println(i)       
+       end              
+1                       
+3                       
+5                       
+7                       
+9                       
+
+julia> for i in 10:-2:1 
+       println(i)       
+       end              
+10                      
+8                       
+6                       
+4                       
+2  
+julia> [x^2 for x in 1:4] 
+4-element Array{Int64,1}: 
+  1                       
+  4                       
+  9                       
+ 16                       
+
+julia> [x^2 for x ∈ 1:5]  
+5-element Array{Int64,1}: 
+  1                       
+  4                       
+  9                       
+ 16                       
+ 25   
+#属于符号'\u2208'
+julia> [(x, x^2) for x in 1:5]        
+5-element Array{Tuple{Int64,Int64},1}:
+ (1, 1)                               
+ (2, 4)                               
+ (3, 9)                               
+ (4, 16)                              
+ (5, 25)                              
+julia> for (i,x) in enumerate(1:4:20)
+       println(i, " ", x)            
+       end                           
+1 1                                  
+2 5                                  
+3 9                                  
+4 13                                 
+5 17 
+julia> collect(enumerate(1:4:20))     
+5-element Array{Tuple{Int64,Int64},1}:
+ (1, 1)                               
+ (2, 5)                               
+ (3, 9)                               
+ (4, 13)                              
+ (5, 17)  
+#将迭代器转化为数组
+#或者
+ julia> collect(Float64, 1:2:5)  
+ 3-element Array{Float64,1}:     
+  1.0                            
+  3.0                            
+  5.0
+</code></pre>
+<p><code>continue</code>和<code>break</code>的用法跟其他语言基本一致。</p>
+<h4 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h4><pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i in 1:5
+       x = i
+       end
+</code></pre>
+<p>此时如果在<code>for</code>循环外面查看<code>x</code>的值，则会提示<code>error</code>，因为变量<code>x</code>只是<code>for</code>循环内部的。</p>
+<p>如果想在<code>for</code>外部使用<code>x</code>，则要写成</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i in 1:5
+       global x = i
+       end
+
+julia> x
+5
+</code></pre>
+<p>如果我们在外部提前定义了<code>x</code></p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> x = 10       
+10                  
+
+julia> for i in 1:5 
+       x = i        
+       end          
+
+julia> x            
+10
+</code></pre>
+<p>此时的<code>x</code>仍为10，因为<code>for</code>里面默认<code>x</code>是<code>local</code>的。</p>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><pre class=" language-lang-julia"><code class="language-lang-julia">julia> try             
+       sqrt(-1)        
+       catch           
+       println("pass") 
+       end             
+pass   
+
+sqrt_second(x) = try       
+sqrt(x[2])                 
+catch y                    
+if isa(y, DomainError)     
+sqrt(complex(x[2],0))      
+elseif isa(y, BoundsError) 
+sqrt(x)                    
+end                        
+end                        
+julia> sqrt_second([1,-2,3]) 
+0.0 + 1.4142135623730951im   
+
+julia> sqrt_second(2)        
+1.4142135623730951           
+
+julia> sqrt_second([1,4,9])  
+2.0
+</code></pre>
+<p><code>finally</code>语句（与<code>python</code>一样）</p>
+<h3 id="任务（也称协程）"><a href="#任务（也称协程）" class="headerlink" title="任务（也称协程）"></a>任务（也称协程）</h3><p>被称为为对称协程、轻量级线程、协同多任务等。（与线程有区別，在后面的并行计算中会讲）<br> 如果一个计算以任务的方式执行，那它就很可能会被其他任务中断，原先的任务在恢复后，会从被中断的地方继续工作，这种过程看似很像函数调用，但有两点不同：</p>
+<ol>
+<li>任务切換不需要任何空间，因此可以完成任意数量任务的切換，而且无考虑堆栈问题。</li>
+<li>任务切换可以按照任何顺序来进行。</li>
+</ol>
+<p>任务比较适合生产者消费者模式，一个过程用来生产值，另一个用来消费值。消费者不能简单的调用生产者来得到值，因为两者的执行时间不一定协同。在任务中，两者则可以正常运行。<br><code>Julia</code>中提供了<code>Channel</code>来解決生产者消费者的协同问题，其实 <code>Channele</code>就是一个<code>FIFO(frst- -in first-out）</code>队列。使用<code>put！</code>和<code>take！</code>函数来具体实现。</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function producer(c::Channel)       
+       put!(c, "start")                    
+       for n = 1:4                         
+       put!(c, 2n)                         
+       end                                 
+       put!(c,"stop")                      
+       end                                 
+producer (generic function with 1 method)
+</code></pre>
+<p>然后我们新建一个<code>Channel</code>组间，来消费数值。</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> chn1 = Channel(producer) 
+Channel{Any}(sz_max:0,sz_curr:1)
+
+julia> take!(chn1)              
+"start"                         
+
+julia> take!(chn1)              
+2                               
+
+julia> take!(chn1)              
+4                               
+
+julia> take!(chn1)              
+6                               
+
+julia> take!(chn1)              
+8                               
+
+julia> take!(chn1)              
+"stop"
+</code></pre>
+<p>也可以使用<code>for</code>循环的方式</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> for x in Channel(producer)   
+       println(x)                   
        end                          
-add (generic function with 1 method)
-
-julia> reduce(add, 1:10)            
-55
+start                               
+2                                   
+4                                   
+6                                   
+8                                   
+stop
 </code></pre>
-<p><code>|&gt;</code>操作符，对于运算顺序非常直观</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> "abcdefg" |> uppercase
-"ABCDEFG"
-julia> [i for i in 1:5] |> join
-"12345"
-</code></pre>
-<p>当然，<code>julia</code>中函数还有更简单灵活的定义方式</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> f8(x::Int64, y::Int64) = 2*x + y
-f8 (generic function with 1 method)    
+<p>在两次调用<code>put!()</code>之间，生产者的执行是挂起的，此时由消费者接管控制。</p>
+<p>任务的一个特性就是随着任务的结束，<code>channel</code>对象自动关闭，无需人为干预。</p>
+<p><strong>把一般的任务放到<code>task</code>(任务)中</strong></p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function mytask(n)                 
+       for i=1:n                          
+       println(i)                         
+       end                                
+       end                                
+mytask (generic function with 1 method)   
 
-julia> f8(4,3)                         
-11
+julia> taskHdl = @task mytask(10)      #创建task对象   
+Task (runnable) @0x000000004135d430       
+
+julia> println(istaskdone(taskHdl))    #查看任务是否执行完成   
+false                                     
+
+julia> schedule(taskHdl)        #执行任务          
+1                                         
+Task (runnable) @0x000000004135d4302      
+
+
+julia>                                    
+julia>                                    
+5                                         
+6                                         
+7                                         
+8                                         
+9                                         
+10                                        
+julia>                                    
+
+julia> println(current_task())        #找到正在运行的任务    
+Task (runnable) @0x0000000013811cd0       
+
+julia> println(istaskdone(taskHdl))       
+true
 </code></pre>
 
             </div>
@@ -656,7 +778,7 @@ julia> f8(4,3)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/07/12/Julia-%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/">http://yoursite.com/2020/07/12/Julia-%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/</a>
+                    <a href="http://yoursite.com/2020/07/13/julia%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/">http://yoursite.com/2020/07/13/julia%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -863,9 +985,10 @@ julia> f8(4,3)
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/13/julia%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/">
                     <div class="card-image">
@@ -883,9 +1006,9 @@ julia> f8(4,3)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -894,6 +1017,7 @@ julia> f8(4,3)
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -912,24 +1036,24 @@ julia> f8(4,3)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/10/R%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E4%B9%8Bggplot2%E5%88%9D%E8%AF%86/">
+                <a href="/2020/07/12/Julia-%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="R数据科学之ggplot2初识">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Julia 中的函数">
                         
-                        <span class="card-title">R数据科学之ggplot2初识</span>
+                        <span class="card-title">Julia 中的函数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            R数据科学之ggplot2初识
+                            Julia中的函数
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-12
                             </span>
                         <span class="publish-author">
                             
@@ -942,8 +1066,8 @@ julia> f8(4,3)
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/R%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">R语言</span>
+                    <a href="/tags/Julia/">
+                        <span class="chip bg-color">Julia</span>
                     </a>
                     
                 </div>
