@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="julia中的控制流, Serendipity">
+    <meta name="keywords" content="微信小程序的配置文件, Serendipity">
     <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>julia中的控制流 | Serendipity</title>
+    <title>微信小程序的配置文件 | Serendipity</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">julia中的控制流</h1>
+                    <h1 class="description center-align post-title">微信小程序的配置文件</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Julia/">
-                                <span class="chip bg-color">Julia</span>
+                            <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+                                <span class="chip bg-color">微信小程序</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-13
+                    2020-07-14
                 </div>
                 
 
@@ -463,296 +463,258 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p><code>Julia</code>中提供的控制流</p>
-<ul>
-<li>复合表达式：<code>begin</code>和<code>(;)</code></li>
-<li>条件求值：<code>if-elseif-else</code>和<code>?:(ternary operator)</code></li>
-<li>短路求值：<code>&amp;&amp;</code>，<code>||</code>和<code>chained comparisons</code></li>
-<li>重复求值：循环：<code>while</code>和<code>for</code></li>
-<li>异常处理：<code>try-catch</code>，<code>error</code>和<code>throw</code></li>
-<li>任务{也称为协理}：<code>yieldto</code></li>
-</ul>
-<h3 id="复合表达式"><a href="#复合表达式" class="headerlink" title="复合表达式"></a>复合表达式</h3><h4 id="begin块"><a href="#begin块" class="headerlink" title="begin块"></a><code>begin</code>块</h4><pre class=" language-lang-julia"><code class="language-lang-julia">julia> z = begin
-       x = 1    
-       y = 2    
-       x + y    
-       end      
-3
+                <h2 id="小程序目录结构"><a href="#小程序目录结构" class="headerlink" title="小程序目录结构"></a>小程序目录结构</h2><p><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/" target="_blank" rel="noopener">小程序框架</a>的目标是通过尽可能简单、高效的方式让开发者可以在微信中开发具有原生<code>APP</code>体验的服务。</p>
+<p>小程序框架结构提供了自己的视图层描述语言<code>wxml</code>和<code>wlss</code>，以及<code>JavaScript</code>，并在视图层与逻辑层间提供了数据传输和时间系统，让开发者能够专注于数据与逻辑。</p>
+<h3 id="小程序文件结构与传统web对比"><a href="#小程序文件结构与传统web对比" class="headerlink" title="小程序文件结构与传统web对比"></a>小程序文件结构与传统<code>web</code>对比</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>传统<code>web</code></th>
+<th>微信小程序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>结构</td>
+<td><code>HTML</code></td>
+<td><code>WXML</code></td>
+</tr>
+<tr>
+<td>样式</td>
+<td><code>CSS</code></td>
+<td><code>WXSS</code></td>
+</tr>
+<tr>
+<td>逻辑</td>
+<td><code>JavaScript</code></td>
+<td><code>JavaScript</code></td>
+</tr>
+<tr>
+<td>配置</td>
+<td>无</td>
+<td><code>JSON</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="小程序配置文件"><a href="#小程序配置文件" class="headerlink" title="小程序配置文件"></a>小程序配置文件</h2><p>一个小程序应用程序会包括最基本的两种配置文件。一种是全局的<code>app.json</code>和页面自己的<code>page.json</code>。</p>
+<p><strong>注意：配置文件中不能出现注释。</strong></p>
+<h3 id="全局配置文件app-json"><a href="#全局配置文件app-json" class="headerlink" title="全局配置文件app.json"></a>全局配置文件<code>app.json</code></h3><p><code>app.json</code>是当前小程序的全局配置，包括了小程序的所有页面路径、界面表现、网络超时时间、底部<code>tab</code>等。<strong>普通快速启动项目</strong>里面的<code>app.json</code>配置。</p>
+<pre class=" language-lang-json"><code class="language-lang-json">{
+  "pages": [
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
 </code></pre>
-<h4 id="链式"><a href="#链式" class="headerlink" title="(;)链式"></a><code>(;)</code>链式</h4><pre class=" language-lang-julia"><code class="language-lang-julia">julia> z = (x = 1; y = 2; x + y)
-3
-</code></pre>
-<p>这两种表示方法的值，都是最后一个表达式的值。</p>
-<h3 id="条件求值"><a href="#条件求值" class="headerlink" title="条件求值"></a>条件求值</h3><pre class=" language-lang-julia"><code class="language-lang-julia">julia> x = 10                           
-10                                      
-
-julia> y = 20                           
-20                                      
-
-julia> if x < y                         
-       println("x is less than y")      
-       elseif x > y                     
-       println("x is greater than y")   
-       else                             
-       println("x is equal to y")       
-       end                              
-x is less than y
-</code></pre>
-<p>判断的条件必须是<code>true</code>或<code>false</code>中的一个</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> if 1                                                   
-       println("test...")                                     
-       end                                                    
-ERROR: TypeError: non-boolean (Int64) used in boolean context 
-Stacktrace:                                                   
- [1] top-level scope at REPL[12]:1
-</code></pre>
-<h3 id="短路求值"><a href="#短路求值" class="headerlink" title="短路求值"></a>短路求值</h3><pre class=" language-lang-julia"><code class="language-lang-julia">julia> x             
-10                   
-
-julia> x > 5 && x<20 
-true                 
-
-julia> x > 5 || x<10 
-true
-</code></pre>
-<h3 id="条件循环"><a href="#条件循环" class="headerlink" title="条件循环"></a>条件循环</h3><h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a><code>while</code>循环</h4><pre class=" language-lang-julia"><code class="language-lang-julia">i = 5
-while i<=5
-    println(i)
-    i+=1
-end
-1
-2
-3
-4
-5
-</code></pre>
-<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a><code>for</code>循环</h4><pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i = 1:5  
-       println(i)   
-       end          
-1                   
-2                   
-3                   
-4                   
-5
-</code></pre>
-<p><code>for</code>还可以遍历任何容器</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i in [1,2,3,4,5] 
-       println(i)           
-       end                  
-1                           
-2                           
-3                           
-4                           
-5
-</code></pre>
-<p><code>for</code>的其他用法</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i in "abcd"  
-       println(i)       
-       end              
-a                       
-b                       
-c                       
-d                       
-
-julia> for i in 1:2:10  
-       println(i)       
-       end              
-1                       
-3                       
-5                       
-7                       
-9                       
-
-julia> for i in 10:-2:1 
-       println(i)       
-       end              
-10                      
-8                       
-6                       
-4                       
-2  
-julia> [x^2 for x in 1:4] 
-4-element Array{Int64,1}: 
-  1                       
-  4                       
-  9                       
- 16                       
-
-julia> [x^2 for x ∈ 1:5]  
-5-element Array{Int64,1}: 
-  1                       
-  4                       
-  9                       
- 16                       
- 25   
-#属于符号'\u2208'
-julia> [(x, x^2) for x in 1:5]        
-5-element Array{Tuple{Int64,Int64},1}:
- (1, 1)                               
- (2, 4)                               
- (3, 9)                               
- (4, 16)                              
- (5, 25)                              
-julia> for (i,x) in enumerate(1:4:20)
-       println(i, " ", x)            
-       end                           
-1 1                                  
-2 5                                  
-3 9                                  
-4 13                                 
-5 17 
-julia> collect(enumerate(1:4:20))     
-5-element Array{Tuple{Int64,Int64},1}:
- (1, 1)                               
- (2, 5)                               
- (3, 9)                               
- (4, 13)                              
- (5, 17)  
-#将迭代器转化为数组
-#或者
- julia> collect(Float64, 1:2:5)  
- 3-element Array{Float64,1}:     
-  1.0                            
-  3.0                            
-  5.0
-</code></pre>
-<p><code>continue</code>和<code>break</code>的用法跟其他语言基本一致。</p>
-<h4 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h4><pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i in 1:5
-       x = i
-       end
-</code></pre>
-<p>此时如果在<code>for</code>循环外面查看<code>x</code>的值，则会提示<code>error</code>，因为变量<code>x</code>只是<code>for</code>循环内部的。</p>
-<p>如果想在<code>for</code>外部使用<code>x</code>，则要写成</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> for i in 1:5
-       global x = i
-       end
-
-julia> x
-5
-</code></pre>
-<p>如果我们在外部提前定义了<code>x</code></p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> x = 10       
-10                  
-
-julia> for i in 1:5 
-       x = i        
-       end          
-
-julia> x            
-10
-</code></pre>
-<p>此时的<code>x</code>仍为10，因为<code>for</code>里面默认<code>x</code>是<code>local</code>的。</p>
-<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><pre class=" language-lang-julia"><code class="language-lang-julia">julia> try             
-       sqrt(-1)        
-       catch           
-       println("pass") 
-       end             
-pass   
-
-sqrt_second(x) = try       
-sqrt(x[2])                 
-catch y                    
-if isa(y, DomainError)     
-sqrt(complex(x[2],0))      
-elseif isa(y, BoundsError) 
-sqrt(x)                    
-end                        
-end                        
-julia> sqrt_second([1,-2,3]) 
-0.0 + 1.4142135623730951im   
-
-julia> sqrt_second(2)        
-1.4142135623730951           
-
-julia> sqrt_second([1,4,9])  
-2.0
-</code></pre>
-<p><code>finally</code>语句（与<code>python</code>一样）</p>
-<h3 id="任务（也称协程）"><a href="#任务（也称协程）" class="headerlink" title="任务（也称协程）"></a>任务（也称协程）</h3><p>被称为为对称协程、轻量级线程、协同多任务等。（与线程有区別，在后面的并行计算中会讲）<br> 如果一个计算以任务的方式执行，那它就很可能会被其他任务中断，原先的任务在恢复后，会从被中断的地方继续工作，这种过程看似很像函数调用，但有两点不同：</p>
-<ol>
-<li>任务切換不需要任何空间，因此可以完成任意数量任务的切換，而且无考虑堆栈问题。</li>
-<li>任务切换可以按照任何顺序来进行。</li>
+<h4 id="字段的含义"><a href="#字段的含义" class="headerlink" title="字段的含义"></a>字段的含义</h4><ol>
+<li><code>pages</code>字段——用于描述当前小程序所有页面路径，这是为了让微信客户端知道当前你的小程序页面定义在哪个目录。</li>
+<li><code>window</code>字段——定义小程序所有页面的顶部背景颜色，文字颜色定义等。</li>
+<li><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html" target="_blank" rel="noopener">官方文档</a></li>
 </ol>
-<p>任务比较适合生产者消费者模式，一个过程用来生产值，另一个用来消费值。消费者不能简单的调用生产者来得到值，因为两者的执行时间不一定协同。在任务中，两者则可以正常运行。<br><code>Julia</code>中提供了<code>Channel</code>来解決生产者消费者的协同问题，其实 <code>Channele</code>就是一个<code>FIFO(frst- -in first-out）</code>队列。使用<code>put！</code>和<code>take！</code>函数来具体实现。</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function producer(c::Channel)       
-       put!(c, "start")                    
-       for n = 1:4                         
-       put!(c, 2n)                         
-       end                                 
-       put!(c,"stop")                      
-       end                                 
-producer (generic function with 1 method)
+<h4 id="新建页面demo01"><a href="#新建页面demo01" class="headerlink" title="新建页面demo01"></a>新建页面<code>demo01</code></h4><p>只需要在<code>pages</code>字段中添加<code>demo01</code>即可。</p>
+<pre class=" language-lang-json"><code class="language-lang-json">{
+  "pages": [
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room",
+    "pages/demo01/demo01"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
 </code></pre>
-<p>然后我们新建一个<code>Channel</code>组间，来消费数值。</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> chn1 = Channel(producer) 
-Channel{Any}(sz_max:0,sz_curr:1)
-
-julia> take!(chn1)              
-"start"                         
-
-julia> take!(chn1)              
-2                               
-
-julia> take!(chn1)              
-4                               
-
-julia> take!(chn1)              
-6                               
-
-julia> take!(chn1)              
-8                               
-
-julia> take!(chn1)              
-"stop"
+<p>如果想要让开发者工具默认显示<code>demo01</code>的界面，只需要将<code>demo01</code>的界面放在最前面。</p>
+<pre class=" language-lang-json"><code class="language-lang-json">{
+  "pages": [
+    "pages/demo01/demo01",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
 </code></pre>
-<p>也可以使用<code>for</code>循环的方式</p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> for x in Channel(producer)   
-       println(x)                   
-       end                          
-start                               
-2                                   
-4                                   
-6                                   
-8                                   
-stop
+<h4 id="window中字段含义"><a href="#window中字段含义" class="headerlink" title="window中字段含义"></a><code>window</code>中字段含义</h4><ol>
+<li><code>backgroundColor</code>：下拉窗口的背景色</li>
+<li><code>backgroundTextStyle</code>：下拉 <code>loading</code> 的样式，仅支持 <code>dark</code> / <code>light</code></li>
+<li><code>navigationBarBackgroundColor</code>：导航栏背景颜色</li>
+<li><code>navigationBarTitleText</code>：导航栏标题</li>
+<li><code>navigationBarTextStyle</code>：导航栏标题颜色，仅支持 <code>black</code> / <code>white</code></li>
+<li><code>enablePullDownRefresh</code>：是否允许下拉刷新，默认为<code>false</code>。</li>
+</ol>
+<h4 id="tabbar"><a href="#tabbar" class="headerlink" title="tabbar"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html" target="_blank" rel="noopener">tabbar</a></h4><p><img src="http://image-hfc.test.upcdn.net/image-20200714190237726.png" alt="tabbar中的属性"></p>
+<pre class=" language-lang-json"><code class="language-lang-json">"tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "icon/_home.png",
+      "selectedIconPath": "icon/home.png"
+    },
+    {
+      "pagePath": "pages/demo01/demo01",
+      "text": "图片",
+      "iconPath": "icon/_img.png",
+      "selectedIconPath": "icon/img.png"
+    },
+    {
+      "pagePath": "pages/demo02/demo02",
+      "text": "搜索",
+      "iconPath": "icon/_search.png",
+      "selectedIconPath": "icon/search.png"
+    },
+    {
+      "pagePath": "pages/demo03/demo03",
+      "text": "视频",
+      "iconPath": "icon/_videocamera.png",
+      "selectedIconPath": "icon/videocamera.png"
+    },
+    {
+      "pagePath": "pages/demo04/demo04",
+      "text": "我的",
+      "iconPath": "icon/_my.png",
+      "selectedIconPath": "icon/my.png"
+    }
+    ],
+    "color": "#0094ff",
+    "selectedColor": "ff9400",
+    "backgroundColor": "#00ff11",
+    "borderStyle": "white",
+    "position": "bottom"
+  }
 </code></pre>
-<p>在两次调用<code>put!()</code>之间，生产者的执行是挂起的，此时由消费者接管控制。</p>
-<p>任务的一个特性就是随着任务的结束，<code>channel</code>对象自动关闭，无需人为干预。</p>
-<p><strong>把一般的任务放到<code>task</code>(任务)中</strong></p>
-<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function mytask(n)                 
-       for i=1:n                          
-       println(i)                         
-       end                                
-       end                                
-mytask (generic function with 1 method)   
-
-julia> taskHdl = @task mytask(10)      #创建task对象   
-Task (runnable) @0x000000004135d430       
-
-julia> println(istaskdone(taskHdl))    #查看任务是否执行完成   
-false                                     
-
-julia> schedule(taskHdl)        #执行任务          
-1                                         
-Task (runnable) @0x000000004135d4302      
-
-
-julia>                                    
-julia>                                    
-5                                         
-6                                         
-7                                         
-8                                         
-9                                         
-10                                        
-julia>                                    
-
-julia> println(current_task())        #找到正在运行的任务    
-Task (runnable) @0x0000000013811cd0       
-
-julia> println(istaskdone(taskHdl))       
-true
+<p><img src="http://image-hfc.test.upcdn.net/image-20200714190356476.png" alt="页面"></p>
+<h3 id="页面配置page-json"><a href="#页面配置page-json" class="headerlink" title="页面配置page.json"></a>页面配置<code>page.json</code></h3><p>这⾥的 <code>page.json</code> 其实⽤来表⽰⻚⾯⽬录下的 <code>page.json</code> 这类和⼩程序⻚⾯相关的配置。<br>开发者可以独⽴定义每个⻚⾯的⼀些属性，如顶部颜⾊、是否允许下拉刷新等等。<br>⻚⾯的配置只能设置 <code>app.json</code> 中部分 <code>window</code> 配置项的内容，⻚⾯中配置项会覆盖 <code>app.json</code>的 <code>window</code> 中相同的配置项。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>navigationBarBackgroundColor</code></td>
+<td><code>HexColor</code></td>
+<td>#000000</td>
+<td>导航栏背景颜⾊，如 #000000</td>
+</tr>
+<tr>
+<td><code>navigationBarTextStyle</code></td>
+<td><code>String</code></td>
+<td><code>white</code></td>
+<td>导航栏标题颜⾊，仅⽀持 black / white</td>
+</tr>
+<tr>
+<td><code>navigationBarTitleText</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>导航栏标题文字内容</td>
+</tr>
+<tr>
+<td><code>backgroundColor</code></td>
+<td><code>HexColor</code></td>
+<td><code>#ffffff</code></td>
+<td>窗口的背景色</td>
+</tr>
+<tr>
+<td><code>backgroundTextStyle</code></td>
+<td><code>String</code></td>
+<td><code>dark</code></td>
+<td>下拉 loading 的样式，仅⽀持 dark / light</td>
+</tr>
+<tr>
+<td><code>enablePullDownRefresh</code></td>
+<td><code>Boolean</code></td>
+<td>false</td>
+<td>是否全局开启下拉刷新。</td>
+</tr>
+<tr>
+<td><code>onReachBottomDistance</code></td>
+<td><code>Number</code></td>
+<td>50</td>
+<td>⻚⾯上拉触底事件触发时距⻚⾯底部距离，单位为<code>px</code>。<a href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onreachbottom" target="_blank" rel="noopener">详情</a></td>
+</tr>
+<tr>
+<td><code>disableScroll</code></td>
+<td><code>Boolean</code></td>
+<td>false</td>
+<td>设置为 true 则⻚⾯整体不能上下滚动；只在⻚⾯配置中有效，⽆法在 <code>app.json</code> 中设置该项</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class=" language-lang-json"><code class="language-lang-json">{
+  "usingComponents": {},
+  "backgroundColor": "#002244",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#F6F6F6",
+  "navigationBarTitleText": "第一个页面",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true
+}
 </code></pre>
+<h3 id="sitemap-配置"><a href="#sitemap-配置" class="headerlink" title="sitemap 配置"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html" target="_blank" rel="noopener">sitemap 配置</a></h3><p>⼩程序根⽬录下的 <code>sitemap.json</code>⽂件⽤于配置⼩程序及其⻚⾯是否允许被微信索引。</p>
 
             </div>
             <hr/>
@@ -778,7 +740,7 @@ true
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/07/13/julia%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/">http://yoursite.com/2020/07/13/julia%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/</a>
+                    <a href="http://yoursite.com/2020/07/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">http://yoursite.com/2020/07/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -816,8 +778,8 @@ true
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Julia/">
-                                    <span class="chip bg-color">Julia</span>
+                                <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+                                    <span class="chip bg-color">微信小程序</span>
                                 </a>
                             
                         </div>
@@ -985,9 +947,10 @@ true
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                     <div class="card-image">
@@ -1005,9 +968,9 @@ true
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -1016,6 +979,7 @@ true
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1034,24 +998,24 @@ true
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/12/Julia-%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/">
+                <a href="/2020/07/13/julia%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Julia 中的函数">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="julia中的控制流">
                         
-                        <span class="card-title">Julia 中的函数</span>
+                        <span class="card-title">julia中的控制流</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Julia中的函数
+                            Julia中的控制流
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-13
                             </span>
                         <span class="publish-author">
                             
