@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="微信小程序的配置文件, Serendipity">
+    <meta name="keywords" content="Julia中的类型, Serendipity">
     <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>微信小程序的配置文件 | Serendipity</title>
+    <title>Julia中的类型 | Serendipity</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">微信小程序的配置文件</h1>
+                    <h1 class="description center-align post-title">Julia中的类型</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
-                                <span class="chip bg-color">微信小程序</span>
+                            <a href="/tags/Julia/">
+                                <span class="chip bg-color">Julia</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-14
+                    2020-07-17
                 </div>
                 
 
@@ -463,258 +463,410 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="小程序目录结构"><a href="#小程序目录结构" class="headerlink" title="小程序目录结构"></a>小程序目录结构</h2><p><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/" target="_blank" rel="noopener">小程序框架</a>的目标是通过尽可能简单、高效的方式让开发者可以在微信中开发具有原生<code>APP</code>体验的服务。</p>
-<p>小程序框架结构提供了自己的视图层描述语言<code>wxml</code>和<code>wlss</code>，以及<code>JavaScript</code>，并在视图层与逻辑层间提供了数据传输和时间系统，让开发者能够专注于数据与逻辑。</p>
-<h3 id="小程序文件结构与传统web对比"><a href="#小程序文件结构与传统web对比" class="headerlink" title="小程序文件结构与传统web对比"></a>小程序文件结构与传统<code>web</code>对比</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>结构</th>
-<th>传统<code>web</code></th>
-<th>微信小程序</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>结构</td>
-<td><code>HTML</code></td>
-<td><code>WXML</code></td>
-</tr>
-<tr>
-<td>样式</td>
-<td><code>CSS</code></td>
-<td><code>WXSS</code></td>
-</tr>
-<tr>
-<td>逻辑</td>
-<td><code>JavaScript</code></td>
-<td><code>JavaScript</code></td>
-</tr>
-<tr>
-<td>配置</td>
-<td>无</td>
-<td><code>JSON</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="小程序配置文件"><a href="#小程序配置文件" class="headerlink" title="小程序配置文件"></a>小程序配置文件</h2><p>一个小程序应用程序会包括最基本的两种配置文件。一种是全局的<code>app.json</code>和页面自己的<code>page.json</code>。</p>
-<p><strong>注意：配置文件中不能出现注释。</strong></p>
-<h3 id="全局配置文件app-json"><a href="#全局配置文件app-json" class="headerlink" title="全局配置文件app.json"></a>全局配置文件<code>app.json</code></h3><p><code>app.json</code>是当前小程序的全局配置，包括了小程序的所有页面路径、界面表现、网络超时时间、底部<code>tab</code>等。<strong>普通快速启动项目</strong>里面的<code>app.json</code>配置。</p>
-<pre class=" language-lang-json"><code class="language-lang-json">{
-  "pages": [
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
-  ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
-  },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
-}
+                <h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p><code>Julia</code>中没有<code>class</code>，也没有子类型的继承关系，所有具体类型都是最终的；并且只有抽象类型可以作为其超类型。<code>Julia</code>中的继承是继承行为，而不是继承结构。</p>
+<h3 id="类型声明"><a href="#类型声明" class="headerlink" title="类型声明"></a>类型声明</h3><p>声明某个变量的类型，也可以用来断言变量类型是否正确。</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> (2 + 4)::Float64                                     
+ERROR: TypeError: in typeassert, expected Float64, got Int64
+Stacktrace:                                                 
+ [1] top-level scope at REPL[1]:1                           
+
+julia> (2 + 4)::Int64                                       
+6
 </code></pre>
-<h4 id="字段的含义"><a href="#字段的含义" class="headerlink" title="字段的含义"></a>字段的含义</h4><ol>
-<li><code>pages</code>字段——用于描述当前小程序所有页面路径，这是为了让微信客户端知道当前你的小程序页面定义在哪个目录。</li>
-<li><code>window</code>字段——定义小程序所有页面的顶部背景颜色，文字颜色定义等。</li>
-<li><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html" target="_blank" rel="noopener">官方文档</a></li>
-</ol>
-<h4 id="新建页面demo01"><a href="#新建页面demo01" class="headerlink" title="新建页面demo01"></a>新建页面<code>demo01</code></h4><p>只需要在<code>pages</code>字段中添加<code>demo01</code>即可。</p>
-<pre class=" language-lang-json"><code class="language-lang-json">{
-  "pages": [
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room",
-    "pages/demo01/demo01"
-  ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
-  },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
-}
+<p>类型声明常用的两个地方在函数的参数类型和返回类型</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f(x::Int64)::Float64   
+       x/10                            
+       end                             
+f (generic function with 1 method)     
+
+julia> f(2)                            
+0.2
 </code></pre>
-<p>如果想要让开发者工具默认显示<code>demo01</code>的界面，只需要将<code>demo01</code>的界面放在最前面。</p>
-<pre class=" language-lang-json"><code class="language-lang-json">{
-  "pages": [
-    "pages/demo01/demo01",
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
-  ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
-  },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
-}
+<h3 id="抽象类型"><a href="#抽象类型" class="headerlink" title="抽象类型"></a>抽象类型</h3><p>抽象类型不能被实例化，我们前面讲到的<code>Int64/Float64</code>等都是抽象类型的具体类型，抽象类型不能直接使用。抽象类型的定义方法如下：</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> abstract type name end          
+
+julia> abstract type myname <: name end
+
+julia> supertype(myname)               
+name                                   
+
+julia> supertype(name)                 
+Any
 </code></pre>
-<h4 id="window中字段含义"><a href="#window中字段含义" class="headerlink" title="window中字段含义"></a><code>window</code>中字段含义</h4><ol>
-<li><code>backgroundColor</code>：下拉窗口的背景色</li>
-<li><code>backgroundTextStyle</code>：下拉 <code>loading</code> 的样式，仅支持 <code>dark</code> / <code>light</code></li>
-<li><code>navigationBarBackgroundColor</code>：导航栏背景颜色</li>
-<li><code>navigationBarTitleText</code>：导航栏标题</li>
-<li><code>navigationBarTextStyle</code>：导航栏标题颜色，仅支持 <code>black</code> / <code>white</code></li>
-<li><code>enablePullDownRefresh</code>：是否允许下拉刷新，默认为<code>false</code>。</li>
-</ol>
-<h4 id="tabbar"><a href="#tabbar" class="headerlink" title="tabbar"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html" target="_blank" rel="noopener">tabbar</a></h4><p><img src="http://image-hfc.test.upcdn.net/image-20200714190237726.png" alt="tabbar中的属性"></p>
-<pre class=" language-lang-json"><code class="language-lang-json">"tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "icon/_home.png",
-      "selectedIconPath": "icon/home.png"
-    },
-    {
-      "pagePath": "pages/demo01/demo01",
-      "text": "图片",
-      "iconPath": "icon/_img.png",
-      "selectedIconPath": "icon/img.png"
-    },
-    {
-      "pagePath": "pages/demo02/demo02",
-      "text": "搜索",
-      "iconPath": "icon/_search.png",
-      "selectedIconPath": "icon/search.png"
-    },
-    {
-      "pagePath": "pages/demo03/demo03",
-      "text": "视频",
-      "iconPath": "icon/_videocamera.png",
-      "selectedIconPath": "icon/videocamera.png"
-    },
-    {
-      "pagePath": "pages/demo04/demo04",
-      "text": "我的",
-      "iconPath": "icon/_my.png",
-      "selectedIconPath": "icon/my.png"
-    }
-    ],
-    "color": "#0094ff",
-    "selectedColor": "ff9400",
-    "backgroundColor": "#00ff11",
-    "borderStyle": "white",
-    "position": "bottom"
-  }
+<p><code>&lt;:</code>表示新声明的抽象类型是后面类型的子类型。如果没有给出父类型，默认为<code>Any</code>。抽象类型有：</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">abstract type Number end
+abstract type Real <: Number end
+abstract type AbstractFloat <: Real end
+abstract type Integer <: Real end
+abstract type Signed <: Integer end
+abstract type Unsigned <: Integer end
 </code></pre>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200714190356476.png" alt="页面"></p>
-<h3 id="页面配置page-json"><a href="#页面配置page-json" class="headerlink" title="页面配置page.json"></a>页面配置<code>page.json</code></h3><p>这⾥的 <code>page.json</code> 其实⽤来表⽰⻚⾯⽬录下的 <code>page.json</code> 这类和⼩程序⻚⾯相关的配置。<br>开发者可以独⽴定义每个⻚⾯的⼀些属性，如顶部颜⾊、是否允许下拉刷新等等。<br>⻚⾯的配置只能设置 <code>app.json</code> 中部分 <code>window</code> 配置项的内容，⻚⾯中配置项会覆盖 <code>app.json</code>的 <code>window</code> 中相同的配置项。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>类型</th>
-<th>默认值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>navigationBarBackgroundColor</code></td>
-<td><code>HexColor</code></td>
-<td>#000000</td>
-<td>导航栏背景颜⾊，如 #000000</td>
-</tr>
-<tr>
-<td><code>navigationBarTextStyle</code></td>
-<td><code>String</code></td>
-<td><code>white</code></td>
-<td>导航栏标题颜⾊，仅⽀持 black / white</td>
-</tr>
-<tr>
-<td><code>navigationBarTitleText</code></td>
-<td><code>String</code></td>
-<td></td>
-<td>导航栏标题文字内容</td>
-</tr>
-<tr>
-<td><code>backgroundColor</code></td>
-<td><code>HexColor</code></td>
-<td><code>#ffffff</code></td>
-<td>窗口的背景色</td>
-</tr>
-<tr>
-<td><code>backgroundTextStyle</code></td>
-<td><code>String</code></td>
-<td><code>dark</code></td>
-<td>下拉 loading 的样式，仅⽀持 dark / light</td>
-</tr>
-<tr>
-<td><code>enablePullDownRefresh</code></td>
-<td><code>Boolean</code></td>
-<td>false</td>
-<td>是否全局开启下拉刷新。</td>
-</tr>
-<tr>
-<td><code>onReachBottomDistance</code></td>
-<td><code>Number</code></td>
-<td>50</td>
-<td>⻚⾯上拉触底事件触发时距⻚⾯底部距离，单位为<code>px</code>。<a href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onreachbottom" target="_blank" rel="noopener">详情</a></td>
-</tr>
-<tr>
-<td><code>disableScroll</code></td>
-<td><code>Boolean</code></td>
-<td>false</td>
-<td>设置为 true 则⻚⾯整体不能上下滚动；只在⻚⾯配置中有效，⽆法在 <code>app.json</code> 中设置该项</td>
-</tr>
-</tbody>
-</table>
-</div>
-<pre class=" language-lang-json"><code class="language-lang-json">{
-  "usingComponents": {},
-  "backgroundColor": "#002244",
-  "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#F6F6F6",
-  "navigationBarTitleText": "第一个页面",
-  "navigationBarTextStyle": "black",
-  "enablePullDownRefresh": true
-}
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> Integer <: Number
+true
+
+julia> Integer <: AbstractFloat
+false
 </code></pre>
-<h3 id="sitemap-配置"><a href="#sitemap-配置" class="headerlink" title="sitemap 配置"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html" target="_blank" rel="noopener">sitemap 配置</a></h3><p>⼩程序根⽬录下的 <code>sitemap.json</code>⽂件⽤于配置⼩程序及其⻚⾯是否允许被微信索引。</p>
+<h3 id="原始类型"><a href="#原始类型" class="headerlink" title="原始类型"></a>原始类型</h3><p>原始类型是具体类型，其数据是由简单的位组成。即我们前面讲到的<code>Float64/Int64/UInt64/Uint32</code>等，是可以实例化为对象的。声明原始类型的语法为：</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">primitive type <<name>> <bits> end
+primitive type <<name>> <: <<supertype>> <bits> end
+</code></pre>
+<p>而标准的原始类型都是在语言本身中定义的：</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">primitive type Float16<: Abstractfloat 16 end
+primitive type Float32<: Abstractfloat 32 end
+primitive type Float64<: Abstractfloat 64 end
+primitive type Bool < Integer 8 end
+primitive type Char <: Abstractchar 32 end
+primitive type Int8 < Signed 8 end
+primitive type Uint8 < Unsigned 8 end
+</code></pre>
+<p>原始类型的应用</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f1(x::Int64)::Int32 
+       x + 10                      
+       end                         
+f1 (generic function with 1 method) 
+
+julia> f(5)                        
+15
+</code></pre>
+<p>我们前面说到抽象类型不能被实例化，但如果我们把上面的<code>Int64</code>换成抽象类型<code>Real</code>，发现也是可以正确被赋值的</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f2(x::Real)::Real    
+       x + 10                       
+       end                          
+f2 (generic function with 1 methods) 
+
+julia> f(10)                        
+20
+</code></pre>
+<p>这又是为什么？我们可以用<code>typeof()</code>函数查看变量的类型</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> typeof(f1(100))
+Int32                 
+
+julia> typeof(f2(100))
+Int64
+</code></pre>
+<p>即在使用抽样类型时，<code>Julia</code>会针对每个调用它的参数的具体类型重新编译。有两点需要说明：</p>
+<ul>
+<li>即使我们的参数类型为抽象类型，性能不会有任何损失；但如果函数参数是抽象类型的容器（比如数组，矩阵），可能存在性能问题</li>
+<li>我们前面讲到的<code>Bool</code>、<code>Uint8</code>和<code>Int8</code>都是8<code>bits</code>，但它们的根本区别是具有不同的超类型：<code>Bool</code>的超类型是<code>Integer</code>,<code>Int8</code>是<code>Signed</code>而<code>UInt8</code>是<code>Unsigned</code>。</li>
+</ul>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>这个我们在前面将函数时其实已经提到过</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function foo(a,b)              
+       x::Int8 = a                    
+       y::Int8 = b                    
+       x + y                          
+       end                            
+foo (generic function with 1 method)
+</code></pre>
+<p>该函数把<code>Int64</code>类型转成了<code>Int8</code>后再进行计算。</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> Int8(10)         
+10                      
+
+julia> convert(Int8, 10)
+10
+</code></pre>
+<p>但这种强制转换只限于数字之间，而且不能越界。</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">In8(1000)
+>> error
+Int8("10")
+>> error
+convert(Int8, "10")
+>> error
+</code></pre>
+<p>如果我们就是想把字符串转成数字的话，可以用<code>parse</code>函数</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> parse(Int8, "10")
+10
+</code></pre>
+<p>我们也可以为<code>convert()</code>函数添加一个方法</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> Base.convert(::Type{Int8}, x::String) = parse(Int8, x) 
+
+julia> convert(Int8, "10")                                    
+10
+</code></pre>
+<h3 id="类型提升"><a href="#类型提升" class="headerlink" title="类型提升"></a>类型提升</h3><p>先看一个简单的例子</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> 1 + 2.0
+3.0
+</code></pre>
+<p>在这个例子中，就是把<code>Int64</code>类型的1转化成了<code>Float64</code>，然后进行加法操作</p>
+<p>再看下面的例子</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> a = (1, 2.0, Int8(3))        
+(1, 2.0, 3)                         
+
+julia> b = promote(1, 2.0, Int8(3)) 
+(1.0, 2.0, 3.0)
+</code></pre>
+<p>使用<code>promote</code>后，<code>Tuple</code>中的所有元素都提升到了<code>Float64</code>类型</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> +(1,2.0)    
+3.0                
+
+julia> a = (1,2.0) 
+(1, 2.0)           
+
+julia> +(a...)     
+3.0
+</code></pre>
+<p>其实<code>+(1, 2.0)</code>就相当于<code>+(promote(1, 2.0)...)</code>，可以运行<code>@edit + (1+2.0)</code>查看<code>julia</code>中的实现方式。</p>
+<h3 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h3><p>即自定义类型，关键字<code>struct</code>，<code>julia</code>中没有<code>class</code>关键字，都用<code>struct</code>代替。</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> struct Foo                        
+       x1                                
+       x2::Int                           
+       x3::Float64                       
+       end                               
+
+julia> foo = Foo("Hello World", 10, 11.9)
+julia> fo = Foo("Hello World", 10, 11.9)
+Foo("Hello World", 10, 11.9)            
+
+julia> typeof(fo)                       
+Foo                                     
+
+julia> fo.x1                            
+"Hello World"
+</code></pre>
+<p>在<code>fo</code>的创建过程中，有两个默认的构造函数会被自动生成，一个可以接受任意参数，如上面的<code>x1</code>，另接受与字段类型完全匹配的参数，如上面的<code>x2、x3</code>。</p>
+<p><code>struct</code>是不可变类型，<code>fo</code>在创建后，内容不可更改。</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> fo.x2 = 2
+ERROR: setfield! immutable struct of type Foo cannot be changed
+Stacktrace:
+ [1] setproperty!(::Foo, ::Symbol, ::Int64) at .\Base.jl:34
+ [2] top-level scope at REPL[46]:1
+</code></pre>
+<h3 id="可变复合类型"><a href="#可变复合类型" class="headerlink" title="可变复合类型"></a>可变复合类型</h3><pre class=" language-lang-julia"><code class="language-lang-julia">julia> mutable struct Fooo                 
+       x1                                  
+       x2::Int                             
+       x3::Float64                         
+       end                                 
+
+julia> fo1 = Fooo("Hello world", 10, 21.1) 
+Fooo("Hello world", 10, 21.1)              
+
+julia> fo1.x2 = 20                         
+20                                         
+
+julia> fo1.x2                              
+20
+</code></pre>
+<p>可变的复合类型是建立在堆上面的，并具有稳定的内存地址。</p>
+<h3 id="DataType"><a href="#DataType" class="headerlink" title="DataType"></a>DataType</h3><p>我们上面讨论的抽象类型、原始类型和复合类型，都有以下的共性：</p>
+<ul>
+<li>它们都是显式声明的</li>
+<li>它们都具有名称</li>
+<li>它们都已经显式声明超类型</li>
+<li>它们可以有参数</li>
+</ul>
+<pre class=" language-lang-julia"><code class="language-lang-julia">typeof(Real)
+>> DataType
+</code></pre>
+<p><code>DataType</code>可以是抽象的或具体的。它如果是具体的，就具有指定的大小、存储布局和字段名称（可选）。因此，原始类型是具有非零大小的<code>DataType</code>，但没有字段名称。复合类型是具有字段名称或者为空（大小为零）的<code>DataType</code>。</p>
+<p>每一个具体的值在系统里都是某个<code>DataType</code>的实例。</p>
+<h3 id="Type-Unions"><a href="#Type-Unions" class="headerlink" title="Type Unions"></a>Type Unions</h3><p>类型共用体是一种特殊的抽象类型，具体用法：</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> IntOrString = Union{Int, AbstractString}                                    
+Union{Int64, AbstractString}                                                       
+
+julia> 123::IntOrString                                                            
+123                                                                                
+
+julia> "abc"::IntOrString                                                          
+"abc"                                                                              
+
+julia> 12.4::IntOrString                                                           
+ERROR: TypeError: in typeassert, expected Union{Int64, AbstractString}, got Float64
+Stacktrace:                                                                        
+ [1] top-level scope at REPL[55]:1                                                 
+                                                                   julia> ff(x::IntOrString) = println(x)              
+ff (generic function with 1 method)                 
+
+julia> ff(12)                                       
+12                                                  
+
+julia> ff("abc")                                    
+abc                                                 
+
+julia> ff(12.4)                                     
+ERROR: MethodError: no method matching ff(::Float64)
+Closest candidates are:                             
+  ff(::Union{Int64, AbstractString}) at REPL[57]:1  
+Stacktrace:                                         
+ [1] top-level scope at REPL[60]:1                  
+
+julia> ff('a')                                      
+ERROR: MethodError: no method matching ff(::Char)   
+Closest candidates are:                             
+  ff(::Union{Int64, AbstractString}) at REPL[57]:1  
+Stacktrace:                                         
+ [1] top-level scope at REPL[61]:1
+</code></pre>
+<h3 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h3><p><code>Julia</code>类型系统的一个重要特色就是类型可以支持参数化，我们前面讲到的原始类型、抽象类型和复合类型都支持参数化。</p>
+<h4 id="复合参数类型"><a href="#复合参数类型" class="headerlink" title="复合参数类型"></a>复合参数类型</h4><pre class=" language-lang-julia"><code class="language-lang-julia">julia> struct Pos{T}                
+       x::T                         
+       y::T                         
+       end                          
+
+julia> a = Pos{Int64}(1,2)          
+Pos{Int64}(1, 2)                    
+
+julia> b = Pos{Float64}(1.1, 2.2)   
+Pos{Float64}(1.1, 2.2)              
+
+julia> c = Pos(3,4)                 
+Pos{Int64}(3, 4)                    
+
+julia> typeof(c)                    
+Pos{Int64}                          
+
+julia> d = Pos(1.1, 2.2)            
+Pos{Float64}(1.1, 2.2)              
+
+julia> typeof(d)                    
+Pos{Float64}
+</code></pre>
+<p>每个实例都是<code>Pos</code>的子类型</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> Pos{Float64} <: Pos 
+true                       
+
+julia> Pos{Int64} <: Pos   
+true
+</code></pre>
+<p>但不同的T声明的具体类型之间不能互为子类型</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> Pos{Float64} <: Pos{Real}
+false
+# 它们两个是并列类型
+</code></pre>
+<p>所以，下面的定义就不能使用</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function norm(p::Pos{Real})                       
+       sqrt(p.x^2 + p.y^2)                               
+       end                                               
+norm (generic function with 1 method)                    
+
+julia> p1 = Pos{Real}(1,2)                               
+Pos{Real}(1, 2)                                          
+
+julia> norm(p1)                                          
+2.23606797749979                                         
+
+julia> p2 = Pos{Int64}(1,2)                              
+Pos{Int64}(1, 2)                                         
+
+julia> norm(p2)                                          
+ERROR: MethodError: no method matching norm(::Pos{Int64})
+Closest candidates are:                                  
+  norm(::Pos{Real}) at REPL[72]:2                        
+Stacktrace:                                              
+ [1] top-level scope at REPL[76]:1
+</code></pre>
+<p>但我们可以写成这样</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function norm2(p::Pos{<:Real})  
+       sqrt(p.x^2 + p.y^2)             
+       end                             
+norm2 (generic function with 1 method) 
+
+julia> norm2(p2)                       
+2.23606797749979
+</code></pre>
+<p>复合参数类型也支持多个参数类型</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> struct Pos1{T1,T2}
+       x1::T1
+       x2::T2
+       end
+julia> p1 = Pos1{Int64, Float64}(1,2.2)
+Pos1{Int64,Float64}(1, 2.2)            
+
+julia> p1.x1                           
+1  
+julia> p1.x2
+2.2
+</code></pre>
+<h4 id="抽象参数类型"><a href="#抽象参数类型" class="headerlink" title="抽象参数类型"></a>抽象参数类型</h4><p>由抽象类型而来，就是给抽象类型加了个参数</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> abstract type Pointy{T} end
+</code></pre>
+<p>与复合参数类型一样，每个实例都是<code>Pointy</code>的子类型</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> Pointy{Int64} <: Pointy
+true
+</code></pre>
+<p>不同的T之间不能互为子类型</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> Pointy{Int64} <: Pointy{Real}
+false
+</code></pre>
+<h4 id="原始参数类型"><a href="#原始参数类型" class="headerlink" title="原始参数类型"></a>原始参数类型</h4><p>由原始类型而来，就是给原始类型加了个参数</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> primitive type Ty{T}64 end   
+
+julia> Ty{Float64} <: Ty            
+true                                
+
+julia> Ty{Float64} <: Ty{Real}      
+false
+</code></pre>
+<h4 id="元组类型"><a href="#元组类型" class="headerlink" title="元组类型"></a>元组类型</h4><p>元组的类型不可以更改</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> t1 = (1, 2.8)
+(1, 2.8)
+</code></pre>
+<p>就相当于不可变参数类型的<code>struct</code></p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> struct Tuple2{T1,T2}
+       x1::T1
+       x2::T2
+       end
+
+julia> t2 = Tuple2{Int64, Float64}(1, 2.8)
+Tuple2{Int64,Float64}(1, 2.8)
+</code></pre>
+<p>那么他们之间有什么区别么？</p>
+<ul>
+<li>元组类型可以具有任意数量的参数</li>
+<li>元组类型的参数是协变的：<code>Tuple{Int}</code>是<code>Tuple{Any}</code>的子类型。因此，<code>Tuple{Any}</code>被认为是一种抽象类型，且元组类型只有在它们的参数都是具体类型时才是具体类型</li>
+<li>元组没有字段名称，字段只能通过索引访问</li>
+</ul>
+<h4 id="变参元组类型"><a href="#变参元组类型" class="headerlink" title="变参元组类型"></a>变参元组类型</h4><p>元组类型的最后一个参数可以是特殊类型<code>Vararg</code>，表示后面可以跟任意多个参数</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> Tup = Tuple{Float64, Vararg{Int64}}
+Tuple{Float64,Vararg{Int64,N} where N}    
+
+julia> isa((2.2,), Tup)                   
+true                                      
+
+julia> isa((2.2,3,4),Tup)                 
+true                                      
+
+julia> isa((2.2,3,4.4),Tup)               
+false
+</code></pre>
+<h4 id="单态类型"><a href="#单态类型" class="headerlink" title="单态类型"></a>单态类型</h4><p>所谓的单态类型，就是<code>Type{T}</code>，它是个抽象类型，且唯一的实例就是对象T。</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> isa(Int64, Type{Int64})
+true                          
+
+julia> isa(Real, Type{Int64}) 
+false                         
+
+julia> isa(Type{Int64}, Type) 
+true
+</code></pre>
+<h4 id="Uinon-All类型"><a href="#Uinon-All类型" class="headerlink" title="Uinon All类型"></a>Uinon All类型</h4><p>在抽象参数类型中，我们讲到，<code>Pointy</code>是它所有实例<code>Pointy{T}</code>等的超类型，但T的类型是不确定的，那这又是如何工作的呢？这就引入了<code>Union All</code>类型，<code>Pointy</code>是一种<code>Union All</code>类型，是这种类型某些参数的所有值得类型得迭代并集。</p>
+<p><code>Union All</code>类型通常使用关键字<code>where</code>编写</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> struct Pos{T}                        
+       x::T                                 
+       y::T                                 
+       end                                  
+
+julia> function f1(p::Pos{T}) where T<:Real 
+       p                                    
+       end                                  
+f1 (generic function with 1 methods)
+</code></pre>
+<p>当有两个类型参数时</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> struct Pos2{T1,T2}                        
+       x::T1                                 
+       y::T2                                 
+       end                                  
+
+julia> function f2(p::Pos{T1,T2}) where T1<:Real where T2<:Int64
+       p                                    
+       end                                  
+f2 (generic function with 1 methods)
+</code></pre>
+<p><code>where</code>还可以限定T的上下界</p>
+<pre class=" language-lang-julia"><code class="language-lang-julia">julia> function f23(p::Pos{T}) where Int64<:T<:Real
+       p
+       end
+f23 (generic function with 1 method)
+</code></pre>
 
             </div>
             <hr/>
@@ -740,7 +892,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/07/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">http://yoursite.com/2020/07/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</a>
+                    <a href="http://yoursite.com/2020/07/17/Julia%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B/">http://yoursite.com/2020/07/17/Julia%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -778,8 +930,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
-                                    <span class="chip bg-color">微信小程序</span>
+                                <a href="/tags/Julia/">
+                                    <span class="chip bg-color">Julia</span>
                                 </a>
                             
                         </div>
@@ -947,9 +1099,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/17/Julia%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B/">
                     <div class="card-image">
@@ -967,9 +1120,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -978,6 +1131,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -996,24 +1150,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/13/julia%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/">
+                <a href="/2020/07/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="julia中的控制流">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="微信小程序的配置文件">
                         
-                        <span class="card-title">julia中的控制流</span>
+                        <span class="card-title">微信小程序的配置文件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Julia中的控制流
+                            微信小程序的配置文件
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-14
                             </span>
                         <span class="publish-author">
                             
@@ -1026,8 +1180,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Julia/">
-                        <span class="chip bg-color">Julia</span>
+                    <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+                        <span class="chip bg-color">微信小程序</span>
                     </a>
                     
                 </div>

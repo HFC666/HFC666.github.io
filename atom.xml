@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-14T11:04:26.575Z</updated>
+  <updated>2020-07-17T05:23:01.281Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Julia中的类型</title>
+    <link href="http://yoursite.com/2020/07/17/Julia%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://yoursite.com/2020/07/17/Julia%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B/</id>
+    <published>2020-07-17T05:21:41.000Z</published>
+    <updated>2020-07-17T05:23:01.281Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;类型&quot;&gt;&lt;a href=&quot;#类型&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Julia" scheme="http://yoursite.com/tags/Julia/"/>
+    
+  </entry>
   
   <entry>
     <title>微信小程序的配置文件</title>
