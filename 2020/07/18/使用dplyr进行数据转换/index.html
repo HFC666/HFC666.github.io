@@ -1,0 +1,1692 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="使用`dplyr`进行数据转换, Serendipity">
+    <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>使用`dplyr`进行数据转换 | Serendipity</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Serendipity" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Serendipity</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Serendipity</div>
+        <div class="logo-desc">
+            
+            我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/HFC666" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/HFC666" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">使用`dplyr`进行数据转换</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/R%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">R语言</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-07-18
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h3><h4 id="2-1-1-准备工作"><a href="#2-1-1-准备工作" class="headerlink" title="2.1.1 准备工作"></a>2.1.1 准备工作</h4><p>本章将重点讨论如何使用<code>tidyverse</code>中的另一个核心R包——<code>dplyr</code>包。我们使用<code>nycflights13</code>包中的数据来说明<code>dplyr</code>包的核心，并使用<code>ggplot2</code>来帮助我们理解数据。</p>
+<pre class=" language-lang-R"><code class="language-lang-R">library(tidyverse)
+library(nycflights13)
+</code></pre>
+<h4 id="2-1-2-nycflights13"><a href="#2-1-2-nycflights13" class="headerlink" title="2.1.2 nycflights13"></a>2.1.2 <code>nycflights13</code></h4><p>为了介绍<code>dplyr</code>中的基本数据操作，我们需要使用<code>nycflights13::flights</code>。这个数据框包含了2013年从纽约出发的所有336776次航班的信息。</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> head(flights)
+# A tibble: 6 x 19
+   year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+  <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
+1  2013     1     1      517            515         2      830            819
+2  2013     1     1      533            529         4      850            830
+3  2013     1     1      542            540         2      923            850
+4  2013     1     1      544            545        -1     1004           1022
+5  2013     1     1      554            600        -6      812            837
+6  2013     1     1      554            558        -4      740            728
+# ... with 11 more variables: arr_delay <dbl>, carrier <chr>, flight <int>,
+#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>,
+#   hour <dbl>, minute <dbl>, time_hour <dttm>
+</code></pre>
+<p>你或许会发现，列名下面有一行3个或4个字母的缩写。它们描述每个变量的类型。</p>
+<ul>
+<li><code>int</code>表示整数型变量</li>
+<li><code>dbl</code>表示双精度浮点型变量，或称实数</li>
+<li><code>chr</code>表示字符向量，或称字符串</li>
+<li><code>dttm</code>表示日期时间（日期+时间）型变量</li>
+<li><code>lgl</code>表示逻辑变量，是一个仅包含<code>TRUE</code>和<code>FALSE</code>的向量</li>
+<li><code>fctr</code>表示因子，R用其来表示具有固定数目的值的分类变量</li>
+<li><code>date</code>表示日期型变量</li>
+</ul>
+<h4 id="2-1-3-dplyr基础"><a href="#2-1-3-dplyr基础" class="headerlink" title="2.1.3 dplyr基础"></a>2.1.3 <code>dplyr</code>基础</h4><ul>
+<li>按值筛选观测（<code>filter()</code>）。</li>
+<li>对行进行重新排序（<code>arrange()</code>）。</li>
+<li>按名称选取变量（<code>select()</code>）。</li>
+<li>使用现有变量的函数创建新变量（<code>mutate()</code>）。</li>
+<li>将多个值总结为一个摘要统计量（<code>summarize()</code>）。</li>
+</ul>
+<p>这些函数都可以和<code>group_by()</code>函数联合起来使用，<code>group_by()</code>函数可以改变以上每个函数的作用范围，让其从在整个数据集上操作变为在每个分组上分别操作。</p>
+<p>前面5个函数的工作方式都是相同的。</p>
+<ol>
+<li>第一个参数是一个数据框</li>
+<li>随后的参数使用变量名称描述了在数据框上进行的操作</li>
+<li>输出结果是一个数据框</li>
+</ol>
+<h3 id="2-2-使用filter-筛选行"><a href="#2-2-使用filter-筛选行" class="headerlink" title="2.2 使用filter()筛选行"></a>2.2 使用<code>filter()</code>筛选行</h3><p><code>filter()</code>函数可以基于观测值筛选出一个观测子集。第一个参数是数据框名称，第二个参数以及随后的参数是用来筛选数据框的表达式。例如，我们可以使用以下代码筛选出1月1日所有的航班。</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> filter(flights, month == 1, day == 1)
+# A tibble: 842 x 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ... with 832 more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
+#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>
+</code></pre>
+<p><strong>在进行浮点数的比较时，不要使用<code>==</code>，要使用<code>near()</code>函数</strong></p>
+<p><code>filter()</code>只能筛选出条件为TRUE的行；他会排除那些条件为<code>FALSE</code>和<code>NA</code>的行。如果想保留缺失值，可以明确指出：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> df <- tibble(x = c(1, NA, 3))
+> filter(df, x > 1)
+# A tibble: 1 x 1
+      x
+  <dbl>
+1     3
+> filter(df, is.na(x) | x > 1)
+# A tibble: 2 x 1
+      x
+  <dbl>
+1    NA
+2     3
+</code></pre>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p><code>between</code>函数：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">between(x, left, right)    #选出符合x >= left 并且 x<= right中的x
+> x <- rnorm(100)
+> x[between(x, -1, 1)]
+ [1]  0.529060712 -0.040957463  0.497335877 -0.441930320 -0.155015868 -0.365771072
+ [7] -0.476820501 -0.572132346 -0.410592876  0.957448540 -0.814923771  0.690064761
+[13] -0.312184168  0.324887423 -0.680668822  0.220911722 -0.002226938 -0.825415941
+[19]  0.391711588  0.463219688 -0.432219013  0.709920433  0.718304456  0.526502834
+[25]  0.616723825  0.941594207 -0.036210036  0.568070601 -0.824100881 -0.465411589
+[31] -0.501606973 -0.247216488 -0.486935777 -0.910323542 -0.108788671  0.139471135
+[37] -0.340999537  0.506309679 -0.104310601  0.924127890 -0.090668241  0.088792587
+[43]  0.659949615 -0.411525734  0.003103224 -0.962794048  0.802059419 -0.161736057
+[49] -0.454021947 -0.148543941 -0.038698869 -0.294445243  0.688950988 -0.411582482
+[55]  0.540150619  0.979284711 -0.277299984 -0.901883874 -0.470659329 -0.410736928
+[61]  0.493066269  0.768723924  0.050368682  0.938079348 -0.058759888  0.138260022
+[67]  0.147429135  0.733338771  0.506202092 -0.347174207 -0.267144889
+</code></pre>
+<p>缺失值运算的几种特殊形况</p>
+<pre class=" language-lang-R"><code class="language-lang-R">NA ^ 0  #1
+NA | TRUE #TRUE
+FALSE & NA #FALSE
+</code></pre>
+<h3 id="2-3-使用arrange-排列行"><a href="#2-3-使用arrange-排列行" class="headerlink" title="2.3 使用arrange()排列行"></a>2.3 使用<code>arrange()</code>排列行</h3><p><code>arrange()</code>函数的工作方式与<code>filter()</code>函数非常相似，但前者不是选择行，而是改变行的顺序。它接受一个数据框和一组作为排序依据的列名（或者更复杂的表达式）作为参数。如果列名不只一个，那么就使用后面的列在前面排序的基础上继续排序：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> arrange(flights, year, month, day)
+# A tibble: 336,776 x 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ... with 336,766 more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
+#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>
+</code></pre>
+<p>使用<code>desc()</code>可以按列进行降序排序</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> head(arrange(flights, desc(arr_delay)))
+# A tibble: 6 x 19
+   year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+  <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
+1  2013     1     9      641            900      1301     1242           1530
+2  2013     6    15     1432           1935      1137     1607           2120
+3  2013     1    10     1121           1635      1126     1239           1810
+4  2013     9    20     1139           1845      1014     1457           2210
+5  2013     7    22      845           1600      1005     1044           1815
+6  2013     4    10     1100           1900       960     1342           2211
+# ... with 11 more variables: arr_delay <dbl>, carrier <chr>, flight <int>,
+#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>,
+#   hour <dbl>, minute <dbl>, time_hour <dttm>
+> head(arrange(flights, -arr_delay))
+# A tibble: 6 x 19
+   year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+  <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
+1  2013     1     9      641            900      1301     1242           1530
+2  2013     6    15     1432           1935      1137     1607           2120
+3  2013     1    10     1121           1635      1126     1239           1810
+4  2013     9    20     1139           1845      1014     1457           2210
+5  2013     7    22      845           1600      1005     1044           1815
+6  2013     4    10     1100           1900       960     1342           2211
+# ... with 11 more variables: arr_delay <dbl>, carrier <chr>, flight <int>,
+#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>,
+#   hour <dbl>, minute <dbl>, time_hour <dttm>
+> head(arrange(flights, -arr_delay)) == head(arrange(flights, desc(arr_delay)))
+     year month  day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+[1,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+[2,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+[3,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+[4,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+[5,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+[6,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+     arr_delay carrier flight tailnum origin dest air_time distance hour minute
+[1,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+[2,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+[3,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+[4,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+[5,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+[6,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+     time_hour
+[1,]      TRUE
+[2,]      TRUE
+[3,]      TRUE
+[4,]      TRUE
+[5,]      TRUE
+[6,]      TRUE
+</code></pre>
+<p>缺失值总是排在最后</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> df <- tibble(x = c(5, 2, NA))
+> arrange(df, x)
+# A tibble: 3 x 1
+      x
+  <dbl>
+1     2
+2     5
+3    NA
+</code></pre>
+<p>使用<code>arrange()</code>将缺失值排在最前面</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> arrange(df, -is.na(x), x)
+# A tibble: 3 x 1
+      x
+  <dbl>
+1    NA
+2     2
+3     5
+</code></pre>
+<h3 id="2-4-使用select-选择列"><a href="#2-4-使用select-选择列" class="headerlink" title="2.4 使用select()选择列"></a>2.4 使用<code>select()</code>选择列</h3><p>如今，数据集有几百甚至几千个变量已经司空见惯。这种情况下，如何找出真正感兴趣的那些变量经常是我们面临的第一个挑战。通过基于变量名的操作， <code>select()</code>函数可以让你 快速生成一个有用的变量子集。</p>
+<p><code>select(）</code>函数对于航班数据不是特别有用，因为其中只有19个变量，但你还是可以通过这个数据集了解一下 select()函数的大致用法：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> select(flights, year, month, day)
+# A tibble: 336,776 x 3
+    year month   day
+   <int> <int> <int>
+ 1  2013     1     1
+ 2  2013     1     1
+ 3  2013     1     1
+ 4  2013     1     1
+ 5  2013     1     1
+ 6  2013     1     1
+ 7  2013     1     1
+ 8  2013     1     1
+ 9  2013     1     1
+10  2013     1     1
+# ... with 336,766 more rows
+</code></pre>
+<p>选择<code>year</code>和<code>day</code>之间的所有列（包括<code>year</code>和<code>day</code>）</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> select(flights, year:day)
+# A tibble: 336,776 x 3
+    year month   day
+   <int> <int> <int>
+ 1  2013     1     1
+ 2  2013     1     1
+ 3  2013     1     1
+ 4  2013     1     1
+ 5  2013     1     1
+ 6  2013     1     1
+ 7  2013     1     1
+ 8  2013     1     1
+ 9  2013     1     1
+10  2013     1     1
+# ... with 336,766 more rows
+</code></pre>
+<p>选择不在<code>year</code>和<code>day</code>之间的所有列</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> select(flights, -(year:day))
+# A tibble: 336,776 x 16
+   dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight
+      <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int>
+ 1      517            515         2      830            819        11 UA        1545
+ 2      533            529         4      850            830        20 UA        1714
+ 3      542            540         2      923            850        33 AA        1141
+ 4      544            545        -1     1004           1022       -18 B6         725
+ 5      554            600        -6      812            837       -25 DL         461
+ 6      554            558        -4      740            728        12 UA        1696
+ 7      555            600        -5      913            854        19 B6         507
+ 8      557            600        -3      709            723       -14 EV        5708
+ 9      557            600        -3      838            846        -8 B6          79
+10      558            600        -2      753            745         8 AA         301
+# ... with 336,766 more rows, and 8 more variables: tailnum <chr>, origin <chr>,
+#   dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+#   time_hour <dttm>
+</code></pre>
+<p>还可以<code>select()</code>函数中使用一些辅助函数</p>
+<ul>
+<li><code>starts_with(&quot;abc&quot;)</code>：匹配以<code>&quot;abc&quot;</code>开头的名称</li>
+<li><code>ends_with(&quot;xyz&quot;)</code>：匹配以<code>&quot;xyz&quot;</code>结尾的名称</li>
+<li><code>contains(&quot;ijk&quot;)</code>：匹配包含<code>&quot;ijk&quot;</code>的名称</li>
+<li><code>matches(&quot;(.)\\1&quot;)</code>：选择匹配正则表达式的那些变量。这个正则表达式会匹配名称中有重复字符的变量。</li>
+<li><code>num_range(&quot;x&quot;,1:3)</code>：匹配<code>x1</code>、<code>x2</code>、<code>x3</code>。</li>
+</ul>
+<p><code>select()</code>可以重命名变量，但我们很少这样使用它，因为这样会丢失所有未明确提及到的变量。我们应该使用<code>select()</code>函数的变体<code>rename()</code>函数来重命名变量，以保留所有未明确提及的变量：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> rename(flights, tail_num = tailnum)
+# A tibble: 336,776 x 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ... with 336,766 more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+#   flight <int>, tail_num <chr>, origin <chr>, dest <chr>, air_time <dbl>,
+#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>
+</code></pre>
+<p>另一种方法是将<code>select()</code>函数和<code>everything()</code>辅助函数结合起来使用。当想要将几个变量移到数据框开头时，这种方法非常奏效：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> select(flights, time_hour, air_time, everything())
+# A tibble: 336,776 x 19
+   time_hour           air_time  year month   day dep_time sched_dep_time dep_delay
+   <dttm>                 <dbl> <int> <int> <int>    <int>          <int>     <dbl>
+ 1 2013-01-01 05:00:00      227  2013     1     1      517            515         2
+ 2 2013-01-01 05:00:00      227  2013     1     1      533            529         4
+ 3 2013-01-01 05:00:00      160  2013     1     1      542            540         2
+ 4 2013-01-01 05:00:00      183  2013     1     1      544            545        -1
+ 5 2013-01-01 06:00:00      116  2013     1     1      554            600        -6
+ 6 2013-01-01 05:00:00      150  2013     1     1      554            558        -4
+ 7 2013-01-01 06:00:00      158  2013     1     1      555            600        -5
+ 8 2013-01-01 06:00:00       53  2013     1     1      557            600        -3
+ 9 2013-01-01 06:00:00      140  2013     1     1      557            600        -3
+10 2013-01-01 06:00:00      138  2013     1     1      558            600        -2
+# ... with 336,766 more rows, and 11 more variables: arr_time <int>,
+#   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>, flight <int>,
+#   tailnum <chr>, origin <chr>, dest <chr>, distance <dbl>, hour <dbl>,
+#   minute <dbl>
+</code></pre>
+<p><code>select()</code>与<code>one_of()</code>结合使用：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">vars <- c("year", "month", "day", "dep_delay", "arr_delay")
+select(flights,one_of(vars))
+#等同于
+select(flights, year, month, day, dep_delay, arr_delay)
+</code></pre>
+<p><code>contains()</code>函数使用注意：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> select(flights, contains("TIME"))
+# A tibble: 336,776 x 6
+   dep_time sched_dep_time arr_time sched_arr_time air_time time_hour          
+      <int>          <int>    <int>          <int>    <dbl> <dttm>             
+ 1      517            515      830            819      227 2013-01-01 05:00:00
+ 2      533            529      850            830      227 2013-01-01 05:00:00
+ 3      542            540      923            850      160 2013-01-01 05:00:00
+ 4      544            545     1004           1022      183 2013-01-01 05:00:00
+ 5      554            600      812            837      116 2013-01-01 06:00:00
+ 6      554            558      740            728      150 2013-01-01 05:00:00
+ 7      555            600      913            854      158 2013-01-01 06:00:00
+ 8      557            600      709            723       53 2013-01-01 06:00:00
+ 9      557            600      838            846      140 2013-01-01 06:00:00
+10      558            600      753            745      138 2013-01-01 06:00:00
+# ... with 336,766 more rows
+> select(flights, contains("TIME", ignore.case = FALSE))
+# A tibble: 336,776 x 0
+</code></pre>
+<h3 id="2-5-使用mutate-添加新变量"><a href="#2-5-使用mutate-添加新变量" class="headerlink" title="2.5 使用mutate()添加新变量"></a>2.5 使用<code>mutate()</code>添加新变量</h3><p>除了选择现有的列，我们还经常需要添加新列，新列是现有列的函数。这就是<code>mutate()</code>函数的作用。</p>
+<p><code>mutate()</code>总是将新列添加到数据集的最后，因此我们需要先创建一个更狭窄的数据集，以便能够看到新变量。</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> flights_sml <- select(flights, year:day, ends_with("delay"), distance, air_time)
+> mutate(flights_sml, gain = arr_delay - dep_delay, speed = distance / air_time*60)
+# A tibble: 336,776 x 9
+    year month   day dep_delay arr_delay distance air_time  gain speed
+   <int> <int> <int>     <dbl>     <dbl>    <dbl>    <dbl> <dbl> <dbl>
+ 1  2013     1     1         2        11     1400      227     9  370.
+ 2  2013     1     1         4        20     1416      227    16  374.
+ 3  2013     1     1         2        33     1089      160    31  408.
+ 4  2013     1     1        -1       -18     1576      183   -17  517.
+ 5  2013     1     1        -6       -25      762      116   -19  394.
+ 6  2013     1     1        -4        12      719      150    16  288.
+ 7  2013     1     1        -5        19     1065      158    24  404.
+ 8  2013     1     1        -3       -14      229       53   -11  259.
+ 9  2013     1     1        -3        -8      944      140    -5  405.
+10  2013     1     1        -2         8      733      138    10  319.
+# ... with 336,766 more rows
+</code></pre>
+<p>一旦创建，新列就可以立即使用：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> mutate(flights_sml, gain = arr_delay - dep_delay, hours = air_time / 60 , gain_per_hour = gain / hours)
+# A tibble: 336,776 x 10
+    year month   day dep_delay arr_delay distance air_time  gain hours gain_per_hour
+   <int> <int> <int>     <dbl>     <dbl>    <dbl>    <dbl> <dbl> <dbl>         <dbl>
+ 1  2013     1     1         2        11     1400      227     9 3.78           2.38
+ 2  2013     1     1         4        20     1416      227    16 3.78           4.23
+ 3  2013     1     1         2        33     1089      160    31 2.67          11.6 
+ 4  2013     1     1        -1       -18     1576      183   -17 3.05          -5.57
+ 5  2013     1     1        -6       -25      762      116   -19 1.93          -9.83
+ 6  2013     1     1        -4        12      719      150    16 2.5            6.4 
+ 7  2013     1     1        -5        19     1065      158    24 2.63           9.11
+ 8  2013     1     1        -3       -14      229       53   -11 0.883        -12.5 
+ 9  2013     1     1        -3        -8      944      140    -5 2.33          -2.14
+10  2013     1     1        -2         8      733      138    10 2.3            4.35
+# ... with 336,766 more rows
+</code></pre>
+<p>如果只想保留新变量，可以使用<code>transmute()</code>函数</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> transmute(flights_sml, gain = arr_delay - dep_delay, hours = air_time / 60 , gain_per_hour = gain / hours)
+# A tibble: 336,776 x 3
+    gain hours gain_per_hour
+   <dbl> <dbl>         <dbl>
+ 1     9 3.78           2.38
+ 2    16 3.78           4.23
+ 3    31 2.67          11.6 
+ 4   -17 3.05          -5.57
+ 5   -19 1.93          -9.83
+ 6    16 2.5            6.4 
+ 7    24 2.63           9.11
+ 8   -11 0.883        -12.5 
+ 9    -5 2.33          -2.14
+10    10 2.3            4.35
+# ... with 336,766 more rows
+</code></pre>
+<h4 id="2-5-1-常用创建函数"><a href="#2-5-1-常用创建函数" class="headerlink" title="2.5.1 常用创建函数"></a>2.5.1 常用创建函数</h4><h5 id="偏移函数"><a href="#偏移函数" class="headerlink" title="偏移函数"></a>偏移函数</h5><p><code>lead()</code>和<code>lag()</code>函数可以返回一个序列领先值和滞后值。它们可以计算出序列的移动差值（如<code>x</code> - <code>lag(x)</code>）或发现序列何时出现了变化（<code>x != lag(x)</code>）。它们与<code>group_by()</code>组合使用时特别有用。</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> x <- 1:10
+> lag(x)
+ [1] NA  1  2  3  4  5  6  7  8  9
+> lead(x)
+ [1]  2  3  4  5  6  7  8  9 10 NA
+</code></pre>
+<h5 id="排秩函数"><a href="#排秩函数" class="headerlink" title="排秩函数"></a>排秩函数</h5><p><code>min_rank()</code></p>
+<pre class=" language-lang-R"><code class="language-lang-R">> y <- c(1, 2, 2, NA, 3, 4)
+> min_rank(y)
+[1]  1  2  2 NA  4  5
+> min_rank(desc(y))
+[1]  5  3  3 NA  2  1
+</code></pre>
+<p><code>min_rank</code>的变形</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> row_number(y)
+[1]  1  2  3 NA  4  5
+> dense_rank(y)
+[1]  1  2  2 NA  3  4
+> percent_rank(y)
+[1] 0.00 0.25 0.25   NA 0.75 1.00
+> cume_dist(y)
+[1] 0.2 0.6 0.6  NA 0.8 1.0
+</code></pre>
+<p>小<code>tip</code></p>
+<pre class=" language-lang-R"><code class="language-lang-R">mtcars %>% filter(between(row_number(), 1, 10))
+</code></pre>
+<h3 id="2-6-使用summarize-进行分组摘要"><a href="#2-6-使用summarize-进行分组摘要" class="headerlink" title="2.6 使用summarize()进行分组摘要"></a>2.6 使用<code>summarize()</code>进行分组摘要</h3><p>最后一个核心函数是<code>summarize()</code>，它可以将数据框折叠成一行：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> summarize(flights, delay = mean(dep_delay, na.rm = TRUE))
+# A tibble: 1 x 1
+  delay
+  <dbl>
+1  12.6
+</code></pre>
+<p>与<code>group_by()</code>一起使用</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> by_day <- group_by(flights, year, month, day)#按照日期分组
+> summarize(by_day, delay = mean(dep_delay, na.rm = TRUE))
+# A tibble: 365 x 4
+# Groups:   year, month [12]
+    year month   day delay
+   <int> <int> <int> <dbl>
+ 1  2013     1     1 11.5 
+ 2  2013     1     2 13.9 
+ 3  2013     1     3 11.0 
+ 4  2013     1     4  8.95
+ 5  2013     1     5  5.73
+ 6  2013     1     6  7.15
+ 7  2013     1     7  5.42
+ 8  2013     1     8  2.55
+ 9  2013     1     9  2.28
+10  2013     1    10  2.84
+# ... with 355 more rows
+</code></pre>
+<h4 id="使用管道组合多种操作"><a href="#使用管道组合多种操作" class="headerlink" title="使用管道组合多种操作"></a>使用管道组合多种操作</h4><p>假设我们想要研究每个目的地的距离和平均延误时间之间的关系。使用已经了解的<code>dplyr</code>包功能，你可能会写出以下代码：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> by_dest <- group_by(flights, dest)
+> delay <- summarize(by_dest,
+                     count = n(),
+                     dist = mean(distance, na.rm = TRUE),
+                     delay = mean(arr_delay, na.rm = TRUE)
+                     )
+> delay <- filter(delay, count > 20, dest != "HNL") #去除噪声点和火奴鲁鲁机场，因为到达该机场的距离几乎是到离他最近机场的2倍
+> ggplot(data = delay, mapping = aes(x = dist, y = delay)) + geom_point(aes(size = count), alpha = 1/3) + geom_smooth(se = FALSE)
+</code></pre>
+<p><img src="http://image-hfc.test.upcdn.net/45.png" alt=""></p>
+<p>这段代码写起来有点令人泄气，因为不得不对每个中间数据框命名，尽管我们根本不关心这一点。命名是很困难的，这会影响我们的分析速度。</p>
+<p>解决这一问题的另一种方法是使用管道，<code>%&gt;%</code>：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">delay <- flights %>% group_by(dest) %>% summarize(count = n(), dist = mean(distance, na.rm = TRUE), delay = mean(arr_delay, na.rm = TRUE)) %>% filter(count > 20, dest != "HNL")
+</code></pre>
+<p><code>n()</code>用来计数，不需要任何参数，<code>n_distanct()</code>可以计算出唯一值的数量相当于求<code>length(unique())</code>。<code>count()</code>函数也可以用来计数，可以设置权重变量<code>count(x, wt=, sort = FALSE)</code>, 如果<code>sort</code>为<code>TRUE</code>则按照降序排序。</p>
+<h4 id="按多个变量进行分组"><a href="#按多个变量进行分组" class="headerlink" title="按多个变量进行分组"></a>按多个变量进行分组</h4><p>当使用多个变量进行分组时，每次的摘要统计会用掉一个分组变量。这样就可以轻松的对数据集进行循环渐进的分析：</p>
+<pre class=" language-lang-R"><code class="language-lang-R">daily <- group_by(flights, year, month, day)
+(per_day <- summarize(daily, flights = n()))
+(per_month <- summarize(per_day, flights = sum(flights)))
+(per_year <- summarize(per_month, flights = sum(flights)))
+</code></pre>
+<h4 id="取消分组"><a href="#取消分组" class="headerlink" title="取消分组"></a>取消分组</h4><p>如果想取消分组，并回到未分组的数据继续操作，那么可以使用<code>ungroup()</code>函数</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> daily %>% ungroup() %>% summarize(flights = n())
+# A tibble: 1 x 1
+  flights
+    <int>
+1  336776
+</code></pre>
+<h3 id="2-7-分组新变量"><a href="#2-7-分组新变量" class="headerlink" title="2.7 分组新变量"></a>2.7 分组新变量</h3><p>虽然与<code>summarize()</code>函数结合起来使用是最有效的，但分组也可以与<code>mutate()</code>和<code>filter()</code>函数结合，以完成非常便捷的操作。</p>
+<p>找出每个分组中最差的成员</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> flights_sml %>% group_by(year, month, day)
+# A tibble: 336,776 x 7
+# Groups:   year, month, day [365]
+    year month   day dep_delay arr_delay distance air_time
+   <int> <int> <int>     <dbl>     <dbl>    <dbl>    <dbl>
+ 1  2013     1     1         2        11     1400      227
+ 2  2013     1     1         4        20     1416      227
+ 3  2013     1     1         2        33     1089      160
+ 4  2013     1     1        -1       -18     1576      183
+ 5  2013     1     1        -6       -25      762      116
+ 6  2013     1     1        -4        12      719      150
+ 7  2013     1     1        -5        19     1065      158
+ 8  2013     1     1        -3       -14      229       53
+ 9  2013     1     1        -3        -8      944      140
+10  2013     1     1        -2         8      733      138
+# ... with 336,766 more rows
+</code></pre>
+<p>找出大于某个阈值的所有分组</p>
+<pre class=" language-lang-R"><code class="language-lang-R">> (popular_dests <- flights %>% group_by(dest) %>% filter(n() > 365))
+# A tibble: 332,577 x 19
+# Groups:   dest [77]
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ... with 332,567 more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
+#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>
+</code></pre>
+<p>对数据进行标准化以计算分组指标</p>
+<pre class=" language-lang-R"><code class="language-lang-R">popular_dests %>% filter(arr_delay > 0) %>% mutate(prop_delay = arr_delay / sum(arr_delay)) %>% select(year:day, dest, arr_delay, prop_delay)
+</code></pre>
+<p>分组筛选器的作用相当于分组新变量加上未分组筛选器。我们一般不使用分组筛选器，除非是为了完成快速、粗略的数据处理，否则很难检查数据处理的结果是否正确。</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">独自赏晴雨</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com/2020/07/18/%E4%BD%BF%E7%94%A8dplyr%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2/">http://yoursite.com/2020/07/18/%E4%BD%BF%E7%94%A8dplyr%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">独自赏晴雨</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/R%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">R语言</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/07/18/%E4%BD%BF%E7%94%A8dplyr%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="使用`dplyr`进行数据转换">
+                        
+                        <span class="card-title">使用`dplyr`进行数据转换</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            使用`dplyr`包进行数据转换
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            独自赏晴雨
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/R%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">R语言</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/17/Julia%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Julia中的类型">
+                        
+                        <span class="card-title">Julia中的类型</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Julia中的类型
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            独自赏晴雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Julia/">
+                        <span class="chip bg-color">Julia</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Serendipity<br />'
+            + '文章作者: 独自赏晴雨<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="882152847"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">独自赏晴雨</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "7";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/HFC666" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:3495343534@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3495343534" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 3495343534" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

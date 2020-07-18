@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-17T05:23:01.281Z</updated>
+  <updated>2020-07-18T02:04:09.954Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用`dplyr`进行数据转换</title>
+    <link href="http://yoursite.com/2020/07/18/%E4%BD%BF%E7%94%A8dplyr%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2/"/>
+    <id>http://yoursite.com/2020/07/18/%E4%BD%BF%E7%94%A8dplyr%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2/</id>
+    <published>2020-07-18T02:01:17.000Z</published>
+    <updated>2020-07-18T02:04:09.954Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;2-1-简介&quot;&gt;&lt;a href=&quot;#2-1-简介&quot; class=&quot;headerlink&quot; title=&quot;2.1 简介&quot;&gt;&lt;/a&gt;2.1 简介&lt;/h3&gt;&lt;h4 id=&quot;2-1-1-准备工作&quot;&gt;&lt;a href=&quot;#2-1-1-准备工作&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="R语言" scheme="http://yoursite.com/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title>Julia中的类型</title>
