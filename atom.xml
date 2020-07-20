@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-19T07:44:05.766Z</updated>
+  <updated>2020-07-20T12:27:19.002Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>julia中的绘图</title>
+    <link href="http://yoursite.com/2020/07/20/julia%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE/"/>
+    <id>http://yoursite.com/2020/07/20/julia%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE/</id>
+    <published>2020-07-20T12:14:02.000Z</published>
+    <updated>2020-07-20T12:27:19.002Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;绘图工具&quot;&gt;&lt;a href=&quot;#绘图工具&quot; class=&quot;headerlink&quot; title=&quot;绘图工具&quot;&gt;&lt;/a&gt;绘图工具&lt;/h2&gt;&lt;h3 id=&quot;官方推荐&quot;&gt;&lt;a href=&quot;#官方推荐&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Julia" scheme="http://yoursite.com/tags/Julia/"/>
+    
+  </entry>
   
   <entry>
     <title>多线程爬虫</title>
