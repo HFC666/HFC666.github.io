@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-20T12:27:19.002Z</updated>
+  <updated>2020-07-26T14:03:30.385Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Fortran 初体验</title>
+    <link href="http://yoursite.com/2020/07/26/Fortran-%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <id>http://yoursite.com/2020/07/26/Fortran-%E5%88%9D%E4%BD%93%E9%AA%8C/</id>
+    <published>2020-07-26T14:00:43.000Z</published>
+    <updated>2020-07-26T14:03:30.385Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Fortran介绍&quot;&gt;&lt;a href=&quot;#Fortran介绍&quot; class=&quot;headerlink&quot; title=&quot;Fortran介绍&quot;&gt;&lt;/a&gt;&lt;code&gt;Fortran&lt;/code&gt;介绍&lt;/h2&gt;&lt;h3 id=&quot;什么是Fortran&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Fortran语言" scheme="http://yoursite.com/tags/Fortran%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title>julia中的绘图</title>
