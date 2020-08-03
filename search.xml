@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Wolfram Mathematica的简单应用</title>
+      <link href="/2020/08/03/Wolfram-Mathematica%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/"/>
+      <url>/2020/08/03/Wolfram-Mathematica%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="简单应用"><a href="#简单应用" class="headerlink" title="简单应用"></a>简单应用</h2><p>Mathematica的内置函数名大都采用自然输入法，函数名就是英文单词，首字母要大写。</p><p>函数的变量或运算的内容用[]</p><p>列表，变量的范围用{}</p><p>运行函数用<code>Shift</code>+<code>Enter</code></p><pre class=" language-lang-mathematica"><code class="language-lang-mathematica">1111*1111 (* 像用一计算器 *)因式分解Factor[x^3+36x^2+431x+1716]解线性方程组Solve[{3x-2y==5,x+y==5},{x,y}]计算导数D[x^2 Sin[x],x]计算不定积分Integrate[x^3 Sin[x],x]计算矩阵特征值A={{1,3,5},{3,2,7},{1,2,-1}};Eigenvalues[A]绘制函数图像Plot[Sin[x],{x,-3.5,3.5}]Manipulate[Plot[a Sin[b x+c],{x,-6,6},PlotRange->{-5,5}],{a,1,5,0.2},{b,1,5,0.2},{c,0,2 Pi,Pi/100}]</code></pre><p><img src="http://image-hfc.test.upcdn.net/1.gif" alt=""></p><p>绘制单叶双曲面$\frac{x^2}{4}+\frac{y^2}{3}-\frac{z^2}{2}=1$</p><p>$</p><pre class=" language-lang-mathematica"><code class="language-lang-mathematica">ContourPlot3D[x^2/4+y^2/3-z^2/2==1,{x,-4,4},{y,-3,3},{z,-2,2},ColorFunction->Function[{x,y,z},Hue[z/4]]]</code></pre><pre class=" language-lang-mathematica"><code class="language-lang-mathematica">Sum[1/k^2,{k,1,Infinity}]+Integrate[x^2,{x,1,2}]</code></pre><p><img src="http://image-hfc.test.upcdn.net/2.gif" alt=""></p><h3 id="函数运行命令和Cell-单元-的标记"><a href="#函数运行命令和Cell-单元-的标记" class="headerlink" title="函数运行命令和Cell(单元)的标记"></a>函数运行命令和<code>Cell</code>(单元)的标记</h3><p>计算(V) -&gt; 计算单元(E)     <code>shift + Enter</code></p><pre class=" language-lang-mathematica"><code class="language-lang-mathematica">Plot[Cos[x], {x, -Pi, Pi}]</code></pre><p><img src="http://image-hfc.test.upcdn.net/image-20200803214656229.png" alt=""></p><h3 id="数学公式输入（插入（I）和面板（P））"><a href="#数学公式输入（插入（I）和面板（P））" class="headerlink" title="数学公式输入（插入（I）和面板（P））"></a>数学公式输入（插入（I）和面板（P））</h3><p>简便易行的一维输入方式</p><p>单元（Y）-&gt;转换成（C）-&gt;<code>TranditionalForm</code>先输入在自动转换</p><pre class=" language-lang-mathematica"><code class="language-lang-mathematica">Sum[1/k^2, {k, 1, Infinity}] + Integrate[x^2, {x, 1, 2}]</code></pre><p><img src="http://image-hfc.test.upcdn.net/4.gif" alt=""></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Mathematica </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Fortran 初体验</title>
       <link href="/2020/07/26/Fortran-%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
       <url>/2020/07/26/Fortran-%E5%88%9D%E4%BD%93%E9%AA%8C/</url>

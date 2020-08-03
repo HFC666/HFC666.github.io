@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Fortran 初体验, Serendipity">
+    <meta name="keywords" content="Wolfram Mathematica的简单应用, Serendipity">
     <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Fortran 初体验 | Serendipity</title>
+    <title>Wolfram Mathematica的简单应用 | Serendipity</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Fortran 初体验</h1>
+                    <h1 class="description center-align post-title">Wolfram Mathematica的简单应用</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Fortran%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">Fortran语言</span>
+                            <a href="/tags/Mathematica/">
+                                <span class="chip bg-color">Mathematica</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-26
+                    2020-08-03
                 </div>
                 
 
@@ -463,229 +463,43 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Fortran介绍"><a href="#Fortran介绍" class="headerlink" title="Fortran介绍"></a><code>Fortran</code>介绍</h2><h3 id="什么是Fortran"><a href="#什么是Fortran" class="headerlink" title="什么是Fortran?"></a>什么是<code>Fortran</code>?</h3><p>Fortran是一门编译型的编程语言， 是 Formula Translation的缩写，特长是科学计算。</p>
-<h3 id="Fortran的特点"><a href="#Fortran的特点" class="headerlink" title="Fortran的特点"></a><code>Fortran</code>的特点</h3><ul>
-<li><p>筒单，相比C++而言更易于掌握</p>
-</li>
-<li><p>接近自然的数学语言</p>
-</li>
-<li><p>矩阵运算功能强大，自有复数运算</p>
-</li>
-<li><p>语法严格，适合严谨的科学计算</p>
-</li>
-<li><p>编译型语言，执行效率高</p>
-</li>
-<li><p>并行计算的最佳选择</p>
-</li>
-<li><p>可视化开发效率低，效果不理想</p>
-</li>
-<li><p>比较底层，各种算法功能都需要自己实现</p>
-</li>
-</ul>
-<h3 id="如何学好Fortran"><a href="#如何学好Fortran" class="headerlink" title="如何学好Fortran"></a>如何学好<code>Fortran</code></h3><ul>
-<li><p>直接学习 Fortran90+,不要只学 Fortran77</p>
-</li>
-<li><p>使用大小写混合的自由格式、书写 Implicit None</p>
-</li>
-<li><p>学 Fortran是为了解决实际的数学、物理问题，不是编漂亮的界面的</p>
-</li>
-<li><p>多读，多写，多看，多问</p>
-</li>
-<li><p>不要整天去争吵XXX比YYY更好，XXX不行了，切记不可浮躁</p>
-</li>
-<li><p>经常回顾自己以前写过的程序，并尝试重写，把自己学到的新知识运用进去；</p>
-</li>
-<li><p>保存好你写过的所有的程序-那是你最好的积累之一</p>
-</li>
-<li><p>经常在网络上交流，合理使用网络资源</p>
-</li>
-<li><p>可利用的资源：</p>
-<p><a href="http://www.fcode.cn" target="_blank" rel="noopener">http://www.fcode.cn</a>  中文Fortran网站、论坛</p>
-<p><a href="http://www.fortran.com" target="_blank" rel="noopener">http://www.fortran.com</a> 含优秀的代码链接、工具（付费）</p>
-<p><a href="http://www.netlib.org" target="_blank" rel="noopener">http://www.netlib.org</a>  英文，含众多优秀的函数库、软件包</p>
-<p><a href="http://sourceforge.net" target="_blank" rel="noopener">http://sourceforge.net</a> 很多开源项目管理</p>
-</li>
-</ul>
-<h2 id="常见编译环境的操作"><a href="#常见编译环境的操作" class="headerlink" title="常见编译环境的操作"></a>常见编译环境的操作</h2><h3 id="基本步骤和工程管理"><a href="#基本步骤和工程管理" class="headerlink" title="基本步骤和工程管理"></a>基本步骤和工程管理</h3><p>编译、链接、运行是三个基本的步骤。</p>
-<p>编译是针对一个源代码文件，输出为目标代码。</p>
-<p>链接是针对一个或多个目标代码，也可以包含一个或多个库文件。输出为可执行程序。</p>
-<p>编译、链接是创造可执行程序的过程，是开发者应该做的事情。</p>
-<p>运行是使用可执行程序的过程，是用户应该做的事情。</p>
-<p>注意，编译链接运行是有先后顺序的。</p>
-<h4 id="工程"><a href="#工程" class="headerlink" title="工程"></a>工程</h4><p>工程是用于管理较大量代码的一种工具</p>
-<p>它规定哪些源代码文件参与编译、链接，彼此之间的依赖关系，编译时的参数等等</p>
-<p>工程对较大型的代码来说，非常重要！</p>
-<p>即便对小型的代码，他可有可无，但某些集成开发环境（IDE）强制使用工程管理。</p>
-<p>对于命令行编译方式而言，更多的采用<code>makefile</code>进行项目管理</p>
-<p>工程实际上就是可视化的 <code>makefile</code></p>
-<h2 id="语法之源代码结构"><a href="#语法之源代码结构" class="headerlink" title="语法之源代码结构"></a>语法之源代码结构</h2><p>由于早期历史问题，<code>Fortran</code>早期使用固定格式。从<code>F90</code>以后，推荐使用<strong>自由格式</strong>源代码。不管是自由格式还是固定格式，仅仅是源代码的一种表现形式。编译后不再有所区别。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th><strong>固定格式</strong></th>
-<th><strong>自由格式</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>英文</strong></td>
-<td>Fixed-format</td>
-<td>Free-format</td>
-</tr>
-<tr>
-<td><strong>扩展名</strong></td>
-<td>.for    .f  …</td>
-<td>.f90  .f95  .f03 …</td>
-</tr>
-<tr>
-<td><strong>语法</strong></td>
-<td>F66、F77、F90、F95、F03、F08</td>
-<td>F66、F77、F90、F95、F03、F08</td>
-</tr>
-<tr>
-<td><strong>格式</strong></td>
-<td>代码从第7格开始</td>
-<td>任意</td>
-</tr>
-<tr>
-<td><strong>续行</strong></td>
-<td>在第6格键入一个非0字符</td>
-<td>在前一行最后加入  &amp;</td>
-</tr>
-<tr>
-<td><strong>行宽</strong></td>
-<td>72</td>
-<td>132</td>
-</tr>
-<tr>
-<td><strong>注释</strong></td>
-<td>行首打 C 或   c 或 *</td>
-<td>注释前打感叹号  !</td>
-</tr>
-<tr>
-<td><strong>说明</strong></td>
-<td>不推荐，已废止</td>
-<td>推荐</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>强烈建议不要使用固定格式的代码：</p>
-<ol>
-<li><p>不便交流，在网络传输过程中，不同的系统对TAB、空格的解释不同。很容易错位。</p>
-</li>
-<li><p>固定格式每行只有72位宽，需频繁续行.</p>
-</li>
-<li><p>在 Fortran95 及以后的语法中，已明确废止固定格式。（虽然编译器仍然支持）</p>
-</li>
-<li><p>在同一个项目或工程中，旧的固定格式可以和新的自由格式混合使用。即：N个源代码文件，允许有一部分自由格式，一部分固定格式。</p>
-</li>
-</ol>
-<h3 id="程序单元"><a href="#程序单元" class="headerlink" title="程序单元"></a>程序单元</h3><p>程序源代码与文章具有相似的概念：</p>
-<ul>
-<li><p>字 =&gt; 词语 =&gt; 句子 =&gt; 段落 =&gt; 章节 =&gt; 文章</p>
-</li>
-<li><p>字符 =&gt; Token =&gt; 语句 =&gt; 程序单元 =&gt; 模块（module） =&gt; 程序</p>
-</li>
-</ul>
-<p>程序单元是指：执行某一特定任务的具有一定独立性的代码区域，主程序（<code>main program</code>）、子例行程序（<code>subroutine</code>）、函数（<code>function</code>）。</p>
-<ul>
-<li><p>子例行程序就是没有返回值的函数</p>
-</li>
-<li><p>主程序只是默认被系统首次调用的，具有程序入口点作用的函数</p>
-</li>
-<li><p>程序单元的存在，是为了提高代码重复利用率。因此，各程序代码越“独立”，越能体现重复利用的作用</p>
-</li>
-<li><p>一组程序单元及一组相关联的变量，可组成模块（module）</p>
-</li>
-</ul>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200726220258258.png" alt="示意图"></p>
-<ul>
-<li><p>程序单元应尽可能彼此独立！充分考虑重复利用率</p>
-</li>
-<li><p>程序单元间的变量，一般是互相不通的！这一点尤为重要，但总让初学者认为很不方便</p>
-</li>
-<li><p>Implicit None 应该写在每一个程序单元</p>
-</li>
-</ul>
-<h3 id="语句类型"><a href="#语句类型" class="headerlink" title="语句类型"></a>语句类型</h3><p><strong>Fortran语句大致有三种类型：</strong></p>
-<ol>
-<li><p>声明语句：在编译时，告知编译器关于变量的信息</p>
-</li>
-<li><p>执行语句：在运行时，执行以便完成特定的任务</p>
-</li>
-<li><p>结构语句：仅做为代码结构划分用</p>
-</li>
-</ol>
-<h3 id="变量的定义和声明"><a href="#变量的定义和声明" class="headerlink" title="变量的定义和声明"></a>变量的定义和声明</h3><p>Fortran是强变量类型的编程语言：</p>
-<ul>
-<li><p>变量类型必须在编译时确定，并且不允许改变。</p>
-</li>
-<li><p>我们建议显式声明所有变量</p>
-</li>
-<li><p>如果未显式声明变量，则按照 IN 规则确定类型（ijklmn开头为整型，其他为实型）</p>
-</li>
-<li><p>IN 规则是个很讨厌的东西，因此，我们建议在每一个程序单元，使用 Implicit None</p>
-</li>
-<li><p>变量有不同的类型，主要有整型（Integer）、实型（Real）、字符型（Character）</p>
-</li>
-<li><p>还有 Complex 类型（本质上是real）、派生（type）类型（是其他类型的集合）</p>
-</li>
-<li><p>整型无误差、实型有误差</p>
-</li>
-<li><p>字符型是接近人类的语言</p>
-</li>
-</ul>
-<p><strong><code>Fortran</code>声明变量的基本格式：</strong></p>
-<pre class=" language-lang-fortran"><code class="language-lang-fortran">!类型( 属性 ) , 形容词 , 形容词 ...  :: 变量名（数组外形）= 值 , 变量名2（数组外形）= 值
-Real(Kind=8) , parameter , private :: rVar = 20.0d0
-Character(Len=32) , Intent( IN ) :: cStr(5,8)
-Integer , save :: n = 30 , m = 40
-Integer m
+                <h2 id="简单应用"><a href="#简单应用" class="headerlink" title="简单应用"></a>简单应用</h2><p>Mathematica的内置函数名大都采用自然输入法，函数名就是英文单词，首字母要大写。</p>
+<p>函数的变量或运算的内容用[]</p>
+<p>列表，变量的范围用{}</p>
+<p>运行函数用<code>Shift</code>+<code>Enter</code></p>
+<pre class=" language-lang-mathematica"><code class="language-lang-mathematica">1111*1111 (* 像用一计算器 *)
+因式分解
+Factor[x^3+36x^2+431x+1716]
+解线性方程组
+Solve[{3x-2y==5,x+y==5},{x,y}]
+计算导数
+D[x^2 Sin[x],x]
+计算不定积分
+Integrate[x^3 Sin[x],x]
+计算矩阵特征值
+A={{1,3,5},{3,2,7},{1,2,-1}};
+Eigenvalues[A]
+绘制函数图像
+Plot[Sin[x],{x,-3.5,3.5}]
+Manipulate[Plot[a Sin[b x+c],{x,-6,6},PlotRange->{-5,5}],{a,1,5,0.2},{b,1,5,0.2},{c,0,2 Pi,Pi/100}]
 </code></pre>
-<ul>
-<li><p>形容词不建议单独书写，如 save n</p>
-</li>
-<li><p>双冒号，表示形容词的结束</p>
-</li>
-<li><p>如果定义时同时赋值，则默认具有 save 属性，需书写双冒号</p>
-</li>
-</ul>
-<p><strong>一些不建议使用的变量声明 =&gt; 更合适的变量声明：</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th><strong>旧写法</strong></th>
-<th><strong>新写法</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>REAL  A  DIMENSION  A(30)</code></td>
-<td><code>Real , dimension(30) :: a</code>或 <code>Real :: a(30)</code></td>
-</tr>
-<tr>
-<td><code>REAL*8  A</code></td>
-<td><code>Real(Kind=8) :: a</code></td>
-</tr>
-<tr>
-<td><code>DOUBLE  PRECISION A</code></td>
-<td><code>Integer , parameter :: DP = kind(0.0d0)  Real(Kind=DP) :: a(30)</code></td>
-</tr>
-<tr>
-<td><code>PARAMETER(N=30,M=40)</code></td>
-<td><code>Integer , parameter :: N=30 , M=40</code></td>
-</tr>
-<tr>
-<td><code>CHARACTER  A*30</code>或  <code>CHARACTER*30 A</code>  或  <code>CHARACTER(30) A</code></td>
-<td><code>Character(len=30) :: a</code></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p><img src="http://image-hfc.test.upcdn.net/1.gif" alt=""></p>
+<p>绘制单叶双曲面$\frac{x^2}{4}+\frac{y^2}{3}-\frac{z^2}{2}=1$</p>
+<p>$</p>
+<pre class=" language-lang-mathematica"><code class="language-lang-mathematica">ContourPlot3D[x^2/4+y^2/3-z^2/2==1,{x,-4,4},{y,-3,3},{z,-2,2},ColorFunction->Function[{x,y,z},Hue[z/4]]]
+</code></pre>
+<pre class=" language-lang-mathematica"><code class="language-lang-mathematica">Sum[1/k^2,{k,1,Infinity}]+Integrate[x^2,{x,1,2}]
+</code></pre>
+<p><img src="http://image-hfc.test.upcdn.net/2.gif" alt=""></p>
+<h3 id="函数运行命令和Cell-单元-的标记"><a href="#函数运行命令和Cell-单元-的标记" class="headerlink" title="函数运行命令和Cell(单元)的标记"></a>函数运行命令和<code>Cell</code>(单元)的标记</h3><p>计算(V) -&gt; 计算单元(E)     <code>shift + Enter</code></p>
+<pre class=" language-lang-mathematica"><code class="language-lang-mathematica">Plot[Cos[x], {x, -Pi, Pi}]
+</code></pre>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200803214656229.png" alt=""></p>
+<h3 id="数学公式输入（插入（I）和面板（P））"><a href="#数学公式输入（插入（I）和面板（P））" class="headerlink" title="数学公式输入（插入（I）和面板（P））"></a>数学公式输入（插入（I）和面板（P））</h3><p>简便易行的一维输入方式</p>
+<p>单元（Y）-&gt;转换成（C）-&gt;<code>TranditionalForm</code>先输入在自动转换</p>
+<pre class=" language-lang-mathematica"><code class="language-lang-mathematica">Sum[1/k^2, {k, 1, Infinity}] + Integrate[x^2, {x, 1, 2}]
+</code></pre>
+<p><img src="http://image-hfc.test.upcdn.net/4.gif" alt=""></p>
 
             </div>
             <hr/>
@@ -711,7 +525,7 @@ Integer m
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/07/26/Fortran-%E5%88%9D%E4%BD%93%E9%AA%8C/">http://yoursite.com/2020/07/26/Fortran-%E5%88%9D%E4%BD%93%E9%AA%8C/</a>
+                    <a href="http://yoursite.com/2020/08/03/Wolfram-Mathematica%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/">http://yoursite.com/2020/08/03/Wolfram-Mathematica%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -749,8 +563,8 @@ Integer m
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Fortran%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">Fortran语言</span>
+                                <a href="/tags/Mathematica/">
+                                    <span class="chip bg-color">Mathematica</span>
                                 </a>
                             
                         </div>
@@ -918,9 +732,10 @@ Integer m
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/08/03/Wolfram-Mathematica%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/">
                     <div class="card-image">
@@ -938,9 +753,9 @@ Integer m
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -949,6 +764,7 @@ Integer m
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -967,24 +783,24 @@ Integer m
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/20/julia%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE/">
+                <a href="/2020/07/26/Fortran-%E5%88%9D%E4%BD%93%E9%AA%8C/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="julia中的绘图">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Fortran 初体验">
                         
-                        <span class="card-title">julia中的绘图</span>
+                        <span class="card-title">Fortran 初体验</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Julia中的绘图
+                            Fortran初体验
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-26
                             </span>
                         <span class="publish-author">
                             
@@ -997,8 +813,8 @@ Integer m
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Julia/">
-                        <span class="chip bg-color">Julia</span>
+                    <a href="/tags/Fortran%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">Fortran语言</span>
                     </a>
                     
                 </div>
@@ -1173,6 +989,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
