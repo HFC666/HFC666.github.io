@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-03T13:48:02.401Z</updated>
+  <updated>2020-08-15T14:37:34.524Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>金融量化分析</title>
+    <link href="http://yoursite.com/2020/08/15/%E9%87%91%E8%9E%8D%E9%87%8F%E5%8C%96%E5%88%86%E6%9E%90/"/>
+    <id>http://yoursite.com/2020/08/15/%E9%87%91%E8%9E%8D%E9%87%8F%E5%8C%96%E5%88%86%E6%9E%90/</id>
+    <published>2020-08-15T14:29:55.000Z</published>
+    <updated>2020-08-15T14:37:34.524Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;时隔这么多天我终于又更新了哈哈&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;基本金融知识介绍&quot;&gt;&lt;a href=&quot;#基本金融知识介绍&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="金融" scheme="http://yoursite.com/tags/%E9%87%91%E8%9E%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>Wolfram Mathematica的简单应用</title>
@@ -496,29 +526,6 @@
     
     
       <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2020/07/07/hello-world/"/>
-    <id>http://yoursite.com/2020/07/07/hello-world/</id>
-    <published>2020-07-07T00:51:13.651Z</published>
-    <updated>2020-07-07T00:51:13.651Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
-        
-      
-    
-    </summary>
-    
-    
     
   </entry>
   

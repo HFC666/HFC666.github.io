@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="git&amp;github的简单使用, Serendipity">
+    <meta name="keywords" content="金融量化分析, Serendipity">
     <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>git&amp;github的简单使用 | Serendipity</title>
+    <title>金融量化分析 | Serendipity</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">git&amp;github的简单使用</h1>
+                    <h1 class="description center-align post-title">金融量化分析</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/git/">
-                                <span class="chip bg-color">git</span>
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%87%91%E8%9E%8D/">
+                                <span class="chip bg-color">金融</span>
                             </a>
                         
                     </div>
@@ -447,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-07
+                    2020-08-15
                 </div>
                 
 
@@ -463,74 +467,303 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="github"><a href="#github" class="headerlink" title="github"></a>github</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>仓库(Repository)</strong></p>
-<p>仓库用来存放项目代码，每个项目对应一个仓库，多个开源项目则有多个仓库。</p>
-<p><strong>收藏(Star)</strong></p>
-<p>收藏项目，方便下次查看</p>
-<p><strong>复制克隆项目(Fork)</strong></p>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200711083430283.png" alt=""></p>
-<p><strong><em>注意：该fork时的项目是独立存在的。</em></strong></p>
-<p><strong>发起请求 (Pull Request)</strong></p>
-<p>发起请求，这个其实是基于<code>Fork</code>的，还是上面那个例子，如果别人在你的基础上做了改进，后来觉得改进的不错，应该把这些改进让更多的人收益，于是就想把自己的改进合并到原有的项目中，这时候它就可以发起一个<code>Pull Request(简称PR)</code>,原有项目创建人，也就是你，就可以收到这个请求，这时候你仔细<code>review</code>他的代码，并且测试觉得OK了，就会接受他的PR，这时候他做的改进项目就拥有了。</p>
-<p><strong>关注(Watch)</strong></p>
-<p>关注项目，当项目更新可以接收到通知。</p>
-<p><strong>事务卡片(Issue)</strong></p>
-<p>发现代码<code>Bug</code>,但是目前没有成型代码，需要讨论时用</p>
-<p><strong>Github主页</strong></p>
-<p>账号创建成功或点击网址导航栏github图标都可以进入github主页，该页左侧主要显示用户动态以及关注用户或关注仓库的动态，右侧显示所有的git库。</p>
-<p><strong>仓库主页</strong></p>
-<p>仓库主页主要显示项目的信息，如，项目代码，版本，收藏/关注/fork情况等。</p>
-<p><strong>个人主页</strong></p>
-<p>个人信息，头像，个人简介，关注我的人，我关注的人，我关注的git库，我的开源项目，我贡献的开源项目等信息。</p>
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="Git工作区域"><a href="#Git工作区域" class="headerlink" title="Git工作区域"></a>Git工作区域</h2><p><strong>Git Repository (Git 仓库)</strong></p>
-<p>最终确定的文件保存到仓库，成为一个新的版本，并且对其他人可见。</p>
-<p><strong>暂存区</strong></p>
-<p>暂存已经修改的文件最后统一提交到<code>git</code>仓库中。</p>
-<p><strong>工作区 （Working Directory)</strong></p>
-<p>添加、编辑、修改文件等动作</p>
-<h2 id="添加文件流程"><a href="#添加文件流程" class="headerlink" title="添加文件流程"></a>添加文件流程</h2><p><img src="http://image-hfc.test.upcdn.net/image-20200711083457349.png" alt="image-20200711083457349"></p>
-<h2 id="Git基础设置"><a href="#Git基础设置" class="headerlink" title="Git基础设置"></a>Git基础设置</h2><p><strong>设置用户名</strong></p>
-<p><code>git config --global user.name &#39;EchoHFC&#39;</code></p>
-<p><strong>设置用户名邮箱</strong></p>
-<p><code>git config --global user.email &#39;3495343534@qq.com&#39;</code></p>
-<p><strong>查看设置</strong></p>
-<p><code>git config --list</code></p>
-<h2 id="向仓库中添加文件"><a href="#向仓库中添加文件" class="headerlink" title="向仓库中添加文件"></a>向仓库中添加文件</h2><p><strong>初始化仓库</strong></p>
-<p><code>git init</code></p>
-<p><strong>创建文件</strong></p>
-<p><code>touch a1.py</code></p>
-<p><strong>添加到暂存区</strong></p>
-<p><code>git add a1.py</code></p>
-<p><strong>添加到仓库</strong></p>
-<p><code>git commit -m &#39;first&#39;</code></p>
-<p><strong>修改仓库文件</strong></p>
+                <blockquote>
+<p>时隔这么多天我终于又更新了哈哈</p>
+</blockquote>
+<h2 id="基本金融知识介绍"><a href="#基本金融知识介绍" class="headerlink" title="基本金融知识介绍"></a>基本金融知识介绍</h2><h3 id="什么是金融"><a href="#什么是金融" class="headerlink" title="什么是金融"></a>什么是金融</h3><ul>
+<li><p>金融：就是对现有资源进行重新整合之后，实现价值和利润的等效沟通。</p>
+</li>
+<li><p>金融工具：在金融市场中可交易的金融资产</p>
+<ul>
+<li>股票、期货、黄金、外汇、基金等。</li>
+</ul>
+</li>
+</ul>
+<h3 id="股票"><a href="#股票" class="headerlink" title="股票"></a>股票</h3><ul>
+<li>股票是股份公司发给出资人的一种凭证，股票的持有者就是股份公司的股东。</li>
+<li>股票的作用：<ul>
+<li>出资证明、证明股东身份、对公司经营发表意见</li>
+<li>公司分红、交易获利</li>
+</ul>
+</li>
+<li>上市/IPO：企业通过证券交易所公开公开向社会增发股票以募集资金</li>
+</ul>
+<h4 id="股票分类"><a href="#股票分类" class="headerlink" title="股票分类"></a>股票分类</h4><ul>
+<li>股票按业绩分类：<ul>
+<li>蓝筹股：资本雄厚、信誉优良的公司的股票</li>
+<li>绩优股：业绩优良公司的股票</li>
+<li>ST股：特别处理股票，连续两年亏损或每股净资产低于股票面值</li>
+</ul>
+</li>
+<li>股票按上市地区分类：<ul>
+<li>A股：中国大陆上市，人民币认购购买（T+1，涨跌幅$10\%$）</li>
+<li>B股：中国大陆上市，外币认购购买（T+1，T+3）</li>
+<li>H股：中国香港上市（T+0，涨跌幅不设限制）</li>
+<li>N股：美国纽约上市</li>
+<li>S股：新加坡上市</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>T指交割日,T+1指的是今天买的股票明天才给你,减少投机性</p>
+<p>(T+1,T+3)中的T+1同上,T+3指股票的收益在三天后才能提现</p>
+</blockquote>
+<h4 id="股票市场的构成"><a href="#股票市场的构成" class="headerlink" title="股票市场的构成"></a>股票市场的构成</h4><ul>
+<li>上市公司</li>
+<li>投资者(包括机构投资者)</li>
+<li>证监会、证券业协会、交易所</li>
+<li>证券中介机构</li>
+<li>交易所<ul>
+<li>上海证券交易所：只有一个主板（沪指）</li>
+<li>深圳证券交易所：<ul>
+<li>主板：大型成熟企业（深成指）</li>
+<li>中小板：经营规模较小（中小板指）</li>
+<li>创业板：尚处于成长期的创业企业（创业版指）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>沪指或深成指是一个反映总体的指数，反映整个市场的趋势与走向。</p>
+</blockquote>
+<h4 id="影响股价的因素"><a href="#影响股价的因素" class="headerlink" title="影响股价的因素"></a>影响股价的因素</h4><ul>
+<li>公司自身因素</li>
+<li>行业因素</li>
+<li>市场因素</li>
+<li>心理因素</li>
+<li>经济因素</li>
+<li>政治因素</li>
+</ul>
+<h4 id="股票买卖（A股）"><a href="#股票买卖（A股）" class="headerlink" title="股票买卖（A股）"></a>股票买卖（A股）</h4><ul>
+<li>委托买卖股票<ul>
+<li>个人不能直接买卖，需要在券商开户，进行委托购买</li>
+</ul>
+</li>
+<li>股票交易日：周一到周五（非法定节假日和交易所休息日）</li>
+<li>股票交易时间：<ul>
+<li>9:15-9:25：开盘集合竞价时间</li>
+<li>9:30-11:30：前市，连续竞价时间</li>
+<li>13:00-15:00：后世，连续竞价时间</li>
+<li>14:57-15:00：深交所收盘集合竞价时间</li>
+</ul>
+</li>
+<li>T+1交易制度：股票买入后当天不能卖出，要在买入后的下一个交易日才能卖出</li>
+<li>涨停、跌停限制</li>
+</ul>
+<h3 id="金融分析"><a href="#金融分析" class="headerlink" title="金融分析"></a>金融分析</h3><h4 id="基本面分析"><a href="#基本面分析" class="headerlink" title="基本面分析"></a>基本面分析</h4><ul>
+<li>宏观经济面分析：国家的财政政策、货币政策等</li>
+<li>行业分析</li>
+<li>公司分析：财务数据、业绩报告等</li>
+</ul>
+<h4 id="技术面分析"><a href="#技术面分析" class="headerlink" title="技术面分析"></a>技术面分析</h4><ul>
+<li>K线</li>
+<li>MA（均线）</li>
+<li>KDJ（随机指标）</li>
+<li>MACD（指数平滑移动平均线）</li>
+</ul>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200815223255062.png" alt="K线图"></p>
+<blockquote>
+<p>上图为K线，其中红色的表示当天的股票是涨的（开盘价&lt;收盘价），蓝色的相反</p>
+</blockquote>
+<h3 id="金融量化投资"><a href="#金融量化投资" class="headerlink" title="金融量化投资"></a>金融量化投资</h3><p>量化投资：利用计算机技术并且采用一定的数学模型去实践投资理念、实现投资策略的过程</p>
+<p>量化投资的优势：</p>
+<ul>
+<li>避免主观情绪、人性弱点和认知偏差，选择更加客观</li>
+<li>能同时包括多角度的观察和多层次的模型</li>
+<li>及时跟踪市场变化，不断发现新的统计模型，寻找交易机会</li>
+<li>在决定投资策略后，能通过回测验证其效果</li>
+</ul>
+<h4 id="量化策略"><a href="#量化策略" class="headerlink" title="量化策略"></a>量化策略</h4><p>量化策略：通过一套固定的逻辑来分析、判断和决策，自动化地进行股票交易</p>
+<h5 id="策略的周期"><a href="#策略的周期" class="headerlink" title="策略的周期"></a>策略的周期</h5><ul>
+<li>产生想法/学习知识</li>
+<li>实现策略：Python</li>
+<li>检验策略：回测/模拟交易</li>
+<li>实盘交易</li>
+<li>优化策略/放弃策略</li>
+</ul>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200815223340620.png" alt="量化策略"></p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>量化投资实际上就是分析数据从而做出决策的过程。</p>
+<h3 id="Ipython高级功能"><a href="#Ipython高级功能" class="headerlink" title="Ipython高级功能"></a><code>Ipython</code>高级功能</h3><ol>
+<li><code>TAB</code>键自动补全</li>
+<li><code>?</code>：内省、命名空间搜索</li>
+</ol>
+<pre class=" language-lang-python"><code class="language-lang-python">#命名空间搜索
+a = list(range(4))
+a.*pp*?
+>> a.append
+a.__*__?
+>>
+a.__add__
+a.__class__
+a.__contains__
+a.__delattr__
+a.__delitem__
+a.__dir__
+a.__doc__
+a.__eq__
+a.__format__
+a.__ge__
+a.__getattribute__
+a.__getitem__
+a.__gt__
+a.__hash__
+a.__iadd__
+a.__imul__
+a.__init__
+a.__init_subclass__
+a.__iter__
+a.__le__
+a.__len__
+a.__lt__
+a.__mul__
+a.__ne__
+a.__new__
+a.__reduce__
+a.__reduce_ex__
+a.__repr__
+a.__reversed__
+a.__rmul__
+a.__setattr__
+a.__setitem__
+a.__sizeof__
+a.__str__
+a.__subclasshook__
+</code></pre>
+<pre class=" language-lang-python"><code class="language-lang-python">#内省
+#打印方法的字符串信息
+a.append?
+
+Signature: a.append(object, /)
+Docstring: Append object to the end of the list.
+Type:      builtin_function_or_method
+
+#自定义函数
+
+def func():
+   ...:     print("Hello, Ipython")
+#打印函数字符串描述
+func?
+Signature: func()
+Docstring: <no docstring>
+File:      c:\windows\system32\<ipython-input-7-281e4b41523f>
+Type:      function
+
+#打印函数源代码
+func??
+Signature: func()
+Docstring: <no docstring>
+Source:
+def func():
+    print("Hello, Ipython")
+File:      c:\windows\system32\<ipython-input-7-281e4b41523f>
+Type:      function
+</code></pre>
 <ol>
-<li><code>vim a1.py</code></li>
-<li><code>git add a1.py</code></li>
-<li><code>git commit -m &#39;xiugai&#39;</code></li>
+<li>快捷键</li>
 </ol>
-<p><strong>删除仓库文件</strong></p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200815223424073.png" alt="Ipython快捷键"></p>
 <ol>
-<li>删除文件 <code>rm -rf a1.py</code></li>
-<li>从 <code>Git</code> 中删除文件 <code>git rm a1.py</code></li>
-<li>提交操作 <code>git commit -m &#39;shanchu&#39;</code></li>
+<li><code>!</code>执行系统命令</li>
 </ol>
-<h2 id="Git-管理远程仓库"><a href="#Git-管理远程仓库" class="headerlink" title="Git 管理远程仓库"></a>Git 管理远程仓库</h2><h3 id="Git-远程仓库"><a href="#Git-远程仓库" class="headerlink" title="Git 远程仓库"></a>Git 远程仓库</h3><p><img src="http://image-hfc.test.upcdn.net/image-20200711083514748.png" alt=""></p>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>备份，实现代码共享集中化管理</p>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200711083554150.png" alt=""></p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="克隆项目"><a href="#克隆项目" class="headerlink" title="克隆项目"></a>克隆项目</h4><p><code>git clone 仓库地址</code></p>
-<h4 id="修改文件（同上）"><a href="#修改文件（同上）" class="headerlink" title="修改文件（同上）"></a>修改文件（同上）</h4><h4 id="提交到远程仓库"><a href="#提交到远程仓库" class="headerlink" title="提交到远程仓库"></a>提交到远程仓库</h4><p><code>git push</code></p>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200711083620589.png" alt=""></p>
-<h2 id="Github-Pages-搭建网站"><a href="#Github-Pages-搭建网站" class="headerlink" title="Github Pages 搭建网站"></a>Github Pages 搭建网站</h2><h3 id="个人站点"><a href="#个人站点" class="headerlink" title="个人站点"></a>个人站点</h3><h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><p><code>https://用户名.github.io</code></p>
-<h4 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h4><ol>
-<li>创建个人站点 -&gt; 新建仓库（注：仓库名必须是[用户名.github.io]）</li>
-<li>在仓库下新建 <code>index.html</code>的文件即可</li>
+<p>在<code>Ipython</code>中执行系统命令</p>
+<pre class=" language-lang-python"><code class="language-lang-python">!ipconfig
+!pip list
+</code></pre>
+<h3 id="Ipython魔术命令"><a href="#Ipython魔术命令" class="headerlink" title="Ipython魔术命令"></a><code>Ipython</code>魔术命令</h3><ol>
+<li><code>%run + *.py</code>可以在<code>ipython</code>中运行<code>python</code>文件</li>
+<li><code>%paste</code>执行剪切板里的代码</li>
+<li><code>%timeit  + 代码</code>：测试执行程序所需要的时间</li>
+<li><code>%pdb</code>：自动调试</li>
 </ol>
-<h3 id="Project-Pages-项目站点"><a href="#Project-Pages-项目站点" class="headerlink" title="Project Pages 项目站点"></a>Project Pages 项目站点</h3><p><code>https://用户名.github.io/仓库名</code></p>
-<h4 id="搭建步骤-1"><a href="#搭建步骤-1" class="headerlink" title="搭建步骤"></a>搭建步骤</h4><ol>
-<li>进入项目主页</li>
-<li>在<code>settings</code>页面，点击<code>Launch automatic page generator</code>来自动生成主题界面。</li>
-</ol>
+<p><code>%pdb on</code>——启动<code>pdb</code>，进入调试模式</p>
+<p><code>%pdb off</code>——关闭<code>pdb</code>，退出调试模式</p>
+<p>进入调试后，在<code>ipython</code>解释器中执行代码，可以通过调试命令执行调试代码</p>
+<pre class=" language-lang-python"><code class="language-lang-python">#写一个py文件命名为error.py
+def test(a,b):
+    c = a/b
+    print(c)
+    return c
+a = 3
+b = 0
+test(a,b)
+
+In [10]: %pdb on                                                                     
+Automatic pdb calling has been turned ON                                             
+
+In [11]: %run error.py                                                               
+---------------------------------------------------------------------------          
+ZeroDivisionError                         Traceback (most recent call last)          
+F:\joplin\金融量化分析\code\error.py in <module>                                           
+      5 a = 3                                                                        
+      6 b = 0                                                                        
+----> 7 test(a,b)                                                                    
+
+F:\joplin\金融量化分析\code\error.py in test(a, b)                                         
+      1 def test(a,b):                                                               
+----> 2     c = a/b                                                                  
+      3     print(c)                                                                 
+      4     return c                                                                 
+      5 a = 3                                                                        
+
+ZeroDivisionError: division by zero                                                  
+> f:\joplin\金融量化分析\code\error.py(2)test()                                            
+      1 def test(a,b):                                                               
+----> 2     c = a/b                                                                  
+      3     print(c)                                                                 
+      4     return c                                                                 
+      5 a = 3                                                                        
+
+ipdb> p a                                                                            
+3                                                                                    
+ipdb> p b                                                                            
+0                                                                                    
+ipdb> %pdb off                                                                       
+*** SyntaxError: invalid syntax                                                      
+ipdb> n                                                                              
+
+In [12]: %pdb off                                                                    
+Automatic pdb calling has been turned OFF
+</code></pre>
+<p>调试器常用命令：</p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200815223518336.png" alt="调试器常用命令"></p>
+<p>其他魔术命令：</p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200815223552938.png" alt="其他魔术命令"></p>
+<h3 id="Ipython高级功能-1"><a href="#Ipython高级功能-1" class="headerlink" title="Ipython高级功能"></a><code>Ipython</code>高级功能</h3><h4 id="获取输入输出结果"><a href="#获取输入输出结果" class="headerlink" title="获取输入输出结果"></a>获取输入输出结果</h4><pre class=" language-lang-python"><code class="language-lang-python">In [14]: a = 1
+
+In [15]: b = 2
+
+In [16]: a + b
+Out[16]: 3
+
+In [17]: # 显示上一行输出
+
+In [18]: _
+Out[18]: 3
+
+In [19]: a*b
+Out[19]: 2
+
+In [20]: _*__   #上一行的输出和上上行输出相乘
+Out[20]: 6
+
+In [21]: #拿到输入
+
+In [22]: _i14
+Out[22]: 'a = 1'
+
+In [23]: _14
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-23-275a7c8a3936> in <module>
+----> 1 _14
+
+NameError: name '_14' is not defined
+
+In [24]: _16
+Out[24]: 3
+</code></pre>
+<h4 id="目标标签系统"><a href="#目标标签系统" class="headerlink" title="目标标签系统"></a>目标标签系统</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200815223639493.png" alt="目标标签系统"></p>
 
             </div>
             <hr/>
@@ -556,7 +789,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/07/07/git&github%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">http://yoursite.com/2020/07/07/git&github%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</a>
+                    <a href="http://yoursite.com/2020/08/15/%E9%87%91%E8%9E%8D%E9%87%8F%E5%8C%96%E5%88%86%E6%9E%90/">http://yoursite.com/2020/08/15/%E9%87%91%E8%9E%8D%E9%87%8F%E5%8C%96%E5%88%86%E6%9E%90/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -594,8 +827,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/git/">
-                                    <span class="chip bg-color">git</span>
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%87%91%E8%9E%8D/">
+                                    <span class="chip bg-color">金融</span>
                                 </a>
                             
                         </div>
@@ -763,29 +1000,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/07/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8R%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9C%B0%E5%9B%BE/">
+                <a href="/2020/08/15/%E9%87%91%E8%9E%8D%E9%87%8F%E5%8C%96%E5%88%86%E6%9E%90/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="如何使用R语言绘制地图">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="金融量化分析">
                         
-                        <span class="card-title">如何使用R语言绘制地图</span>
+                        <span class="card-title">金融量化分析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            R语言绘制地图并在地图上添加点
+                            金融量化分析
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -794,11 +1032,16 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/R%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">R语言</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%87%91%E8%9E%8D/">
+                        <span class="chip bg-color">金融</span>
                     </a>
                     
                 </div>
@@ -812,24 +1055,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/07/hello-world/">
+                <a href="/2020/08/03/Wolfram-Mathematica%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Wolfram Mathematica的简单应用">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">Wolfram Mathematica的简单应用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            Wolfram Mathematica的简单应用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-03
                             </span>
                         <span class="publish-author">
                             
@@ -838,6 +1081,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mathematica/">
+                        <span class="chip bg-color">Mathematica</span>
+                    </a>
+                    
                 </div>
                 
             </div>
