@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-15T14:37:34.524Z</updated>
+  <updated>2020-09-07T15:06:33.852Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数量生态学与R语言</title>
+    <link href="http://yoursite.com/2020/09/07/%E6%95%B0%E9%87%8F%E7%94%9F%E6%80%81%E5%AD%A6%E4%B8%8ER%E8%AF%AD%E8%A8%80/"/>
+    <id>http://yoursite.com/2020/09/07/%E6%95%B0%E9%87%8F%E7%94%9F%E6%80%81%E5%AD%A6%E4%B8%8ER%E8%AF%AD%E8%A8%80/</id>
+    <published>2020-09-07T14:59:58.000Z</published>
+    <updated>2020-09-07T15:06:33.852Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;绪论&quot;&gt;&lt;a href=&quot;#绪论&quot; class=&quot;headerlink&quot; title=&quot;绪论&quot;&gt;&lt;/a&gt;绪论&lt;/h2&gt;&lt;h3 id=&quot;数据集&quot;&gt;&lt;a href=&quot;#数据集&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="R语言" scheme="http://yoursite.com/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="生态学" scheme="http://yoursite.com/tags/%E7%94%9F%E6%80%81%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>金融量化分析</title>
@@ -501,31 +528,6 @@
     
     
       <category term="R语言" scheme="http://yoursite.com/tags/R%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git&amp;github的简单使用</title>
-    <link href="http://yoursite.com/2020/07/07/git&amp;github%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2020/07/07/git&amp;github%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</id>
-    <published>2020-07-07T00:54:09.000Z</published>
-    <updated>2020-07-11T00:36:31.630Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;github&quot;&gt;&lt;a href=&quot;#github&quot; class=&quot;headerlink&quot; title=&quot;github&quot;&gt;&lt;/a&gt;github&lt;/h1&gt;&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
   </entry>
   
