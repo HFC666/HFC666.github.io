@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数量生态学与R语言, Serendipity">
+    <meta name="keywords" content="matlab智能算法, Serendipity">
     <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数量生态学与R语言 | Serendipity</title>
+    <title>matlab智能算法 | Serendipity</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数量生态学与R语言</h1>
+                    <h1 class="description center-align post-title">matlab智能算法</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/R%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">R语言</span>
+                            <a href="/tags/Matlab/">
+                                <span class="chip bg-color">Matlab</span>
                             </a>
                         
-                            <a href="/tags/%E7%94%9F%E6%80%81%E5%AD%A6/">
-                                <span class="chip bg-color">生态学</span>
+                            <a href="/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">智能算法</span>
                             </a>
                         
                     </div>
@@ -451,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-07
+                    2020-09-09
                 </div>
                 
 
@@ -467,133 +467,171 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><h4 id="Doubs鱼类数据集"><a href="#Doubs鱼类数据集" class="headerlink" title="Doubs鱼类数据集"></a><code>Doubs</code>鱼类数据集</h4><p>该数据集一共包括$5$个数据框，第一个数据框是$27$种鱼类在每个样方的多度，第二个数据框包括$11$个与河流的水文、地形和水体化学属性相关的环境变量，第三个数据框是样方的地理坐标（笛卡尔坐标系，$X$和$Y$）。笛卡尔坐标系通过如下过程获得。用<code>GPS</code>获得取样点的经纬度，然后再用<code>R</code>里面<code>SoDA</code>程序包中<code>geoXY()</code>函数将经纬度转为平面的笛卡尔坐标系。上面三个数据已经作为新数量方法的检验案例。另外，这里我们还附加两个材料：<code>latlong</code>包含有取样点的经纬度坐标，<code>fishtraits</code>包含描述鱼的功能属性的$4$种连续变量和$6$中二元变量。</p>
-<h4 id="甲螨数据集"><a href="#甲螨数据集" class="headerlink" title="甲螨数据集"></a>甲螨数据集</h4><p><code>R</code>里面<code>vegan</code>和<code>ade4</code>包均附带这些数据。</p>
-<p>甲螨数据集(<code>mite.RData</code>)也由$3$个文件构成，分别为包含$35$个形态种多度数据、$5$个基质和微地形环境数据和$70$个取样点笛卡尔坐标($x-y$)(单位：$cm$)。</p>
-<h2 id="探索性数据分析"><a href="#探索性数据分析" class="headerlink" title="探索性数据分析"></a>探索性数据分析</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>探索性分析(<code>EDA</code>)其目的在于：</p>
-<ul>
-<li>了解数据概况</li>
-<li>对某些变量进行转化或重新编码</li>
-<li>确定下一步分析的方向</li>
-</ul>
-<p>本章以<code>Doubs</code>鱼类数据为例，演示<code>R</code>基础程序包内与探索性数据分析相关的函数，主要内容有：</p>
-<ul>
-<li>学习或修改<code>R</code>的一些基础函数</li>
-<li>学习可以应用于生态学多维数据的探索性分析技术</li>
-<li>以<code>Doubs</code>数据集内的水文数据为例，演示探索性数据分析过程</li>
-</ul>
-<h3 id="数据探索"><a href="#数据探索" class="headerlink" title="数据探索"></a>数据探索</h3><h4 id="数据提取"><a href="#数据提取" class="headerlink" title="数据提取"></a>数据提取</h4><pre class=" language-lang-R"><code class="language-lang-R">library(vegan)
-library(RgoogleMaps)
-library(googleVis)
-library(labdsv)
-
-#加载本章后面部分要用到的函数
-source("panelutils.R")
-
-#导入Doubs数据
-load("Doubs.RData")
-#这个Doubs.RData文件包含如下这些对象
-  #spe:物种(群落)数据框(鱼类多度数据)
-  #env:环境因子数据框
-  #spa:空间位置数据框-笛卡尔坐标系
-  #fishtraits:鱼类功能属性
-  #latlong:空间位置数据框-经纬度
-</code></pre>
-<h4 id="物种数据：第一次接触"><a href="#物种数据：第一次接触" class="headerlink" title="物种数据：第一次接触"></a>物种数据：第一次接触</h4><p>首先要关注的是物种群落数据(<code>Doubs.RData</code>文件中<code>spe</code>对象)。由于<code>Verneaux</code>使用半量化的物种多度标度($0\sim5$级)，所以物种之间的多度比较是有意义的。然而，需要注意的是，这种半量化的多度标度不能被理解为真实多度（个体数量或密度）或生物量的无偏估计。</p>
-<h5 id="unlist-函数"><a href="#unlist-函数" class="headerlink" title="unlist()函数"></a><code>unlist()</code>函数</h5><pre class=" language-lang-R"><code class="language-lang-R">unlist(x, recursive = TRUE, use.names = TRUE)
-> l.ex <- list(a = list(1:5, LETTERS[1:5]), b = "Z", c = NA)
-> unlist(l.ex, recursive = FALSE)
-$a1
-[1] 1 2 3 4 5
-
-$a2
-[1] "A" "B" "C" "D" "E"
-
-$b
-[1] "Z"
-
-$c
-[1] NA
-
-> unlist(l.ex, recursive = TRUE)
- a1  a2  a3  a4  a5  a6  a7  a8  a9 a10   b   c 
-"1" "2" "3" "4" "5" "A" "B" "C" "D" "E" "Z"  NA 
-> l.ex
-$a
-$a[[1]]
-[1] 1 2 3 4 5
-
-$a[[2]]
-[1] "A" "B" "C" "D" "E"
-
-
-$b
-[1] "Z"
-
-$c
-[1] NA
-
-> unlist(l.ex, use.names = F)
- [1] "1" "2" "3" "4" "5" "A" "B" "C" "D" "E" "Z" NA 
-> unlist(l.ex, use.names = T)
- a1  a2  a3  a4  a5  a6  a7  a8  a9 a10   b   c 
-"1" "2" "3" "4" "5" "A" "B" "C" "D" "E" "Z"  NA
-</code></pre>
-<pre class=" language-lang-R"><code class="language-lang-R">#使用基础R函数探索数据
-head(spe)
-tail(spe)
-nrow(spe)
-ncol(spe)
-dim(spe)
-colnames(spe)
-rownames(spe)
-summary(spe)
-
-#多度数据总体分布情况
-#整个物种数据框多度数据值的范围
-range(spe)
-#每个物种的最大最小值
-apply(spe, 2, range)
-#计算每种多度值的数量
-(ab <- table(unlist(spe)))  #unlist(x, recursive = TRUE, use.names = TRUE)
-#所有物种混合在一起的多度分布柱状图
-barplot(ab, las = 1, xlab = "多度等级", ylab = "频度", col = gray(5:0/5)) #5:0/5 = c(1,2,3,4,5)/5
-
-#多度数据中0值的数量
-sum(spe==0)
-#多度数据中0值所占比例
-sum(spe==0)/(nrow(spe)*ncol(spe))
-</code></pre>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200907230255202.png" alt="多度分布柱状图"></p>
-<h4 id="物种数据：进一步分析"><a href="#物种数据：进一步分析" class="headerlink" title="物种数据：进一步分析"></a>物种数据：进一步分析</h4><p>上面的命令只展示数据的大体结构。但这些代码和数值看起来并不吸引人，也没有启发性，本小节展示数据的一些其他属性。我们通过代码生成样方位置分布图。</p>
-<pre class=" language-lang-R"><code class="language-lang-R">#样方位置地图
-#生成空的绘图底板（横纵坐标轴比例1:1(参数asp),带标题）
-#从spa数据框获取地理坐标x和y
-#spa是样方的地理坐标（笛卡尔坐标系）
-plot(spa, asp = 1, type="n", main="样方位置", xlab="x坐标(km)", ylab="y坐标(km)")
-#加一条连接各个样方点的蓝色线（代表Doubs河）
-lines(spa, col="light blue")
-#添加每个样方的编号
-text(spa, row.names(spa), cex = 0.8, col = 'red')
-#添加文本
-text(70, 10, "上游", cex = 1.2, col = "red")
-text(20, 120, "下游", cex = 1.2, col = "red")
-</code></pre>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200907230356596.png" alt="样方位置图"></p>
-<p>当数据集覆盖足够大的区域时，可以投影采样点到<code>GoogleMaps</code>地图上：</p>
-<pre class=" language-lang-R"><code class="language-lang-R">#将样方点映射到谷歌地图
-#以googleVis程序包默认的方法组织数据
-#从浏览器中生成图
-nom <- latlong$Site
-latlong2 <- paste(latlong$LatitudeN, latlong$LongitudeE, sep = ":")
-df <- data.frame(latlong2, nom, stringsAsFactors = FALSE)#传给gvisMap函数数据框的格式
-mymapl <- gvisMap(df, locationvar = "latlong2", tipvar = "nom", options = list(showTip = TRUE))#locationvar指地理坐标,tipvar指每个点的标签
-plot(mymapl)
-</code></pre>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200907230512907.png" alt="谷歌地图版"></p>
+                <h3 id="符号矩阵的生成"><a href="#符号矩阵的生成" class="headerlink" title="符号矩阵的生成"></a>符号矩阵的生成</h3><h4 id="用命令sym定义矩阵"><a href="#用命令sym定义矩阵" class="headerlink" title="用命令sym定义矩阵"></a>用命令<code>sym</code>定义矩阵</h4><p>这时的函数<code>sym</code>实际上在定义一个符号表达式，符号矩阵中的元素可以是任何符号或者表达式，而且长度没有限制，只是将方括号置于用于创建符号表达式的单引号中。</p>
 <blockquote>
-<p>这个人终于又更新了，以后坚持一天至少一更。</p>
+<p>经过实践，由此方法创建符号矩阵已经不行了，改为用<code>str2sym</code>函数</p>
 </blockquote>
+<pre class=" language-lang-matlab"><code class="language-lang-matlab">>> sym_m = str2sym('[a,b,c;Jack,Me,WAY]')
+
+sym_m =
+
+[    a,  b,   c]
+[ Jack, Me, WAY]
+
+>> sym_d = str2sym('[1 2 3;a b c;sin(x) cos(y) tan(z)]')
+
+sym_d =
+
+[      1,      2,      3]
+[      a,      b,      c]
+[ sin(x), cos(y), tan(z)]
+</code></pre>
+<h4 id="用命令syms定义矩阵"><a href="#用命令syms定义矩阵" class="headerlink" title="用命令syms定义矩阵"></a>用命令<code>syms</code>定义矩阵</h4><p>先定义矩阵中的每一个元素为一个符号变量，然后如数值矩阵操作那样输入符号矩阵。</p>
+<pre class=" language-lang-matlab"><code class="language-lang-matlab">>> syms a b  c
+>> M1 = sym("Classical");
+>> M2 = sym("Claysw");
+>> M3 = sym("Yellow");
+>> yswM123 = [a b c;M1 M2 M3;2 3 4;5 4 6]
+
+yswM123 =
+
+[         a,      b,      c]
+[ Classical, Claysw, Yellow]
+[         2,      3,      4]
+[         5,      4,      6]
+</code></pre>
+<h4 id="把数值矩阵转化成相应的符号矩阵"><a href="#把数值矩阵转化成相应的符号矩阵" class="headerlink" title="把数值矩阵转化成相应的符号矩阵"></a>把数值矩阵转化成相应的符号矩阵</h4><p>数值型和符号型在<code>MATLAB</code>中是不相同的，它们之间不能直接进行转化。<code>MATLAB</code>提供了一个将数值型转化为符号型的命令，即<code>sym</code>。</p>
+<pre class=" language-lang-matlab"><code class="language-lang-matlab">>> Digit_Ma = [1/3 sqrt(3) 3.1; exp(0.3) log(10) 23^0.5];
+>> Syms_Ma = sym(Digit_Ma)
+
+Syms_Ma =
+
+[                               1/3,                           3^(1/2),    31/10]
+[ 3039611811401035/2251799813685248, 2592480341699211/1125899906842624, 23^(1/2)]
+</code></pre>
+<blockquote>
+<p>一般情况下，矩阵是以浮点型变量保存的。矩阵转化为符号矩阵后以最接近原值的有理数形式或者函数形式保存。</p>
+</blockquote>
+<h3 id="特殊矩阵的生成"><a href="#特殊矩阵的生成" class="headerlink" title="特殊矩阵的生成"></a>特殊矩阵的生成</h3><h4 id="全零阵"><a href="#全零阵" class="headerlink" title="全零阵"></a>全零阵</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200909230406898.png" alt=""></p>
+<h4 id="单位阵"><a href="#单位阵" class="headerlink" title="单位阵"></a>单位阵</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200909230334946.png" alt=""></p>
+<h4 id="全一阵"><a href="#全一阵" class="headerlink" title="全一阵"></a>全一阵</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200909230435218.png" alt=""></p>
+<h4 id="均匀分布随机矩阵"><a href="#均匀分布随机矩阵" class="headerlink" title="均匀分布随机矩阵"></a>均匀分布随机矩阵</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200909230509550.png" alt=""></p>
+<h4 id="正态分布随机矩阵"><a href="#正态分布随机矩阵" class="headerlink" title="正态分布随机矩阵"></a>正态分布随机矩阵</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200909230544280.png" alt=""></p>
+<h4 id="产生随机排列"><a href="#产生随机排列" class="headerlink" title="产生随机排列"></a>产生随机排列</h4><pre class=" language-lang-matlab"><code class="language-lang-matlab">>> p = randperm(10)  %产生1~n之间的随机排列
+
+p =
+
+     6     3     7     8     5     1     2     4     9    10
+</code></pre>
+<h4 id="产生随机线性等分变量函数linspace"><a href="#产生随机线性等分变量函数linspace" class="headerlink" title="产生随机线性等分变量函数linspace"></a>产生随机线性等分变量函数<code>linspace</code></h4><p><img src="http://image-hfc.test.upcdn.net/image-20200909230615788.png" alt=""></p>
+<h4 id="产生对数等分向量"><a href="#产生对数等分向量" class="headerlink" title="产生对数等分向量"></a>产生对数等分向量</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200909230651608.png" alt=""></p>
+<h4 id="计算矩阵中元素个数"><a href="#计算矩阵中元素个数" class="headerlink" title="计算矩阵中元素个数"></a>计算矩阵中元素个数</h4><pre class=" language-lang-matlab"><code class="language-lang-matlab">>> x = [1 2 3;4 5 6;7 8 9];
+>> numel(x)
+
+ans =
+
+     9
+</code></pre>
+<h4 id="产生以输入元素为对角线元素的矩阵"><a href="#产生以输入元素为对角线元素的矩阵" class="headerlink" title="产生以输入元素为对角线元素的矩阵"></a>产生以输入元素为对角线元素的矩阵</h4><pre class=" language-lang-matlab"><code class="language-lang-matlab">>> out = blkdiag(1,2,3,4)
+
+out =
+
+     1     0     0     0
+     0     2     0     0
+     0     0     3     0
+     0     0     0     4
+>> diag(out)
+
+ans =
+
+     1
+     2
+     3
+     4
+</code></pre>
+<h4 id="友矩阵"><a href="#友矩阵" class="headerlink" title="友矩阵"></a><a href="https://zhidao.baidu.com/question/331649470.html" target="_blank" rel="noopener">友矩阵</a></h4><p>函数<code>compan</code></p>
+<blockquote>
+<p>格式  <code>A = compan(u)</code>         $\%u$为多项式系统向量，$A$为友矩阵，$A$的第一行元素为$-u(2:n)/u(1)$，其中$u(2:n)$为$u$的第$2$到第$n$个元素，$A$的特征值就是多项式的特征根</p>
+</blockquote>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200909230811480.png" alt=""></p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20200909230840992.png" alt=""></p>
+<h3 id="线性方程组求解"><a href="#线性方程组求解" class="headerlink" title="线性方程组求解"></a>线性方程组求解</h3><h4 id="齐次线性方程组的通解"><a href="#齐次线性方程组的通解" class="headerlink" title="齐次线性方程组的通解"></a>齐次线性方程组的通解</h4><p>在<code>MATLAB</code>中，函数<code>null()</code>用来求解零空间，即满足$A\cdot X=0$的解空间，实际上是求出解空间的一组基。</p>
+<ul>
+<li><code>z = null</code> ：$z$的列向量为方程组的正交规范基，满足$Z^{‘}\times Z=I$</li>
+<li><code>z = null(A, &#39;r&#39;)</code>：$z$的列向量是方程$A\cdot X=0$的有理基</li>
+</ul>
+<pre class=" language-lang-matlab"><code class="language-lang-matlab">>> A = [1 2 2 1;2 1 -2 -2;1 -1 -4 -3]; %原始系数矩阵
+>> format rat
+>> B = null(A, 'r')
+
+B =
+
+       2              5/3     
+      -2             -4/3     
+       1              0       
+       0              1
+</code></pre>
+<p>或通过最简行得到基：</p>
+<pre class=" language-lang-matlab"><code class="language-lang-matlab">>> B = rref(A)
+
+B =
+
+       1              0             -2             -5/3     
+       0              1              2              4/3     
+       0              0              0              0
+</code></pre>
+<p>则相应地写出线性方程组的通解：</p>
+<pre class=" language-lang-matlab"><code class="language-lang-matlab">>> X = k1*B(:,1)+k2*B(:,2)
+
+X =
+
+   2*k1 + (5*k2)/3
+ - 2*k1 - (4*k2)/3
+                k1
+                k2
+
+>> pretty(X)
+/         5 k2  \
+|  2 k1 + ----  |
+|           3   |
+|               |
+|          4 k2 |
+| - 2 k1 - ---- |
+|            3  |
+|               |
+|       k1      |
+|               |
+\       k2      /
+</code></pre>
+<h4 id="非齐次线性方程组的通解"><a href="#非齐次线性方程组的通解" class="headerlink" title="非齐次线性方程组的通解"></a>非齐次线性方程组的通解</h4><p>需要先判断非齐次线性方程组是否有解。若有解，然后求通解，步骤如下。</p>
+<ol>
+<li>判断$A\cdot X=b$是否有解。若有解，则进行第二步，否则终止求解</li>
+<li>求$A \cdot X=b$的一个特解。</li>
+<li>求$A\cdot X=0$的通解</li>
+<li>$A \cdot X=b$的通解等于$A\cdot X=b$的通解加上$A\cdot X=b$的一个特解</li>
+</ol>
+<p>求解方程组<img src="http://image-hfc.test.upcdn.net/image-20200909230946647.png" alt="">的解</p>
+<pre class=" language-lang-matlab"><code class="language-lang-matlab">A = [1 -2 3 -1;3 -1 5 -3;2 1 2 -2];
+b = [1 2 3]';
+B = [A b];
+n = 4;
+RA = rank(A);
+RB = rank(B);
+format rat %有理数格式
+if RA==RB&&RA==n
+    x=A\b;
+elseif RA==RB&&RA<n
+    X=A\b;
+    C=null(A,'r');
+else
+    X = 'equition no solve';
+end
+
+>> X =
+
+    'equition no solve'
+</code></pre>
+<h4 id="线性方程组的LQ解法"><a href="#线性方程组的LQ解法" class="headerlink" title="线性方程组的LQ解法"></a>线性方程组的<code>LQ</code>解法</h4><p><img src="http://image-hfc.test.upcdn.net/image-20200909231115602.png" alt=""></p>
 
             </div>
             <hr/>
@@ -619,7 +657,7 @@ plot(mymapl)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/09/07/%E6%95%B0%E9%87%8F%E7%94%9F%E6%80%81%E5%AD%A6%E4%B8%8ER%E8%AF%AD%E8%A8%80/">http://yoursite.com/2020/09/07/%E6%95%B0%E9%87%8F%E7%94%9F%E6%80%81%E5%AD%A6%E4%B8%8ER%E8%AF%AD%E8%A8%80/</a>
+                    <a href="http://yoursite.com/2020/09/09/matlab%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/">http://yoursite.com/2020/09/09/matlab%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -657,12 +695,12 @@ plot(mymapl)
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/R%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">R语言</span>
+                                <a href="/tags/Matlab/">
+                                    <span class="chip bg-color">Matlab</span>
                                 </a>
                             
-                                <a href="/tags/%E7%94%9F%E6%80%81%E5%AD%A6/">
-                                    <span class="chip bg-color">生态学</span>
+                                <a href="/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">智能算法</span>
                                 </a>
                             
                         </div>
@@ -830,9 +868,10 @@ plot(mymapl)
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/09/matlab%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/">
                     <div class="card-image">
@@ -850,9 +889,9 @@ plot(mymapl)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -861,6 +900,7 @@ plot(mymapl)
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -883,24 +923,24 @@ plot(mymapl)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/15/%E9%87%91%E8%9E%8D%E9%87%8F%E5%8C%96%E5%88%86%E6%9E%90/">
+                <a href="/2020/09/07/%E6%95%B0%E9%87%8F%E7%94%9F%E6%80%81%E5%AD%A6%E4%B8%8ER%E8%AF%AD%E8%A8%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="金融量化分析">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="数量生态学与R语言">
                         
-                        <span class="card-title">金融量化分析</span>
+                        <span class="card-title">数量生态学与R语言</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            金融量化分析
+                            数量生态学与R语言第一天
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-07
                             </span>
                         <span class="publish-author">
                             
@@ -913,12 +953,12 @@ plot(mymapl)
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/R%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">R语言</span>
                     </a>
                     
-                    <a href="/tags/%E9%87%91%E8%9E%8D/">
-                        <span class="chip bg-color">金融</span>
+                    <a href="/tags/%E7%94%9F%E6%80%81%E5%AD%A6/">
+                        <span class="chip bg-color">生态学</span>
                     </a>
                     
                 </div>
@@ -1093,6 +1133,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
