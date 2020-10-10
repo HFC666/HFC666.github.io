@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-09-09T15:11:56.932Z</updated>
+  <updated>2020-10-10T14:29:20.513Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Haskell</title>
+    <link href="http://yoursite.com/2020/10/10/Haskell/"/>
+    <id>http://yoursite.com/2020/10/10/Haskell/</id>
+    <published>2020-10-10T14:22:07.000Z</published>
+    <updated>2020-10-10T14:29:20.513Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;从零开始&quot;&gt;&lt;a href=&quot;#从零开始&quot; class=&quot;headerlink&quot; title=&quot;从零开始&quot;&gt;&lt;/a&gt;从零开始&lt;/h2&gt;&lt;h3 id=&quot;准备好了吗？&quot;&gt;&lt;a href=&quot;#准备好了吗？&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Haskell" scheme="http://yoursite.com/tags/Haskell/"/>
+    
+  </entry>
   
   <entry>
     <title>matlab智能算法</title>
@@ -505,31 +530,6 @@
     
     
       <category term="统计学" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python面向对象编程实例之学员管理系统</title>
-    <link href="http://yoursite.com/2020/07/07/Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E5%AE%9E%E4%BE%8B%E4%B9%8B%E5%AD%A6%E5%91%98%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://yoursite.com/2020/07/07/Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E5%AE%9E%E4%BE%8B%E4%B9%8B%E5%AD%A6%E5%91%98%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</id>
-    <published>2020-07-07T13:51:46.000Z</published>
-    <updated>2020-07-07T14:43:47.413Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;面向对象版学员管理系统&quot;&gt;&lt;a href=&quot;#面向对象版学员管理系统&quot; class=&quot;headerlink&quot; title=&quot;面向对象版学员管理系统&quot;&gt;&lt;/a&gt;面向对象版学员管理系统&lt;/h1&gt;&lt;h2 id=&quot;目标&quot;&gt;&lt;a href=&quot;#目标&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
     
   </entry>
   

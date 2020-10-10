@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Haskell</title>
+      <link href="/2020/10/10/Haskell/"/>
+      <url>/2020/10/10/Haskell/</url>
+      
+        <content type="html"><![CDATA[<h2 id="从零开始"><a href="#从零开始" class="headerlink" title="从零开始"></a>从零开始</h2><h3 id="准备好了吗？"><a href="#准备好了吗？" class="headerlink" title="准备好了吗？"></a>准备好了吗？</h3><p>我们首先要做的就是进入<code>ghc</code>的互动模式，在<code>Dos</code>窗口下输入<code>gchi</code>，你会看到下列欢迎讯息。</p><p><img src="http://image-hfc.test.upcdn.net/image-20201010222403740.png" alt=""></p><p>恭喜你已经进入<code>ghci</code>了，目前它的命令行提示是<code>prelude&gt;</code>，不过它会在你装载一些模组之后会变的比较长。为了美观起见，我们会输入指令<code>:set prompt &quot;ghci&gt;&quot;</code>把它改成<code>ghci&gt;</code>。</p><h4 id="简单的数学运算"><a href="#简单的数学运算" class="headerlink" title="简单的数学运算"></a>简单的数学运算</h4><pre class=" language-lang-haskell"><code class="language-lang-haskell">ghci>2 + 15             17                      ghci>49 * 100           4900                    ghci>1892 - 1472        420                     ghci>5 / 2              2.5                     ghci>(50 * 100) - 4999  1                       ghci>50 * 100 - 4999    1                       ghci>50 * (100 - 4999)  -244950</code></pre><h4 id="布尔运算"><a href="#布尔运算" class="headerlink" title="布尔运算"></a>布尔运算</h4><p><code>&amp;&amp;</code>表示<code>AND</code>，<code>||</code>表示<code>OR</code>，<code>not</code>表示取反。</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">ghci>True && False       False                    ghci>True && True        True                     ghci>False || False      False                    ghci>not False           True                     ghci>not (True && True)  False</code></pre><p>相等性可以这样判定</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">ghci>5 == 5                    True                           ghci>1 == 0                    False                          ghci>5 /= 5                    False                          ghci>5 /= 4                    True                           ghci>"hello" == "hello"        True</code></pre><p><img src="http://image-hfc.test.upcdn.net/image-20201010222456627.png" alt=""></p><p>也许你并未察觉，不过从始至终我们一直都在使用函数。<code>*</code>就是一个将两个数相乘的函数，就像是三明治一样，用两个参数将它夹在中央，这被称作中缀函数。而其他大多数不能与数夹在一起的函数被称作前缀函数。绝大部分函数都是前缀函数。在<code>Haskell</code>中，函数调用的格式是函数名，空格，空格分隔的参数列。简单举个例子，我们调用<code>Haskell</code>中最无趣的函数：</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">ghci>succ 89</code></pre><p><code>succ</code>函数返回一个数的后继。</p><p><code>min</code>和<code>max</code>接受两个可比较大小的参数</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">ghci>min 9 109ghci>min 3.4 3.23.2ghci>max 100 101101</code></pre><p>函数拥有最高的优先级，如下两句是等效的</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">ghci>succ 9 + max 5 4 + 1      16                             ghci>(succ 9) + (max 5 4) + 1  16</code></pre><p>两个整数相除所得商的<code>div</code>函数，<code>div 92 10</code>可得<code>9</code>，但这种形式不容易理解：究竟哪个是除数，那个是被除数？使用中缀函数==92`div`10==就清晰了。</p><h3 id="初学者的第一个函数"><a href="#初学者的第一个函数" class="headerlink" title="初学者的第一个函数"></a>初学者的第一个函数</h3><pre class=" language-lang-haskell"><code class="language-lang-haskell">doubleMe x = x + x</code></pre><p>将上述保存为<code>baby.hs</code>文件，在其文件目录下，打开<code>ghci</code>，执行<code>:l baby.hs</code>。这样函数就装载成功了，可以调用了。</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">ghci>doubleMe 918ghci>doubleMe 8.316.6</code></pre><p>声明包括两个参数的函数如下：</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">doubleUS x y = x*2 + y*2</code></pre><p>结果</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">ghci>doubleUS 4 1640</code></pre><p>你可以在其他函数中调用你编写的函数，如此一来我们可以将<code>doubleMe</code>函数改写为：</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">doubleUS x y = doubleMe x + doubleMe y</code></pre><p>结果</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">ghci>doubleUS 4 1640</code></pre><p><code>Haskell</code>中的函数并没有顺序，因此先声明<code>doubleUs</code>还是先声明<code>doubleMe</code>都是同样的。如下，我们编写一个函数，它将小于100的数都乘以二。</p><pre class=" language-lang-haskell"><code class="language-lang-haskell">doubleSmallNumber x = if x > 100    then x    else x*2</code></pre><p><img src="http://image-hfc.test.upcdn.net/image-20201010222630774.png" alt=""></p><pre class=" language-lang-hask"><code class="language-lang-hask">doubleSmallNumber' x = (if x > 100 then x else x*2) + 1</code></pre><p><img src="http://image-hfc.test.upcdn.net/image-20201010222725723.png" alt=""></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Haskell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>matlab智能算法</title>
       <link href="/2020/09/09/matlab%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
       <url>/2020/09/09/matlab%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/</url>
