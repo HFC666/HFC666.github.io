@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-10-10T14:29:20.513Z</updated>
+  <updated>2020-10-26T14:57:13.174Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>贝叶斯统计第一天</title>
+    <link href="http://yoursite.com/2020/10/26/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/"/>
+    <id>http://yoursite.com/2020/10/26/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/</id>
+    <published>2020-10-26T14:45:07.000Z</published>
+    <updated>2020-10-26T14:57:13.174Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;贝叶斯公式&quot;&gt;&lt;a href=&quot;#贝叶斯公式&quot; class=&quot;headerlink&quot; title=&quot;贝叶斯公式&quot;&gt;&lt;/a&gt;贝叶斯公式&lt;/h2&gt;&lt;h3 id=&quot;贝叶斯公式的密度函数形式&quot;&gt;&lt;a href=&quot;#贝叶斯公式的密度函数形式&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="贝叶斯统计" scheme="http://yoursite.com/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>Haskell</title>
@@ -497,31 +522,6 @@
         
         
           &lt;h2 id=&quot;第十章-方差分析&quot;&gt;&lt;a href=&quot;#第十章-方差分析&quot; class=&quot;headerlink&quot; title=&quot;第十章 方差分析&quot;&gt;&lt;/a&gt;第十章 方差分析&lt;/h2&gt;&lt;h3 id=&quot;方差分析引论&quot;&gt;&lt;a href=&quot;#方差分析引论&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="统计学" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>统计学第一部分</title>
-    <link href="http://yoursite.com/2020/07/07/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/"/>
-    <id>http://yoursite.com/2020/07/07/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/</id>
-    <published>2020-07-07T14:52:00.000Z</published>
-    <updated>2020-07-08T00:57:09.452Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;第一章-导论&quot;&gt;&lt;a href=&quot;#第一章-导论&quot; class=&quot;headerlink&quot; title=&quot;第一章 导论&quot;&gt;&lt;/a&gt;第一章 导论&lt;/h2&gt;&lt;h3 id=&quot;统计数据的类型&quot;&gt;&lt;a href=&quot;#统计数据的类型&quot; class=&quot;headerlink&quot;
         
       
     

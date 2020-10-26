@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="git&amp;github的简单使用, Serendipity">
+    <meta name="keywords" content="贝叶斯统计第一天, Serendipity">
     <meta name="description" content="我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>git&amp;github的简单使用 | Serendipity</title>
+    <title>贝叶斯统计第一天 | Serendipity</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">git&amp;github的简单使用</h1>
+                    <h1 class="description center-align post-title">贝叶斯统计第一天</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/git/">
-                                <span class="chip bg-color">git</span>
+                            <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/">
+                                <span class="chip bg-color">贝叶斯统计</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-07
+                    2020-10-26
                 </div>
                 
 
@@ -463,74 +463,99 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="github"><a href="#github" class="headerlink" title="github"></a>github</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>仓库(Repository)</strong></p>
-<p>仓库用来存放项目代码，每个项目对应一个仓库，多个开源项目则有多个仓库。</p>
-<p><strong>收藏(Star)</strong></p>
-<p>收藏项目，方便下次查看</p>
-<p><strong>复制克隆项目(Fork)</strong></p>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200711083430283.png" alt=""></p>
-<p><strong><em>注意：该fork时的项目是独立存在的。</em></strong></p>
-<p><strong>发起请求 (Pull Request)</strong></p>
-<p>发起请求，这个其实是基于<code>Fork</code>的，还是上面那个例子，如果别人在你的基础上做了改进，后来觉得改进的不错，应该把这些改进让更多的人收益，于是就想把自己的改进合并到原有的项目中，这时候它就可以发起一个<code>Pull Request(简称PR)</code>,原有项目创建人，也就是你，就可以收到这个请求，这时候你仔细<code>review</code>他的代码，并且测试觉得OK了，就会接受他的PR，这时候他做的改进项目就拥有了。</p>
-<p><strong>关注(Watch)</strong></p>
-<p>关注项目，当项目更新可以接收到通知。</p>
-<p><strong>事务卡片(Issue)</strong></p>
-<p>发现代码<code>Bug</code>,但是目前没有成型代码，需要讨论时用</p>
-<p><strong>Github主页</strong></p>
-<p>账号创建成功或点击网址导航栏github图标都可以进入github主页，该页左侧主要显示用户动态以及关注用户或关注仓库的动态，右侧显示所有的git库。</p>
-<p><strong>仓库主页</strong></p>
-<p>仓库主页主要显示项目的信息，如，项目代码，版本，收藏/关注/fork情况等。</p>
-<p><strong>个人主页</strong></p>
-<p>个人信息，头像，个人简介，关注我的人，我关注的人，我关注的git库，我的开源项目，我贡献的开源项目等信息。</p>
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="Git工作区域"><a href="#Git工作区域" class="headerlink" title="Git工作区域"></a>Git工作区域</h2><p><strong>Git Repository (Git 仓库)</strong></p>
-<p>最终确定的文件保存到仓库，成为一个新的版本，并且对其他人可见。</p>
-<p><strong>暂存区</strong></p>
-<p>暂存已经修改的文件最后统一提交到<code>git</code>仓库中。</p>
-<p><strong>工作区 （Working Directory)</strong></p>
-<p>添加、编辑、修改文件等动作</p>
-<h2 id="添加文件流程"><a href="#添加文件流程" class="headerlink" title="添加文件流程"></a>添加文件流程</h2><p><img src="http://image-hfc.test.upcdn.net/image-20200711083457349.png" alt="image-20200711083457349"></p>
-<h2 id="Git基础设置"><a href="#Git基础设置" class="headerlink" title="Git基础设置"></a>Git基础设置</h2><p><strong>设置用户名</strong></p>
-<p><code>git config --global user.name &#39;EchoHFC&#39;</code></p>
-<p><strong>设置用户名邮箱</strong></p>
-<p><code>git config --global user.email &#39;3495343534@qq.com&#39;</code></p>
-<p><strong>查看设置</strong></p>
-<p><code>git config --list</code></p>
-<h2 id="向仓库中添加文件"><a href="#向仓库中添加文件" class="headerlink" title="向仓库中添加文件"></a>向仓库中添加文件</h2><p><strong>初始化仓库</strong></p>
-<p><code>git init</code></p>
-<p><strong>创建文件</strong></p>
-<p><code>touch a1.py</code></p>
-<p><strong>添加到暂存区</strong></p>
-<p><code>git add a1.py</code></p>
-<p><strong>添加到仓库</strong></p>
-<p><code>git commit -m &#39;first&#39;</code></p>
-<p><strong>修改仓库文件</strong></p>
+                <h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><h3 id="贝叶斯公式的密度函数形式"><a href="#贝叶斯公式的密度函数形式" class="headerlink" title="贝叶斯公式的密度函数形式"></a>贝叶斯公式的密度函数形式</h3><h4 id="回顾贝叶斯公式"><a href="#回顾贝叶斯公式" class="headerlink" title="回顾贝叶斯公式"></a>回顾贝叶斯公式</h4><script type="math/tex; mode=display">
+P(B_i|A) = \frac{P(A|B_i)P(B_i)}{\sum_jP(A|B_j)P(B_j)}</script><h5 id="例"><a href="#例" class="headerlink" title="例"></a>例</h5><p><strong>例1</strong></p>
+<p>设某一工厂有甲、乙、丙三个车间生产同一型号的螺钉，每个车间的产量分别占该厂总产量的$25\%、35\%、40\%$，每个车间次品率分别为$5\%、4\%、2\%$。如果从全厂总产品中抽取一个螺钉，检验为次品，试问该次品是甲车间生产的概率是多少？</p>
+<script type="math/tex; mode=display">
+P(B_1|A) = \frac{P(A|B_1)P(B_1)}{P(A)} = \frac{P(A|B_1)P(B_1)}{\sum_jP(A|B_j)P(B_j)} \\=  \frac{25\%\times5\%}{25\%\times5\%+35\%\times4\%+40\%\times2\%} = \frac{25}{69}</script><p><strong>例二</strong></p>
+<p>飞机上装有警告灯，如果起落架未能完全落下，则警告灯会亮。有时，起落架完全落下了，警告灯也会亮起，现用$A_1$表示“起落架落下”，$A_2$表示“起落架未能落下”，令$B$表示“警告灯亮”，现知$P(B|A_2) = 0.999$，$P(B|A_1) = 0.005$。记录表明$P(A_1) = 0.997$，求$P(A_1|B)$。</p>
+<script type="math/tex; mode=display">
+P(A_1|B) = \frac{P(B|A_1)P(A_1)}{\sum_jP(B|A_j)P(A_j)}\\=
+\frac{0.005\times0.997}{0.005\times0.997+0.999\times0.003} = 0.625</script><script type="math/tex; mode=display">
+\pi(\theta_i|x) = \frac{P(x|\theta_i)\pi(\theta_i)}{\sum_jP(x|\theta_j)\pi(\theta_j)}</script><p>其中，$\pi(\theta_i)$为先验分布，$\pi(\theta_i|x)$为后验分布。</p>
+<blockquote>
+<p>$\pi$表示主观概率，$x$表示样本。</p>
+</blockquote>
 <ol>
-<li><code>vim a1.py</code></li>
-<li><code>git add a1.py</code></li>
-<li><code>git commit -m &#39;xiugai&#39;</code></li>
-</ol>
-<p><strong>删除仓库文件</strong></p>
+<li><p>设总体指标$X$有依赖于参数$\theta$的密度函数。</p>
 <ol>
-<li>删除文件 <code>rm -rf a1.py</code></li>
-<li>从 <code>Git</code> 中删除文件 <code>git rm a1.py</code></li>
-<li>提交操作 <code>git commit -m &#39;shanchu&#39;</code></li>
+<li>在经典统计学中常记为$P(x;\theta)$或$P_\theta(x)$，它表示在参数空间$\Theta=\{\theta\}$中不同的$\theta$对应不同的分布。</li>
+<li>在贝叶斯统计中记为$P(x|\theta)$，表示在随机变量$\theta$给定某个值，总体指标$X$的条件分布。</li>
 </ol>
-<h2 id="Git-管理远程仓库"><a href="#Git-管理远程仓库" class="headerlink" title="Git 管理远程仓库"></a>Git 管理远程仓库</h2><h3 id="Git-远程仓库"><a href="#Git-远程仓库" class="headerlink" title="Git 远程仓库"></a>Git 远程仓库</h3><p><img src="http://image-hfc.test.upcdn.net/image-20200711083514748.png" alt=""></p>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>备份，实现代码共享集中化管理</p>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200711083554150.png" alt=""></p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="克隆项目"><a href="#克隆项目" class="headerlink" title="克隆项目"></a>克隆项目</h4><p><code>git clone 仓库地址</code></p>
-<h4 id="修改文件（同上）"><a href="#修改文件（同上）" class="headerlink" title="修改文件（同上）"></a>修改文件（同上）</h4><h4 id="提交到远程仓库"><a href="#提交到远程仓库" class="headerlink" title="提交到远程仓库"></a>提交到远程仓库</h4><p><code>git push</code></p>
-<p><img src="http://image-hfc.test.upcdn.net/image-20200711083620589.png" alt=""></p>
-<h2 id="Github-Pages-搭建网站"><a href="#Github-Pages-搭建网站" class="headerlink" title="Github Pages 搭建网站"></a>Github Pages 搭建网站</h2><h3 id="个人站点"><a href="#个人站点" class="headerlink" title="个人站点"></a>个人站点</h3><h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><p><code>https://用户名.github.io</code></p>
-<h4 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h4><ol>
-<li>创建个人站点 -&gt; 新建仓库（注：仓库名必须是[用户名.github.io]）</li>
-<li>在仓库下新建 <code>index.html</code>的文件即可</li>
+</li>
+<li><p>研究参数$\theta$的先验信息确定先验分布$\pi(\theta)$。</p>
+</li>
+<li><p>从贝叶斯观点看，样本$x=(x_1,x_2,\dots,x_n)$的产生要分两步进行。</p>
+<ol>
+<li><p>首先设想从先验分布$\pi(\theta)$产生一个样本$\theta’$，这一步“老天爷”做的，人们是看不到的。</p>
+</li>
+<li><p>第二步是从总体分布$P(x|\theta’)$产生一个样本$x=(x_1,x_2,\dots,x_n)$，这个样本是具体的，人们能看得到的，此样本发生的概率是与如下联合密度成正比</p>
+<script type="math/tex; mode=display">
+P(x|\theta') = \prod_{i=1}^{n}P(x_i|\theta')</script></li>
 </ol>
-<h3 id="Project-Pages-项目站点"><a href="#Project-Pages-项目站点" class="headerlink" title="Project Pages 项目站点"></a>Project Pages 项目站点</h3><p><code>https://用户名.github.io/仓库名</code></p>
-<h4 id="搭建步骤-1"><a href="#搭建步骤-1" class="headerlink" title="搭建步骤"></a>搭建步骤</h4><ol>
-<li>进入项目主页</li>
-<li>在<code>settings</code>页面，点击<code>Launch automatic page generator</code>来自动生成主题界面。</li>
+</li>
 </ol>
+<pre><code>  这个联合密度函数是综合了总体信息和样本信息，称为似然函数。
+</code></pre><ol>
+<li><p>由于$\theta’$是设想出来的，它仍然是未知的，它是按先验分布$\pi(\theta)$而产生的，要把先验信息进行综合，不能只考虑$\theta’$而应对$\theta$的一切可能加以考虑。故要用$\pi(\theta)$参与进一步综合。此时$h(x,\theta) = p(x|\theta)\pi(\theta)$。把三种可用的信息都综合进去了。</p>
+</li>
+<li><p>我们的任务是对未知数$\theta$做出统计推断。</p>
+<ol>
+<li><p>在没有样本信息时，人们只能根据先验分布对$\theta$做出推断。</p>
+</li>
+<li><p>在有样本$x=(x_1,x_2,\dots,x_n)$之后，我们应该依据$h(x,\theta)$对$\theta$做出推断。为此，我们把$h(x,\theta)$做如下分解</p>
+<script type="math/tex; mode=display">
+h(x,\theta) = \pi(\theta|x)m(x)\\
+其中m(x)时x的边缘密度函数\\
+m(x) = \int_{\vartheta}h(x,\theta)d\theta=\int_{\vartheta} P(x|\theta)\pi(\theta)d\theta\\
+它与\theta无关，或者说，m(x)中不含有\theta的任何信息</script></li>
+</ol>
+</li>
+<li><p>因此，能用来对$\theta$做推断的仅是条件分布$\pi(\theta|x)$，即</p>
+<script type="math/tex; mode=display">
+\pi(\theta|x)=\frac{h(x,\theta)}{m(x)} = \frac{p(x|\theta)\pi(\theta)}{\int_{\Theta}P(x|\theta)\pi(\theta)d\theta}</script></li>
+</ol>
+<p>这就是贝叶斯公式的密度函数形式。这个在样本给定下，$\theta$的条件分布就被称为$\theta$的后验分布。它是集中了总体、样本和先验等三种信息中有关$\theta$的一切信息，而又排除一切与$\theta$无关的信息之后所得到的结果。</p>
+<h2 id="共轭先验分布"><a href="#共轭先验分布" class="headerlink" title="共轭先验分布"></a>共轭先验分布</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>设$\theta$是总体分布中的参数（或参数向量），$\pi(\theta)$是$\theta$的先验密度函数，假如由抽样信息算得的后验密度函数与先验密度函数有相同的形式，则称$\pi(\theta)$是$\theta$的共轭先验分布。</p>
+<h4 id="例-1"><a href="#例-1" class="headerlink" title="例"></a>例</h4><p>正态均值（方差已知）的共轭先验分布是正态分布。</p>
+<p>设$x_1,x_2,\dots,x_n$是来自正态分布$N(\theta,\sigma^2)$的一组样本观察值，其中$\sigma^2$已知。又知$\theta$的先验分布也是正态分布$N(\mu,\tau^2)$，求$\pi(\theta|x)$。</p>
+<p>解：先验信息$\pi(\theta) = \frac{1}{\sqrt{2\pi}\tau}e^{-\frac{(\theta-\mu)^2}{2\tau^2}}$</p>
+<p>似然函数$P(x|\theta) = \prod_{i=1}^n P(x_i|\theta) = (\frac{1}{\sqrt{2\pi}\tau})^ne^{-\frac{\sum_{i=1}^n(x_i-\theta)^2}{2\sigma^2}}$</p>
+<p>三种信息综合</p>
+<script type="math/tex; mode=display">
+h(x,\theta) = \pi(\theta)P(x|\theta)\\=
+\frac{1}{\sqrt{2\pi}\tau}e^{-\frac{(\theta-\mu)^2}{2\tau^2}}(\frac{1}{\sqrt{2\pi}\sigma})^ne^{-\frac{\sum_{i=1}^n(x_i-\theta)^2}{2\sigma^2}}\\
+=k_1e^{-\frac{1}{2}[\frac{n\theta^2-2n\theta\overline{x}+\sum_{i=1}^n(x_i)^2}{\sigma^2}+\frac{\theta^2-2\mu\theta+\mu^2}{\tau^2}]}\\
+k_1 = (2\pi)^{-(n+1)/2}\tau^{-1}\sigma^{-n}</script><p>   如何求$m(x) = \int h(x, \theta)d\theta$是此例的关键</p>
+<p>记$\sigma_0^2 = \frac{\sigma^2}{n}, A = \frac{1}{\sigma_0^2}+\frac{1}{\tau^2},B = \frac{\overline{x}}{\sigma_0^2}+\frac{\mu}{\tau^2}, C = \frac{\sum_{i=1}^n(x_i)^2}{\sigma^2}+\frac{\mu^2}{\tau^2}$，则$h(x,\theta) = k_1\exp^{-\frac{1}{2}[A\theta^2-2B\theta+C]} = k_2\exp^{-\frac{(\theta-B/A)^2}{2/A}},k_2=k_1\exp^{-\frac{1}{2}(C-\frac{B^2}{A})}$</p>
+<p>故，$m(x) = \int h(x,\theta)d\theta = k_2(\frac{2\pi}{A})^{1/2}$</p>
+<p>则，$\pi(\theta|x) = (\frac{2\pi}{A})^{-1/2}\exp^{-\frac{(\theta-B/A)^2}{2/A}}\sim N(\mu_1,\tau_1^2)$</p>
+<p>$\mu_1 = \frac{B}{A} = \frac{\overline{x}\sigma_0^{-2}+\mu\tau^{-2}}{\sigma_0^{-2}+\tau^{-2}},\frac{1}{\tau_1^2} = \frac{1}{\sigma_0^2}+\frac{1}{\tau^2}$</p>
+<h3 id="后验分布的计算"><a href="#后验分布的计算" class="headerlink" title="后验分布的计算"></a>后验分布的计算</h3><p>利用概率分布的核和共轭先验分布简化后验分布的计算。</p>
+<script type="math/tex; mode=display">
+\pi(\theta|x) = \frac{p(x|\theta)(\pi(\theta))}{m(x)},\quad \pi(\theta|x)\propto p(x|\theta)\pi(\theta))</script><p>拿上一个例题做个例子</p>
+<script type="math/tex; mode=display">
+\pi(\theta|x)\propto p(x|\theta)\pi(\theta)\\
+\propto \exp^{-\frac{1}{2}[\frac{\sum_{i=1}^n(x_i-\theta)^2}{\sigma^2}+\frac{(\theta-\mu)^2}{\tau^2}]}\\
+\propto \exp^{\frac{1}{2}[A\theta^2-2B\theta]}\\
+\propto \exp^{\frac{A}{2}(\theta-B/A)^2}</script><p><strong>二项分布中的成功概率$\theta$的共轭先验分布是贝塔分布。</strong></p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20201026225504568.png" alt=""></p>
+<h3 id="共轭先验分布的优缺点"><a href="#共轭先验分布的优缺点" class="headerlink" title="共轭先验分布的优缺点"></a>共轭先验分布的优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>计算方便</li>
+<li>后验分布的一些参数可以得到很好的解释</li>
+</ul>
+<p>下面对其第二个优点进行解释：</p>
+<p>在正态均值的共轭先验分布为正态分布的例子中，其后验均值可以改写为：</p>
+<script type="math/tex; mode=display">
+\mu_1 = \frac{\sigma_0^{-2}}{\sigma_0^{-2}+\tau^{-2}}\overline{x}+\frac{\tau^{-2}}{\sigma_0^{-2}+\tau^{-2}}\mu\\
+=\gamma\overline{x}+(1-\gamma)\mu</script><p>其中$\gamma=\sigma_0^{-2}/\sigma_0^{-2}+\tau^{-2}$。</p>
+<p>在处理正态分布时，方差的倒数发挥着重要作用，并称其为精度。于是在正态均值的共轭先验分布的讨论中，其后验方差所满足的等式</p>
+<script type="math/tex; mode=display">
+\frac{1}{\tau_1^2} = \frac{1}{\sigma_0^2}+\frac{1}{\tau^2} = \frac{n}{\sigma^2}+\frac{1}{\tau^2}</script><p>可解释为：后验分布的精度是样本均值分布的精度与先验分布精度之和，增加样本量$n$或减少先验分布方差都有利于提高后验分布的精度。</p>
+<p><img src="http://image-hfc.test.upcdn.net/image-20201026225640342.png" alt=""></p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>在贝叶斯统计中先验分布的选取应以合理性作为首要原则，计算上的方便与先验的合理性相比那还是第二位的。当样本均值与先验均值较远时，看来后验分布有两个峰才更为合理，可使用共轭先验分布逼使后验分布只有一个峰，从而会掩盖实际情况，引起误用，在考虑到先验的合理性之后，充分发挥共轭先验分布吸引人们的性质是我们采取的策略。</p>
+<h3 id="常见的共轭先验分布"><a href="#常见的共轭先验分布" class="headerlink" title="常见的共轭先验分布"></a>常见的共轭先验分布</h3><p>共轭先验分布的选取是由似然函数$L(\theta)=p(x|\theta)$中所含$\theta$的因式所决定的，即选与似然函数具有相同核的分布作为先验分布。若此想法得以实现，那共轭先验分布就产生了。</p>
+<p>后验均值的这一特征后被推广到单参数分布族。<code>MacEachern</code>指出：在单参数指数族场合，使用共轭先验分布得后验均值一定取值于先验均值与样本均值之间。</p>
 
             </div>
             <hr/>
@@ -556,7 +581,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/07/07/git&github%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">http://yoursite.com/2020/07/07/git&github%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</a>
+                    <a href="http://yoursite.com/2020/10/26/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/">http://yoursite.com/2020/10/26/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -594,8 +619,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/git/">
-                                    <span class="chip bg-color">git</span>
+                                <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/">
+                                    <span class="chip bg-color">贝叶斯统计</span>
                                 </a>
                             
                         </div>
@@ -763,29 +788,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/07/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8R%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9C%B0%E5%9B%BE/">
+                <a href="/2020/10/26/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="如何使用R语言绘制地图">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="贝叶斯统计第一天">
                         
-                        <span class="card-title">如何使用R语言绘制地图</span>
+                        <span class="card-title">贝叶斯统计第一天</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            R语言绘制地图并在地图上添加点
+                            贝叶斯统计
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -794,11 +820,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/R%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">R语言</span>
+                    <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/">
+                        <span class="chip bg-color">贝叶斯统计</span>
                     </a>
                     
                 </div>
@@ -812,24 +839,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/07/hello-world/">
+                <a href="/2020/10/10/Haskell/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Haskell">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">Haskell</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            Haskell初体验
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-10
                             </span>
                         <span class="publish-author">
                             
@@ -838,6 +865,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Haskell/">
+                        <span class="chip bg-color">Haskell</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1010,6 +1045,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
