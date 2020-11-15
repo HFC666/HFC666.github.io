@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-10-26T14:57:13.174Z</updated>
+  <updated>2020-11-15T02:14:40.346Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nim语言学习第一天-md</title>
+    <link href="http://yoursite.com/2020/11/15/nim%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E5%A4%A9-md/"/>
+    <id>http://yoursite.com/2020/11/15/nim%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E5%A4%A9-md/</id>
+    <published>2020-11-15T02:00:52.405Z</published>
+    <updated>2020-11-15T02:14:40.346Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;第一部分-Nim基础&quot;&gt;&lt;a href=&quot;#第一部分-Nim基础&quot; class=&quot;headerlink&quot; title=&quot;第一部分  Nim基础&quot;&gt;&lt;/a&gt;第一部分 
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>贝叶斯统计第一天</title>
@@ -505,31 +528,6 @@
     
     
       <category term="Julia" scheme="http://yoursite.com/tags/Julia/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>统计学第二部分</title>
-    <link href="http://yoursite.com/2020/07/08/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/"/>
-    <id>http://yoursite.com/2020/07/08/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/</id>
-    <published>2020-07-08T00:51:32.000Z</published>
-    <updated>2020-07-08T01:06:21.258Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;第十章-方差分析&quot;&gt;&lt;a href=&quot;#第十章-方差分析&quot; class=&quot;headerlink&quot; title=&quot;第十章 方差分析&quot;&gt;&lt;/a&gt;第十章 方差分析&lt;/h2&gt;&lt;h3 id=&quot;方差分析引论&quot;&gt;&lt;a href=&quot;#方差分析引论&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="统计学" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
     
   </entry>
   
