@@ -2,49 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.hfcouc.work/playlist/index.html</loc>
+    <loc>https://hfcouc.work/playlist/index.html</loc>
     
     <lastmod>2021-07-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.hfcouc.work/2021/07/13/hello-world/</loc>
+    <loc>https://hfcouc.work/2021/07/13/hello-world/</loc>
     
     <lastmod>2021-07-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.hfcouc.work/2021/07/13/test-md/</loc>
+    <loc>https://hfcouc.work/2021/07/13/test-md/</loc>
     
     <lastmod>2021-07-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.hfcouc.work/tags/index.html</loc>
+    <loc>https://hfcouc.work/tags/index.html</loc>
     
     <lastmod>2021-07-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.hfcouc.work/resources/index.html</loc>
+    <loc>https://hfcouc.work/resources/index.html</loc>
     
     <lastmod>2021-07-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.hfcouc.work/categories/index.html</loc>
+    <loc>https://hfcouc.work/categories/index.html</loc>
     
     <lastmod>2021-07-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.hfcouc.work/about/index.html</loc>
+    <loc>https://hfcouc.work/about/index.html</loc>
     
     <lastmod>2021-07-13</lastmod>
     
@@ -52,7 +52,7 @@
   
 
   <url>
-    <loc>https://www.hfcouc.work/</loc>
+    <loc>https://hfcouc.work/</loc>
     <lastmod>2021-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -60,7 +60,7 @@
 
   
   <url>
-    <loc>https://www.hfcouc.work/tags/test/</loc>
+    <loc>https://hfcouc.work/tags/test/</loc>
     <lastmod>2021-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
