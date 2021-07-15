@@ -4,11 +4,30 @@
   
     
     <entry>
+      <title>文献阅读笔记1</title>
+      <link href="/2021/07/15/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B01/"/>
+      <url>/2021/07/15/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B01/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="基于高分二号卫星的牡蛎养殖区域识别"><a href="#基于高分二号卫星的牡蛎养殖区域识别" class="headerlink" title="基于高分二号卫星的牡蛎养殖区域识别"></a>基于高分二号卫星的牡蛎养殖区域识别</h2><p>本研究基于复杂近岸水域养殖网箱的光谱和地理空间特征，提出了一种利用0.8m空间分辨率的高分二号(GF-2)卫星图像提取养殖区域的新方法。</p><p>通过高分二号图像反演得到旋沙浓度将水体分为清水、中浊度和高浊度三种。</p><p>针对这三类水体，分别制定了不同的提取规则：</p><ol><li>一是对清水设定归一化差分水体指数阈值</li><li>二是对中度浑浊水体建立比值指数($R=\text{Green}/\text{NIR}$)</li><li>三是对混浊水体建立特定分类规则的特征分析。</li></ol><p>实验前，对GF-2卫星图像进行了图像裁剪、正射校正、辐射定标和大气校正等预处理。为了后续的实验分析，还进行了图像融合。</p><p><img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4609443/8994817/9174629/zhang5-3016823-large.gif"></p><h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="SSC反演与浑浊度分类"><a href="#SSC反演与浑浊度分类" class="headerlink" title="SSC反演与浑浊度分类"></a>SSC反演与浑浊度分类</h3><p>反演算法的公式如下：<br>$$<br>\operatorname{SSC} = 1.4856\times(\operatorname{B3}/\operatorname{B2})-1.1129<br>$$<br>在公式中，B2和B3分别是红波段和绿波段的反射率。</p><p>根据反演的SSC将海水分为$3$类：清水(SSC为$0\sim0.33g/L$)、中浊水(SSC为$0.33\sim0.46g/L$)和浊水(SSC$&gt;0.46g/L$)。</p><h3 id="水产养殖区提取规则"><a href="#水产养殖区提取规则" class="headerlink" title="水产养殖区提取规则"></a>水产养殖区提取规则</h3><p>清水：在清水中，每个笼子的边界和纹理清晰可见。利用近红外波段和绿色波段吸收和反射特性的差异，采用归一化水体指数(NDWI)提取养殖网箱。反复调整NDWI提取阈值，最终确定为$0.221$。</p><p>中浊度水：在中浊度水域，浮筏的能见度受SSC的影响很大。只能辨认出几条条纹和模糊的笼子轮廓，看不到水体和笼子之间的清晰边缘。因此，为了提高水产养殖区提取的准确性，采用了具有光谱比的特征指数。根据中等浊度水中网箱的光谱特征（下图）和前人研究中构建的比值指数，选择绿色波段和近红外波段来建立比值指数:<br>$$<br>R = \operatorname{B2}/\operatorname{B4}<br>$$<br>在该公式中，$R$是比值指数，B2和B4分别是绿色波段($500nm\sim560nm$)和近红外波段($780\sim2526$)的反射率。确定$R$的阈值为$1.541$。</p><p><img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4609443/8994817/9174629/zhang7-3016823-large.gif"></p><p>高浊度水：在高浊度水中，在GF-2卫星图像上几乎看不到养殖区。浑浊水与养殖区的差异很小，不可能用NDWI或比值指数($R$)从水中提取网箱。因此，建立了基于形状、纹理和光谱信息的规则，如下表</p><p><img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4609443/8994817/9174629/zhang.t2-3016823-large.gif"></p><h3 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h3><p>本研究利用<code>Envi</code>的特征提取(<code>FX</code>)模块进行多尺度分割。</p><p>通常，分割和合并级别的选择与目标特征的规模相关，目标特征的规模决定了对象的最大允许异质性。实验开始时，设定了中等水平(即$50$分)作为参考。由于养殖区的提取比水体的提取更为复杂，因此在$50-100$的范围内确定了最佳的规模水平。合并级别略大于相应的比例级别。尺度水平和合并水平通过二分法进行测试，最高可达$100$。最后，比例级别设置为$65$，合并级别设置为$70$，纹理内核大小默认为$3$。</p><h3 id="养殖区提取"><a href="#养殖区提取" class="headerlink" title="养殖区提取"></a>养殖区提取</h3><p>此外，还利用ArcGIS软件中的创建随机点工具对提取结果进行了客观的定量评估。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>只争朝夕，不负韶华</title>
       <link href="/2021/07/13/index/"/>
       <url>/2021/07/13/index/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>    <div id="aplayer-VxVjzSYD" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="33378114" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"    ></div><img src="https://cdn.jsdelivr.net/gh/HFC666/image@master/20210713/3.178msyh9rg68.png" style="zoom:80%;" /><blockquote><p>现状是没那么容易改变的<br>即便是足够努力<br>也很难在短时间内看出效果<br>所以有时你认为的无法改变<br>也可能只是暂时没看出效果而己<br>而不是不够努力</p></blockquote><img src="https://cdn.jsdelivr.net/gh/HFC666/image@master/20210713/4.36iwffkaky00.png" style="zoom:80%;" /><blockquote><p>不能再浑浑噩噩<br>如果不把眼皮用力抬起看个真切<br>或许就会错过人生中按下快门的良机</p></blockquote><p><strong>即使是一个人，也需要好好吃饭，这是治愈自己的一种方式</strong></p><p>“不被时间和社会所束缚，幸福的填饱肚子，短时间内变得随心所欲，变得自由，不被打扰；毫不费神的吃东西的这种孤高行为，是现代人，都平等的拥有的最高治愈。”</p><div><iframe src="//player.bilibili.com/player.html?aid=73923411&bvid=BV1AE411a7Nw&cid=126453908&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></div>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>    <div id="aplayer-uWYASBuL" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="33378114" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"    ></div><img src="https://cdn.jsdelivr.net/gh/HFC666/image@master/20210713/3.178msyh9rg68.png" style="zoom:80%;" /><blockquote><p>现状是没那么容易改变的<br>即便是足够努力<br>也很难在短时间内看出效果<br>所以有时你认为的无法改变<br>也可能只是暂时没看出效果而己<br>而不是不够努力</p></blockquote><img src="https://cdn.jsdelivr.net/gh/HFC666/image@master/20210713/4.36iwffkaky00.png" style="zoom:80%;" /><blockquote><p>不能再浑浑噩噩<br>如果不把眼皮用力抬起看个真切<br>或许就会错过人生中按下快门的良机</p></blockquote><p><strong>即使是一个人，也需要好好吃饭，这是治愈自己的一种方式</strong></p><p>“不被时间和社会所束缚，幸福的填饱肚子，短时间内变得随心所欲，变得自由，不被打扰；毫不费神的吃东西的这种孤高行为，是现代人，都平等的拥有的最高治愈。”</p><div><iframe src="//player.bilibili.com/player.html?aid=73923411&bvid=BV1AE411a7Nw&cid=126453908&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></div>]]></content>
       
       
       
