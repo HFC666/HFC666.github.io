@@ -256,7 +256,7 @@
 
 	<a href="/2021/09/12/%E6%95%B0%E5%9F%9F/" itemprop="url">
 		<time datetime="2021-09-12T11:58:31.000Z" itemprop="dateUpdated">
-	  		2021-09-12
+	  		2021-09-14
 	  </time>
 	</a> 
 
@@ -282,10 +282,10 @@
 
 		<div class="article-content" id="article-content">
 			<h2 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h2><p>线性代数是研究有限维向量空间上的线性映射的学科。在线性代数中，如果研究复数和实数，会出现更好的定理和更多的洞察力。因此我们将从介绍复数和它们的基本概念开始。</p>
-<p>我们将平面和平凡空间(ordinary space)的例子推广到$\R^n$和$\C^n$，然后我们将它们推广到向量空间的概念。</p>
+<p>我们将平面和平凡空间(ordinary space)的例子推广到$\mathbb{R}^n$和$\mathbb{C}^n$，然后我们将它们推广到向量空间的概念。</p>
 <p>然后我们的下一个主题是子空间，它对于向量空间来说所扮演的角色等同于子集对于集合所扮演的角色。最后我们看一下子空间的和(等同于子集的并集)和子空间的直和(相当于不相交子集的并集)。</p>
-<h3 id="R-n-and-C-n"><a href="#R-n-and-C-n" class="headerlink" title="$\R^n$ and $\C^n$"></a>$\R^n$ and $\C^n$</h3><h4 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h4><p>定义</p>
-<p>一个复数就是一个有序数对$(a,b)$，其中$a,b\in \R$，不过我们将其写作$a+bi$。所有复数的集合表示为$\C = \{a+bi:a,b\in \R\}$。</p>
+<h3 id="mathbb-R-n-and-mathbb-C-n"><a href="#mathbb-R-n-and-mathbb-C-n" class="headerlink" title="$\mathbb{R}^n$ and $\mathbb{C}^n$"></a>$\mathbb{R}^n$ and $\mathbb{C}^n$</h3><h4 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h4><p>定义</p>
+<p>一个复数就是一个有序数对$(a,b)$，其中$a,b\in \mathbb{R}$，不过我们将其写作$a+bi$。所有复数的集合表示为$\mathbb{C} = \{a+bi:a,b\in \mathbb{R}\}$。</p>
 <h4 id="复数运算的性质"><a href="#复数运算的性质" class="headerlink" title="复数运算的性质"></a>复数运算的性质</h4><p>交换律</p>
 <script type="math/tex; mode=display">
 \alpha + \beta = \beta + \alpha,\alpha\beta = \beta\alpha,\forall \alpha,\beta\in \C</script><p>结合律</p>
@@ -293,21 +293,21 @@
 (\alpha+\beta)+\lambda = \alpha+(\beta+\lambda),(\alpha\beta)\lambda=\alpha(\beta\lambda),\forall\alpha,\beta\in \C</script><p>单位元</p>
 <script type="math/tex; mode=display">
 \lambda+0=\lambda,\lambda1=\lambda,\forall \lambda\in \C</script><p>加法逆元</p>
-<p>对于任何$\alpha\in \C$，存在唯一一个$\beta\in \C$，使得$\alpha+\beta=0$。</p>
+<p>对于任何$\alpha\in \mathbb{C}$，存在唯一一个$\beta\in \mathbb{C}$，使得$\alpha+\beta=0$。</p>
 <p>乘法逆元</p>
-<p>对于任何$\alpha\in \C$，存在唯一的$\beta\in \C$使得$\alpha\beta=1$。</p>
+<p>对于任何$\alpha\in \mathbb{C}$，存在唯一的$\beta\in \mathbb{C}$使得$\alpha\beta=1$。</p>
 <p>分配律</p>
 <script type="math/tex; mode=display">
 \lambda(\alpha+\beta) = \lambda\alpha+\lambda\beta,\forall \lambda,\alpha,\beta\in \C</script><hr>
-<h4 id="定义：-alpha-，减法，-1-alpha-，除法"><a href="#定义：-alpha-，减法，-1-alpha-，除法" class="headerlink" title="定义： $-\alpha$，减法，$1/\alpha$，除法"></a>定义： $-\alpha$，减法，$1/\alpha$，除法</h4><p>$\alpha,\beta\in \C$</p>
+<h4 id="定义：-alpha-，减法，-1-alpha-，除法"><a href="#定义：-alpha-，减法，-1-alpha-，除法" class="headerlink" title="定义： $-\alpha$，减法，$1/\alpha$，除法"></a>定义： $-\alpha$，减法，$1/\alpha$，除法</h4><p>$\alpha,\beta\in \mathbb{C}$</p>
 <ul>
 <li>令$-\alpha$表示$\alpha$的加法逆元。因此$-\alpha$是满足$\alpha+(-\alpha)=0$的唯一复数。</li>
-<li>减法：$\C$上的减法定义为：$\beta-\alpha=\beta+(-\alpha)$</li>
+<li>减法：$\mathbb{C}$上的减法定义为：$\beta-\alpha=\beta+(-\alpha)$</li>
 <li>对于$\alpha\neq 0$，令$1/\alpha$表示$\alpha$的乘法逆元。因此$1/\alpha$为满足$\alpha(1/\alpha)=1$的唯一复数。</li>
-<li>$\C$上的除法定义为：$\beta/\alpha=\beta(1/\alpha)$。</li>
+<li>$\mathbb{C}$上的除法定义为：$\beta/\alpha=\beta(1/\alpha)$。</li>
 </ul>
 <hr>
-<p>用$\mathbb{F}$表示$\R$或者$\C$。对于$\alpha\in \mathbb{F}$并且$m$为正数，我们定义$\alpha^m$来表示$\alpha$连乘$m$次：</p>
+<p>用$\mathbb{F}$表示$\mathbb{R}$或者$\mathbb{C}$。对于$\alpha\in \mathbb{F}$并且$m$为正数，我们定义$\alpha^m$来表示$\alpha$连乘$m$次：</p>
 <script type="math/tex; mode=display">
 \alpha^{m}=\underbrace{\alpha \cdots \alpha}_{m \text { times }}</script><p>很显然$(\alpha^m)^n=\alpha^{mn}$并且$(\alpha\beta)^m=\alpha^m\beta^m, \forall \alpha,\beta\in \mathbb{F}$。</p>
 <hr>
