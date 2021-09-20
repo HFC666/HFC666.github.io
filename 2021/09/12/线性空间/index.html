@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      向量空间 | 独自赏晴雨
+      线性代数应该这样学：线性空间 | 独自赏晴雨
     
   </title>
   <meta name="author" content="HFC">
@@ -101,7 +101,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「向量空间」
+			「线性代数应该这样学：线性空间」
 		
 	</p>
 
@@ -237,8 +237,8 @@
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/2021/09/14/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4/" itemprop="url">
-		向量空间
+	<a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" itemprop="url">
+		线性代数应该这样学：线性空间
 	</a>
 
 		</div>
@@ -254,9 +254,9 @@
 
 	更新于
 
-	<a href="/2021/09/14/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4/" itemprop="url">
-		<time datetime="2021-09-14T14:34:50.000Z" itemprop="dateUpdated">
-	  		2021-09-14
+	<a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" itemprop="url">
+		<time datetime="2021-09-12T11:58:31.000Z" itemprop="dateUpdated">
+	  		2021-09-20
 	  </time>
 	</a> 
 
@@ -281,7 +281,65 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<h3 id="向量空间的定义"><a href="#向量空间的定义" class="headerlink" title="向量空间的定义"></a>向量空间的定义</h3><p>定义向量空间的动机来自于$\mathbb{F}^n$中的加法和标量乘法的性质：加法是可交换的、结合的并且有单位元。每个元素也都有加法逆元。标量乘法具有结合律。加法和数乘通过分配律相联系。</p>
+			<h2 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h2><p>线性代数是研究有限维向量空间上的线性映射的学科。在线性代数中，如果研究复数和实数，会出现更好的定理和更多的洞察力。因此我们将从介绍复数和它们的基本概念开始。</p>
+<p>我们将平面和平凡空间(ordinary space)的例子推广到$\mathbb{R}^n$和$\mathbb{C}^n$，然后我们将它们推广到向量空间的概念。</p>
+<p>然后我们的下一个主题是子空间，它对于向量空间来说所扮演的角色等同于子集对于集合所扮演的角色。最后我们看一下子空间的和(等同于子集的并集)和子空间的直和(相当于不相交子集的并集)。</p>
+<h3 id="mathbb-R-n-and-mathbb-C-n"><a href="#mathbb-R-n-and-mathbb-C-n" class="headerlink" title="$\mathbb{R}^n$ and $\mathbb{C}^n$"></a>$\mathbb{R}^n$ and $\mathbb{C}^n$</h3><h4 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h4><p>定义</p>
+<p>一个复数就是一个有序数对$(a,b)$，其中$a,b\in \mathbb{R}$，不过我们将其写作$a+bi$。所有复数的集合表示为$\mathbb{C} = \{a+bi:a,b\in \mathbb{R}\}$。</p>
+<h4 id="复数运算的性质"><a href="#复数运算的性质" class="headerlink" title="复数运算的性质"></a>复数运算的性质</h4><p>交换律</p>
+<script type="math/tex; mode=display">
+\alpha + \beta = \beta + \alpha,\alpha\beta = \beta\alpha,\forall \alpha,\beta\in \mathbb{C}</script><p>结合律</p>
+<script type="math/tex; mode=display">
+(\alpha+\beta)+\lambda = \alpha+(\beta+\lambda),(\alpha\beta)\lambda=\alpha(\beta\lambda),\forall\alpha,\beta\in \mathbb{C}</script><p>单位元</p>
+<script type="math/tex; mode=display">
+\lambda+0=\lambda,\lambda1=\lambda,\forall \lambda\in \mathbb{C}</script><p>加法逆元</p>
+<p>对于任何$\alpha\in \mathbb{C}$，存在唯一一个$\beta\in \mathbb{C}$，使得$\alpha+\beta=0$。</p>
+<p>乘法逆元</p>
+<p>对于任何$\alpha\in \mathbb{C}$，存在唯一的$\beta\in \mathbb{C}$使得$\alpha\beta=1$。</p>
+<p>分配律</p>
+<script type="math/tex; mode=display">
+\lambda(\alpha+\beta) = \lambda\alpha+\lambda\beta,\forall \lambda,\alpha,\beta\in \mathbb{C}</script><hr>
+<h4 id="定义：-alpha-，减法，-1-alpha-，除法"><a href="#定义：-alpha-，减法，-1-alpha-，除法" class="headerlink" title="定义： $-\alpha$，减法，$1/\alpha$，除法"></a>定义： $-\alpha$，减法，$1/\alpha$，除法</h4><p>$\alpha,\beta\in \mathbb{C}$</p>
+<ul>
+<li>令$-\alpha$表示$\alpha$的加法逆元。因此$-\alpha$是满足$\alpha+(-\alpha)=0$的唯一复数。</li>
+<li>减法：$\mathbb{C}$上的减法定义为：$\beta-\alpha=\beta+(-\alpha)$</li>
+<li>对于$\alpha\neq 0$，令$1/\alpha$表示$\alpha$的乘法逆元。因此$1/\alpha$为满足$\alpha(1/\alpha)=1$的唯一复数。</li>
+<li>$\mathbb{C}$上的除法定义为：$\beta/\alpha=\beta(1/\alpha)$。</li>
+</ul>
+<hr>
+<p>用$\mathbb{F}$表示$\mathbb{R}$或者$\mathbb{C}$。对于$\alpha\in \mathbb{F}$并且$m$为正数，我们定义$\alpha^m$来表示$\alpha$连乘$m$次：</p>
+<script type="math/tex; mode=display">
+\alpha^{m}=\underbrace{\alpha \cdots \alpha}_{m \text { times }}</script><p>很显然$(\alpha^m)^n=\alpha^{mn}$并且$(\alpha\beta)^m=\alpha^m\beta^m, \forall \alpha,\beta\in \mathbb{F}$。</p>
+<hr>
+<h4 id="定义：列表-list-，长度-length"><a href="#定义：列表-list-，长度-length" class="headerlink" title="定义：列表(list)，长度(length)"></a>定义：列表(list)，长度(length)</h4><p>假设$n$是一个非负整数。长度为$n$的列表是一个被括号包围用逗号分隔的$n$元有序数对。长度为$n$的列表如下：</p>
+<script type="math/tex; mode=display">
+（x_1,\cdots,x_n)</script><p>两个列表是相等的当且仅当它们长度相等并且在相同的位置有相同的元素。</p>
+<blockquote>
+<p>长度无限的不能称为列表</p>
+</blockquote>
+<p>长度为零的列表像这样：$()$。我们将其当作列表以免不必要的例外情况。</p>
+<h4 id="定义：-mathbb-F-n"><a href="#定义：-mathbb-F-n" class="headerlink" title="定义：$\mathbb{F}^n$"></a>定义：$\mathbb{F}^n$</h4><p>$\mathbb{F}^n$是所有元素来自$\mathbb{F}$的$n$元有序数对的集合：</p>
+<script type="math/tex; mode=display">
+\mathbb{F}=\{(x_1,\cdots,x_n):x_j\in \mathbb{F},\forall j=1,\cdots,n\}</script><h4 id="mathbb-F-n-上的加法"><a href="#mathbb-F-n-上的加法" class="headerlink" title="$\mathbb{F}^n$上的加法"></a>$\mathbb{F}^n$上的加法</h4><p>$\mathbb{F}^n$上的加法定义为相对应的元素相加：</p>
+<script type="math/tex; mode=display">
+(x_1,\cdots,x_n) + (y_1,\cdots,y_n) = (x_1+y_1,\cdots,x_n+y_n)</script><h4 id="mathbb-F-n-上加法的交换律"><a href="#mathbb-F-n-上加法的交换律" class="headerlink" title="$\mathbb{F}^n$上加法的交换律"></a>$\mathbb{F}^n$上加法的交换律</h4><p>如果$x,y\in \mathbb{F}^n$，则$x+y = y+x$</p>
+<p>证明：假设$x=(x_1,\cdots,x_n)$和$y=(y_1,\cdots,y_n)$。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+x + y &= (x_1,\cdots,x_n)+(y_1,\cdots,y_n)\\
+&= (x_1+y_1,\cdots,x_n+y_n)\\
+&= (y_1+x_1,\cdots,y_n+x_n)\\
+&= (y_1,\cdots,y_n) + (x_1,\cdots,x_n)\\
+&= y+x
+\end{aligned}</script><h4 id="定义-0"><a href="#定义-0" class="headerlink" title="定义 $0$"></a>定义 $0$</h4><p>令$0$表示长度为$n$并且元素全部为$0$的列表：</p>
+<script type="math/tex; mode=display">
+0 = (0,\cdots,0)</script><h4 id="mathbb-F-上的加法逆元"><a href="#mathbb-F-上的加法逆元" class="headerlink" title="$\mathbb{F}$上的加法逆元"></a>$\mathbb{F}$上的加法逆元</h4><p>对于$x\in \mathbb{F}^n$，$x$的加法逆元，表示为$-x$，为向量$-x \in \mathbb{F}^n$使得</p>
+<script type="math/tex; mode=display">
+x + (-x) = 0</script><p>换句话说，如果$x = (x_1,\cdots,x_n)$，则$-x = (-x_1,\cdots,-x_n)$。</p>
+<h4 id="mathbb-F-上的数乘"><a href="#mathbb-F-上的数乘" class="headerlink" title="$\mathbb{F}$上的数乘"></a>$\mathbb{F}$上的数乘</h4><p>数字$\lambda$和$\mathbb{F}^n$中向量的乘法通过用$\lambda$乘以$\mathbb{F}^n$中的每一个元素来完成。</p>
+<script type="math/tex; mode=display">
+\lambda(x_1,\cdots,x_n) = (\lambda x_1,\cdots,\lambda x_n)</script><p>在这里$\lambda\in \mathbb{F}$并且$(x_1,\cdots,x_n)\in \mathbb{F}^n$.</p>
+<h3 id="向量空间的定义"><a href="#向量空间的定义" class="headerlink" title="向量空间的定义"></a>向量空间的定义</h3><p>定义向量空间的动机来自于$\mathbb{F}^n$中的加法和标量乘法的性质：加法是可交换的、结合的并且有单位元。每个元素也都有加法逆元。标量乘法具有结合律。加法和数乘通过分配律相联系。</p>
 <p>我们把向量空间定义为在$\mathbb{V}$上具有加法和数乘的集合$\mathbb{V}$，该集合具有上面段落提到的性质。</p>
 <h4 id="加法、数乘"><a href="#加法、数乘" class="headerlink" title="加法、数乘"></a>加法、数乘</h4><p>集合$\mathbb{V}$上的数乘是将元素$u+v\in \mathbb{V}$分配给每对元素$u,v\in \mathbb{V}$的函数。</p>
 <p>集合$\mathbb{V}$上的数乘是将元素$\lambda v\in \mathbb{V}$分配给每一个$\lambda \in \mathbb{F}$和每一个$v\in \mathbb{V}$的函数。</p>
@@ -341,10 +399,73 @@ a0 = a(0+0)=a0+a0</script><p>两边同时加上$a0$的加法逆元，即可得�
 <p>证明：对于$v\in \mathbb{V}$，我们有：</p>
 <script type="math/tex; mode=display">
 v + (-1)v = 1v+(-1)v = (1+(-1))v = 0v = 0</script><p>因此$(-1)v$是$v$的加法逆元。</p>
+<h3 id="子空间"><a href="#子空间" class="headerlink" title="子空间"></a>子空间</h3><p>$V$的子集$U$被称为是子空间如果$U$也是向量空间。</p>
+<blockquote>
+<p>一些数学家使用属于线性子空间来描述子空间。</p>
+</blockquote>
+<h4 id="子空间条件"><a href="#子空间条件" class="headerlink" title="子空间条件"></a>子空间条件</h4><p>子集$U$是$V$的子空间当且仅当$U$满足下列三个条件：</p>
+<ul>
+<li>加法单位元：$0\in U$</li>
+<li>加法封闭：$u,w\in U\rightarrow u+w\in U$</li>
+<li>数乘封闭：$a\in \mathbb{F},u\in U\rightarrow au\in U$</li>
+</ul>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>如果$b\in \mathbb{F}$，则：</p>
+<script type="math/tex; mode=display">
+\{(x_1,x_2,x_3,x_4)\}\in \mathbb{F}^4:x_3=5x_4+b</script><p>为$\mathbb{F}^4$的子空间，当且仅当$b=0$。</p>
+<hr>
+<p>区间$[0,1]$上的连续实值函数的几何是$\mathbb{R}^{[0,1]}$的子空间。</p>
+<hr>
+<p>$\mathbb{R}$上的可导实值函数的集合是$\mathbb{R}^{\mathbb{R}}$的子空间。</p>
+<hr>
+<p>使$f^{\prime}(2)=b$成立的在区间$(0,3)$上的实值可导函数$f$的集合是$\mathbb{R}^{(0,3)}$的子空间，当且仅当$b=0$。</p>
+<hr>
+<p>所有极限为0的复数序列的集合是$\mathbb{C}^{\infty}$的子空间。</p>
+<hr>
+<blockquote>
+<p>很容易发现$\{0\}$是$\mathbb{V}$的最小的子空间，$\mathbb{V}$是$\mathbb{V}$最大的子空间。</p>
+</blockquote>
+<h4 id="子集的和"><a href="#子集的和" class="headerlink" title="子集的和"></a>子集的和</h4><p>假设$U_1,\cdots,U_m$是$V$的子集。$U_1,\cdots,U_m$的和，表示为$U_1+\cdots+U_m$，是$U_1,\cdots,U_m$的所有可能的元素和的集合。更具体地：</p>
+<script type="math/tex; mode=display">
+U_1+\cdots+U_m = \{u_1+\cdots+u_m:u_1\in U_1,\cdots,u_m\in U_m\}</script><h4 id="Sum-of-subspaces-is-the-smallest-containing-subspace"><a href="#Sum-of-subspaces-is-the-smallest-containing-subspace" class="headerlink" title="Sum of subspaces is the smallest containing subspace"></a>Sum of subspaces is the smallest containing subspace</h4><p>假设$U_1,\cdots,U_m$是$V$的子空间。则$U_1+\cdots+U_m$是$V$包含$U_1,\cdots,U_m$的最小子空间。</p>
+<p>证明：</p>
+<p>很容易发现$0\in U_1+\cdots+U_m$并且$U_1+\cdots+U_m$对加法和数乘法封闭。因此它为子空间。</p>
+<p>显然，$U_1,\cdots,U_m$都包含在$U_1+\cdots+U_m$中。相反地，$V$的每个包含$U_1,\cdots,U_m$的子空间都包含$U_1+\cdots+U_m$，因此$U_1+\cdots+U_m$是包含$U_1,\cdots,U_m$的$V$的最小的子空间。</p>
+<h4 id="直和"><a href="#直和" class="headerlink" title="直和"></a>直和</h4><p>假设$U_1,\cdots,U_m$是$V$的子空间。$U_1+\cdots+U_m$的每一个元素都可以被写为以下形式：</p>
+<script type="math/tex; mode=display">
+u_1+\cdots+u_m</script><p>其中$u_j$在$U_j$里。我们可能对$U_1+\cdots+U_m$中每一个元素都可以用唯一一种上述形式表示的例子感兴趣。这种情况非常重要以至于我们给它一个特殊的名字：直和。</p>
+<hr>
+<p>定义：直和</p>
+<p>假设$U_1,\cdots,U_m$是$V$的子空间</p>
+<ul>
+<li>和$U_1+\cdots+U_m$被称为直和如果$U_1+\cdots+U_m$的每一个元素可以唯一地表示为$u_1+\cdots+u_m$，其中每一个$u_j$在$U_j$内。</li>
+<li>如果$U_1+\cdots+U_m$是直和，则$U_1\oplus \cdots \oplus U_m$表示$U_1+\cdots+U_m$，用符号$\oplus$来表示这是直和。</li>
+</ul>
+<h4 id="直和的条件"><a href="#直和的条件" class="headerlink" title="直和的条件"></a>直和的条件</h4><p>假设$U_1,\cdots,U_m$是$V$的子空间。则$U_1+\cdots+U_m$是直和当且仅当将$0$写为一个和$u_1+\cdots+u_m$的唯一形式是让每一个$u_j$等于$0$，其中$u_j$位于$U_j$中。</p>
+<p>证明：</p>
+<p>首先假设$U_1+\cdots+U_m$是一个直和。则直和的定义意味着将$0$写为$u_1+\cdots+u_m$的和的唯一形式是通过使每个$u_j$等于零。</p>
+<p>现在假设将零写为$u_1+\cdots+u_m$的唯一形式是令每一个$u_j$等于零。为了证明$U_1+\cdots+U_m$是一个直和，令$v\in U_1+\cdots+U_m$。我们可以写为</p>
+<script type="math/tex; mode=display">
+v = u_1+\cdots+u_m</script><p>为了证明这种表示是唯一的，假设我们有</p>
+<script type="math/tex; mode=display">
+v = v_1+\cdots+v_m</script><p>将两个方程相减，我们有</p>
+<script type="math/tex; mode=display">
+0 = (u_1-v_1)+\cdots+(u_m-v_m)</script><p>因此$u_1=v_1,\cdots,u_m=v_m$。</p>
+<p>证毕。</p>
+<h4 id="两个子空间的直和"><a href="#两个子空间的直和" class="headerlink" title="两个子空间的直和"></a>两个子空间的直和</h4><p>假设$U$和$W$是$V$的子空间。则$U+W$是直和当且仅当$U\cap W = \{0\}$。</p>
+<p>证明</p>
+<p>首先假设$U+W$是直和。如果$v\in U\cap W$，则$0 = v+(-v)$，其中$v\in U, -v\in W$。</p>
+<blockquote>
+<p>注：这一步是因为$v\in U\cap W$，则$v\in U\text{且} v\in W$，所以$-v \in W$。</p>
+</blockquote>
+<p>通过$0$的唯一的作为$U$中向量和$V$中向量的和表示方式，我们有$v=0$。因此$U\cap W = \{0\}$，这完成了一个方向的证明。</p>
+<p>为了证明另一个方向，现在假设$U\cap W = \{0\}$。为了证明$U+W$是直和，假设$u\in U, w\in W$，并且：</p>
+<script type="math/tex; mode=display">
+0 = u+w</script><p>为了完成证明，我们只需要证明$u=w=0$。上面的方程意味着$u = -w\in W$。因此$u \in U\cap W$。所以$u=0$，这也意味着$w=0$，得证。</p>
+<p>证毕。</p>
 	
 		</div>
 		
-		<div id="current-post-cover" data-scr="/img/post_cover/7.jpg"></div>
+		<div id="current-post-cover" data-scr="/img/post_cover/6.jpg"></div>
 
 		<!-- relate post, comment...-->
 		<div class="investment-container">
@@ -360,7 +481,7 @@ v + (-1)v = 1v+(-1)v = (1+(-1))v = 0v = 0</script><p>因此$(-1)v$是$v$的加�
 		<a id="totop-post-page">返回顶部</a>
 		
 		
-			<a href="/2021/09/12/%E6%95%B0%E5%9F%9F/" title="线性代数应该这样学：数域" rel="next">
+			<a href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -378,29 +499,6 @@ v + (-1)v = 1v+(-1)v = (1+(-1))v = 0v = 0</script><p>因此$(-1)v$是$v$的加�
 <div class="relate-post">
 	
 		<ul>
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/09/12/%E6%95%B0%E5%9F%9F/" title="线性代数应该这样学：数域">
-								线性代数应该这样学：数域			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								九月 12日, 2021				
-							</p>
-							<p class="relate-post-content">
-								向量空间线性代数是研究有限维向量空间上的线性映射的学科。在线性代数中，如果研究复数和实数，会出现更好的定理和更多的洞察力。因此我们将从介绍复数和它们的基本概念开始。
-我们将平面和平凡空间(ordinary space)的例子推广到$\...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/09/12/%E6%95%B0%E5%9F%9F/" title="线性代数应该这样学：数域">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/6.jpg" alt="线性代数应该这样学：数域"/>
-							</a>
-						</div>
-					</li>												
 			
 					<li>
 						<div class="relate-post-text">
