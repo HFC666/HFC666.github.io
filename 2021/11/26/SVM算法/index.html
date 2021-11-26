@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      高斯混合模型和EM算法 | 独自赏晴雨
+      SVM算法 | 独自赏晴雨
     
   </title>
   <meta name="author" content="HFC">
@@ -101,7 +101,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「高斯混合模型和EM算法」
+			「SVM算法」
 		
 	</p>
 
@@ -237,8 +237,8 @@
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" itemprop="url">
-		高斯混合模型和EM算法
+	<a href="/2021/11/26/SVM%E7%AE%97%E6%B3%95/" itemprop="url">
+		SVM算法
 	</a>
 
 		</div>
@@ -254,8 +254,8 @@
 
 	更新于
 
-	<a href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" itemprop="url">
-		<time datetime="2021-08-31T15:24:15.000Z" itemprop="dateUpdated">
+	<a href="/2021/11/26/SVM%E7%AE%97%E6%B3%95/" itemprop="url">
+		<time datetime="2021-11-26T12:48:20.000Z" itemprop="dateUpdated">
 	  		2021-11-26
 	  </time>
 	</a> 
@@ -281,142 +281,204 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<h2 id="Gaussian-mixture-models-and-the-EM-algorithm"><a href="#Gaussian-mixture-models-and-the-EM-algorithm" class="headerlink" title="Gaussian mixture models and the EM algorithm"></a>Gaussian mixture models and the EM algorithm</h2><p>我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。</p>
-<h3 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h3><p>假设我们有有编号的人$i=1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到的标签$C_i\in \{\operatorname{M,F}\}$表示人的性别。在这了，小写字母$c$代表”class”。我们也假设两组具有相同的已知方差$\sigma^2$，但不同的未知均值$\mu_M$和$\mu_F$。类标签符合伯努利分布：</p>
-<script type="math/tex; mode=display">
-p_{C_i}(c_i) = q^{\mathbb{1}(c_i=M)}(1-q)^{\mathbb{1}(c_i=F)}</script><p>我们也假设$q$是已知的。为了简化符号，我们令$\pi_M=q$和$\pi_F=1-q$，因此我们可以写作：</p>
-<script type="math/tex; mode=display">
-p_{C_i}(c_i) = \prod_{c\in \{M,F\}}\pi_c^{\mathbb{1}(c_i=c)}</script><p>每一类的条件分布都为高斯分布：</p>
-<script type="math/tex; mode=display">
-p_{Y_i|C_i}(y_i|c_i) = \prod_c\mathcal{N}(y_i;\mu_c,\sigma^2)^{\mathbb{1}(c_i=c)}</script><h3 id="Parameter-estimation-a-first-attempt"><a href="#Parameter-estimation-a-first-attempt" class="headerlink" title="Parameter estimation: a first attempt"></a>Parameter estimation: a first attempt</h3><p>假设我们观测到独立同分布的身高$Y_1=y_1,\cdots,Y_n=y_n$，并且我们想要去找到参数$\mu_M,\mu_F$的极大似然估计。这是一个非监督问题：我们不知道我们数据的性别标签，但是我们想根据这些标签学习参数。</p>
-<p>根据上文提到的模型设计，计算所有数据点$P_{Y_1,\cdots,Y_n}$的联合密度，以$\mu_M,\mu_F,\sigma,q$表示。取$\log$后计算$\log$似然，然后对$\mu_M$进行求导。为什么优化这么困难？</p>
-<p>我们先对单个数据点$Y_i=y_i$求密度：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P_{Y_i}(y_i) &= \sum_{c_i}p_{C_i}(c_i)p_{Y_i|C_i}(y_i|c_i)\\
-&= \sum_{c_i}(\pi_c\mathcal{N}(y_i;\mu_C,\sigma^2))^{\mathbb{1}(c_i=c)}\\
-&= q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2)
-\end{aligned}</script><p>现在，所有观测的联合分布为</p>
-<script type="math/tex; mode=display">
-P_{Y_1^n}(y_1^n) = \prod_{i=1}^n(q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>则$\log$似然函数为：</p>
-<script type="math/tex; mode=display">
-\ln p_{Y_1^n}(y_1^n) = \sum_{i=1}^n\ln(\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2) + \pi_F\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>我们已经遇到了一个问题，和的形式阻止我们将$\log$应用于内部的正态分布密度函数。通过对称性，我们只需要看其中一个均值，另一个将遵循相同的过程。在我们深入区分之前，我们注意到：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{d}{d\mu}\mathcal{N}(x;\mu,\sigma^2) &= \frac{d}{d\mu}[\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}]\\
-&= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{-(x-\mu)^2}{2\sigma^2}}\cdot\frac{2(x-\mu)}{2\sigma^2}\\
-&= \mathcal{N}(x;\mu,\sigma^2)\cdot\frac{(x-\mu)}{\sigma^2}
-\end{aligned}</script><p>对数似然函数对$\mu_M$进行求导，得</p>
-<blockquote id="fn_1">
-<sup>1</sup>. $\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0$<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
-<script type="math/tex; mode=display">
-\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0</script><p>对于这个表达式我们无法求解。</p>
-<h3 id="Using-hidden-variables-and-the-EM-Algorithm"><a href="#Using-hidden-variables-and-the-EM-Algorithm" class="headerlink" title="Using hidden variables and the EM Algorithm"></a>Using hidden variables and the EM Algorithm</h3><p>退一步，什么会使这个计算容易。如果我们知道隐变量$C_i$的值，则对参数们做最大似然估计就会很容易：我们将会取所有$C_i=M$的点用来估计$\mu_M$，然后对所有$C_i=F$的点重复此过程来估计$\mu_F$。受此启发，我们尝试计算给定观测下$C_i$的分布。我们将从贝叶斯规则开始：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-p_{C_i|Y_i}(c_i|y_i) &= \frac{p_{Y_i|C_i}(y_i|c_i)p_{C_i}(c_i)}{p_{Y_i}(y_i)}\\
-&= \frac{\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(c=c_i)}}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(c_i)
-\end{aligned}</script><p>我们看一下$C_i=M$的后验概率：</p>
-<script type="math/tex; mode=display">
-p_{C_i|Y_i}(M|y_i) = \frac{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(M)</script><p>这个看起来很熟悉，这是式<sup><a href="#fn_1" id="reffn_1">1</a></sup>中的一部分，我们可以将式<sup><a href="#fn_1" id="reffn_1">1</a></sup>用$q_{C_i}$重写，并且假定其跟$\mu_M$无关</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^nq_{C_i}(M)\frac{y_i-\mu_M}{\sigma^2}=0\\
-\mu_M = \frac{\sum_{i=1}^nq_{C_i}(M)y_i}{\sum_{i=1}^nq_{C_i}(M)}</script><p>这样就看起来好多了：$\mu_M$是身高的加权平均值，其中每个身高都根据该人是男性的可能性进行加权。</p>
-<p>因此现在我们形成了一个循环，如果我们知道参数我们将会很容易计算出$C_1^n$的后验概率，并且如果我们知道后验概率我们将很容易地估计出参数，这就陷入了死循环。这就暗示了以下策略，我们可以固定一个来求解另一个。这种方法通常被称为<code>EM</code>算法。它的工作原理大致如下：</p>
+			<h2 id="支持向量机-SVM"><a href="#支持向量机-SVM" class="headerlink" title="支持向量机(SVM)"></a>支持向量机(SVM)</h2><h3 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h3><p>[[svm2]]</p>
+<h4 id="线性可分训练集"><a href="#线性可分训练集" class="headerlink" title="线性可分训练集"></a>线性可分训练集</h4><p>一个训练数据集线性可分是指：$\{(x_i,y_i)\}_{i=1\sim N},\exists(w,b)$，使对$\forall i=1\sim N$，有</p>
 <ul>
-<li>首先，我们固定参数(在这种情况下为高斯分布的均值$\mu_M$和$\mu_F$)并且求解隐变量的后验分布(在这种情况下记为$q_{C_i}$)。</li>
-<li>之后，我们固定隐变量的后验分布，利用隐变量的期望值来最优化参数。</li>
-<li>重复两个步骤直到收敛。</li>
+<li>若$y_i=+1$，则$w^Tx_i+b\ge0$</li>
+<li>若$y_i=-1$，则$w^Tx_i+b&lt;0$</li>
 </ul>
-<h3 id="The-EM-Algorithm-a-more-formal-look"><a href="#The-EM-Algorithm-a-more-formal-look" class="headerlink" title="The EM Algorithm: a more formal look"></a>The EM Algorithm: a more formal look</h3><p>正如我们将在几个短步骤中展示的那样，EM算法实际上是最大化对数似然的下限(换句话说，每一步都保证改进我们的答案直到收敛)。</p>
-<p>假设我们观测到了随机变量$Y$。现在假设我们也有一些隐变量$C$并且$Y$依赖于$C$。我们可以说$C$和$Y$的分布中有一些我们不知道的参数$\theta$，并且我们有兴趣找到它们。</p>
-<p>在我们上一个例子中，我们观测到有隐变量(性别)$C=\{C_1,\cdots,C_n\}$的身高变量$Y=\{Y_1,\cdots,Y_n\}$，并且$Y$和$C$是独立同分布的，我们的参数是$\mu_M$和$\mu_F$。</p>
-<p>在我们真正推导算法之前，我们需要一个关键结论：<code>Jensen&#39;s inequation</code>(琴声不等式)。在这个例子中我们需要的琴声不等式的特例：</p>
+<p>即$y_i[w^Tx_i+b]\ge0$(公式1)</p>
+<p>对于线性可分的数据集，我们需要划一条线来分割两类不同的样本。但是分割的线有无数条，我们怎么判断哪一条线更好呢？<br><img src="D:\joplin\joplin\浙江大学机器学习\image\1.png" alt=""><br>很多人认为第二条线是最好的。但是因为根据免费午餐定理，这三条曲线是一样好的。那么我们为什么会认为第二条曲线是最好的呢？这是因为我们在研究问题之前，对此问题存在先验假设。有很多先验假设认为第二条直线比其余两条要好。我们只考虑其中一种假设，即假设<em>训练样本的位置在特征空间有测量误差</em>。如下图所示：<br><img src="D:\joplin\joplin\浙江大学机器学习\image\2.png" alt=""><br>假设红色的叉和圆圈的真实位置为红色虚线圆圈，则线3和1都会分类错误，而2不会，这说明2号线更能抵御训练样本位置的误差。</p>
+<p>那么2号线是怎么画出来的呢？<br>支持向量机的创造者Vapnik是这样回答的，它首先将直线向一侧平行移动，直到它叉到一个或几个样本为止；之后再向另一侧移动，直到叉到一个或多个样本未知。<br><img src="D:\joplin\joplin\浙江大学机器学习\image\3.png" alt=""><br>我们要找的2号线找的是使得间隔最大的且位于间隔中间的线。<br><strong>在多维的情况下，直线变为超平面</strong>。</p>
+<p>之后我们将支持向量机转化为一个优化问题，优化问题为：</p>
 <script type="math/tex; mode=display">
-\log(\mathbb{E}[X])\ge \mathbb{E}[\log(X)]</script><p>下图是关于琴声不等式的几何直观：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png" alt=""></p>
+\begin{aligned}
+    &\min \frac{1}{2}||w||^2\\
+    &\operatorname{s.t.} \quad y_i[w^T_i+b]\ge1
+\end{aligned}</script><p>那么这是怎么得到的呢？那面我们详细讨论一下：</p>
+<p>事实一：$w^Tb+b=0$与$aw^Tx+ab=0$是同一个平面，$a\in R^+$。即若$(w,b)$满足公式1，则$(aw,ab)$也满足公式一。</p>
 <blockquote>
-<p>琴声不等式的特例说明：对于任何随机变量$X$，$\mathbb{E}[\log X]\le\log\mathbb{E}[X]$。令$X$的PDF为红色的曲线。令$Z=\log X$。中间和右边的图展示了怎么构建$Z$的PDF(蓝色曲线)：因为$\log$，与$X$的PDF相比，它倾向于更小的值。$\log\mathbb{E}(X)$是由中间黑色曲线或$\mathbb{E}(Z)$给出的点。但是，$\mathbb{E}[\log X]$或者$\mathbb{E}[Z]$，将始终较小(或至少永远不会较大)因为对数挤压了分布较大的一端(其中$Z$比较大)并拉伸了较小的一端(其中$Z$较小)。</p>
-<p>关于琴声不等式</p>
-<p>对于一个实函数$\phi(x)$，在区间$I$内它是凸的($\frac{d^2\phi(x)}{d^2x}&gt;0, \forall x\in I$)，那么它满足下面关系：</p>
-<script type="math/tex; mode=display">
-\phi(\sum_{i=1}^Np_ix_i)\le \sum_{i=1}^Np_i\phi(x_i)</script><p>其中$p_i\ge0,\sum_{i=1}^Np_i=1$，且$x_i\in I,(i=1,\cdots,N)$。</p>
-<p><strong>证明</strong>：令$A=\sum_{i=1}^Np_ix_i$，显然$A\in I$。取</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S &= \sum_{i=1}^N\phi(x_i) - \phi(A)\\
-&= \sum_{i=1}^Np_i[\phi(x_i)-\phi(A)]\\
-&= \sum_{i=1}^N p_i\int_A^{x_i}\phi^{\prime}(x)dx
-\end{aligned}</script><p>若$A\le x_i$，因为$\phi^{\prime}(x)$在区间$I$上是递增的，所以</p>
-<script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx\ge \phi^{\prime}(A)(x_i-A)</script><p>若$A_i&gt;x_i$，则</p>
-<script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx = -\int_{x_i}^A\phi^{\prime}(x)dx\ge-(A-x_i)\phi(A) = (x_i-A)\phi^{\prime}(A)</script><p>所以：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S &\ge \sum_{i=1}^Np_i\phi^{\prime}(A)(x_i-A)\\
-&= \phi^{\prime}(A)[\sum_{i=1}^Np_i(x_i-A)]\\
-&= \phi^{\prime}(A)(A-A)\\
-&=0
-\end{aligned}</script><p>证毕。</p>
+<p>公式1：$y_i[w^Tx_i+b]\ge0$</p>
 </blockquote>
-<p>在本文中，求期望相当于加权平均，而$\ln(x)$的二阶导小于$0$，故与上文提到的不等式符号相反。</p>
-<h4 id="The-EM-Algorithm"><a href="#The-EM-Algorithm" class="headerlink" title="The EM Algorithm"></a>The EM Algorithm</h4><p>我们想要去最大化似然函数。我们通过边缘化$C$来计算对数似然函数：</p>
+<p>事实二：点到平面的距离公式。<br>向量$x_0$到超平面$w^Tx+b=0$的距离：</p>
 <script type="math/tex; mode=display">
-\log p_Y(y;\theta) = \log\left(\sum_cp_{Y,C}(y,c)\right)</script><p>我们现在也遭受了困境，我们无法对和取对数。如果我们交换它们的顺序不是更好吗？对，期望是一种特殊的求和，并且琴声不等式可以让我们互换它们如果我们有期望的话。因此，我们将要引进一个隐变量$C$的新的分布$q_C$：</p>
+d = \frac{|w^Tx_0+b|}{||w||}</script><p>当$x_0$为支持向量时，我们要做的就是最大化$d$。<br>根据事实1，我们可以用$a$去缩放：</p>
 <script type="math/tex; mode=display">
-\begin{aligned} \log p_{Y}(y ; \theta) & \\ \left.\text { (Marginalizing over } C \text { and introducing } q_{C}(c) / q_{C}(c)\right) &=\log \left(\sum_{c} q_{C}(c) \frac{p_{Y, C}(y, c ; \theta)}{q_{C}(c)}\right) \\ \text { (Rewriting as an expectation) } &=\log \left(\mathbb{E}_{q_{C}}\left[\frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right]\right) \\ \text { (Using Jensen's inequality) } & \geq \mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right](2) \\ \text { Using definition of conditional probability } &=\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right](3) \end{aligned}</script><p>现在我们有可以很容易优化的$\log p_Y(y;\theta)$的下界了。因为我们已经引入了$q_C$，我们想要在$\theta$和$q_C$上实施最大化。</p>
-<p>我们将使用(2)和(3)分别进行优化。首先先用(2)寻找最好的参数：</p>
+(w,b)\rightarrow (aw,ab)</script><p>最终使在支持向量上$x_0$上，有：</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right] = \mathbb{E}_{q_C}[\log p_{Y, C}(y, C ; \theta)] - \mathbb{E}_{q_C}[\log q_C(C)]</script><p>因为$q_C$不依赖于$\theta$，因此我们可以只优化第一项：</p>
+    |w^Tx_0+b|=1</script><p>此时支持向量与平面距离：</p>
 <script type="math/tex; mode=display">
-\widehat{\theta} \leftarrow \underset{\theta}{\operatorname{argmax}} \mathbb{E}_{q_{C}}\left[\log p_{Y, C}(y, C ; \theta)\right]</script><p>这被称作<code>M-step</code>：<code>M</code>代表最大化，因为我们正在最大化参数。现在，我们用(3)来找到最好的$q_C$：</p>
+ d = \frac{1}{||w||}</script><p>因为最大化$\frac{1}{||w||}$相当于最小化$||w||^2$，所以得到上述的目标函数。</p>
+<p>下面看约束条件是如何得到的。<br>因为在上面的描述中我们有，对于所有的支持向量，我们有</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]=\mathbb{E}_{q_{C}}\left[\log p_{Y}(y ; \theta)\right]+\mathbb{E}_{q_{C}}\left[\log \frac{p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]</script><p>第一项不依赖于$c$，并且第二项看起来像KL散度：</p>
+|w^Tx_0+b|=1</script><p>所以对于非支持向量，我们有：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-&= \log p_Y(y;\theta) - \mathbb{E}_{q_C}[\log\frac{q_C(C)}{p_{C|Y}(C|y;\theta)}]\\
-&= \log p_Y(y;\theta) - D(q_C(\cdot)||p_{C|Y}(\cdot|y;\theta))
-\end{aligned}</script><p>因此，当最大化上述值时，我们想要最小化KL散度。KL散度总是大于等于零，当两个分布完全一样时取零。因此，最优化的$q_C$即为$p_{C|Y}(c|y;\theta)$：</p>
+|w^Tx_0+b|>1</script><p>又因为：$y_i[w^Tx_i+b]\ge0$，所以综上我们有</p>
 <script type="math/tex; mode=display">
-\hat{q}_C(c) \leftarrow p_{C|Y}(c|y;\theta)</script><p>这被称为<code>E-step</code>：<code>E</code>代表期望，因为我们正在计算$q_C$以便我们可以将其用于期望值。</p>
-<h4 id="The-algorithm"><a href="#The-algorithm" class="headerlink" title="The algorithm"></a>The algorithm</h4><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png" alt=""></p>
-<blockquote>
-<p>信息熵可以表达数据的信息量大小，是信息处理的一个非常重要的概念。对于离散型随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = \mathrm{E}_{x\sim p(x)}[-\log p(x)] = -\sum_{i=1}^n p(x)\log p(x)</script><p>对于连续性随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = E_{x\sim p(x)}[-\log p(x)] = -\int p(x)\log p(x)dx</script><p>接下来我们来说一下相对熵，又被称为KL散度或信息散度，是两个概率分布差异的非对称度量。在信息论中，相对熵等价于两个概率分布的信息熵的插值，若其中一个概率分布为真实分布，另一个为理论分布，则此时相对熵等于交叉熵与真实分布的信息熵之差，表示使用理论分布拟合真实分布时产生的信息损耗。公式为：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i) - p(x_i)\log q(x_i)]</script><p>上面的$p(x_i)$为真实事件的概率分布，$q(x_i)$为理论拟合出来的该事件的概率分布。当拟合出来的事件概率分布跟真实的一模一样时，相对熵等于零，而拟合出来不一样时，相对熵大于零。</p>
-<p>最后我们来证明一下相对熵公式只有在$p(x_i)$等于$q(x_i)$的时候等于$0$，其他时候大于$0$。</p>
-<p>要证：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\ge 0</script><p>即证：</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le 0</script><p>又$\ln(x)\le x-1$，当且仅当$x=1$时等号成立</p>
-<p>故</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le \sum_{i=1}^Np(x_i)(\frac{q(x_i)}{p(x_i)}-1) = \sum_{i=1}^N[p(x_i)-q(x_i)]=0</script><p>上面式子中$=$只在$p(x_i)=q(x_i)$时成立。</p>
-</blockquote>
-<h3 id="Example-Applying-the-general-algorithm-to-GMMS"><a href="#Example-Applying-the-general-algorithm-to-GMMS" class="headerlink" title="Example: Applying the general algorithm to GMMS"></a>Example: Applying the general algorithm to GMMS</h3><p>现在，让我们重现看一下关于身高的GMM模型，看看我们如何应用这两个步骤。我们有观测变量$Y=\{Y_1,\cdots,Y_n\}$和隐变量$C=\{C_1,\cdots,C_n\}$。对于<code>E-Step</code>，我们计算后验概率$p_{C|Y}(c|y)$，之前已经计算过了。对于<code>M-Step</code>，我们得去计算联合概率：</p>
+y_i[w^Tx_i+b] = |w^Tx_0+b|\ge 1</script><p>这样我们就得到了上面提到的优化问题。</p>
+<p>这个优化问题为凸优化问题中的<em>二次优化问题</em>。<br>二次规划问题：</p>
+<ol>
+<li>目标函数是二次项</li>
+<li>限制条件是一次项</li>
+</ol>
+<p>这样就会导致要么无解，要么只有一个极值。</p>
+<h3 id="非线性可分"><a href="#非线性可分" class="headerlink" title="非线性可分"></a>非线性可分</h3><p>我们改写目标函数和约束条件，使其变为：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\mathbb{E}_{q_C}[\ln p_{Y,C}(y,C)] &= \mathbb{E}[\ln p_{Y|C}(y|C)p_C(C)]\\
-&= \mathbb{E}_{q_C}\left[\ln \prod_{i=1}^n\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(C_i=c)}\right]\\
-&= \mathbb{E}_{q_C}\left[\sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{1}(C_i=c)(\ln\pi_c+\ln\mathcal{N}(y_i;\mu_c,\sigma^2))\right]\\
-&= \sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]\left(\ln\pi_c + \ln\frac{1}{\sigma\sqrt{2\pi}}-\frac{(y_i-\mu_c)^2}{2\sigma^2}\right)
- \end{aligned}</script><p>$\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]$是$C_i$为$c$的概率。现在我们对$\mu_M$求导：</p>
+&\min&\quad\frac{1}{2}||w||^2+C\sum_{i=1}^N\xi_i\\
+&\operatorname{s.t.}\quad &y_i[w^Tx_i+b]\ge 1-\xi_i\\
+&\quad &\xi_i\ge0
+\end{aligned}</script><p>其中$\xi_i$称为松弛变量，$C\sum_{i=1}^N\xi_i$称为正则项。</p>
+<h3 id="非线性问题"><a href="#非线性问题" class="headerlink" title="非线性问题"></a>非线性问题</h3><p>对于下图所示的问题，我们不能找到一个很好的直线将两类分开：<br><img src="D:\joplin\joplin\浙江大学机器学习\image\4.png" alt=""><br>但是我们可以将其映射到高维空间中的点，然后在高维空间中寻找直线。<br>我们定义一个从低维到高维的映射$\phi(x)$：</p>
 <script type="math/tex; mode=display">
-\frac{d}{d \mu_{M}} \mathbb{E}_{q_{C}}\left[\ln p_{Y \mid C}(y \mid C) p_{C}(C)\right]=\sum_{i=1}^{n} q_{C_{i}}(M)\left(\frac{y_{i}-\mu_{M}}{\sigma^{2}}\right)=0</script><p>得：</p>
+x\xrightarrow{\phi}\phi(x)</script><p>其中$x$为低维向量，而$\phi(x)$为一个高维映射。</p>
+<p>下面我们举一个例子：如下图所示的异或问题<br><img src="D:\joplin\joplin\浙江大学机器学习\image\5.png" alt=""><br>这个问题我们在二维空间里无法找到一条直线将其分开。<br>在上图中我们令四个点分别为：</p>
 <script type="math/tex; mode=display">
-\mu_{M}=\frac{\sum_{i=1}^{n} q_{C_{i}}(M) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(M)}</script><p>同理可得：</p>
+x_1 = \begin{bmatrix}0\\0\end{bmatrix},x_2 = \begin{bmatrix}1\\1\end{bmatrix}\in C_1</script><script type="math/tex; mode=display">
+x_3 = \begin{bmatrix}1\\0\end{bmatrix},x_4 = \begin{bmatrix}0\\1\end{bmatrix}\in C_2</script><p>我们令</p>
 <script type="math/tex; mode=display">
-\mu_{F}=\frac{\sum_{i=1}^{n} q_{C_{i}}(F) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(F)}</script>	
+\phi(x): x = \begin{bmatrix}a\\b\end{bmatrix}\xrightarrow{\phi}\phi(x) = \begin{bmatrix}a^2\\b^2\\a\\b\\ab\end{bmatrix}</script><p>则经过映射得到：</p>
+<script type="math/tex; mode=display">
+\phi(x_1)= \begin{bmatrix}0\\0\\0\\0\\0\end{bmatrix},\phi(x_2)= \begin{bmatrix}1\\1\\1\\1\\1\end{bmatrix}</script><script type="math/tex; mode=display">
+\phi(x_3)= \begin{bmatrix}1\\0\\1\\0\\0\end{bmatrix},\phi(x_4)= \begin{bmatrix}0\\1\\0\\1\\0\end{bmatrix}</script><p>我们可以令</p>
+<script type="math/tex; mode=display">
+w= \begin{bmatrix}-1\\-1\\-1\\-1\\6\end{bmatrix},b=1</script><p>来达到区分的目的。</p>
+<p>有证明显示：在越高维度情况下，找打一个线性超平面来将样本分开的概率越大。我们如何选取$\phi$，我们将$\phi(x)$选择为无限维。但是$\phi(x)$为无限维，$w$将为无限维，优化问题将不可做。</p>
+<p>我们可以不知道无限维映射$\phi(x)$的显式表达，我们只要知道一个核函数：</p>
+<script type="math/tex; mode=display">
+K(x_1,x_2) = \phi(x_1)^T\phi(x_2)</script><p>下面的优化问题：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\min&\quad\frac{1}{2}||w||^2+C\sum_{i=1}^N\xi_i\\
+&\operatorname{s.t.}\quad &y_i[w^T\phi(x_i)+b]\ge 1-\xi_i\\
+&\quad &\xi_i\ge0
+\end{aligned}</script><p>仍然可解。</p>
+<p>在SVM中常用的核函数：</p>
+<script type="math/tex; mode=display">
+K(x_1,x_2) = e^{-\frac{||x_1-x_2||^2}{2\sigma^2}} = \phi(x_1)^T\phi(x_2)</script><p>为高斯核函数</p>
+<script type="math/tex; mode=display">
+K(x_1,x_2) = (x_1^Tx_2+1)^d = \phi(x_1)^T\phi(x_2)</script><p>为多项式核函数，$d$为阶数。</p>
+<p>核函数$K$必须满足某些条件才能被拆成内积的形式：<br>$K(x_1,x_2)$能被写成$\phi(x_1)^T\phi(x_2)$的充要条件为：</p>
+<ol>
+<li>$K(x_1,x_2)=K(x_2,x_1)$</li>
+<li>$\forall c_i\in R,x_i(i=1\sim N)$，有<script type="math/tex">\sum_{i=1}^N\sum_{i=1}^Nc_ic_jK(x_i,x_j)\ge 0</script></li>
+</ol>
+<h3 id="原问题和对偶问题"><a href="#原问题和对偶问题" class="headerlink" title="原问题和对偶问题"></a>原问题和对偶问题</h3><h4 id="原问题"><a href="#原问题" class="headerlink" title="原问题"></a>原问题</h4><p>最小化：$f(w)$<br>限制条件：</p>
+<ul>
+<li>$g_i(w)\le0(i=1\sim K)$</li>
+<li>$h_i(w)=0(i=1\sim M)$</li>
+</ul>
+<h4 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h4><p>定义：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+L(w,\alpha,\beta) &= f(w) + \sum_{i=1}^K\alpha_ig_i(w)+\sum_{i=1}^M\beta_ih_i(w)\\
+&= f(w) + \alpha^Tg(w)+\beta^Th(w)
+\end{aligned}</script><p>对偶问题的定义<br>最大化：$\theta(\alpha,\beta)=\inf_w(w,\alpha,\beta)$，$\inf$表示下界<br>限制条件：$\alpha_i\ge 0,\beta_i\ge0$</p>
+<h4 id="原问题和对偶问题解的关系"><a href="#原问题和对偶问题解的关系" class="headerlink" title="原问题和对偶问题解的关系"></a>原问题和对偶问题解的关系</h4><p>定理：如果$w^\star$是原问题的解，而$\alpha^\star,\beta^\star$是对偶问题的解，则有：</p>
+<script type="math/tex; mode=display">
+f(w^\star)\ge \theta(\alpha^\star,\beta^\star)</script><p>证明：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\theta(\alpha^\star,\beta^\star) &= \inf_w L(w,\alpha^\star,\beta^\star)\\
+&\le L(w^\star,\alpha^\star,\beta^\star) = f(w^\star) + \sum_{i=1}^K\alpha^\star_ig_i(w^\star)+\sum_{i=1}^M\beta^\star_ih_i(w^\star)\\
+&\le f(w^\star)
+\end{aligned}</script><p>定义：</p>
+<script type="math/tex; mode=display">
+G = f(w^\star) - \theta(\alpha^\star,\beta^\star)\ge0</script><p>$G$叫做原问题与对偶问题的间距。对于某些特定优化问题，可以证明：$G=0$。</p>
+<p>强对偶定理：若$f(w)$为凸函数，且$g(w)=Aw+b,h(w)=Cw+d$，则此优化问题的原问题与对偶问题的间距为$0$。即</p>
+<script type="math/tex; mode=display">
+f(w^\star) = \theta(\alpha^\star,\beta^\star)</script><p>此时我们易得对$\forall i=1\sim K$：</p>
+<ul>
+<li>或者$\alpha^\star_i=0$</li>
+<li>或者$g^{\star}_i(w^\star)=0$</li>
+</ul>
+<p>这被称为<strong>KKT条件</strong>。</p>
+<h3 id="利用对偶问题求解SVM"><a href="#利用对偶问题求解SVM" class="headerlink" title="利用对偶问题求解SVM"></a>利用对偶问题求解SVM</h3><p>我们先复习一下原问题：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\min&\quad\frac{1}{2}||w||^2+C\sum_{i=1}^N\xi_i\\
+&\operatorname{s.t.}\quad &y_i[w^T\phi(x_i)+b]\ge 1-\xi_i\\
+&\quad &\xi_i\ge0
+\end{aligned}</script><p>根据原问题的定义形式，我们将上述问题改写：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\min&\quad\frac{1}{2}||w||^2-C\sum_{i=1}^N\xi_i\\
+&\operatorname{s.t.}&\quad 1+\xi_i-y_i w^T\phi(x_i)-y_ib\le 0\\
+&\quad &\xi_i\le0
+\end{aligned}</script><p>凸函数定义：</p>
+<script type="math/tex; mode=display">
+f(\lambda x_1+(1-\lambda)x_2)\le \lambda f(x_1)+(1-\lambda)f(x_2)</script><p>我们SVM的对偶问题为：<br>最大化：</p>
+<script type="math/tex; mode=display">
+\theta(\alpha,\beta) = \inf_{(w,\xi_i,b)}\{\frac{1}{2}||w||^2-C\sum_{i=1}^N\xi_i+\sum_{i=1}^N\beta_i\xi_i+\sum_{i=1}^N\alpha_i[1+\xi_i-y_i w^T\phi(x_i)-y_ib]\}</script><p>限制条件：</p>
+<ul>
+<li>$\alpha_i\ge 0$</li>
+<li>$\beta_i\ge 0$</li>
+</ul>
+<p>我们要想求得$\theta(\alpha,\beta)$，首先要最优化$w,\xi_i,b$，对$L$函数求偏导：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial L}{\partial w} = 0&\Rightarrow w = \sum_{i=1}^N\alpha_iy_i\phi(x_i)\\
+\frac{\partial L}{\partial \xi_i} = 0&\Rightarrow \beta_i+\alpha_i=C\\
+\frac{\partial L}{\partial b}=0&\Rightarrow \sum_{i=1}^N\alpha_iy_i=0
+\end{aligned}</script><p>将其代入，得到：</p>
+<script type="math/tex; mode=display">
+\theta(\alpha,\beta) = \sum_{i=1}^N\alpha_i-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)</script><p>其中$K(x_i,x_j) = \phi(x_i)^T\phi(x_j)$。</p>
+<p>所以对偶优化问题变为：<br>最大化：</p>
+<script type="math/tex; mode=display">
+\theta(\alpha) = \sum_{i=1}^N\alpha_i-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)</script><p>限制条件：</p>
+<ol>
+<li>$0\le\alpha_i\le C$</li>
+<li>$\sum_{i=1}^N\alpha_iy_i=0$</li>
+</ol>
+<p>这也是一个凸优化问题，解这个问题有一个标准的算法(SMO)算法。</p>
+<p>这样我们就可以求出$\alpha_i,i=1\sim N$，但是我们要求的是$w$和$b$，那么我们应该如何求出$w,b$呢，我们可以用之前得到的$w = \sum_{i=1}^N\alpha_iy_i\phi(x_i)$，但问题是我们并不知道$\phi(x_i)$。</p>
+<p>但是在判断样本属于哪一类的时候我们并不需要知道$w$，假设有测试样本$x$，我们知道：</p>
+<ul>
+<li>若$w^T\phi(x)+b\ge0$，则$y=+1$</li>
+<li>若$w^T\phi(x)+b&lt;0$，则$y=-1$</li>
+</ul>
+<p>而</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+w^T\phi(x) &= \sum_{i=1}^N\alpha_iy_i\phi(x_i)^T\phi(x)\\
+&= \sum_{i=1}^N\alpha_iy_iK(x_i,x)
+\end{aligned}</script><p>但是$b$应该怎么算呢？<br>应用KKT条件，我们有</p>
+<ul>
+<li>要么$\beta_i=0$，要么$\xi_i=0$</li>
+<li>要么$\alpha_i=0$，要么$1+\xi_i-y_iw^T\phi(x_i)-y_ib=0$</li>
+</ul>
+<p>我们取一个$0&lt;\alpha_i<C\Rightarrow \beta_i=C-\alpha_i>0$，此时$\beta_i\neq0\Rightarrow\xi_i=0$，因为$\alpha_i\neq0\Rightarrow b = y_i - \sum_{j=1}^N\alpha_jy_jK(x_i,x_j)$。也可以找到所有不等于$0$的$\alpha_i$，求得$b$取平均。</p>
+<h3 id="SMO算法"><a href="#SMO算法" class="headerlink" title="SMO算法"></a>SMO算法</h3><p>最大化：</p>
+<script type="math/tex; mode=display">
+\theta(\alpha) = \sum_{i=1}^N\alpha_i-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)</script><p>限制条件：</p>
+<ol>
+<li>$0\le\alpha_i\le C$</li>
+<li>$\sum_{i=1}^N\alpha_iy_i=0$</li>
+</ol>
+<p>因为我们要优化的变量($\alpha_i$)很多，所以我们每次迭代只选择几个变量进行更新；又因为我们的是有约束的优化问题，所以每次更新可能会破坏我们的约束条件，为了不破坏我们的约束条件，我们每次至少选择两个变量进行优化。因此我们每次选择两个变量来进行优化。</p>
+<h4 id="两个变量二次规划的求解过程"><a href="#两个变量二次规划的求解过程" class="headerlink" title="两个变量二次规划的求解过程"></a>两个变量二次规划的求解过程</h4><ul>
+<li>选择两个变量，其他变量固定</li>
+<li>SMO将对偶问题转化成一系列子问题</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+
+\min _{\alpha_{1}, \alpha_{2}} & W\left(\alpha_{1}, \alpha_{2}\right)=\frac{1}{2} K_{11} \alpha_{1}^{2}+\frac{1}{2} K_{22} \alpha_{2}^{2}+y_{1} y_{2} K_{12} \alpha_{1} \alpha_{2} \\
+
+& -\left(\alpha_{1}+\alpha_{2}\right)+y_{1} \alpha_{1} \sum_{i=3}^{N} y_{i} \alpha_{i} K_{i 1}+y_{2} \alpha_{2} \sum_{i=3}^{N} y_{i} \alpha_{i} K_{i 2} \\
+
+\text { s.t. } & \alpha_{1} y_{1}+\alpha_{2} y_{2}=-\sum_{i=3}^{N} y_{i} \alpha_{i}=\zeta \\
+
+& 0 \leq \alpha_{i} \leq C, i=1,2
+\end{aligned}</script><ul>
+<li>根据约束条件，$\alpha_2$可以表示为$\alpha_1$的函数</li>
+<li>优化问题有解析解</li>
+<li>基于初始可行解$\alpha_1^{old},\alpha_2^{old}$，可以得到$\alpha_1^{new},\alpha_2^{new}$</li>
+</ul>
+	
 		</div>
 		
-		<div id="current-post-cover" data-scr="/img/post_cover/5.jpg"></div>
+		<div id="current-post-cover" data-scr="/img/post_cover/18.jpg"></div>
 
 		<!-- relate post, comment...-->
 		<div class="investment-container">
@@ -431,12 +493,8 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 	<span>
 		<a id="totop-post-page">返回顶部</a>
 		
-			<a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" title="线性代数应该这样学：线性空间" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" title="贝叶斯数据分析" rel="next">
+			<a href="/2021/10/31/Linear-algebra-in-cv/" title="计算机视觉中的线性代数第一章" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -454,31 +512,6 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 <div class="relate-post">
 	
 		<ul>
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/11/26/SVM%E7%AE%97%E6%B3%95/" title="SVM算法">
-								SVM算法			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十一月 26日, 2021				
-							</p>
-							<p class="relate-post-content">
-								支持向量机(SVM)线性模型[[svm2]]
-线性可分训练集一个训练数据集线性可分是指：$\{(x_i,y_i)\}_{i=1\sim N},\exists(w,b)$，使对$\forall i=1\sim N$，有
-
-若$y_i=+...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/11/26/SVM%E7%AE%97%E6%B3%95/" title="SVM算法">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/18.jpg" alt="SVM算法"/>
-							</a>
-						</div>
-					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -503,6 +536,28 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 							<a href="/2021/10/31/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="算法学习笔记第一节">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/14.jpg" alt="算法学习笔记第一节"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">
+								高斯混合模型和EM算法			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 31日, 2021				
+							</p>
+							<p class="relate-post-content">
+								Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/5.jpg" alt="高斯混合模型和EM算法"/>
 							</a>
 						</div>
 					</li>												
