@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      高斯混合模型和EM算法 | 独自赏晴雨
+      马尔科夫链蒙特卡洛方法 | 独自赏晴雨
     
   </title>
   <meta name="author" content="HFC">
@@ -101,7 +101,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「高斯混合模型和EM算法」
+			「马尔科夫链蒙特卡洛方法」
 		
 	</p>
 
@@ -237,8 +237,8 @@
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" itemprop="url">
-		高斯混合模型和EM算法
+	<a href="/2021/12/04/MCMC/" itemprop="url">
+		马尔科夫链蒙特卡洛方法
 	</a>
 
 		</div>
@@ -254,9 +254,9 @@
 
 	更新于
 
-	<a href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" itemprop="url">
-		<time datetime="2021-08-31T15:24:15.000Z" itemprop="dateUpdated">
-	  		2021-11-26
+	<a href="/2021/12/04/MCMC/" itemprop="url">
+		<time datetime="2021-12-03T23:35:54.000Z" itemprop="dateUpdated">
+	  		2021-12-04
 	  </time>
 	</a> 
 
@@ -281,142 +281,113 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<h2 id="Gaussian-mixture-models-and-the-EM-algorithm"><a href="#Gaussian-mixture-models-and-the-EM-algorithm" class="headerlink" title="Gaussian mixture models and the EM algorithm"></a>Gaussian mixture models and the EM algorithm</h2><p>我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。</p>
-<h3 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h3><p>假设我们有有编号的人$i=1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到的标签$C_i\in \{\operatorname{M,F}\}$表示人的性别。在这了，小写字母$c$代表”class”。我们也假设两组具有相同的已知方差$\sigma^2$，但不同的未知均值$\mu_M$和$\mu_F$。类标签符合伯努利分布：</p>
+			<h2 id="蒙特卡洛方法"><a href="#蒙特卡洛方法" class="headerlink" title="蒙特卡洛方法"></a>蒙特卡洛方法</h2><h3 id="MC实质：随机抽样"><a href="#MC实质：随机抽样" class="headerlink" title="MC实质：随机抽样"></a>MC实质：随机抽样</h3><p>为什么要抽样？</p>
+<p>假设我们有关于$x$的一个正态分布的概率密度：</p>
 <script type="math/tex; mode=display">
-p_{C_i}(c_i) = q^{\mathbb{1}(c_i=M)}(1-q)^{\mathbb{1}(c_i=F)}</script><p>我们也假设$q$是已知的。为了简化符号，我们令$\pi_M=q$和$\pi_F=1-q$，因此我们可以写作：</p>
+f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)</script><p>我们很容易得到其期望。但是如果我们要求$g(x)$的期望，我们要用到：</p>
 <script type="math/tex; mode=display">
-p_{C_i}(c_i) = \prod_{c\in \{M,F\}}\pi_c^{\mathbb{1}(c_i=c)}</script><p>每一类的条件分布都为高斯分布：</p>
+E(g(X)) = \int_{-\infty}^{+\infty}f(x)g(x)dx</script><p>如果$g(x)=x^2$，那么我们将很难求得其期望值，那么我们应该怎么办呢？我们可以抽取样本$X$，然后计算$g(X)$，进而计算其平均：</p>
 <script type="math/tex; mode=display">
-p_{Y_i|C_i}(y_i|c_i) = \prod_c\mathcal{N}(y_i;\mu_c,\sigma^2)^{\mathbb{1}(c_i=c)}</script><h3 id="Parameter-estimation-a-first-attempt"><a href="#Parameter-estimation-a-first-attempt" class="headerlink" title="Parameter estimation: a first attempt"></a>Parameter estimation: a first attempt</h3><p>假设我们观测到独立同分布的身高$Y_1=y_1,\cdots,Y_n=y_n$，并且我们想要去找到参数$\mu_M,\mu_F$的极大似然估计。这是一个非监督问题：我们不知道我们数据的性别标签，但是我们想根据这些标签学习参数。</p>
-<p>根据上文提到的模型设计，计算所有数据点$P_{Y_1,\cdots,Y_n}$的联合密度，以$\mu_M,\mu_F,\sigma,q$表示。取$\log$后计算$\log$似然，然后对$\mu_M$进行求导。为什么优化这么困难？</p>
-<p>我们先对单个数据点$Y_i=y_i$求密度：</p>
+E(g(X)) = \frac{1}{N}\sum_{i=1}^Ng(x_i)</script><p>但是给定我们一个分布，我们怎么求得符合这个分布的样本值呢？</p>
+<p>我们可以对概率密度函数进行积分，得到累积分布函数：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-P_{Y_i}(y_i) &= \sum_{c_i}p_{C_i}(c_i)p_{Y_i|C_i}(y_i|c_i)\\
-&= \sum_{c_i}(\pi_c\mathcal{N}(y_i;\mu_C,\sigma^2))^{\mathbb{1}(c_i=c)}\\
-&= q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2)
-\end{aligned}</script><p>现在，所有观测的联合分布为</p>
-<script type="math/tex; mode=display">
-P_{Y_1^n}(y_1^n) = \prod_{i=1}^n(q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>则$\log$似然函数为：</p>
-<script type="math/tex; mode=display">
-\ln p_{Y_1^n}(y_1^n) = \sum_{i=1}^n\ln(\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2) + \pi_F\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>我们已经遇到了一个问题，和的形式阻止我们将$\log$应用于内部的正态分布密度函数。通过对称性，我们只需要看其中一个均值，另一个将遵循相同的过程。在我们深入区分之前，我们注意到：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{d}{d\mu}\mathcal{N}(x;\mu,\sigma^2) &= \frac{d}{d\mu}[\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}]\\
-&= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{-(x-\mu)^2}{2\sigma^2}}\cdot\frac{2(x-\mu)}{2\sigma^2}\\
-&= \mathcal{N}(x;\mu,\sigma^2)\cdot\frac{(x-\mu)}{\sigma^2}
-\end{aligned}</script><p>对数似然函数对$\mu_M$进行求导，得</p>
-<blockquote id="fn_1">
-<sup>1</sup>. $\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0$<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
-<script type="math/tex; mode=display">
-\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0</script><p>对于这个表达式我们无法求解。</p>
-<h3 id="Using-hidden-variables-and-the-EM-Algorithm"><a href="#Using-hidden-variables-and-the-EM-Algorithm" class="headerlink" title="Using hidden variables and the EM Algorithm"></a>Using hidden variables and the EM Algorithm</h3><p>退一步，什么会使这个计算容易。如果我们知道隐变量$C_i$的值，则对参数们做最大似然估计就会很容易：我们将会取所有$C_i=M$的点用来估计$\mu_M$，然后对所有$C_i=F$的点重复此过程来估计$\mu_F$。受此启发，我们尝试计算给定观测下$C_i$的分布。我们将从贝叶斯规则开始：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-p_{C_i|Y_i}(c_i|y_i) &= \frac{p_{Y_i|C_i}(y_i|c_i)p_{C_i}(c_i)}{p_{Y_i}(y_i)}\\
-&= \frac{\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(c=c_i)}}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(c_i)
-\end{aligned}</script><p>我们看一下$C_i=M$的后验概率：</p>
-<script type="math/tex; mode=display">
-p_{C_i|Y_i}(M|y_i) = \frac{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(M)</script><p>这个看起来很熟悉，这是式<sup><a href="#fn_1" id="reffn_1">1</a></sup>中的一部分，我们可以将式<sup><a href="#fn_1" id="reffn_1">1</a></sup>用$q_{C_i}$重写，并且假定其跟$\mu_M$无关</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^nq_{C_i}(M)\frac{y_i-\mu_M}{\sigma^2}=0\\
-\mu_M = \frac{\sum_{i=1}^nq_{C_i}(M)y_i}{\sum_{i=1}^nq_{C_i}(M)}</script><p>这样就看起来好多了：$\mu_M$是身高的加权平均值，其中每个身高都根据该人是男性的可能性进行加权。</p>
-<p>因此现在我们形成了一个循环，如果我们知道参数我们将会很容易计算出$C_1^n$的后验概率，并且如果我们知道后验概率我们将很容易地估计出参数，这就陷入了死循环。这就暗示了以下策略，我们可以固定一个来求解另一个。这种方法通常被称为<code>EM</code>算法。它的工作原理大致如下：</p>
+F(x) = \int_{-\infty}^xf(t)dt</script><p>累计分布函数为递增函数，其值域为$[0,1]$，因此我们可以在$[0,1]$上均匀采样，假设采样的值为$y\in[0,1]$，则求$x = F^{-1}(y)$即为我们抽样的点。</p>
+<p>但是$F(x)$真的可求吗？对于复杂的$f(x)$，$F(x)$可能不好求，于是就有下面的取舍采样法：</p>
+<p>对于复杂的概率密度函数$f(x)$，我们可以找到一个简单的可求累积分布函数的概率密度函数$q(x)$，对于常数$m$，都有$mq(x)\ge f(x)$。这样我们可以求得$q(x)$的累计分布函数$Q(x)$，在$Q(x)$上进行采样。假设采的样本为$x_i$，则：</p>
 <ul>
-<li>首先，我们固定参数(在这种情况下为高斯分布的均值$\mu_M$和$\mu_F$)并且求解隐变量的后验分布(在这种情况下记为$q_{C_i}$)。</li>
-<li>之后，我们固定隐变量的后验分布，利用隐变量的期望值来最优化参数。</li>
-<li>重复两个步骤直到收敛。</li>
+<li>以概率$P = \frac{f(x)}{mq(x)}$接受</li>
+<li>以概率$1-P$拒绝</li>
 </ul>
-<h3 id="The-EM-Algorithm-a-more-formal-look"><a href="#The-EM-Algorithm-a-more-formal-look" class="headerlink" title="The EM Algorithm: a more formal look"></a>The EM Algorithm: a more formal look</h3><p>正如我们将在几个短步骤中展示的那样，EM算法实际上是最大化对数似然的下限(换句话说，每一步都保证改进我们的答案直到收敛)。</p>
-<p>假设我们观测到了随机变量$Y$。现在假设我们也有一些隐变量$C$并且$Y$依赖于$C$。我们可以说$C$和$Y$的分布中有一些我们不知道的参数$\theta$，并且我们有兴趣找到它们。</p>
-<p>在我们上一个例子中，我们观测到有隐变量(性别)$C=\{C_1,\cdots,C_n\}$的身高变量$Y=\{Y_1,\cdots,Y_n\}$，并且$Y$和$C$是独立同分布的，我们的参数是$\mu_M$和$\mu_F$。</p>
-<p>在我们真正推导算法之前，我们需要一个关键结论：<code>Jensen&#39;s inequation</code>(琴声不等式)。在这个例子中我们需要的琴声不等式的特例：</p>
+<p>但是合适的$q(x)$好找吗？其实在高维情况下并不好找。</p>
+<p>于是我们便有了马尔科夫链蒙特卡洛采样</p>
+<h3 id="MCMC"><a href="#MCMC" class="headerlink" title="MCMC"></a>MCMC</h3><p>假设状态序列为：$x_{t-2},x_{t-1},x_t,x_{t+1},x_{t+2}$，则</p>
 <script type="math/tex; mode=display">
-\log(\mathbb{E}[X])\ge \mathbb{E}[\log(X)]</script><p>下图是关于琴声不等式的几何直观：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png" alt=""></p>
-<blockquote>
-<p>琴声不等式的特例说明：对于任何随机变量$X$，$\mathbb{E}[\log X]\le\log\mathbb{E}[X]$。令$X$的PDF为红色的曲线。令$Z=\log X$。中间和右边的图展示了怎么构建$Z$的PDF(蓝色曲线)：因为$\log$，与$X$的PDF相比，它倾向于更小的值。$\log\mathbb{E}(X)$是由中间黑色曲线或$\mathbb{E}(Z)$给出的点。但是，$\mathbb{E}[\log X]$或者$\mathbb{E}[Z]$，将始终较小(或至少永远不会较大)因为对数挤压了分布较大的一端(其中$Z$比较大)并拉伸了较小的一端(其中$Z$较小)。</p>
-<p>关于琴声不等式</p>
-<p>对于一个实函数$\phi(x)$，在区间$I$内它是凸的($\frac{d^2\phi(x)}{d^2x}&gt;0, \forall x\in I$)，那么它满足下面关系：</p>
+P(x_{t+1}|\cdots,x_{t-2},x_{t-1},x_t) = P(x_{t+1}|x_t)</script><p>我们有一个状态转移矩阵$P$，表示各个状态之间的转移概率。</p>
+<p>马尔科夫链有一个好的性质，就是其初始概率分布乘以状态转移矩阵$P$多次后会收敛达到==稳定的概率分布==。</p>
+<p>所以假设我们的概率分布为$\pi^0,\pi^1,\cdots,\pi^m$，假设经过$m$步后收敛，那么在$m$步之后我们都有：$\pi P = \pi$。</p>
+<p>那我们如何找到这个$P$呢？</p>
+<p>我们采用一个更强的条件来找$P$，即细致平衡条件：</p>
 <script type="math/tex; mode=display">
-\phi(\sum_{i=1}^Np_ix_i)\le \sum_{i=1}^Np_i\phi(x_i)</script><p>其中$p_i\ge0,\sum_{i=1}^Np_i=1$，且$x_i\in I,(i=1,\cdots,N)$。</p>
-<p><strong>证明</strong>：令$A=\sum_{i=1}^Np_ix_i$，显然$A\in I$。取</p>
+\pi(i)P(i,j) = \pi(j)P(j,i)</script><p>有细致平衡条件可以推出$\pi P = \pi$，但是反过来不一定成立。</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-S &= \sum_{i=1}^N\phi(x_i) - \phi(A)\\
-&= \sum_{i=1}^Np_i[\phi(x_i)-\phi(A)]\\
-&= \sum_{i=1}^N p_i\int_A^{x_i}\phi^{\prime}(x)dx
-\end{aligned}</script><p>若$A\le x_i$，因为$\phi^{\prime}(x)$在区间$I$上是递增的，所以</p>
+\sum_{i=1}^\infty \pi(i)P(i,j) = \sum_{i=1}^\infty\pi(j)P(j,i) = \pi(j)\sum_{i=1}^\infty P(j,i) = \pi(j)</script><p>由此可以推出$\pi P = \pi$。</p>
+<p>但是是不是所有的$Q$都满足这个条件呢？显然不是，对任意$Q$，有</p>
 <script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx\ge \phi^{\prime}(A)(x_i-A)</script><p>若$A_i&gt;x_i$，则</p>
+\pi(i)Q(i,j)\neq \pi(j)Q(j,i)</script><p>既然随便一个矩阵$Q$不行，那么我们引入$\alpha$，使得</p>
 <script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx = -\int_{x_i}^A\phi^{\prime}(x)dx\ge-(A-x_i)\phi(A) = (x_i-A)\phi^{\prime}(A)</script><p>所以：</p>
+\pi(i)Q(i,j)\alpha(i,j) = \pi(j)Q(j,i)\alpha(j,i)</script><p>很容易得到，使得这个等式成立的$\alpha$为：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-S &\ge \sum_{i=1}^Np_i\phi^{\prime}(A)(x_i-A)\\
-&= \phi^{\prime}(A)[\sum_{i=1}^Np_i(x_i-A)]\\
-&= \phi^{\prime}(A)(A-A)\\
-&=0
-\end{aligned}</script><p>证毕。</p>
+\alpha(i,j) &= \pi(j)Q(j,i)\\
+\alpha(j,i) &= \pi(i)Q(i,j)
+\end{aligned}</script><p>由此可以将$\alpha(i,j)$看作是一个概率，$\alpha\in [0,1]$。</p>
+<p>则</p>
+<script type="math/tex; mode=display">
+P(i,j) = Q(i,j)\alpha(i,j)</script><blockquote>
+<p>在这里我有个疑问，如果$\alpha(i,j)\in [0,1]$，那么这个式子是不太可能成立的，因为$P(i,j)\le Q(i,j)$，且两者都为概率函数，所以上式应该为：$P(i,j) = mQ(i,j)\alpha(i,j),m&gt;1$。这就与接受-拒绝采样差不多了。</p>
 </blockquote>
-<p>在本文中，求期望相当于加权平均，而$\ln(x)$的二阶导小于$0$，故与上文提到的不等式符号相反。</p>
-<h4 id="The-EM-Algorithm"><a href="#The-EM-Algorithm" class="headerlink" title="The EM Algorithm"></a>The EM Algorithm</h4><p>我们想要去最大化似然函数。我们通过边缘化$C$来计算对数似然函数：</p>
+<h3 id="Metropolis-Hastings采样"><a href="#Metropolis-Hastings采样" class="headerlink" title="Metropolis-Hastings采样"></a>Metropolis-Hastings采样</h3><p>因为$\alpha$的值通常较小，我们用Metropolis-Hastings采样算法来解决这个问题：</p>
+<p>核心的公式仍然没变：</p>
 <script type="math/tex; mode=display">
-\log p_Y(y;\theta) = \log\left(\sum_cp_{Y,C}(y,c)\right)</script><p>我们现在也遭受了困境，我们无法对和取对数。如果我们交换它们的顺序不是更好吗？对，期望是一种特殊的求和，并且琴声不等式可以让我们互换它们如果我们有期望的话。因此，我们将要引进一个隐变量$C$的新的分布$q_C$：</p>
+\pi(i)Q(i,j)\alpha(i,j) = \pi(j)Q(j,i)\alpha(j,i)</script><p>只是我让两边的$\alpha$值同时扩大相同的倍数，等式仍然成立，直到其中一侧的$\alpha$值扩大为了$1$。</p>
+<p>假设右边的大一点，原来是：</p>
 <script type="math/tex; mode=display">
-\begin{aligned} \log p_{Y}(y ; \theta) & \\ \left.\text { (Marginalizing over } C \text { and introducing } q_{C}(c) / q_{C}(c)\right) &=\log \left(\sum_{c} q_{C}(c) \frac{p_{Y, C}(y, c ; \theta)}{q_{C}(c)}\right) \\ \text { (Rewriting as an expectation) } &=\log \left(\mathbb{E}_{q_{C}}\left[\frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right]\right) \\ \text { (Using Jensen's inequality) } & \geq \mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right](2) \\ \text { Using definition of conditional probability } &=\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right](3) \end{aligned}</script><p>现在我们有可以很容易优化的$\log p_Y(y;\theta)$的下界了。因为我们已经引入了$q_C$，我们想要在$\theta$和$q_C$上实施最大化。</p>
-<p>我们将使用(2)和(3)分别进行优化。首先先用(2)寻找最好的参数：</p>
+\pi_iQ(i,j)\times 0.01 = \pi_jQ(j,i)\times 0.05</script><p>现在是：</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right] = \mathbb{E}_{q_C}[\log p_{Y, C}(y, C ; \theta)] - \mathbb{E}_{q_C}[\log q_C(C)]</script><p>因为$q_C$不依赖于$\theta$，因此我们可以只优化第一项：</p>
+\pi_iQ(i,j)\times 0.2 = \pi_jQ(j,i)\times 1</script><p>这样我们的接受率实际是做了如下改进，即：</p>
 <script type="math/tex; mode=display">
-\widehat{\theta} \leftarrow \underset{\theta}{\operatorname{argmax}} \mathbb{E}_{q_{C}}\left[\log p_{Y, C}(y, C ; \theta)\right]</script><p>这被称作<code>M-step</code>：<code>M</code>代表最大化，因为我们正在最大化参数。现在，我们用(3)来找到最好的$q_C$：</p>
+\alpha(i,j) = \min\{\frac{\pi(j)Q(j,i)}{\pi(i)Q(i,j)},1\}</script><p>很多时候，我们选择的马尔科夫链状态转移矩阵如果是对称的，即满足$Q(i,j)=Q(j,i)$，这时我们的接受率可以进一步化简：</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]=\mathbb{E}_{q_{C}}\left[\log p_{Y}(y ; \theta)\right]+\mathbb{E}_{q_{C}}\left[\log \frac{p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]</script><p>第一项不依赖于$c$，并且第二项看起来像KL散度：</p>
+\alpha(i,j) = \min\{\frac{\pi(j)}{\pi(i)}\}</script><h4 id="例"><a href="#例" class="headerlink" title="例"></a>例</h4><p>假设目标平稳分布是一个均值为$10$，标准差为$5$的正态分布，而选择的马尔科夫链状态转移矩阵$Q(i,j)$的条件转移概率是以$i$为均值，方差为$1$的正态分布在位置$j$的值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> norm</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">norm_dist_prob</span>(<span class="params">theta</span>):</span></span><br><span class="line">    y = norm.pdf(theta, loc=<span class="number">10</span>, scale=<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line">T = <span class="number">5000</span></span><br><span class="line">pi = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(T)]</span><br><span class="line">sigma = <span class="number">1</span></span><br><span class="line">t = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> t &lt; T-<span class="number">1</span>:</span><br><span class="line">    t = t + <span class="number">1</span></span><br><span class="line">    pi_star = norm.rvs(loc=pi[t-<span class="number">1</span>], scale=sigma, size=<span class="number">1</span>, random_state=<span class="literal">None</span>)</span><br><span class="line">    alpha = <span class="built_in">min</span>(<span class="number">1</span>, norm_dist_prob(pi_star[<span class="number">0</span>]) / norm_dist_prob(pi[t-<span class="number">1</span>]))</span><br><span class="line">    </span><br><span class="line">    u = random.uniform(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> u &lt; alpha:</span><br><span class="line">        pi[t] = pi_star[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pi[t] = pi[t-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">plt.scatter(pi, norm.pdf(pi, loc=<span class="number">10</span>, scale=<span class="number">5</span>),label=<span class="string">&#x27;Target Distribution&#x27;</span>, c= <span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">num_bins = <span class="number">50</span></span><br><span class="line">plt.hist(pi, num_bins, density=<span class="number">1</span>, facecolor=<span class="string">&#x27;green&#x27;</span>, alpha=<span class="number">0.7</span>,label=<span class="string">&#x27;Samples Distribution&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>再假设目标平稳是一个$a = 2.37, b =0.627$的$\beta$分布，而选择的马尔可夫转移矩阵$Q(i,j)$的条件概率是以$i$为均值，方差为$1$的正态分布在位置$i$的值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> beta</span><br><span class="line">a, b = <span class="number">2.31</span>, <span class="number">0.627</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">beta_dist_prob</span>(<span class="params">theta</span>):</span></span><br><span class="line">    y = beta(<span class="number">2.31</span>, <span class="number">0.627</span>).pdf(theta)</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line">T = <span class="number">5000</span></span><br><span class="line">pi = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(T)]</span><br><span class="line">sigma = <span class="number">1</span></span><br><span class="line">t = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> t &lt; T-<span class="number">1</span>:</span><br><span class="line">    t = t + <span class="number">1</span></span><br><span class="line">    pi_star = norm.rvs(loc=pi[t-<span class="number">1</span>], scale=sigma, size=<span class="number">1</span>, random_state=<span class="literal">None</span>)</span><br><span class="line">    alpha = <span class="built_in">min</span>(<span class="number">1</span>, beta_dist_prob(pi_star[<span class="number">0</span>]) / beta_dist_prob(pi[t-<span class="number">1</span>]))</span><br><span class="line">    </span><br><span class="line">    u = random.uniform(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> u &lt; alpha:</span><br><span class="line">        pi[t] = pi_star[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pi[t] = pi[t - <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">plt.scatter(pi, beta(<span class="number">2.31</span>, <span class="number">0.627</span>).pdf(pi),label=<span class="string">&#x27;Target Distribution&#x27;</span>, c= <span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">num_bins = <span class="number">50</span></span><br><span class="line">plt.hist(pi, num_bins, density=<span class="number">1</span>, facecolor=<span class="string">&#x27;green&#x27;</span>, alpha=<span class="number">0.7</span>,label=<span class="string">&#x27;Samples Distribution&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="吉布斯采样"><a href="#吉布斯采样" class="headerlink" title="吉布斯采样"></a>吉布斯采样</h3><p>M-H采样在高维时计算时间较长，算法效率较低。而且，很多时候我们甚至很难求出目标的各特征维度联合分布，但是可以方便求出各个特征之间的条件概率分布。所以我们希望对条件概率分布进行抽样，得到样本的序列。</p>
+<p>对于二维概率密度函数：</p>
+<p><img src="https://static01.imgkr.com/temp/7b4a4951c849420390f5190505229c78.png" alt=""></p>
+<p>假设我们取两个点$A$和$B$，我们有</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-&= \log p_Y(y;\theta) - \mathbb{E}_{q_C}[\log\frac{q_C(C)}{p_{C|Y}(C|y;\theta)}]\\
-&= \log p_Y(y;\theta) - D(q_C(\cdot)||p_{C|Y}(\cdot|y;\theta))
-\end{aligned}</script><p>因此，当最大化上述值时，我们想要最小化KL散度。KL散度总是大于等于零，当两个分布完全一样时取零。因此，最优化的$q_C$即为$p_{C|Y}(c|y;\theta)$：</p>
+\pi(A) = \pi(x_1,y_1) = \pi(x_1)\pi(y_1|x_1),
+\pi(B) = \pi(x_1,y_2) = \pi(x_1)\pi(y_2|x_1)</script><p>变化一下，得：</p>
 <script type="math/tex; mode=display">
-\hat{q}_C(c) \leftarrow p_{C|Y}(c|y;\theta)</script><p>这被称为<code>E-step</code>：<code>E</code>代表期望，因为我们正在计算$q_C$以便我们可以将其用于期望值。</p>
-<h4 id="The-algorithm"><a href="#The-algorithm" class="headerlink" title="The algorithm"></a>The algorithm</h4><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png" alt=""></p>
-<blockquote>
-<p>信息熵可以表达数据的信息量大小，是信息处理的一个非常重要的概念。对于离散型随机变量，信息熵公式如下：</p>
+\pi(A)\pi(y_2|x_1) = \pi(x_1)\pi(y_1|x_1)\pi(y_2|x_1),
+\pi(B)\pi(y_1|x_1) = \pi(x_1)\pi(y_2|x_1)\pi(y_1|x_1)</script><p>所以</p>
 <script type="math/tex; mode=display">
-H(p) = H(X) = \mathrm{E}_{x\sim p(x)}[-\log p(x)] = -\sum_{i=1}^n p(x)\log p(x)</script><p>对于连续性随机变量，信息熵公式如下：</p>
+\pi(A)\pi(y_2|x_1) = \pi(B)\pi(y_1|x_1)</script><p>这与细致平衡条件非常相像：</p>
+<p>我们令$\pi(y_2|x_1)$为状态转移概率$P(A\rightarrow B)$。</p>
+<p>则</p>
 <script type="math/tex; mode=display">
-H(p) = H(X) = E_{x\sim p(x)}[-\log p(x)] = -\int p(x)\log p(x)dx</script><p>接下来我们来说一下相对熵，又被称为KL散度或信息散度，是两个概率分布差异的非对称度量。在信息论中，相对熵等价于两个概率分布的信息熵的插值，若其中一个概率分布为真实分布，另一个为理论分布，则此时相对熵等于交叉熵与真实分布的信息熵之差，表示使用理论分布拟合真实分布时产生的信息损耗。公式为：</p>
+\pi(A)P(A\rightarrow B) = \pi(B)P(B\rightarrow A)</script><p>假设我们有第三个点$C$：</p>
+<p>则同理</p>
 <script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i) - p(x_i)\log q(x_i)]</script><p>上面的$p(x_i)$为真实事件的概率分布，$q(x_i)$为理论拟合出来的该事件的概率分布。当拟合出来的事件概率分布跟真实的一模一样时，相对熵等于零，而拟合出来不一样时，相对熵大于零。</p>
-<p>最后我们来证明一下相对熵公式只有在$p(x_i)$等于$q(x_i)$的时候等于$0$，其他时候大于$0$。</p>
-<p>要证：</p>
+\pi(A)\pi(y_1|x_2) = \pi(C)\pi(y_1|x_1)</script><p>即</p>
 <script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\ge 0</script><p>即证：</p>
+\pi(A)P(A\rightarrow C) = \pi(C)P(C\rightarrow A)</script><p>那么对于所有$A^{\prime}$都有：</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le 0</script><p>又$\ln(x)\le x-1$，当且仅当$x=1$时等号成立</p>
-<p>故</p>
+\pi(A)P(A\rightarrow A^{\prime}) = \pi(A)P(A^{\prime}\rightarrow A)</script><p><img src="https://static01.imgkr.com/temp/c09972e12900423281c5fcad2216d535.png" alt=""></p>
+<p>因为我们的状态转移矩阵$P(A\rightarrow B)=\pi(y_2|x_1)$已知，因此我们不存在拒绝采样的问题。</p>
+<p>但是我们前面的推理都是基于有一个坐标相等，如果每个坐标都不想等怎么办？</p>
+<p><img src="https://static01.imgkr.com/temp/2b8c1e58ea604756b4836abb3331502d.png" alt=""></p>
+<p>如上图的$D$点，我们规定：</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le \sum_{i=1}^Np(x_i)(\frac{q(x_i)}{p(x_i)}-1) = \sum_{i=1}^N[p(x_i)-q(x_i)]=0</script><p>上面式子中$=$只在$p(x_i)=q(x_i)$时成立。</p>
-</blockquote>
-<h3 id="Example-Applying-the-general-algorithm-to-GMMS"><a href="#Example-Applying-the-general-algorithm-to-GMMS" class="headerlink" title="Example: Applying the general algorithm to GMMS"></a>Example: Applying the general algorithm to GMMS</h3><p>现在，让我们重现看一下关于身高的GMM模型，看看我们如何应用这两个步骤。我们有观测变量$Y=\{Y_1,\cdots,Y_n\}$和隐变量$C=\{C_1,\cdots,C_n\}$。对于<code>E-Step</code>，我们计算后验概率$p_{C|Y}(c|y)$，之前已经计算过了。对于<code>M-Step</code>，我们得去计算联合概率：</p>
+P(A\rightarrow D)=0</script><p>即我们只允许在<strong>平行坐标轴</strong>上采样。</p>
+<p>吉布斯采样步骤：</p>
+<ul>
+<li>给定平稳分布$\pi(x_1,x_2)$</li>
+<li>$t=0$随机产生一个初始状态$(x_1^{(0)},x_2^{(0)})$</li>
+<li>从条件概率分布$P(x_2|x_1^{(0)})$中采样$(x_1^{(0)},x_2^{(1)})$</li>
+<li>从条件概率分布$P(x_1|x_2^{(1)})$中采样$(x_1^{(1)},x_2^{(1)})$</li>
+<li>不停轮换坐标轴，采取指定数量样本为止</li>
+</ul>
+<h4 id="例-1"><a href="#例-1" class="headerlink" title="例"></a>例</h4><p>假设我们要采样的是一个二维正态分布$N(\mu,\Sigma)$，其中：$\mu=(\mu_1,\mu_2) = (5,-1),\Sigma=\left(\begin{array}{cc} \sigma_{1}^{2} &amp; \rho \sigma_{1} \sigma_{2} \\ \rho \sigma_{1} \sigma_{2} &amp; \sigma_{2}^{2} \end{array}\right)=\left(\begin{array}{ll} 1 &amp; 1 \\ 1 &amp; 4\end{array}\right)$。</p>
+<p>首先要求得：采样过程中需要的状态转移条件分布：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{E}_{q_C}[\ln p_{Y,C}(y,C)] &= \mathbb{E}[\ln p_{Y|C}(y|C)p_C(C)]\\
-&= \mathbb{E}_{q_C}\left[\ln \prod_{i=1}^n\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(C_i=c)}\right]\\
-&= \mathbb{E}_{q_C}\left[\sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{1}(C_i=c)(\ln\pi_c+\ln\mathcal{N}(y_i;\mu_c,\sigma^2))\right]\\
-&= \sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]\left(\ln\pi_c + \ln\frac{1}{\sigma\sqrt{2\pi}}-\frac{(y_i-\mu_c)^2}{2\sigma^2}\right)
- \end{aligned}</script><p>$\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]$是$C_i$为$c$的概率。现在我们对$\mu_M$求导：</p>
-<script type="math/tex; mode=display">
-\frac{d}{d \mu_{M}} \mathbb{E}_{q_{C}}\left[\ln p_{Y \mid C}(y \mid C) p_{C}(C)\right]=\sum_{i=1}^{n} q_{C_{i}}(M)\left(\frac{y_{i}-\mu_{M}}{\sigma^{2}}\right)=0</script><p>得：</p>
-<script type="math/tex; mode=display">
-\mu_{M}=\frac{\sum_{i=1}^{n} q_{C_{i}}(M) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(M)}</script><p>同理可得：</p>
-<script type="math/tex; mode=display">
-\mu_{F}=\frac{\sum_{i=1}^{n} q_{C_{i}}(F) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(F)}</script>	
+P(x_1|x_2) = N(\mu_1+\rho\sigma_1/\sigma_2(x_2-\mu_2),(1-\rho^2)\sigma_1^2),
+P(x_2|x_1) = N(\mu_2+\rho\sigma_2/\sigma_1(x_1-\mu_1),(1-\rho^2)\sigma_2^2)</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> beta</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> norm</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> multivariate_normal</span><br><span class="line"></span><br><span class="line">samplesource = multivariate_normal(mean=[<span class="number">5</span>,-<span class="number">1</span>], cov=[[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">1</span>,<span class="number">4</span>]])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">p_ygivenx</span>(<span class="params">x, m1, m2, s1, s2</span>):</span></span><br><span class="line">    <span class="keyword">return</span> (random.normalvariate(m2+<span class="number">0.5</span>*s2/s1*(x-m1), math.sqrt(<span class="number">1</span>-<span class="number">0.5</span>**<span class="number">2</span>)*s2))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">p_xgiveny</span>(<span class="params">y, m1, m2, s1, s2</span>):</span></span><br><span class="line">    <span class="keyword">return</span> (random.normalvariate(m1+<span class="number">0.5</span>*s1/s2*(y-m2), math.sqrt(<span class="number">1</span>-<span class="number">0.5</span>**<span class="number">2</span>)*s1))</span><br><span class="line"></span><br><span class="line">N = <span class="number">5000</span></span><br><span class="line">K = <span class="number">50</span></span><br><span class="line">x_res = []</span><br><span class="line">y_res = []</span><br><span class="line">z_res = []</span><br><span class="line">m1 = <span class="number">5</span></span><br><span class="line">m2 = -<span class="number">1</span></span><br><span class="line">s1 = <span class="number">1</span></span><br><span class="line">s2 = <span class="number">2</span></span><br><span class="line">y = m2</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">        x = p_xgiveny(y, m1, m2, s1, s2)   <span class="comment">#y给定得到x的采样</span></span><br><span class="line">        y = p_ygivenx(x, m1, m2, s1, s2)   <span class="comment">#x给定得到y的采样</span></span><br><span class="line">        z = samplesource.pdf([x,y])</span><br><span class="line">        x_res.append(x)</span><br><span class="line">        y_res.append(y)</span><br><span class="line">        z_res.append(z)</span><br><span class="line"></span><br><span class="line">num_bins = <span class="number">50</span></span><br><span class="line">plt.scatter(x_res, norm.pdf(x_res, loc=<span class="number">5</span>, scale=<span class="number">1</span>),label=<span class="string">&#x27;Target Distribution x&#x27;</span>, c= <span class="string">&#x27;green&#x27;</span>)</span><br><span class="line">plt.scatter(y_res, norm.pdf(y_res, loc=-<span class="number">1</span>, scale=<span class="number">2</span>),label=<span class="string">&#x27;Target Distribution y&#x27;</span>, c= <span class="string">&#x27;orange&#x27;</span>)</span><br><span class="line">plt.hist(x_res, num_bins, density=<span class="number">1</span>, facecolor=<span class="string">&#x27;Cyan&#x27;</span>, alpha=<span class="number">0.5</span>,label=<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">plt.hist(y_res, num_bins, density=<span class="number">1</span>, facecolor=<span class="string">&#x27;magenta&#x27;</span>, alpha=<span class="number">0.5</span>,label=<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Histogram&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+	
 		</div>
 		
-		<div id="current-post-cover" data-scr="/img/post_cover/5.jpg"></div>
+		<div id="current-post-cover" data-scr="/img/post_cover/14.jpg"></div>
 
 		<!-- relate post, comment...-->
 		<div class="investment-container">
@@ -431,12 +402,8 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 	<span>
 		<a id="totop-post-page">返回顶部</a>
 		
-			<a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" title="线性代数应该这样学：线性空间" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" title="贝叶斯数据分析" rel="next">
+			<a href="/2021/11/26/SVM%E7%AE%97%E6%B3%95/" title="SVM算法" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -454,31 +421,6 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 <div class="relate-post">
 	
 		<ul>
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/12/04/MCMC/" title="马尔科夫链蒙特卡洛方法">
-								马尔科夫链蒙特卡洛方法			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十二月 4日, 2021				
-							</p>
-							<p class="relate-post-content">
-								蒙特卡洛方法MC实质：随机抽样为什么要抽样？
-假设我们有关于$x$的一个正态分布的概率密度：
-
-f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/12/04/MCMC/" title="马尔科夫链蒙特卡洛方法">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/14.jpg" alt="马尔科夫链蒙特卡洛方法"/>
-							</a>
-						</div>
-					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -527,6 +469,28 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma...
 							<a href="/2021/10/31/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="算法学习笔记第一节">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/14.jpg" alt="算法学习笔记第一节"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">
+								高斯混合模型和EM算法			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 31日, 2021				
+							</p>
+							<p class="relate-post-content">
+								Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/5.jpg" alt="高斯混合模型和EM算法"/>
 							</a>
 						</div>
 					</li>												
