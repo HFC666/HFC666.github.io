@@ -6,7 +6,7 @@
   <link href="https://www.hfcouc.work/atom.xml" rel="self"/>
   
   <link href="https://www.hfcouc.work/"/>
-  <updated>2021-12-05T14:46:32.709Z</updated>
+  <updated>2021-12-10T15:37:29.690Z</updated>
   <id>https://www.hfcouc.work/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>随机过程第一章：基本概念</title>
+    <link href="https://www.hfcouc.work/2021/12/10/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/"/>
+    <id>https://www.hfcouc.work/2021/12/10/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/</id>
+    <published>2021-12-10T15:32:25.000Z</published>
+    <updated>2021-12-10T15:37:29.690Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="row">    <embed src="https://hfcouc.work/pdfs/Random_Processes.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="随机过程" scheme="https://www.hfcouc.work/categories/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/"/>
+    
+    
+    <category term="随机过程" scheme="https://www.hfcouc.work/tags/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>贝叶斯统计分析</title>
@@ -229,30 +253,6 @@
     
     
     <category term="微分方程" scheme="https://www.hfcouc.work/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数值分析笔记</title>
-    <link href="https://www.hfcouc.work/2021/07/30/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/"/>
-    <id>https://www.hfcouc.work/2021/07/30/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/</id>
-    <published>2021-07-30T13:35:47.000Z</published>
-    <updated>2021-09-12T09:21:05.125Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>学习数值分析的笔记</p><div class="row">    <embed src="https://hfcouc.work/pdfs/Numerical_analysis.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
-    <category term="数学" scheme="https://www.hfcouc.work/categories/%E6%95%B0%E5%AD%A6/"/>
-    
-    
-    <category term="数值分析" scheme="https://www.hfcouc.work/tags/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
