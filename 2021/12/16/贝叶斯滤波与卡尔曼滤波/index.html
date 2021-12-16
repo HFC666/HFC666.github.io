@@ -1,0 +1,1673 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      贝叶斯滤波与卡尔曼滤波 | 独自赏晴雨
+    
+  </title>
+  <meta name="author" content="HFC">
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.png">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/bg.png',
+      randomYouMax: 110,
+      randomYouSrc: 'http://hfcouc.work/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="独自赏晴雨" type="application/atom+xml">
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「贝叶斯滤波与卡尔曼滤波」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/HFC.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+		<li class="menu-note">
+			<a href="/note" class="menu-item-note" target="_blank">笔记</a>
+		</li>
+		
+	
+		<li class="menu-shuoshuo">
+			<a href="/ss" class="menu-item-shuoshuo" target="_blank">说说</a>
+		</li>
+		
+	
+		<li class="menu-bangumis">
+			<a href="/bangumis" class="menu-item-bangumis" target="_blank">追番</a>
+		</li>
+		
+	
+		<li class="menu-cinemas">
+			<a href="/cinemas" class="menu-item-cinemas" target="_blank">追剧</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="https://www.zhihu.com/people/bu-yu-que-zhi-xin-43-35" target="_blank">
+				<span class="icon-zhihu"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="https://github.com/HFC666" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2021/12/16/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" itemprop="url">
+		贝叶斯滤波与卡尔曼滤波
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2021/12/16/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" itemprop="url">
+		<time datetime="2021-12-16T14:22:10.000Z" itemprop="dateUpdated">
+	  		2021-12-16
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" class=" ">
+			卡尔曼滤波
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<h2 id="随机过程与卡尔曼滤波"><a href="#随机过程与卡尔曼滤波" class="headerlink" title="随机过程与卡尔曼滤波"></a>随机过程与卡尔曼滤波</h2><p>随机过程：$x_1,x_2,\cdots,x_n$是随机变量，但是不相互独立（无法做随机试验）。</p>
+<p>随机实验：</p>
+<ol>
+<li>在相同条件下，试验可以重复进行（独立性）</li>
+<li>一次试验，结果不确定，所有可能的结果已知</li>
+<li>试验之前，试验结果预先未知</li>
+</ol>
+<p>随机过程中独立性不存在，我们无法对概率进行赋值。</p>
+<p>补充：大数定律</p>
+<p>假设我们进行抛硬币试验：$P(正) = \frac{1}{2}, P(反) = \frac{1}{2}$，抛硬币，试验可重复进行。</p>
+<p>由大数定律，设$n$为试验次数，$\mu$为正面朝上的次数。</p>
+<p>大数定律：在$n$次独立的试验中，对于任意正数$\epsilon$，有</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow \infty}P(|\frac{\mu}{n}-P_1|<\epsilon)=1</script><p>当$n\rightarrow \infty$时，$\frac{\mu}{n}$依概率收敛于$P_1$。</p>
+<p>但是对于一个随机过程来说，$x_1,\cdots,x_n$不独立。</p>
+<p>例如：股票、分子的扩散、温度的变化都属于随机过程。</p>
+<p>下面我们继续研究随机过程：假设随机过程$x_1,x_2,\cdots,x_n$不相互独立，但是我们能找到它们之间的关系，如：</p>
+<script type="math/tex; mode=display">
+x_k = f(x_{k-1})\\
+p(x_k) = f(p(x_{k-1}))</script><p>但是这样也是不够的，因为我们只知道它们之间的关系，还是不知道它们的概率，因此我们需要一个初值条件：</p>
+<p>$p(x_1) = ?$   初值的选取</p>
+<p>有的随机过程的初值可以做随机试验，故可以确定初值，如随机游走：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+x_k &= x_{k-1} + D\\
+D &\sim \begin{cases}
+P(\text{往前走1米}) = \frac{1}{2}\\
+P(\text{往后走1米}) = \frac{1}{2}
+\end{cases}
+\end{aligned}</script><p>在这个随机过程中，我们可以人为规定初值$P(x_0=0)=1$。</p>
+<p>有的初值不可以做随机试验，只能使用主观概率。</p>
+<p>随机过程：$x_1,x_2,\cdots,x_n$</p>
+<p>我们已经找到它们之间的关系：$x_k = f(x_{k-1})$，</p>
+<p>我们选取不同的初值$p(x_1)$，不同的初值（主观概率）可能会导致不同的结果。</p>
+<p>这是我们不想要的结果，我们想尽可能削弱主观概率的差距。</p>
+<p>我们通过引用外部的观测（证据、信息）来对主观概率进行修正：</p>
+<script type="math/tex; mode=display">
+\text{主观概率}\xrightarrow{\text{外部观测}}\text{相对客观的概率}</script><p>主观概率可称为先验概率（先于实验的概率）</p>
+<p>相对客观的概率又称为后验概率（实验之后的概率）</p>
+<h2 id="贝叶斯滤波的三大概率"><a href="#贝叶斯滤波的三大概率" class="headerlink" title="贝叶斯滤波的三大概率"></a>贝叶斯滤波的三大概率</h2><p>先验概率</p>
+<p>后验概率</p>
+<p>我们用$X,Y$表示随机变量，$x,y$表示随机变量的取值，代表随机试验一个可能的结果。</p>
+<p>离散：$P(X=x) = P_x$</p>
+<p>连续：$P(X&lt;x)=\int_{-\infty}^x\frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}dt$</p>
+<p>条件概率：</p>
+<p>离散：$P(X= x|Y=y) = \frac{P(X=x,Y=y)}{P(Y=y)}$</p>
+<p>连续：$P(X&lt;x|Y=y) = \int_{-\infty}^x\frac{f(x,y)}{f(y)}dx$</p>
+<p>我们现在讲一下第三个概率，我们用一个例子来讲解一下</p>
+<p>温度：今天多少度？</p>
+<p>首先我们要给一个先验概率分布，比如：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+P(T=10) = 0.8\\
+P(T=11) = 0.2
+\end{cases}</script><p>其次，用温度计测一下温度：$T_m = 10.3$，但是温度计也有误差，所以温度计的测量值也存在一个概率分布</p>
+<p>最后我们根据贝叶斯公式计算后验概率分布：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(T=10|T_m=10.3) = \frac{P(T_m=10.3|T=10)P(T=10)}{P(T_m=10.3)}\\
+P(T=11|T_m=10.3) = \frac{P(T_m=10.3|T=11)P(T=11)}{P(T_m=10.3)}\\
+\end{aligned}</script><p>而概率$P(T_m=10.3|T=10)$和$P(T_m=10.3|T=11)$被称为似然概率：代表观测的准确度。</p>
+<p>观察上面两个公式，我们发现还有一个概率$P(T_m = 10.3)$，在很多教程上对这个概率大都一笔带过：$P(T_m=10.3)$与$T$无关，所以$P(T=10|T_m=10.3)=\eta P(T_m=10.3|T=10)P(T=10)$</p>
+<p>但是$T_m$和$T$真的是无关的吗？其实不是，这就涉及到独立、无关和无影响几个概念了。</p>
+<p>根据全概率公式，我们有：</p>
+<script type="math/tex; mode=display">
+P(T_m=10.3) = P(T_m = 10.3|T=10)P(T=10)+ P(T_m=10.3|T=11)P(T=11)</script><p>$P(T_m=10.3)$与$T$的取值无关，但是与$T$的分布律有关。</p>
+<p>因为$T=10,T=11$代表随机试验的一个结果，结果不会影响到分布律，</p>
+<p>所以$P(T_m=10.3)$与$T$的取值无关。</p>
+<p>但为什么$P(T_m=10.3)$是一个常数呢？这是因为$T$的分布律及我们的先验概率，他是我们事先给定的，而似然概率表示传感器的精度，是传感器固有的性质，也是给定好的。所以根据全概率公式，$P(T_m=10.3)$为常数。</p>
+<p>所以：</p>
+<script type="math/tex; mode=display">
+P(T=10|T_m=10.3)=\eta P(T_m=10.3|T=10)P(T=10)\\
+P(T=11|T_m=10.3)=\eta P(T_m=10.3|T=11)P(T=11)</script><p>那我么如何算$\eta$呢？</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sum(\text{后验概率}) &= \eta\sum\text{似然概率}\cdot\text{先验概率}\\
+\sum\text{后验概率}&=1\\
+\eta &= \frac{1}{\sum\text{似然概率}\cdot\text{先验概率}}
+\end{aligned}</script><p>对似然概率的一些解释：</p>
+<p>似然：likelihood 表示可能性，相似、像，源于最大似然估计</p>
+<p>表示：哪个原因最可能（最像）导致了结果</p>
+<p>例：A班  99男1女    B班  99女1男</p>
+<p>先随机抽取一个班，再从此班级中抽出一个人进行观测，结果是女生，此女生最像是从B班中抽出。</p>
+<script type="math/tex; mode=display">
+P(\text{状态}|\text{观测}) = \eta P(\text{观测}|\text{状态})P(\text{状态})</script><p>我们通常把观测作为果，将状态作为因，后验概率即为由结果推原因，即观测最有可能导致什么的状态，而似然概率为由原因推理结果，即我这样的观测最有可能是什么样的状态导致的。</p>
+<p>后验分布：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(\text{状态1}|\text{观测})\\
+P(\text{状态2}|\text{观测})
+\end{aligned}</script><p>似然概率</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(\text{观测}|\text{状态1})\\
+P(\text{观测}|\text{状态2})
+\end{aligned}</script><p>关于独立和函数关系的一些说明：独立未必没有函数关系：$Y = f(X)$，$Y$与$X$可能独立，也可能不独立。</p>
+<p>例：</p>
+<p>必然事件：$Y = X+1$，$P(X=1)=1,P(Y=2)=1,P(X=1,Y=2) = P(X=1)*P(Y=2)=1$，所以$X$和$Y$相互独立。</p>
+<p>随机事件：设有一个正态概率分布$N(\mu,\sigma^2),(\mu, \sigma)$未知，从此分布中，抽取$n$个独立的样本，$X_1,\cdots,X_n$，则$X_1,\cdots,X_n$独立同分布，则随机变量</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\bar{X} &= \frac{X_1+X_2+\cdots+X_n}{n}\\
+S^2 &= \frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2
+\end{aligned}</script><p>相互独立</p>
+<h2 id="连续变量的贝叶斯公式"><a href="#连续变量的贝叶斯公式" class="headerlink" title="连续变量的贝叶斯公式"></a>连续变量的贝叶斯公式</h2><p>离散：</p>
+<script type="math/tex; mode=display">
+P(X=x|Y=y) = \frac{P(Y=y|X=x)}{P(Y=y)}</script><p>如果将此公式直接推广到连续变量上</p>
+<script type="math/tex; mode=display">
+P(X<x|Y=y) = \frac{P(Y=y|X<x)P(X<x)}{P(Y=y)}</script><p>显然这样是没有意义的。</p>
+<p>所以贝叶斯公式无法直接运用于连续随机变量。</p>
+<p>化积分为求和：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(X<x) &= \sum_{u = -\infty}^xP(X=u)\\
+P(X<x|Y=y) &= \sum_{u = -\infty}^xP(X=u|Y=y)\\
+&=\sum_{u=-\infty}^x\frac{P(Y=y|X=u)P(X=u)}{P(Y=y)}\\
+&=\lim_{\epsilon\rightarrow 0}\sum_{u = -\infty}^x\frac{P(y<Y<y+\epsilon|X=u)P(u<X<u+\epsilon)}{P(y<Y<y+\epsilon)}\\
+&=\lim_{\epsilon\rightarrow \infty}\sum_{u = -\infty}^x \frac{(f_{Y|X}(\zeta_1|u)\epsilon)(f_X(\zeta_2)\epsilon)}{f_Y(\zeta_3)\epsilon}\\
+&= \lim_{\epsilon\rightarrow 0}\sum_{u=-\infty}^x \frac{f_{Y|X}(y|u)f_X(u)}{f_Y(y)}\epsilon\\
+&=\int_{-\infty}^x\frac{f_{Y|X}(y|u)f_X(u)}{f_Y(y)}du\\
+&=\int_{-\infty}^x\frac{f_{Y|X}(y|x)f_X(x)}{f_Y(y)}dx\\
+&\zeta_1 \in (y,y+\epsilon),\zeta_2\in(u,u+\epsilon),\zeta_3\in(y,y+\epsilon)
+\end{aligned}</script><p>这就是连续随机变量的贝叶斯公式</p>
+<script type="math/tex; mode=display">
+P(X<x|Y=y) = \int_{-\infty}^x\frac{f_{Y|X}(y|x)f_X(x)}{f_Y(y)}dx</script><p>我们将$P(X&lt;x|Y=y)$的概率密度函数写为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(X<x|Y=y) &= \int_{-\infty}^xf_{X|Y}(x|y)dx\\
+&\Rightarrow f_{X|Y}(x|y) = \frac{f_{Y|X}(y|x)f_X(x)}{f_Y(y)}
+\end{aligned}</script><p>又因为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_Y(y) &= \int_{-\infty}^{+\infty}f(y,x)dx\\
+&=\int_{-\infty}^{+\infty}f_{Y|X}(y|x)f(x)dx \equiv C
+\end{aligned}</script><p>所以，令</p>
+<script type="math/tex; mode=display">
+\eta = \frac{1}{\int_{-\infty}^{+\infty}f_{Y|X}(y|x)f_X(x)dx}</script><p>所以</p>
+<script type="math/tex; mode=display">
+f_{X|Y}(x|y) = \eta f_{Y|X}(y|x)f_X(x)</script><h2 id="似然概率与狄拉克函数"><a href="#似然概率与狄拉克函数" class="headerlink" title="似然概率与狄拉克函数"></a>似然概率与狄拉克函数</h2><p>$X$：状态   $Y$：观测</p>
+<p>例：测温度</p>
+<p>我们的先验概率分布为：$f_X(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{(x-10)^2}{2}}$，倾向于认为$X = 10$。</p>
+<p>观测：$y = 9$</p>
+<p>假设$\epsilon$为一个足够小的数，则</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_{Y|X}(y|x)\cdot \epsilon &= P(y<Y<y+\epsilon|X=x)\\
+f_{Y|X}(y|x) &= \lim_{\epsilon \rightarrow\infty}\frac{P(y<Y<y+\epsilon|X=x)}{\epsilon}
+\end{aligned}</script><p>例：温度计精度为$\pm0.2$，当真实值$=x$，$y = x\pm 0.2$</p>
+<p>$P(x-0.2<Y<x+0.2|X=x)$较大，以及$P(Y<x-0.2\text{或}Y>x+0.2|X=x)$较小。</p>
+<p>例</p>
+<script type="math/tex; mode=display">
+P(x-0.2<Y<x+0.2|X=x) = 1 \Rightarrow \int_{y = x-0.2}^{y = x+0.2}f_{Y|X}(y|x)dy = 1</script><p>但是似然概率在每一点的概率我们并不知道，因为传感器只会给我们一些精度的指标，所以可能需要我们自己假设似然模型。</p>
+<p>似然模型：</p>
+<p>等可能型：$f_Y(y|x)=C$，即符合均匀分布。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal1.jpg" alt=""></p>
+<script type="math/tex; mode=display">
+f_{Y|X}(y|x) = \begin{cases}
+2.5&\quad& |y-x|\le0.2\\
+0&\quad&|y-x|>0.2
+\end{cases}</script><p>阶梯型</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal2.jpg" alt=""></p>
+<p>阶梯型的推广：直方图型</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal3.jpg" alt=""></p>
+<p>正态分布</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/4.jpg" alt=""></p>
+<p>再继续讨论上文提到的温度的例子：</p>
+<p>测温度，先验：</p>
+<script type="math/tex; mode=display">
+f_X(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{(x-10)^2}{2}}</script><p>观测$y=9$，似然</p>
+<script type="math/tex; mode=display">
+f_{Y|X}(y|x) = \frac{1}{\sqrt{2\pi}\cdot0.2}e^{-\frac{(9-x)^2}{2\cdot0.2^2}}</script><p>后验：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_{X|Y}(x|9) &= \eta\frac{1}{2\pi\cdot 0.2}e^{-\frac{1}{2}[(x-10)^2+\frac{(9-x)^2}{0.2^2}]}\\
+\eta &= (\int_{-\infty}^{+\infty}(\frac{1}{2\pi\cdot0.2}e^{-\frac{1}{2}[(x-10)^2+\frac{(9-x)^2}{0.2^2}]})dx)^{-1}
+\end{aligned}</script><p>经计算的</p>
+<script type="math/tex; mode=display">
+f_{X|Y}(x|9) = \frac{1}{\sqrt{2\pi}0.038}e^{-\frac{(x-9.0385)^2}{2\cdot(0.038)^2}}\sim N(9.0385,0.038^2)</script><p>由计算可得：</p>
+<p>先验：$N(10,1)$    似然：$N(9,0.2^2)$    后验：$N(9.0385, 0.038^2)$</p>
+<p>由结果可得，方差显著降低，不确定性减小，所以称为滤波</p>
+<p>重要定理：</p>
+<p>若</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_X(x)&\sim N(\mu_1, \sigma_1^2)\\
+f_{Y|X}(y|x)&\sim N(\mu_2,\sigma_2^2)
+\end{aligned}</script><p>则：</p>
+<script type="math/tex; mode=display">
+f_{X|Y}(x|y)\sim N(\frac{\sigma_1^2}{\sigma_1^2+\sigma_2^2}\mu_2 + \frac{\sigma_2^2}{\sigma_1^2+\sigma_2^2}\mu_1, \frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2})</script><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal5.jpg" alt=""></p>
+<p>下面我们来看一下狄拉克函数：$\delta(x)$</p>
+<script type="math/tex; mode=display">
+f_{Y|X}(y|x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y-x)^2}{2\sigma^2}}</script><p>当$\sigma\rightarrow 0$时，$f_{Y|X}(y-x) = \delta(y-x)$</p>
+<script type="math/tex; mode=display">
+\delta(x) = \begin{cases}
+0&\quad& x\neq 0\\
+\infty&\quad&x=0
+\end{cases}</script><script type="math/tex; mode=display">
+\begin{aligned}
+\int_{-\infty}^{+\infty}\delta(x)dx &= 1\\
+\int_{-\infty}^{+\infty}f(x)\delta(x)dx &= f(0)
+\end{aligned}</script><p>$\delta(x)$实质上为必然事件的概率密度。</p>
+<p>设其分布函数为$H(x)$</p>
+<p>则</p>
+<script type="math/tex; mode=display">
+H(x) = \begin{cases}
+1&\quad& x\ge 0\\
+0&\quad& x<0
+\end{cases}</script><p>则：$\delta(x) = \frac{d}{dx}H(x)$</p>
+<p>推论：</p>
+<ol>
+<li>$\int_a^b\delta(x)dx=1, a&lt;0&lt;b$</li>
+<li>$\int_a^bf(x)\delta(x)dx = f(0), a&lt;0&lt;b$</li>
+<li>$\int_c^df(x)\delta(x-a)dx = f(a),c&lt;a&lt;d$</li>
+</ol>
+<p>例：</p>
+<p>先验：$N(\mu,\sigma^2)$</p>
+<p>观测：$y=0$，似然：$\delta(10-x)$</p>
+<p>后验：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_{X|Y}(x|y) &= \eta\cdot \delta(10-x)\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\\
+\eta &= \frac{1}{\int_{-\infty}^{\infty}\delta(10-x)\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx}\\
+&=\frac{1}{\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(10-\mu)^2}{2\sigma^2}}}
+\end{aligned}</script><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal6.jpg" alt=""></p>
+<h2 id="随机过程的贝叶斯滤波"><a href="#随机过程的贝叶斯滤波" class="headerlink" title="随机过程的贝叶斯滤波"></a>随机过程的贝叶斯滤波</h2><p>随机过程<img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal7.jpg" alt=""></p>
+<p>有一个初值$X_0$，有$k$个观测值$y_1,y_2,\cdots,y_k$</p>
+<p>这种问题怎么处理？</p>
+<ol>
+<li>所有$X_0\sim X_k$的先验概率都依靠猜<ol>
+<li>缺点：过于依赖观测，放弃了预测信息，虽然说如果观测很准的话最后得到的结果也没问题，但是会丢失掉一部分信息。</li>
+<li>比如：$X_k = 2X_{k-1}+Q_k$和$X_k = X_{k-1}^2+Q_k$这两个过程，如果先验概率都依赖于猜，那么它的结果就消失了，这两个随机过程就相当于一个随机过程了。</li>
+</ol>
+</li>
+<li>只有$X_0$的概率是猜的，$X_1,\cdots,X_k$的先验概率是递推的。</li>
+</ol>
+<p>怎么做：通过状态方程，观测方程。（建模）</p>
+<p>状态方程：$X_k$与$X_{k-1}$是什么关系</p>
+<p>假设：$X_k = \frac{1}{2}gt^2+Q$</p>
+<p>对$X_k$进行泰勒展开，得到：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+X_k &= \frac{1}{2}gt^2 + Q\\
+&=X_{k-1} + \dot{X_{k-1}}(t_k-t_{k-1}) + Q\\
+&=X_{k-1} + gt(t_k-t_{k-1}) + Q
+\end{aligned}</script><p>但是很多的随机过程不等写出这样精确的状态方程，比如：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal8.jpg" alt=""></p>
+<p>这时候我们可以将状态方程写作：</p>
+<script type="math/tex; mode=display">
+X_k = X_{k-1} + Q\quad Q\sim N(0,1000)</script><p>将方差设的大一点，得到一个比较粗糙的状态方程。</p>
+<p>状态方程，反映了$X_k$与$X_{k-1}$之间的关系，$X_k = f(X_{k-1})+Q_k$，$Q_k$为预测噪声。</p>
+<p>观测方程：反映了状态是如何引起传感器的读数</p>
+<p>如测温度：</p>
+<p>状态：温度， 观测：温度，$Y_k = X_{k} + R_k$</p>
+<p>或是测位移：</p>
+<p> 状态：位移，观测：角度，$Y_k = \arcsin{X_k} + R_k$</p>
+<p>观测方程：$Y_k = h(X_k)+R_k$，$R_k$：观测噪声。</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+X_k &=& f(X_{k-1}) + Q_k\Rightarrow\text{随机过程}\\
+Y_k &=& h(X_k) + R_k\Rightarrow\text{观测}
+\end{cases}</script><p>那么问题来了，我们怎么递推？</p>
+<p>设$X_k = 2X_{k-1}$，无$Q_k$，无观测</p>
+<p>首先$X_0\sim N(0,1)$(猜的)</p>
+<p>$X_1 = 2X_0\sim N(0, 2^2)$</p>
+<p>$X_2 = 2X_1 \sim N(0,2^4)$方差越来越大，不是我们想要的结果，故这种递推方式是不对的。</p>
+<p>真正的递推：</p>
+<p>$X_0 \sim N(0,1) \xrightarrow{\text{预测步}}X_1^-\sim N(0, 2^2) \xrightarrow{\text{更新步}\text{(运用观测}y_1=0)}X_1^+\sim N(0,0.8)\xrightarrow{\text{再预测}}X_2^-$</p>
+<p>更新步也成为后验步，运用观测值进行后验估计。</p>
+<p>之后再以此类推</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal.jpg" alt=""></p>
+<p>总的来说就是分两步：</p>
+<ol>
+<li>预测步：$\text{上一时刻的后验}\xrightarrow{\text{状态方程}}\text{这一时刻的先验}$</li>
+<li>更新步：$\text{这一时刻的先验}\xrightarrow{观测方程}\text{这一时刻的后验/下一时刻的先验}$</li>
+</ol>
+<p>那么我们具体应该怎么做？</p>
+<p>贝叶斯滤波算法的推导：</p>
+<p>我们现在已经有的东西（原料）：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+X_k &=& f(X_{k-1})+Q_k\\
+Y_k &=& h(X_k) + R_k
+\end{cases}</script><p>其中：$X_k,X_{k-1},Y_k,Q_k,R_k$都是随机变量</p>
+<p><strong>假设：$X_0,Q_1,\cdots,Q_k,R_1,\cdots,R_k$相互独立</strong></p>
+<p>有观测值：$y_1,y_2,\cdots,y_k$</p>
+<p>设初值$X_0$的<code>pdf</code>：$f_0(x)$，$Q_k$的<code>pdf</code>$f_{Q_k}(x)$，$R_k$的<code>pdf</code>：$f_{R_k}(x)$</p>
+<p><strong>重要定理：条件概率里的条件可以做逻辑推导</strong></p>
+<p>例：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(X=1|Y=2,Z=3) &= P(X+Y=3|Y=2,Z=3) = P(X+Y=3|Y=Z+1,Z-Y=1)\\
+&\neq P(X+Y=3|Z=3)\\
+&\neq P(X=1|X+Y=3,Z=3)
+\end{aligned}</script><p>即条件概率里的条件可以作为已知量。</p>
+<p>预测步：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(X_1 < x) &= \sum_{u = -\infty}^xP(X_1=u)\\
+P(X_1 = u) &= \sum_{v = -\infty}^{+\infty}P(X_1 = u|X_0=v)P(X_0 = v)\\
+&=\sum_{v = -\infty}^{+\infty} P(X_1 - f(X_0) = u-f(v)|X_0=v)P(X_0=v)\\
+&=\sum_{v=-\infty}^{+\infty}P(Q_1 = u-f(v)|X_0=v)P(X_0=v)\\
+&\text{之前我们已经假设过}Q_1\text{和}X_0\text{相互独立，所以}P(Q_1=u-f(v)|X_0=v) = P(Q_1 = u-f(v))\\\text{，但是这只对}Q_1\text{和}X_0\text{成立，要想递推我们需证明}Q_k\text{与}X_{k-1}\text{相互独立}\\
+&\sum_{v = -\infty}^{+\infty}P(Q_1 = u-f(v))P(X_0=v)\\
+&=\lim_{\epsilon\rightarrow0}\sum_{v = -\infty}^{+\infty}f_{Q_1}(u-f(v))\epsilon f_0(v)\epsilon\\
+&=\lim_{\epsilon\rightarrow0}\int_{-\infty}^{+\infty}f_{Q_1}(u-f(v))f_0(v)dv\cdot \epsilon
+\end{aligned}</script><p>所以</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(X_1<x) &= \sum_{u = -\infty}^{x}P(X_1=u)\\
+&= \sum_{u = -\infty}^x\lim_{\epsilon\rightarrow 0}\int_{-\infty}^{+\infty}f_{Q_1}(u-f(v))f_0(v)dv\cdot\epsilon\\
+&=\int_{-\infty}^x\int_{-\infty}^{+\infty}f_{Q_1}(u-f(v))f_0(v)dvdu
+\end{aligned}</script><p>那么$x_1$的先验概率分布为</p>
+<script type="math/tex; mode=display">
+f_1^-(x) = \frac{d}{dx}(P(X_1<x)) = \int_{-\infty}^{+\infty}f_{Q_1}(x-f(v))f_0(v)dv</script><p>下面我们看更新步：</p>
+<p>观测：$Y_1 = y_1$</p>
+<p>似然概率：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_{Y_1|X_1}(y_1|x) &= \lim_{\epsilon\rightarrow 0}\frac{P(y_1<Y_1<y_1+\epsilon|X_1=x)}{\epsilon}\\
+&=\lim_{\epsilon\rightarrow 0} \frac{P(y_1-h(x)<Y_1-h(x)<y_1-h(x)+\epsilon|X_1=x)}{\epsilon}\\
+&=\lim_{\epsilon\rightarrow 0} \frac{P(y_1-h(x)<Y_1-h(x)<y_1-h(x)+\epsilon|X_1=x)}{\epsilon}\\
+&=\lim_{\epsilon\rightarrow 0} \frac{P(y_1-h(x)<R_1<y_1-h(x)+\epsilon)}{\epsilon}\\
+&\text{需要证明}R_1\text{与}X_1相互独立\\
+&=f_{R_1}[y_1-h(x)]
+\end{aligned}</script><p>所以</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_1^+(x) &= \eta f_{R_1}[y_1-h(x)]f_1^-(x)\\
+\eta &= (\int_{-\infty}^{+\infty}f_{R_1}[y_1-h(x)]f_1^-(x)dx)^{-1}
+\end{aligned}</script><p>总结一下：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_0(x) \rightarrow f_1^-(x) &= \int_{-\infty}^{+\infty}f_{Q_1}[x-f(v)]f_0(v)dv \rightarrow f_1^+(x) = \eta f_{R_1}[y_1-h(x)]f_1^-(x)\rightarrow \\
+f_2^-(x) &= \int_{-\infty}^{+\infty}f_{Q_2}[x-f(v)]f_1^+(v)dv\rightarrow f_2^+(x) = \eta f_{R_2}[y_2-h(x)]f_2^-(x)
+\end{aligned}</script><p>最后还有两个小尾巴：$Q_k$与$X_{k-1}$独立， $X_k$与$R_k$独立</p>
+<p>证明：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal10.jpg" alt=""></p>
+<p>完整算法</p>
+<p>设初值：$X_0$的<code>pdf</code> $f_0(x)$</p>
+<p>预测步：$f_k^-(x) = \int_{-\infty}^{+\infty}f_{Q_k}[x-f(v)]f^+_{k-1}(v)dv$</p>
+<p>更新步：$f_1^+(x) = \eta f_{R_1}[y_1-h(x)]f_1^-(x)\\<br>\eta = (\int_{-\infty}^{+\infty}f_{R_1}[y_1-h(x)]f_1^-(x)dx)^{-1}$</p>
+<p>但是到这里算法还没有完结，因为到现在我们得到的才是概率密度函数，而不是我们想要的状态。</p>
+<p>我们对概率密度函数求期望：</p>
+<script type="math/tex; mode=display">
+\hat{x_k^+} = \int_{-\infty}^{+\infty}xf_k^+(x)dx</script><p>贝叶斯滤波的缺点：</p>
+<p>大都情况下都需要算积分，大多数情况下无解析解。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal11.jpg" alt=""></p>
+<p>直方图滤波指的是把复杂的函数分为一个一个小的区间，类似于直方图。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal12.jpg" alt=""></p>
+<h2 id="卡尔曼滤波"><a href="#卡尔曼滤波" class="headerlink" title="卡尔曼滤波"></a>卡尔曼滤波</h2><p>卡尔曼滤波的假设：</p>
+<p>$f(X_{k}) = F\cdot X_{k-1}, h(X_k) = H\cdot X_k$，$F,H$均为常数，即状态方程和观测方程都为线性方程。</p>
+<p>$Q\sim N(0, Q), R\sim N(0,R)$，即$f_Q(x) = (2\pi Q)^{-1/2}e^{-\frac{x^2}{2Q}}, f_R(x) = (2\pi R)^{-1/2}e^{-\frac{x^2}{2R}}$</p>
+<p>即观测误差和预测误差呈方差为$0$的正态分布。</p>
+<p>设$X_{k-1}^+\sim N(\mu_{k-1}^+, \sigma_{k-1}^+)$</p>
+<p>预测步：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_k^-(x) &= \int_{-\infty}^{+\infty}f_Q[x-f(v)]f_{k-1}^+(v)dv\\
+&=\int_{-\infty}^{+\infty}(2\pi Q)^{-1/2}e^{-\frac{(x-F\cdot v)^2}{2Q}}\cdot(2\pi \sigma_{k-1}^+)^{1/2}e^{-\frac{(v-\mu_{k-1}^+)^2}{2\sigma_{k-1}^+}}dv\\
+&\sim N(F\cdot \mu_{k-1}^+, F^2\cdot\sigma_{k-1}^++Q)
+\end{aligned}</script><p>这一步的证明可以用 </p>
+<ol>
+<li>Mathematica 来证明。</li>
+<li>复变函数  留数定理</li>
+<li>傅里叶变换  卷积</li>
+</ol>
+<p>下面我们利用傅里叶变换和卷积的性质来证明：</p>
+<script type="math/tex; mode=display">
+X_k = FX_{k-1} + Q_k\quad X_{k-1}\text{与}Q_k\text{独立}</script><script type="math/tex; mode=display">
+X_{k-1} \sim N(\mu_{k-1}^+, \sigma_{k-1}^+)\quad FX_{k-1}\sim N(F\mu_{k-1}^+, F^2\mu_{k-1}^+)\quad Q_k\sim N(0, Q)</script><p>因为$X_{k-1}\text{与}Q_k\text{独立}$，而$X_k$为这两个随机变量相加，因此$X_k$的概率密度函数实际上是$FX_{k-1}$与$Q_k$的卷积。</p>
+<p>由傅里叶变换的性质，我们有：</p>
+<script type="math/tex; mode=display">
+h = f*g\quad G(h) = G(f)\cdot G(g)</script><p>进行傅里叶变换</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+FX_{k-1} &\xrightarrow{F.T}g_1(t) = e^{iF\mu_{k-1}^+t-\frac{F^2\sigma_{k-1}^+}{2}t^2}\\
+Q_k&\xrightarrow{F.T}g_2(t) = e^{-\frac{Q}{2}t^2}\\
+g_1(t)g_2(t) &= e^{iF\mu_{k-1}^+t-\frac{F^2\sigma_{k-1}^++Q}{2}t^2}\xrightarrow{I.F.T}N(F\mu_{k-1}^+, F^2\sigma_{k-1}^++Q)
+\end{aligned}</script><p>正态分布的傅里叶变换为：</p>
+<script type="math/tex; mode=display">
+N(\mu,\sigma^2)\xrightarrow{F.T} e^{i\mu t-\frac{\sigma^2}{2}t^2}</script><p>设$f_k^-(x)\sim N(\mu_k^-, \sigma_k^-)$</p>
+<p>我们有</p>
+<ol>
+<li>$\mu_k^- = F\mu_{k-1}^+$</li>
+<li>$\sigma_k^- = F^2\sigma_{k-1}^++Q$</li>
+</ol>
+<p>预测步完成</p>
+<p>更新步</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_k^-(x)&\sim N(\mu_k^-, \sigma_k^-)\\
+f_k^+ (x) &= \eta f_R(y_k-H\cdot x)\cdot f_k^-(x)\\
+&=\eta (2\pi R)^{-\frac{1}{2}}e^{-\frac{(y_k-H\cdot x)^2}{2R}}\cdot(2\pi \sigma_k^-)^{-\frac{1}{2}}e^{-\frac{(x-\mu_k^-)^2}{2\sigma_k^-}}\\
+\eta &= [\int_{-\infty}^{+\infty}(2\pi R)^{-\frac{1}{2}}e^{-\frac{(y_k-H\cdot x)^2}{2R}}\cdot(2\pi \sigma_k^-)^{-\frac{1}{2}}e^{-\frac{(x-\mu_k^-)^2}{2\sigma_k^-}}dx]^{-1}
+\end{aligned}</script><p>由数学软件计算可得：</p>
+<script type="math/tex; mode=display">
+X_k^+\sim N(\frac{H\sigma_k^-y_k+R\mu_k^-}{H^2\sigma_k^-+R}, \frac{R\sigma_k^-}{H^2\sigma_k^-+R})</script><p>$X_k^+\sim N(\mu_k^+, \sigma_k^+)$，则</p>
+<ol>
+<li><script type="math/tex; mode=display">
+\mu_k^+ = \frac{H\sigma_k^-}{H^2\sigma_k^-+R}(y_k-H\mu_k^-)+\mu_k^-</script></li>
+</ol>
+<ol>
+<li><script type="math/tex; mode=display">
+\sigma_k^- = (1-\frac{H^2\sigma_k^-}{H^2\sigma_k^-+R})\sigma_k^-</script></li>
+</ol>
+<ol>
+<li>我们观察上面两个公式都有一个共同的因子，我们称之为卡尔曼增益$K$<script type="math/tex; mode=display">
+K = \frac{H\sigma_k^-}{H^2\sigma_k^-+R}</script></li>
+</ol>
+<p>这就是卡尔曼滤波的$5$个公式。</p>
+<p>我们现在研究一下卡尔曼增益的性质</p>
+<script type="math/tex; mode=display">
+K = \frac{H}{H^2+R/\sigma_k^-}</script><p>当$R&gt;&gt;\sigma_k^-, k\rightarrow 0, \mu_k^+ = \mu_k^- + k(y_k-H\cdot\mu_k^-) = \mu_k^-$，相信预测</p>
+<p>当$R&lt;&lt;\sigma_k^-, k\rightarrow\frac{1}{H}, \mu_k^+=\mu_k^-+\frac{y_k}{H}-\mu_k^- = \frac{y_k}{H}$，相信观测</p>
+<p>矩阵形式的卡尔曼滤波</p>
+<p>$\mu_k\rightarrow \vec{\mu_k},\sigma_k\rightarrow \Sigma_k$，$F,H$皆为矩阵。</p>
+<p>类推：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\vec{\mu_k^-} &= F\cdot\vec{\mu_{k-1}^+}\\
+\Sigma_k^- &= F\Sigma_{k-1}^+F^T+Q\\
+K &= \Sigma_k^-H^T(H\Sigma_k^-H^T+R)^{-1}\\
+\vec{\mu_k^+} &= \vec{\mu_k^-}+K(\vec{y_k}-H\vec{\mu_k^-})\\
+\Sigma_k^+ &= (I-KH)\Sigma_k^-
+\end{aligned}</script><p>矩阵形式的推导可以阅读《概率机器人》。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal13.jpg" alt=""></p>
+<p>其实马尔可夫假设和观测独立假设可以由我们的已知条件推出，没有必要给出。</p>
+<p>证明若</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+X_k = f(X_{k-1})+Q_k\\
+Y_k = h(X_k) + R_k
+\end{cases},X_0,Q_1,\cdots,Q_k,R_1,\cdots,R_k\text{独立}</script><p>，则</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(X_k = x_k|X_{k-1} = x_{k-1},X_{k-2} &= x_{k-2},\cdots,X_0=x_0) = P(X_k=x_k|X_{k-1}=x_{k-1})\quad\text{马尔可夫假设}\\
+P(Y_k = y_k|X_k = x_k,X_{k-1}=x_{k-1},\cdots,X_0=x_0) &= P(Y_k=y_k|X_k=x_k)\quad\text{观测独立}
+\end{aligned}</script><p>证明：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal14.jpg" alt=""></p>
+<p><img src="D:/joplin/joplin/贝叶斯滤波与卡尔曼滤波/image/15.jpg" alt=""></p>
+<p>观测独立性假设同理。</p>
+<h2 id="从零开始码出卡尔曼滤波代码"><a href="#从零开始码出卡尔曼滤波代码" class="headerlink" title="从零开始码出卡尔曼滤波代码"></a>从零开始码出卡尔曼滤波代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%%%%kalman filter</span></span><br><span class="line"><span class="comment">%X(K) = F*X(K-1)+Q</span></span><br><span class="line"><span class="comment">%Y(K) = H*X(K)+R</span></span><br><span class="line"><span class="comment">%%% 第一个问题，生成一段随机信号，并滤波</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%生成一段时间t</span></span><br><span class="line">t = <span class="number">0.1</span>:<span class="number">0.01</span>:<span class="number">1</span>;</span><br><span class="line">L = <span class="built_in">length</span>(t);</span><br><span class="line"><span class="comment">%生成真实信号x，以及观测y</span></span><br><span class="line"><span class="comment">%生成信号，设x=t^2</span></span><br><span class="line">x = t.^<span class="number">2</span>;</span><br><span class="line">y = x + normrnd(<span class="number">0</span>,<span class="number">0.1</span>,<span class="number">1</span>, L);</span><br><span class="line"><span class="comment">% 绘制信号和观测数据</span></span><br><span class="line"><span class="comment">% plot(t, x, t, y)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%%%%%%%滤波算法</span></span><br><span class="line"><span class="comment">%%%预测方程观测方程怎么写</span></span><br><span class="line"><span class="comment">%观测方程好写Y(K) = X(K)+R R~N(0,1)</span></span><br><span class="line"><span class="comment">%预测方程不好写，在这里，可以猜一猜是线性增长，信号是杂乱无章的，怎么办？</span></span><br><span class="line"><span class="comment">%模型一，最粗糙的建模</span></span><br><span class="line"><span class="comment">%X(K) = X(K-1)+Q</span></span><br><span class="line"><span class="comment">%Y(K) = X(K) + R</span></span><br><span class="line"><span class="comment">%猜Q~N(0,1)</span></span><br><span class="line"></span><br><span class="line">F1 = <span class="number">1</span>;</span><br><span class="line">H1 = <span class="number">1</span>;</span><br><span class="line">Q1 = <span class="number">1</span>;</span><br><span class="line">R1 = <span class="number">1</span>;</span><br><span class="line"><span class="comment">%初始化x(k)+</span></span><br><span class="line">Xplus1 = <span class="built_in">zeros</span>(<span class="number">1</span>, L);</span><br><span class="line"></span><br><span class="line"><span class="comment">%设置一个初值，假设Xplus1(1)~N(0.01, 0.01^2)</span></span><br><span class="line">Xplus1(<span class="number">1</span>) = <span class="number">0.01</span>;</span><br><span class="line">Pplus1 = <span class="number">0.01</span>^<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">%%%卡尔曼滤波算法</span></span><br><span class="line"><span class="comment">%X(K)- = F*X(K-1)+</span></span><br><span class="line"><span class="comment">%P(K)- = F*P(K-1)+*F&#x27;+Q</span></span><br><span class="line"><span class="comment">%K = P(K)-*H&#x27;*inv(H*P(K)-*H&#x27;+R)</span></span><br><span class="line"><span class="comment">%X(K)+=X(K)-+K*(y(k)-H*X(k)-)</span></span><br><span class="line"><span class="comment">%P(K)+=(1-K*H)*P(K)-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:L</span><br><span class="line">    Xminus1 = F1*Xplus1(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    Pminus1 = F1*Pplus1*F1+Q1;</span><br><span class="line">    K1 = (Pminus1*H1)/(H1*Pminus1*H1+R1);</span><br><span class="line">    Xplus1(<span class="built_in">i</span>) = Xminus1+K1*(y(<span class="built_in">i</span>)-H1*Xminus1);</span><br><span class="line">    Pplus1 = (<span class="number">1</span>-K1*H1)*Pminus1;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% plot(t, y, t, Xplus1);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%%%模型二</span></span><br><span class="line"><span class="comment">%X(K)=X(K-1)+X&#x27;(K-1)*dt + X&quot;(K-1)*dt^2*(1/2!)+Q2</span></span><br><span class="line"><span class="comment">%Y(K)=X(K)+R R~N(0,1)</span></span><br><span class="line"><span class="comment">%此时状态变量X=[X(K) X&#x27;(K) X&quot;(K)]T(列向量)</span></span><br><span class="line"><span class="comment">%Y(K)=H*X+R  H = [1 0 0](行向量)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%预测方程</span></span><br><span class="line"><span class="comment">%X(K) = X(K-1) + X&#x27;(K-1)*dt + X&quot;(K-1)*dt^2*(1/2!)+Q2</span></span><br><span class="line"><span class="comment">%X(K)&#x27; = 0*X(K-1)+X&#x27;(K-1)+X&quot;(K-1)*dt+Q3</span></span><br><span class="line"><span class="comment">%X(K)&quot; = 0*X(K-1) + 0*X&#x27;(K-1) + X&quot;(K-1) + Q4</span></span><br><span class="line"><span class="comment">% F = [1 dt 0.5*dt^2</span></span><br><span class="line"><span class="comment">%      0  1    dt</span></span><br><span class="line"><span class="comment">%      0  0    1</span></span><br><span class="line"><span class="comment">% H = [1 0 0]</span></span><br><span class="line"><span class="comment">% Q = [Q2 0 0 </span></span><br><span class="line"><span class="comment">%      0 Q3 0</span></span><br><span class="line"><span class="comment">%      0 0 Q4]</span></span><br><span class="line"></span><br><span class="line">dt = t(<span class="number">2</span>)-t(<span class="number">1</span>);</span><br><span class="line">F2 = [<span class="number">1</span> dt <span class="number">0.5</span>*dt^<span class="number">2</span>;<span class="number">0</span> <span class="number">1</span> dt;<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>];</span><br><span class="line">H2 = [<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>];</span><br><span class="line">Q2 = [<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>; <span class="number">0</span> <span class="number">0.01</span> <span class="number">0</span>; <span class="number">0</span> <span class="number">0</span> <span class="number">0.0001</span>];</span><br><span class="line">R2 = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">%%%设置初值</span></span><br><span class="line">Xplus2 = <span class="built_in">zeros</span>(<span class="number">3</span>, L);</span><br><span class="line">Xplus2(<span class="number">1</span>, <span class="number">1</span>) = <span class="number">0.1</span>^<span class="number">2</span>;</span><br><span class="line">Xplus2(<span class="number">2</span>, <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">Xplus2(<span class="number">3</span>, <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">Pplus2 = [<span class="number">0.01</span>, <span class="number">0</span>, <span class="number">0</span>; <span class="number">0</span>, <span class="number">0.01</span>, <span class="number">0</span>; <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.0001</span>];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:L</span><br><span class="line">    Xminus2 = F2*Xplus2(:,<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    Pminus2 = F2*Pplus2*F2&#x27;+Q2;</span><br><span class="line">    </span><br><span class="line">    K2 = (Pminus2*H2&#x27;)*inv(H2*Pminus2*H2&#x27;+R2);</span><br><span class="line">    Xplus2(:,<span class="built_in">i</span>) = Xminus2 + K2*(y(<span class="built_in">i</span>)-H2*Xminus2);</span><br><span class="line">    Pplus2 = (<span class="built_in">eye</span>(<span class="number">3</span>)-K2*H2)*Pminus2;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(t, y, t, Xplus2(<span class="number">1</span>,:))</span><br></pre></td></tr></table></figure>
+<h2 id="粒子滤波"><a href="#粒子滤波" class="headerlink" title="粒子滤波"></a>粒子滤波</h2><p>应用最广泛，原理很复杂，术语最多。</p>
+<p>从贝叶斯滤波开始：</p>
+<p>$X_k = f(X_{k-1})+Q_k$</p>
+<p>$Y_k = h(X_k)+R_k$</p>
+<p>$X_0,Q_1,Q_2,\cdots,Q_k,R_1,R_2,\cdots,R_k$互相独立</p>
+<p>$Q_1,Q_2,\cdots,Q_k,R_1,R_2,\cdots,R_k$满足正态分布</p>
+<p>粒子滤波适用于静态环境、动态可预测环境，如电池电量估算，视频跟踪，封闭环境导航。</p>
+<p>下面再复习一下贝叶斯滤波的几个公式：</p>
+<p>初值：$X_0\xrightarrow{pdf}f_0^+$</p>
+<p>预测：$f_k^-(x) = \int_{-\infty}^{+\infty}f_Q[x-f(v)]f_{k-1}^+(v)dv$</p>
+<p>更新：$f_k^+(x) = \eta f_R[y_k-h(x)]f_k^-(x)\quad \eta = (\int_{-\infty}^{+\infty}f_R[y_k-h(x)]f_k^-(x)dx)^{-1}$</p>
+<p>估计：$\hat{x_k^+} = \int_{-\infty}^{+\infty}xf_k^+(x)dx$</p>
+<p>缺点：无穷积分，一般无解析解。</p>
+<p>由大数定律引发的遐想</p>
+<p>大数定律：设$X$为随机变量，$E(X)$存在，对$X$做$n$次随机试验，结果记为$x_1,x_2,x_3,\cdots,x_n$，则有</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow \infty}P(|\frac{1}{n}\sum_{i}x_i-E(X)|<\epsilon)=1</script><p>暗示了什么？当$n$足够大时，$\frac{1}{n}\sum_{i}x_i\approx E(X)$</p>
+<script type="math/tex; mode=display">
+E(x) = \int_{-\infty}^{+\infty}xf(x)dx\Rightarrow \lim_{n\rightarrow \infty}\frac{1}{n}\sum_ix_i = \int_{-\infty}^{+\infty}xf(x)dx</script><p>我们用到$\delta$函数：</p>
+<script type="math/tex; mode=display">
+\delta(x) \Rightarrow \int_c^df(x)\delta(x-a)dx = f(a)\quad a\in(c,d)</script><p>可得</p>
+<script type="math/tex; mode=display">
+x_1 = \int_{-\infty}^{+\infty}x\delta(x-x_1)dx,x_2 = \int_{-\infty}^{+\infty}x\delta(x-x_2)dx,\cdots,x_n = \int_{-\infty}^{+\infty}x\delta(x-x_n)dx</script><p>所以</p>
+<script type="math/tex; mode=display">
+\frac{1}{n}\sum_ix_i = \frac{1}{n}\int_{-\infty}^{+\infty}x\sum_i\delta(x-x_i)dx = \int_{-\infty}^{+\infty}xf(x)dx</script><p>$f(x)$为$X$的<code>pdf</code></p>
+<p>由此可以看出，当$n\rightarrow \infty$时，$f(x)\approx \frac{1}{n}\sum_{i}\delta(x-x_i)$，好积分。</p>
+<p>大数定律暗示了可以用一堆粒子来近似概率密度，这就是粒子滤波。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal16.jpg" alt=""></p>
+<p>由此可以看出，虽然其概率密度函数不是很想，但是其<strong>分布函数</strong>的图像很相像，标准正态分布在原点处的概率最大，分布函数导数值最大，对应于采样的函数其采的点数量越多，也就越陡峭。</p>
+<p>缺点：需要大量粒子，如何用少量粒子表示<code>pdf</code></p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal17.jpg" alt=""></p>
+<p>当我们用上文提到的方法时，当遇到较大的导数值时，由于我们的粒子每次只走$1/n$，所以需要大量的粒子来将我们的函数值抬上去，但是如果我们给粒子赋予权重，在导数较大的位置的粒子赋予较高的权重，那么就能用较少的粒子来近似。</p>
+<p>$f(x)\approx \frac{1}{n}\sum_i\delta(x-x_i) = \sum_i\frac{1}{n}\delta(x-x_i)$，每个粒子的权重都是$1/n$</p>
+<p>我们改进后的</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f(x) &= \sum_iw_i\delta(x-x_i)\\
+\sum_iw_i&=1
+\end{aligned}</script><p>粒子的位置和权重完全决定了<code>cdf</code>，也就决定了<code>pdf</code></p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal18.jpg" alt=""></p>
+<p>$x_i$是从$f(x_i)$采样出来的，$x_i$的位置天然满足概率分布的规律：<img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal19.jpg" style="zoom:50%;" /></p>
+<p>$w_i$如何分配？</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal20.jpg" alt="">原则，<code>pdf</code>大的$w_i$高</p>
+<p>如</p>
+<script type="math/tex; mode=display">
+w_i = \frac{f(x_i)}{f(x_1)+f(x_2)+f(x_3)}</script><p>按比例分配，满足归一化$\sum w_i=1$</p>
+<p>也可以$w_i = \frac{1}{n}$，但是$n$要足够大($50$个以上)</p>
+<p>也可以综合：$n$大，$w_i = \frac{f(x_i)}{\sum_if(x_i)}$</p>
+<p>贝叶斯滤波：$X_0$的<code>pdf</code>为$f_0(x)$，在$f_0(x)$中采了$n$个样本（怎么采样？）</p>
+<p>采样很难，我们先假设$X_0$是一个正态分布，利用Matlab可以进行采样</p>
+<p>设采集的样本为$x_0^{(1)},x_0^{(2)},\cdots,x_0^{(n)}$</p>
+<p>设$f_0(x) = \sum_iw_0^{(i)}\delta(x-x_0^{(i)}),w_0^{(i)}$可以为$1/n$，也可以按照比例分配。</p>
+<p>则</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_1^-(x) &= \int_{-\infty}^{+\infty}f_Q[x-f(v)]dv = \sum_iw_if_Q[x-f(x_0^{(i)})]\\
+f_1^+(x) &= \eta f_R[y-h(x)]f_1^-(x)
+\end{aligned}</script><p>那么我们的粒子哪里去了呢？</p>
+<p>我们得到的$f_1^+(x)$和$f_1^-(x)$都没有了$\delta(x)$函数，无法进行积分。</p>
+<p>因为我们由$f_1^+(x)$到$f_2^-(x)$还需要计算无穷积分，即还需要对概率密度函数进行采样。</p>
+<p>但是对概率密度函数进行采样是一件很难的事情，我们可以再对$f_1^+(x)$进行采样，但是采样的过程非常耗时。</p>
+<p>通过$f_1^-(x)$生成一堆粒子，理论上$f_1^-(x) = \sum_i w_if_Q[x-f(x_0^{(i)})]$也可以采样，也可以计算出新的$w$，但是速度太慢。</p>
+<p>怎么办？$\Rightarrow f_Q[x-f(x_0)^{(i)}]$，假设$Q$为正态分布。</p>
+<p>$f_Q[x-f(x_0^{(i)})] = (2\pi Q)^{-\frac{1}{2}}e^{-\frac{[x-f(x_0)^{(i)}]^2}{2Q}}\sim N(f(x_0^{(i)}),Q)$</p>
+<script type="math/tex; mode=display">
+N(f(x_0^{(i)}, Q)\xrightarrow{F.T} e^{if(x_0^{(i)})t-\frac{Q}{2}t^2}</script><p>我们对一个相对较为复杂的概率密度函数进行傅里叶变换，将其分解为一系列较为简单的概率密度函数。</p>
+<p>例如，正态分布函数</p>
+<script type="math/tex; mode=display">
+N(f(x_0^{(i)}, Q)\xrightarrow{F.T} e^{if(x_0^{(i)})t-\frac{Q}{2}t^2} = e^{if(x_0^{(i)})t}\cdot e^{-\frac{Q}{2}t^2}</script><p>我们对其两个因子进行傅里叶逆变换</p>
+<script type="math/tex; mode=display">
+e^{if(x_0^{(i)})t}\xrightarrow{i.F.T} \delta(x-f(x_0^{(i)}))\quad \int_{-\infty}^{+\infty}\delta(x-f(x_0^{(i)}))e^{ixt} = e^{if(x_0^{(i)})t}\\</script><script type="math/tex; mode=display">
+e^{-\frac{Q}{2}t^2}\xrightarrow{i.F.T} N(0,Q)</script><p>$\delta(x-f(x_0^{(i)}))$是必然事件$X_0 = f(x_0^{(i)})$的<code>pdf</code></p>
+<p>$N(0,Q)$为$Q$的<code>pdf</code></p>
+<p>定理：若$X$的<code>pdf</code>为$f$，$Y$的<code>pdf</code>为$g$，$X,Y$独立，则$Z = X+Y$的$pdf$为$f*g$</p>
+<p>设$Z$的<code>pdf</code>为$h$，则$h = f*g$。</p>
+<p>卷积性质：设$G$为傅里叶变换，$G^{-1}$为傅里叶逆变换。</p>
+<p>则$G(h) = G(f)\cdot G(g)$</p>
+<p>设$A$的<code>pdf</code>$f_A=f_Q[x-f(x_0^{(i)})], G(f_A)=e^{if(x_0^{(i)})t}\cdot e^{-\frac{Q}{2}t^2}$</p>
+<p>而$G^{-1}(e^{if(x_0^{(i)})t}) = \delta(x-f(x_0^{(i)}))$</p>
+<p>$G^{-1}(e^{-\frac{Q}{2}t^2}) = (2\pi Q)^{-1/2}e^{-\frac{x^2}{2Q}}$</p>
+<p>设$X$的<code>pdf</code>为$f_X = \delta(x-f(x_0^{(i)}))$，$Y$的<code>pdf</code>为$f_Y = (2\pi Q)^{-1/2}e^{-\frac{x^2}{2Q}}$</p>
+<p>$G(f_A) = G(f_x)\cdot G(f_Y)\Rightarrow A+X+Y$</p>
+<p>$X$为必然事件，$Y\sim N(0, Q)$，$X,Y$独立</p>
+<p>如何生成粒子：$f_1^-(x)=\sum_i w_0^{(i)}f_Q[x-f(x_0^{(i)})]$</p>
+<p>对于每一个$f_Q[x-f(x_0^{(i)})]$可以看作是一个必然事件$X=f(x_0^{(i)})$与一个随机数$Y\sim N(0,Q)$叠加</p>
+<p>$f_1^-(x)$粒子$x_1^{-(1)},x_1^{-(2)},\cdots,x_1^{-(n)}$</p>
+<p>$x_1^{-(i)} = f(x_0^{(i)})+v$，$v\sim N(0,Q)$</p>
+<p>例：$X_1 = 2X_0+Q,Q\sim N(0,1)$</p>
+<p>设$X_0\sim N(0,1)$</p>
+<p>样本$x_0^{(1)}=0, x_0^{(2)}=0.1, x_0^{(3)}=0.1$</p>
+<p>$x_1^{-(i)} = f(x_0^{(i)})+v$</p>
+<p>$x_1^{-(0)}=0\cdot2+0.12 = 0.12, x_1^{-(1)} = 2\cdot0.1+0.08=0.28, x_1^{-(2)} = 2\cdot -0.1+0.3 = 0.1$</p>
+<p>$f_1^-(x) = \sum_i^n w_0^{(i)}f_Q[x-f(x_0^{(i)})]$，对于每一个$f_Q[x-f(x_0^{(i)})]$，生成一个粒子即可。</p>
+<p>此时，$x_1^{-(i)} = f(x_0^{(i)})+Q$，本质是改变了粒子的位置，并未改变粒子的权重。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal21.jpg" alt=""></p>
+<p>下面我们讲一下粒子滤波算法</p>
+<ol>
+<li><p>设初值$X_0\sim N(\mu, \sigma^2)$</p>
+</li>
+<li><p>生成$X_0$的样本$x_0^{(1)},\cdots,x_0^{(n)}$</p>
+</li>
+<li><p>生成$X_0$样本对应的权重$w_0^{(i)}$，可以都为$1/n$，也可以为$\frac{f(x_0^{(i)})}{\sum_if(x_0)^{(i)}}$，$f(x)$为$X_0$的<code>pdf</code></p>
+</li>
+<li><p>生成$X_1^-$的样本，$x_1^{-(i)} = f(x_0^{(i)})+Q$，$Q\sim N(0, Q)$</p>
+</li>
+<li><p>$f_1^-(x) = \sum_i w_0^{(i)}\delta(x-x_1^{-(i)})$，此时改变了粒子的位置，但是没有改变权重</p>
+</li>
+<li><p>预测步结束</p>
+</li>
+<li><p>观测到了一个数据$y_1$</p>
+</li>
+<li><script type="math/tex; mode=display">
+\begin{aligned}
+f_1^+(x) &= \eta f_R[y_1-h(x)]f_1^-(x) = \sum_{i=1}^n\eta f_R[y_1-h(x)]w_0^{(i)}\delta(x-x_1^{-(i)})\\
+&=\sum_{i=1}^n\eta f_R[y_1-h(x_1^{-(i)})]w_0^{(i)}\delta(x-x_1^{-(i)})
+\end{aligned}</script><p>设$w_1^{(i)} = f_R[y_1-h(x_1^{-(i)})]w_0^{(i)}$，所以$f_1^+(x) = \sum_{i=1}^n w_1^{(i)}\delta(x-x_1^{-(i)})$，更新步并未改变粒子的位置，但是改变了粒子的权重。</p>
+</li>
+<li><script type="math/tex; mode=display">
+\eta = (\sum_iw_1^{(i)})^{-1},\text{归一化}</script></li>
+</ol>
+<p>因为在更新步里并没有改变粒子，所以我们统一把粒子都命名为$x_1^{(i)}$</p>
+<p>下面我们给出一个完整的粒子滤波算法</p>
+<ol>
+<li>给初值$X_0\sim N(\mu, \sigma^2)$</li>
+<li>生成$x_0^{(i)},w_0^{(i)} = 1/n$</li>
+<li>预测步，生成$x_1^{(i)} = f(x_0^{(i)})+v, v\sim N(0,Q)$</li>
+<li>更新步，设观测值为$y_1$，生成$w_1^{(i)} = f_R[y-h(x_1^{(i)})]w_0^{(i)}$</li>
+<li>将$w_1^{(i)}$归一化，$w_1^{(i)} = \frac{w_1^{(i)}}{\sum w_1^{(i)}}$</li>
+<li>此时，得新的权重$w_1^{(i)}$</li>
+<li>再由预测步生成$x_2^{(i)} = f(x_1^{(i)})+v$</li>
+<li>再由更新步产生$w_2^{(i)} = f_R[y_2-h(x_2^{(i)})]w_1^{i}$</li>
+<li>将$w_2^{(i)}$归一化，$w_2^{(i)} = \frac{w_2^{(i)}}{\sum w_2^{(i)}}$</li>
+<li>如此递推</li>
+</ol>
+<p>粒子滤波如何求期望和方差呢？</p>
+<p>$f(x) = \sum_{i=1}^n w_i\delta(x-x_i)$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\hat{x_k^+}  &=\int_{-\infty}^{+\infty}\sum_{i=1}^nxw_i\delta(x-x_i)dx=\sum_{i=1}^n w_ix_i\\
+D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+\infty}xf(x))^2 \\
+&=\sum_{i=1}^n(w_ix_i^2) - (\hat{x_k^+})^2
+\end{aligned}</script><h2 id="重采样"><a href="#重采样" class="headerlink" title="重采样"></a>重采样</h2><p>重采样是为了解决粒子退化问题：只有少数粒子具有较高的权重，大量粒子权重极低。</p>
+<p>那么导致粒子退化的原因是什么？</p>
+<ol>
+<li>粒子的数量不能太多</li>
+<li>$w_k^{(i)} = f_R[y_k-h(x_k^{(i)})]w_{k-1}^{(i)},f_R[y_k-h(x_k^{(i)})]=(2\pi R)^{1/2}e^{-\frac{[y_k-h(x_k^{(i)})]^2}{2R}}$为$e^{-\alpha x^2}$型函数，导致权重下降地非常快。</li>
+</ol>
+<p>如</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal22.jpg" alt=""></p>
+<p>如果有多个粒子的权重较大，这是比较好的情况：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal23.jpg" alt=""></p>
+<p>但是若只有一个粒子的权重很大，这种情况就很差了</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal24.jpg" alt=""></p>
+<p>还有一种更坏的情况</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal25.jpg" alt=""></p>
+<p><img src="D:/joplin/joplin/贝叶斯滤波与卡尔曼滤波/image/26.jpg" alt=""></p>
+<p>所以为了解决粒子退化的问题，重采样应运而生。</p>
+<p>粒子退步$\rightarrow$更新失败(是这一步还是下一步？)，是下一步</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal27.jpg" alt=""></p>
+<p>当前步的更新发挥作用$\rightarrow$粒子退化$\rightarrow$下一步更新失效</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal28.jpg" alt=""></p>
+<p>重采样算法步骤</p>
+<p>假设有$4$个粒子，其中$x_1,w_1=0.1、x_2,w_2 = 0.1、x_3, w_3 = 0.7、x_4,w_4 = 0.1$</p>
+<p>我们按照权重在坐标轴上划分范围：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal29.jpg" alt=""></p>
+<p>每个区间为$(0,w_1),(w_1,w_1+w_2),\cdots,(\sum_{i-1}w_{i-1},\sum_iw_i)$</p>
+<p>生成一个随机数$a,a\sim U(0,1)$，看$a$落在哪一个区间上就把对应的粒子复制。</p>
+<p>之后将所有的粒子权重都设为$1/n$</p>
+<p>重采样有一定减弱粒子退化的能力</p>
+<p>重采样必然会导致粒子多样性丧失，$N = \frac{1}{\sum w_i^2}$，$N$越小，退化越严重</p>
+<p>重采样必然减慢粒子滤波的速度。</p>
+<h2 id="粒子滤波代码"><a href="#粒子滤波代码" class="headerlink" title="粒子滤波代码"></a>粒子滤波代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% x(i) = sin(x(i-1))+5*x(i-1)/(x(i-1)^2+1)+Q</span></span><br><span class="line"><span class="comment">% y(i) = x(i)^2 + R</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 状态值与观测值</span></span><br><span class="line">t = <span class="number">0.01</span>:<span class="number">0.01</span>:<span class="number">1</span>;</span><br><span class="line">x = <span class="built_in">zeros</span>(<span class="number">1</span>, <span class="number">100</span>);</span><br><span class="line">y = <span class="built_in">zeros</span>(<span class="number">1</span>, <span class="number">100</span>);</span><br><span class="line"><span class="comment">% 给初值</span></span><br><span class="line">x(<span class="number">1</span>) = <span class="number">0.1</span>;</span><br><span class="line">y(<span class="number">1</span>) = <span class="number">0.01</span>^<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 生成真实数据与观测数据</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:<span class="number">100</span></span><br><span class="line">    x(<span class="built_in">i</span>) = <span class="built_in">sin</span>(x(<span class="built_in">i</span><span class="number">-1</span>)) + <span class="number">5</span> * x(<span class="built_in">i</span><span class="number">-1</span>) / (x(<span class="built_in">i</span><span class="number">-1</span>)^<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">    y(<span class="built_in">i</span>) = x(<span class="built_in">i</span>)^<span class="number">3</span> + normrnd(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% plot(t, x, t, y)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 设粒子集合</span></span><br><span class="line">n = <span class="number">100</span>;</span><br><span class="line">xold = <span class="built_in">zeros</span>(<span class="number">1</span>, n);</span><br><span class="line">xnew = <span class="built_in">zeros</span>(<span class="number">1</span>, n);</span><br><span class="line">xplus = <span class="built_in">zeros</span>(<span class="number">1</span>, <span class="number">100</span>); <span class="comment">% xplus用于存放滤波值，就是每一次后验概率的期望</span></span><br><span class="line">w = <span class="built_in">zeros</span>(<span class="number">1</span>, n);</span><br><span class="line"><span class="comment">% 设置x0(i)，可以直接在正态分布中采样，如果对初值有自信，也可以让所有粒子都相同</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">    xold(<span class="built_in">i</span>) = <span class="number">0.1</span>;</span><br><span class="line">    w(<span class="built_in">i</span>) = <span class="number">1</span>/n;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:<span class="number">100</span></span><br><span class="line">    <span class="comment">% 预测步，由x0推出x1</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">        xold(<span class="built_in">j</span>) = <span class="built_in">sin</span>(xold(<span class="built_in">j</span>)) + <span class="number">5</span> * xold(<span class="built_in">j</span>)/(xold(<span class="built_in">j</span>)^<span class="number">2</span>+<span class="number">1</span>) + normrnd(<span class="number">0</span>,<span class="number">0.1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">% 预测步完毕</span></span><br><span class="line">    <span class="comment">% 更新步</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">        w(<span class="built_in">j</span>) = <span class="built_in">exp</span>(-((y(<span class="built_in">i</span>)-xold(<span class="built_in">j</span>)^<span class="number">3</span>)^<span class="number">2</span>/(<span class="number">2</span>*<span class="number">1</span>)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">% 归一化</span></span><br><span class="line">    w = w/sum(w);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 重采样</span></span><br><span class="line">    c = cumsum(w);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">        a = unifrnd(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:n</span><br><span class="line">            <span class="keyword">if</span> (a&lt;c(k))</span><br><span class="line">                xnew(<span class="built_in">j</span>) = xold(k);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    xold = xnew;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:n</span><br><span class="line">        w(<span class="built_in">j</span>) = <span class="number">1</span>/n;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    xplus(<span class="built_in">i</span>) =sum(xnew)/n;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">plot</span>(t, x, t, xplus);</span><br></pre></td></tr></table></figure>
+<h2 id="粒子滤波拾遗：采样方法与预测方程"><a href="#粒子滤波拾遗：采样方法与预测方程" class="headerlink" title="粒子滤波拾遗：采样方法与预测方程"></a>粒子滤波拾遗：采样方法与预测方程</h2><p>采样方法：如何在复杂<code>pdf</code>上采样</p>
+<p>预测方程：$X = f(t)$，怎么由$X=f(t)\Rightarrow X_k=F(X_{k-1})$(高精度)</p>
+<p>正态分布和均匀分布的概率密度函数很好采样：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal30.jpg" alt=""></p>
+<p><img src="D:/joplin/joplin/贝叶斯滤波与卡尔曼滤波/image/31.jpg" alt=""></p>
+<p>采样粒子的特点：<code>pdf</code>大的粒子多，<code>pdf</code>小的粒子少</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal32.jpg" alt=""></p>
+<p>也可以通过对正态分布去掉一些粒子来实现</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal33.jpg" alt=""></p>
+<p>怎么去掉</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal34.jpg" alt="">高<code>pdf</code>的地方有更大的概率保留，低<code>pdf</code>的地方有更大的概率去掉，类似于重采样。</p>
+<p>对于一个复杂的<code>pdf</code>：<img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal35.jpg" alt=""></p>
+<ol>
+<li>均匀分布生成粒子</li>
+<li>取一个直线$M$，使得$M\ge f(x)$</li>
+<li><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal36.jpg" alt="">，如图，我们对于生成的每一个粒子，做”审判”，生成一个随机数$a\sim U(0,M)$，看$a$落在哪个区间，若$a\in (0, f(x_i))$，则保留，反之舍弃。</li>
+</ol>
+<p>也可以从正态分布开始生成粒子：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal37.jpg" alt=""></p>
+<p>但是前两种算法都无法控制粒子的数量，我们改进算法为接受-拒绝采样法</p>
+<p>待采样$f(x)$，容易采样的$g(x)$，$g(x)$又被称为建议分布。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal38.jpg" alt=""></p>
+<ol>
+<li>找到$M$，使得$Mg(x)\ge f(x)$</li>
+<li>在$g(x)$上采样一个粒子$x_1$</li>
+<li>生成一个$a\sim U(0, Mg(x_1))$，若$a\in (0, f(x_1))$保留，反之则拒绝</li>
+<li>重复</li>
+</ol>
+<p>那么什么样的提议分布是好的呢？</p>
+<p>首先$Mg(x)$拒绝率越低，效率越高，提议分布越好</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal39.jpg" alt=""></p>
+<p>提议分布也应尽可能要与$f(x)$形状逼近，越相似，拒绝率越低</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal40.jpg" alt=""></p>
+<p>位置也要尽可能相似</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal41.jpg" alt=""></p>
+<p>预测方程的写法可以参考数值分析。</p>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/post_cover/14.jpg"></div>
+
+		<!-- relate post, comment...-->
+		<div class="investment-container">
+			<div class="investment-header">
+				<div class="investment-title-1">
+					<div class="on">相关文章</div>
+					<div>评论</div>
+					<div>分享</div>
+				</div>
+				<div class="investment-title-2">	            
+					
+	<span>
+		<a id="totop-post-page">返回顶部</a>
+		
+		
+			<a href="/2021/12/11/%E6%95%B0%E8%AE%BA/" title="数论" rel="next">
+				下一篇&raquo;
+			</a>
+			
+	</span>
+
+
+      		
+				</div>	
+			</div>
+			
+			<div class="investment-content">
+				<div class="investment-content-list">
+					
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/12/04/MCMC/" title="马尔科夫链蒙特卡洛方法">
+								马尔科夫链蒙特卡洛方法			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十二月 4日, 2021				
+							</p>
+							<p class="relate-post-content">
+								蒙特卡洛方法MC实质：随机抽样为什么要抽样？
+假设我们有关于$x$的一个正态分布的概率密度：
+
+f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/12/04/MCMC/" title="马尔科夫链蒙特卡洛方法">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/14.jpg" alt="马尔科夫链蒙特卡洛方法"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/11/26/SVM%E7%AE%97%E6%B3%95/" title="SVM算法">
+								SVM算法			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十一月 26日, 2021				
+							</p>
+							<p class="relate-post-content">
+								支持向量机(SVM)线性模型线性可分训练集一个训练数据集线性可分是指：$\{(x_i,y_i)\}_{i=1\sim N},\exists(w,b)$，使对$\forall i=1\sim N$，有
+
+若$y_i=+1$，则$w^Tx...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/11/26/SVM%E7%AE%97%E6%B3%95/" title="SVM算法">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/18.jpg" alt="SVM算法"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/10/31/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="算法学习笔记第一节">
+								算法学习笔记第一节			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 31日, 2021				
+							</p>
+							<p class="relate-post-content">
+								
+
+ 
+
+
+认识时间复杂度常数时间的操作：一个操作如果跟数据量没有关系，每次都是固定时间内完成的操作，叫做常数操作。时间复杂度为一个算法流程中，常数操作数量的质量，常用$O$来表示。具体来说，只要高阶项，不要低阶项，也不要高阶项的系数...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/10/31/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="算法学习笔记第一节">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/14.jpg" alt="算法学习笔记第一节"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">
+								高斯混合模型和EM算法			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 31日, 2021				
+							</p>
+							<p class="relate-post-content">
+								Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/5.jpg" alt="高斯混合模型和EM算法"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/12/11/%E6%95%B0%E8%AE%BA/" title="数论">
+								数论			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十二月 11日, 2021				
+							</p>
+							<p class="relate-post-content">
+								开个新坑
+
+
+	
+    
+	
+
+
+
+
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/12/11/%E6%95%B0%E8%AE%BA/" title="数论">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/12.jpg" alt="数论"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/12/10/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/" title="随机过程第一章：基本概念">
+								随机过程第一章：基本概念			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十二月 10日, 2021				
+							</p>
+							<p class="relate-post-content">
+								
+
+	
+    
+	
+
+
+
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/12/10/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/" title="随机过程第一章：基本概念">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/7.jpg" alt="随机过程第一章：基本概念"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/12/05/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/" title="贝叶斯统计分析">
+								贝叶斯统计分析			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十二月 5日, 2021				
+							</p>
+							<p class="relate-post-content">
+								最近一次更新：根据梅老师的课更新了一下无信息先验。
+
+
+	
+    
+	
+
+
+
+
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/12/05/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/" title="贝叶斯统计分析">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/17.jpg" alt="贝叶斯统计分析"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/10/31/Linear-algebra-in-cv/" title="计算机视觉中的线性代数第一章">
+								计算机视觉中的线性代数第一章			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 31日, 2021				
+							</p>
+							<p class="relate-post-content">
+								向量空间、基、线性映射线性组合、线性独立和秩在线性优化问题中，我们经常会遇到线性方程组。例如，考虑求解下列具有三个变量$x_1,x_2,x_2\mathbb{R}$的三个线性方程组：
+
+\begin{aligned}
+x_1 + 2x...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/10/31/Linear-algebra-in-cv/" title="计算机视觉中的线性代数第一章">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/10.jpg" alt="计算机视觉中的线性代数第一章"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" title="线性代数应该这样学：线性空间">
+								线性代数应该这样学：线性空间			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 12日, 2021				
+							</p>
+							<p class="relate-post-content">
+								向量空间线性代数是研究有限维向量空间上的线性映射的学科。在线性代数中，如果研究复数和实数，会出现更好的定理和更多的洞察力。因此我们将从介绍复数和它们的基本概念开始。
+我们将平面和平凡空间(ordinary space)的例子推广到$\...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" title="线性代数应该这样学：线性空间">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/6.jpg" alt="线性代数应该这样学：线性空间"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" title="贝叶斯数据分析">
+								贝叶斯数据分析			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 11日, 2021				
+							</p>
+							<p class="relate-post-content">
+								当初为什么要用英文写笔记？？
+
+	
+    
+	
+
+
+
+
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" title="贝叶斯数据分析">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post_cover/4.jpg" alt="贝叶斯数据分析"/>
+							</a>
+						</div>
+					</li>												
+			
+		</ul>
+	
+</div>	
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-comment">
+
+	
+
+		
+			
+			<!-- livere comment -->
+			<!-- show livere comment -->
+<div id="lv-container" data-id="city" data-uid='MTAyMC81MzYxNS8zMDA4OA=='>
+	<script type="text/javascript">
+	   (function(d, s) {
+	       var j, e = d.getElementsByTagName(s)[0];
+ 	       if (typeof LivereTower === 'function') { return; }
+ 	       j = d.createElement(s);
+	       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+	       j.async = true;
+ 	       e.parentNode.insertBefore(j, e);
+	   })(document, 'script');
+	</script>
+	<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+			
+		
+		
+	
+
+</div>
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-share">
+	
+	
+
+		
+			
+			<!-- socialShare share -->
+			<div class="social-share"></div>
+
+<!--  css & js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+			
+		
+		
+	
+</div>
+
+
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<!-- show math formula -->
+
+	<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config(
+			{ 
+				tex2jax: {
+					inlineMath: [['$','$'], ['\\(','\\)']]
+				} 
+			}
+		);
+	</script>
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+		<li class="menu-note">
+			<a href="/note" class="menu-item-note" target="_blank">笔记</a>
+		</li>
+		
+	
+		<li class="menu-shuoshuo">
+			<a href="/ss" class="menu-item-shuoshuo" target="_blank">说说</a>
+		</li>
+		
+	
+		<li class="menu-bangumis">
+			<a href="/bangumis" class="menu-item-bangumis" target="_blank">追番</a>
+		</li>
+		
+	
+		<li class="menu-cinemas">
+			<a href="/cinemas" class="menu-item-cinemas" target="_blank">追剧</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2021, content by HFC. All Rights Reserved.
+			
+			
+				<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	
+<script src="/plugin/motto/motto.js"></script>
+
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+	
+<script src="/plugin/love/love.js"></script>
+
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup scrollbar" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>	
+</html>
