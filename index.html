@@ -278,7 +278,7 @@
 
       
           
-    <div id="aplayer-xTHbDeHd" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-jUquRHqn" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="346089" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <p><img src="https://cdn.jsdelivr.net/gh/HFC666/image@master/20210713/3.178msyh9rg68.png" style="zoom:80%;" /></p>
@@ -329,6 +329,386 @@ height: 100%; left: 0; top: 0;"> </iframe></div>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
+      <meta itemprop="name" content="HFC">
+      <meta itemprop="description" content="留一份不足，可得无限美好">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独自赏晴雨">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">线性模型</a>
+        </h2>
+
+        <div class="post-meta">
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-18 23:01:52 / 修改时间：23:09:42" itemprop="dateCreated datePublished" datetime="2021-12-18T23:01:52+08:00">2021-12-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A5%BF%E7%93%9C%E4%B9%A6/" itemprop="url" rel="index"><span itemprop="name">西瓜书</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h2><h3 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h3><script type="math/tex; mode=display">
+f(x) = w^Tx+b</script><h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>对于一元变量：<br>线性回归试图学得</p>
+<script type="math/tex; mode=display">
+f\left(x_{i}\right)=w x_{i}+b, \text { 使得 } f\left(x_{i}\right) \simeq y_{i}</script><p>对于多元变量：<br>我们令$\hat{w}=(w;b)$，相应地，把数据集$D$表示为一个$m\times(d+1)$大小的矩阵$\mathrm{X}$，即</p>
+<script type="math/tex; mode=display">
+\mathbf{X}=\left(\begin{array}{ccccc}
+
+x_{11} & x_{12} & \ldots & x_{1 d} & 1 \\
+
+x_{21} & x_{22} & \ldots & x_{2 d} & 1 \\
+
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+
+x_{m 1} & x_{m 2} & \ldots & x_{m d} & 1
+
+\end{array}\right)=\left(\begin{array}{cc}
+
+x_{1}^{T} & 1 \\
+
+x_{2}^{T} & 1 \\
+
+\vdots & \vdots \\
+
+x_{m}^{T} & 1
+
+\end{array}\right)</script><p>我们有</p>
+<script type="math/tex; mode=display">
+\hat{w}^\star = \arg_{\hat{w}}\min(y-\mathrm{X}\hat{w})^T(y-\mathrm{X}\hat{w})</script><p>令$E_{\hat{w}}=(y-\mathrm{X}\hat{w})^T(y-\mathrm{X}\hat{w})$，对$\hat{w}$求导得到：</p>
+<script type="math/tex; mode=display">
+\frac{\partial E_{\hat{w}}}{\partial\hat{w}} = 2\mathrm{X}^T(\mathrm{X}\hat{w}-y)</script><p>当$\mathrm{X}^T\mathrm{X}$为满秩矩阵或正定矩阵时，我们有</p>
+<script type="math/tex; mode=display">
+\hat{w}^\star = (\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^Ty</script><p>更一般地，考虑单调可微函数$g(\cdot)$，令</p>
+<script type="math/tex; mode=display">
+y = g^{-1}(w^Tx+b)</script><p>这样的模型称为”广义线性模型”。</p>
+<h3 id="对数几率回归"><a href="#对数几率回归" class="headerlink" title="对数几率回归"></a>对数几率回归</h3><script type="math/tex; mode=display">
+y = \frac{1}{1+e^{-(w^Tx+b)}}</script><p>变化得</p>
+<script type="math/tex; mode=display">
+\ln\frac{y}{1-y} = w^Tx+b</script><p>若将$y$视为样本$x$作为正例的可能性，则$1-y$是其反例的可能性，两者的比值：</p>
+<script type="math/tex; mode=display">
+\frac{y}{1-y}</script><p>称为几率，反映了$x$作为正例的相对可能性。</p>
+<p>我们令</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p(y=1|x) &= \frac{e^{w^Tx+b}}{1+e^{w^Tx+b}}\\
+p(y=0|x)&=\frac{1}{1+e^{w^Tx+b}}
+\end{aligned}</script><p>我们采用最大似然法来估计$w$和$b$：</p>
+<script type="math/tex; mode=display">
+\ell(w,b) = \sum_{i=1}^m\ln p(y_i|x_i;w,b)</script><p>我们令$\beta=(w;b),\hat{x} = (x;1)$，即$w^Tx+b=\beta^T\hat{x}$，令$p_1(\hat{x};\beta)=p(y=1|\hat{x};\beta),p_0(\hat{x};\beta)=p(y=0|\hat{x};\beta)=1-p_1(\hat{x};\beta)$<br>我们将似然项写为</p>
+<script type="math/tex; mode=display">
+p(y_i|x_i;w,b) = p_1(\hat{x}_i;\beta)^{y_i}p_0(\hat{x}_i;\beta)^{1-y_i}</script><p>代入似然函数，我们得</p>
+<script type="math/tex; mode=display">
+\ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\left(-y_{i} \boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_{i}+\ln \left(1+e^{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{\alpha}}_{i}}\right)\right)</script><p>最小化似然函数可以用<strong>梯度下降法</strong>和<strong>牛顿法</strong>。</p>
+<p>牛顿法<br>根据二阶泰勒展开我们有：</p>
+<script type="math/tex; mode=display">
+f(x+\Delta x) = f(x) - \Delta x^T\nabla f + \Delta x^T\nabla^2f\Delta x</script><p>对其进行求导，</p>
+<script type="math/tex; mode=display">
+-\nabla f + 2\Delta x\nabla^2 f=0</script><p>使导数为零得</p>
+<script type="math/tex; mode=display">
+\Delta x = \nabla^2f^{-1}\nabla f</script><p>所以以牛顿法为例，其第$t+1$轮迭代解的更新公式为：</p>
+<script type="math/tex; mode=display">
+\beta^{t+1}=\beta^{t}-\left(\frac{\partial^{2} \ell(\beta)}{\partial \beta \partial \beta^{\mathrm{T}}}\right)^{-1} \frac{\partial \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}}</script><h3 id="LDA判别分析"><a href="#LDA判别分析" class="headerlink" title="LDA判别分析"></a>LDA判别分析</h3><p>LDA的思想非常朴素：给定训练例集，设法将样例投影到一条直线，使得同类样例的投影点尽可能接近、异类样例的投影点尽可能远离。</p>
+<p><img src="https://static01.imgkr.com/temp/4b179e7140244df5ad861570daec95ae.png" alt=""></p>
+<p>给定数据集$D=\{(x_i,y_i)\}_{i=1}^m,y_i\in \{0,1\}$。令$X_i,\mu_i,\Sigma_i$分别表示第$i\in \{0,1\}$类示例的集合、均值向量、协方差矩阵。若将数据投影到直线$w$上，则两类样本的中心再直线上的投影分别为$w^T\mu_0$和$w^T\mu_1$，若将所有的点都投影到直线上，则两类样本的协方差分别为$w^T\Sigma_0w$和$w^T\Sigma_1 w$。</p>
+<p>欲使同类样例的投影点尽可能接近，可以让$w^T\Sigma_0w+w^T\Sigma_1w$尽可能小；而欲使异类样例的投影点尽可能原理，可以使$||w^T\mu_0-w^T\mu_1||_2^2$尽可能大，同时考虑两者得：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+J &= \frac{||w^T\mu_0-w^T\mu_1||_2^2}{w^T\Sigma_0w+w^T\Sigma_1w}\\
+&= \frac{w^T(\mu_0-\mu_1)(\mu_0-\mu_1)^Tw}{w^T(\Sigma_0+\Sigma_1)w}
+\end{aligned}</script><p>定义”类内散度矩阵”</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+S_w &= \Sigma_0+\Sigma_1\\
+&= \sum_{x\in X_0}(x-\mu_0)(x-\mu_0)^T+\sum_{x\in X_1}(x-\mu_1)(x-\mu_1)^T
+\end{aligned}</script><p>以及类间散度矩阵：</p>
+<script type="math/tex; mode=display">
+S_b = (\mu_0-\mu_1)(\mu_0-\mu_1)^T</script><p>则可以重写为：</p>
+<script type="math/tex; mode=display">
+J = \frac{w^TS_bw}{w^TS_ww}</script><p>这就是LDA欲最大化得目标，即$S_b$与$S_w$的广义瑞利熵。</p>
+<blockquote>
+<p>要考研了，等到有时间再更新。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+	
+	
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
+      <meta itemprop="name" content="HFC">
+      <meta itemprop="description" content="留一份不足，可得无限美好">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独自赏晴雨">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">实数与极限</a>
+        </h2>
+
+        <div class="post-meta">
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-18 23:00:20 / 修改时间：23:06:12" itemprop="dateCreated datePublished" datetime="2021-12-18T23:00:20+08:00">2021-12-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="实数与极限"><a href="#实数与极限" class="headerlink" title="实数与极限"></a>实数与极限</h2><p>我们先复习一下函数(映射)的概念，假设有两个集合$X$和$Y$，我们定义一个对应法则$f$，记为$X\xrightarrow{f}Y$，使得对于$\forall x\in X,x\xrightarrow{f}y\in Y$。则$X$为定义域，$Y$为到达域。<br>下面我们引入一个记号$f(X):=\{y\in Y|\exists x(\left(x\in X)\wedge(y=f(x))\right)\}$，称为值域。<br>我们微积分研究的对象：$X\xrightarrow{f}Y\subset \mathbb{R}^n$，其中$f$为可微函数。</p>
+<h3 id="实数的基本公理"><a href="#实数的基本公理" class="headerlink" title="实数的基本公理"></a>实数的基本公理</h3><p>加法公理：</p>
+<ul>
+<li>$\exists$零元$0$，使得$0+x=x+0=x$</li>
+<li>$\exists$负元$-x$，使得$x+(-x)=(-x)+x=0$</li>
+<li>结合律：$\forall x,y,z\in \mathbb{R}$，使得$(x+y)+z=x+(y+z)$</li>
+</ul>
+<p>集合$G$上存在加法运算，且满足上述三条加法公理，则说明$G$为一个群。</p>
+<ul>
+<li>交换律：对于$\forall x,y\in R,x+y=y+x$</li>
+</ul>
+<p>如果运算还满足交换律，则群成为交换群(阿贝尔群)。</p>
+<p>乘法公理：</p>
+<ul>
+<li>单位元(中性元)：$1\in \mathbb{R}-0$，$\forall x\in \mathbb{R},x\cdot1=1\cdot x=x$</li>
+<li>$\forall x\in\mathbb{R}-0,\exists x^{-1}\in\mathbb{R},x^{-1}\cdot x=x\cdot x^{-1}=1$</li>
+<li>$\forall x,y,z\in\mathbb{R},(x\cdot y)\cdot z = x\cdot(y\cdot z)$</li>
+<li>$\forall x,y\in\mathbb{R},x\cdot y = y\cdot x$</li>
+</ul>
+<p>则$\mathbb{R}-0$关于乘法构成一个群。</p>
+<p>有了加法和乘法，我们就可以定义加法和乘法的附加公理(分配律)：</p>
+<script type="math/tex; mode=display">
+\forall x,y,z\in \mathbb{R},z\cdot(x+y) = (x+y)\cdot z = x\cdot z + y\cdot z</script><p>域<br>如果集合上定义了满足上述公理的$+$和$\cdot$运算以及结合律，则该集合为域(代数域)。</p>
+<p>序公理：我们在集合上定义一个不等关系$\le$，使得$\forall x,y\in\mathbb{R},(x\le y)\vee(y\le x)$</p>
+<ul>
+<li>$\forall x\in \mathbb{R},x\le x$</li>
+<li>$(x\le y)\wedge(y\le x)\Rightarrow(x=y)$</li>
+<li>$(x\le y)\wedge(y\le z)\Rightarrow (x\le z)$</li>
+<li>$(x\le y)\vee (y\le x)$</li>
+</ul>
+<p>加法和序也存在附加公理：</p>
+<script type="math/tex; mode=display">
+(x\le y)\Rightarrow (x+z)\le (y+z)</script><p>乘法与序也存在附加公理：</p>
+<script type="math/tex; mode=display">
+(0\le x)\wedge(0\le y)\Rightarrow (0\le xy)</script><p>如果集合$X$上存在不等关系$\le$，满足上述公理的前三条，我们称$X$为一个偏序集，如果还满足第四条，我们称他为线性的序集。</p>
+<p>完备性公理(连续性公理)：给定集合$X,Y\subset \mathbb{R}$，使得$\forall x\in X,\forall y \in Y,x\le y$，则$\exists c\in \mathbb{R}$满足$x\le c\le y,\forall x\in X,\forall y\in Y$。</p>
+<p>给定一个集合，满足加法公理、乘法公理，定义了一个满足序公理的序关系，满足完备性公理，则成为是实数集的一个具体实现。</p>
+<p>如十进制的小数是$\mathbb{R}$的一个实现，还有数轴。</p>
+<h3 id="实数运算的代数性质"><a href="#实数运算的代数性质" class="headerlink" title="实数运算的代数性质"></a>实数运算的代数性质</h3><p>我们首先研究加法。<br>首先我们证明$\mathbb{R}$上存在唯一的加法零元。<br>证明：假设存在两个加法零元$0_1,0_2$，则</p>
+<script type="math/tex; mode=display">
+0_1 = 0_1+0_2 = 0_2+0_1=0_2</script><p>所以$0_1=0_2$，所以存在唯一的加法零元。</p>
+<p>下面证明$\forall x\in \mathbb{R},\exists$唯一的负元。<br>证明：假设存在两个负元$x_1,x_2$，则</p>
+<script type="math/tex; mode=display">
+x_1 = x_1 + 0 = x_1 + (x+x_2) = (x_1+x)+x_2 = 0+x_2 = x_2</script><p>所以存在唯一的负元。</p>
+<p>紧接着证明方程$a+x=b$有唯一解$x = b + (-a) = b-a$<br>证明：因为$a\in \mathbb{R}$，所以$\exists!$唯一负元$-a$。</p>
+<script type="math/tex; mode=display">
+(a+x=b)\Rightarrow((-a)+a+x=(-a)+b) \Rightarrow x = b + (-a) = b-a</script><p>下面我们研究乘法。<br>首先我们需要证明$\mathbb{R}$上存在唯一的$1$<br>证明：假设存在两个单位元$1_1,1_2$，则</p>
+<script type="math/tex; mode=display">
+1_1  = 1_1\cdot 1_2 = 1_2\cdot 1_1 = 1_2</script><p>下面我们证明$\forall x\in\mathbb{R}-0,\exists!$逆元$x^{-1}$<br>证明：假设存在两个逆元$x_1,x_2$，则</p>
+<script type="math/tex; mode=display">
+x_1 = x_1\cdot 1 = x_1\cdot(x\cdot x_2) = (x_1\cdot x)\cdot x_2 = x_2</script><p>所以$x_1=x_2$</p>
+<p>紧接着我们证明$\forall a\in \mathbb{R}-0,a\cdot x=b$存在唯一的解$x = b\cdot a^{-1} = a^{-1}\cdot b$。<br>证明：因为$a\in \mathbb{R}-0$，所以存在唯一的逆元$a^{-1}$，所以</p>
+<script type="math/tex; mode=display">
+(a\cdot x = b)\Rightarrow (a^{-1}\cdot(a\cdot x) = a^{-1}\cdot b)\Rightarrow (x = a^{-1}\cdot b)</script><p>下面我们证明加法与乘法相联系的公理的推论<br>$\forall x\in \mathbb{R},x\cdot 0 = 0$<br>证明：<br>$x\cdot 0 =x\cdot(0+0) = x\cdot 0+x\cdot 0$，两边同时加上逆元$-x\cdot 0$，得$0 = x\cdot 0$。</p>
+<p>$x\in\mathbb{R}-0\Rightarrow x^{-1}\neq0$<br>证明：若$x^{-1}=0\Rightarrow x\cdot x^{-1} = x\cdot 0 = 0$，得$1=0$，矛盾。</p>
+<p>$x\cdot y=0\Rightarrow(x=0)\vee(y=0)$<br>证明：设$y\neq 0$，所以$y^{-1}\neq 0$，所以</p>
+<script type="math/tex; mode=display">
+(x\cdot y = 0)\Rightarrow(x\cdot y\cdot y^{-1} = 0\cdot y^{-1}=0)\Rightarrow x = 0</script><p>同理可证当$x\neq0$时$y=0$。</p>
+<p>$-x = -1\cdot x$<br>证明：<br>$x + (-1\cdot x) = 1\cdot x + -1\cdot x = (1+(-1))\cdot x = 0\cdot x = 0$<br>所以$-1\cdot x$为$x$的逆元，所以$-x = -1\cdot x$。</p>
+<p>$(-1)\cdot (-x)=x$<br>证明：我们只需证明$(-1)\cdot(-x)$为$-x$的逆元即可。</p>
+<script type="math/tex; mode=display">
+(-1)\cdot(-x) + (-x) = ((-1)+1)\cdot(-x) = 0\cdot (-x) = 0</script><p>得证。</p>
+<p>$(-x)\cdot(-x)=x\cdot x$<br>证明：</p>
+<script type="math/tex; mode=display">
+(-x)\cdot (-x) = ((-1)\cdot x)\cdot(-x) = (x\cdot (-1))\cdot(-x) = x\cdot((-1)\cdot(-x)) = x\cdot x</script><p>下面我们研究序公理的推论</p>
+<p>$x\le y$若$x\neq y$，则记作$x&lt;y$，称为严格不等式。<br>那么对于$x,y\in\mathbb{R}$，$x&lt;y,x=y,y&lt;x$只有一个成立。</p>
+<p>下面我们证明：</p>
+<ul>
+<li>$(x&lt;y)\wedge(y\le z)\Rightarrow x&lt;z$</li>
+<li>$(x\le y)\wedge(y&lt;z)\Rightarrow x&lt;z$</li>
+</ul>
+<p>我们证明第一个，第二个与其类似：</p>
+<script type="math/tex; mode=display">
+(x<y)\wedge(y\le z)\Rightarrow((x\neq y)\wedge(x\le y)\wedge (y\le z))\Rightarrow((x\neq y)\wedge(x\le z))</script><p>若$x=z$，我们有$(x&lt;y)\wedge(y\le x)\Rightarrow(x\neq y)\wedge(x\le y)\wedge(y\le x)\Rightarrow(x\neq y)\wedge(x=y)$，矛盾。所以$x\neq z$，所以$x&lt;z$。</p>
+<h3 id="序公理与加法公理以及乘法公理的推论"><a href="#序公理与加法公理以及乘法公理的推论" class="headerlink" title="序公理与加法公理以及乘法公理的推论"></a>序公理与加法公理以及乘法公理的推论</h3><h4 id="序公理和加法公理"><a href="#序公理和加法公理" class="headerlink" title="序公理和加法公理"></a>序公理和加法公理</h4><p>我们需要证明以下定理：</p>
+<ol>
+<li>$(x&gt;y)\Rightarrow (x+z&gt;y+z)$</li>
+<li>$(x&gt;0)\Rightarrow (-x&lt;0)$</li>
+<li>$(x&gt;y)\wedge(z\ge w)\Rightarrow (x+z)&gt;(y+w)$</li>
+<li>$(x\ge y)\wedge (z&gt;w)\Rightarrow (x+z)&gt;(y+w)$</li>
+</ol>
+<p>下面我们开始证明：</p>
+<p>第一个：</p>
+<script type="math/tex; mode=display">
+(x>y)\Rightarrow (x\ge y)\Rightarrow (x+z\ge y+z)</script><p>所以我们只需要证明$(x+z\neq y+z)$，即证明$x\neq y$，所以得证。</p>
+<p>第二个：</p>
+<script type="math/tex; mode=display">
+(x>0)\Rightarrow (x+(-x)>0+(-x))\Rightarrow (0>-x)</script><p>得证。</p>
+<p>第三个和第四个证明一个即可：</p>
+<script type="math/tex; mode=display">
+((x>y)\wedge(z\ge w))\Rightarrow ((x+z>y+z)\wedge(z+y\ge w+y))\Rightarrow ((x>y)>(y+w))</script><p>得证。</p>
+<h4 id="序公理与乘法公理"><a href="#序公理与乘法公理" class="headerlink" title="序公理与乘法公理"></a>序公理与乘法公理</h4><ol>
+<li>$(x&gt;0)\wedge(y&gt;0)\Rightarrow (xy&gt;0)$</li>
+<li>$(x<0)\wedge(y<0)\Rightarrow (xy>0)$</li>
+<li>$(x&gt;0)\wedge(y&lt;0)\Rightarrow (xy&lt;0)$</li>
+<li>$(x&gt;y)\wedge(z&gt; 0)\Rightarrow(xz&gt;yz)$</li>
+<li>$(x&gt;y)\wedge(z&lt; 0)\Rightarrow(xz&lt;yz)$</li>
+</ol>
+<p>我们先证明第一条：</p>
+<script type="math/tex; mode=display">
+(x>0)\wedge(y>0)\Rightarrow (x\ge 0)\wedge(y\ge0)\Rightarrow xy\ge 0</script><p>所以我们至于要证明$xy\neq0$，根据之前的定理我们知道$(xy=0)\Rightarrow(x=0)\vee(y=0)$，而我们条件中$x,y$都不等于$0$，所以得证。</p>
+<p>第二条：</p>
+<script type="math/tex; mode=display">
+((x<0)\wedge(y<0))\Rightarrow((-x>0)\wedge(-y>0))\Rightarrow(-x)\cdot(-y)>0\Rightarrow(xy)>0</script><p>第三条与第二条思路相同，不在赘述。</p>
+<p>下面证明第四条：</p>
+<script type="math/tex; mode=display">
+((x>y)\wedge(z>0))\Rightarrow((x-y>0)\wedge(z>0))\Rightarrow((x-y)z>0)\Rightarrow(xz-yz)>0\Rightarrow xz>yz</script><p>第五条类似。</p>
+<p>下面我们证明$1&gt;0$：</p>
+<p>我们知道$1&gt;0,1=0,1&lt;0$之中只能有一个成立，我们已经知道$1\neq 0$。所以我们假设$1&lt;0$，那我们有：</p>
+<script type="math/tex; mode=display">
+(1<0)\wedge(1<0)\Rightarrow(1\cdot1>0)\Rightarrow 1>0</script><p>互相矛盾，所以$1&gt;0$。</p>
+<p>下面我们再证明：</p>
+<ol>
+<li>$(0<x)\Rightarrow(x^{-1}>0)$</li>
+<li>$(0&lt;x&lt;y)\Rightarrow(0&lt;y^{-1}&lt;x^{-1})$</li>
+</ol>
+<p>我们先证明第一条：</p>
+<p>我们假设$x^{-1}&lt;0$，则</p>
+<script type="math/tex; mode=display">
+(0<x)\wedge(x^{-1}<0)\Rightarrow (x\cdot x^{-1})<0\Rightarrow 1<0</script><p>矛盾，得证。</p>
+<p>第二条：</p>
+<script type="math/tex; mode=display">
+(0<x<y)\Rightarrow(y^{-1}>0)\wedge(x>0)\Rightarrow(x\cdot y^{-1}>0)\Rightarrow(y^{-1}>x^{-1})</script><p>得证。</p>
+<p>下面我们讨论正数和负数：</p>
+<p>所有大于零的数为正数，如果$x$为正数，则$x^{-1}$也为正数。</p>
+<p>负数：小于零的数为负数。</p>
+<h3 id="完备性公理与数集上下确界的存在性"><a href="#完备性公理与数集上下确界的存在性" class="headerlink" title="完备性公理与数集上下确界的存在性"></a>完备性公理与数集上下确界的存在性</h3><p>定义：$X\subset \mathbb{R}$，若$\exists c\in \mathbb{R},\forall x\in X,x\le c$，则称$X$上有界集合，称$c$为$X$的上界；若$\forall x\in X,x\ge c$，则称$X$下有界集合，称$c$为$X$的下界。</p>
+<p>定义(有界集)：既上有界也下有界。即$\exists c_1,c_2\in \mathbb{R}$使得$\forall x\in X,c_1&lt;x&lt;c_2$。</p>
+<p>定义(最大元、极大元)：集合$X\subset\mathbb{R}$，若$\exists a\in X$使得$\forall x\in X,x\le a$。称$a$为$X$的最大元。即：</p>
+<script type="math/tex; mode=display">
+\max X := (a\in X)\wedge(\forall x\in X,x\le a)</script><p>定义(最小元、极小元)：</p>
+<script type="math/tex; mode=display">
+\min X:= ((a\in X)\wedge (\forall x\in X,x\ge a))</script><p>定义(上确界)：上界当中的最小元，记为$\sup X$</p>
+<script type="math/tex; mode=display">
+(\sup X=s):= (\forall x\in X,x\le s)\wedge (\forall s^{\prime}<s,\exists x^{\prime}\in X,x^{\prime}>s^{\prime})</script><p>定义(下确界)：下界当中的最大元，记为$\inf X$。</p>
+<script type="math/tex; mode=display">
+(\inf X=s):= (\forall x\in X,x\ge s)\wedge (\forall s^{\prime}>s,\exists x^{\prime}\in X,x^{\prime}<s^{\prime})</script><p>例：$[0,1)$的的上确界为$1$。</p>
+<p>因为$\forall x\in [0,1),x \le1$，并且$\forall a<1$，我们有$\frac{1+a}{2}\in [0,1)$，但是$\frac{1+a}{2}>a$。</p>
+<p>则如果一个集合存在一个最大元，那么它必为上确界；存在最小元，那么它必为下确界。</p>
+<p>那么什么时候存在上确界和下确界呢？</p>
+<p>上确界引理：若$X$为有上确界非空集合，则$X$有唯一的上确界。</p>
+<p>证明：</p>
+<p>我们关于上确界还有一个定义：</p>
+<script type="math/tex; mode=display">
+\sup X := \min \{c|\forall x\in X,x\le c\}</script><p>由此可以看出上确界就是上界集合中的最小元。我们首先证明唯一性，假设有两个上确界$c_1,c_2$，因为上确界是上界集合中的最小元，所以我们有$c_1\le c_2,c_2\le c_1$，所以$c_1=c_2$。所以如果存在上确界的话，上确界就是唯一的。</p>
+<p>下面我们证明存在上确界。</p>
+<p>我们设$Y=\{y:\forall x\in X,x\le y\}$，由此可以看出$y$为$X$的上界集合，因为$X$有上界，所以$Y$非空。所以我们就有$\forall x\in X,\forall y\in Y,x\le y$。根据完备性公理，$\exists x\in \mathbb{R}$，使得$\forall x\in X,\forall y\in Y,x\le c\le y$，由此我们可以推出$c\in Y$，并且$c$为$Y$的最小元，所以上确界存在。</p>
+<p>得证。</p>
+<p>下确界的证明类似。</p>
+<h3 id="完备性公理相关的基本引理"><a href="#完备性公理相关的基本引理" class="headerlink" title="完备性公理相关的基本引理"></a>完备性公理相关的基本引理</h3><p>定义(序列)：如果函数$f:\mathbb{N}\rightarrow X$，则称$f(n)$为序列。记作：</p>
+<script type="math/tex; mode=display">
+x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果$\forall n\in \mathbb{N},X_{i}\supset X_{i+1}$，则称其为集列套。</p>
+<p>闭区间套引理：若闭区间套$I_1\supset I_1\supset I_3\supset \cdots$，存在$c\in \mathbb{R}$使得$c\in I_i,\forall i\in \mathbb{N}$。如果对于$\forall \epsilon &gt;0, \exists I_n$使得$|I_n|&lt;\epsilon$，则$c$唯一。</p>
+<p>证明：</p>
+<p>记$I_n=[a_i,b_i]$，$\forall I_n=[a_n,b_n],I_m=[a_m,b_m]$，我们都有$a_n\le b_m$。我们令$X=\{a_n\},Y=\{b_n\}$。所以对于$\forall a_n\in X,\forall b_m\in Y$，我们都有$a_n\le b_m$，根据完备性定理：$\exists c\in \mathbb{R}$，使得$\forall a_n\in X,\forall b_m\in Y$，都有$a_n\le c\le b_m$，我们取$m=n$，则$a_n\le c\le b_n$，即$c\in I_n$。则存在性就证明完了。</p>
+<p>若$c_1&lt;c_2\in I_n$，则$a_n\le c_1&lt;c_2\le b_n$，则$c_2-c_1&lt; b_n-a_n=|I_n|$，我们取$\epsilon = \frac{c_2-c_1}{2}$，则不存在这样的$I_n$。得证。</p>
+<p>定义：如果$S=\{X\}$，即$S$为集合的集合，令$Y\subset \bigcup_{X\in S}X$，则称$S$为$Y$的一个覆盖。这就说明：$\forall y\in Y,\exists X\in S$使得$y\in X$。</p>
+<p>有限覆盖引理：如果$I=[a,b],I\subset \bigcup U_n$，其中$U_n=[\alpha_n,\beta_n)$，则$\exists U_1\cdots U_k$使得$I\subset \bigcup_{i=1}^k U_i$。</p>
+<p>证明感觉没怎么看懂，等之后再补上。主要是运用反证法。</p>
+
+      
+    </div>
+
+    
+    
+    
+	
+	
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/16/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -353,10 +733,16 @@ height: 100%; left: 0; top: 0;"> </iframe></div>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-16 22:22:10 / 修改时间：22:49:20" itemprop="dateCreated datePublished" datetime="2021-12-16T22:22:10+08:00">2021-12-16</time>
+              <time title="创建时间：2021-12-16 22:22:10" itemprop="dateCreated datePublished" datetime="2021-12-16T22:22:10+08:00">2021-12-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-18 23:07:01" itemprop="dateModified" datetime="2021-12-18T23:07:01+08:00">2021-12-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -2130,360 +2516,6 @@ a_{\beta}+\left(\left(\sum_{\alpha \in I_{k_{1}}^{\prime}} a_{\alpha}\right)+\le
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/10/31/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
-      <meta itemprop="name" content="HFC">
-      <meta itemprop="description" content="留一份不足，可得无限美好">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="独自赏晴雨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/31/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">算法学习笔记第一节</a>
-        </h2>
-
-        <div class="post-meta">
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-10-31 16:22:23 / 修改时间：16:34:45" itemprop="dateCreated datePublished" datetime="2021-10-31T16:22:23+08:00">2021-10-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;"><iframe src="//player.bilibili.com/player.html?aid=933642480&bvid=BV1YT4y1o727&cid=428541775&page=2" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
-height: 100%; left: 0; top: 0;"> </iframe></div>
-
-
-<h2 id="认识时间复杂度"><a href="#认识时间复杂度" class="headerlink" title="认识时间复杂度"></a>认识时间复杂度</h2><p>常数时间的操作：一个操作如果跟数据量没有关系，每次都是固定时间内完成的操作，叫做常数操作。<br>时间复杂度为一个算法流程中，常数操作数量的质量，常用$O$来表示。具体来说，只要高阶项，不要低阶项，也不要高阶项的系数。剩下的部分记为$f(N)$，那么时间复杂度为$O(f(N))$。</p>
-<h2 id="对数器"><a href="#对数器" class="headerlink" title="对数器"></a>对数器</h2><p>有一个你想要测的方法$a$<br>实现一个绝对正确但是复杂度不好的方法$b$<br>实现一个随机样本产生器<br>实现比对的方法<br>把方法$a$和方法$b$比对很多次来验证方法$a$是否正确<br>如果有一个样本使得比对出错，打印样本分析是哪个方法出错<br>当样本数量很多时比对测试仍然正确，可以确定方法$a$已经正确</p>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>先比较1和2位置的数，如果1大于2则位置交换，再比较2和3位置的数，以此类推，每进行一次都将最大的数放在最后一位；第二次循环的时候就不用管最后一位了，以此类推。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bubble</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> end = arr.length-<span class="number">1</span>; end &gt; <span class="number">0</span>; end--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; end; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[i] &gt; arr[i+<span class="number">1</span>]) &#123;</span><br><span class="line">                    swap(arr, i, i+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>我们首先从0开始到$N-1$，找最小的数的下标并与$0$位置的数交换，只有再从$1$开始，找到从$1$到$N-1$的最小数的下标与$1$交换，以此类推。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Selection</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length-<span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> minindex = i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i; j &lt; arr.length; j++) &#123;</span><br><span class="line">                minindex = arr[j] &lt; arr[minindex] ? j : minindex;</span><br><span class="line">            &#125;</span><br><span class="line">            swap(arr, i, minindex);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>我们首先认为第$0$位置的数是自己排好的，然后再看$0\sim1$位置的数，如果$0$位置的数大于$1$位置的数则交换，现在$0\sim1$位置的数是排好的，之后看$0\sim2$位置的数，用$2$位置与$1$位置的数比较，$1$位置数大于$2$位置数交换，否则不交换；以此类推。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InsertionSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i-<span class="number">1</span>; j&gt;=<span class="number">0</span> &amp;&amp; arr[j] &gt; arr[j + <span class="number">1</span>]; j--) &#123;</span><br><span class="line">                swap(arr, j, j+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>现在假设我们用递归函数来返回数组的最大值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetMaxRe</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMax</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (L==R) &#123;</span><br><span class="line">            <span class="keyword">return</span> arr[L];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = (L+R)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> maxLeft = getMax(arr, L, mid);</span><br><span class="line">        <span class="keyword">int</span> maxRight = getMax(arr, mid+<span class="number">1</span>, R);</span><br><span class="line">        <span class="keyword">return</span> Math.max(maxLeft, maxRight);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">        System.out.println(getMax(arr, <span class="number">0</span>, arr.length-<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>时间复杂度为$O(N\log N)$，额外空间复杂度为$O(N)$。<br>步骤：先将样本分为左右两个部分，分别排好序再后外排。<br>所以其时间复杂度公式为：</p>
-<script type="math/tex; mode=display">
-T(N) = 2T(N/2) + O(N)</script><p>因为两边排完序后还要进行外排，外排需要遍历所有$N$个数据，所以其复杂度为$O(N)$。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MergeSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sortProcess</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (L==R) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = (L+R)/<span class="number">2</span>;</span><br><span class="line">        sortProcess(arr, L, mid);</span><br><span class="line">        sortProcess(arr, mid+<span class="number">1</span>, R);</span><br><span class="line">        merge(arr, L, mid, R);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> mid, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] help = <span class="keyword">new</span> <span class="keyword">int</span>[R - L + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> p1 = L;</span><br><span class="line">        <span class="keyword">int</span> p2 = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(p1 &lt;= mid &amp;&amp; p2 &lt;= R) &#123;</span><br><span class="line">            help[i++] = arr[p1] &lt; arr[p2] ? arr[p1++] : arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p1&lt;=mid) &#123;</span><br><span class="line">            help[i++] = arr[p1++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p2&lt;=R) &#123;</span><br><span class="line">            help[i++] = arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; help.length; i++) &#123;</span><br><span class="line">            arr[L+i] = help[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<h2 id="小和问题"><a href="#小和问题" class="headerlink" title="小和问题"></a>小和问题</h2><p>再一个数组中，每一个数左边必当前数小的数累加起来，叫做这个数的小和。求一个数组的小和。</p>
-<p>例子：<br>[1,3,4,2,5]<br>1的左边比1小的数，没有；<br>3的左边比1小的数，1；<br>4的左边比4小的数，1、3；<br>2的左边比2小的数，1；<br>5的左边比5小的数，1、3、4、2；<br>所以小和为$1+1+3+1+1+3+4+2=16$</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmallSum</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">smallSum</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mergeSort(arr, <span class="number">0</span>, arr.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l==r) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = (r+l)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> mergeSort(arr, l, mid) + mergeSort(arr, mid+<span class="number">1</span>, r) + merge(arr, l, mid, r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> l, <span class="keyword">int</span> m, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] help = <span class="keyword">new</span> <span class="keyword">int</span>[r - l + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> p1 = l;</span><br><span class="line">        <span class="keyword">int</span> p2 = m+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (p1 &lt;= m &amp;&amp; p2 &lt;= r) &#123;</span><br><span class="line">            res += arr[p1] &lt; arr[p2] ? (r-p2+<span class="number">1</span>)*arr[p1] : <span class="number">0</span>;</span><br><span class="line">            help[i++] = arr[p1] &lt; arr[p2] ? arr[p1++] : arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (p1&lt;=m) &#123;</span><br><span class="line">            help[i++] = arr[p1++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p2&lt;=r) &#123;</span><br><span class="line">            help[i++] = arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; help.length; i++) &#123;</span><br><span class="line">            arr[l+i] = help[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在我们的代码中我们写<code>m = (l+r)/2</code>，这样的话可能会溢出，所以我们可以将其写为<code>m = l + (r-l)/2</code>，这样就不会溢出了，另外除以$2$的操作我们还可以写为位运算的形式，位运算要比算数运算快，<code>a/2 = a&gt;&gt;1</code>，相当于右移一位。所以<code>l+(r-l)/2 = l+(r-l)&gt;&gt;1</code>。</p>
-</blockquote>
-<h2 id="逆序对问题"><a href="#逆序对问题" class="headerlink" title="逆序对问题"></a>逆序对问题</h2><p>在一个数组中，左边的数如果比右边的数大，则这两个数构成一个逆序对，请打印所有的逆序对。<br>相当于是求右边有多少数比他小。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InversePair</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">inversePair</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        sortProcess(arr, <span class="number">0</span>, arr.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sortProcess</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (L==R) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = (L+R)/<span class="number">2</span>;</span><br><span class="line">        sortProcess(arr, L, mid);</span><br><span class="line">        sortProcess(arr, mid+<span class="number">1</span>, R);</span><br><span class="line">        merge(arr, L, mid, R);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> mid, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] help = <span class="keyword">new</span> <span class="keyword">int</span>[R - L + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> p1 = L;</span><br><span class="line">        <span class="keyword">int</span> p2 = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(p1 &lt;= mid &amp;&amp; p2 &lt;= R) &#123;</span><br><span class="line">            res = arr[p1] &gt; arr[p2] ? (R-p2+<span class="number">1</span>) : <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;res;k++)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;[&quot;</span>+arr[p1]+<span class="string">&quot; &quot;</span>+arr[p2+k]+<span class="string">&quot;]&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            help[i++] = arr[p1] &gt; arr[p2] ? arr[p1++] : arr[p2++];</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p1&lt;=mid) &#123;</span><br><span class="line">            help[i++] = arr[p1++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p2&lt;=R) &#123;</span><br><span class="line">            help[i++] = arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; help.length; i++) &#123;</span><br><span class="line">            arr[L+i] = help[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">5</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">7</span>&#125;;</span><br><span class="line">        inversePair(arr);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-	
-	
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
-      <meta itemprop="name" content="HFC">
-      <meta itemprop="description" content="留一份不足，可得无限美好">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="独自赏晴雨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" class="post-title-link" itemprop="url">线性代数应该这样学：线性空间</a>
-        </h2>
-
-        <div class="post-meta">
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-12 19:58:31" itemprop="dateCreated datePublished" datetime="2021-09-12T19:58:31+08:00">2021-09-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-20 19:13:26" itemprop="dateModified" datetime="2021-09-20T19:13:26+08:00">2021-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h2><p>线性代数是研究有限维向量空间上的线性映射的学科。在线性代数中，如果研究复数和实数，会出现更好的定理和更多的洞察力。因此我们将从介绍复数和它们的基本概念开始。</p>
-<p>我们将平面和平凡空间(ordinary space)的例子推广到$\mathbb{R}^n$和$\mathbb{C}^n$，然后我们将它们推广到向量空间的概念。</p>
-<p>然后我们的下一个主题是子空间，它对于向量空间来说所扮演的角色等同于子集对于集合所扮演的角色。最后我们看一下子空间的和(等同于子集的并集)和子空间的直和(相当于不相交子集的并集)。</p>
-<h3 id="mathbb-R-n-and-mathbb-C-n"><a href="#mathbb-R-n-and-mathbb-C-n" class="headerlink" title="$\mathbb{R}^n$ and $\mathbb{C}^n$"></a>$\mathbb{R}^n$ and $\mathbb{C}^n$</h3><h4 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h4><p>定义</p>
-<p>一个复数就是一个有序数对$(a,b)$，其中$a,b\in \mathbb{R}$，不过我们将其写作$a+bi$。所有复数的集合表示为$\mathbb{C} = \{a+bi:a,b\in \mathbb{R}\}$。</p>
-<h4 id="复数运算的性质"><a href="#复数运算的性质" class="headerlink" title="复数运算的性质"></a>复数运算的性质</h4><p>交换律</p>
-<script type="math/tex; mode=display">
-\alpha + \beta = \beta + \alpha,\alpha\beta = \beta\alpha,\forall \alpha,\beta\in \mathbb{C}</script><p>结合律</p>
-<script type="math/tex; mode=display">
-(\alpha+\beta)+\lambda = \alpha+(\beta+\lambda),(\alpha\beta)\lambda=\alpha(\beta\lambda),\forall\alpha,\beta\in \mathbb{C}</script><p>单位元</p>
-<script type="math/tex; mode=display">
-\lambda+0=\lambda,\lambda1=\lambda,\forall \lambda\in \mathbb{C}</script><p>加法逆元</p>
-<p>对于任何$\alpha\in \mathbb{C}$，存在唯一一个$\beta\in \mathbb{C}$，使得$\alpha+\beta=0$。</p>
-<p>乘法逆元</p>
-<p>对于任何$\alpha\in \mathbb{C}$，存在唯一的$\beta\in \mathbb{C}$使得$\alpha\beta=1$。</p>
-<p>分配律</p>
-<script type="math/tex; mode=display">
-\lambda(\alpha+\beta) = \lambda\alpha+\lambda\beta,\forall \lambda,\alpha,\beta\in \mathbb{C}</script><hr>
-<h4 id="定义：-alpha-，减法，-1-alpha-，除法"><a href="#定义：-alpha-，减法，-1-alpha-，除法" class="headerlink" title="定义： $-\alpha$，减法，$1/\alpha$，除法"></a>定义： $-\alpha$，减法，$1/\alpha$，除法</h4><p>$\alpha,\beta\in \mathbb{C}$</p>
-<ul>
-<li>令$-\alpha$表示$\alpha$的加法逆元。因此$-\alpha$是满足$\alpha+(-\alpha)=0$的唯一复数。</li>
-<li>减法：$\mathbb{C}$上的减法定义为：$\beta-\alpha=\beta+(-\alpha)$</li>
-<li>对于$\alpha\neq 0$，令$1/\alpha$表示$\alpha$的乘法逆元。因此$1/\alpha$为满足$\alpha(1/\alpha)=1$的唯一复数。</li>
-<li>$\mathbb{C}$上的除法定义为：$\beta/\alpha=\beta(1/\alpha)$。</li>
-</ul>
-<hr>
-<p>用$\mathbb{F}$表示$\mathbb{R}$或者$\mathbb{C}$。对于$\alpha\in \mathbb{F}$并且$m$为正数，我们定义$\alpha^m$来表示$\alpha$连乘$m$次：</p>
-<script type="math/tex; mode=display">
-\alpha^{m}=\underbrace{\alpha \cdots \alpha}_{m \text { times }}</script><p>很显然$(\alpha^m)^n=\alpha^{mn}$并且$(\alpha\beta)^m=\alpha^m\beta^m, \forall \alpha,\beta\in \mathbb{F}$。</p>
-<hr>
-<h4 id="定义：列表-list-，长度-length"><a href="#定义：列表-list-，长度-length" class="headerlink" title="定义：列表(list)，长度(length)"></a>定义：列表(list)，长度(length)</h4><p>假设$n$是一个非负整数。长度为$n$的列表是一个被括号包围用逗号分隔的$n$元有序数对。长度为$n$的列表如下：</p>
-<script type="math/tex; mode=display">
-（x_1,\cdots,x_n)</script><p>两个列表是相等的当且仅当它们长度相等并且在相同的位置有相同的元素。</p>
-<blockquote>
-<p>长度无限的不能称为列表</p>
-</blockquote>
-<p>长度为零的列表像这样：$()$。我们将其当作列表以免不必要的例外情况。</p>
-<h4 id="定义：-mathbb-F-n"><a href="#定义：-mathbb-F-n" class="headerlink" title="定义：$\mathbb{F}^n$"></a>定义：$\mathbb{F}^n$</h4><p>$\mathbb{F}^n$是所有元素来自$\mathbb{F}$的$n$元有序数对的集合：</p>
-<script type="math/tex; mode=display">
-\mathbb{F}=\{(x_1,\cdots,x_n):x_j\in \mathbb{F},\forall j=1,\cdots,n\}</script><h4 id="mathbb-F-n-上的加法"><a href="#mathbb-F-n-上的加法" class="headerlink" title="$\mathbb{F}^n$上的加法"></a>$\mathbb{F}^n$上的加法</h4><p>$\mathbb{F}^n$上的加法定义为相对应的元素相加：</p>
-<script type="math/tex; mode=display">
-(x_1,\cdots,x_n) + (y_1,\cdots,y_n) = (x_1+y_1,\cdots,x_n+y_n)</script><h4 id="mathbb-F-n-上加法的交换律"><a href="#mathbb-F-n-上加法的交换律" class="headerlink" title="$\mathbb{F}^n$上加法的交换律"></a>$\mathbb{F}^n$上加法的交换律</h4><p>如果$x,y\in \mathbb{F}^n$，则$x+y = y+x$</p>
-<p>证明：假设$x=(x_1,\cdots,x_n)$和$y=(y_1,\cdots,y_n)$。</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-x + y &= (x_1,\cdots,x_n)+(y_1,\cdots,y_n)\\
-&= (x_1+y_1,\cdots,x_n+y_n)\\
-&= (y_1+x_1,\cdots,y_n+x_n)\\
-&= (y_1,\cdots,y_n) + (x_1,\cdots,x_n)\\
-&= y+x
-\end{aligned}</script><h4 id="定义-0"><a href="#定义-0" class="headerlink" title="定义 $0$"></a>定义 $0$</h4><p>令$0$表示长度为$n$并且元素全部为$0$的列表：</p>
-<script type="math/tex; mode=display">
-0 = (0,\cdots,0)</script><h4 id="mathbb-F-上的加法逆元"><a href="#mathbb-F-上的加法逆元" class="headerlink" title="$\mathbb{F}$上的加法逆元"></a>$\mathbb{F}$上的加法逆元</h4><p>对于$x\in \mathbb{F}^n$，$x$的加法逆元，表示为$-x$，为向量$-x \in \mathbb{F}^n$使得</p>
-<script type="math/tex; mode=display">
-x + (-x) = 0</script><p>换句话说，如果$x = (x_1,\cdots,x_n)$，则$-x = (-x_1,\cdots,-x_n)$。</p>
-<h4 id="mathbb-F-上的数乘"><a href="#mathbb-F-上的数乘" class="headerlink" title="$\mathbb{F}$上的数乘"></a>$\mathbb{F}$上的数乘</h4><p>数字$\lambda$和$\mathbb{F}^n$中向量的乘法通过用$\lambda$乘以$\mathbb{F}^n$中的每一个元素来完成。</p>
-<script type="math/tex; mode=display">
-\lambda(x_1,\cdots,x_n) = (\lambda x_1,\cdots,\lambda x_n)</script><p>在这里$\lambda\in \mathbb{F}$并且$(x_1,\cdots,x_n)\in \mathbb{F}^n$.</p>
-<h3 id="向量空间的定义"><a href="#向量空间的定义" class="headerlink" title="向量空间的定义"></a>向量空间的定义</h3><p>定义向量空间的动机来自于$\mathbb{F}^n$中的加法和标量乘法的性质：加法是可交换的、结合的并且有单位元。每个元素也都有加法逆元。标量乘法具有结合律。加法和数乘通过分配律相联系。</p>
-<p>我们把向量空间定义为在$\mathbb{V}$上具有加法和数乘的集合$\mathbb{V}$，该集合具有上面段落提到的性质。</p>
-<h4 id="加法、数乘"><a href="#加法、数乘" class="headerlink" title="加法、数乘"></a>加法、数乘</h4><p>集合$\mathbb{V}$上的数乘是将元素$u+v\in \mathbb{V}$分配给每对元素$u,v\in \mathbb{V}$的函数。</p>
-<p>集合$\mathbb{V}$上的数乘是将元素$\lambda v\in \mathbb{V}$分配给每一个$\lambda \in \mathbb{F}$和每一个$v\in \mathbb{V}$的函数。</p>
-<p>现在我们准备好给向量空间一个正式的定义。</p>
-<h4 id="定义：向量空间"><a href="#定义：向量空间" class="headerlink" title="定义：向量空间"></a>定义：向量空间</h4><p>向量空间是具有$\mathbb{V}$上加法和$\mathbb{V}$上数乘的集合$\mathbb{V}$，使得其满足以下性质：</p>
-<ul>
-<li>交换律：$u+v = v+u,\forall u,v\in \mathbb{V}$</li>
-<li>结合律：$(u+v)+w = u+(v+w)$和$(ab)v = a(bv),\forall u,v,w\in \mathbb{V}\text{ and }a,b\in \mathbb{F}$</li>
-<li>加法单位元：存在一个元素$0\in \mathbb{V}$使得$v+0=v,\forall v\in \mathbb{V}$</li>
-<li>加法逆元：对于任意的$v\in \mathbb{V}$，存在$w\in \mathbb{V}$，使得$v+w=0$</li>
-<li>乘法单位元：$1v=v,\forall v\in \mathbb{V}$</li>
-<li>分配律：$a(u+v)=au+av$和$(a+b)v=av+bv,\forall a,b\in \mathbb{F}\text{ and }u,v\in\mathbb{V}$</li>
-</ul>
-<h4 id="向量、点"><a href="#向量、点" class="headerlink" title="向量、点"></a>向量、点</h4><p>向量空间的元素被称为向量或点。</p>
-<p>向量空间的数乘依赖于$\mathbb{F}$。因当我们想要精确时，我们将会说$\mathbb{V}$是$\mathbb{F}$上的向量空间而不是说$\mathbb{V}$是向量空间。</p>
-<h4 id="实向量空间、虚向量空间"><a href="#实向量空间、虚向量空间" class="headerlink" title="实向量空间、虚向量空间"></a>实向量空间、虚向量空间</h4><p>$\mathbb{R}$上的向量空间被称为实向量空间。</p>
-<p>$\mathbb{C}$上的向量空间被称为复向量空间。</p>
-<h4 id="mathbb-F-S"><a href="#mathbb-F-S" class="headerlink" title="$\mathbb{F}^S$"></a>$\mathbb{F}^S$</h4><p>如果$S$为一个集合，则$\mathbb{F}^S$表示从$S$到$\mathbb{F}$的函数的集合。</p>
-<p>对于$f,g\in \mathbb{F}^S$，和$f+g\in \mathbb{F}^S$是定义为</p>
-<script type="math/tex; mode=display">
-(f+g)(x) = f(x) + g(x)</script><p>的函数，对于任何$x\in S$。</p>
-<p>对于$\lambda \in \mathbb{F}$和$f\in \mathbb{F}^S$，乘积$\lambda f\in \mathbb{F}^S$是定义为</p>
-<script type="math/tex; mode=display">
-(\lambda f)(x) = \lambda f(x)</script><p>对于所有$x\in S$。</p>
-<p>作为上面定义的一个例子，如果$S$是区间$[0,1]$并且$\mathbb{F} = \mathbb{R}$，则$\mathbb{R}^{[0,1]}$是区间$[0,1]$上的实值函数。</p>
-<p>$\mathbb{F}^S$是向量空间：</p>
-<ul>
-<li>如果$S$是一个非空集合，则$\mathbb{F}^S$(有上面定义的加法和数乘运算)是$\mathbb{F}$上的向量空间。</li>
-<li>$\mathbb{F}^S$的加法单位元为函数：$0:S\rightarrow \mathbb{F}$定义为：$0(x)=0,\forall x\in S$</li>
-<li>对于$f \in \mathbb{F}^S$，$f$的加法逆元为函数$-f$：$S\rightarrow \mathbb{F}$定义为：$(-f)(x)=-f(x),\forall x \in S$</li>
-</ul>
-<blockquote>
-<p>我们之前定义的$\mathbb{F}^n$也可以看作是向量空间$\mathbb{F}^S$的一个特例，我们可以认为$\mathbb{F}^n$是从$\{1,2,\cdots,n\}$到$\mathbb{F}$的函数，即将$\mathbb{F}^n$看作$\mathbb{F}^{\{1,2,\cdots,n\}}$。我的理解是例如$n=2$，则$\mathbb{F}^2$可以看作从$\{1,2\}$到$\mathbb{F}$的函数，当取$1$时从$\mathbb{F}$中取一个数，等于$2$时再从$\mathbb{F}$中取一个数。</p>
-</blockquote>
-<h4 id="加法单位元的唯一性"><a href="#加法单位元的唯一性" class="headerlink" title="加法单位元的唯一性"></a>加法单位元的唯一性</h4><p>一个向量空间有唯一的加法逆元。</p>
-<p>证明：假设$0$和$0^{\prime}$都是一些向量空间$\mathbb{V}$的加法单位元。则：</p>
-<script type="math/tex; mode=display">
-0^{\prime} = 0^{\prime} + 0 = 0+ 0^{\prime} = 0</script><p>因此$0^{\prime} = 0$，证明$\mathbb{V}$只有一个加法单位元。</p>
-<h4 id="加法逆元的唯一性"><a href="#加法逆元的唯一性" class="headerlink" title="加法逆元的唯一性"></a>加法逆元的唯一性</h4><p>在向量空间的每一个元素都有唯一的加法逆元。</p>
-<p>证明：假设$\mathbb{V}$是一个向量空间。令$v\in \mathbb{V}$。假设$w$和$w^{\prime}$都是$v$的逆。则：</p>
-<script type="math/tex; mode=display">
-w = w +0 = w+(v+w^{\prime}) = (w+v)+w^{\prime} = 0+w^{\prime}=w^{\prime}</script><p>因此$w = w^{\prime}$，即只有一个加法逆元。</p>
-<h4 id="v-w-v"><a href="#v-w-v" class="headerlink" title="$-v,w-v$"></a>$-v,w-v$</h4><p>令$v,w\in \mathbb{V}$。则</p>
-<ul>
-<li>$-v$表示$v$的加法逆元</li>
-<li>$w-v$定义为$w+(-v)$</li>
-</ul>
-<h4 id="数字-0-乘以一个向量"><a href="#数字-0-乘以一个向量" class="headerlink" title="数字$0$乘以一个向量"></a>数字$0$乘以一个向量</h4><p>$0v=0,\forall v\in \mathbb{V}$</p>
-<p>证明：</p>
-<script type="math/tex; mode=display">
-0v = (0+0)v = 0v + 0v</script><p>两边同时加上$0v$的逆元，得到$0=0v$。</p>
-<h4 id="数字乘以向量-0"><a href="#数字乘以向量-0" class="headerlink" title="数字乘以向量$0$"></a>数字乘以向量$0$</h4><p>$a0=0$对于任何$a\in \mathbb{F}$。</p>
-<p>证明：$a\in \mathbb{F}$，我们有</p>
-<script type="math/tex; mode=display">
-a0 = a(0+0)=a0+a0</script><p>两边同时加上$a0$的加法逆元，即可得到$0=a0$。</p>
-<h4 id="数字-1-乘以一个向量"><a href="#数字-1-乘以一个向量" class="headerlink" title="数字$-1$乘以一个向量"></a>数字$-1$乘以一个向量</h4><p>$(-1)v=-v$对于任意$v\in \mathbb{V}$。</p>
-<p>证明：对于$v\in \mathbb{V}$，我们有：</p>
-<script type="math/tex; mode=display">
-v + (-1)v = 1v+(-1)v = (1+(-1))v = 0v = 0</script><p>因此$(-1)v$是$v$的加法逆元。</p>
-<h3 id="子空间"><a href="#子空间" class="headerlink" title="子空间"></a>子空间</h3><p>$V$的子集$U$被称为是子空间如果$U$也是向量空间。</p>
-<blockquote>
-<p>一些数学家使用属于线性子空间来描述子空间。</p>
-</blockquote>
-<h4 id="子空间条件"><a href="#子空间条件" class="headerlink" title="子空间条件"></a>子空间条件</h4><p>子集$U$是$V$的子空间当且仅当$U$满足下列三个条件：</p>
-<ul>
-<li>加法单位元：$0\in U$</li>
-<li>加法封闭：$u,w\in U\rightarrow u+w\in U$</li>
-<li>数乘封闭：$a\in \mathbb{F},u\in U\rightarrow au\in U$</li>
-</ul>
-<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>如果$b\in \mathbb{F}$，则：</p>
-<script type="math/tex; mode=display">
-\{(x_1,x_2,x_3,x_4)\}\in \mathbb{F}^4:x_3=5x_4+b</script><p>为$\mathbb{F}^4$的子空间，当且仅当$b=0$。</p>
-<hr>
-<p>区间$[0,1]$上的连续实值函数的几何是$\mathbb{R}^{[0,1]}$的子空间。</p>
-<hr>
-<p>$\mathbb{R}$上的可导实值函数的集合是$\mathbb{R}^{\mathbb{R}}$的子空间。</p>
-<hr>
-<p>使$f^{\prime}(2)=b$成立的在区间$(0,3)$上的实值可导函数$f$的集合是$\mathbb{R}^{(0,3)}$的子空间，当且仅当$b=0$。</p>
-<hr>
-<p>所有极限为0的复数序列的集合是$\mathbb{C}^{\infty}$的子空间。</p>
-<hr>
-<blockquote>
-<p>很容易发现$\{0\}$是$\mathbb{V}$的最小的子空间，$\mathbb{V}$是$\mathbb{V}$最大的子空间。</p>
-</blockquote>
-<h4 id="子集的和"><a href="#子集的和" class="headerlink" title="子集的和"></a>子集的和</h4><p>假设$U_1,\cdots,U_m$是$V$的子集。$U_1,\cdots,U_m$的和，表示为$U_1+\cdots+U_m$，是$U_1,\cdots,U_m$的所有可能的元素和的集合。更具体地：</p>
-<script type="math/tex; mode=display">
-U_1+\cdots+U_m = \{u_1+\cdots+u_m:u_1\in U_1,\cdots,u_m\in U_m\}</script><h4 id="Sum-of-subspaces-is-the-smallest-containing-subspace"><a href="#Sum-of-subspaces-is-the-smallest-containing-subspace" class="headerlink" title="Sum of subspaces is the smallest containing subspace"></a>Sum of subspaces is the smallest containing subspace</h4><p>假设$U_1,\cdots,U_m$是$V$的子空间。则$U_1+\cdots+U_m$是$V$包含$U_1,\cdots,U_m$的最小子空间。</p>
-<p>证明：</p>
-<p>很容易发现$0\in U_1+\cdots+U_m$并且$U_1+\cdots+U_m$对加法和数乘法封闭。因此它为子空间。</p>
-<p>显然，$U_1,\cdots,U_m$都包含在$U_1+\cdots+U_m$中。相反地，$V$的每个包含$U_1,\cdots,U_m$的子空间都包含$U_1+\cdots+U_m$，因此$U_1+\cdots+U_m$是包含$U_1,\cdots,U_m$的$V$的最小的子空间。</p>
-<h4 id="直和"><a href="#直和" class="headerlink" title="直和"></a>直和</h4><p>假设$U_1,\cdots,U_m$是$V$的子空间。$U_1+\cdots+U_m$的每一个元素都可以被写为以下形式：</p>
-<script type="math/tex; mode=display">
-u_1+\cdots+u_m</script><p>其中$u_j$在$U_j$里。我们可能对$U_1+\cdots+U_m$中每一个元素都可以用唯一一种上述形式表示的例子感兴趣。这种情况非常重要以至于我们给它一个特殊的名字：直和。</p>
-<hr>
-<p>定义：直和</p>
-<p>假设$U_1,\cdots,U_m$是$V$的子空间</p>
-<ul>
-<li>和$U_1+\cdots+U_m$被称为直和如果$U_1+\cdots+U_m$的每一个元素可以唯一地表示为$u_1+\cdots+u_m$，其中每一个$u_j$在$U_j$内。</li>
-<li>如果$U_1+\cdots+U_m$是直和，则$U_1\oplus \cdots \oplus U_m$表示$U_1+\cdots+U_m$，用符号$\oplus$来表示这是直和。</li>
-</ul>
-<h4 id="直和的条件"><a href="#直和的条件" class="headerlink" title="直和的条件"></a>直和的条件</h4><p>假设$U_1,\cdots,U_m$是$V$的子空间。则$U_1+\cdots+U_m$是直和当且仅当将$0$写为一个和$u_1+\cdots+u_m$的唯一形式是让每一个$u_j$等于$0$，其中$u_j$位于$U_j$中。</p>
-<p>证明：</p>
-<p>首先假设$U_1+\cdots+U_m$是一个直和。则直和的定义意味着将$0$写为$u_1+\cdots+u_m$的和的唯一形式是通过使每个$u_j$等于零。</p>
-<p>现在假设将零写为$u_1+\cdots+u_m$的唯一形式是令每一个$u_j$等于零。为了证明$U_1+\cdots+U_m$是一个直和，令$v\in U_1+\cdots+U_m$。我们可以写为</p>
-<script type="math/tex; mode=display">
-v = u_1+\cdots+u_m</script><p>为了证明这种表示是唯一的，假设我们有</p>
-<script type="math/tex; mode=display">
-v = v_1+\cdots+v_m</script><p>将两个方程相减，我们有</p>
-<script type="math/tex; mode=display">
-0 = (u_1-v_1)+\cdots+(u_m-v_m)</script><p>因此$u_1=v_1,\cdots,u_m=v_m$。</p>
-<p>证毕。</p>
-<h4 id="两个子空间的直和"><a href="#两个子空间的直和" class="headerlink" title="两个子空间的直和"></a>两个子空间的直和</h4><p>假设$U$和$W$是$V$的子空间。则$U+W$是直和当且仅当$U\cap W = \{0\}$。</p>
-<p>证明</p>
-<p>首先假设$U+W$是直和。如果$v\in U\cap W$，则$0 = v+(-v)$，其中$v\in U, -v\in W$。</p>
-<blockquote>
-<p>注：这一步是因为$v\in U\cap W$，则$v\in U\text{且} v\in W$，所以$-v \in W$。</p>
-</blockquote>
-<p>通过$0$的唯一的作为$U$中向量和$V$中向量的和表示方式，我们有$v=0$。因此$U\cap W = \{0\}$，这完成了一个方向的证明。</p>
-<p>为了证明另一个方向，现在假设$U\cap W = \{0\}$。为了证明$U+W$是直和，假设$u\in U, w\in W$，并且：</p>
-<script type="math/tex; mode=display">
-0 = u+w</script><p>为了完成证明，我们只需要证明$u=w=0$。上面的方程意味着$u = -w\in W$。因此$u \in U\cap W$。所以$u=0$，这也意味着$w=0$，得证。</p>
-<p>证毕。</p>
-
-      
-    </div>
-
-    
-    
-    
-	
-	
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2555,20 +2587,20 @@ v = v_1+\cdots+v_m</script><p>将两个方程相减，我们有</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

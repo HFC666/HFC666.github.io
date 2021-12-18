@@ -28,23 +28,20 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。 The model假设我们有有编号的人$i&#x3D;1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到">
+  <meta name="description" content="实数与极限我们先复习一下函数(映射)的概念，假设有两个集合$X$和$Y$，我们定义一个对应法则$f$，记为$X\xrightarrow{f}Y$，使得对于$\forall x\in X,x\xrightarrow{f}y\in Y$。则$X$为定义域，$Y$为到达域。下面我们引入一个记号$f(X):&#x3D;\{y\in Y|\exists x(\left(x\in X)\wedge(y&#x3D;f(x))\ri">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高斯混合模型和EM算法">
-<meta property="og:url" content="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="实数与极限">
+<meta property="og:url" content="https://www.hfcouc.work/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。 The model假设我们有有编号的人$i&#x3D;1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到">
+<meta property="og:description" content="实数与极限我们先复习一下函数(映射)的概念，假设有两个集合$X$和$Y$，我们定义一个对应法则$f$，记为$X\xrightarrow{f}Y$，使得对于$\forall x\in X,x\xrightarrow{f}y\in Y$。则$X$为定义域，$Y$为到达域。下面我们引入一个记号$f(X):&#x3D;\{y\in Y|\exists x(\left(x\in X)\wedge(y&#x3D;f(x))\ri">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png">
-<meta property="article:published_time" content="2021-08-31T15:24:15.000Z">
-<meta property="article:modified_time" content="2021-11-26T12:50:37.320Z">
+<meta property="article:published_time" content="2021-12-18T15:00:20.000Z">
+<meta property="article:modified_time" content="2021-12-18T15:06:12.388Z">
 <meta property="article:author" content="HFC">
-<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="数学分析">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png">
 
-<link rel="canonical" href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/">
+<link rel="canonical" href="https://www.hfcouc.work/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/">
 
 
 <script id="page-configurations">
@@ -57,7 +54,7 @@
   };
 </script>
 
-  <title>高斯混合模型和EM算法 | 独自赏晴雨</title>
+  <title>实数与极限 | 独自赏晴雨</title>
   
 
 
@@ -231,7 +228,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
@@ -244,7 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          高斯混合模型和EM算法
+          实数与极限
         </h1>
 
         <div class="post-meta">
@@ -254,23 +251,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-08-31 23:24:15" itemprop="dateCreated datePublished" datetime="2021-08-31T23:24:15+08:00">2021-08-31</time>
+              <time title="创建时间：2021-12-18 23:00:20 / 修改时间：23:06:12" itemprop="dateCreated datePublished" datetime="2021-12-18T23:00:20+08:00">2021-12-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-26 20:50:37" itemprop="dateModified" datetime="2021-11-26T20:50:37+08:00">2021-11-26</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -292,139 +283,166 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Gaussian-mixture-models-and-the-EM-algorithm"><a href="#Gaussian-mixture-models-and-the-EM-algorithm" class="headerlink" title="Gaussian mixture models and the EM algorithm"></a>Gaussian mixture models and the EM algorithm</h2><p>我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。</p>
-<h3 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h3><p>假设我们有有编号的人$i=1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到的标签$C_i\in \{\operatorname{M,F}\}$表示人的性别。在这了，小写字母$c$代表”class”。我们也假设两组具有相同的已知方差$\sigma^2$，但不同的未知均值$\mu_M$和$\mu_F$。类标签符合伯努利分布：</p>
-<script type="math/tex; mode=display">
-p_{C_i}(c_i) = q^{\mathbb{1}(c_i=M)}(1-q)^{\mathbb{1}(c_i=F)}</script><p>我们也假设$q$是已知的。为了简化符号，我们令$\pi_M=q$和$\pi_F=1-q$，因此我们可以写作：</p>
-<script type="math/tex; mode=display">
-p_{C_i}(c_i) = \prod_{c\in \{M,F\}}\pi_c^{\mathbb{1}(c_i=c)}</script><p>每一类的条件分布都为高斯分布：</p>
-<script type="math/tex; mode=display">
-p_{Y_i|C_i}(y_i|c_i) = \prod_c\mathcal{N}(y_i;\mu_c,\sigma^2)^{\mathbb{1}(c_i=c)}</script><h3 id="Parameter-estimation-a-first-attempt"><a href="#Parameter-estimation-a-first-attempt" class="headerlink" title="Parameter estimation: a first attempt"></a>Parameter estimation: a first attempt</h3><p>假设我们观测到独立同分布的身高$Y_1=y_1,\cdots,Y_n=y_n$，并且我们想要去找到参数$\mu_M,\mu_F$的极大似然估计。这是一个非监督问题：我们不知道我们数据的性别标签，但是我们想根据这些标签学习参数。</p>
-<p>根据上文提到的模型设计，计算所有数据点$P_{Y_1,\cdots,Y_n}$的联合密度，以$\mu_M,\mu_F,\sigma,q$表示。取$\log$后计算$\log$似然，然后对$\mu_M$进行求导。为什么优化这么困难？</p>
-<p>我们先对单个数据点$Y_i=y_i$求密度：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P_{Y_i}(y_i) &= \sum_{c_i}p_{C_i}(c_i)p_{Y_i|C_i}(y_i|c_i)\\
-&= \sum_{c_i}(\pi_c\mathcal{N}(y_i;\mu_C,\sigma^2))^{\mathbb{1}(c_i=c)}\\
-&= q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2)
-\end{aligned}</script><p>现在，所有观测的联合分布为</p>
-<script type="math/tex; mode=display">
-P_{Y_1^n}(y_1^n) = \prod_{i=1}^n(q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>则$\log$似然函数为：</p>
-<script type="math/tex; mode=display">
-\ln p_{Y_1^n}(y_1^n) = \sum_{i=1}^n\ln(\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2) + \pi_F\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>我们已经遇到了一个问题，和的形式阻止我们将$\log$应用于内部的正态分布密度函数。通过对称性，我们只需要看其中一个均值，另一个将遵循相同的过程。在我们深入区分之前，我们注意到：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{d}{d\mu}\mathcal{N}(x;\mu,\sigma^2) &= \frac{d}{d\mu}[\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}]\\
-&= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{-(x-\mu)^2}{2\sigma^2}}\cdot\frac{2(x-\mu)}{2\sigma^2}\\
-&= \mathcal{N}(x;\mu,\sigma^2)\cdot\frac{(x-\mu)}{\sigma^2}
-\end{aligned}</script><p>对数似然函数对$\mu_M$进行求导，得</p>
-<blockquote id="fn_1">
-<sup>1</sup>. $\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0$<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
-<script type="math/tex; mode=display">
-\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0</script><p>对于这个表达式我们无法求解。</p>
-<h3 id="Using-hidden-variables-and-the-EM-Algorithm"><a href="#Using-hidden-variables-and-the-EM-Algorithm" class="headerlink" title="Using hidden variables and the EM Algorithm"></a>Using hidden variables and the EM Algorithm</h3><p>退一步，什么会使这个计算容易。如果我们知道隐变量$C_i$的值，则对参数们做最大似然估计就会很容易：我们将会取所有$C_i=M$的点用来估计$\mu_M$，然后对所有$C_i=F$的点重复此过程来估计$\mu_F$。受此启发，我们尝试计算给定观测下$C_i$的分布。我们将从贝叶斯规则开始：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-p_{C_i|Y_i}(c_i|y_i) &= \frac{p_{Y_i|C_i}(y_i|c_i)p_{C_i}(c_i)}{p_{Y_i}(y_i)}\\
-&= \frac{\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(c=c_i)}}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(c_i)
-\end{aligned}</script><p>我们看一下$C_i=M$的后验概率：</p>
-<script type="math/tex; mode=display">
-p_{C_i|Y_i}(M|y_i) = \frac{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(M)</script><p>这个看起来很熟悉，这是式<sup><a href="#fn_1" id="reffn_1">1</a></sup>中的一部分，我们可以将式<sup><a href="#fn_1" id="reffn_1">1</a></sup>用$q_{C_i}$重写，并且假定其跟$\mu_M$无关</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^nq_{C_i}(M)\frac{y_i-\mu_M}{\sigma^2}=0\\
-\mu_M = \frac{\sum_{i=1}^nq_{C_i}(M)y_i}{\sum_{i=1}^nq_{C_i}(M)}</script><p>这样就看起来好多了：$\mu_M$是身高的加权平均值，其中每个身高都根据该人是男性的可能性进行加权。</p>
-<p>因此现在我们形成了一个循环，如果我们知道参数我们将会很容易计算出$C_1^n$的后验概率，并且如果我们知道后验概率我们将很容易地估计出参数，这就陷入了死循环。这就暗示了以下策略，我们可以固定一个来求解另一个。这种方法通常被称为<code>EM</code>算法。它的工作原理大致如下：</p>
+        <h2 id="实数与极限"><a href="#实数与极限" class="headerlink" title="实数与极限"></a>实数与极限</h2><p>我们先复习一下函数(映射)的概念，假设有两个集合$X$和$Y$，我们定义一个对应法则$f$，记为$X\xrightarrow{f}Y$，使得对于$\forall x\in X,x\xrightarrow{f}y\in Y$。则$X$为定义域，$Y$为到达域。<br>下面我们引入一个记号$f(X):=\{y\in Y|\exists x(\left(x\in X)\wedge(y=f(x))\right)\}$，称为值域。<br>我们微积分研究的对象：$X\xrightarrow{f}Y\subset \mathbb{R}^n$，其中$f$为可微函数。</p>
+<h3 id="实数的基本公理"><a href="#实数的基本公理" class="headerlink" title="实数的基本公理"></a>实数的基本公理</h3><p>加法公理：</p>
 <ul>
-<li>首先，我们固定参数(在这种情况下为高斯分布的均值$\mu_M$和$\mu_F$)并且求解隐变量的后验分布(在这种情况下记为$q_{C_i}$)。</li>
-<li>之后，我们固定隐变量的后验分布，利用隐变量的期望值来最优化参数。</li>
-<li>重复两个步骤直到收敛。</li>
+<li>$\exists$零元$0$，使得$0+x=x+0=x$</li>
+<li>$\exists$负元$-x$，使得$x+(-x)=(-x)+x=0$</li>
+<li>结合律：$\forall x,y,z\in \mathbb{R}$，使得$(x+y)+z=x+(y+z)$</li>
 </ul>
-<h3 id="The-EM-Algorithm-a-more-formal-look"><a href="#The-EM-Algorithm-a-more-formal-look" class="headerlink" title="The EM Algorithm: a more formal look"></a>The EM Algorithm: a more formal look</h3><p>正如我们将在几个短步骤中展示的那样，EM算法实际上是最大化对数似然的下限(换句话说，每一步都保证改进我们的答案直到收敛)。</p>
-<p>假设我们观测到了随机变量$Y$。现在假设我们也有一些隐变量$C$并且$Y$依赖于$C$。我们可以说$C$和$Y$的分布中有一些我们不知道的参数$\theta$，并且我们有兴趣找到它们。</p>
-<p>在我们上一个例子中，我们观测到有隐变量(性别)$C=\{C_1,\cdots,C_n\}$的身高变量$Y=\{Y_1,\cdots,Y_n\}$，并且$Y$和$C$是独立同分布的，我们的参数是$\mu_M$和$\mu_F$。</p>
-<p>在我们真正推导算法之前，我们需要一个关键结论：<code>Jensen&#39;s inequation</code>(琴声不等式)。在这个例子中我们需要的琴声不等式的特例：</p>
+<p>集合$G$上存在加法运算，且满足上述三条加法公理，则说明$G$为一个群。</p>
+<ul>
+<li>交换律：对于$\forall x,y\in R,x+y=y+x$</li>
+</ul>
+<p>如果运算还满足交换律，则群成为交换群(阿贝尔群)。</p>
+<p>乘法公理：</p>
+<ul>
+<li>单位元(中性元)：$1\in \mathbb{R}-0$，$\forall x\in \mathbb{R},x\cdot1=1\cdot x=x$</li>
+<li>$\forall x\in\mathbb{R}-0,\exists x^{-1}\in\mathbb{R},x^{-1}\cdot x=x\cdot x^{-1}=1$</li>
+<li>$\forall x,y,z\in\mathbb{R},(x\cdot y)\cdot z = x\cdot(y\cdot z)$</li>
+<li>$\forall x,y\in\mathbb{R},x\cdot y = y\cdot x$</li>
+</ul>
+<p>则$\mathbb{R}-0$关于乘法构成一个群。</p>
+<p>有了加法和乘法，我们就可以定义加法和乘法的附加公理(分配律)：</p>
 <script type="math/tex; mode=display">
-\log(\mathbb{E}[X])\ge \mathbb{E}[\log(X)]</script><p>下图是关于琴声不等式的几何直观：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png" alt=""></p>
-<blockquote>
-<p>琴声不等式的特例说明：对于任何随机变量$X$，$\mathbb{E}[\log X]\le\log\mathbb{E}[X]$。令$X$的PDF为红色的曲线。令$Z=\log X$。中间和右边的图展示了怎么构建$Z$的PDF(蓝色曲线)：因为$\log$，与$X$的PDF相比，它倾向于更小的值。$\log\mathbb{E}(X)$是由中间黑色曲线或$\mathbb{E}(Z)$给出的点。但是，$\mathbb{E}[\log X]$或者$\mathbb{E}[Z]$，将始终较小(或至少永远不会较大)因为对数挤压了分布较大的一端(其中$Z$比较大)并拉伸了较小的一端(其中$Z$较小)。</p>
-<p>关于琴声不等式</p>
-<p>对于一个实函数$\phi(x)$，在区间$I$内它是凸的($\frac{d^2\phi(x)}{d^2x}&gt;0, \forall x\in I$)，那么它满足下面关系：</p>
+\forall x,y,z\in \mathbb{R},z\cdot(x+y) = (x+y)\cdot z = x\cdot z + y\cdot z</script><p>域<br>如果集合上定义了满足上述公理的$+$和$\cdot$运算以及结合律，则该集合为域(代数域)。</p>
+<p>序公理：我们在集合上定义一个不等关系$\le$，使得$\forall x,y\in\mathbb{R},(x\le y)\vee(y\le x)$</p>
+<ul>
+<li>$\forall x\in \mathbb{R},x\le x$</li>
+<li>$(x\le y)\wedge(y\le x)\Rightarrow(x=y)$</li>
+<li>$(x\le y)\wedge(y\le z)\Rightarrow (x\le z)$</li>
+<li>$(x\le y)\vee (y\le x)$</li>
+</ul>
+<p>加法和序也存在附加公理：</p>
 <script type="math/tex; mode=display">
-\phi(\sum_{i=1}^Np_ix_i)\le \sum_{i=1}^Np_i\phi(x_i)</script><p>其中$p_i\ge0,\sum_{i=1}^Np_i=1$，且$x_i\in I,(i=1,\cdots,N)$。</p>
-<p><strong>证明</strong>：令$A=\sum_{i=1}^Np_ix_i$，显然$A\in I$。取</p>
+(x\le y)\Rightarrow (x+z)\le (y+z)</script><p>乘法与序也存在附加公理：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-S &= \sum_{i=1}^N\phi(x_i) - \phi(A)\\
-&= \sum_{i=1}^Np_i[\phi(x_i)-\phi(A)]\\
-&= \sum_{i=1}^N p_i\int_A^{x_i}\phi^{\prime}(x)dx
-\end{aligned}</script><p>若$A\le x_i$，因为$\phi^{\prime}(x)$在区间$I$上是递增的，所以</p>
+(0\le x)\wedge(0\le y)\Rightarrow (0\le xy)</script><p>如果集合$X$上存在不等关系$\le$，满足上述公理的前三条，我们称$X$为一个偏序集，如果还满足第四条，我们称他为线性的序集。</p>
+<p>完备性公理(连续性公理)：给定集合$X,Y\subset \mathbb{R}$，使得$\forall x\in X,\forall y \in Y,x\le y$，则$\exists c\in \mathbb{R}$满足$x\le c\le y,\forall x\in X,\forall y\in Y$。</p>
+<p>给定一个集合，满足加法公理、乘法公理，定义了一个满足序公理的序关系，满足完备性公理，则成为是实数集的一个具体实现。</p>
+<p>如十进制的小数是$\mathbb{R}$的一个实现，还有数轴。</p>
+<h3 id="实数运算的代数性质"><a href="#实数运算的代数性质" class="headerlink" title="实数运算的代数性质"></a>实数运算的代数性质</h3><p>我们首先研究加法。<br>首先我们证明$\mathbb{R}$上存在唯一的加法零元。<br>证明：假设存在两个加法零元$0_1,0_2$，则</p>
 <script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx\ge \phi^{\prime}(A)(x_i-A)</script><p>若$A_i&gt;x_i$，则</p>
+0_1 = 0_1+0_2 = 0_2+0_1=0_2</script><p>所以$0_1=0_2$，所以存在唯一的加法零元。</p>
+<p>下面证明$\forall x\in \mathbb{R},\exists$唯一的负元。<br>证明：假设存在两个负元$x_1,x_2$，则</p>
 <script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx = -\int_{x_i}^A\phi^{\prime}(x)dx\ge-(A-x_i)\phi(A) = (x_i-A)\phi^{\prime}(A)</script><p>所以：</p>
+x_1 = x_1 + 0 = x_1 + (x+x_2) = (x_1+x)+x_2 = 0+x_2 = x_2</script><p>所以存在唯一的负元。</p>
+<p>紧接着证明方程$a+x=b$有唯一解$x = b + (-a) = b-a$<br>证明：因为$a\in \mathbb{R}$，所以$\exists!$唯一负元$-a$。</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-S &\ge \sum_{i=1}^Np_i\phi^{\prime}(A)(x_i-A)\\
-&= \phi^{\prime}(A)[\sum_{i=1}^Np_i(x_i-A)]\\
-&= \phi^{\prime}(A)(A-A)\\
-&=0
-\end{aligned}</script><p>证毕。</p>
-</blockquote>
-<p>在本文中，求期望相当于加权平均，而$\ln(x)$的二阶导小于$0$，故与上文提到的不等式符号相反。</p>
-<h4 id="The-EM-Algorithm"><a href="#The-EM-Algorithm" class="headerlink" title="The EM Algorithm"></a>The EM Algorithm</h4><p>我们想要去最大化似然函数。我们通过边缘化$C$来计算对数似然函数：</p>
+(a+x=b)\Rightarrow((-a)+a+x=(-a)+b) \Rightarrow x = b + (-a) = b-a</script><p>下面我们研究乘法。<br>首先我们需要证明$\mathbb{R}$上存在唯一的$1$<br>证明：假设存在两个单位元$1_1,1_2$，则</p>
 <script type="math/tex; mode=display">
-\log p_Y(y;\theta) = \log\left(\sum_cp_{Y,C}(y,c)\right)</script><p>我们现在也遭受了困境，我们无法对和取对数。如果我们交换它们的顺序不是更好吗？对，期望是一种特殊的求和，并且琴声不等式可以让我们互换它们如果我们有期望的话。因此，我们将要引进一个隐变量$C$的新的分布$q_C$：</p>
+1_1  = 1_1\cdot 1_2 = 1_2\cdot 1_1 = 1_2</script><p>下面我们证明$\forall x\in\mathbb{R}-0,\exists!$逆元$x^{-1}$<br>证明：假设存在两个逆元$x_1,x_2$，则</p>
 <script type="math/tex; mode=display">
-\begin{aligned} \log p_{Y}(y ; \theta) & \\ \left.\text { (Marginalizing over } C \text { and introducing } q_{C}(c) / q_{C}(c)\right) &=\log \left(\sum_{c} q_{C}(c) \frac{p_{Y, C}(y, c ; \theta)}{q_{C}(c)}\right) \\ \text { (Rewriting as an expectation) } &=\log \left(\mathbb{E}_{q_{C}}\left[\frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right]\right) \\ \text { (Using Jensen's inequality) } & \geq \mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right](2) \\ \text { Using definition of conditional probability } &=\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right](3) \end{aligned}</script><p>现在我们有可以很容易优化的$\log p_Y(y;\theta)$的下界了。因为我们已经引入了$q_C$，我们想要在$\theta$和$q_C$上实施最大化。</p>
-<p>我们将使用(2)和(3)分别进行优化。首先先用(2)寻找最好的参数：</p>
+x_1 = x_1\cdot 1 = x_1\cdot(x\cdot x_2) = (x_1\cdot x)\cdot x_2 = x_2</script><p>所以$x_1=x_2$</p>
+<p>紧接着我们证明$\forall a\in \mathbb{R}-0,a\cdot x=b$存在唯一的解$x = b\cdot a^{-1} = a^{-1}\cdot b$。<br>证明：因为$a\in \mathbb{R}-0$，所以存在唯一的逆元$a^{-1}$，所以</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right] = \mathbb{E}_{q_C}[\log p_{Y, C}(y, C ; \theta)] - \mathbb{E}_{q_C}[\log q_C(C)]</script><p>因为$q_C$不依赖于$\theta$，因此我们可以只优化第一项：</p>
+(a\cdot x = b)\Rightarrow (a^{-1}\cdot(a\cdot x) = a^{-1}\cdot b)\Rightarrow (x = a^{-1}\cdot b)</script><p>下面我们证明加法与乘法相联系的公理的推论<br>$\forall x\in \mathbb{R},x\cdot 0 = 0$<br>证明：<br>$x\cdot 0 =x\cdot(0+0) = x\cdot 0+x\cdot 0$，两边同时加上逆元$-x\cdot 0$，得$0 = x\cdot 0$。</p>
+<p>$x\in\mathbb{R}-0\Rightarrow x^{-1}\neq0$<br>证明：若$x^{-1}=0\Rightarrow x\cdot x^{-1} = x\cdot 0 = 0$，得$1=0$，矛盾。</p>
+<p>$x\cdot y=0\Rightarrow(x=0)\vee(y=0)$<br>证明：设$y\neq 0$，所以$y^{-1}\neq 0$，所以</p>
 <script type="math/tex; mode=display">
-\widehat{\theta} \leftarrow \underset{\theta}{\operatorname{argmax}} \mathbb{E}_{q_{C}}\left[\log p_{Y, C}(y, C ; \theta)\right]</script><p>这被称作<code>M-step</code>：<code>M</code>代表最大化，因为我们正在最大化参数。现在，我们用(3)来找到最好的$q_C$：</p>
+(x\cdot y = 0)\Rightarrow(x\cdot y\cdot y^{-1} = 0\cdot y^{-1}=0)\Rightarrow x = 0</script><p>同理可证当$x\neq0$时$y=0$。</p>
+<p>$-x = -1\cdot x$<br>证明：<br>$x + (-1\cdot x) = 1\cdot x + -1\cdot x = (1+(-1))\cdot x = 0\cdot x = 0$<br>所以$-1\cdot x$为$x$的逆元，所以$-x = -1\cdot x$。</p>
+<p>$(-1)\cdot (-x)=x$<br>证明：我们只需证明$(-1)\cdot(-x)$为$-x$的逆元即可。</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]=\mathbb{E}_{q_{C}}\left[\log p_{Y}(y ; \theta)\right]+\mathbb{E}_{q_{C}}\left[\log \frac{p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]</script><p>第一项不依赖于$c$，并且第二项看起来像KL散度：</p>
+(-1)\cdot(-x) + (-x) = ((-1)+1)\cdot(-x) = 0\cdot (-x) = 0</script><p>得证。</p>
+<p>$(-x)\cdot(-x)=x\cdot x$<br>证明：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-&= \log p_Y(y;\theta) - \mathbb{E}_{q_C}[\log\frac{q_C(C)}{p_{C|Y}(C|y;\theta)}]\\
-&= \log p_Y(y;\theta) - D(q_C(\cdot)||p_{C|Y}(\cdot|y;\theta))
-\end{aligned}</script><p>因此，当最大化上述值时，我们想要最小化KL散度。KL散度总是大于等于零，当两个分布完全一样时取零。因此，最优化的$q_C$即为$p_{C|Y}(c|y;\theta)$：</p>
+(-x)\cdot (-x) = ((-1)\cdot x)\cdot(-x) = (x\cdot (-1))\cdot(-x) = x\cdot((-1)\cdot(-x)) = x\cdot x</script><p>下面我们研究序公理的推论</p>
+<p>$x\le y$若$x\neq y$，则记作$x&lt;y$，称为严格不等式。<br>那么对于$x,y\in\mathbb{R}$，$x&lt;y,x=y,y&lt;x$只有一个成立。</p>
+<p>下面我们证明：</p>
+<ul>
+<li>$(x&lt;y)\wedge(y\le z)\Rightarrow x&lt;z$</li>
+<li>$(x\le y)\wedge(y&lt;z)\Rightarrow x&lt;z$</li>
+</ul>
+<p>我们证明第一个，第二个与其类似：</p>
 <script type="math/tex; mode=display">
-\hat{q}_C(c) \leftarrow p_{C|Y}(c|y;\theta)</script><p>这被称为<code>E-step</code>：<code>E</code>代表期望，因为我们正在计算$q_C$以便我们可以将其用于期望值。</p>
-<h4 id="The-algorithm"><a href="#The-algorithm" class="headerlink" title="The algorithm"></a>The algorithm</h4><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png" alt=""></p>
-<blockquote>
-<p>信息熵可以表达数据的信息量大小，是信息处理的一个非常重要的概念。对于离散型随机变量，信息熵公式如下：</p>
+(x<y)\wedge(y\le z)\Rightarrow((x\neq y)\wedge(x\le y)\wedge (y\le z))\Rightarrow((x\neq y)\wedge(x\le z))</script><p>若$x=z$，我们有$(x&lt;y)\wedge(y\le x)\Rightarrow(x\neq y)\wedge(x\le y)\wedge(y\le x)\Rightarrow(x\neq y)\wedge(x=y)$，矛盾。所以$x\neq z$，所以$x&lt;z$。</p>
+<h3 id="序公理与加法公理以及乘法公理的推论"><a href="#序公理与加法公理以及乘法公理的推论" class="headerlink" title="序公理与加法公理以及乘法公理的推论"></a>序公理与加法公理以及乘法公理的推论</h3><h4 id="序公理和加法公理"><a href="#序公理和加法公理" class="headerlink" title="序公理和加法公理"></a>序公理和加法公理</h4><p>我们需要证明以下定理：</p>
+<ol>
+<li>$(x&gt;y)\Rightarrow (x+z&gt;y+z)$</li>
+<li>$(x&gt;0)\Rightarrow (-x&lt;0)$</li>
+<li>$(x&gt;y)\wedge(z\ge w)\Rightarrow (x+z)&gt;(y+w)$</li>
+<li>$(x\ge y)\wedge (z&gt;w)\Rightarrow (x+z)&gt;(y+w)$</li>
+</ol>
+<p>下面我们开始证明：</p>
+<p>第一个：</p>
 <script type="math/tex; mode=display">
-H(p) = H(X) = \mathrm{E}_{x\sim p(x)}[-\log p(x)] = -\sum_{i=1}^n p(x)\log p(x)</script><p>对于连续性随机变量，信息熵公式如下：</p>
+(x>y)\Rightarrow (x\ge y)\Rightarrow (x+z\ge y+z)</script><p>所以我们只需要证明$(x+z\neq y+z)$，即证明$x\neq y$，所以得证。</p>
+<p>第二个：</p>
 <script type="math/tex; mode=display">
-H(p) = H(X) = E_{x\sim p(x)}[-\log p(x)] = -\int p(x)\log p(x)dx</script><p>接下来我们来说一下相对熵，又被称为KL散度或信息散度，是两个概率分布差异的非对称度量。在信息论中，相对熵等价于两个概率分布的信息熵的插值，若其中一个概率分布为真实分布，另一个为理论分布，则此时相对熵等于交叉熵与真实分布的信息熵之差，表示使用理论分布拟合真实分布时产生的信息损耗。公式为：</p>
+(x>0)\Rightarrow (x+(-x)>0+(-x))\Rightarrow (0>-x)</script><p>得证。</p>
+<p>第三个和第四个证明一个即可：</p>
 <script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i) - p(x_i)\log q(x_i)]</script><p>上面的$p(x_i)$为真实事件的概率分布，$q(x_i)$为理论拟合出来的该事件的概率分布。当拟合出来的事件概率分布跟真实的一模一样时，相对熵等于零，而拟合出来不一样时，相对熵大于零。</p>
-<p>最后我们来证明一下相对熵公式只有在$p(x_i)$等于$q(x_i)$的时候等于$0$，其他时候大于$0$。</p>
-<p>要证：</p>
+((x>y)\wedge(z\ge w))\Rightarrow ((x+z>y+z)\wedge(z+y\ge w+y))\Rightarrow ((x>y)>(y+w))</script><p>得证。</p>
+<h4 id="序公理与乘法公理"><a href="#序公理与乘法公理" class="headerlink" title="序公理与乘法公理"></a>序公理与乘法公理</h4><ol>
+<li>$(x&gt;0)\wedge(y&gt;0)\Rightarrow (xy&gt;0)$</li>
+<li>$(x<0)\wedge(y<0)\Rightarrow (xy>0)$</li>
+<li>$(x&gt;0)\wedge(y&lt;0)\Rightarrow (xy&lt;0)$</li>
+<li>$(x&gt;y)\wedge(z&gt; 0)\Rightarrow(xz&gt;yz)$</li>
+<li>$(x&gt;y)\wedge(z&lt; 0)\Rightarrow(xz&lt;yz)$</li>
+</ol>
+<p>我们先证明第一条：</p>
 <script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\ge 0</script><p>即证：</p>
+(x>0)\wedge(y>0)\Rightarrow (x\ge 0)\wedge(y\ge0)\Rightarrow xy\ge 0</script><p>所以我们至于要证明$xy\neq0$，根据之前的定理我们知道$(xy=0)\Rightarrow(x=0)\vee(y=0)$，而我们条件中$x,y$都不等于$0$，所以得证。</p>
+<p>第二条：</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le 0</script><p>又$\ln(x)\le x-1$，当且仅当$x=1$时等号成立</p>
-<p>故</p>
+((x<0)\wedge(y<0))\Rightarrow((-x>0)\wedge(-y>0))\Rightarrow(-x)\cdot(-y)>0\Rightarrow(xy)>0</script><p>第三条与第二条思路相同，不在赘述。</p>
+<p>下面证明第四条：</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le \sum_{i=1}^Np(x_i)(\frac{q(x_i)}{p(x_i)}-1) = \sum_{i=1}^N[p(x_i)-q(x_i)]=0</script><p>上面式子中$=$只在$p(x_i)=q(x_i)$时成立。</p>
-</blockquote>
-<h3 id="Example-Applying-the-general-algorithm-to-GMMS"><a href="#Example-Applying-the-general-algorithm-to-GMMS" class="headerlink" title="Example: Applying the general algorithm to GMMS"></a>Example: Applying the general algorithm to GMMS</h3><p>现在，让我们重现看一下关于身高的GMM模型，看看我们如何应用这两个步骤。我们有观测变量$Y=\{Y_1,\cdots,Y_n\}$和隐变量$C=\{C_1,\cdots,C_n\}$。对于<code>E-Step</code>，我们计算后验概率$p_{C|Y}(c|y)$，之前已经计算过了。对于<code>M-Step</code>，我们得去计算联合概率：</p>
+((x>y)\wedge(z>0))\Rightarrow((x-y>0)\wedge(z>0))\Rightarrow((x-y)z>0)\Rightarrow(xz-yz)>0\Rightarrow xz>yz</script><p>第五条类似。</p>
+<p>下面我们证明$1&gt;0$：</p>
+<p>我们知道$1&gt;0,1=0,1&lt;0$之中只能有一个成立，我们已经知道$1\neq 0$。所以我们假设$1&lt;0$，那我们有：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{E}_{q_C}[\ln p_{Y,C}(y,C)] &= \mathbb{E}[\ln p_{Y|C}(y|C)p_C(C)]\\
-&= \mathbb{E}_{q_C}\left[\ln \prod_{i=1}^n\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(C_i=c)}\right]\\
-&= \mathbb{E}_{q_C}\left[\sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{1}(C_i=c)(\ln\pi_c+\ln\mathcal{N}(y_i;\mu_c,\sigma^2))\right]\\
-&= \sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]\left(\ln\pi_c + \ln\frac{1}{\sigma\sqrt{2\pi}}-\frac{(y_i-\mu_c)^2}{2\sigma^2}\right)
- \end{aligned}</script><p>$\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]$是$C_i$为$c$的概率。现在我们对$\mu_M$求导：</p>
+(1<0)\wedge(1<0)\Rightarrow(1\cdot1>0)\Rightarrow 1>0</script><p>互相矛盾，所以$1&gt;0$。</p>
+<p>下面我们再证明：</p>
+<ol>
+<li>$(0<x)\Rightarrow(x^{-1}>0)$</li>
+<li>$(0&lt;x&lt;y)\Rightarrow(0&lt;y^{-1}&lt;x^{-1})$</li>
+</ol>
+<p>我们先证明第一条：</p>
+<p>我们假设$x^{-1}&lt;0$，则</p>
 <script type="math/tex; mode=display">
-\frac{d}{d \mu_{M}} \mathbb{E}_{q_{C}}\left[\ln p_{Y \mid C}(y \mid C) p_{C}(C)\right]=\sum_{i=1}^{n} q_{C_{i}}(M)\left(\frac{y_{i}-\mu_{M}}{\sigma^{2}}\right)=0</script><p>得：</p>
+(0<x)\wedge(x^{-1}<0)\Rightarrow (x\cdot x^{-1})<0\Rightarrow 1<0</script><p>矛盾，得证。</p>
+<p>第二条：</p>
 <script type="math/tex; mode=display">
-\mu_{M}=\frac{\sum_{i=1}^{n} q_{C_{i}}(M) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(M)}</script><p>同理可得：</p>
+(0<x<y)\Rightarrow(y^{-1}>0)\wedge(x>0)\Rightarrow(x\cdot y^{-1}>0)\Rightarrow(y^{-1}>x^{-1})</script><p>得证。</p>
+<p>下面我们讨论正数和负数：</p>
+<p>所有大于零的数为正数，如果$x$为正数，则$x^{-1}$也为正数。</p>
+<p>负数：小于零的数为负数。</p>
+<h3 id="完备性公理与数集上下确界的存在性"><a href="#完备性公理与数集上下确界的存在性" class="headerlink" title="完备性公理与数集上下确界的存在性"></a>完备性公理与数集上下确界的存在性</h3><p>定义：$X\subset \mathbb{R}$，若$\exists c\in \mathbb{R},\forall x\in X,x\le c$，则称$X$上有界集合，称$c$为$X$的上界；若$\forall x\in X,x\ge c$，则称$X$下有界集合，称$c$为$X$的下界。</p>
+<p>定义(有界集)：既上有界也下有界。即$\exists c_1,c_2\in \mathbb{R}$使得$\forall x\in X,c_1&lt;x&lt;c_2$。</p>
+<p>定义(最大元、极大元)：集合$X\subset\mathbb{R}$，若$\exists a\in X$使得$\forall x\in X,x\le a$。称$a$为$X$的最大元。即：</p>
 <script type="math/tex; mode=display">
-\mu_{F}=\frac{\sum_{i=1}^{n} q_{C_{i}}(F) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(F)}</script>
+\max X := (a\in X)\wedge(\forall x\in X,x\le a)</script><p>定义(最小元、极小元)：</p>
+<script type="math/tex; mode=display">
+\min X:= ((a\in X)\wedge (\forall x\in X,x\ge a))</script><p>定义(上确界)：上界当中的最小元，记为$\sup X$</p>
+<script type="math/tex; mode=display">
+(\sup X=s):= (\forall x\in X,x\le s)\wedge (\forall s^{\prime}<s,\exists x^{\prime}\in X,x^{\prime}>s^{\prime})</script><p>定义(下确界)：下界当中的最大元，记为$\inf X$。</p>
+<script type="math/tex; mode=display">
+(\inf X=s):= (\forall x\in X,x\ge s)\wedge (\forall s^{\prime}>s,\exists x^{\prime}\in X,x^{\prime}<s^{\prime})</script><p>例：$[0,1)$的的上确界为$1$。</p>
+<p>因为$\forall x\in [0,1),x \le1$，并且$\forall a<1$，我们有$\frac{1+a}{2}\in [0,1)$，但是$\frac{1+a}{2}>a$。</p>
+<p>则如果一个集合存在一个最大元，那么它必为上确界；存在最小元，那么它必为下确界。</p>
+<p>那么什么时候存在上确界和下确界呢？</p>
+<p>上确界引理：若$X$为有上确界非空集合，则$X$有唯一的上确界。</p>
+<p>证明：</p>
+<p>我们关于上确界还有一个定义：</p>
+<script type="math/tex; mode=display">
+\sup X := \min \{c|\forall x\in X,x\le c\}</script><p>由此可以看出上确界就是上界集合中的最小元。我们首先证明唯一性，假设有两个上确界$c_1,c_2$，因为上确界是上界集合中的最小元，所以我们有$c_1\le c_2,c_2\le c_1$，所以$c_1=c_2$。所以如果存在上确界的话，上确界就是唯一的。</p>
+<p>下面我们证明存在上确界。</p>
+<p>我们设$Y=\{y:\forall x\in X,x\le y\}$，由此可以看出$y$为$X$的上界集合，因为$X$有上界，所以$Y$非空。所以我们就有$\forall x\in X,\forall y\in Y,x\le y$。根据完备性公理，$\exists x\in \mathbb{R}$，使得$\forall x\in X,\forall y\in Y,x\le c\le y$，由此我们可以推出$c\in Y$，并且$c$为$Y$的最小元，所以上确界存在。</p>
+<p>得证。</p>
+<p>下确界的证明类似。</p>
+<h3 id="完备性公理相关的基本引理"><a href="#完备性公理相关的基本引理" class="headerlink" title="完备性公理相关的基本引理"></a>完备性公理相关的基本引理</h3><p>定义(序列)：如果函数$f:\mathbb{N}\rightarrow X$，则称$f(n)$为序列。记作：</p>
+<script type="math/tex; mode=display">
+x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果$\forall n\in \mathbb{N},X_{i}\supset X_{i+1}$，则称其为集列套。</p>
+<p>闭区间套引理：若闭区间套$I_1\supset I_1\supset I_3\supset \cdots$，存在$c\in \mathbb{R}$使得$c\in I_i,\forall i\in \mathbb{N}$。如果对于$\forall \epsilon &gt;0, \exists I_n$使得$|I_n|&lt;\epsilon$，则$c$唯一。</p>
+<p>证明：</p>
+<p>记$I_n=[a_i,b_i]$，$\forall I_n=[a_n,b_n],I_m=[a_m,b_m]$，我们都有$a_n\le b_m$。我们令$X=\{a_n\},Y=\{b_n\}$。所以对于$\forall a_n\in X,\forall b_m\in Y$，我们都有$a_n\le b_m$，根据完备性定理：$\exists c\in \mathbb{R}$，使得$\forall a_n\in X,\forall b_m\in Y$，都有$a_n\le c\le b_m$，我们取$m=n$，则$a_n\le c\le b_n$，即$c\in I_n$。则存在性就证明完了。</p>
+<p>若$c_1&lt;c_2\in I_n$，则$a_n\le c_1&lt;c_2\le b_n$，则$c_2-c_1&lt; b_n-a_n=|I_n|$，我们取$\epsilon = \frac{c_2-c_1}{2}$，则不存在这样的$I_n$。得证。</p>
+<p>定义：如果$S=\{X\}$，即$S$为集合的集合，令$Y\subset \bigcup_{X\in S}X$，则称$S$为$Y$的一个覆盖。这就说明：$\forall y\in Y,\exists X\in S$使得$y\in X$。</p>
+<p>有限覆盖引理：如果$I=[a,b],I\subset \bigcup U_n$，其中$U_n=[\alpha_n,\beta_n)$，则$\exists U_1\cdots U_k$使得$I\subset \bigcup_{i=1}^k U_i$。</p>
+<p>证明感觉没怎么看懂，等之后再补上。主要是运用反证法。</p>
+
     </div>
 
     
@@ -469,7 +487,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">https://www.hfcouc.work/2021/08/31/高斯混合模型和EM算法/</a>
+    <a href="https://www.hfcouc.work/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" title="实数与极限">https://www.hfcouc.work/2021/12/18/数学分析/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -509,7 +527,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag"># 数学分析</a>
           </div>
 
         
@@ -518,12 +536,12 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="prev" title="贝叶斯数据分析">
-      <i class="fa fa-chevron-left"></i> 贝叶斯数据分析
+    <a href="/2021/12/16/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" rel="prev" title="贝叶斯滤波与卡尔曼滤波">
+      <i class="fa fa-chevron-left"></i> 贝叶斯滤波与卡尔曼滤波
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" rel="next" title="线性代数应该这样学：线性空间">
-      线性代数应该这样学：线性空间 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" rel="next" title="线性模型">
+      线性模型 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -588,7 +606,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gaussian-mixture-models-and-the-EM-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Gaussian mixture models and the EM algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-model"><span class="nav-number">1.1.</span> <span class="nav-text">The model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-estimation-a-first-attempt"><span class="nav-number">1.2.</span> <span class="nav-text">Parameter estimation: a first attempt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-hidden-variables-and-the-EM-Algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">Using hidden variables and the EM Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-EM-Algorithm-a-more-formal-look"><span class="nav-number">1.4.</span> <span class="nav-text">The EM Algorithm: a more formal look</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-EM-Algorithm"><span class="nav-number">1.4.1.</span> <span class="nav-text">The EM Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-algorithm"><span class="nav-number">1.4.2.</span> <span class="nav-text">The algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-Applying-the-general-algorithm-to-GMMS"><span class="nav-number">1.5.</span> <span class="nav-text">Example: Applying the general algorithm to GMMS</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90"><span class="nav-number">1.</span> <span class="nav-text">实数与极限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%85%AC%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">实数的基本公理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%95%B0%E8%BF%90%E7%AE%97%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">实数运算的代数性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%8F%E5%85%AC%E7%90%86%E4%B8%8E%E5%8A%A0%E6%B3%95%E5%85%AC%E7%90%86%E4%BB%A5%E5%8F%8A%E4%B9%98%E6%B3%95%E5%85%AC%E7%90%86%E7%9A%84%E6%8E%A8%E8%AE%BA"><span class="nav-number">1.3.</span> <span class="nav-text">序公理与加法公理以及乘法公理的推论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%85%AC%E7%90%86%E5%92%8C%E5%8A%A0%E6%B3%95%E5%85%AC%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">序公理和加法公理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%85%AC%E7%90%86%E4%B8%8E%E4%B9%98%E6%B3%95%E5%85%AC%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">序公理与乘法公理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%A4%87%E6%80%A7%E5%85%AC%E7%90%86%E4%B8%8E%E6%95%B0%E9%9B%86%E4%B8%8A%E4%B8%8B%E7%A1%AE%E7%95%8C%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">完备性公理与数集上下确界的存在性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%A4%87%E6%80%A7%E5%85%AC%E7%90%86%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BC%95%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">完备性公理相关的基本引理</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

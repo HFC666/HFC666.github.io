@@ -28,23 +28,22 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。 The model假设我们有有编号的人$i&#x3D;1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到">
+  <meta name="description" content="线性模型基本形式 f(x) &#x3D; w^Tx+b线性回归对于一元变量：线性回归试图学得  f\left(x_{i}\right)&#x3D;w x_{i}+b, \text { 使得 } f\left(x_{i}\right) \simeq y_{i}对于多元变量：我们令$\hat{w}&#x3D;(w;b)$，相应地，把数据集$D$表示为一个$m\times(d+1)$大小的矩阵$\mathrm{X}$，即  \mat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高斯混合模型和EM算法">
-<meta property="og:url" content="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="线性模型">
+<meta property="og:url" content="https://www.hfcouc.work/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。 The model假设我们有有编号的人$i&#x3D;1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到">
+<meta property="og:description" content="线性模型基本形式 f(x) &#x3D; w^Tx+b线性回归对于一元变量：线性回归试图学得  f\left(x_{i}\right)&#x3D;w x_{i}+b, \text { 使得 } f\left(x_{i}\right) \simeq y_{i}对于多元变量：我们令$\hat{w}&#x3D;(w;b)$，相应地，把数据集$D$表示为一个$m\times(d+1)$大小的矩阵$\mathrm{X}$，即  \mat">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png">
-<meta property="article:published_time" content="2021-08-31T15:24:15.000Z">
-<meta property="article:modified_time" content="2021-11-26T12:50:37.320Z">
+<meta property="og:image" content="https://static01.imgkr.com/temp/4b179e7140244df5ad861570daec95ae.png">
+<meta property="article:published_time" content="2021-12-18T15:01:52.000Z">
+<meta property="article:modified_time" content="2021-12-18T15:09:42.895Z">
 <meta property="article:author" content="HFC">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png">
+<meta name="twitter:image" content="https://static01.imgkr.com/temp/4b179e7140244df5ad861570daec95ae.png">
 
-<link rel="canonical" href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/">
+<link rel="canonical" href="https://www.hfcouc.work/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/">
 
 
 <script id="page-configurations">
@@ -57,7 +56,7 @@
   };
 </script>
 
-  <title>高斯混合模型和EM算法 | 独自赏晴雨</title>
+  <title>线性模型 | 独自赏晴雨</title>
   
 
 
@@ -231,7 +230,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
@@ -244,7 +243,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          高斯混合模型和EM算法
+          线性模型
         </h1>
 
         <div class="post-meta">
@@ -254,23 +253,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-08-31 23:24:15" itemprop="dateCreated datePublished" datetime="2021-08-31T23:24:15+08:00">2021-08-31</time>
+              <time title="创建时间：2021-12-18 23:01:52 / 修改时间：23:09:42" itemprop="dateCreated datePublished" datetime="2021-12-18T23:01:52+08:00">2021-12-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-26 20:50:37" itemprop="dateModified" datetime="2021-11-26T20:50:37+08:00">2021-11-26</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E8%A5%BF%E7%93%9C%E4%B9%A6/" itemprop="url" rel="index"><span itemprop="name">西瓜书</span></a>
                 </span>
             </span>
 
@@ -292,139 +285,88 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Gaussian-mixture-models-and-the-EM-algorithm"><a href="#Gaussian-mixture-models-and-the-EM-algorithm" class="headerlink" title="Gaussian mixture models and the EM algorithm"></a>Gaussian mixture models and the EM algorithm</h2><p>我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。</p>
-<h3 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h3><p>假设我们有有编号的人$i=1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到的标签$C_i\in \{\operatorname{M,F}\}$表示人的性别。在这了，小写字母$c$代表”class”。我们也假设两组具有相同的已知方差$\sigma^2$，但不同的未知均值$\mu_M$和$\mu_F$。类标签符合伯努利分布：</p>
+        <h2 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h2><h3 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h3><script type="math/tex; mode=display">
+f(x) = w^Tx+b</script><h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>对于一元变量：<br>线性回归试图学得</p>
 <script type="math/tex; mode=display">
-p_{C_i}(c_i) = q^{\mathbb{1}(c_i=M)}(1-q)^{\mathbb{1}(c_i=F)}</script><p>我们也假设$q$是已知的。为了简化符号，我们令$\pi_M=q$和$\pi_F=1-q$，因此我们可以写作：</p>
+f\left(x_{i}\right)=w x_{i}+b, \text { 使得 } f\left(x_{i}\right) \simeq y_{i}</script><p>对于多元变量：<br>我们令$\hat{w}=(w;b)$，相应地，把数据集$D$表示为一个$m\times(d+1)$大小的矩阵$\mathrm{X}$，即</p>
 <script type="math/tex; mode=display">
-p_{C_i}(c_i) = \prod_{c\in \{M,F\}}\pi_c^{\mathbb{1}(c_i=c)}</script><p>每一类的条件分布都为高斯分布：</p>
+\mathbf{X}=\left(\begin{array}{ccccc}
+
+x_{11} & x_{12} & \ldots & x_{1 d} & 1 \\
+
+x_{21} & x_{22} & \ldots & x_{2 d} & 1 \\
+
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+
+x_{m 1} & x_{m 2} & \ldots & x_{m d} & 1
+
+\end{array}\right)=\left(\begin{array}{cc}
+
+x_{1}^{T} & 1 \\
+
+x_{2}^{T} & 1 \\
+
+\vdots & \vdots \\
+
+x_{m}^{T} & 1
+
+\end{array}\right)</script><p>我们有</p>
 <script type="math/tex; mode=display">
-p_{Y_i|C_i}(y_i|c_i) = \prod_c\mathcal{N}(y_i;\mu_c,\sigma^2)^{\mathbb{1}(c_i=c)}</script><h3 id="Parameter-estimation-a-first-attempt"><a href="#Parameter-estimation-a-first-attempt" class="headerlink" title="Parameter estimation: a first attempt"></a>Parameter estimation: a first attempt</h3><p>假设我们观测到独立同分布的身高$Y_1=y_1,\cdots,Y_n=y_n$，并且我们想要去找到参数$\mu_M,\mu_F$的极大似然估计。这是一个非监督问题：我们不知道我们数据的性别标签，但是我们想根据这些标签学习参数。</p>
-<p>根据上文提到的模型设计，计算所有数据点$P_{Y_1,\cdots,Y_n}$的联合密度，以$\mu_M,\mu_F,\sigma,q$表示。取$\log$后计算$\log$似然，然后对$\mu_M$进行求导。为什么优化这么困难？</p>
-<p>我们先对单个数据点$Y_i=y_i$求密度：</p>
+\hat{w}^\star = \arg_{\hat{w}}\min(y-\mathrm{X}\hat{w})^T(y-\mathrm{X}\hat{w})</script><p>令$E_{\hat{w}}=(y-\mathrm{X}\hat{w})^T(y-\mathrm{X}\hat{w})$，对$\hat{w}$求导得到：</p>
+<script type="math/tex; mode=display">
+\frac{\partial E_{\hat{w}}}{\partial\hat{w}} = 2\mathrm{X}^T(\mathrm{X}\hat{w}-y)</script><p>当$\mathrm{X}^T\mathrm{X}$为满秩矩阵或正定矩阵时，我们有</p>
+<script type="math/tex; mode=display">
+\hat{w}^\star = (\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^Ty</script><p>更一般地，考虑单调可微函数$g(\cdot)$，令</p>
+<script type="math/tex; mode=display">
+y = g^{-1}(w^Tx+b)</script><p>这样的模型称为”广义线性模型”。</p>
+<h3 id="对数几率回归"><a href="#对数几率回归" class="headerlink" title="对数几率回归"></a>对数几率回归</h3><script type="math/tex; mode=display">
+y = \frac{1}{1+e^{-(w^Tx+b)}}</script><p>变化得</p>
+<script type="math/tex; mode=display">
+\ln\frac{y}{1-y} = w^Tx+b</script><p>若将$y$视为样本$x$作为正例的可能性，则$1-y$是其反例的可能性，两者的比值：</p>
+<script type="math/tex; mode=display">
+\frac{y}{1-y}</script><p>称为几率，反映了$x$作为正例的相对可能性。</p>
+<p>我们令</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-P_{Y_i}(y_i) &= \sum_{c_i}p_{C_i}(c_i)p_{Y_i|C_i}(y_i|c_i)\\
-&= \sum_{c_i}(\pi_c\mathcal{N}(y_i;\mu_C,\sigma^2))^{\mathbb{1}(c_i=c)}\\
-&= q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2)
-\end{aligned}</script><p>现在，所有观测的联合分布为</p>
+p(y=1|x) &= \frac{e^{w^Tx+b}}{1+e^{w^Tx+b}}\\
+p(y=0|x)&=\frac{1}{1+e^{w^Tx+b}}
+\end{aligned}</script><p>我们采用最大似然法来估计$w$和$b$：</p>
 <script type="math/tex; mode=display">
-P_{Y_1^n}(y_1^n) = \prod_{i=1}^n(q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>则$\log$似然函数为：</p>
+\ell(w,b) = \sum_{i=1}^m\ln p(y_i|x_i;w,b)</script><p>我们令$\beta=(w;b),\hat{x} = (x;1)$，即$w^Tx+b=\beta^T\hat{x}$，令$p_1(\hat{x};\beta)=p(y=1|\hat{x};\beta),p_0(\hat{x};\beta)=p(y=0|\hat{x};\beta)=1-p_1(\hat{x};\beta)$<br>我们将似然项写为</p>
 <script type="math/tex; mode=display">
-\ln p_{Y_1^n}(y_1^n) = \sum_{i=1}^n\ln(\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2) + \pi_F\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>我们已经遇到了一个问题，和的形式阻止我们将$\log$应用于内部的正态分布密度函数。通过对称性，我们只需要看其中一个均值，另一个将遵循相同的过程。在我们深入区分之前，我们注意到：</p>
+p(y_i|x_i;w,b) = p_1(\hat{x}_i;\beta)^{y_i}p_0(\hat{x}_i;\beta)^{1-y_i}</script><p>代入似然函数，我们得</p>
+<script type="math/tex; mode=display">
+\ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\left(-y_{i} \boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_{i}+\ln \left(1+e^{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{\alpha}}_{i}}\right)\right)</script><p>最小化似然函数可以用<strong>梯度下降法</strong>和<strong>牛顿法</strong>。</p>
+<p>牛顿法<br>根据二阶泰勒展开我们有：</p>
+<script type="math/tex; mode=display">
+f(x+\Delta x) = f(x) - \Delta x^T\nabla f + \Delta x^T\nabla^2f\Delta x</script><p>对其进行求导，</p>
+<script type="math/tex; mode=display">
+-\nabla f + 2\Delta x\nabla^2 f=0</script><p>使导数为零得</p>
+<script type="math/tex; mode=display">
+\Delta x = \nabla^2f^{-1}\nabla f</script><p>所以以牛顿法为例，其第$t+1$轮迭代解的更新公式为：</p>
+<script type="math/tex; mode=display">
+\beta^{t+1}=\beta^{t}-\left(\frac{\partial^{2} \ell(\beta)}{\partial \beta \partial \beta^{\mathrm{T}}}\right)^{-1} \frac{\partial \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}}</script><h3 id="LDA判别分析"><a href="#LDA判别分析" class="headerlink" title="LDA判别分析"></a>LDA判别分析</h3><p>LDA的思想非常朴素：给定训练例集，设法将样例投影到一条直线，使得同类样例的投影点尽可能接近、异类样例的投影点尽可能远离。</p>
+<p><img src="https://static01.imgkr.com/temp/4b179e7140244df5ad861570daec95ae.png" alt=""></p>
+<p>给定数据集$D=\{(x_i,y_i)\}_{i=1}^m,y_i\in \{0,1\}$。令$X_i,\mu_i,\Sigma_i$分别表示第$i\in \{0,1\}$类示例的集合、均值向量、协方差矩阵。若将数据投影到直线$w$上，则两类样本的中心再直线上的投影分别为$w^T\mu_0$和$w^T\mu_1$，若将所有的点都投影到直线上，则两类样本的协方差分别为$w^T\Sigma_0w$和$w^T\Sigma_1 w$。</p>
+<p>欲使同类样例的投影点尽可能接近，可以让$w^T\Sigma_0w+w^T\Sigma_1w$尽可能小；而欲使异类样例的投影点尽可能原理，可以使$||w^T\mu_0-w^T\mu_1||_2^2$尽可能大，同时考虑两者得：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\frac{d}{d\mu}\mathcal{N}(x;\mu,\sigma^2) &= \frac{d}{d\mu}[\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}]\\
-&= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{-(x-\mu)^2}{2\sigma^2}}\cdot\frac{2(x-\mu)}{2\sigma^2}\\
-&= \mathcal{N}(x;\mu,\sigma^2)\cdot\frac{(x-\mu)}{\sigma^2}
-\end{aligned}</script><p>对数似然函数对$\mu_M$进行求导，得</p>
-<blockquote id="fn_1">
-<sup>1</sup>. $\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0$<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
-<script type="math/tex; mode=display">
-\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0</script><p>对于这个表达式我们无法求解。</p>
-<h3 id="Using-hidden-variables-and-the-EM-Algorithm"><a href="#Using-hidden-variables-and-the-EM-Algorithm" class="headerlink" title="Using hidden variables and the EM Algorithm"></a>Using hidden variables and the EM Algorithm</h3><p>退一步，什么会使这个计算容易。如果我们知道隐变量$C_i$的值，则对参数们做最大似然估计就会很容易：我们将会取所有$C_i=M$的点用来估计$\mu_M$，然后对所有$C_i=F$的点重复此过程来估计$\mu_F$。受此启发，我们尝试计算给定观测下$C_i$的分布。我们将从贝叶斯规则开始：</p>
+J &= \frac{||w^T\mu_0-w^T\mu_1||_2^2}{w^T\Sigma_0w+w^T\Sigma_1w}\\
+&= \frac{w^T(\mu_0-\mu_1)(\mu_0-\mu_1)^Tw}{w^T(\Sigma_0+\Sigma_1)w}
+\end{aligned}</script><p>定义”类内散度矩阵”</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-p_{C_i|Y_i}(c_i|y_i) &= \frac{p_{Y_i|C_i}(y_i|c_i)p_{C_i}(c_i)}{p_{Y_i}(y_i)}\\
-&= \frac{\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(c=c_i)}}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(c_i)
-\end{aligned}</script><p>我们看一下$C_i=M$的后验概率：</p>
+S_w &= \Sigma_0+\Sigma_1\\
+&= \sum_{x\in X_0}(x-\mu_0)(x-\mu_0)^T+\sum_{x\in X_1}(x-\mu_1)(x-\mu_1)^T
+\end{aligned}</script><p>以及类间散度矩阵：</p>
 <script type="math/tex; mode=display">
-p_{C_i|Y_i}(M|y_i) = \frac{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(M)</script><p>这个看起来很熟悉，这是式<sup><a href="#fn_1" id="reffn_1">1</a></sup>中的一部分，我们可以将式<sup><a href="#fn_1" id="reffn_1">1</a></sup>用$q_{C_i}$重写，并且假定其跟$\mu_M$无关</p>
+S_b = (\mu_0-\mu_1)(\mu_0-\mu_1)^T</script><p>则可以重写为：</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^nq_{C_i}(M)\frac{y_i-\mu_M}{\sigma^2}=0\\
-\mu_M = \frac{\sum_{i=1}^nq_{C_i}(M)y_i}{\sum_{i=1}^nq_{C_i}(M)}</script><p>这样就看起来好多了：$\mu_M$是身高的加权平均值，其中每个身高都根据该人是男性的可能性进行加权。</p>
-<p>因此现在我们形成了一个循环，如果我们知道参数我们将会很容易计算出$C_1^n$的后验概率，并且如果我们知道后验概率我们将很容易地估计出参数，这就陷入了死循环。这就暗示了以下策略，我们可以固定一个来求解另一个。这种方法通常被称为<code>EM</code>算法。它的工作原理大致如下：</p>
-<ul>
-<li>首先，我们固定参数(在这种情况下为高斯分布的均值$\mu_M$和$\mu_F$)并且求解隐变量的后验分布(在这种情况下记为$q_{C_i}$)。</li>
-<li>之后，我们固定隐变量的后验分布，利用隐变量的期望值来最优化参数。</li>
-<li>重复两个步骤直到收敛。</li>
-</ul>
-<h3 id="The-EM-Algorithm-a-more-formal-look"><a href="#The-EM-Algorithm-a-more-formal-look" class="headerlink" title="The EM Algorithm: a more formal look"></a>The EM Algorithm: a more formal look</h3><p>正如我们将在几个短步骤中展示的那样，EM算法实际上是最大化对数似然的下限(换句话说，每一步都保证改进我们的答案直到收敛)。</p>
-<p>假设我们观测到了随机变量$Y$。现在假设我们也有一些隐变量$C$并且$Y$依赖于$C$。我们可以说$C$和$Y$的分布中有一些我们不知道的参数$\theta$，并且我们有兴趣找到它们。</p>
-<p>在我们上一个例子中，我们观测到有隐变量(性别)$C=\{C_1,\cdots,C_n\}$的身高变量$Y=\{Y_1,\cdots,Y_n\}$，并且$Y$和$C$是独立同分布的，我们的参数是$\mu_M$和$\mu_F$。</p>
-<p>在我们真正推导算法之前，我们需要一个关键结论：<code>Jensen&#39;s inequation</code>(琴声不等式)。在这个例子中我们需要的琴声不等式的特例：</p>
-<script type="math/tex; mode=display">
-\log(\mathbb{E}[X])\ge \mathbb{E}[\log(X)]</script><p>下图是关于琴声不等式的几何直观：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png" alt=""></p>
+J = \frac{w^TS_bw}{w^TS_ww}</script><p>这就是LDA欲最大化得目标，即$S_b$与$S_w$的广义瑞利熵。</p>
 <blockquote>
-<p>琴声不等式的特例说明：对于任何随机变量$X$，$\mathbb{E}[\log X]\le\log\mathbb{E}[X]$。令$X$的PDF为红色的曲线。令$Z=\log X$。中间和右边的图展示了怎么构建$Z$的PDF(蓝色曲线)：因为$\log$，与$X$的PDF相比，它倾向于更小的值。$\log\mathbb{E}(X)$是由中间黑色曲线或$\mathbb{E}(Z)$给出的点。但是，$\mathbb{E}[\log X]$或者$\mathbb{E}[Z]$，将始终较小(或至少永远不会较大)因为对数挤压了分布较大的一端(其中$Z$比较大)并拉伸了较小的一端(其中$Z$较小)。</p>
-<p>关于琴声不等式</p>
-<p>对于一个实函数$\phi(x)$，在区间$I$内它是凸的($\frac{d^2\phi(x)}{d^2x}&gt;0, \forall x\in I$)，那么它满足下面关系：</p>
-<script type="math/tex; mode=display">
-\phi(\sum_{i=1}^Np_ix_i)\le \sum_{i=1}^Np_i\phi(x_i)</script><p>其中$p_i\ge0,\sum_{i=1}^Np_i=1$，且$x_i\in I,(i=1,\cdots,N)$。</p>
-<p><strong>证明</strong>：令$A=\sum_{i=1}^Np_ix_i$，显然$A\in I$。取</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S &= \sum_{i=1}^N\phi(x_i) - \phi(A)\\
-&= \sum_{i=1}^Np_i[\phi(x_i)-\phi(A)]\\
-&= \sum_{i=1}^N p_i\int_A^{x_i}\phi^{\prime}(x)dx
-\end{aligned}</script><p>若$A\le x_i$，因为$\phi^{\prime}(x)$在区间$I$上是递增的，所以</p>
-<script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx\ge \phi^{\prime}(A)(x_i-A)</script><p>若$A_i&gt;x_i$，则</p>
-<script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx = -\int_{x_i}^A\phi^{\prime}(x)dx\ge-(A-x_i)\phi(A) = (x_i-A)\phi^{\prime}(A)</script><p>所以：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S &\ge \sum_{i=1}^Np_i\phi^{\prime}(A)(x_i-A)\\
-&= \phi^{\prime}(A)[\sum_{i=1}^Np_i(x_i-A)]\\
-&= \phi^{\prime}(A)(A-A)\\
-&=0
-\end{aligned}</script><p>证毕。</p>
+<p>要考研了，等到有时间再更新。</p>
 </blockquote>
-<p>在本文中，求期望相当于加权平均，而$\ln(x)$的二阶导小于$0$，故与上文提到的不等式符号相反。</p>
-<h4 id="The-EM-Algorithm"><a href="#The-EM-Algorithm" class="headerlink" title="The EM Algorithm"></a>The EM Algorithm</h4><p>我们想要去最大化似然函数。我们通过边缘化$C$来计算对数似然函数：</p>
-<script type="math/tex; mode=display">
-\log p_Y(y;\theta) = \log\left(\sum_cp_{Y,C}(y,c)\right)</script><p>我们现在也遭受了困境，我们无法对和取对数。如果我们交换它们的顺序不是更好吗？对，期望是一种特殊的求和，并且琴声不等式可以让我们互换它们如果我们有期望的话。因此，我们将要引进一个隐变量$C$的新的分布$q_C$：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \log p_{Y}(y ; \theta) & \\ \left.\text { (Marginalizing over } C \text { and introducing } q_{C}(c) / q_{C}(c)\right) &=\log \left(\sum_{c} q_{C}(c) \frac{p_{Y, C}(y, c ; \theta)}{q_{C}(c)}\right) \\ \text { (Rewriting as an expectation) } &=\log \left(\mathbb{E}_{q_{C}}\left[\frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right]\right) \\ \text { (Using Jensen's inequality) } & \geq \mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right](2) \\ \text { Using definition of conditional probability } &=\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right](3) \end{aligned}</script><p>现在我们有可以很容易优化的$\log p_Y(y;\theta)$的下界了。因为我们已经引入了$q_C$，我们想要在$\theta$和$q_C$上实施最大化。</p>
-<p>我们将使用(2)和(3)分别进行优化。首先先用(2)寻找最好的参数：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right] = \mathbb{E}_{q_C}[\log p_{Y, C}(y, C ; \theta)] - \mathbb{E}_{q_C}[\log q_C(C)]</script><p>因为$q_C$不依赖于$\theta$，因此我们可以只优化第一项：</p>
-<script type="math/tex; mode=display">
-\widehat{\theta} \leftarrow \underset{\theta}{\operatorname{argmax}} \mathbb{E}_{q_{C}}\left[\log p_{Y, C}(y, C ; \theta)\right]</script><p>这被称作<code>M-step</code>：<code>M</code>代表最大化，因为我们正在最大化参数。现在，我们用(3)来找到最好的$q_C$：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]=\mathbb{E}_{q_{C}}\left[\log p_{Y}(y ; \theta)\right]+\mathbb{E}_{q_{C}}\left[\log \frac{p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]</script><p>第一项不依赖于$c$，并且第二项看起来像KL散度：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&= \log p_Y(y;\theta) - \mathbb{E}_{q_C}[\log\frac{q_C(C)}{p_{C|Y}(C|y;\theta)}]\\
-&= \log p_Y(y;\theta) - D(q_C(\cdot)||p_{C|Y}(\cdot|y;\theta))
-\end{aligned}</script><p>因此，当最大化上述值时，我们想要最小化KL散度。KL散度总是大于等于零，当两个分布完全一样时取零。因此，最优化的$q_C$即为$p_{C|Y}(c|y;\theta)$：</p>
-<script type="math/tex; mode=display">
-\hat{q}_C(c) \leftarrow p_{C|Y}(c|y;\theta)</script><p>这被称为<code>E-step</code>：<code>E</code>代表期望，因为我们正在计算$q_C$以便我们可以将其用于期望值。</p>
-<h4 id="The-algorithm"><a href="#The-algorithm" class="headerlink" title="The algorithm"></a>The algorithm</h4><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png" alt=""></p>
-<blockquote>
-<p>信息熵可以表达数据的信息量大小，是信息处理的一个非常重要的概念。对于离散型随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = \mathrm{E}_{x\sim p(x)}[-\log p(x)] = -\sum_{i=1}^n p(x)\log p(x)</script><p>对于连续性随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = E_{x\sim p(x)}[-\log p(x)] = -\int p(x)\log p(x)dx</script><p>接下来我们来说一下相对熵，又被称为KL散度或信息散度，是两个概率分布差异的非对称度量。在信息论中，相对熵等价于两个概率分布的信息熵的插值，若其中一个概率分布为真实分布，另一个为理论分布，则此时相对熵等于交叉熵与真实分布的信息熵之差，表示使用理论分布拟合真实分布时产生的信息损耗。公式为：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i) - p(x_i)\log q(x_i)]</script><p>上面的$p(x_i)$为真实事件的概率分布，$q(x_i)$为理论拟合出来的该事件的概率分布。当拟合出来的事件概率分布跟真实的一模一样时，相对熵等于零，而拟合出来不一样时，相对熵大于零。</p>
-<p>最后我们来证明一下相对熵公式只有在$p(x_i)$等于$q(x_i)$的时候等于$0$，其他时候大于$0$。</p>
-<p>要证：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\ge 0</script><p>即证：</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le 0</script><p>又$\ln(x)\le x-1$，当且仅当$x=1$时等号成立</p>
-<p>故</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le \sum_{i=1}^Np(x_i)(\frac{q(x_i)}{p(x_i)}-1) = \sum_{i=1}^N[p(x_i)-q(x_i)]=0</script><p>上面式子中$=$只在$p(x_i)=q(x_i)$时成立。</p>
-</blockquote>
-<h3 id="Example-Applying-the-general-algorithm-to-GMMS"><a href="#Example-Applying-the-general-algorithm-to-GMMS" class="headerlink" title="Example: Applying the general algorithm to GMMS"></a>Example: Applying the general algorithm to GMMS</h3><p>现在，让我们重现看一下关于身高的GMM模型，看看我们如何应用这两个步骤。我们有观测变量$Y=\{Y_1,\cdots,Y_n\}$和隐变量$C=\{C_1,\cdots,C_n\}$。对于<code>E-Step</code>，我们计算后验概率$p_{C|Y}(c|y)$，之前已经计算过了。对于<code>M-Step</code>，我们得去计算联合概率：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{E}_{q_C}[\ln p_{Y,C}(y,C)] &= \mathbb{E}[\ln p_{Y|C}(y|C)p_C(C)]\\
-&= \mathbb{E}_{q_C}\left[\ln \prod_{i=1}^n\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(C_i=c)}\right]\\
-&= \mathbb{E}_{q_C}\left[\sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{1}(C_i=c)(\ln\pi_c+\ln\mathcal{N}(y_i;\mu_c,\sigma^2))\right]\\
-&= \sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]\left(\ln\pi_c + \ln\frac{1}{\sigma\sqrt{2\pi}}-\frac{(y_i-\mu_c)^2}{2\sigma^2}\right)
- \end{aligned}</script><p>$\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]$是$C_i$为$c$的概率。现在我们对$\mu_M$求导：</p>
-<script type="math/tex; mode=display">
-\frac{d}{d \mu_{M}} \mathbb{E}_{q_{C}}\left[\ln p_{Y \mid C}(y \mid C) p_{C}(C)\right]=\sum_{i=1}^{n} q_{C_{i}}(M)\left(\frac{y_{i}-\mu_{M}}{\sigma^{2}}\right)=0</script><p>得：</p>
-<script type="math/tex; mode=display">
-\mu_{M}=\frac{\sum_{i=1}^{n} q_{C_{i}}(M) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(M)}</script><p>同理可得：</p>
-<script type="math/tex; mode=display">
-\mu_{F}=\frac{\sum_{i=1}^{n} q_{C_{i}}(F) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(F)}</script>
+
     </div>
 
     
@@ -469,7 +411,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">https://www.hfcouc.work/2021/08/31/高斯混合模型和EM算法/</a>
+    <a href="https://www.hfcouc.work/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" title="线性模型">https://www.hfcouc.work/2021/12/18/线性模型/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -518,13 +460,10 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="prev" title="贝叶斯数据分析">
-      <i class="fa fa-chevron-left"></i> 贝叶斯数据分析
+    <a href="/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="prev" title="实数与极限">
+      <i class="fa fa-chevron-left"></i> 实数与极限
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" rel="next" title="线性代数应该这样学：线性空间">
-      线性代数应该这样学：线性空间 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -588,7 +527,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gaussian-mixture-models-and-the-EM-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Gaussian mixture models and the EM algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-model"><span class="nav-number">1.1.</span> <span class="nav-text">The model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-estimation-a-first-attempt"><span class="nav-number">1.2.</span> <span class="nav-text">Parameter estimation: a first attempt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-hidden-variables-and-the-EM-Algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">Using hidden variables and the EM Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-EM-Algorithm-a-more-formal-look"><span class="nav-number">1.4.</span> <span class="nav-text">The EM Algorithm: a more formal look</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-EM-Algorithm"><span class="nav-number">1.4.1.</span> <span class="nav-text">The EM Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-algorithm"><span class="nav-number">1.4.2.</span> <span class="nav-text">The algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-Applying-the-general-algorithm-to-GMMS"><span class="nav-number">1.5.</span> <span class="nav-text">Example: Applying the general algorithm to GMMS</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">线性模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">基本形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">1.2.</span> <span class="nav-text">线性回归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E5%87%A0%E7%8E%87%E5%9B%9E%E5%BD%92"><span class="nav-number">1.3.</span> <span class="nav-text">对数几率回归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LDA%E5%88%A4%E5%88%AB%E5%88%86%E6%9E%90"><span class="nav-number">1.4.</span> <span class="nav-text">LDA判别分析</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
