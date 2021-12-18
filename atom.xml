@@ -47,7 +47,7 @@
     <published>2021-12-11T15:14:11.000Z</published>
     <updated>2021-12-11T15:16:38.773Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>开个新坑</strong></p><div class="row">    <embed src="https://hfcouc.work/pdfs/Number_theory.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>开个新坑</strong></p><div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Number_theory.pdf" data-height="500px"></div>]]></content>
     
     
       
@@ -71,7 +71,7 @@
     <published>2021-12-10T15:32:25.000Z</published>
     <updated>2021-12-11T15:15:54.408Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="row">    <embed src="https://hfcouc.work/pdfs/Random_Processes.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Random_Processes.pdf" data-height="500px"></div>]]></content>
     
     
       
@@ -95,7 +95,7 @@
     <published>2021-12-05T14:43:01.000Z</published>
     <updated>2021-12-13T14:53:32.075Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近一次更新：根据梅老师的课更新了一下无信息先验。</p><div class="row">    <embed src="https://hfcouc.work/pdfs/Bayesian.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近一次更新：根据梅老师的课更新了一下无信息先验。</p><div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Bayesian.pdf" data-height="500px"></div>]]></content>
     
     
       
