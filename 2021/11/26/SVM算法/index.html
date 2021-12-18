@@ -160,6 +160,26 @@
     <a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源</a>
 
   </li>
+        <li class="menu-item menu-item-note">
+
+    <a href="/note" rel="section"><i class="fa fa-book fa-fw"></i>笔记</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/ss" rel="section"><i class="fa fa-sticky-note fa-fw"></i>说说</a>
+
+  </li>
+        <li class="menu-item menu-item-bangumis">
+
+    <a href="/bangumis" rel="section"><i class="fa fa-headphones fa-fw"></i>追番</a>
+
+  </li>
+        <li class="menu-item menu-item-cinemas">
+
+    <a href="/cinemas" rel="section"><i class="fa fa-headphones fa-fw"></i>追剧</a>
+
+  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -218,7 +238,7 @@
     <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/11/26/SVM%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/HFC666/image@master/20210713/tx.6sht83uzbpk0.jpg">
+      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
       <meta itemprop="name" content="HFC">
       <meta itemprop="description" content="留一份不足，可得无限美好">
     </span>
@@ -756,7 +776,7 @@ E_i^{new} = \sum_{S}y_ja_jK(x_i,x_j)+b^{new}-y_i</script><p>其中，$S$是所�
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="HFC"
-      src="https://cdn.jsdelivr.net/gh/HFC666/image@master/20210713/tx.6sht83uzbpk0.jpg">
+      src="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
   <p class="site-author-name" itemprop="name">HFC</p>
   <div class="site-description" itemprop="description">留一份不足，可得无限美好</div>
 </div>
@@ -942,6 +962,26 @@ $(document).ready(function() {
 
 
 
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 
