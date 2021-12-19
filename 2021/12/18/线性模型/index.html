@@ -37,7 +37,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://static01.imgkr.com/temp/4b179e7140244df5ad861570daec95ae.png">
 <meta property="article:published_time" content="2021-12-18T15:01:52.000Z">
-<meta property="article:modified_time" content="2021-12-18T15:09:42.895Z">
+<meta property="article:modified_time" content="2021-12-19T05:29:05.323Z">
 <meta property="article:author" content="HFC">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
@@ -253,10 +253,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-18 23:01:52 / 修改时间：23:09:42" itemprop="dateCreated datePublished" datetime="2021-12-18T23:01:52+08:00">2021-12-18</time>
+              <time title="创建时间：2021-12-18 23:01:52" itemprop="dateCreated datePublished" datetime="2021-12-18T23:01:52+08:00">2021-12-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-19 13:29:05" itemprop="dateModified" datetime="2021-12-19T13:29:05+08:00">2021-12-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -363,9 +369,74 @@ S_w &= \Sigma_0+\Sigma_1\\
 S_b = (\mu_0-\mu_1)(\mu_0-\mu_1)^T</script><p>则可以重写为：</p>
 <script type="math/tex; mode=display">
 J = \frac{w^TS_bw}{w^TS_ww}</script><p>这就是LDA欲最大化得目标，即$S_b$与$S_w$的广义瑞利熵。</p>
-<blockquote>
-<p>要考研了，等到有时间再更新。</p>
-</blockquote>
+<p>如何求解$w$呢？我们发现，如果将$w$乘以常数$\alpha$，则分子分母上的$\alpha$约去，所以最优解与$\alpha$的长度无关而与其方向有关。所以我们令$w^TS_ww=1$($S_w$为常数)。则上式等价于：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\min_w&\quad -w^TS_bw\\
+\operatorname{s.t.}&\quad w^TS_ww=1
+\end{aligned}</script><p>根据拉格朗日乘子法，我们有：</p>
+<script type="math/tex; mode=display">
+L(w,\lambda) = -w^TS_bw+\lambda(w^TS_ww-1)</script><p>对其求导得：</p>
+<script type="math/tex; mode=display">
+-2S_bw+2\lambda S_ww=0</script><p>即</p>
+<script type="math/tex; mode=display">
+S_bw = \lambda S_ww</script><p>由于我们想要求解的只有$w$，而$\lambda$这个拉格朗日乘子具体取多少值都无所谓，于是我们任意设定$\lambda$来配合我们求解$w$。我们注意到：</p>
+<script type="math/tex; mode=display">
+S_bw = (\mu_0-\mu_1)(\mu_0-\mu_1)^Tw</script><p>如果我们令$\lambda$恒等于$(\mu_0-\mu_1)^Tw$，那么上式即可改写为：</p>
+<script type="math/tex; mode=display">
+S_bw = \lambda(\mu_0-\mu_1)</script><p>代入得：</p>
+<script type="math/tex; mode=display">
+w = S_w^{-1}(\mu_0-\mu_1)</script><p>考虑到数值稳定性，在实践中通常是对$S_w$进行奇异值分解，即$S_w^{-1}=U\Sigma V^T$，然后得$S_w^{-1}=V\Sigma^{-1}U^T$。</p>
+<p>可以将LDA推广到多分类任务中。假定存在$N$个类，且第$i$类示例数为$m_i$，总样本数为$m$。我们先定义”全局散度矩阵”：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+S_t &= S_b+S_w\\
+&= \sum_{i=1}^m(x_i-\mu)(x_i-\mu)^T
+\end{aligned}</script><p>其中$\mu$是所有示例的均值向量。将类内散度矩阵$S_w$定义为每个类别的散度矩阵之和，即</p>
+<script type="math/tex; mode=display">
+S_w=\sum_{i=1}^NS_{w_i}</script><p>其中</p>
+<script type="math/tex; mode=display">
+S_{w_i} = \sum_{x\in X_i}(x-\mu_i)(x-\mu_i)^T</script><p>我们可以推得：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf{S}_{b} &=\mathbf{S}_{t}-\mathbf{S}_{w} \\
+&=\sum_{i=1}^{m}\left(\boldsymbol{x}_{i}-\boldsymbol{\mu}\right)\left(\boldsymbol{x}_{i}-\boldsymbol{\mu}\right)^{\mathrm{T}}-\sum_{i=1}^{N} \sum_{\boldsymbol{x} \in X_{i}}\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)^{\mathrm{T}} \\
+&=\sum_{i=1}^{N}\left(\sum_{\boldsymbol{x} \in X_{i}}\left((\boldsymbol{x}-\boldsymbol{\mu})(\boldsymbol{x}-\boldsymbol{\mu})^{\mathrm{T}}-\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)^{\mathrm{T}}\right)\right) \\
+&=\sum_{i=1}^{N}\left(\sum_{\boldsymbol{x} \in X_{i}}\left((\boldsymbol{x}-\boldsymbol{\mu})\left(\boldsymbol{x}^{\mathrm{T}}-\boldsymbol{\mu}^{\mathrm{T}}\right)-\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)\left(\boldsymbol{x}^{\mathrm{T}}-\boldsymbol{\mu}_{i}^{\mathrm{T}}\right)\right)\right) \\
+&=\sum_{i=1}^{N}\left(\sum_{\boldsymbol{x} \in X_{i}}\left(\boldsymbol{x} \boldsymbol{x}^{\mathrm{T}}-\boldsymbol{x} \boldsymbol{\mu}^{\mathrm{T}}-\boldsymbol{\mu} \boldsymbol{x}^{\mathrm{T}}+\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}-\boldsymbol{x} \boldsymbol{x}^{\mathrm{T}}+\boldsymbol{x} \boldsymbol{\mu}_{i}^{\mathrm{T}}+\boldsymbol{\mu}_{i} \boldsymbol{x}^{\mathrm{T}}-\boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right)\right) \\
+&=\sum_{i=1}^{N}\left(\sum_{\boldsymbol{x} \in X_{i}}\left(-\boldsymbol{x} \boldsymbol{\mu}^{\mathrm{T}}-\boldsymbol{\mu} \boldsymbol{x}^{\mathrm{T}}+\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\boldsymbol{x} \boldsymbol{\mu}_{i}^{\mathrm{T}}+\boldsymbol{\mu}_{i} \boldsymbol{x}^{\mathrm{T}}-\boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right)\right) \\
+&=\sum_{i=1}^{N}\left(-\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{x} \boldsymbol{\mu}^{\mathrm{T}}-\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{\mu} \boldsymbol{x}^{\mathrm{T}}+\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{x} \boldsymbol{\mu}_{i}^{\mathrm{T}}+\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{\mu}_{i} \boldsymbol{x}^{\mathrm{T}}-\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right) \\
+&=\sum_{i=1}^{N}\left(-m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}^{\mathrm{T}}-m_{i} \boldsymbol{\mu} \boldsymbol{\mu}_{i}^{\mathrm{T}}+m_{i} \boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}+m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}-m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right) \\
+&=\sum_{i=1}^{N}\left(-m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}^{\mathrm{T}}-m_{i} \boldsymbol{\mu} \boldsymbol{\mu}_{i}^{\mathrm{T}}+m_{i} \boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right) \\
+&=\sum_{i=1}^{N} m_{i}\left(-\boldsymbol{\mu}_{i} \boldsymbol{\mu}^{\mathrm{T}}-\boldsymbol{\mu} \boldsymbol{\mu}_{i}^{\mathrm{T}}+\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right) \\
+&=\sum_{i=1}^{N} m_{i}\left(\boldsymbol{\mu}_{i}-\boldsymbol{\mu}\right)\left(\boldsymbol{\mu}_{i}-\boldsymbol{\mu}\right)^{\mathrm{T}}
+\end{aligned}</script><p>即</p>
+<script type="math/tex; mode=display">
+S_b=\sum_{i=1}^{N} m_{i}\left(\boldsymbol{\mu}_{i}-\boldsymbol{\mu}\right)\left(\boldsymbol{\mu}_{i}-\boldsymbol{\mu}\right)^{\mathrm{T}}</script><p>我们常用的是实现目标：</p>
+<script type="math/tex; mode=display">
+\max_W\frac{\operatorname{tr}(W^TS_bW)}{\operatorname{tr}(W^TS_wW)}</script><p>此公式是二维情况下的推广形式，证明如下：设$W = (w_1,w_2,\cdots,w_i,\cdots,w_{N-1})\in \mathbb{R}^{d\times(N-1)}$，其中$w_i\in \mathbb{R}^{d\times 1}$为$d$行$1$列的列向量，则</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\operatorname{tr}(W^TS_bW) = \sum_{i=1}^{N-1}w_i^TS_bw_i\\
+\operatorname{tr}(W^TS_wW)=\sum_{i=1}^{N-1}w_i^TS_wW_i
+\end{cases}</script><p>所以上述实现目标可以变形为：</p>
+<script type="math/tex; mode=display">
+\max_W\frac{\sum_{i=1}^{N-1}w_i^TS_bw_i}{\sum_{i=1}^{N-1}w_i^TS_wW_i}</script><p>可以看出是对二分类结果的推广。</p>
+<p>上式可以通过如下方式求解：</p>
+<script type="math/tex; mode=display">
+S_bW = \lambda S_wW</script><p>这个问题与上面二维的时候大致一样，我们也固定分母为$1$，那么优化问题就等价于：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\min_W\quad&-\operatorname{tr}(W^TS_bW)\\
+\operatorname{s.t.}\quad&\operatorname{tr}(W^TS_wW)=1
+\end{aligned}</script><p>应用拉格朗日乘子法，上述优化问题的拉格朗日函数为：</p>
+<script type="math/tex; mode=display">
+L(W,\lambda) =-\operatorname{tr}(W^TS_bW)+\lambda(\operatorname{tr}(W^TS_wW)-1)</script><p>根据矩阵求导公式：</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial X}\operatorname{tr}(X^TBX) = (B+B^T)X</script><p>对上式求导令导数等于$0$，得：</p>
+<script type="math/tex; mode=display">
+S_b W = \lambda S_wW</script><p>那么$W$为$S_w^{-1}S_b$的$N-1$个最大广义特征值所对应的特征向量组成的矩阵。</p>
+<p>如果将$W$视为一个投影矩阵，则多分类LDA将样本投影到$N-1$维空间，$N-1$通常远小于数据原有的属性数。并且在投影的过程中使用了类别的信息，故LDA也常用来降维。</p>
 
     </div>
 
