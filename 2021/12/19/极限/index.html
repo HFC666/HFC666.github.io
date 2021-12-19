@@ -28,18 +28,20 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="随机过程第一章：基本概念">
-<meta property="og:url" content="https://www.hfcouc.work/2021/12/10/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/index.html">
+  <meta name="description" content="数列极限数列极限的定义定义(数列极限)。设$\{a_n\}$为数列，$A\in \mathbb{R}$.如果任给$\epsilon&gt;0$,都存在正整数$N(\epsilon)$，使得当$n&gt;N$时，有      |a_n-A|">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极限">
+<meta property="og:url" content="https://www.hfcouc.work/2021/12/19/%E6%9E%81%E9%99%90/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
+<meta property="og:description" content="数列极限数列极限的定义定义(数列极限)。设$\{a_n\}$为数列，$A\in \mathbb{R}$.如果任给$\epsilon&gt;0$,都存在正整数$N(\epsilon)$，使得当$n&gt;N$时，有      |a_n-A|">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-10T15:32:25.000Z">
-<meta property="article:modified_time" content="2021-12-11T15:15:54.408Z">
+<meta property="article:published_time" content="2021-12-19T14:22:41.000Z">
+<meta property="article:modified_time" content="2021-12-19T14:24:36.311Z">
 <meta property="article:author" content="HFC">
-<meta property="article:tag" content="随机过程">
+<meta property="article:tag" content="数学分析">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://www.hfcouc.work/2021/12/10/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/">
+<link rel="canonical" href="https://www.hfcouc.work/2021/12/19/%E6%9E%81%E9%99%90/">
 
 
 <script id="page-configurations">
@@ -52,7 +54,7 @@
   };
 </script>
 
-  <title>随机过程第一章：基本概念 | 独自赏晴雨</title>
+  <title>极限 | 独自赏晴雨</title>
   
 
 
@@ -226,7 +228,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/10/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/19/%E6%9E%81%E9%99%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
@@ -239,7 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          随机过程第一章：基本概念
+          极限
         </h1>
 
         <div class="post-meta">
@@ -249,23 +251,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-12-10 23:32:25" itemprop="dateCreated datePublished" datetime="2021-12-10T23:32:25+08:00">2021-12-10</time>
+              <time title="创建时间：2021-12-19 22:22:41 / 修改时间：22:24:36" itemprop="dateCreated datePublished" datetime="2021-12-19T22:22:41+08:00">2021-12-19</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-11 23:15:54" itemprop="dateModified" datetime="2021-12-11T23:15:54+08:00">2021-12-11</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">随机过程</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -287,7 +283,198 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Random_Processes.pdf" data-height="500px"></div>
+        <h3 id="数列极限"><a href="#数列极限" class="headerlink" title="数列极限"></a>数列极限</h3><h4 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h4><p>定义(数列极限)。设$\{a_n\}$为数列，$A\in \mathbb{R}$.如果任给$\epsilon&gt;0$,都存在正整数$N(\epsilon)$，使得当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+    |a_n-A|<\epsilon</script><p>则称$\{a_n\}$以$A$为极限，或称$\{a_n\}$收敛于$A$，记为</p>
+<script type="math/tex; mode=display">
+    \lim_{n\rightarrow\infty}a_n=A\text{ 或 }a_n\rightarrow A(n\rightarrow \infty)</script><p>当然我们也可以用$\epsilon-N$语言给出数列$\{a_n\}$不以$A$为极限的定义：如果存在$\epsilon_0&gt;0$，使得任给正数$N$，均存在$n_0&gt;N$满足不等式$|a_{n_0}-A|\ge\epsilon_0$，则$\{a_n\}$不以$A$为极限。</p>
+<p>命题：如果数列$\{a_n\}$有极限，则其极限是唯一的。</p>
+<p>定理(夹逼定理).设$\{a_n\},\{b_n\},\{c_n\}$均为数列，且</p>
+<script type="math/tex; mode=display">
+    a_n\le b_n\le c_n,\forall n\ge N_0</script><p>其中$N_0$为一整数，如果</p>
+<script type="math/tex; mode=display">
+    \lim_{n\rightarrow\infty}a_n=A=\lim_{n\rightarrow\infty}c_n</script><p>则$\lim_{n\rightarrow\infty}b_n=A$。</p>
+<p>例题：<br>考虑无限循环小数$A=0.99999\cdots$，问：$A$是否小于$1$？<br>解：我们可以将$A$视为一列有限小数$\{a_n\}$的极限，其中$a_n = 0.99\cdots9(n\text{个}9)$。由于：</p>
+<script type="math/tex; mode=display">
+    |a_n-1| = 10^{-n}</script><p>根据夹逼定理</p>
+<script type="math/tex; mode=display">
+a_n\le A\le 1</script><p>而</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}a_n=1</script><p>所以</p>
+<script type="math/tex; mode=display">
+A=1</script><p>例：<br>设$0&lt;\alpha&lt;1$，证明$\lim_{n\rightarrow\infty}[(n+1)^{\alpha}-n^{\alpha}]=0$<br>证明：当$n\ge1$时，有</p>
+<script type="math/tex; mode=display">
+    \begin{aligned}
+        0<(n+1)^{\alpha}-n^{\alpha} &= n^{\alpha}[(1+\frac{1}{n})^{\alpha}-1]\\
+        &\le n^{\alpha}[(1+\frac{1}{n})-1]=\frac{1}{n^{1-\alpha}}
+    \end{aligned}</script><p>根据夹逼定理我们有$\lim_{n\rightarrow\infty}[(n+1)^{\alpha}-n^{\alpha}]=0$。</p>
+<p>例：设$\alpha&gt;0,a&gt;1$，则$\lim_{n\rightarrow\infty}\frac{n^{\alpha}}{a^n}=0$</p>
+<p>思路：由于分子分母同时含有$n$，因此我们很难进行判断，我们想要做的是根据放缩消去一个$n$，而留下的$n$很容易处理，因此我们对$a^n$进行放缩处理。<br>我们记$a^{\frac{1}{\alpha}}=1+\beta,\beta&gt;0$。由于$n&gt;1$，有</p>
+<script type="math/tex; mode=display">
+(1+\beta)^n = 1 + n\beta+\frac{1}{2}n(n-1)\beta^2+\cdots+\beta^n>\frac{1}{2}n(n-1)\beta^2</script><p>故</p>
+<script type="math/tex; mode=display">
+0<\frac{n^{\alpha}}{a^n} = \left[\frac{n}{(1+\beta)^n}\right]^{\alpha} < \left[\frac{2}{(n-1)\beta^2}\right]^\alpha</script><p>由夹逼原理可知$\lim_{n\rightarrow\infty}\frac{n^{\alpha}}{a^n}=0$。</p>
+<p>例：证明$\lim_{n\rightarrow\infty}\frac{1}{\sqrt[n]{n!}}=0$</p>
+<p>注意到当$1\le k\le n$时$(k-1)(n-k)\ge0$，从而$k(n-k+1)\ge n$，我们就有：</p>
+<script type="math/tex; mode=display">
+    (n!)^2 = (1\cdot n)(2(n-1))\cdots(k(n-k+1))\cdots(n\cdot1)\ge n^n,\forall n\ge1</script><p>因此</p>
+<script type="math/tex; mode=display">
+    0<\frac{1}{\sqrt[n]{n!}}\le\frac{1}{\sqrt{n}},\forall n\ge1</script><p>由夹逼原理可得：$\lim_{n\rightarrow\infty}\frac{1}{\sqrt[n]{n!}}=0$</p>
+<p>例：证明$\lim_{n\rightarrow\infty}\sqrt[n]{n}=1$<br>证明：记$\sqrt[n]{n}=1+\alpha_n$，当$n&gt;1$时，</p>
+<script type="math/tex; mode=display">
+    n = (1+\alpha_n)^n=1+n\alpha_n+\frac{1}{2}n(n-1)\alpha_n^2+\cdots+\alpha_n^n > \frac{1}{2}n(n-1)\alpha_n^2</script><p>从而有估计</p>
+<script type="math/tex; mode=display">
+0<\alpha_n<\sqrt{\frac{2}{n-1}}</script><p>因此，当$n&gt;1$时，有</p>
+<script type="math/tex; mode=display">
+1<\sqrt[n]{n} = 1+\alpha_n<1+\sqrt{\frac{2}{n-1}}</script><p>由夹逼原理即得：$\lim_{n\rightarrow\infty}\sqrt[n]{n}=1$。</p>
+<p>下面两个为比较重要的例题：</p>
+<p>设$\lim_{n\rightarrow\infty}a_n=A$，证明$\lim_{n\rightarrow\infty}\frac{a_1+a_2+\cdots+a_n}{n}=A$。<br>证明：任给$\epsilon&gt;0$，因为$\lim_{n\rightarrow\infty}a_n=A$，故存在$N_0$，使得当$n&gt;N_0$时，有</p>
+<script type="math/tex; mode=display">
+    |a_n-A|<\frac{\epsilon}{2}</script><p>令</p>
+<script type="math/tex; mode=display">
+N>\max\{N_0,2\epsilon^{-1}|a_1+\cdots+a_{N_0}-N_0A|\}</script><p>则当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\left|\frac{a_{1}+\cdots+a_{n}}{n}-A\right|=\left|\frac{a_{1}+\cdots+a_{N_{0}}-N_{0} A}{n}+\frac{\left(a_{N_{0}+1}-A\right)+\cdots+\left(a_{n}-A\right)}{n}\right| \\
+
+&\leqslant \frac{\left|a_{1}+\cdots+a_{N_{0}}-N_{0} A\right|}{n}+\frac{\left|a_{N_{0}+1}-A\right|+\cdots+\left|a_{n}-A\right|}{n} \\
+
+&\leqslant \frac{\left|a_{1}+\cdots+a_{N_{0}}-N_{0} A\right|}{n}+\frac{n-N_{0}}{n} \frac{\varepsilon}{2} \\
+
+&<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon
+
+\end{aligned}</script><p>这说明：$\lim_{n\rightarrow\infty}\frac{a_1+a_2+\cdots+a_n}{n}=A$。</p>
+<p>我们再来证明一个跟这个差不多的例题：</p>
+<p>$\lim_{n\rightarrow\infty}a_n=A$，则$\sqrt[n]{a_1\cdots a_n}=A$。</p>
+<p>证明：</p>
+<p>我们可以取对数利用上面那个题的结论即可证明。</p>
+<p>例：<strong>任何实数都是某个有理数列的极限</strong>。<br>证明：设$A$为实数。如果$A$为有理数，则令$a_n=A(n\ge1)$即可。如果$A$为无理数，令</p>
+<script type="math/tex; mode=display">
+a_n = \frac{[nA]}{n},\forall n\ge1</script><p>其中$[x]$表示不超过$x$的最大整数，因此$a_n$都是有理数。因为$A$不是有理数，故：</p>
+<script type="math/tex; mode=display">
+nA-1<[nA]<nA,\forall n\ge1</script><p>即</p>
+<script type="math/tex; mode=display">
+A-\frac{1}{n}<a_n=\frac{[nA]}{n}<A,\forall n\ge1</script><p>由夹逼定律可知$\lim_{n\rightarrow\infty} a_n=A$</p>
+<h4 id="数列极限的基本性质"><a href="#数列极限的基本性质" class="headerlink" title="数列极限的基本性质"></a>数列极限的基本性质</h4><p>命题(有界性)：设数列$\{a_n\}$收敛，则$\{a_n\}$有界<br>由此命题立知，无界数列必定发散。如果$\{a_n\}$发散到$+\infty$，则称$\{a_n\}$发散到$\infty$，记为</p>
+<script type="math/tex; mode=display">
+    \lim_{n\rightarrow\infty}a_n=\infty,\text{ 或}a_n\rightarrow\infty(n\rightarrow\infty)</script><p>命题(绝对值性质)。设数列$\{a_n\}$收敛到$A$，则$\{|a_n|\}$收敛到$|A|$。</p>
+<p>推论：数列$\{a_n\}$收敛到$0$当且仅当$|a_n|$收敛到$0$；数列$\{a_n\}$收敛到$A$当且仅当$|a_n-A|$收敛到$0$。</p>
+<p>命题(保序性质)。设数列$\{a_n\}$收敛到$A$，$\{b_n\}$收敛到$B$，则有</p>
+<ol>
+<li>如果存在$N_0$，当$n&gt;N_0$时$a_n\ge b_n$，则$A\ge B$。</li>
+<li>反之，如果$A&gt;B$，则存在$N$，使得当$n&gt;N$时$a_n&gt;b_n$。</li>
+</ol>
+<p>推论：设$\lim_{n\rightarrow\infty}a_n=A$，如果$A\neq0$，则存在$N$，使得当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+    \frac{1}{2}|A|<|a_n|<\frac{3}{2}|A|</script><p>例：设$q&gt;1$，则$\lim_{n\rightarrow\infty}\frac{\log_qn}{n}=0$<br>解：任给$\epsilon&gt;0$，利用之前的结论，有</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}\sqrt[n]{n}=1<q^{\epsilon}</script><p>由极限的保序性质，存在$N$，当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+    \sqrt[n]{n}<q^{\epsilon}</script><p>即</p>
+<script type="math/tex; mode=display">
+    \frac{\log_qn}{n}<\epsilon,\forall n>N</script><p>这说明：$\lim_{n\rightarrow\infty}a_n=A$.</p>
+<p>命题(四则运算)。设数列$\{a_n\}$收敛到$A$，$\{b_n\}$收敛到$B$，则有：</p>
+<ol>
+<li>$\{\alpha a_n+\beta b_n\}$收敛到$\alpha A+\beta B$，其中$\alpha,\beta$为常数</li>
+<li>$\{a_nb_n\}$收敛到$AB$</li>
+<li>当$B\neq0$时，$\{a_n/b_n\}$收敛到$A/B$</li>
+</ol>
+<p>下面我们引入数列的子列的概念，并研究数列的极限和其子列的极限之间的关系，设</p>
+<script type="math/tex; mode=display">
+    a_1,a_2,\cdots,a_n,\cdots</script><p>是数列，如果</p>
+<script type="math/tex; mode=display">
+    1\le n_1<n_2<\cdots<n_k<\cdots</script><p>是一列严格递增的正整数，则称数列</p>
+<script type="math/tex; mode=display">
+    a_{n_1},a_{n_2},\cdots,a_{n_k},\cdots</script><p>为原数列$\{a_n\}$的子列，记为$\{a_{n_k}\}$。两个特殊的子列$\{a_{2k}\}$和$\{a_{2k-1}\}$分别为偶子列和奇子列。</p>
+<p>命题</p>
+<ol>
+<li>设$\{a_n\}$收敛到$A$，则它的任何子列$\{a_{n_k}\}$也收敛到$A$</li>
+<li>如果$\{a_n\}$的偶子列与奇子列收敛到$A$，则$\{a_n\}$也收敛到$A$</li>
+</ol>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>设$\lim_{n\rightarrow \infty}(a_{n+1}-a_n)=A$，则$\lim_{n\rightarrow\infty}\frac{a_n}{n}=A$</p>
+<script type="math/tex; mode=display">
+\frac{a_n}{n} = \frac{a_1+(a_2-a_1)+(a_3-a_2)+\cdots+(a_n-a_{n-1})}{n}</script><p>因为$\lim_{n\rightarrow \infty}(a_{n+1}-a_n)=A$，利用已知例题的结论即可证明得到。</p>
+<p>设$\lim_{n\rightarrow\infty}a_n=A$，证明：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}\frac{1}{n^2}(a_1+2a_2+\cdots+na_n)=\frac{1}{2}A</script><p>对上式变换得到</p>
+<script type="math/tex; mode=display">
+\frac{1}{n^2}(a_1+2a_2+\cdots+na_n) = \sum_{i=1}^n\frac{i(a_i-A)}{n^2}+\frac{n(n+1)}{2n^2}A</script><p>这样就好证明了：</p>
+<p>因为：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}\frac{i}{n}=0\quad\lim_{n\rightarrow\infty}(a_i-A)=0\Rightarrow\lim_{n\rightarrow\infty}\frac{i(a_i-A)}{n}=0</script><p>所以：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow0}\sum_{i=1}^n\frac{i(a_i-A)}{n^2}=0</script><p>有因为：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow0}\frac{n(n+1)}{2n^2}A=\frac{1}{2}A</script><p>得证。</p>
+<h4 id="单调数列的极限"><a href="#单调数列的极限" class="headerlink" title="单调数列的极限"></a>单调数列的极限</h4><p>确定原理：非空数集如果有上界则必有上确界，如果有下界则必有下确界。</p>
+<p>设$\{a_n\}$为实数列，如果</p>
+<script type="math/tex; mode=display">
+a_1\le a_2\le\cdots\le a_n\le \cdots</script><p>则称$\{a_n\}$是单调递增序列，当上式中的$\le$号换成$&lt;$时称$\{a_n\}$是严格单调递增的。</p>
+<p>定理(单调数列的极限)：设$\{a_n\}$为单调数列</p>
+<ol>
+<li>如果$\{a_n\}$为单调递增的数列，则$\lim_{n\rightarrow\infty}a_n=\sup\{a_k|k\ge1\}$</li>
+<li>如果$\{a_n\}$为单调递减序列，则$\lim_{n\rightarrow\infty}a_n=\inf\{a_k|k\ge1\}$</li>
+</ol>
+<p>证明：记$M=\sup\{a_k|k\ge1\}$，先考虑$M$有限的情形。任给$\epsilon&gt;0$，存在$a_N$，使得</p>
+<script type="math/tex; mode=display">
+M-\epsilon<a_N\le M</script><p>因为$\{a_n\}$是单调递增序列，故当$n&gt;N$时</p>
+<script type="math/tex; mode=display">
+M-\epsilon<a_N\le a_n\le M<M+\epsilon</script><p>由数列的极限定义可知：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}a_n=M=\sup\{a_k|k\ge1\}</script><p>如果$M=+\infty$，则任给$A&gt;0$，由上确界的定义，存在$a_N$，使得$a_N&gt;A$。由于$\{a_n\}$是单调递增序列，故当$n&gt;N$时有$a_n\ge a_N&gt;A$，从而</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}a_n=+\infty=\sup\{a_k|k\ge1\}</script><p>由上面的推理我们也可以得到：单调有界的数列必有极限。</p>
+<p>任何收敛数列都有单调的收敛子列。</p>
+<p>例：设$a_1&gt;0,a_{n+1}=\frac{1}{2}(a_n+\frac{1}{a_n}),n\ge1$。研究数列$\{a_n\}$的极限。</p>
+<p>对于$a_n&gt;0,\forall n\ge1$。我们有：</p>
+<script type="math/tex; mode=display">
+a_{n+1} = \frac{1}{2}(a_n+\frac{1}{a_n})\ge\frac{1}{2}\cdot2(a_n\cdot\frac{1}{a_n})=1</script><p>故我们有：</p>
+<script type="math/tex; mode=display">
+a_{n+1} = \frac{1}{2}(a_n+\frac{1}{a_n})\le\frac{1}{2}(a_n+a_n)=a_n</script><p>所以单调递减，而又有下界。因此收敛，记其极限为$A$，则$A\ge1$。另一方面：</p>
+<script type="math/tex; mode=display">
+A = \lim_{n\rightarrow\infty}a_{n+1}=\lim_{n\rightarrow\infty}\frac{1}{2}(a_n+\frac{1}{a_n}) = \frac{1}{2}(A+\frac{1}{A})</script><p>故$A=1$.</p>
+<p>我们现在讨论几个重要的极限：</p>
+<script type="math/tex; mode=display">
+a_n = (1+\frac{1}{n})^n, b_n = (1+\frac{1}{n})^{n+1},n\ge1</script><blockquote>
+<p>详细证明过程见49页</p>
+</blockquote>
+<p>我们可以证明$\{a_n\}$单调递增，$\{b_n\}$单调递减。两者均收敛于$e$。</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}b_n = \lim_{n\rightarrow\infty}a_n(1+\frac{1}{n})=\lim_{n\rightarrow\infty}a_n=e</script><p>我们可以得到下述重要的不等式：</p>
+<script type="math/tex; mode=display">
+\left(1+\frac{1}{n}\right)^{n}<\left(1+\frac{1}{n+1}\right)^{n+1}<e<\left(1+\frac{1}{n+1}\right)^{n+2}<\left(1+\frac{1}{n}\right)^{n+1}, \quad \forall n \geqslant 1</script><p>我们令$c_n=1+\frac{1}{2}+\cdots+\frac{1}{n}-\ln n$，可以证明$\{c_n\}$收敛，其极限为$\gamma$，称为Euler常数，计算表明</p>
+<script type="math/tex; mode=display">
+\gamma = 0.5772156649\cdots</script><p>下面，我们利用单调数列来研究一般的有界数列。设$\{a_n\}$为有界数列，我们要研究它的收敛性。我们不知道$a_n$是否逐渐趋于某个数，一个好的想法就是取考虑$n$很大时$\{a_n\}$中最大的最小的项，看看它们是否相近。当然，最大和最小项不一定存在，但是我们可以利用上确界和下确界来分别代替它们。为此，令：</p>
+<script type="math/tex; mode=display">
+\underline{a}_{n}=\inf \left\{a_{k} \mid k \geqslant n\right\}, \quad \bar{a}_{n}=\sup \left\{a_{k} \mid k \geqslant n\right\}</script><p>$\{\underline{a}_n\}$和$\{\bar{a}_n\}$分别是单调递增和单调递减的序列，且：</p>
+<script type="math/tex; mode=display">
+\underline{a}_n\le a_n\le \bar{a}_n</script><p>单调数列$\{\underline{a}_n\}$和$\{\bar{a}_n\}$的极限分别称为$\{a_n\}$的<strong>下极限</strong>和<strong>上极限</strong>，记为：</p>
+<script type="math/tex; mode=display">
+\varliminf_{n \rightarrow \infty} a_{n}=\lim _{n \rightarrow \infty} \underline{a}_{n}, \quad \varlimsup_{n \rightarrow \infty} a_{n}=\lim _{n \rightarrow \infty} \bar{a}_{n}</script><p>定理：设$\{a_n\}$为有界数列，则下列命题等价：</p>
+<ol>
+<li>$\{a_n\}$收敛</li>
+<li>$\{a_n\}$的上极限和下极限相等</li>
+<li>$\lim_{n\rightarrow\infty}(\bar{a}_n-\underline{a}_n)=0$</li>
+</ol>
+<p>命题：设$\{a_n\},\{b_n\}$为有界数列</p>
+<ol>
+<li>如果存在$N_0$，当$n&gt;N_0$时$a_n\ge b_n$，则<script type="math/tex">\varliminf_{n \rightarrow \infty} a_{n} \geqslant \varliminf_{n \rightarrow \infty} b_{n}, \quad \varlimsup_{n \rightarrow \infty} a_{n} \geqslant \varlimsup_{n \rightarrow \infty} b_{n}</script></li>
+<li><script type="math/tex; mode=display">\overline{\lim}_{n\rightarrow\infty}(a_n+b_n)\le\bar{\lim}_{n\rightarrow\infty}a_n+\bar{\lim}_{n\rightarrow\infty}b_n</script></li>
+</ol>
+<p>设$a_n&gt;0,a_n\rightarrow A(n\rightarrow \infty)$。记$b_n = \sqrt[n]{a_1a_2\cdots a_n}$，则</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}b_n=A</script><p>由已知条件，任取$\epsilon&gt;0$，则存在$N$，当$n&gt;N$时，</p>
+<script type="math/tex; mode=display">
+0<a_n<A+\epsilon</script><p>于是当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+b_n\le\sqrt[n]{a_1a_2\cdots a_N}(A+\epsilon)^{\frac{n-N}{n}} = \sqrt[n]{a_1a_2\cdots a_N(A+\epsilon)^{-N}}(A+\epsilon)</script><p>令$n\rightarrow\infty$，得</p>
+<script type="math/tex; mode=display">
+\overline{\lim}_{n\rightarrow\infty}\le A+\epsilon</script><p>同理可证</p>
+<script type="math/tex; mode=display">
+\underline{\lim}_{n\rightarrow\infty}b_n\ge A-\epsilon</script><p>因为$\epsilon$是任取的，从而必有</p>
+<script type="math/tex; mode=display">
+\varlimsup_{n \rightarrow \infty} b_{n}=A=\varliminf_{n \rightarrow \infty} b_{n}</script><p>这说明$\{b_n\}$收敛到$A$。</p>
+
     </div>
 
     
@@ -332,7 +519,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2021/12/10/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/" title="随机过程第一章：基本概念">https://www.hfcouc.work/2021/12/10/随机过程/</a>
+    <a href="https://www.hfcouc.work/2021/12/19/%E6%9E%81%E9%99%90/" title="极限">https://www.hfcouc.work/2021/12/19/极限/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -372,7 +559,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/" rel="tag"># 随机过程</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag"># 数学分析</a>
           </div>
 
         
@@ -381,13 +568,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/05/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/" rel="prev" title="贝叶斯统计分析">
-      <i class="fa fa-chevron-left"></i> 贝叶斯统计分析
+    <a href="/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" rel="prev" title="线性模型">
+      <i class="fa fa-chevron-left"></i> 线性模型
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/11/%E6%95%B0%E8%AE%BA/" rel="next" title="数论">
-      数论 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -451,6 +635,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90"><span class="nav-number">1.</span> <span class="nav-text">数列极限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">数列极限的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">数列极限的基本性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">例题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E8%B0%83%E6%95%B0%E5%88%97%E7%9A%84%E6%9E%81%E9%99%90"><span class="nav-number">1.4.</span> <span class="nav-text">单调数列的极限</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -670,6 +855,59 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

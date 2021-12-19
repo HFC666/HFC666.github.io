@@ -278,7 +278,7 @@
 
       
           
-    <div id="aplayer-sBTpxLEe" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-uyRAdnkC" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="346089" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <p><img src="https://cdn.jsdelivr.net/gh/HFC666/image@master/20210713/3.178msyh9rg68.png" style="zoom:80%;" /></p>
@@ -308,6 +308,267 @@ height: 100%; left: 0; top: 0;"> </iframe></div>
 
 
 
+
+      
+    </div>
+
+    
+    
+    
+	
+	
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/19/%E6%9E%81%E9%99%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
+      <meta itemprop="name" content="HFC">
+      <meta itemprop="description" content="留一份不足，可得无限美好">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独自赏晴雨">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/19/%E6%9E%81%E9%99%90/" class="post-title-link" itemprop="url">极限</a>
+        </h2>
+
+        <div class="post-meta">
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-19 22:22:41 / 修改时间：22:24:36" itemprop="dateCreated datePublished" datetime="2021-12-19T22:22:41+08:00">2021-12-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="数列极限"><a href="#数列极限" class="headerlink" title="数列极限"></a>数列极限</h3><h4 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h4><p>定义(数列极限)。设$\{a_n\}$为数列，$A\in \mathbb{R}$.如果任给$\epsilon&gt;0$,都存在正整数$N(\epsilon)$，使得当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+    |a_n-A|<\epsilon</script><p>则称$\{a_n\}$以$A$为极限，或称$\{a_n\}$收敛于$A$，记为</p>
+<script type="math/tex; mode=display">
+    \lim_{n\rightarrow\infty}a_n=A\text{ 或 }a_n\rightarrow A(n\rightarrow \infty)</script><p>当然我们也可以用$\epsilon-N$语言给出数列$\{a_n\}$不以$A$为极限的定义：如果存在$\epsilon_0&gt;0$，使得任给正数$N$，均存在$n_0&gt;N$满足不等式$|a_{n_0}-A|\ge\epsilon_0$，则$\{a_n\}$不以$A$为极限。</p>
+<p>命题：如果数列$\{a_n\}$有极限，则其极限是唯一的。</p>
+<p>定理(夹逼定理).设$\{a_n\},\{b_n\},\{c_n\}$均为数列，且</p>
+<script type="math/tex; mode=display">
+    a_n\le b_n\le c_n,\forall n\ge N_0</script><p>其中$N_0$为一整数，如果</p>
+<script type="math/tex; mode=display">
+    \lim_{n\rightarrow\infty}a_n=A=\lim_{n\rightarrow\infty}c_n</script><p>则$\lim_{n\rightarrow\infty}b_n=A$。</p>
+<p>例题：<br>考虑无限循环小数$A=0.99999\cdots$，问：$A$是否小于$1$？<br>解：我们可以将$A$视为一列有限小数$\{a_n\}$的极限，其中$a_n = 0.99\cdots9(n\text{个}9)$。由于：</p>
+<script type="math/tex; mode=display">
+    |a_n-1| = 10^{-n}</script><p>根据夹逼定理</p>
+<script type="math/tex; mode=display">
+a_n\le A\le 1</script><p>而</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}a_n=1</script><p>所以</p>
+<script type="math/tex; mode=display">
+A=1</script><p>例：<br>设$0&lt;\alpha&lt;1$，证明$\lim_{n\rightarrow\infty}[(n+1)^{\alpha}-n^{\alpha}]=0$<br>证明：当$n\ge1$时，有</p>
+<script type="math/tex; mode=display">
+    \begin{aligned}
+        0<(n+1)^{\alpha}-n^{\alpha} &= n^{\alpha}[(1+\frac{1}{n})^{\alpha}-1]\\
+        &\le n^{\alpha}[(1+\frac{1}{n})-1]=\frac{1}{n^{1-\alpha}}
+    \end{aligned}</script><p>根据夹逼定理我们有$\lim_{n\rightarrow\infty}[(n+1)^{\alpha}-n^{\alpha}]=0$。</p>
+<p>例：设$\alpha&gt;0,a&gt;1$，则$\lim_{n\rightarrow\infty}\frac{n^{\alpha}}{a^n}=0$</p>
+<p>思路：由于分子分母同时含有$n$，因此我们很难进行判断，我们想要做的是根据放缩消去一个$n$，而留下的$n$很容易处理，因此我们对$a^n$进行放缩处理。<br>我们记$a^{\frac{1}{\alpha}}=1+\beta,\beta&gt;0$。由于$n&gt;1$，有</p>
+<script type="math/tex; mode=display">
+(1+\beta)^n = 1 + n\beta+\frac{1}{2}n(n-1)\beta^2+\cdots+\beta^n>\frac{1}{2}n(n-1)\beta^2</script><p>故</p>
+<script type="math/tex; mode=display">
+0<\frac{n^{\alpha}}{a^n} = \left[\frac{n}{(1+\beta)^n}\right]^{\alpha} < \left[\frac{2}{(n-1)\beta^2}\right]^\alpha</script><p>由夹逼原理可知$\lim_{n\rightarrow\infty}\frac{n^{\alpha}}{a^n}=0$。</p>
+<p>例：证明$\lim_{n\rightarrow\infty}\frac{1}{\sqrt[n]{n!}}=0$</p>
+<p>注意到当$1\le k\le n$时$(k-1)(n-k)\ge0$，从而$k(n-k+1)\ge n$，我们就有：</p>
+<script type="math/tex; mode=display">
+    (n!)^2 = (1\cdot n)(2(n-1))\cdots(k(n-k+1))\cdots(n\cdot1)\ge n^n,\forall n\ge1</script><p>因此</p>
+<script type="math/tex; mode=display">
+    0<\frac{1}{\sqrt[n]{n!}}\le\frac{1}{\sqrt{n}},\forall n\ge1</script><p>由夹逼原理可得：$\lim_{n\rightarrow\infty}\frac{1}{\sqrt[n]{n!}}=0$</p>
+<p>例：证明$\lim_{n\rightarrow\infty}\sqrt[n]{n}=1$<br>证明：记$\sqrt[n]{n}=1+\alpha_n$，当$n&gt;1$时，</p>
+<script type="math/tex; mode=display">
+    n = (1+\alpha_n)^n=1+n\alpha_n+\frac{1}{2}n(n-1)\alpha_n^2+\cdots+\alpha_n^n > \frac{1}{2}n(n-1)\alpha_n^2</script><p>从而有估计</p>
+<script type="math/tex; mode=display">
+0<\alpha_n<\sqrt{\frac{2}{n-1}}</script><p>因此，当$n&gt;1$时，有</p>
+<script type="math/tex; mode=display">
+1<\sqrt[n]{n} = 1+\alpha_n<1+\sqrt{\frac{2}{n-1}}</script><p>由夹逼原理即得：$\lim_{n\rightarrow\infty}\sqrt[n]{n}=1$。</p>
+<p>下面两个为比较重要的例题：</p>
+<p>设$\lim_{n\rightarrow\infty}a_n=A$，证明$\lim_{n\rightarrow\infty}\frac{a_1+a_2+\cdots+a_n}{n}=A$。<br>证明：任给$\epsilon&gt;0$，因为$\lim_{n\rightarrow\infty}a_n=A$，故存在$N_0$，使得当$n&gt;N_0$时，有</p>
+<script type="math/tex; mode=display">
+    |a_n-A|<\frac{\epsilon}{2}</script><p>令</p>
+<script type="math/tex; mode=display">
+N>\max\{N_0,2\epsilon^{-1}|a_1+\cdots+a_{N_0}-N_0A|\}</script><p>则当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\left|\frac{a_{1}+\cdots+a_{n}}{n}-A\right|=\left|\frac{a_{1}+\cdots+a_{N_{0}}-N_{0} A}{n}+\frac{\left(a_{N_{0}+1}-A\right)+\cdots+\left(a_{n}-A\right)}{n}\right| \\
+
+&\leqslant \frac{\left|a_{1}+\cdots+a_{N_{0}}-N_{0} A\right|}{n}+\frac{\left|a_{N_{0}+1}-A\right|+\cdots+\left|a_{n}-A\right|}{n} \\
+
+&\leqslant \frac{\left|a_{1}+\cdots+a_{N_{0}}-N_{0} A\right|}{n}+\frac{n-N_{0}}{n} \frac{\varepsilon}{2} \\
+
+&<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon
+
+\end{aligned}</script><p>这说明：$\lim_{n\rightarrow\infty}\frac{a_1+a_2+\cdots+a_n}{n}=A$。</p>
+<p>我们再来证明一个跟这个差不多的例题：</p>
+<p>$\lim_{n\rightarrow\infty}a_n=A$，则$\sqrt[n]{a_1\cdots a_n}=A$。</p>
+<p>证明：</p>
+<p>我们可以取对数利用上面那个题的结论即可证明。</p>
+<p>例：<strong>任何实数都是某个有理数列的极限</strong>。<br>证明：设$A$为实数。如果$A$为有理数，则令$a_n=A(n\ge1)$即可。如果$A$为无理数，令</p>
+<script type="math/tex; mode=display">
+a_n = \frac{[nA]}{n},\forall n\ge1</script><p>其中$[x]$表示不超过$x$的最大整数，因此$a_n$都是有理数。因为$A$不是有理数，故：</p>
+<script type="math/tex; mode=display">
+nA-1<[nA]<nA,\forall n\ge1</script><p>即</p>
+<script type="math/tex; mode=display">
+A-\frac{1}{n}<a_n=\frac{[nA]}{n}<A,\forall n\ge1</script><p>由夹逼定律可知$\lim_{n\rightarrow\infty} a_n=A$</p>
+<h4 id="数列极限的基本性质"><a href="#数列极限的基本性质" class="headerlink" title="数列极限的基本性质"></a>数列极限的基本性质</h4><p>命题(有界性)：设数列$\{a_n\}$收敛，则$\{a_n\}$有界<br>由此命题立知，无界数列必定发散。如果$\{a_n\}$发散到$+\infty$，则称$\{a_n\}$发散到$\infty$，记为</p>
+<script type="math/tex; mode=display">
+    \lim_{n\rightarrow\infty}a_n=\infty,\text{ 或}a_n\rightarrow\infty(n\rightarrow\infty)</script><p>命题(绝对值性质)。设数列$\{a_n\}$收敛到$A$，则$\{|a_n|\}$收敛到$|A|$。</p>
+<p>推论：数列$\{a_n\}$收敛到$0$当且仅当$|a_n|$收敛到$0$；数列$\{a_n\}$收敛到$A$当且仅当$|a_n-A|$收敛到$0$。</p>
+<p>命题(保序性质)。设数列$\{a_n\}$收敛到$A$，$\{b_n\}$收敛到$B$，则有</p>
+<ol>
+<li>如果存在$N_0$，当$n&gt;N_0$时$a_n\ge b_n$，则$A\ge B$。</li>
+<li>反之，如果$A&gt;B$，则存在$N$，使得当$n&gt;N$时$a_n&gt;b_n$。</li>
+</ol>
+<p>推论：设$\lim_{n\rightarrow\infty}a_n=A$，如果$A\neq0$，则存在$N$，使得当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+    \frac{1}{2}|A|<|a_n|<\frac{3}{2}|A|</script><p>例：设$q&gt;1$，则$\lim_{n\rightarrow\infty}\frac{\log_qn}{n}=0$<br>解：任给$\epsilon&gt;0$，利用之前的结论，有</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}\sqrt[n]{n}=1<q^{\epsilon}</script><p>由极限的保序性质，存在$N$，当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+    \sqrt[n]{n}<q^{\epsilon}</script><p>即</p>
+<script type="math/tex; mode=display">
+    \frac{\log_qn}{n}<\epsilon,\forall n>N</script><p>这说明：$\lim_{n\rightarrow\infty}a_n=A$.</p>
+<p>命题(四则运算)。设数列$\{a_n\}$收敛到$A$，$\{b_n\}$收敛到$B$，则有：</p>
+<ol>
+<li>$\{\alpha a_n+\beta b_n\}$收敛到$\alpha A+\beta B$，其中$\alpha,\beta$为常数</li>
+<li>$\{a_nb_n\}$收敛到$AB$</li>
+<li>当$B\neq0$时，$\{a_n/b_n\}$收敛到$A/B$</li>
+</ol>
+<p>下面我们引入数列的子列的概念，并研究数列的极限和其子列的极限之间的关系，设</p>
+<script type="math/tex; mode=display">
+    a_1,a_2,\cdots,a_n,\cdots</script><p>是数列，如果</p>
+<script type="math/tex; mode=display">
+    1\le n_1<n_2<\cdots<n_k<\cdots</script><p>是一列严格递增的正整数，则称数列</p>
+<script type="math/tex; mode=display">
+    a_{n_1},a_{n_2},\cdots,a_{n_k},\cdots</script><p>为原数列$\{a_n\}$的子列，记为$\{a_{n_k}\}$。两个特殊的子列$\{a_{2k}\}$和$\{a_{2k-1}\}$分别为偶子列和奇子列。</p>
+<p>命题</p>
+<ol>
+<li>设$\{a_n\}$收敛到$A$，则它的任何子列$\{a_{n_k}\}$也收敛到$A$</li>
+<li>如果$\{a_n\}$的偶子列与奇子列收敛到$A$，则$\{a_n\}$也收敛到$A$</li>
+</ol>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>设$\lim_{n\rightarrow \infty}(a_{n+1}-a_n)=A$，则$\lim_{n\rightarrow\infty}\frac{a_n}{n}=A$</p>
+<script type="math/tex; mode=display">
+\frac{a_n}{n} = \frac{a_1+(a_2-a_1)+(a_3-a_2)+\cdots+(a_n-a_{n-1})}{n}</script><p>因为$\lim_{n\rightarrow \infty}(a_{n+1}-a_n)=A$，利用已知例题的结论即可证明得到。</p>
+<p>设$\lim_{n\rightarrow\infty}a_n=A$，证明：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}\frac{1}{n^2}(a_1+2a_2+\cdots+na_n)=\frac{1}{2}A</script><p>对上式变换得到</p>
+<script type="math/tex; mode=display">
+\frac{1}{n^2}(a_1+2a_2+\cdots+na_n) = \sum_{i=1}^n\frac{i(a_i-A)}{n^2}+\frac{n(n+1)}{2n^2}A</script><p>这样就好证明了：</p>
+<p>因为：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}\frac{i}{n}=0\quad\lim_{n\rightarrow\infty}(a_i-A)=0\Rightarrow\lim_{n\rightarrow\infty}\frac{i(a_i-A)}{n}=0</script><p>所以：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow0}\sum_{i=1}^n\frac{i(a_i-A)}{n^2}=0</script><p>有因为：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow0}\frac{n(n+1)}{2n^2}A=\frac{1}{2}A</script><p>得证。</p>
+<h4 id="单调数列的极限"><a href="#单调数列的极限" class="headerlink" title="单调数列的极限"></a>单调数列的极限</h4><p>确定原理：非空数集如果有上界则必有上确界，如果有下界则必有下确界。</p>
+<p>设$\{a_n\}$为实数列，如果</p>
+<script type="math/tex; mode=display">
+a_1\le a_2\le\cdots\le a_n\le \cdots</script><p>则称$\{a_n\}$是单调递增序列，当上式中的$\le$号换成$&lt;$时称$\{a_n\}$是严格单调递增的。</p>
+<p>定理(单调数列的极限)：设$\{a_n\}$为单调数列</p>
+<ol>
+<li>如果$\{a_n\}$为单调递增的数列，则$\lim_{n\rightarrow\infty}a_n=\sup\{a_k|k\ge1\}$</li>
+<li>如果$\{a_n\}$为单调递减序列，则$\lim_{n\rightarrow\infty}a_n=\inf\{a_k|k\ge1\}$</li>
+</ol>
+<p>证明：记$M=\sup\{a_k|k\ge1\}$，先考虑$M$有限的情形。任给$\epsilon&gt;0$，存在$a_N$，使得</p>
+<script type="math/tex; mode=display">
+M-\epsilon<a_N\le M</script><p>因为$\{a_n\}$是单调递增序列，故当$n&gt;N$时</p>
+<script type="math/tex; mode=display">
+M-\epsilon<a_N\le a_n\le M<M+\epsilon</script><p>由数列的极限定义可知：</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}a_n=M=\sup\{a_k|k\ge1\}</script><p>如果$M=+\infty$，则任给$A&gt;0$，由上确界的定义，存在$a_N$，使得$a_N&gt;A$。由于$\{a_n\}$是单调递增序列，故当$n&gt;N$时有$a_n\ge a_N&gt;A$，从而</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}a_n=+\infty=\sup\{a_k|k\ge1\}</script><p>由上面的推理我们也可以得到：单调有界的数列必有极限。</p>
+<p>任何收敛数列都有单调的收敛子列。</p>
+<p>例：设$a_1&gt;0,a_{n+1}=\frac{1}{2}(a_n+\frac{1}{a_n}),n\ge1$。研究数列$\{a_n\}$的极限。</p>
+<p>对于$a_n&gt;0,\forall n\ge1$。我们有：</p>
+<script type="math/tex; mode=display">
+a_{n+1} = \frac{1}{2}(a_n+\frac{1}{a_n})\ge\frac{1}{2}\cdot2(a_n\cdot\frac{1}{a_n})=1</script><p>故我们有：</p>
+<script type="math/tex; mode=display">
+a_{n+1} = \frac{1}{2}(a_n+\frac{1}{a_n})\le\frac{1}{2}(a_n+a_n)=a_n</script><p>所以单调递减，而又有下界。因此收敛，记其极限为$A$，则$A\ge1$。另一方面：</p>
+<script type="math/tex; mode=display">
+A = \lim_{n\rightarrow\infty}a_{n+1}=\lim_{n\rightarrow\infty}\frac{1}{2}(a_n+\frac{1}{a_n}) = \frac{1}{2}(A+\frac{1}{A})</script><p>故$A=1$.</p>
+<p>我们现在讨论几个重要的极限：</p>
+<script type="math/tex; mode=display">
+a_n = (1+\frac{1}{n})^n, b_n = (1+\frac{1}{n})^{n+1},n\ge1</script><blockquote>
+<p>详细证明过程见49页</p>
+</blockquote>
+<p>我们可以证明$\{a_n\}$单调递增，$\{b_n\}$单调递减。两者均收敛于$e$。</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}b_n = \lim_{n\rightarrow\infty}a_n(1+\frac{1}{n})=\lim_{n\rightarrow\infty}a_n=e</script><p>我们可以得到下述重要的不等式：</p>
+<script type="math/tex; mode=display">
+\left(1+\frac{1}{n}\right)^{n}<\left(1+\frac{1}{n+1}\right)^{n+1}<e<\left(1+\frac{1}{n+1}\right)^{n+2}<\left(1+\frac{1}{n}\right)^{n+1}, \quad \forall n \geqslant 1</script><p>我们令$c_n=1+\frac{1}{2}+\cdots+\frac{1}{n}-\ln n$，可以证明$\{c_n\}$收敛，其极限为$\gamma$，称为Euler常数，计算表明</p>
+<script type="math/tex; mode=display">
+\gamma = 0.5772156649\cdots</script><p>下面，我们利用单调数列来研究一般的有界数列。设$\{a_n\}$为有界数列，我们要研究它的收敛性。我们不知道$a_n$是否逐渐趋于某个数，一个好的想法就是取考虑$n$很大时$\{a_n\}$中最大的最小的项，看看它们是否相近。当然，最大和最小项不一定存在，但是我们可以利用上确界和下确界来分别代替它们。为此，令：</p>
+<script type="math/tex; mode=display">
+\underline{a}_{n}=\inf \left\{a_{k} \mid k \geqslant n\right\}, \quad \bar{a}_{n}=\sup \left\{a_{k} \mid k \geqslant n\right\}</script><p>$\{\underline{a}_n\}$和$\{\bar{a}_n\}$分别是单调递增和单调递减的序列，且：</p>
+<script type="math/tex; mode=display">
+\underline{a}_n\le a_n\le \bar{a}_n</script><p>单调数列$\{\underline{a}_n\}$和$\{\bar{a}_n\}$的极限分别称为$\{a_n\}$的<strong>下极限</strong>和<strong>上极限</strong>，记为：</p>
+<script type="math/tex; mode=display">
+\varliminf_{n \rightarrow \infty} a_{n}=\lim _{n \rightarrow \infty} \underline{a}_{n}, \quad \varlimsup_{n \rightarrow \infty} a_{n}=\lim _{n \rightarrow \infty} \bar{a}_{n}</script><p>定理：设$\{a_n\}$为有界数列，则下列命题等价：</p>
+<ol>
+<li>$\{a_n\}$收敛</li>
+<li>$\{a_n\}$的上极限和下极限相等</li>
+<li>$\lim_{n\rightarrow\infty}(\bar{a}_n-\underline{a}_n)=0$</li>
+</ol>
+<p>命题：设$\{a_n\},\{b_n\}$为有界数列</p>
+<ol>
+<li>如果存在$N_0$，当$n&gt;N_0$时$a_n\ge b_n$，则<script type="math/tex">\varliminf_{n \rightarrow \infty} a_{n} \geqslant \varliminf_{n \rightarrow \infty} b_{n}, \quad \varlimsup_{n \rightarrow \infty} a_{n} \geqslant \varlimsup_{n \rightarrow \infty} b_{n}</script></li>
+<li><script type="math/tex; mode=display">\overline{\lim}_{n\rightarrow\infty}(a_n+b_n)\le\bar{\lim}_{n\rightarrow\infty}a_n+\bar{\lim}_{n\rightarrow\infty}b_n</script></li>
+</ol>
+<p>设$a_n&gt;0,a_n\rightarrow A(n\rightarrow \infty)$。记$b_n = \sqrt[n]{a_1a_2\cdots a_n}$，则</p>
+<script type="math/tex; mode=display">
+\lim_{n\rightarrow\infty}b_n=A</script><p>由已知条件，任取$\epsilon&gt;0$，则存在$N$，当$n&gt;N$时，</p>
+<script type="math/tex; mode=display">
+0<a_n<A+\epsilon</script><p>于是当$n&gt;N$时，有</p>
+<script type="math/tex; mode=display">
+b_n\le\sqrt[n]{a_1a_2\cdots a_N}(A+\epsilon)^{\frac{n-N}{n}} = \sqrt[n]{a_1a_2\cdots a_N(A+\epsilon)^{-N}}(A+\epsilon)</script><p>令$n\rightarrow\infty$，得</p>
+<script type="math/tex; mode=display">
+\overline{\lim}_{n\rightarrow\infty}\le A+\epsilon</script><p>同理可证</p>
+<script type="math/tex; mode=display">
+\underline{\lim}_{n\rightarrow\infty}b_n\ge A-\epsilon</script><p>因为$\epsilon$是任取的，从而必有</p>
+<script type="math/tex; mode=display">
+\varlimsup_{n \rightarrow \infty} b_{n}=A=\varliminf_{n \rightarrow \infty} b_{n}</script><p>这说明$\{b_n\}$收敛到$A$。</p>
 
       
     </div>
@@ -2286,307 +2547,6 @@ E_i^{new} = \sum_{S}y_ja_jK(x_i,x_j)+b^{new}-y_i</script><p>其中，$S$是所�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/10/31/Linear-algebra-in-cv/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
-      <meta itemprop="name" content="HFC">
-      <meta itemprop="description" content="留一份不足，可得无限美好">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="独自赏晴雨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/31/Linear-algebra-in-cv/" class="post-title-link" itemprop="url">计算机视觉中的线性代数第一章</a>
-        </h2>
-
-        <div class="post-meta">
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-10-31 22:44:57 / 修改时间：22:54:16" itemprop="dateCreated datePublished" datetime="2021-10-31T22:44:57+08:00">2021-10-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="向量空间、基、线性映射"><a href="#向量空间、基、线性映射" class="headerlink" title="向量空间、基、线性映射"></a>向量空间、基、线性映射</h1><h2 id="线性组合、线性独立和秩"><a href="#线性组合、线性独立和秩" class="headerlink" title="线性组合、线性独立和秩"></a>线性组合、线性独立和秩</h2><p>在线性优化问题中，我们经常会遇到线性方程组。例如，考虑求解下列具有三个变量$x_1,x_2,x_2\mathbb{R}$的三个线性方程组：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-x_1 + 2x_2 - x_3 &= 1\\
-2x_1 + x_2 + x_3 &= 2\\
-x_1 - 2x_2 - 2x_3 &= 3
-\end{aligned}</script><p>解决这个问题的一个方法是引入向量$u,v,w$和$b$，为</p>
-<script type="math/tex; mode=display">u=\left(\begin{array}{l}1 \\ 2 \\ 1\end{array}\right) \quad v=\left(\begin{array}{c}2 \\ 1 \\ -2\end{array}\right) \quad w=\left(\begin{array}{c}-1 \\ 1 \\ -2\end{array}\right) \quad b=\left(\begin{array}{l}1 \\ 2 \\ 3\end{array}\right)</script><p>所以我们的线性系统可以写为：</p>
-<script type="math/tex; mode=display">
-x_1u + x_2v + x_3w = b</script><blockquote>
-<p>我们通常将列向量写为$\mathbb{R}^{3\times1}$表示$3$行$1$列，而行向量写作$\mathbb{R}^3$。</p>
-</blockquote>
-<p>下面的公式</p>
-<script type="math/tex; mode=display">
-x_1u + x_2v + x_3w</script><p>其中$u,v,w$为向量并且$x_i\in \mathbb{R}$被称为线性映射。使用这种符号，我们线性系统的解</p>
-<script type="math/tex; mode=display">
-x_1u + x_2v + x_3w</script><p>等价于确定$b$是否可以被写成$u,v,w$的线性组合的形式。<br>如果$u,v,w$是线性独立的，着意味着不存在三元组$(x_1,x_2,x_3)\neq(0,0,0)$使得</p>
-<script type="math/tex; mode=display">
-x_1u + x_2v + x_3w = 0</script><p>可以证明所有属于$\mathbb{R}^{3\times 1}$的向量可以写成$u,v,w$的线性组合。<br>事实上，任何向量$z\in \mathbb{R}^{3\times 1}$可以被唯一地写成下列线性组合的形式：</p>
-<script type="math/tex; mode=display">
-z = x_1u+x_2v+x_3w</script><p>这是因为：</p>
-<blockquote>
-<p>假设</p>
-<script type="math/tex; mode=display">
-z = x_1u + x_2v + x_3w = y_1u+y_2v+y_2w</script><p>移项，得：</p>
-<script type="math/tex; mode=display">
-(y_1-x_1)u + (y_2-x_2)v + (y_3-x_3)w = 0</script><p>通过线性独立，我们得到：</p>
-<script type="math/tex; mode=display">
-y_1-x_1 = y_2-x_2 = y_3-x_3=0</script><p>这意味着$z$只有一种线性组合的表示方法。</p>
-</blockquote>
-<p>但是我们如何确定一些向量是否是线性独立的呢？<br>一个办法是计算数值$\det(u,v,w)$，称作$(u,v,w)$的秩，并检查其是否为零，不为零说明线性独立。<br>我们也可以将我们的线性系统写为矩阵的形式。我们的线性系统以矩阵形式表示为$Ax=b$的观点强调了这样一个事实，即映射$x\mapsto Ax$是一个线性映射。这意味着：</p>
-<script type="math/tex; mode=display">
-A(\lambda x) = \lambda(Ax)</script><p>对于任何$x\in \mathbb{R}^{3\times 1}$和$\lambda \in \mathbb{R}$，并且</p>
-<script type="math/tex; mode=display">
-A(u+v) = Au + Av</script><p>对于任何$u,v\in \mathbb{R}^{3\times 1}$。我们可以将矩阵$A$看作是表达从$\mathbb{R}^{3\times1}$到$\mathbb{R}^{3\times1}$的线性映射并且求解系统$Ax=b$相当于确定$b$是否为此线性映射的像(image)。<br>考虑一个$3\times3$的矩阵$A$，</p>
-<script type="math/tex; mode=display">
-A =\left(\begin{array}{lll}a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33}\end{array}\right)</script><p>它的列是三个向量，表示为$A^1,A^2,A^3$，给定任意向量$x = (x_1,x_2,x_3)$，我们将乘积$Ax$定义为线性组合的形式</p>
-<script type="math/tex; mode=display">
-
-
-A x=x_{1} A^{1}+x_{2} A^{2}+x_{3} A^{3}=\left(\begin{array}{l}
-
-a_{11} x_{1}+a_{12} x_{2}+a_{13} x_{3} \\
-
-a_{21} x_{1}+a_{22} x_{2}+a_{23} x_{3} \\
-
-a_{31} x_{1}+a_{32} x_{2}+a_{33} x_{3}
-
-\end{array}\right)</script><p>。常见的模式是，$Ax$的第$i$个坐标由行向量($A$的第$i$行)乘以列向量$x$的某种称为内积的乘积给出：</p>
-<script type="math/tex; mode=display">
-\left(\begin{array}{lll}a_{i 1} & a_{i 2} & a_{i 3}\end{array}\right) \cdot\left(\begin{array}{l}x_{1} \\ x_{2} \\ x_{3}\end{array}\right)=a_{i 1} x_{1}+a_{i 2} x_{2}+a_{i 3} x_{3}</script><p>内积非常重要。首先，我们量化</p>
-<script type="math/tex; mode=display">
- ||x||_2= \sqrt{x\cdot x} = (x_1^2+\cdots+x_n^2)^{1/2}</script><p>为向量长度的推广，称为欧几里得范数，或者$\ell^2$范数。另外，可以证明以下不等式</p>
-<script type="math/tex; mode=display">
-|x\cdot y| \le ||x||\cdot||y||</script><p>如果$x,y\neq0$，比值$(x\cdot y)/(||x||\cdot||y||)$可以被看作是角度的余弦值。</p>
-<p>保持内积不变的矩阵(正交矩阵)$Q$，即对所有的$x,y\in \mathbb{R}^n, <Qx, Qy>=<x,y>$也有着非常重要的作用。它们可以被认为是广义的旋转。 ^zkwecp</p>
-<p>返回到矩阵，如果$A$为一个包含$n$列$A^1,\cdots,A^n\in \mathbb{R}^m$的$m\times n$矩阵，并且$B$为一个包含$p$列$B^1,\cdots,B^p\in \mathbb{R}^n$的$n\times p$矩阵，我们可以生成$p$个向量：  ^614093</p>
-<script type="math/tex; mode=display">
-AB^1,\cdots,AB^p</script><p>这$p$个向量构成$m\times p$矩阵$AB$，其第$j$列为$AB^j$。但是我们知道$AB^j$的第$i$个坐标是$A$的第$i$行和$B$的第$j$列的内积：</p>
-<script type="math/tex; mode=display">
-\left(\begin{array}{llll}a_{i1}&a_{i2}&\cdots&a_{in}\end{array}\right)\cdot\left(\begin{array}{c}b_{1j}\\b_{2j}\\\vdots\\b_{nj}\end{array}\right) = \sum_{k=1}^na_{ik}b_{kj}</script><p>所以我们定义了矩阵的乘积</p>
-<script type="math/tex; mode=display">
-(AB)_{ij} = \sum_{k=1}^na_{ik}b_{kj}</script><p>假设$A$是一个$n\times n$矩阵并且我们想要求解线性系统</p>
-<script type="math/tex; mode=display">
-Ax = b</script><p>其中$b\in \mathbb{R}^n$。假设我们可以找到一个$n\times n$的矩阵$B$使得</p>
-<script type="math/tex; mode=display">
-BA^i = e_i,\quad i=1,\cdots,n</script><p>其中$e_i = (0,\cdots,0,1,0,\cdots,0)$只有第$i$个位置的数据为$1$。我们称$n\times n$矩阵</p>
-<script type="math/tex; mode=display">
-
-
-I_{n}=\left(\begin{array}{cccccc}1 & 0 & 0 & \cdots & 0 & 0 \\ 0 & 1 & 0 & \cdots & 0 & 0 \\ 0 & 0 & 1 & \cdots & 0 & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & 0 & \cdots & 1 & 0 \\ 0 & 0 & 0 & \cdots & 0 & 1\end{array}\right)</script><p>为单位矩阵，它的第$i$列为$e_i$，则上面等价于</p>
-<script type="math/tex; mode=display">
-BA = I_n</script><p>如果$Ax = b$，在等式的两边左乘以$B$，我们有</p>
-<script type="math/tex; mode=display">
-B(Ax) = Bb</script><p>因为$B(Ax) = (BA)x = I_nx = x$，因此我们有</p>
-<script type="math/tex; mode=display">
-x = Bb</script><p>矩阵$B$为矩阵$A$的逆，常被表示为$A^{-1}$。很容易证明存在唯一的矩阵使得：</p>
-<script type="math/tex; mode=display">
-AA^{-1} = A^{-1}A = I_n</script><p>如果一个方阵有逆矩阵，则说明他是可逆或者非奇异的，反之为奇异的。<br>总之，如果$A$是一个可逆方阵，则线性系统$Ax = b$有唯一解$x=A^{-1}b$。但是在实践中，这并不是求解线性系统的一个很好的方法，因为计算$A^{-1}$的代价太大了。一个求解线性系统的实用的方法是高斯消去。其他的求解线性系统$Ax = b$的实用的方法利用$A$的因式分解(QR分解，SVD分解)，用到下面定义的正交矩阵的概念。<br>给定一个$m\times n$的矩阵$A=(a_{kl})$，$n\times m$矩阵$A^T = (a_{ij}^T)$的第$i$行是$A$的第$i$列，这意味着$a_{ij}^T=a_{ji},i=1,\cdots,n,\quad j=1,\cdots,m$称为$A$的转置。一个$n\times n$矩阵$Q$使得</p>
-<script type="math/tex; mode=display">
-QQ^T = Q^TQ = I_n</script><p>被称为正交矩阵。正交矩阵$Q$的逆$Q^{-1}$等于其转置$Q$。正交矩阵具有非常重要的作用。在几何上，它们对应于保持长度不变的线性变换。线性代数的一个重要的结果表明，每个$m\times n$矩阵$A$都可以表示为：</p>
-<script type="math/tex; mode=display">
-A = V\Sigma U^T</script><p>其中$V$是一个$m\times m$的正交矩阵，$U$是一个$n\times n$的正交矩阵，$\Sigma$是一个$m\times n$的矩阵，其非零项为非负对角线项$\sigma_1\ge \sigma_2\ge \cdots\ge\sigma_p$，其中$p = \min(m,n)$，称为$A$的奇异值。分解$A = V\Sigma U^T$被称为$A$的奇异值分解，或SVD。<br>SVD分解可以用来”求解”线性系统$Ax=b$其中$A$为一个$m\times n$矩阵，甚至当此系统无解的时候。这个在公式的数量大于变量的数量的情况下发生($m&gt;n$)，这种情况下系统被称为超定的。<br>当然并不存在奇迹使一个无法解决的系统有解。但是我们可以寻找一个好的近似解，即最小化误差$Ax-b$的某个度量方法的向量$x$。我们可以使用误差的平方欧几里得范数$||Ax-b||_2^2$。这个度量是可导的，并且存在唯一的向量$x^+$最小化$||Ax-b||_2^2$。此外，$x^+$由表达式$x^+=A^+b$给出，其中$A^+$为$A$的伪逆，并且$A^+$可以由$A$的SVD分解$A = V\Sigma U^T$计算。事实上，$A^+=U\Sigma^+V^T$，其中$\Sigma^+$是通过将$\Sigma$的所有非零奇异值变为$\sigma_i^{-1}$，零值不变并转置。<br>除了寻找使欧几里得范数$||Ax-b||_2^2$最小的向量外，我们可以添加一个惩罚项$K||x||_2^2(K&gt;0)$来最小化$||Ax-b||_2^2+K||x||_2^2$。这种方法被称为岭回归。事实证明，存在唯一的极小化$x^+=(A^TA+KI_n)^{-1}A^Tb$。<br>另一种方法是用$K||x||_1$替换惩罚项$K||x||_2^2$，其中$||x||_1=|x_1|+\cdots+|x_n|$($x$的$\ell^1$范数)。值得注意的是，使$||Ax-b||_2^2+K||x||_1$最小的$x$为稀疏的，这意味着$x$的很多元素是零。这种方法被称为laoss。<br>在现实世界中，线性代数被证明非常有效的另一个很好的例子是数据压缩问题，也就是说，使用小得多的存储量来表示非常大的数据集。<br>一般数据集表示为一个$m\times n$的矩阵$A$其中每一行表示一个$n$维数据点并且一般$m\ge n$。在大多数的应用中，数据不是独立的因此$A$的秩比$\min(m,n)$小的多，并且低秩分解的目标是将$A$分解为两个矩阵$B$和$C$，其中$B$为$m\times k$矩阵，$C$为$k\times n$矩阵，$k\ll\min(a,b)$：</p>
-<script type="math/tex; mode=display">
-\left(\begin{array}{c}A \\ m \times n\end{array}\right)=\left(\begin{array}{c}B \\ m \times k\end{array}\right)\left(\begin{array}{c}C \\ k \times n\end{array}\right)</script><p>现在要找到如上所述的精确因式分解通常成本太高，所以我们寻找一个低秩矩阵$A^{\prime}$，它是$A$的“好”近似值。为了使这一陈述精确，我们需要定义一种机制来确定两个矩阵的距离。这可以使用矩阵范数来完成。我们的目标是找到一个低秩矩阵$A^{\prime}$来最小化范数</p>
-<script type="math/tex; mode=display">
-||A-A^{\prime}||^2</script><p>在秩最大为$k$的矩阵$A^{\prime}$上。</p>
-<h2 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h2><h3 id="群"><a href="#群" class="headerlink" title="群"></a>群</h3><p>一个实向量空间是具有两种运算的集合$E$：$+:E\times E\rightarrow E$和$\cdot:\mathbb{R}\times E\rightarrow E$，称为加法和数乘法，并且满足一些简单的性质。首先，加法下的$E$必须是可交换的。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注意，向量空间不仅是代数对象；它们也是几何对象。</span><br></pre></td></tr></table></figure><br>定义：<br>群是具有二元运算$\cdot:G\times G\rightarrow G$的集合$G$，它将元素$a\cdot b\in G$与每一对元素$a,b\in G$相关联，并且具有如下性质：满足结合律、有一个单位元$e\in G$，并且$G$中的每个元素都有逆元。即满足下列三条性质：</p>
-<ol>
-<li>$a\cdot(b\cdot c) = (a\cdot b)\cdot c$</li>
-<li>$a\cdot e = e\cdot a = a$</li>
-<li>对于每一个$a\in G$，存在$a^{-1}\in G$使得$a\cdot a^{-1}=a^{-1}\cdot a = e$</li>
-</ol>
-<p>一个群是可交换的如果：</p>
-<script type="math/tex; mode=display">
-a\cdot b = b\cdot a</script><p>具有运算$\cdot:M\times M\rightarrow M$的集合$M$，并且元素$e$只满足条件1和条件2，被称为一个幺半群。例如，集合$\mathbb{N} = \{0,1,\cdots,n,\cdots\}$是以$0$为单位元的加法幺半群，但不是群。</p>
-<p>群的例子</p>
-<blockquote>
-<p>这个群没看懂什么意思：</p>
-<p>给定任意非空集$S$，双射集$f:S\rightarrow S$，也称为$S$的置换，是函数合成下的群。单位元为单位函数$\operatorname{id}_S$。只要$S$中有两个以上的元素，这个群就不是交换群。</p>
-</blockquote>
-<p>具有实或复数元素的$n\times n$矩阵集合是矩阵加法下的交换群，单位元为零矩阵。符号表示为$\mathrm{M}_n(\mathbb{R})$或者$\mathrm{M}_n(\mathbb{C})$。</p>
-<p>具有实数或复数元素的$n\times n$可逆矩阵集合是矩阵乘法下的群，单位元为单位矩阵$I_n$。这个群被称为一般线性群，通常用$\mathbf{GL}(n,\mathbb{R})$或者$\mathbf{GL}(n,\mathbb{C})$表示。</p>
-<p>具有实数或复数元素并且行列式为$+1$的$n\times n$可逆矩阵的集合矩阵乘法下的群，单位元为单位矩阵$I_n$。这个群被称为特殊线性群并且用$\mathbf{SL}(n,\mathbb{R})$或$\mathbf{SL}(n,\mathbb{C})$表示。</p>
-<p>具有实数元素并且满足$RR^T = R^TR = I_n$的并且行列式为$+1$的可逆矩阵集合为矩阵乘法下的群，被称为特殊正交群，用符号$\mathbf{SO}(n)$表示。它与$\mathbb{R}$上的旋转相对应。</p>
-<p>给定开区间$(a,b)$和连续函数：$f:(a,b)\rightarrow \mathbb{R}$的集合$\mathcal{C}(a,b)$是一个运算$f+g$下的交换群：</p>
-<script type="math/tex; mode=display">
-(f+g)(x) = f(x) + g(x)</script><p>通常用$+$表示交换群$G$的运算，在这种情况下，元素$a^{-1}$的逆用$-a$表示。</p>
-<p>群的单位元是唯一的。事实上，我们可以证明一个更一般的命题：</p>
-<p>命题：如果一个二元运算：$\cdot:M\times M\rightarrow M$为结合的并且$e^{\prime}$为左单位元，$e^{\prime\prime}$为右单位元，这意味着：</p>
-<script type="math/tex; mode=display">
-e^{\prime}\cdot a = a\quad \forall a\in M</script><p>并且</p>
-<script type="math/tex; mode=display">
-a\cdot e^{\prime\prime} = a\quad \forall a\in M</script><p>则</p>
-<script type="math/tex; mode=display">
-e^{\prime} = e^{\prime\prime}</script><blockquote>
-<p>如果我们令$a = e^{\prime\prime}$，则</p>
-<script type="math/tex; mode=display">
-e^{\prime}\cdot e^{\prime\prime} = e^{\prime\prime}</script><p>并且令$a = e^{\prime}$，我们有</p>
-<script type="math/tex; mode=display">
-e^{\prime}\cdot e^{\prime\prime}</script><p>因此</p>
-<script type="math/tex; mode=display">
-e^{\prime} = e^{\prime}\cdot e^{\prime\prime} = e^{\prime\prime}</script></blockquote>
-<p>命题：在一个单位元为$e$的幺半群$M$中，如果元素$a\in M$有左逆$a^{\prime}\in M$和右逆$a^{\prime\prime}\in M$，则$a^{\prime} = a^{\prime\prime}$。</p>
-<blockquote>
-<script type="math/tex; mode=display">
-(a^{\prime}\cdot a)\cdot a^{\prime\prime} = e\cdot a^{\prime\prime} = a^{\prime\prime}</script><script type="math/tex; mode=display">
-a^{\prime}\cdot (a\cdot a^{\prime\prime}) = a^{\prime\prime}\cdot e = a^{\prime}</script><p>所以</p>
-<script type="math/tex; mode=display">
-a^{\prime} = a^{\prime\prime}</script></blockquote>
-<h3 id="环"><a href="#环" class="headerlink" title="环"></a>环</h3><p>向量空间是具有标量乘法$\cdot:K\times E\rightarrow E$的交换群，它允许$K$中的元素对$E$的向量进行重新缩放。集合$K$本身是一个称为域的代数结构。域是环的一种特殊的结构。下面我们先介绍环。</p>
-<p>环的定义：环是具有两种运算$+:A\times A\rightarrow A$(加法)和$*:A\times A\rightarrow A$(乘法)的集合$A$，并满足下列性质：</p>
-<ol>
-<li>$A$是加法上的交换群</li>
-<li>$*$是可结合的并且有单位元$1\in A$</li>
-<li>$*$对于$+$是满足分配律的</li>
-</ol>
-<p>加法的单位元用$0$表示，$a$的加法逆元用$-a$表示。具体地，环具有如下性质：</p>
-<ol>
-<li>$a+(b+c) = (a+b)+c$：加法结合律</li>
-<li>$a+b = b+a$：加法交换律</li>
-<li>$a + 0 = 0 + a$：零</li>
-<li>$a + (-a) = (-a) + a = 0$：加法逆元</li>
-<li>$a<em>(b</em>c) = (a<em>b)</em>c$：乘法结合律</li>
-<li>$a<em>1 = 1</em>a=a$：乘法单位元</li>
-<li>$(a+b)<em>c = a</em>b + b*c$：乘法分配律</li>
-<li>$a<em>(b+c) = a</em>b+a*c$：乘法分配律</li>
-</ol>
-<p>环$A$是交换的如果</p>
-<script type="math/tex; mode=display">
-a*b = b*a\quad \forall a,b\in A</script><p>我们还能推出它的两条性质：$0\cdot \alpha = \alpha\cdot 0=0,(-\alpha)\cdot v = \alpha\cdot(-v)=-(\alpha v)$</p>
-<blockquote>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a*0 &= 0*a = 0\\
-a*(-b)&= (-a)*b = -(a*b)
-\end{aligned}</script><script type="math/tex; mode=display">
-a*0 = a*(0+0) = a*0 + a*0\rightarrow a*0=0</script><p>对于第二个性质假设$\forall a,b\in A$</p>
-<script type="math/tex; mode=display">
-a*(-b) + a*b = a*(b+(-b)) = a*0 = 0</script><script type="math/tex; mode=display">
-(-a)*b + a*b = ((-a)+a)*b = 0*b = 0</script><p>所以$(-a)<em>b$和$a</em>(-b)$都为$ab$的加法逆元即为$-ab$</p>
-</blockquote>
-<p>上式意味着如果$1=0$，则$a=0,\forall a\in A$，那么$A = \{0\}$。环$A=\{0\}$被称为<strong>平凡环</strong>。$1\neq0$的环被称为非平凡环。</p>
-<h3 id="域"><a href="#域" class="headerlink" title="域"></a>域</h3><p>域是一个交换环$K$，满足$K-\{0\}$是乘法下的群。</p>
-<p>定义：集合$K$是一个域如果它是满足下列性质的环：</p>
-<ol>
-<li>$0\neq1$</li>
-<li>$K^*=K-\{0\}$是乘法下的群</li>
-<li>$*$是交换的</li>
-</ol>
-<p>如果只满足1和2但是不满足3我们称其为<strong>斜域</strong>或非交换域。</p>
-<h3 id="向量空间-1"><a href="#向量空间-1" class="headerlink" title="向量空间"></a>向量空间</h3><p>定义<br>一个实向量空间是向量集合$E$，集合$E$上有两个运算：$+:E\times E\rightarrow E$(称为向量加法)和$\cdot:\mathbb{R}\times E\rightarrow E$(数乘法)并满足下列条件，对于$\alpha,\beta\in \mathbb{R}$和$u,v\in E$：</p>
-<ol>
-<li>$E$为加法上的交换群，单位元为$0$</li>
-<li>$\alpha\cdot(u+v) = (\alpha\cdot u)+(\alpha\cdot v)$</li>
-<li>$(\alpha+\beta)\cdot u = (\alpha\cdot u)+(\beta\cdot u)$</li>
-<li>$(\alpha*\beta)\cdot u = \alpha\cdot(\beta\cdot u)$</li>
-<li>$1\cdot u = u$</li>
-</ol>
-<p>从上面的性质我们可以推出：$\alpha$</p>
-<p>其中$*$表示$\mathbb{R}$上的乘法。</p>
-<blockquote>
-<p>对于任何$u\in E$和任何$\lambda\in E$，如果$\lambda \neq 0$并且$\lambda\cdot u=0$，则$u=0$。</p>
-<p>事实上，因为$\lambda\neq0$，它有乘法逆元$\lambda^{-1}$，因此从$\lambda\cdot u=0$，我们有</p>
-<script type="math/tex; mode=display">
-\lambda^{-1}\cdot(\lambda\cdot u) = \lambda^{-1}\cdot 0</script><p>但是，我们可以得到$\lambda^{-1}\cdot0=0$，所以</p>
-<script type="math/tex; mode=display">
-\lambda^{-1}\cdot(\lambda\cdot u) = (\lambda^{-1}\lambda)\cdot u = 1\cdot u = u</script><p>所以$u=0$。</p>
-</blockquote>
-<p>向量空间的一个非常重要的例子是两个向量空间之间的线性映射集。令$X$为一个非空集合并且$E$为一个向量空间。所有函数$f:X\rightarrow E$的集合可以构成如下向量空间：给定两个任意函数$f:X\rightarrow E$和$g:X\rightarrow E$，令$(f+g):X\rightarrow E$定义为</p>
-<script type="math/tex; mode=display">
-(f+g)(x) = f(x)+g(x)</script><p>并且对于任何$\lambda\in \mathbb{R}$，令$\lambda f:X\rightarrow E$定义为</p>
-<script type="math/tex; mode=display">
-(\lambda f)(x) = \lambda f(x)</script><p>。</p>
-<h2 id="索引族；求和符号-sum-i-in-I-a-i"><a href="#索引族；求和符号-sum-i-in-I-a-i" class="headerlink" title="索引族；求和符号$\sum_{i\in I}a_i$"></a>索引族；求和符号$\sum_{i\in I}a_i$</h2><p>给定一个集合$A$，回想一下序列是一个有序的$n$元组$(a_1,\cdots,a_n)\in A^n$，其元素来自于$A$，对于某些自然数$n$。序列的元素不需要不同并且顺序是很重要的。例如，$(a_1,a_2,a_1)$和$(a_2,a_1,a_1)$是$A^3$上两个不同的序列。它们的基本集合是$\{a_1,a_2\}$。<br>我们刚才定义的是<strong>有限</strong>序列，这可以被看作是从$\{1,2,\cdots,n\}$到集合$A$的函数，序列$(a_1,\cdots,a_n)$的第$i$个元素是$i$在此函数下的象。这一观点是非常非常有用的，因为它允许我们将有限序列定义为函数：$s:\mathbb{N}\rightarrow A$。但是，我们为什么要把自己限制在像$\{1,2,\cdots\}$或$\mathbb{N}$这样的索引集内呢？<br>索引集的主要作用是对每个元素进行唯一标记，尽管方便，但标记的顺序并不重要。<br>定义：给定集合$A$，$A$中元素的一个$I-$索引集为一个函数$a:I\rightarrow A$，其中$I$是可以被看作索引集的任何集合。因为函数$a$由它的图所确定：</p>
-<script type="math/tex; mode=display">
-\{(i,a(i))|i\in I\}</script><p>族$a$可以被看作对$a=\{(i,a(i))|i\in I\}$的集合。为了符号上的简单我们用$a_i$表示$a(i)$，用$(a_i)_{i\in I}$表示族$a=\{(i,a(i))|i\in I\}$。</p>
-<p>如果索引集合$I$为完全有序的，族$(a_i)_{i\in I}$常被称为$I-$序列。有趣的是，集合$A$可以被看作$A-$索引族$\{(a,a)|a\in I\}$对应于单位函数。</p>
-<p>我们也需要注意一个问题，那就是定义形式$\sum_{i\in I}a_i$的和，其中$I$是任何有限的索引集并且$(a_i)_{i\in I}$为具有二元运算$+:A\times A\rightarrow A$的一些集合$A$中的一族元素，并且$+$是结合和交换的。</p>
-<p>问题是$+$运算只告诉我们如何去计算两个元素之间的$a_1+a_2$，没有告诉我们如何进行两个元素以上的运算。我们要做的是通过序列来定义$a_1+a_2+a_3$，每一步包含两个元素。并且如果$+$是结合和交换的，很冥想$\sum_{i\in I}a_i$的和并不依赖于运算的顺序。</p>
-<p>首先我们定义和$\sum_{i\in I}a_i$，其中$I$为有限不同的自然数的序列，写作$I=(i_1,\cdots,i_m)$。如果$I=(i_1,\cdots,i_m)$其中$m\ge2$，我们用$I-\{i_1\}$表示序列$(i_2,\cdots,i_m)$。我们对$I$的大小$m$进行归纳。令</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\sum_{i\in I}a_i&=a_{i1},\quad \text{if }m=1\\
-\sum_{i\in I}a_i &= a_{i1}+\left(\sum_{i\in I-\{i_1\}}a_i\right),\quad \text{if }m>1
-\end{aligned}</script><p>例如，如果$I=(1,2,3,4)$，我们有</p>
-<script type="math/tex; mode=display">
-\sum_{i\in I}a_i = a_1 + (a_2+(a_3+a_4))</script><p>如果$+$不满足结合律的话，那么不同组的划分将得到不同的答案。</p>
-<p>但是，如果$+$是结合的，只要元素的顺序保持不变，则$\sum_{i\in I}a_i$不依赖于组的划分。例如，如果$I=(1,2,3,4,5)$，$J_1=(1,2)$和$J_2=(3,4,5)$，我们希望</p>
-<script type="math/tex; mode=display">
-\sum_{i\in I}a_i = \left(\sum_{j\in J_1}a_j\right) + \left(\sum_{j\in J_2}a_j\right)</script><p>这个是成立的，因为我们有以下性质。</p>
-<p>性质：给定任何具有结合二元运算$+:A\times A\rightarrow A$的非空集合$A$，对于任何具有不同自然数的非空有限序列$I$和对于将$I$分为$p$个非空序列$I_{k_1},\cdots,I_{k_p}$的任何分割，对于具有不同自然数的非空序列$K=(k_1,\cdots,k_p)$，使得$k_i&lt;k_j$暗示$\alpha&lt;\beta$对于所有$\alpha\in I_{k_i}$和所有$\beta\in I_{k_j}$，对于$A$中元素$(a_i)_{i\in I}$的每一个序列，我们有：</p>
-<script type="math/tex; mode=display">
-\sum_{\alpha\in I}a_{\alpha} = \sum_{k\in K}(\sum_{\alpha\in I_k}a_{\alpha})</script><p>证明：我们对大小为$n$的$I$进行归纳。<br>如果$n=1$，则我们一定有$p=1$并且$I_{k1}=I$，因此性质一定成立。<br>之后，假设$n&gt;1$。如果$p=1$则$I_{k1}=I$并且公式是容易解决的，因此假设$p\ge2$，并且令$J=(k_2,\cdots,k_p)$。这样有两种情况：<br>情况1：序列$I_{k_1}$有单个元素，为$\beta$，为$I$的第一个元素。在这种情况下，$C$表示$I$去除掉第一个元素$\beta$后的序列。通过定义：</p>
-<script type="math/tex; mode=display">
-\sum_{\alpha\in I}a_{\alpha} = a_{\beta} + \left(\sum_{\alpha\in C}a_{\alpha}\right)</script><p>和</p>
-<script type="math/tex; mode=display">
-\sum_{k\in K}\left(\sum_{\alpha\in I_k}a_{\alpha}\right) = a_{\beta}+\left(\sum_{j\in J}\left(\sum_{\alpha\in I_j}a_{\alpha}\right)\right)</script><p>因为$|C|=n-1$，通过归纳法的假设，我们有：</p>
-<script type="math/tex; mode=display">
-\left(\sum_{\alpha\in C}a_{\alpha}\right)= \sum_{j\in J}\left(\sum_{\alpha\in I_j}a_{\alpha}\right)</script><p>这就证明了上述情况。</p>
-<p>情况2：序列$I_{k_1}$至少有两个元素。在这种情况下，令$\beta$为$I$的第一个元素(也是$I_{k_1}$的)，令$I^{\prime}$为去除它的第一个元素$\beta$后的序列；$I^{\prime}_{k_1}$为$I_{k_1}$去除$\beta$后的序列，并且令$I^{\prime}_{k_i}=I_{k_i},i=2,\cdots,p$。序列$I^{\prime}$有$n-1$个元素，因此将归纳假设应用到$I^{\prime}$和$I^{\prime}_{k_i}$，我们得到：</p>
-<script type="math/tex; mode=display">
-\sum_{\alpha\in I^{\prime}}a_{\alpha} = \sum_{k\in K}\left(\sum_{\alpha\in I^{\prime}_k}a_{\alpha}\right) = \left(\sum_{\alpha\in I^{\prime}_{k_1}}a_{\alpha}\right)+\sum_{j\in J}\left(\sum_{\alpha\in I_j}a_{\alpha}\right)</script><p>如果我们把左边加到$\alpha_{\beta}$上，通过定义我们得到：</p>
-<script type="math/tex; mode=display">
-\sum_{\alpha\in I}a_{\alpha}</script><p>如果我们把右边加到$a_{\beta}$上，使用结合性和索引和的定义：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a_{\beta}+\left(\left(\sum_{\alpha \in I_{k_{1}}^{\prime}} a_{\alpha}\right)+\left(\sum_{j \in J}\left(\sum_{\alpha \in I_{j}} a_{\alpha}\right)\right)\right) \\
-&=\left(a_{\beta}+\left(\sum_{\alpha \in I_{k_{1}}^{\prime}} a_{\alpha}\right)\right)+\left(\sum_{j \in J}\left(\sum_{\alpha \in I_{j}} a_{\alpha}\right)\right) \\
-&=\left(\sum_{\alpha \in I_{k_{1}}} a_{\alpha}\right)+\left(\sum_{j \in J}\left(\sum_{\alpha \in I_{j}} a_{\alpha}\right)\right)=\sum_{k \in K}\left(\sum_{\alpha \in I_{k}} a_{\alpha}\right)
-\end{aligned}</script><p>得证。<br>如果$I=(1,\cdots,n)$，我们用$\sum_{i=1}^n$代替$\sum_{i\in I}a_i$。因为$+$是结合的，上述性质证明和$\sum_{i\in I}a_i$与元素的分组无关，这说明了符号$a_1+\cdots+a_n$的正确性(没有括号)。<br>如果我们假设我们$A$上的结合的二元运算符是交换的，那么我们可以证明和$\sum_{i\in I}a_i$不依赖于索引集$I$的顺序。</p>
-
-      
-    </div>
-
-    
-    
-    
-	
-	
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2658,7 +2618,7 @@ a_{\beta}+\left(\left(\sum_{\alpha \in I_{k_{1}}^{\prime}} a_{\alpha}\right)+\le
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
