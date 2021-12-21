@@ -28,23 +28,20 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。 The model假设我们有有编号的人$i&#x3D;1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到">
+  <meta name="description" content="决策树以下主要参考李航老师《统计学习方法》 决策树学习的三个阶段  特征选择 决策树的生成 决策树的修剪  特征选择特征选择的准则时信息增益或信息增益比。 信息增益我们先介绍熵的定义。设$X$是一个取有限个值的离散随机变量，其概率分布为：  P(X&#x3D;x_i)&#x3D;p_i,i&#x3D;1,2,\cdots,n则随机变量$X$的熵的定义为  H(X) &#x3D; -\sum_{i&#x3D;1}^np_i\log p_i若$p_i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高斯混合模型和EM算法">
-<meta property="og:url" content="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="决策树">
+<meta property="og:url" content="https://www.hfcouc.work/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。 The model假设我们有有编号的人$i&#x3D;1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到">
+<meta property="og:description" content="决策树以下主要参考李航老师《统计学习方法》 决策树学习的三个阶段  特征选择 决策树的生成 决策树的修剪  特征选择特征选择的准则时信息增益或信息增益比。 信息增益我们先介绍熵的定义。设$X$是一个取有限个值的离散随机变量，其概率分布为：  P(X&#x3D;x_i)&#x3D;p_i,i&#x3D;1,2,\cdots,n则随机变量$X$的熵的定义为  H(X) &#x3D; -\sum_{i&#x3D;1}^np_i\log p_i若$p_i">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png">
-<meta property="article:published_time" content="2021-08-31T15:24:15.000Z">
-<meta property="article:modified_time" content="2021-11-26T12:50:37.320Z">
+<meta property="article:published_time" content="2021-12-21T14:12:55.000Z">
+<meta property="article:modified_time" content="2021-12-21T14:14:19.134Z">
 <meta property="article:author" content="HFC">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png">
 
-<link rel="canonical" href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/">
+<link rel="canonical" href="https://www.hfcouc.work/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/">
 
 
 <script id="page-configurations">
@@ -57,7 +54,7 @@
   };
 </script>
 
-  <title>高斯混合模型和EM算法 | 独自赏晴雨</title>
+  <title>决策树 | 独自赏晴雨</title>
   
 
 
@@ -231,7 +228,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
@@ -244,7 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          高斯混合模型和EM算法
+          决策树
         </h1>
 
         <div class="post-meta">
@@ -254,16 +251,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-08-31 23:24:15" itemprop="dateCreated datePublished" datetime="2021-08-31T23:24:15+08:00">2021-08-31</time>
+              <time title="创建时间：2021-12-21 22:12:55 / 修改时间：22:14:19" itemprop="dateCreated datePublished" datetime="2021-12-21T22:12:55+08:00">2021-12-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-26 20:50:37" itemprop="dateModified" datetime="2021-11-26T20:50:37+08:00">2021-11-26</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -292,139 +283,153 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Gaussian-mixture-models-and-the-EM-algorithm"><a href="#Gaussian-mixture-models-and-the-EM-algorithm" class="headerlink" title="Gaussian mixture models and the EM algorithm"></a>Gaussian mixture models and the EM algorithm</h2><p>我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。</p>
-<h3 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h3><p>假设我们有有编号的人$i=1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到的标签$C_i\in \{\operatorname{M,F}\}$表示人的性别。在这了，小写字母$c$代表”class”。我们也假设两组具有相同的已知方差$\sigma^2$，但不同的未知均值$\mu_M$和$\mu_F$。类标签符合伯努利分布：</p>
+        <h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>以下主要参考李航老师《统计学习方法》</p>
+<p>决策树学习的三个阶段</p>
+<ol>
+<li>特征选择</li>
+<li>决策树的生成</li>
+<li>决策树的修剪</li>
+</ol>
+<h3 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h3><p>特征选择的准则时信息增益或信息增益比。</p>
+<h4 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h4><p>我们先介绍熵的定义。设$X$是一个取有限个值的离散随机变量，其概率分布为：</p>
 <script type="math/tex; mode=display">
-p_{C_i}(c_i) = q^{\mathbb{1}(c_i=M)}(1-q)^{\mathbb{1}(c_i=F)}</script><p>我们也假设$q$是已知的。为了简化符号，我们令$\pi_M=q$和$\pi_F=1-q$，因此我们可以写作：</p>
+P(X=x_i)=p_i,i=1,2,\cdots,n</script><p>则随机变量$X$的熵的定义为</p>
 <script type="math/tex; mode=display">
-p_{C_i}(c_i) = \prod_{c\in \{M,F\}}\pi_c^{\mathbb{1}(c_i=c)}</script><p>每一类的条件分布都为高斯分布：</p>
+H(X) = -\sum_{i=1}^np_i\log p_i</script><p>若$p_i=0$，我们定义$0\log0=0$。对数若以$2$为底，单位为比特，以$e$为底，单位为纳特。熵只与$X$的分布有关而与$X$的取值无关，因此我们将$X$的熵记作$H(p)$，即</p>
 <script type="math/tex; mode=display">
-p_{Y_i|C_i}(y_i|c_i) = \prod_c\mathcal{N}(y_i;\mu_c,\sigma^2)^{\mathbb{1}(c_i=c)}</script><h3 id="Parameter-estimation-a-first-attempt"><a href="#Parameter-estimation-a-first-attempt" class="headerlink" title="Parameter estimation: a first attempt"></a>Parameter estimation: a first attempt</h3><p>假设我们观测到独立同分布的身高$Y_1=y_1,\cdots,Y_n=y_n$，并且我们想要去找到参数$\mu_M,\mu_F$的极大似然估计。这是一个非监督问题：我们不知道我们数据的性别标签，但是我们想根据这些标签学习参数。</p>
-<p>根据上文提到的模型设计，计算所有数据点$P_{Y_1,\cdots,Y_n}$的联合密度，以$\mu_M,\mu_F,\sigma,q$表示。取$\log$后计算$\log$似然，然后对$\mu_M$进行求导。为什么优化这么困难？</p>
-<p>我们先对单个数据点$Y_i=y_i$求密度：</p>
+H(p) =-\sum_{i=1}^np_i\log p_i</script><p>熵越大，随机变量的不确定性就越大。从定义可验证：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-P_{Y_i}(y_i) &= \sum_{c_i}p_{C_i}(c_i)p_{Y_i|C_i}(y_i|c_i)\\
-&= \sum_{c_i}(\pi_c\mathcal{N}(y_i;\mu_C,\sigma^2))^{\mathbb{1}(c_i=c)}\\
-&= q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2)
-\end{aligned}</script><p>现在，所有观测的联合分布为</p>
+0\le H(p)\le \log n</script><p>设有随机变量$(X,Y)$，其联合概率密度分布为：</p>
 <script type="math/tex; mode=display">
-P_{Y_1^n}(y_1^n) = \prod_{i=1}^n(q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>则$\log$似然函数为：</p>
+P(X=x_i,Y=y_j) = p_{ij},\quad i=1,2,\cdots,n;\quad j=1,2,\cdots,m</script><p>条件熵$H(Y|X)$表示在已知随机变量$X$的条件下随机变量$Y$的不确定性。随机变量$X$给定的条件下随机变量$Y$的条件熵$H(Y|X)$，定义为$X$给定条件下$Y$的条件概率分布的熵对$X$的数学期望</p>
 <script type="math/tex; mode=display">
-\ln p_{Y_1^n}(y_1^n) = \sum_{i=1}^n\ln(\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2) + \pi_F\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>我们已经遇到了一个问题，和的形式阻止我们将$\log$应用于内部的正态分布密度函数。通过对称性，我们只需要看其中一个均值，另一个将遵循相同的过程。在我们深入区分之前，我们注意到：</p>
+H(Y|X) = \sum_{i=1}^n p_iH(Y|X=x_i)</script><p>这里，$p_i = P(X=x_i),i=1,2,\cdots,n$。</p>
+<p>信息增益表示得知特征$X$的信息而使得类$Y$的信息不确定性减少的程度。</p>
+<p>定义(信息增益)：特征$A$对训练数据$D$的信息增益$g(D,A)$，定义为集合$D$的经验熵$H(D)$与特征$A$给定条件下$D$的经验条件熵$H(D|A)$之差，即</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-\frac{d}{d\mu}\mathcal{N}(x;\mu,\sigma^2) &= \frac{d}{d\mu}[\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}]\\
-&= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{-(x-\mu)^2}{2\sigma^2}}\cdot\frac{2(x-\mu)}{2\sigma^2}\\
-&= \mathcal{N}(x;\mu,\sigma^2)\cdot\frac{(x-\mu)}{\sigma^2}
-\end{aligned}</script><p>对数似然函数对$\mu_M$进行求导，得</p>
-<blockquote id="fn_1">
-<sup>1</sup>. $\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0$<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
+g(D,A) = H(D)-H(D|A)</script><p>一般地，熵$H(Y)$与条件熵$H(Y|X)$之差称为互信息。决策树学习中的信息增益等价于训练数据集中类与特征的互信息。</p>
+<p>设训练数据集为$D$，$|D|$表示其样本容量，即样本个数。设有$K$个类$C_k,k=1,2,\cdots,K$，$|C_k|$为属于类$C_k$的样本数。设特征$A$有$n$个不同的取值$\{a_1,a_2,\cdots,a_n\}$，根据特征$A$的取值将$D$划分为$n$个子集$D_1,D_2,\cdots,D_n$，$|D_i|$表示$D_i$的样本数。记子集$D_i$中属于类$C_k$的样本集合为$D_{ik}$，即$D_{ik}=D_i\cap C_k$。</p>
+<p>信息增益的算法：</p>
+<p>输入：训练数据集$D$和特征$A$</p>
+<p>输出：特征$A$对训练数据集$D$的信息增益$g(D,A)$</p>
+<ol>
+<li>计算数据集的经验熵$H(D)$：<script type="math/tex">H(D)=-\sum_{k=1}^K\frac{|C_k|}{|D|}\log_2\frac{|C_k|}{|D|}</script></li>
+<li>计算特征$A$对数据集$D$的经验条件熵$H(D|A)$：<script type="math/tex">H(D|A)=\sum_{i=1}^n\frac{|D_i|}{D}H(D_i)=-\sum_{i=1}^n\frac{|D_i|}{|D|}\sum_{k=1}^K\frac{|D_{ik}|}{|D_i|}\log2\frac{|D_{ik}|}{|D_i|}</script></li>
+<li>计算信息增益：<script type="math/tex">g(D,A)=H(D)-H(D|A)</script></li>
+</ol>
+<h4 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h4><p>以信息增益作为划分训练数据集的特征，存在偏向于选择取值的较多的特征的问题，使用信息增益比可以对这一问题进行校正。</p>
+<p>定义(信息增益)：特征$A$对训练数据集$D$信息增益比$g_R(D,A)$定义为其信息增益$g(D,A)$与训练数据集$D$关于特征$A$的值的熵$H_A(D)$之比，即</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0</script><p>对于这个表达式我们无法求解。</p>
-<h3 id="Using-hidden-variables-and-the-EM-Algorithm"><a href="#Using-hidden-variables-and-the-EM-Algorithm" class="headerlink" title="Using hidden variables and the EM Algorithm"></a>Using hidden variables and the EM Algorithm</h3><p>退一步，什么会使这个计算容易。如果我们知道隐变量$C_i$的值，则对参数们做最大似然估计就会很容易：我们将会取所有$C_i=M$的点用来估计$\mu_M$，然后对所有$C_i=F$的点重复此过程来估计$\mu_F$。受此启发，我们尝试计算给定观测下$C_i$的分布。我们将从贝叶斯规则开始：</p>
+g_R(D,A) = \frac{g(D,A)}{H_A(D)}</script><p>。</p>
+<h3 id="决策树的生成"><a href="#决策树的生成" class="headerlink" title="决策树的生成"></a>决策树的生成</h3><h4 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h4><p>输入：训练数据集$D$，特征值阈值$\epsilon$</p>
+<p>输出：决策树$T$</p>
+<ol>
+<li>若$D$中所有实例属于同一类$C_k$，则$T$为单节点树，并将类$C_k$作为该结点的类标记，返回$T$；</li>
+<li>若$A=\varnothing$，则$T$为单结点树，并将$D$中实例树最大的类$C_k$作为该结点的类标记，返回$T$；</li>
+<li>否则，计算$A$中各特征值对$D$的信息增益，选择信息增益最大的特征$A_g$；</li>
+<li>如果$A_g$的信息增益小于阈值$\epsilon$，则置$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$</li>
+<li>否则，对$A_g$的每一可能值$a_i$，依$A_g=a_i$将$D$分割为若干非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子节点构成数$T$，返回$T$；</li>
+<li>对第$i$个子结点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用步骤1到5，得到子树$T_i$，返回$T_i$。</li>
+</ol>
+<p>ID3算法只有数的生成，所以该算法生成的树容易产生过拟合。</p>
+<h4 id="C4-5的生成算法"><a href="#C4-5的生成算法" class="headerlink" title="C4.5的生成算法"></a>C4.5的生成算法</h4><p>与ID3算法的差别仅在于使用信息增益比来选择特征。</p>
+<ol>
+<li>若$D$中所有实例属于同一类$C_k$，则$T$为单节点树，并将类$C_k$作为该结点的类标记，返回$T$；</li>
+<li>若$A=\varnothing$，则$T$为单结点树，并将$D$中实例树最大的类$C_k$作为该结点的类标记，返回$T$；</li>
+<li>否则，计算$A$中各特征值对$D$的信息增益比，选择信息增益比最大的特征$A_g$；</li>
+<li>如果$A_g$的信息增益比小于阈值$\epsilon$，则置$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$</li>
+<li>否则，对$A_g$的每一可能值$a_i$，依$A_g=a_i$将$D$分割为若干非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子节点构成数$T$，返回$T$；</li>
+<li>对第$i$个子结点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用步骤1到5，得到子树$T_i$，返回$T_i$。</li>
+</ol>
+<h3 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h3><p>决策树的剪枝往往通过极小化决策树整体的损失函数来实现。设数$T$的叶结点个数为$|T|$，$t$是数$T$的叶结点，该结点有$N_t$个样本点，其中$k$类的样本点有$N_{tk}$个，$H_t(T)$为叶结点$t$上的经验熵，$\alpha\ge0$为超参数，则决策树学习的损失函数可以定义为</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-p_{C_i|Y_i}(c_i|y_i) &= \frac{p_{Y_i|C_i}(y_i|c_i)p_{C_i}(c_i)}{p_{Y_i}(y_i)}\\
-&= \frac{\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(c=c_i)}}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(c_i)
-\end{aligned}</script><p>我们看一下$C_i=M$的后验概率：</p>
+C_{\alpha}(T) = \sum_{t=1}^{|T|}N_tH_t(T)+\alpha|T|</script><p>其中经验熵为：</p>
 <script type="math/tex; mode=display">
-p_{C_i|Y_i}(M|y_i) = \frac{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(M)</script><p>这个看起来很熟悉，这是式<sup><a href="#fn_1" id="reffn_1">1</a></sup>中的一部分，我们可以将式<sup><a href="#fn_1" id="reffn_1">1</a></sup>用$q_{C_i}$重写，并且假定其跟$\mu_M$无关</p>
+H_t(T) = -\sum_k\frac{N_{tk}}{N_t}\log\frac{N_{tk}}{N_t}</script><p>在损失函数中，常将右端的第一项记作：</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^nq_{C_i}(M)\frac{y_i-\mu_M}{\sigma^2}=0\\
-\mu_M = \frac{\sum_{i=1}^nq_{C_i}(M)y_i}{\sum_{i=1}^nq_{C_i}(M)}</script><p>这样就看起来好多了：$\mu_M$是身高的加权平均值，其中每个身高都根据该人是男性的可能性进行加权。</p>
-<p>因此现在我们形成了一个循环，如果我们知道参数我们将会很容易计算出$C_1^n$的后验概率，并且如果我们知道后验概率我们将很容易地估计出参数，这就陷入了死循环。这就暗示了以下策略，我们可以固定一个来求解另一个。这种方法通常被称为<code>EM</code>算法。它的工作原理大致如下：</p>
-<ul>
-<li>首先，我们固定参数(在这种情况下为高斯分布的均值$\mu_M$和$\mu_F$)并且求解隐变量的后验分布(在这种情况下记为$q_{C_i}$)。</li>
-<li>之后，我们固定隐变量的后验分布，利用隐变量的期望值来最优化参数。</li>
-<li>重复两个步骤直到收敛。</li>
-</ul>
-<h3 id="The-EM-Algorithm-a-more-formal-look"><a href="#The-EM-Algorithm-a-more-formal-look" class="headerlink" title="The EM Algorithm: a more formal look"></a>The EM Algorithm: a more formal look</h3><p>正如我们将在几个短步骤中展示的那样，EM算法实际上是最大化对数似然的下限(换句话说，每一步都保证改进我们的答案直到收敛)。</p>
-<p>假设我们观测到了随机变量$Y$。现在假设我们也有一些隐变量$C$并且$Y$依赖于$C$。我们可以说$C$和$Y$的分布中有一些我们不知道的参数$\theta$，并且我们有兴趣找到它们。</p>
-<p>在我们上一个例子中，我们观测到有隐变量(性别)$C=\{C_1,\cdots,C_n\}$的身高变量$Y=\{Y_1,\cdots,Y_n\}$，并且$Y$和$C$是独立同分布的，我们的参数是$\mu_M$和$\mu_F$。</p>
-<p>在我们真正推导算法之前，我们需要一个关键结论：<code>Jensen&#39;s inequation</code>(琴声不等式)。在这个例子中我们需要的琴声不等式的特例：</p>
+C(T) =\sum_{t=1}^{|T|}N_tH_t(T) = -\sum_{t=1}^{|T|}\sum_{k=1}^K\frac{N_{tk}}{N_t}\log\frac{N_{tk}}{N_t}</script><p>这时有：</p>
 <script type="math/tex; mode=display">
-\log(\mathbb{E}[X])\ge \mathbb{E}[\log(X)]</script><p>下图是关于琴声不等式的几何直观：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png" alt=""></p>
+C_{\alpha}(T) = C(T)+\alpha|T|</script><p>算法(数的剪枝算法)</p>
+<p>输入：生成算法产生的整个数$T$，参数$\alpha$</p>
+<p>输出：修剪后的子树$T_{\alpha}$</p>
+<ol>
+<li>计算每个结点的经验熵。</li>
+<li>递归地从数地叶结点向上回缩。设一组叶结点回缩到其父结点之前与之后的整体数分别为$T_B$和$T_A$，其对应的损失函数分别是$C_{\alpha}(T_B)$与$C_{\alpha}(T_A)$，其对应的损失函数值分别是$C_{\alpha}(T_B)$与$C_{\alpha}(T_A)$，如果<script type="math/tex">C_{\alpha}(T_A)\le C_{\alpha}(T_B)</script>，则进行剪枝，即将父结点变为新的叶结点。</li>
+<li>返回2，直至不能继续为止，得到损失函数最小的子树$T_{\alpha}$。</li>
+</ol>
+<h3 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h3><p>分类与回归树(classfication and regression tree, CART)。</p>
+<p>决策树就是递归地构建二叉决策树的过程。对回归树用平方误差最小化准则，对分类树用基尼系数最小化准则，进行特征选择，生成二叉树。</p>
+<h4 id="回归树的生成"><a href="#回归树的生成" class="headerlink" title="回归树的生成"></a>回归树的生成</h4><p>假设$X$和$Y$分别为输入和输出变量，并且$Y$是连续变量，给定训练数据集</p>
+<script type="math/tex; mode=display">
+D= \{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}</script><p>考虑如何生成回归树。</p>
+<p>假设树将输入空间划分为$M$个单元$R_1,R_2,\cdots,R_M$，并且在每个单元$R_m$上有一个固定的输出值$c_m$，于是回归树模型可表示为：</p>
+<script type="math/tex; mode=display">
+f(x) = \sum_{m=1}^Mc_mI(x\in R_m)</script><p>当输入空间的划分确定时，可以用平方误差$\sum_{x_i\in R_m}(y_i-f(x_i))^2$来表示回归树对于训练数据的预测误差，求解每个单元上的最优输出值。易知：</p>
+<script type="math/tex; mode=display">
+\hat{c}_m = \operatorname{ave}(y_i|x_i\in R_m)</script><p>问题是怎么对输入空间进行划分。我们采用启发式的方法，选择第$j$个变量$x^{(j)}$和它的取值$s$，作为切分变量和切分点，并定义两个区域：</p>
+<script type="math/tex; mode=display">
+R_1(j,s) = \{x|x^{(j)}\le s\}\quad\text{和}R_2(j,s) = \{x|x^{(j)}>s\}</script><p>然后寻找最优切分点和最优切分变量：</p>
+<script type="math/tex; mode=display">
+\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]</script><p>对于固定输入变量$j$可以找到最优切分点$s$</p>
+<script type="math/tex; mode=display">
+\hat{c}_1 = \operatorname{ave}(y_i|x_i\in R_1(j,s))\quad\text{和}\quad \hat{c}_2 = \operatorname{ave}(y_i|x_i\in R_2(j,s))\quad</script><p>算法为：</p>
+<p>输入：训练数据集$D$</p>
+<p>输出：回归树$f(x)$</p>
+<p>在训练数据集中所在的输入空间中，递归地将每个区域划分为两个子区域并决定每个子区域上的输出值，构建二叉决策树：</p>
+<ol>
+<li><p>选择最优切分变量$j$和切分点$s$，求解：</p>
+<script type="math/tex; mode=display">
+\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]</script><p>遍历变量$j$，对固定的切分变量$j$扫描切分点$s$，选择使上式达到最小值的对$(j,s)$。</p>
+</li>
+<li><p>对选定的对$(j,s)$划分区域并决定相应的输出值</p>
+<script type="math/tex; mode=display">
+\begin{gathered}
+R_{1}(j, s)=\left\{x \mid x^{(j)} \leqslant s\right\}, \quad R_{2}(j, s)=\left\{x \mid x^{(j)}>s\right\} \\
+\hat{c}_{m}=\frac{1}{N_{m}} \sum_{x_{i} \in R_{m}(j, s)} y_{i}, \quad x \in R_{m}, \quad m=1,2
+\end{gathered}</script></li>
+<li><p>继续对两个子区域调用步骤1，2，直到满足停止条件。</p>
+</li>
+<li><p>将输入空间划分为$M$个区域$R_1,R_2,\cdots,R_M$，生成决策树：</p>
+<script type="math/tex; mode=display">
+f(x) = \sum_{m=1}^M\hat{c}_mI(x\in R_m)</script></li>
+</ol>
+<h4 id="分类树的生成"><a href="#分类树的生成" class="headerlink" title="分类树的生成"></a>分类树的生成</h4><p>分类树用基尼指数选择最优特征，同时决定该特征的最优二值切分点。</p>
+<p>定义(基尼系数)：分类问题中，假设有$K$个类，样本点属于第$k$类的概率为$p_k$，则概率分布的基尼指数定义为：</p>
+<script type="math/tex; mode=display">
+\operatorname{Gini}(p) = \sum_{k=1}^Kp_k(1-p_k) = 1-\sum_{k=1}^Kp_k^2</script><p>对于二分类问题，若样本点属于第$1$个类的概率为$p$，则概率分布的基尼指数为：</p>
+<script type="math/tex; mode=display">
+\operatorname{Gini}(p) = 2p(1-p)</script><p>对于给定样本集合$D$，其基尼指数为：</p>
+<script type="math/tex; mode=display">
+\operatorname{Gini}(D) = 1-\sum_{k=1}^K\left(\frac{|C_k|}{|D|}\right)^2</script><p>基尼系数越大，样本集合的不确定性越大。</p>
+<p>如果样本集合$D$根据特征$A$是否取某一可能值$a$被分割成$D_1$和$D_2$两部分，即</p>
+<script type="math/tex; mode=display">
+D_1=\{(x,y)\in D|A(x)=a\},\quad D_2=D-D_1</script><p>则在特征$A$的条件下，集合$D$的基尼指数定义为</p>
+<script type="math/tex; mode=display">
+\operatorname{Gini}(D,A) = \frac{|D_1|}{|D|}\operatorname{Gini}(D_1)+\frac{|D_2|}{|D|}\operatorname{Gini}(D_2)</script><p>算法(CART生成算法)</p>
+<p>输入：训练数据集$D$，停止计算的条件</p>
+<p>输出：CART决策树</p>
+<ol>
+<li>设结点的训练数据集为$D$，计算现有特征对该数据集的基尼系数。此时，对于每一个特征$A$，对其可能取的每个值$a$，根据样本点$A=a$的测试为”是”或”否”将$D$分割成$D_1$和$D_2$两个部分，计算$A=a$时的基尼指数。</li>
+<li>在所有可能的特征$A$以及它们所有可能的切分点$a$中，选择基尼指数最小的特征及其对应的切分点作为最优特征与最优切分点。依最优特征与最优切分点，从现结点生成两个子结点，将训练数据集依特征分配到两个子结点中去。</li>
+<li>对两个子结点递归地调用1，2，直到满足终止条件。</li>
+<li>生成CART决策树。</li>
+</ol>
+<h4 id="CART剪枝"><a href="#CART剪枝" class="headerlink" title="CART剪枝"></a>CART剪枝</h4><p>CART剪枝算法由两步组成：首先从生成算法产生的决策树$T_0$低端开始不断剪枝，直到$T_0$的根结点，形成一个子树序列$\{T_0,T_1,\cdots,T_n\}$；然后通过交叉验证法在独立的验证数据集上对子树序列进行测试，从中选择最优子树。</p>
+<p>可以利用递归的方法对数进行剪枝。将$\alpha$从小增大，$0=\alpha_0&lt;\alpha_1&lt;\cdots&lt;\alpha_n&lt;+\infty$，产生一系列的区间$[\alpha_i,\alpha_{i+1}),i=0,1,\cdots,n$的最优子树序列$\{T_0,T_1,\cdots,T_n\}$，序列中的子树是嵌套的。</p>
+<p>具体地，从整体树$T_0$开始剪枝。对$T_0$的任意内部结点$t$，以$t$为单结点数的损失函数是：</p>
+<script type="math/tex; mode=display">
+C_{\alpha}(t) = C(t) + \alpha</script><p>以$t$为根结点的子树$T_t$的损失函数是：</p>
+<script type="math/tex; mode=display">
+C_{\alpha}(T_t) = C(T_t)+\alpha|T_t|</script><p>当$\alpha=0$及$\alpha$充分小时，有不等式</p>
+<script type="math/tex; mode=display">
+C_{\alpha}(T_t)<C_{\alpha}(t)</script><p>当$\alpha$增大时，不等式反向。只要$\alpha=\frac{C(t)-C(T_t)}{|T_t|-1}$，$T_t$与$t$有相同的损失函数值，而$t$的结点少，因此$t$比$T_t$更可取，对$T_t$进行剪枝。</p>
+<p>为此，对$T_0$中每一内部结点$t$，计算</p>
+<script type="math/tex; mode=display">
+g(t) = \frac{C(t)-C(T_t)}{|T_t|-1}</script><p>它表示剪枝后整体损失函数减少的程度。在$T_0$中剪去$g(t)$最小的$T_t$，将得到的子树作为$T_1$，同时将最小的$g(t)$设为$\alpha_1$。==$T_1$为区间$[\alpha_1,\alpha_2)$的最优子树。==（不知道为什么。）</p>
 <blockquote>
-<p>琴声不等式的特例说明：对于任何随机变量$X$，$\mathbb{E}[\log X]\le\log\mathbb{E}[X]$。令$X$的PDF为红色的曲线。令$Z=\log X$。中间和右边的图展示了怎么构建$Z$的PDF(蓝色曲线)：因为$\log$，与$X$的PDF相比，它倾向于更小的值。$\log\mathbb{E}(X)$是由中间黑色曲线或$\mathbb{E}(Z)$给出的点。但是，$\mathbb{E}[\log X]$或者$\mathbb{E}[Z]$，将始终较小(或至少永远不会较大)因为对数挤压了分布较大的一端(其中$Z$比较大)并拉伸了较小的一端(其中$Z$较小)。</p>
-<p>关于琴声不等式</p>
-<p>对于一个实函数$\phi(x)$，在区间$I$内它是凸的($\frac{d^2\phi(x)}{d^2x}&gt;0, \forall x\in I$)，那么它满足下面关系：</p>
-<script type="math/tex; mode=display">
-\phi(\sum_{i=1}^Np_ix_i)\le \sum_{i=1}^Np_i\phi(x_i)</script><p>其中$p_i\ge0,\sum_{i=1}^Np_i=1$，且$x_i\in I,(i=1,\cdots,N)$。</p>
-<p><strong>证明</strong>：令$A=\sum_{i=1}^Np_ix_i$，显然$A\in I$。取</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S &= \sum_{i=1}^N\phi(x_i) - \phi(A)\\
-&= \sum_{i=1}^Np_i[\phi(x_i)-\phi(A)]\\
-&= \sum_{i=1}^N p_i\int_A^{x_i}\phi^{\prime}(x)dx
-\end{aligned}</script><p>若$A\le x_i$，因为$\phi^{\prime}(x)$在区间$I$上是递增的，所以</p>
-<script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx\ge \phi^{\prime}(A)(x_i-A)</script><p>若$A_i&gt;x_i$，则</p>
-<script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx = -\int_{x_i}^A\phi^{\prime}(x)dx\ge-(A-x_i)\phi(A) = (x_i-A)\phi^{\prime}(A)</script><p>所以：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S &\ge \sum_{i=1}^Np_i\phi^{\prime}(A)(x_i-A)\\
-&= \phi^{\prime}(A)[\sum_{i=1}^Np_i(x_i-A)]\\
-&= \phi^{\prime}(A)(A-A)\\
-&=0
-\end{aligned}</script><p>证毕。</p>
+<p>算法实现等到有空再更新吧，现在想好好休息休息了。</p>
 </blockquote>
-<p>在本文中，求期望相当于加权平均，而$\ln(x)$的二阶导小于$0$，故与上文提到的不等式符号相反。</p>
-<h4 id="The-EM-Algorithm"><a href="#The-EM-Algorithm" class="headerlink" title="The EM Algorithm"></a>The EM Algorithm</h4><p>我们想要去最大化似然函数。我们通过边缘化$C$来计算对数似然函数：</p>
-<script type="math/tex; mode=display">
-\log p_Y(y;\theta) = \log\left(\sum_cp_{Y,C}(y,c)\right)</script><p>我们现在也遭受了困境，我们无法对和取对数。如果我们交换它们的顺序不是更好吗？对，期望是一种特殊的求和，并且琴声不等式可以让我们互换它们如果我们有期望的话。因此，我们将要引进一个隐变量$C$的新的分布$q_C$：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \log p_{Y}(y ; \theta) & \\ \left.\text { (Marginalizing over } C \text { and introducing } q_{C}(c) / q_{C}(c)\right) &=\log \left(\sum_{c} q_{C}(c) \frac{p_{Y, C}(y, c ; \theta)}{q_{C}(c)}\right) \\ \text { (Rewriting as an expectation) } &=\log \left(\mathbb{E}_{q_{C}}\left[\frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right]\right) \\ \text { (Using Jensen's inequality) } & \geq \mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right](2) \\ \text { Using definition of conditional probability } &=\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right](3) \end{aligned}</script><p>现在我们有可以很容易优化的$\log p_Y(y;\theta)$的下界了。因为我们已经引入了$q_C$，我们想要在$\theta$和$q_C$上实施最大化。</p>
-<p>我们将使用(2)和(3)分别进行优化。首先先用(2)寻找最好的参数：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right] = \mathbb{E}_{q_C}[\log p_{Y, C}(y, C ; \theta)] - \mathbb{E}_{q_C}[\log q_C(C)]</script><p>因为$q_C$不依赖于$\theta$，因此我们可以只优化第一项：</p>
-<script type="math/tex; mode=display">
-\widehat{\theta} \leftarrow \underset{\theta}{\operatorname{argmax}} \mathbb{E}_{q_{C}}\left[\log p_{Y, C}(y, C ; \theta)\right]</script><p>这被称作<code>M-step</code>：<code>M</code>代表最大化，因为我们正在最大化参数。现在，我们用(3)来找到最好的$q_C$：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]=\mathbb{E}_{q_{C}}\left[\log p_{Y}(y ; \theta)\right]+\mathbb{E}_{q_{C}}\left[\log \frac{p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]</script><p>第一项不依赖于$c$，并且第二项看起来像KL散度：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&= \log p_Y(y;\theta) - \mathbb{E}_{q_C}[\log\frac{q_C(C)}{p_{C|Y}(C|y;\theta)}]\\
-&= \log p_Y(y;\theta) - D(q_C(\cdot)||p_{C|Y}(\cdot|y;\theta))
-\end{aligned}</script><p>因此，当最大化上述值时，我们想要最小化KL散度。KL散度总是大于等于零，当两个分布完全一样时取零。因此，最优化的$q_C$即为$p_{C|Y}(c|y;\theta)$：</p>
-<script type="math/tex; mode=display">
-\hat{q}_C(c) \leftarrow p_{C|Y}(c|y;\theta)</script><p>这被称为<code>E-step</code>：<code>E</code>代表期望，因为我们正在计算$q_C$以便我们可以将其用于期望值。</p>
-<h4 id="The-algorithm"><a href="#The-algorithm" class="headerlink" title="The algorithm"></a>The algorithm</h4><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png" alt=""></p>
-<blockquote>
-<p>信息熵可以表达数据的信息量大小，是信息处理的一个非常重要的概念。对于离散型随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = \mathrm{E}_{x\sim p(x)}[-\log p(x)] = -\sum_{i=1}^n p(x)\log p(x)</script><p>对于连续性随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = E_{x\sim p(x)}[-\log p(x)] = -\int p(x)\log p(x)dx</script><p>接下来我们来说一下相对熵，又被称为KL散度或信息散度，是两个概率分布差异的非对称度量。在信息论中，相对熵等价于两个概率分布的信息熵的插值，若其中一个概率分布为真实分布，另一个为理论分布，则此时相对熵等于交叉熵与真实分布的信息熵之差，表示使用理论分布拟合真实分布时产生的信息损耗。公式为：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i) - p(x_i)\log q(x_i)]</script><p>上面的$p(x_i)$为真实事件的概率分布，$q(x_i)$为理论拟合出来的该事件的概率分布。当拟合出来的事件概率分布跟真实的一模一样时，相对熵等于零，而拟合出来不一样时，相对熵大于零。</p>
-<p>最后我们来证明一下相对熵公式只有在$p(x_i)$等于$q(x_i)$的时候等于$0$，其他时候大于$0$。</p>
-<p>要证：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\ge 0</script><p>即证：</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le 0</script><p>又$\ln(x)\le x-1$，当且仅当$x=1$时等号成立</p>
-<p>故</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le \sum_{i=1}^Np(x_i)(\frac{q(x_i)}{p(x_i)}-1) = \sum_{i=1}^N[p(x_i)-q(x_i)]=0</script><p>上面式子中$=$只在$p(x_i)=q(x_i)$时成立。</p>
-</blockquote>
-<h3 id="Example-Applying-the-general-algorithm-to-GMMS"><a href="#Example-Applying-the-general-algorithm-to-GMMS" class="headerlink" title="Example: Applying the general algorithm to GMMS"></a>Example: Applying the general algorithm to GMMS</h3><p>现在，让我们重现看一下关于身高的GMM模型，看看我们如何应用这两个步骤。我们有观测变量$Y=\{Y_1,\cdots,Y_n\}$和隐变量$C=\{C_1,\cdots,C_n\}$。对于<code>E-Step</code>，我们计算后验概率$p_{C|Y}(c|y)$，之前已经计算过了。对于<code>M-Step</code>，我们得去计算联合概率：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{E}_{q_C}[\ln p_{Y,C}(y,C)] &= \mathbb{E}[\ln p_{Y|C}(y|C)p_C(C)]\\
-&= \mathbb{E}_{q_C}\left[\ln \prod_{i=1}^n\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(C_i=c)}\right]\\
-&= \mathbb{E}_{q_C}\left[\sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{1}(C_i=c)(\ln\pi_c+\ln\mathcal{N}(y_i;\mu_c,\sigma^2))\right]\\
-&= \sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]\left(\ln\pi_c + \ln\frac{1}{\sigma\sqrt{2\pi}}-\frac{(y_i-\mu_c)^2}{2\sigma^2}\right)
- \end{aligned}</script><p>$\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]$是$C_i$为$c$的概率。现在我们对$\mu_M$求导：</p>
-<script type="math/tex; mode=display">
-\frac{d}{d \mu_{M}} \mathbb{E}_{q_{C}}\left[\ln p_{Y \mid C}(y \mid C) p_{C}(C)\right]=\sum_{i=1}^{n} q_{C_{i}}(M)\left(\frac{y_{i}-\mu_{M}}{\sigma^{2}}\right)=0</script><p>得：</p>
-<script type="math/tex; mode=display">
-\mu_{M}=\frac{\sum_{i=1}^{n} q_{C_{i}}(M) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(M)}</script><p>同理可得：</p>
-<script type="math/tex; mode=display">
-\mu_{F}=\frac{\sum_{i=1}^{n} q_{C_{i}}(F) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(F)}</script>
+
     </div>
 
     
@@ -469,7 +474,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">https://www.hfcouc.work/2021/08/31/高斯混合模型和EM算法/</a>
+    <a href="https://www.hfcouc.work/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/" title="决策树">https://www.hfcouc.work/2021/12/21/决策树/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -518,13 +523,10 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="prev" title="贝叶斯数据分析">
-      <i class="fa fa-chevron-left"></i> 贝叶斯数据分析
+    <a href="/2021/12/19/%E6%9E%81%E9%99%90/" rel="prev" title="极限">
+      <i class="fa fa-chevron-left"></i> 极限
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" rel="next" title="线性代数应该这样学：线性空间">
-      线性代数应该这样学：线性空间 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -588,7 +590,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gaussian-mixture-models-and-the-EM-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Gaussian mixture models and the EM algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-model"><span class="nav-number">1.1.</span> <span class="nav-text">The model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-estimation-a-first-attempt"><span class="nav-number">1.2.</span> <span class="nav-text">Parameter estimation: a first attempt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-hidden-variables-and-the-EM-Algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">Using hidden variables and the EM Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-EM-Algorithm-a-more-formal-look"><span class="nav-number">1.4.</span> <span class="nav-text">The EM Algorithm: a more formal look</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-EM-Algorithm"><span class="nav-number">1.4.1.</span> <span class="nav-text">The EM Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-algorithm"><span class="nav-number">1.4.2.</span> <span class="nav-text">The algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-Applying-the-general-algorithm-to-GMMS"><span class="nav-number">1.5.</span> <span class="nav-text">Example: Applying the general algorithm to GMMS</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-number">1.1.</span> <span class="nav-text">特征选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A"><span class="nav-number">1.1.1.</span> <span class="nav-text">信息增益</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E6%AF%94"><span class="nav-number">1.1.2.</span> <span class="nav-text">信息增益比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">1.2.</span> <span class="nav-text">决策树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ID3%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">ID3算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C4-5%E7%9A%84%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">C4.5的生成算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E5%89%AA%E6%9E%9D"><span class="nav-number">1.3.</span> <span class="nav-text">决策树的剪枝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CART%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">CART算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E6%A0%91%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">1.4.1.</span> <span class="nav-text">回归树的生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E6%A0%91%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">1.4.2.</span> <span class="nav-text">分类树的生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CART%E5%89%AA%E6%9E%9D"><span class="nav-number">1.4.3.</span> <span class="nav-text">CART剪枝</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
