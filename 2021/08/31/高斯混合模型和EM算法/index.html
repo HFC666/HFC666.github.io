@@ -28,17 +28,17 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。 The model假设我们有有编号的人$i&#x3D;1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到">
+  <meta name="description" content="EM算法、GMM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高斯混合模型和EM算法">
 <meta property="og:url" content="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="Gaussian mixture models and the EM algorithm我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。 The model假设我们有有编号的人$i&#x3D;1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到">
+<meta property="og:description" content="EM算法、GMM">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png">
 <meta property="article:published_time" content="2021-08-31T15:24:15.000Z">
-<meta property="article:modified_time" content="2021-11-26T12:50:37.320Z">
+<meta property="article:modified_time" content="2021-12-22T07:20:55.092Z">
 <meta property="article:author" content="HFC">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
@@ -262,7 +262,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-26 20:50:37" itemprop="dateModified" datetime="2021-11-26T20:50:37+08:00">2021-11-26</time>
+                <time title="修改时间：2021-12-22 15:20:55" itemprop="dateModified" datetime="2021-12-22T15:20:55+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,13 +275,6 @@
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
 
         </div>
       </header>
@@ -292,7 +285,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Gaussian-mixture-models-and-the-EM-algorithm"><a href="#Gaussian-mixture-models-and-the-EM-algorithm" class="headerlink" title="Gaussian mixture models and the EM algorithm"></a>Gaussian mixture models and the EM algorithm</h2><p>我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。</p>
+        <p>EM算法、GMM</p>
+<span id="more"></span>
+<h2 id="Gaussian-mixture-models-and-the-EM-algorithm"><a href="#Gaussian-mixture-models-and-the-EM-algorithm" class="headerlink" title="Gaussian mixture models and the EM algorithm"></a>Gaussian mixture models and the EM algorithm</h2><p>我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。</p>
 <h3 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h3><p>假设我们有有编号的人$i=1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到的标签$C_i\in \{\operatorname{M,F}\}$表示人的性别。在这了，小写字母$c$代表”class”。我们也假设两组具有相同的已知方差$\sigma^2$，但不同的未知均值$\mu_M$和$\mu_F$。类标签符合伯努利分布：</p>
 <script type="math/tex; mode=display">
 p_{C_i}(c_i) = q^{\mathbb{1}(c_i=M)}(1-q)^{\mathbb{1}(c_i=F)}</script><p>我们也假设$q$是已知的。为了简化符号，我们令$\pi_M=q$和$\pi_F=1-q$，因此我们可以写作：</p>
@@ -518,8 +513,8 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="prev" title="贝叶斯数据分析">
-      <i class="fa fa-chevron-left"></i> 贝叶斯数据分析
+    <a href="/2021/08/09/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" rel="prev" title="微分方程">
+      <i class="fa fa-chevron-left"></i> 微分方程
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" rel="next" title="线性代数应该这样学：线性空间">
@@ -573,10 +568,9 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
     <span class="toggle-line toggle-line-middle"></span>
     <span class="toggle-line toggle-line-last"></span>
   </div>
-
   <aside class="sidebar">
     <div class="sidebar-inner">
-
+	
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
           文章目录
@@ -585,13 +579,12 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
           站点概览
         </li>
       </ul>
-
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gaussian-mixture-models-and-the-EM-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Gaussian mixture models and the EM algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-model"><span class="nav-number">1.1.</span> <span class="nav-text">The model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-estimation-a-first-attempt"><span class="nav-number">1.2.</span> <span class="nav-text">Parameter estimation: a first attempt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-hidden-variables-and-the-EM-Algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">Using hidden variables and the EM Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-EM-Algorithm-a-more-formal-look"><span class="nav-number">1.4.</span> <span class="nav-text">The EM Algorithm: a more formal look</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-EM-Algorithm"><span class="nav-number">1.4.1.</span> <span class="nav-text">The EM Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-algorithm"><span class="nav-number">1.4.2.</span> <span class="nav-text">The algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-Applying-the-general-algorithm-to-GMMS"><span class="nav-number">1.5.</span> <span class="nav-text">Example: Applying the general algorithm to GMMS</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
-
+	
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="HFC"
@@ -604,7 +597,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -653,6 +646,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
   </div>
 
       </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=346089&auto=1&height=66"></iframe>
 
     </div>
   </aside>
@@ -713,23 +707,6 @@ $(document).ready(function() {
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
 </div>
 
 

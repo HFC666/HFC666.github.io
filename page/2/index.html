@@ -256,7 +256,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-21 22:13:23" itemprop="dateModified" datetime="2021-12-21T22:13:23+08:00">2021-12-21</time>
+                <time title="修改时间：2021-12-22 15:18:41" itemprop="dateModified" datetime="2021-12-22T15:18:41+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,316 +279,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="支持向量机-SVM"><a href="#支持向量机-SVM" class="headerlink" title="支持向量机(SVM)"></a>支持向量机(SVM)</h2><h3 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h3><h4 id="线性可分训练集"><a href="#线性可分训练集" class="headerlink" title="线性可分训练集"></a>线性可分训练集</h4><p>一个训练数据集线性可分是指：$\{(x_i,y_i)\}_{i=1\sim N},\exists(w,b)$，使对$\forall i=1\sim N$，有</p>
-<ul>
-<li>若$y_i=+1$，则$w^Tx_i+b\ge0$</li>
-<li>若$y_i=-1$，则$w^Tx_i+b&lt;0$</li>
-</ul>
-<p>即$y_i[w^Tx_i+b]\ge0$(公式1)</p>
-<p>对于线性可分的数据集，我们需要划一条线来分割两类不同的样本。但是分割的线有无数条，我们怎么判断哪一条线更好呢？<br><img src="https://static01.imgkr.com/temp/bf661c3ba75549abacf5b4e9dde0e254.png" alt=""><br>很多人认为第二条线是最好的。但是因为根据免费午餐定理，这三条曲线是一样好的。那么我们为什么会认为第二条曲线是最好的呢？这是因为我们在研究问题之前，对此问题存在先验假设。有很多先验假设认为第二条直线比其余两条要好。我们只考虑其中一种假设，即假设<em>训练样本的位置在特征空间有测量误差</em>。如下图所示：<br><img src="https://static01.imgkr.com/temp/51e3dc9f3d9847298c80f36fc1d22328.png" alt=""><br>假设红色的叉和圆圈的真实位置为红色虚线圆圈，则线3和1都会分类错误，而2不会，这说明2号线更能抵御训练样本位置的误差。</p>
-<p>那么2号线是怎么画出来的呢？<br>支持向量机的创造者Vapnik是这样回答的，它首先将直线向一侧平行移动，直到它叉到一个或几个样本为止；之后再向另一侧移动，直到叉到一个或多个样本未知。<br><img src="https://static01.imgkr.com/temp/a184f5d78b3b4cd78df273fbd4f0adfd.png" alt=""><br>我们要找的2号线找的是使得间隔最大的且位于间隔中间的线。<br><strong>在多维的情况下，直线变为超平面</strong>。</p>
-<p>之后我们将支持向量机转化为一个优化问题，优化问题为：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    &\min \frac{1}{2}||w||^2\\
-    &\operatorname{s.t.} \quad y_i[w^T_i+b]\ge1
-\end{aligned}</script><p>那么这是怎么得到的呢？那面我们详细讨论一下：</p>
-<p>事实一：$w^Tb+b=0$与$aw^Tx+ab=0$是同一个平面，$a\in R^+$。即若$(w,b)$满足公式1，则$(aw,ab)$也满足公式一。</p>
-<blockquote>
-<p>公式1：$y_i[w^Tx_i+b]\ge0$</p>
-</blockquote>
-<p>事实二：点到平面的距离公式。<br>向量$x_0$到超平面$w^Tx+b=0$的距离：</p>
-<script type="math/tex; mode=display">
-d = \frac{|w^Tx_0+b|}{||w||}</script><p>当$x_0$为支持向量时，我们要做的就是最大化$d$。<br>根据事实1，我们可以用$a$去缩放：</p>
-<script type="math/tex; mode=display">
-(w,b)\rightarrow (aw,ab)</script><p>最终使在支持向量上$x_0$上，有：</p>
-<script type="math/tex; mode=display">
-    |w^Tx_0+b|=1</script><p>此时支持向量与平面距离：</p>
-<script type="math/tex; mode=display">
- d = \frac{1}{||w||}</script><p>因为最大化$\frac{1}{||w||}$相当于最小化$||w||^2$，所以得到上述的目标函数。</p>
-<p>下面看约束条件是如何得到的。<br>因为在上面的描述中我们有，对于所有的支持向量，我们有</p>
-<script type="math/tex; mode=display">
-|w^Tx_0+b|=1</script><p>所以对于非支持向量，我们有：</p>
-<script type="math/tex; mode=display">
-|w^Tx_0+b|>1</script><p>又因为：$y_i[w^Tx_i+b]\ge0$，所以综上我们有</p>
-<script type="math/tex; mode=display">
-y_i[w^Tx_i+b] = |w^Tx_0+b|\ge 1</script><p>这样我们就得到了上面提到的优化问题。</p>
-<p>这个优化问题为凸优化问题中的<em>二次优化问题</em>。<br>二次规划问题：</p>
-<ol>
-<li>目标函数是二次项</li>
-<li>限制条件是一次项</li>
-</ol>
-<p>这样就会导致要么无解，要么只有一个极值。</p>
-<h3 id="非线性可分"><a href="#非线性可分" class="headerlink" title="非线性可分"></a>非线性可分</h3><p>我们改写目标函数和约束条件，使其变为：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\min&\quad\frac{1}{2}||w||^2+C\sum_{i=1}^N\xi_i\\
-&\operatorname{s.t.}\quad &y_i[w^Tx_i+b]\ge 1-\xi_i\\
-&\quad &\xi_i\ge0
-\end{aligned}</script><p>其中$\xi_i$称为松弛变量，$C\sum_{i=1}^N\xi_i$称为正则项。</p>
-<h3 id="非线性问题"><a href="#非线性问题" class="headerlink" title="非线性问题"></a>非线性问题</h3><p>对于下图所示的问题，我们不能找到一个很好的直线将两类分开：<br><img src="https://static01.imgkr.com/temp/491f1d06bdce47cf8cff0ed74a575eb3.png" alt=""><br>但是我们可以将其映射到高维空间中的点，然后在高维空间中寻找直线。<br>我们定义一个从低维到高维的映射$\phi(x)$：</p>
-<script type="math/tex; mode=display">
-x\xrightarrow{\phi}\phi(x)</script><p>其中$x$为低维向量，而$\phi(x)$为一个高维映射。</p>
-<p>下面我们举一个例子：如下图所示的异或问题<br><img src="https://static01.imgkr.com/temp/c0bcf66b2ef143ae9b7e93f699654ddb.png" alt=""><br>这个问题我们在二维空间里无法找到一条直线将其分开。<br>在上图中我们令四个点分别为：</p>
-<script type="math/tex; mode=display">
-x_1 = \begin{bmatrix}0\\0\end{bmatrix},x_2 = \begin{bmatrix}1\\1\end{bmatrix}\in C_1</script><script type="math/tex; mode=display">
-x_3 = \begin{bmatrix}1\\0\end{bmatrix},x_4 = \begin{bmatrix}0\\1\end{bmatrix}\in C_2</script><p>我们令</p>
-<script type="math/tex; mode=display">
-\phi(x): x = \begin{bmatrix}a\\b\end{bmatrix}\xrightarrow{\phi}\phi(x) = \begin{bmatrix}a^2\\b^2\\a\\b\\ab\end{bmatrix}</script><p>则经过映射得到：</p>
-<script type="math/tex; mode=display">
-\phi(x_1)= \begin{bmatrix}0\\0\\0\\0\\0\end{bmatrix},\phi(x_2)= \begin{bmatrix}1\\1\\1\\1\\1\end{bmatrix}</script><script type="math/tex; mode=display">
-\phi(x_3)= \begin{bmatrix}1\\0\\1\\0\\0\end{bmatrix},\phi(x_4)= \begin{bmatrix}0\\1\\0\\1\\0\end{bmatrix}</script><p>我们可以令</p>
-<script type="math/tex; mode=display">
-w= \begin{bmatrix}-1\\-1\\-1\\-1\\6\end{bmatrix},b=1</script><p>来达到区分的目的。</p>
-<p>有证明显示：在越高维度情况下，找打一个线性超平面来将样本分开的概率越大。我们如何选取$\phi$，我们将$\phi(x)$选择为无限维。但是$\phi(x)$为无限维，$w$将为无限维，优化问题将不可做。</p>
-<p>我们可以不知道无限维映射$\phi(x)$的显式表达，我们只要知道一个核函数：</p>
-<script type="math/tex; mode=display">
-K(x_1,x_2) = \phi(x_1)^T\phi(x_2)</script><p>下面的优化问题：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\min&\quad\frac{1}{2}||w||^2+C\sum_{i=1}^N\xi_i\\
-&\operatorname{s.t.}\quad &y_i[w^T\phi(x_i)+b]\ge 1-\xi_i\\
-&\quad &\xi_i\ge0
-\end{aligned}</script><p>仍然可解。</p>
-<p>在SVM中常用的核函数：</p>
-<script type="math/tex; mode=display">
-K(x_1,x_2) = e^{-\frac{||x_1-x_2||^2}{2\sigma^2}} = \phi(x_1)^T\phi(x_2)</script><p>为高斯核函数</p>
-<script type="math/tex; mode=display">
-K(x_1,x_2) = (x_1^Tx_2+1)^d = \phi(x_1)^T\phi(x_2)</script><p>为多项式核函数，$d$为阶数。</p>
-<p>核函数$K$必须满足某些条件才能被拆成内积的形式：<br>$K(x_1,x_2)$能被写成$\phi(x_1)^T\phi(x_2)$的充要条件为：</p>
-<ol>
-<li>$K(x_1,x_2)=K(x_2,x_1)$</li>
-<li>$\forall c_i\in R,x_i(i=1\sim N)$，有<script type="math/tex">\sum_{i=1}^N\sum_{i=1}^Nc_ic_jK(x_i,x_j)\ge 0</script></li>
-</ol>
-<h3 id="原问题和对偶问题"><a href="#原问题和对偶问题" class="headerlink" title="原问题和对偶问题"></a>原问题和对偶问题</h3><h4 id="原问题"><a href="#原问题" class="headerlink" title="原问题"></a>原问题</h4><p>最小化：$f(w)$<br>限制条件：</p>
-<ul>
-<li>$g_i(w)\le0(i=1\sim K)$</li>
-<li>$h_i(w)=0(i=1\sim M)$</li>
-</ul>
-<h4 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h4><p>定义：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-L(w,\alpha,\beta) &= f(w) + \sum_{i=1}^K\alpha_ig_i(w)+\sum_{i=1}^M\beta_ih_i(w)\\
-&= f(w) + \alpha^Tg(w)+\beta^Th(w)
-\end{aligned}</script><p>对偶问题的定义<br>最大化：$\theta(\alpha,\beta)=\inf_w(w,\alpha,\beta)$，$\inf$表示下界<br>限制条件：$\alpha_i\ge 0,\beta_i\ge0$</p>
-<h4 id="原问题和对偶问题解的关系"><a href="#原问题和对偶问题解的关系" class="headerlink" title="原问题和对偶问题解的关系"></a>原问题和对偶问题解的关系</h4><p>定理：如果$w^\star$是原问题的解，而$\alpha^\star,\beta^\star$是对偶问题的解，则有：</p>
-<script type="math/tex; mode=display">
-f(w^\star)\ge \theta(\alpha^\star,\beta^\star)</script><p>证明：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\theta(\alpha^\star,\beta^\star) &= \inf_w L(w,\alpha^\star,\beta^\star)\\
-&\le L(w^\star,\alpha^\star,\beta^\star) = f(w^\star) + \sum_{i=1}^K\alpha^\star_ig_i(w^\star)+\sum_{i=1}^M\beta^\star_ih_i(w^\star)\\
-&\le f(w^\star)
-\end{aligned}</script><p>定义：</p>
-<script type="math/tex; mode=display">
-G = f(w^\star) - \theta(\alpha^\star,\beta^\star)\ge0</script><p>$G$叫做原问题与对偶问题的间距。对于某些特定优化问题，可以证明：$G=0$。</p>
-<p>强对偶定理：若$f(w)$为凸函数，且$g(w)=Aw+b,h(w)=Cw+d$，则此优化问题的原问题与对偶问题的间距为$0$。即</p>
-<script type="math/tex; mode=display">
-f(w^\star) = \theta(\alpha^\star,\beta^\star)</script><p>此时我们易得对$\forall i=1\sim K$：</p>
-<ul>
-<li>或者$\alpha^\star_i=0$</li>
-<li>或者$g^{\star}_i(w^\star)=0$</li>
-</ul>
-<p>这被称为<strong>KKT条件</strong>。</p>
-<h3 id="利用对偶问题求解SVM"><a href="#利用对偶问题求解SVM" class="headerlink" title="利用对偶问题求解SVM"></a>利用对偶问题求解SVM</h3><p>我们先复习一下原问题：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\min&\quad\frac{1}{2}||w||^2+C\sum_{i=1}^N\xi_i\\
-&\operatorname{s.t.}\quad &y_i[w^T\phi(x_i)+b]\ge 1-\xi_i\\
-&\quad &\xi_i\ge0
-\end{aligned}</script><p>根据原问题的定义形式，我们将上述问题改写：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\min&\quad\frac{1}{2}||w||^2-C\sum_{i=1}^N\xi_i\\
-&\operatorname{s.t.}&\quad 1+\xi_i-y_i w^T\phi(x_i)-y_ib\le 0\\
-&\quad &\xi_i\le0
-\end{aligned}</script><p>凸函数定义：</p>
-<script type="math/tex; mode=display">
-f(\lambda x_1+(1-\lambda)x_2)\le \lambda f(x_1)+(1-\lambda)f(x_2)</script><p>我们SVM的对偶问题为：<br>最大化：</p>
-<script type="math/tex; mode=display">
-\theta(\alpha,\beta) = \inf_{(w,\xi_i,b)}\{\frac{1}{2}||w||^2-C\sum_{i=1}^N\xi_i+\sum_{i=1}^N\beta_i\xi_i+\sum_{i=1}^N\alpha_i[1+\xi_i-y_i w^T\phi(x_i)-y_ib]\}</script><p>限制条件：</p>
-<ul>
-<li>$\alpha_i\ge 0$</li>
-<li>$\beta_i\ge 0$</li>
-</ul>
-<p>我们要想求得$\theta(\alpha,\beta)$，首先要最优化$w,\xi_i,b$，对$L$函数求偏导：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{\partial L}{\partial w} = 0&\Rightarrow w = \sum_{i=1}^N\alpha_iy_i\phi(x_i)\\
-\frac{\partial L}{\partial \xi_i} = 0&\Rightarrow \beta_i+\alpha_i=C\\
-\frac{\partial L}{\partial b}=0&\Rightarrow \sum_{i=1}^N\alpha_iy_i=0
-\end{aligned}</script><p>将其代入，得到：</p>
-<script type="math/tex; mode=display">
-\theta(\alpha,\beta) = \sum_{i=1}^N\alpha_i-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)</script><p>其中$K(x_i,x_j) = \phi(x_i)^T\phi(x_j)$。</p>
-<p>所以对偶优化问题变为：<br>最大化：</p>
-<script type="math/tex; mode=display">
-\theta(\alpha) = \sum_{i=1}^N\alpha_i-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)</script><p>限制条件：</p>
-<ol>
-<li>$0\le\alpha_i\le C$</li>
-<li>$\sum_{i=1}^N\alpha_iy_i=0$</li>
-</ol>
-<p>这也是一个凸优化问题，解这个问题有一个标准的算法(SMO)算法。</p>
-<p>这样我们就可以求出$\alpha_i,i=1\sim N$，但是我们要求的是$w$和$b$，那么我们应该如何求出$w,b$呢，我们可以用之前得到的$w = \sum_{i=1}^N\alpha_iy_i\phi(x_i)$，但问题是我们并不知道$\phi(x_i)$。</p>
-<p>但是在判断样本属于哪一类的时候我们并不需要知道$w$，假设有测试样本$x$，我们知道：</p>
-<ul>
-<li>若$w^T\phi(x)+b\ge0$，则$y=+1$</li>
-<li>若$w^T\phi(x)+b&lt;0$，则$y=-1$</li>
-</ul>
-<p>而</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-w^T\phi(x) &= \sum_{i=1}^N\alpha_iy_i\phi(x_i)^T\phi(x)\\
-&= \sum_{i=1}^N\alpha_iy_iK(x_i,x)
-\end{aligned}</script><p>但是$b$应该怎么算呢？<br>应用KKT条件，我们有</p>
-<ul>
-<li>要么$\beta_i=0$，要么$\xi_i=0$</li>
-<li>要么$\alpha_i=0$，要么$1+\xi_i-y_iw^T\phi(x_i)-y_ib=0$</li>
-</ul>
-<p>我们取一个$0&lt;\alpha_i<C\Rightarrow \beta_i=C-\alpha_i>0$，</p>
-<p>此时$\beta_i\neq0\Rightarrow\xi_i=0$，因为$\alpha_i\neq0\Rightarrow b = y_i - \sum_{j=1}^N\alpha_jy_jK(x_i,x_j)$。也可以找到所有不等于$0$的$\alpha_i$，求得$b$取平均。</p>
-<h3 id="SMO算法"><a href="#SMO算法" class="headerlink" title="SMO算法"></a>SMO算法</h3><p>最大化：</p>
-<script type="math/tex; mode=display">
-\theta(\alpha) = \sum_{i=1}^N\alpha_i-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)</script><p>限制条件：</p>
-<ol>
-<li>$0\le\alpha_i\le C$</li>
-<li>$\sum_{i=1}^N\alpha_iy_i=0$</li>
-</ol>
-<p>因为我们要优化的变量($\alpha_i$)很多，所以我们每次迭代只选择几个变量进行更新；又因为我们的是有约束的优化问题，所以每次更新可能会破坏我们的约束条件，为了不破坏我们的约束条件，我们每次至少选择两个变量进行优化。因此我们每次选择两个变量来进行优化。</p>
-<h4 id="两个变量二次规划的求解过程"><a href="#两个变量二次规划的求解过程" class="headerlink" title="两个变量二次规划的求解过程"></a>两个变量二次规划的求解过程</h4><ul>
-<li>选择两个变量，其他变量固定</li>
-<li>SMO将对偶问题转化成一系列子问题</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{aligned}
-
-\min _{\alpha_{1}, \alpha_{2}} & W\left(\alpha_{1}, \alpha_{2}\right)=\frac{1}{2} K_{11} \alpha_{1}^{2}+\frac{1}{2} K_{22} \alpha_{2}^{2}+y_{1} y_{2} K_{12} \alpha_{1} \alpha_{2} \\
-
-& -\left(\alpha_{1}+\alpha_{2}\right)+y_{1} \alpha_{1} \sum_{i=3}^{N} y_{i} \alpha_{i} K_{i 1}+y_{2} \alpha_{2} \sum_{i=3}^{N} y_{i} \alpha_{i} K_{i 2} \\
-
-\text { s.t. } & \alpha_{1} y_{1}+\alpha_{2} y_{2}=-\sum_{i=3}^{N} y_{i} \alpha_{i}=\zeta \\
-
-& 0 \leq \alpha_{i} \leq C, i=1,2
-\end{aligned}</script><ul>
-<li>根据约束条件，$\alpha_2$可以表示为$\alpha_1$的函数</li>
-<li>优化问题有解析解</li>
-<li>基于初始可行解$\alpha_1^{old},\alpha_2^{old}$，可以得到$\alpha_1^{new},\alpha_2^{new}$</li>
-</ul>
-<p>两个变量，约束条件用二维空间中的图形表示：<br><img src="https://static01.imgkr.com/temp/fb18fa3a67f14d0eaecf9214ecf952ec.png" alt=""><br>下面首先考虑第一种情况，根据不等式条件$\alpha_2^{new}$的取值范围：</p>
-<script type="math/tex; mode=display">
-    L\le \alpha_2^{new} \le H</script><p>其中</p>
-<script type="math/tex; mode=display">
-L = \max(0,\alpha_2^{old}-\alpha_1^{old})\quad H = \min(C,C+\alpha_2^{old}-\alpha_1^{old})</script><p>同理对于第二种情况，根据不等式条件$\alpha_2^{new}$的取值范围：</p>
-<script type="math/tex; mode=display">
-    L\le \alpha_2^{new} \le H</script><p>其中</p>
-<script type="math/tex; mode=display">
-L = \max(0,\alpha_2^{old}+\alpha_1^{old}-C)\quad H = \min(C,\alpha_2^{old}+\alpha_1^{old})</script><p>下面开始求解，求得的过程为：</p>
-<ul>
-<li>先求沿着约束方向未经剪辑时的$\alpha_2^{new,unc}$</li>
-<li>再求剪辑后的$\alpha_2^{new}$</li>
-</ul>
-<p>我们记<br>$g(x)=\sum_{i=1}^N\alpha_iy_iK(x_i,x)+b$，即我们的判别表达式，令：</p>
-<script type="math/tex; mode=display">
-E_i = g(x_i)-y_i = \left(\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b\right)-y_i</script><p>为输入$x$的预测值和真实输出$y$的差。<br>为了简便，引进记号：</p>
-<script type="math/tex; mode=display">
-v_i = \sum_{j=3}^N\alpha_jy_jK(x_i,x_j) = g(x_i) - \sum_{j=1}^2\alpha_jy_jK(x_i,x_j)-b</script><p>目标函数写成：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-
-W\left(\alpha_{1}, \alpha_{2}\right)=& \frac{1}{2} K_{11} \alpha_{1}^{2}+\frac{1}{2} K_{22} \alpha_{2}^{2}+y_{1} y_{2} K_{12} \alpha_{1} \alpha_{2} \\
-
-&-\left(\alpha_{1}+\alpha_{2}\right)+y_{1} v_{1} \alpha_{1}+y_{2} v_{2} \alpha_{2}
-
-\end{aligned}</script><p>由$\alpha_1y_1 = \zeta-\alpha_2y_2$及$y_i^2=1$，我们得$\alpha_1 = (\zeta-y_2\alpha_2)y_1$，代入上式得到只是$\alpha_2$的函数的目标函数：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-W(\alpha_2) &= \frac{1}{2}K_{11}(\zeta-\alpha_2y_2)^2 + \frac{1}{2}K_{22}\alpha_2^2+y_2K_{12}(\zeta-\alpha_2y_2)\alpha_2\\
-&-(\zeta-\alpha_2y_2)y_1-\alpha_2+v_1(\zeta-\alpha_2y_2)+y_2v_2\alpha_2
-\end{aligned}</script><p>对$\alpha_2$求导并令其等于$0$，得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-
-&\left(K_{11}+K_{22}-2 K_{12}\right) \alpha_{2}=y_{2}\left(y_{2}-y_{1}+\zeta K_{11}-\zeta K_{12}+v_{1}-v_{2}\right) \\
-
-&=y_{2}\left[y_{2}-y_{1}+\zeta K_{11}-\zeta K_{12}+\left(g\left(x_{1}\right)-\sum_{j=1}^{2} y_{j} \alpha_{j} K_{1 j}-b\right)-\left(g\left(x_{2}\right)-\sum_{j=1}^{2} y_{j} \alpha_{j} K_{2 j}-b\right)\right]
-
-\end{aligned}</script><p>将$\zeta=\alpha_1^{old}y_1+\alpha_2^{old}y_2$代入：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-
-\left(K_{11}+K_{22}-2 K 12\right) \alpha_{2}^{n e w, u n c} &\left.=y_{2}\left(\left(K_{11}+K_{22}-2 K_{12}\right) \alpha_{2}^{\text {old }} y_{2}+y_{2}-y_{1}+g\left(x_{1}\right)-g\left(x_{2}\right)\right)\right) \\
-
-&=\left(K_{11}+K_{22}-2 K_{12}\right) \alpha_{2}^{\text {old }}+y_{2}\left(E_{1}-E_{2}\right)
-
-\end{aligned}</script><p>将$\eta = K_{11}+K_{22}-2K_{12}$代入：</p>
-<script type="math/tex; mode=display">
-    \alpha_2^{new,unc} = \alpha_2^{old}+\frac{y_2(E_1-E_2)}{\eta}</script><p>我们之后对解进行剪辑：</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-H,\quad &\alpha_2^{new,unc}>H\\
-\alpha_2^{new,unc},\quad&L\le \alpha_2^{new,unc}\le H\\
-L,\quad& \alpha_2^{new,unc}<L
-\end{cases}</script><p>得到$\alpha_1$的解：</p>
-<script type="math/tex; mode=display">
-\alpha_1^{new} = \alpha_1^{old}+y_1y_2(\alpha_2^{old}-\alpha_2^{new})</script><p>关于KKT条件，我们有：</p>
-<script type="math/tex; mode=display">
-\begin{array}{r}
-
-\alpha_{i}=0 \Leftrightarrow y_{i} g\left(x_{i}\right) \geqslant 1 \\
-
-0<\alpha_{i}<C \Leftrightarrow y_{i} g\left(x_{i}\right)=1 \\
-
-\alpha_{i}=C \Leftrightarrow y_{i} g\left(x_{i}\right) \leqslant 1
-
-\end{array}</script><p>下面我们计算阈值$b$和$E_i$<br>由KKT条件，如果$0&lt;\alpha_1^{new}&lt;C$，则</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^N\alpha_iy_iK_{i1}+b=y_1</script><script type="math/tex; mode=display">
-b_1^{new} = y_1-\sum_{i=3}^N\alpha_iy_iK_{i1}-\alpha_1^{new}y_1K_{11}-\alpha_2^{new}y_2K_{21}</script><script type="math/tex; mode=display">
-E_i = g(x_i)-y_i = \left(\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b\right)-y_i</script><script type="math/tex; mode=display">
-E_1 = \sum_{i=3}^N\alpha_iy_iK_{i1}+\alpha_1^{old}y_1K_{11}+\alpha_2^{old}y_2K_{21}+b^{old}-y_1</script><p>$E_1$的表达式与$b_1^{new}$相结合，得：</p>
-<script type="math/tex; mode=display">
-b_1^{new} = -E_1-y_1K_{11}(\alpha_1^{new}-\alpha_1^{old})-y_2K_{21}(\alpha_2^{new}-\alpha_2^{old})+b^{old}</script><p>同理，如果$0&lt;\alpha_2^{new}&lt;C$，则</p>
-<script type="math/tex; mode=display">
-
-
-\begin{aligned}
-
-&0<\alpha_{2}^{\text {new }}<C \\
-
-&b_{2}^{\text {new }}=-E_{2}-y_{1} K_{12}\left(\alpha_{1}^{\text {new }}-\alpha_{1}^{\text {old }}\right)-y_{2} K_{22}\left(\alpha_{2}^{\text {new }}-\alpha_{2}^{\text {old }}\right)+b^{\text {old }} \\
-
-&E_{i}^{\text {new }}=\sum_{S} y_{j} \alpha_{j} K\left(x_{i}, x_{j}\right)+b^{\text {new }}-y_{i}
-
-\end{aligned}</script><p>如果$\alpha_1^{new},\alpha_2^{new}$同时满足条件$0&lt;\alpha_i^{new}&lt;C$，那么$b_1^{new}=b_2^{new}$。如果$\alpha_1^{new},\alpha_2^{new}$是$0$或者$C$，那么$b_1^{new},b_2^{new}$以及它们之间的数都是符合KKT条件的阈值，这时选择它们的中点作为$b^{new}$。<br>在每次完成两个变量的优化之后，还必须更新对应的$E_i$值，并将它们保存在列表中。$E_i$值的更新要用到$b^{new}$值，以及所有支持向量对应的$\alpha_j$：</p>
-<script type="math/tex; mode=display">
-E_i^{new} = \sum_{S}y_ja_jK(x_i,x_j)+b^{new}-y_i</script><p>其中，$S$是所有支持向量的集合。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62367247">关于此方面的解释</a></p>
-<h4 id="变量的启发式选择"><a href="#变量的启发式选择" class="headerlink" title="变量的启发式选择"></a>变量的启发式选择</h4><p>SMO算法在每个子问题中选择两个变量优化，其中至少一个变量是违反KKT条件的。</p>
-<ol>
-<li>第一个变量的选择：外循环<ol>
-<li>违反KKT条件最严重的样本点</li>
-<li>检验样本点是否满足KKT条件：</li>
-<li><script type="math/tex; mode=display">\begin{array}{r}
-\alpha_{i}=0 \Leftrightarrow y_{i} g\left(x_{i}\right) \geqslant 1 \\ 0<\alpha_{i}<C \Leftrightarrow y_{i} g\left(x_{i}\right)=1 \\ \alpha_{i}=C \Leftrightarrow y_{i} g\left(x_{i}\right) \leqslant 1
-\end{array}</script></li>
-</ol>
-</li>
-</ol>
-<p>该检验是在$\epsilon$范围内进行的。在检验过程中，外层循环首先遍历满足条件$0&lt;\alpha_i&lt;C$的样本点，即在间隔边界上的支持向量点，检验它们是否满足KKT条件，如果这些样本点都满足KKT条件，那么遍历整个训练集，检验他们是否满足KKT条件。</p>
-<ol>
-<li>第二个变量的检查：内循环<ol>
-<li>选择的标准是希望能使目标函数有足够大的变化<ol>
-<li>即对应$|E_1-E_2|$最大</li>
-</ol>
-</li>
-<li>如果内循环通过上述方法找到的点不能使目标函数有足够大的下降，则：遍历间隔边界上的样本点，测试目标函数下降<ol>
-<li>如果下降不大，则遍历所有样本点</li>
-<li>如果依然下降不大，则丢弃外循环点，重新选择</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/138556326">算法实现</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kernal</span>(<span class="params">a, b</span>):</span></span><br><span class="line">    <span class="comment"># 高斯核, s为方差</span></span><br><span class="line">    <span class="keyword">return</span> a.dot(b)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SVM</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,data,label</span>):</span></span><br><span class="line">        self.data = data</span><br><span class="line">        self.label = label</span><br><span class="line">        self.<span class="built_in">len</span> = data.shape[<span class="number">0</span>]</span><br><span class="line">        self.E = np.zeros((self.<span class="built_in">len</span>,<span class="number">1</span>))</span><br><span class="line">        self.alpha = np.random.random((self.<span class="built_in">len</span>,<span class="number">1</span>))</span><br><span class="line">        self.b = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">self,i</span>):</span></span><br><span class="line">        <span class="comment"># 传入索引</span></span><br><span class="line">        s = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(self.<span class="built_in">len</span>):</span><br><span class="line">            s += self.alpha[k]*self.label[k]*kernal(self.data[i,:],self.data[k,:])</span><br><span class="line">        <span class="keyword">return</span> s + self.b</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">error</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 计算E</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(self.<span class="built_in">len</span>):</span><br><span class="line">            E = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(self.<span class="built_in">len</span>):</span><br><span class="line">                E += self.alpha[i]*self.label[i]*kernal(self.data[i,:],self.data[j,:])</span><br><span class="line">            self.E[j] = E + self.b - self.label[j]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bound</span>(<span class="params">self, i,j,alpha_i, alpha_j, C</span>):</span></span><br><span class="line">        <span class="comment"># 传入两个索引，为需要优化的alpha的索引</span></span><br><span class="line">        <span class="comment"># 求解alpha_j的范围</span></span><br><span class="line">        <span class="comment"># C为正则化项系数</span></span><br><span class="line">        <span class="keyword">if</span> self.label[i] != self.label[j]:</span><br><span class="line">            L, H = np.<span class="built_in">max</span>([<span class="number">0</span>, alpha_j-alpha_i]), np.<span class="built_in">min</span>([C, C+alpha_j-alpha_i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            L, H = np.<span class="built_in">max</span>([<span class="number">0</span>, alpha_j+alpha_i-C]), np.<span class="built_in">min</span>([C, alpha_j+alpha_i])</span><br><span class="line">        <span class="keyword">return</span> (L,H)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span>(<span class="params">self, i,j, C</span>):</span></span><br><span class="line">        <span class="comment"># 更新alpha和b</span></span><br><span class="line">        <span class="comment"># 传入索引</span></span><br><span class="line">        eta = kernal(self.data[i,:],self.data[i,:]) + kernal(self.data[j,:],self.data[j,:]) - <span class="number">2</span>*kernal(self.data[i,:],self.data[j,:])</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 下面需要补充逻辑关系</span></span><br><span class="line">        alpha_old_i = self.alpha[i]</span><br><span class="line">        alpha_old_j = self.alpha[j]</span><br><span class="line">        self.alpha[j] = self.alpha[j] + self.label[j]*(self.E[i]-self.E[j])/eta</span><br><span class="line">        L, H = self.bound(i,j,alpha_old_i,alpha_old_j,C)</span><br><span class="line">        <span class="keyword">if</span> self.alpha[j] &gt;= H:</span><br><span class="line">            self.alpha[j] = H</span><br><span class="line">        <span class="keyword">elif</span> self.alpha[j] &lt;= L:</span><br><span class="line">            self.alpha[j] = L</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.alpha[j] = self.alpha[j]</span><br><span class="line">        self.alpha[i] = self.alpha[i] + self.label[i]*self.label[j]*(alpha_old_j-self.alpha[j])</span><br><span class="line">        </span><br><span class="line">        b1 = self.b - self.E[i] - self.label[i]*(self.alpha[i]-alpha_old_i)*kernal(self.data[i,:],self.data[i,:])-self.label[j]*(self.alpha[j]-alpha_old_j)*kernal(self.data[j,:],self.data[i,:])</span><br><span class="line">        b2 = self.b - self.E[j] - self.label[i]*(self.alpha[i]-alpha_old_i)*kernal(self.data[i,:],self.data[j,:])-self.label[j]*(self.alpha[j]-alpha_old_j)*kernal(self.data[j,:],self.data[j,:])</span><br><span class="line">        </span><br><span class="line">        self.b = (b1+b2)/<span class="number">2</span></span><br><span class="line">        self.error()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">smo</span>(<span class="params">self, epsilon, max_iter, C</span>):</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(max_iter):</span><br><span class="line">            I = np.intersect1d(np.argwhere(self.alpha&gt;<span class="number">0</span>),np.argwhere(self.alpha&lt;C))</span><br><span class="line">            d = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> I:</span><br><span class="line">                d.append(np.<span class="built_in">abs</span>(self.label[i]*self.f(i)-<span class="number">1</span>))</span><br><span class="line">            i = np.argmax(np.array(d))</span><br><span class="line">            j = np.argmax(self.E-self.E[i])</span><br><span class="line">            self.update(i,j,C)</span><br><span class="line">        </span><br><span class="line">            ge = np.array([i  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(self.<span class="built_in">len</span>) <span class="keyword">if</span> self.alpha[i]&gt;=<span class="number">1</span>])</span><br><span class="line">            eq = np.array([i  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(self.<span class="built_in">len</span>) <span class="keyword">if</span> self.alpha[i]==<span class="number">1</span>])</span><br><span class="line">            le = np.array([i  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(self.<span class="built_in">len</span>) <span class="keyword">if</span> self.alpha[i]&lt;=<span class="number">1</span>])</span><br><span class="line">            Ge = []</span><br><span class="line">            Eq = []</span><br><span class="line">            Le = []</span><br><span class="line">            <span class="keyword">for</span> ig <span class="keyword">in</span> ge:</span><br><span class="line">                Ge.appned(self.label[ig]*self.f(ig))</span><br><span class="line">            <span class="keyword">for</span> ie <span class="keyword">in</span> eq:</span><br><span class="line">                Eq.append(self.label[ie]*self.f(ie))</span><br><span class="line">            <span class="keyword">for</span> il <span class="keyword">in</span> le:</span><br><span class="line">                Le.append(self.label[il]*self.f(il))</span><br><span class="line">            </span><br><span class="line">            Ge = np.array(Ge)</span><br><span class="line">            Eq = np.array(Eq)</span><br><span class="line">            Le = np.array(Le)</span><br><span class="line">            </span><br><span class="line">            ne = np.<span class="built_in">sum</span>(np.<span class="built_in">abs</span>(Eq-<span class="number">1</span>)&gt;epsilon)</span><br><span class="line">            ng1 = np.<span class="built_in">sum</span>(np.<span class="built_in">abs</span>(Ge-<span class="number">1</span>)&lt;<span class="number">0</span>)</span><br><span class="line">            ng2 = np.<span class="built_in">sum</span>(np.<span class="built_in">abs</span>(Ge-<span class="number">1</span>)&gt;epsilon)</span><br><span class="line">            nl1 = np.<span class="built_in">sum</span>(np.<span class="built_in">abs</span>(Le-<span class="number">1</span>)&gt;<span class="number">0</span>)</span><br><span class="line">            nl2 = np.<span class="built_in">sum</span>(np.<span class="built_in">abs</span>(Le-<span class="number">1</span>)&gt;epsilon)</span><br><span class="line">            <span class="keyword">if</span> (ne+ng1+ng2+nl1+nl2)==<span class="number">0</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        s = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(self.<span class="built_in">len</span>):</span><br><span class="line">            s += self.alpha[k]*self.label[k]*kernal(self.data[k,:],x)</span><br><span class="line">        s = s + self.b</span><br><span class="line">        <span class="keyword">if</span> s &gt;=<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-
+          <p>数学在机器学习中的完美呈现：支持向量机永垂不朽！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/26/SVM%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -633,10 +332,16 @@ E_i^{new} = \sum_{S}y_ja_jK(x_i,x_j)+b^{new}-y_i</script><p>其中，$S$是所�
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-31 22:44:57 / 修改时间：22:54:16" itemprop="dateCreated datePublished" datetime="2021-10-31T22:44:57+08:00">2021-10-31</time>
+              <time title="创建时间：2021-10-31 22:44:57" itemprop="dateCreated datePublished" datetime="2021-10-31T22:44:57+08:00">2021-10-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-22 15:16:39" itemprop="dateModified" datetime="2021-12-22T15:16:39+08:00">2021-12-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -658,238 +363,15 @@ E_i^{new} = \sum_{S}y_ja_jK(x_i,x_j)+b^{new}-y_i</script><p>其中，$S$是所�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="向量空间、基、线性映射"><a href="#向量空间、基、线性映射" class="headerlink" title="向量空间、基、线性映射"></a>向量空间、基、线性映射</h1><h2 id="线性组合、线性独立和秩"><a href="#线性组合、线性独立和秩" class="headerlink" title="线性组合、线性独立和秩"></a>线性组合、线性独立和秩</h2><p>在线性优化问题中，我们经常会遇到线性方程组。例如，考虑求解下列具有三个变量$x_1,x_2,x_2\mathbb{R}$的三个线性方程组：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-x_1 + 2x_2 - x_3 &= 1\\
-2x_1 + x_2 + x_3 &= 2\\
-x_1 - 2x_2 - 2x_3 &= 3
-\end{aligned}</script><p>解决这个问题的一个方法是引入向量$u,v,w$和$b$，为</p>
-<script type="math/tex; mode=display">u=\left(\begin{array}{l}1 \\ 2 \\ 1\end{array}\right) \quad v=\left(\begin{array}{c}2 \\ 1 \\ -2\end{array}\right) \quad w=\left(\begin{array}{c}-1 \\ 1 \\ -2\end{array}\right) \quad b=\left(\begin{array}{l}1 \\ 2 \\ 3\end{array}\right)</script><p>所以我们的线性系统可以写为：</p>
-<script type="math/tex; mode=display">
-x_1u + x_2v + x_3w = b</script><blockquote>
-<p>我们通常将列向量写为$\mathbb{R}^{3\times1}$表示$3$行$1$列，而行向量写作$\mathbb{R}^3$。</p>
-</blockquote>
-<p>下面的公式</p>
-<script type="math/tex; mode=display">
-x_1u + x_2v + x_3w</script><p>其中$u,v,w$为向量并且$x_i\in \mathbb{R}$被称为线性映射。使用这种符号，我们线性系统的解</p>
-<script type="math/tex; mode=display">
-x_1u + x_2v + x_3w</script><p>等价于确定$b$是否可以被写成$u,v,w$的线性组合的形式。<br>如果$u,v,w$是线性独立的，着意味着不存在三元组$(x_1,x_2,x_3)\neq(0,0,0)$使得</p>
-<script type="math/tex; mode=display">
-x_1u + x_2v + x_3w = 0</script><p>可以证明所有属于$\mathbb{R}^{3\times 1}$的向量可以写成$u,v,w$的线性组合。<br>事实上，任何向量$z\in \mathbb{R}^{3\times 1}$可以被唯一地写成下列线性组合的形式：</p>
-<script type="math/tex; mode=display">
-z = x_1u+x_2v+x_3w</script><p>这是因为：</p>
-<blockquote>
-<p>假设</p>
-<script type="math/tex; mode=display">
-z = x_1u + x_2v + x_3w = y_1u+y_2v+y_2w</script><p>移项，得：</p>
-<script type="math/tex; mode=display">
-(y_1-x_1)u + (y_2-x_2)v + (y_3-x_3)w = 0</script><p>通过线性独立，我们得到：</p>
-<script type="math/tex; mode=display">
-y_1-x_1 = y_2-x_2 = y_3-x_3=0</script><p>这意味着$z$只有一种线性组合的表示方法。</p>
-</blockquote>
-<p>但是我们如何确定一些向量是否是线性独立的呢？<br>一个办法是计算数值$\det(u,v,w)$，称作$(u,v,w)$的秩，并检查其是否为零，不为零说明线性独立。<br>我们也可以将我们的线性系统写为矩阵的形式。我们的线性系统以矩阵形式表示为$Ax=b$的观点强调了这样一个事实，即映射$x\mapsto Ax$是一个线性映射。这意味着：</p>
-<script type="math/tex; mode=display">
-A(\lambda x) = \lambda(Ax)</script><p>对于任何$x\in \mathbb{R}^{3\times 1}$和$\lambda \in \mathbb{R}$，并且</p>
-<script type="math/tex; mode=display">
-A(u+v) = Au + Av</script><p>对于任何$u,v\in \mathbb{R}^{3\times 1}$。我们可以将矩阵$A$看作是表达从$\mathbb{R}^{3\times1}$到$\mathbb{R}^{3\times1}$的线性映射并且求解系统$Ax=b$相当于确定$b$是否为此线性映射的像(image)。<br>考虑一个$3\times3$的矩阵$A$，</p>
-<script type="math/tex; mode=display">
-A =\left(\begin{array}{lll}a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33}\end{array}\right)</script><p>它的列是三个向量，表示为$A^1,A^2,A^3$，给定任意向量$x = (x_1,x_2,x_3)$，我们将乘积$Ax$定义为线性组合的形式</p>
-<script type="math/tex; mode=display">
-
-
-A x=x_{1} A^{1}+x_{2} A^{2}+x_{3} A^{3}=\left(\begin{array}{l}
-
-a_{11} x_{1}+a_{12} x_{2}+a_{13} x_{3} \\
-
-a_{21} x_{1}+a_{22} x_{2}+a_{23} x_{3} \\
-
-a_{31} x_{1}+a_{32} x_{2}+a_{33} x_{3}
-
-\end{array}\right)</script><p>。常见的模式是，$Ax$的第$i$个坐标由行向量($A$的第$i$行)乘以列向量$x$的某种称为内积的乘积给出：</p>
-<script type="math/tex; mode=display">
-\left(\begin{array}{lll}a_{i 1} & a_{i 2} & a_{i 3}\end{array}\right) \cdot\left(\begin{array}{l}x_{1} \\ x_{2} \\ x_{3}\end{array}\right)=a_{i 1} x_{1}+a_{i 2} x_{2}+a_{i 3} x_{3}</script><p>内积非常重要。首先，我们量化</p>
-<script type="math/tex; mode=display">
- ||x||_2= \sqrt{x\cdot x} = (x_1^2+\cdots+x_n^2)^{1/2}</script><p>为向量长度的推广，称为欧几里得范数，或者$\ell^2$范数。另外，可以证明以下不等式</p>
-<script type="math/tex; mode=display">
-|x\cdot y| \le ||x||\cdot||y||</script><p>如果$x,y\neq0$，比值$(x\cdot y)/(||x||\cdot||y||)$可以被看作是角度的余弦值。</p>
-<p>保持内积不变的矩阵(正交矩阵)$Q$，即对所有的$x,y\in \mathbb{R}^n, <Qx, Qy>=<x,y>$也有着非常重要的作用。它们可以被认为是广义的旋转。 ^zkwecp</p>
-<p>返回到矩阵，如果$A$为一个包含$n$列$A^1,\cdots,A^n\in \mathbb{R}^m$的$m\times n$矩阵，并且$B$为一个包含$p$列$B^1,\cdots,B^p\in \mathbb{R}^n$的$n\times p$矩阵，我们可以生成$p$个向量：  ^614093</p>
-<script type="math/tex; mode=display">
-AB^1,\cdots,AB^p</script><p>这$p$个向量构成$m\times p$矩阵$AB$，其第$j$列为$AB^j$。但是我们知道$AB^j$的第$i$个坐标是$A$的第$i$行和$B$的第$j$列的内积：</p>
-<script type="math/tex; mode=display">
-\left(\begin{array}{llll}a_{i1}&a_{i2}&\cdots&a_{in}\end{array}\right)\cdot\left(\begin{array}{c}b_{1j}\\b_{2j}\\\vdots\\b_{nj}\end{array}\right) = \sum_{k=1}^na_{ik}b_{kj}</script><p>所以我们定义了矩阵的乘积</p>
-<script type="math/tex; mode=display">
-(AB)_{ij} = \sum_{k=1}^na_{ik}b_{kj}</script><p>假设$A$是一个$n\times n$矩阵并且我们想要求解线性系统</p>
-<script type="math/tex; mode=display">
-Ax = b</script><p>其中$b\in \mathbb{R}^n$。假设我们可以找到一个$n\times n$的矩阵$B$使得</p>
-<script type="math/tex; mode=display">
-BA^i = e_i,\quad i=1,\cdots,n</script><p>其中$e_i = (0,\cdots,0,1,0,\cdots,0)$只有第$i$个位置的数据为$1$。我们称$n\times n$矩阵</p>
-<script type="math/tex; mode=display">
-
-
-I_{n}=\left(\begin{array}{cccccc}1 & 0 & 0 & \cdots & 0 & 0 \\ 0 & 1 & 0 & \cdots & 0 & 0 \\ 0 & 0 & 1 & \cdots & 0 & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & 0 & \cdots & 1 & 0 \\ 0 & 0 & 0 & \cdots & 0 & 1\end{array}\right)</script><p>为单位矩阵，它的第$i$列为$e_i$，则上面等价于</p>
-<script type="math/tex; mode=display">
-BA = I_n</script><p>如果$Ax = b$，在等式的两边左乘以$B$，我们有</p>
-<script type="math/tex; mode=display">
-B(Ax) = Bb</script><p>因为$B(Ax) = (BA)x = I_nx = x$，因此我们有</p>
-<script type="math/tex; mode=display">
-x = Bb</script><p>矩阵$B$为矩阵$A$的逆，常被表示为$A^{-1}$。很容易证明存在唯一的矩阵使得：</p>
-<script type="math/tex; mode=display">
-AA^{-1} = A^{-1}A = I_n</script><p>如果一个方阵有逆矩阵，则说明他是可逆或者非奇异的，反之为奇异的。<br>总之，如果$A$是一个可逆方阵，则线性系统$Ax = b$有唯一解$x=A^{-1}b$。但是在实践中，这并不是求解线性系统的一个很好的方法，因为计算$A^{-1}$的代价太大了。一个求解线性系统的实用的方法是高斯消去。其他的求解线性系统$Ax = b$的实用的方法利用$A$的因式分解(QR分解，SVD分解)，用到下面定义的正交矩阵的概念。<br>给定一个$m\times n$的矩阵$A=(a_{kl})$，$n\times m$矩阵$A^T = (a_{ij}^T)$的第$i$行是$A$的第$i$列，这意味着$a_{ij}^T=a_{ji},i=1,\cdots,n,\quad j=1,\cdots,m$称为$A$的转置。一个$n\times n$矩阵$Q$使得</p>
-<script type="math/tex; mode=display">
-QQ^T = Q^TQ = I_n</script><p>被称为正交矩阵。正交矩阵$Q$的逆$Q^{-1}$等于其转置$Q$。正交矩阵具有非常重要的作用。在几何上，它们对应于保持长度不变的线性变换。线性代数的一个重要的结果表明，每个$m\times n$矩阵$A$都可以表示为：</p>
-<script type="math/tex; mode=display">
-A = V\Sigma U^T</script><p>其中$V$是一个$m\times m$的正交矩阵，$U$是一个$n\times n$的正交矩阵，$\Sigma$是一个$m\times n$的矩阵，其非零项为非负对角线项$\sigma_1\ge \sigma_2\ge \cdots\ge\sigma_p$，其中$p = \min(m,n)$，称为$A$的奇异值。分解$A = V\Sigma U^T$被称为$A$的奇异值分解，或SVD。<br>SVD分解可以用来”求解”线性系统$Ax=b$其中$A$为一个$m\times n$矩阵，甚至当此系统无解的时候。这个在公式的数量大于变量的数量的情况下发生($m&gt;n$)，这种情况下系统被称为超定的。<br>当然并不存在奇迹使一个无法解决的系统有解。但是我们可以寻找一个好的近似解，即最小化误差$Ax-b$的某个度量方法的向量$x$。我们可以使用误差的平方欧几里得范数$||Ax-b||_2^2$。这个度量是可导的，并且存在唯一的向量$x^+$最小化$||Ax-b||_2^2$。此外，$x^+$由表达式$x^+=A^+b$给出，其中$A^+$为$A$的伪逆，并且$A^+$可以由$A$的SVD分解$A = V\Sigma U^T$计算。事实上，$A^+=U\Sigma^+V^T$，其中$\Sigma^+$是通过将$\Sigma$的所有非零奇异值变为$\sigma_i^{-1}$，零值不变并转置。<br>除了寻找使欧几里得范数$||Ax-b||_2^2$最小的向量外，我们可以添加一个惩罚项$K||x||_2^2(K&gt;0)$来最小化$||Ax-b||_2^2+K||x||_2^2$。这种方法被称为岭回归。事实证明，存在唯一的极小化$x^+=(A^TA+KI_n)^{-1}A^Tb$。<br>另一种方法是用$K||x||_1$替换惩罚项$K||x||_2^2$，其中$||x||_1=|x_1|+\cdots+|x_n|$($x$的$\ell^1$范数)。值得注意的是，使$||Ax-b||_2^2+K||x||_1$最小的$x$为稀疏的，这意味着$x$的很多元素是零。这种方法被称为laoss。<br>在现实世界中，线性代数被证明非常有效的另一个很好的例子是数据压缩问题，也就是说，使用小得多的存储量来表示非常大的数据集。<br>一般数据集表示为一个$m\times n$的矩阵$A$其中每一行表示一个$n$维数据点并且一般$m\ge n$。在大多数的应用中，数据不是独立的因此$A$的秩比$\min(m,n)$小的多，并且低秩分解的目标是将$A$分解为两个矩阵$B$和$C$，其中$B$为$m\times k$矩阵，$C$为$k\times n$矩阵，$k\ll\min(a,b)$：</p>
-<script type="math/tex; mode=display">
-\left(\begin{array}{c}A \\ m \times n\end{array}\right)=\left(\begin{array}{c}B \\ m \times k\end{array}\right)\left(\begin{array}{c}C \\ k \times n\end{array}\right)</script><p>现在要找到如上所述的精确因式分解通常成本太高，所以我们寻找一个低秩矩阵$A^{\prime}$，它是$A$的“好”近似值。为了使这一陈述精确，我们需要定义一种机制来确定两个矩阵的距离。这可以使用矩阵范数来完成。我们的目标是找到一个低秩矩阵$A^{\prime}$来最小化范数</p>
-<script type="math/tex; mode=display">
-||A-A^{\prime}||^2</script><p>在秩最大为$k$的矩阵$A^{\prime}$上。</p>
-<h2 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h2><h3 id="群"><a href="#群" class="headerlink" title="群"></a>群</h3><p>一个实向量空间是具有两种运算的集合$E$：$+:E\times E\rightarrow E$和$\cdot:\mathbb{R}\times E\rightarrow E$，称为加法和数乘法，并且满足一些简单的性质。首先，加法下的$E$必须是可交换的。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注意，向量空间不仅是代数对象；它们也是几何对象。</span><br></pre></td></tr></table></figure><br>定义：<br>群是具有二元运算$\cdot:G\times G\rightarrow G$的集合$G$，它将元素$a\cdot b\in G$与每一对元素$a,b\in G$相关联，并且具有如下性质：满足结合律、有一个单位元$e\in G$，并且$G$中的每个元素都有逆元。即满足下列三条性质：</p>
-<ol>
-<li>$a\cdot(b\cdot c) = (a\cdot b)\cdot c$</li>
-<li>$a\cdot e = e\cdot a = a$</li>
-<li>对于每一个$a\in G$，存在$a^{-1}\in G$使得$a\cdot a^{-1}=a^{-1}\cdot a = e$</li>
-</ol>
-<p>一个群是可交换的如果：</p>
-<script type="math/tex; mode=display">
-a\cdot b = b\cdot a</script><p>具有运算$\cdot:M\times M\rightarrow M$的集合$M$，并且元素$e$只满足条件1和条件2，被称为一个幺半群。例如，集合$\mathbb{N} = \{0,1,\cdots,n,\cdots\}$是以$0$为单位元的加法幺半群，但不是群。</p>
-<p>群的例子</p>
-<blockquote>
-<p>这个群没看懂什么意思：</p>
-<p>给定任意非空集$S$，双射集$f:S\rightarrow S$，也称为$S$的置换，是函数合成下的群。单位元为单位函数$\operatorname{id}_S$。只要$S$中有两个以上的元素，这个群就不是交换群。</p>
-</blockquote>
-<p>具有实或复数元素的$n\times n$矩阵集合是矩阵加法下的交换群，单位元为零矩阵。符号表示为$\mathrm{M}_n(\mathbb{R})$或者$\mathrm{M}_n(\mathbb{C})$。</p>
-<p>具有实数或复数元素的$n\times n$可逆矩阵集合是矩阵乘法下的群，单位元为单位矩阵$I_n$。这个群被称为一般线性群，通常用$\mathbf{GL}(n,\mathbb{R})$或者$\mathbf{GL}(n,\mathbb{C})$表示。</p>
-<p>具有实数或复数元素并且行列式为$+1$的$n\times n$可逆矩阵的集合矩阵乘法下的群，单位元为单位矩阵$I_n$。这个群被称为特殊线性群并且用$\mathbf{SL}(n,\mathbb{R})$或$\mathbf{SL}(n,\mathbb{C})$表示。</p>
-<p>具有实数元素并且满足$RR^T = R^TR = I_n$的并且行列式为$+1$的可逆矩阵集合为矩阵乘法下的群，被称为特殊正交群，用符号$\mathbf{SO}(n)$表示。它与$\mathbb{R}$上的旋转相对应。</p>
-<p>给定开区间$(a,b)$和连续函数：$f:(a,b)\rightarrow \mathbb{R}$的集合$\mathcal{C}(a,b)$是一个运算$f+g$下的交换群：</p>
-<script type="math/tex; mode=display">
-(f+g)(x) = f(x) + g(x)</script><p>通常用$+$表示交换群$G$的运算，在这种情况下，元素$a^{-1}$的逆用$-a$表示。</p>
-<p>群的单位元是唯一的。事实上，我们可以证明一个更一般的命题：</p>
-<p>命题：如果一个二元运算：$\cdot:M\times M\rightarrow M$为结合的并且$e^{\prime}$为左单位元，$e^{\prime\prime}$为右单位元，这意味着：</p>
-<script type="math/tex; mode=display">
-e^{\prime}\cdot a = a\quad \forall a\in M</script><p>并且</p>
-<script type="math/tex; mode=display">
-a\cdot e^{\prime\prime} = a\quad \forall a\in M</script><p>则</p>
-<script type="math/tex; mode=display">
-e^{\prime} = e^{\prime\prime}</script><blockquote>
-<p>如果我们令$a = e^{\prime\prime}$，则</p>
-<script type="math/tex; mode=display">
-e^{\prime}\cdot e^{\prime\prime} = e^{\prime\prime}</script><p>并且令$a = e^{\prime}$，我们有</p>
-<script type="math/tex; mode=display">
-e^{\prime}\cdot e^{\prime\prime}</script><p>因此</p>
-<script type="math/tex; mode=display">
-e^{\prime} = e^{\prime}\cdot e^{\prime\prime} = e^{\prime\prime}</script></blockquote>
-<p>命题：在一个单位元为$e$的幺半群$M$中，如果元素$a\in M$有左逆$a^{\prime}\in M$和右逆$a^{\prime\prime}\in M$，则$a^{\prime} = a^{\prime\prime}$。</p>
-<blockquote>
-<script type="math/tex; mode=display">
-(a^{\prime}\cdot a)\cdot a^{\prime\prime} = e\cdot a^{\prime\prime} = a^{\prime\prime}</script><script type="math/tex; mode=display">
-a^{\prime}\cdot (a\cdot a^{\prime\prime}) = a^{\prime\prime}\cdot e = a^{\prime}</script><p>所以</p>
-<script type="math/tex; mode=display">
-a^{\prime} = a^{\prime\prime}</script></blockquote>
-<h3 id="环"><a href="#环" class="headerlink" title="环"></a>环</h3><p>向量空间是具有标量乘法$\cdot:K\times E\rightarrow E$的交换群，它允许$K$中的元素对$E$的向量进行重新缩放。集合$K$本身是一个称为域的代数结构。域是环的一种特殊的结构。下面我们先介绍环。</p>
-<p>环的定义：环是具有两种运算$+:A\times A\rightarrow A$(加法)和$*:A\times A\rightarrow A$(乘法)的集合$A$，并满足下列性质：</p>
-<ol>
-<li>$A$是加法上的交换群</li>
-<li>$*$是可结合的并且有单位元$1\in A$</li>
-<li>$*$对于$+$是满足分配律的</li>
-</ol>
-<p>加法的单位元用$0$表示，$a$的加法逆元用$-a$表示。具体地，环具有如下性质：</p>
-<ol>
-<li>$a+(b+c) = (a+b)+c$：加法结合律</li>
-<li>$a+b = b+a$：加法交换律</li>
-<li>$a + 0 = 0 + a$：零</li>
-<li>$a + (-a) = (-a) + a = 0$：加法逆元</li>
-<li>$a<em>(b</em>c) = (a<em>b)</em>c$：乘法结合律</li>
-<li>$a<em>1 = 1</em>a=a$：乘法单位元</li>
-<li>$(a+b)<em>c = a</em>b + b*c$：乘法分配律</li>
-<li>$a<em>(b+c) = a</em>b+a*c$：乘法分配律</li>
-</ol>
-<p>环$A$是交换的如果</p>
-<script type="math/tex; mode=display">
-a*b = b*a\quad \forall a,b\in A</script><p>我们还能推出它的两条性质：$0\cdot \alpha = \alpha\cdot 0=0,(-\alpha)\cdot v = \alpha\cdot(-v)=-(\alpha v)$</p>
-<blockquote>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a*0 &= 0*a = 0\\
-a*(-b)&= (-a)*b = -(a*b)
-\end{aligned}</script><script type="math/tex; mode=display">
-a*0 = a*(0+0) = a*0 + a*0\rightarrow a*0=0</script><p>对于第二个性质假设$\forall a,b\in A$</p>
-<script type="math/tex; mode=display">
-a*(-b) + a*b = a*(b+(-b)) = a*0 = 0</script><script type="math/tex; mode=display">
-(-a)*b + a*b = ((-a)+a)*b = 0*b = 0</script><p>所以$(-a)<em>b$和$a</em>(-b)$都为$ab$的加法逆元即为$-ab$</p>
-</blockquote>
-<p>上式意味着如果$1=0$，则$a=0,\forall a\in A$，那么$A = \{0\}$。环$A=\{0\}$被称为<strong>平凡环</strong>。$1\neq0$的环被称为非平凡环。</p>
-<h3 id="域"><a href="#域" class="headerlink" title="域"></a>域</h3><p>域是一个交换环$K$，满足$K-\{0\}$是乘法下的群。</p>
-<p>定义：集合$K$是一个域如果它是满足下列性质的环：</p>
-<ol>
-<li>$0\neq1$</li>
-<li>$K^*=K-\{0\}$是乘法下的群</li>
-<li>$*$是交换的</li>
-</ol>
-<p>如果只满足1和2但是不满足3我们称其为<strong>斜域</strong>或非交换域。</p>
-<h3 id="向量空间-1"><a href="#向量空间-1" class="headerlink" title="向量空间"></a>向量空间</h3><p>定义<br>一个实向量空间是向量集合$E$，集合$E$上有两个运算：$+:E\times E\rightarrow E$(称为向量加法)和$\cdot:\mathbb{R}\times E\rightarrow E$(数乘法)并满足下列条件，对于$\alpha,\beta\in \mathbb{R}$和$u,v\in E$：</p>
-<ol>
-<li>$E$为加法上的交换群，单位元为$0$</li>
-<li>$\alpha\cdot(u+v) = (\alpha\cdot u)+(\alpha\cdot v)$</li>
-<li>$(\alpha+\beta)\cdot u = (\alpha\cdot u)+(\beta\cdot u)$</li>
-<li>$(\alpha*\beta)\cdot u = \alpha\cdot(\beta\cdot u)$</li>
-<li>$1\cdot u = u$</li>
-</ol>
-<p>从上面的性质我们可以推出：$\alpha$</p>
-<p>其中$*$表示$\mathbb{R}$上的乘法。</p>
-<blockquote>
-<p>对于任何$u\in E$和任何$\lambda\in E$，如果$\lambda \neq 0$并且$\lambda\cdot u=0$，则$u=0$。</p>
-<p>事实上，因为$\lambda\neq0$，它有乘法逆元$\lambda^{-1}$，因此从$\lambda\cdot u=0$，我们有</p>
-<script type="math/tex; mode=display">
-\lambda^{-1}\cdot(\lambda\cdot u) = \lambda^{-1}\cdot 0</script><p>但是，我们可以得到$\lambda^{-1}\cdot0=0$，所以</p>
-<script type="math/tex; mode=display">
-\lambda^{-1}\cdot(\lambda\cdot u) = (\lambda^{-1}\lambda)\cdot u = 1\cdot u = u</script><p>所以$u=0$。</p>
-</blockquote>
-<p>向量空间的一个非常重要的例子是两个向量空间之间的线性映射集。令$X$为一个非空集合并且$E$为一个向量空间。所有函数$f:X\rightarrow E$的集合可以构成如下向量空间：给定两个任意函数$f:X\rightarrow E$和$g:X\rightarrow E$，令$(f+g):X\rightarrow E$定义为</p>
-<script type="math/tex; mode=display">
-(f+g)(x) = f(x)+g(x)</script><p>并且对于任何$\lambda\in \mathbb{R}$，令$\lambda f:X\rightarrow E$定义为</p>
-<script type="math/tex; mode=display">
-(\lambda f)(x) = \lambda f(x)</script><p>。</p>
-<h2 id="索引族；求和符号-sum-i-in-I-a-i"><a href="#索引族；求和符号-sum-i-in-I-a-i" class="headerlink" title="索引族；求和符号$\sum_{i\in I}a_i$"></a>索引族；求和符号$\sum_{i\in I}a_i$</h2><p>给定一个集合$A$，回想一下序列是一个有序的$n$元组$(a_1,\cdots,a_n)\in A^n$，其元素来自于$A$，对于某些自然数$n$。序列的元素不需要不同并且顺序是很重要的。例如，$(a_1,a_2,a_1)$和$(a_2,a_1,a_1)$是$A^3$上两个不同的序列。它们的基本集合是$\{a_1,a_2\}$。<br>我们刚才定义的是<strong>有限</strong>序列，这可以被看作是从$\{1,2,\cdots,n\}$到集合$A$的函数，序列$(a_1,\cdots,a_n)$的第$i$个元素是$i$在此函数下的象。这一观点是非常非常有用的，因为它允许我们将有限序列定义为函数：$s:\mathbb{N}\rightarrow A$。但是，我们为什么要把自己限制在像$\{1,2,\cdots\}$或$\mathbb{N}$这样的索引集内呢？<br>索引集的主要作用是对每个元素进行唯一标记，尽管方便，但标记的顺序并不重要。<br>定义：给定集合$A$，$A$中元素的一个$I-$索引集为一个函数$a:I\rightarrow A$，其中$I$是可以被看作索引集的任何集合。因为函数$a$由它的图所确定：</p>
-<script type="math/tex; mode=display">
-\{(i,a(i))|i\in I\}</script><p>族$a$可以被看作对$a=\{(i,a(i))|i\in I\}$的集合。为了符号上的简单我们用$a_i$表示$a(i)$，用$(a_i)_{i\in I}$表示族$a=\{(i,a(i))|i\in I\}$。</p>
-<p>如果索引集合$I$为完全有序的，族$(a_i)_{i\in I}$常被称为$I-$序列。有趣的是，集合$A$可以被看作$A-$索引族$\{(a,a)|a\in I\}$对应于单位函数。</p>
-<p>我们也需要注意一个问题，那就是定义形式$\sum_{i\in I}a_i$的和，其中$I$是任何有限的索引集并且$(a_i)_{i\in I}$为具有二元运算$+:A\times A\rightarrow A$的一些集合$A$中的一族元素，并且$+$是结合和交换的。</p>
-<p>问题是$+$运算只告诉我们如何去计算两个元素之间的$a_1+a_2$，没有告诉我们如何进行两个元素以上的运算。我们要做的是通过序列来定义$a_1+a_2+a_3$，每一步包含两个元素。并且如果$+$是结合和交换的，很冥想$\sum_{i\in I}a_i$的和并不依赖于运算的顺序。</p>
-<p>首先我们定义和$\sum_{i\in I}a_i$，其中$I$为有限不同的自然数的序列，写作$I=(i_1,\cdots,i_m)$。如果$I=(i_1,\cdots,i_m)$其中$m\ge2$，我们用$I-\{i_1\}$表示序列$(i_2,\cdots,i_m)$。我们对$I$的大小$m$进行归纳。令</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\sum_{i\in I}a_i&=a_{i1},\quad \text{if }m=1\\
-\sum_{i\in I}a_i &= a_{i1}+\left(\sum_{i\in I-\{i_1\}}a_i\right),\quad \text{if }m>1
-\end{aligned}</script><p>例如，如果$I=(1,2,3,4)$，我们有</p>
-<script type="math/tex; mode=display">
-\sum_{i\in I}a_i = a_1 + (a_2+(a_3+a_4))</script><p>如果$+$不满足结合律的话，那么不同组的划分将得到不同的答案。</p>
-<p>但是，如果$+$是结合的，只要元素的顺序保持不变，则$\sum_{i\in I}a_i$不依赖于组的划分。例如，如果$I=(1,2,3,4,5)$，$J_1=(1,2)$和$J_2=(3,4,5)$，我们希望</p>
-<script type="math/tex; mode=display">
-\sum_{i\in I}a_i = \left(\sum_{j\in J_1}a_j\right) + \left(\sum_{j\in J_2}a_j\right)</script><p>这个是成立的，因为我们有以下性质。</p>
-<p>性质：给定任何具有结合二元运算$+:A\times A\rightarrow A$的非空集合$A$，对于任何具有不同自然数的非空有限序列$I$和对于将$I$分为$p$个非空序列$I_{k_1},\cdots,I_{k_p}$的任何分割，对于具有不同自然数的非空序列$K=(k_1,\cdots,k_p)$，使得$k_i&lt;k_j$暗示$\alpha&lt;\beta$对于所有$\alpha\in I_{k_i}$和所有$\beta\in I_{k_j}$，对于$A$中元素$(a_i)_{i\in I}$的每一个序列，我们有：</p>
-<script type="math/tex; mode=display">
-\sum_{\alpha\in I}a_{\alpha} = \sum_{k\in K}(\sum_{\alpha\in I_k}a_{\alpha})</script><p>证明：我们对大小为$n$的$I$进行归纳。<br>如果$n=1$，则我们一定有$p=1$并且$I_{k1}=I$，因此性质一定成立。<br>之后，假设$n&gt;1$。如果$p=1$则$I_{k1}=I$并且公式是容易解决的，因此假设$p\ge2$，并且令$J=(k_2,\cdots,k_p)$。这样有两种情况：<br>情况1：序列$I_{k_1}$有单个元素，为$\beta$，为$I$的第一个元素。在这种情况下，$C$表示$I$去除掉第一个元素$\beta$后的序列。通过定义：</p>
-<script type="math/tex; mode=display">
-\sum_{\alpha\in I}a_{\alpha} = a_{\beta} + \left(\sum_{\alpha\in C}a_{\alpha}\right)</script><p>和</p>
-<script type="math/tex; mode=display">
-\sum_{k\in K}\left(\sum_{\alpha\in I_k}a_{\alpha}\right) = a_{\beta}+\left(\sum_{j\in J}\left(\sum_{\alpha\in I_j}a_{\alpha}\right)\right)</script><p>因为$|C|=n-1$，通过归纳法的假设，我们有：</p>
-<script type="math/tex; mode=display">
-\left(\sum_{\alpha\in C}a_{\alpha}\right)= \sum_{j\in J}\left(\sum_{\alpha\in I_j}a_{\alpha}\right)</script><p>这就证明了上述情况。</p>
-<p>情况2：序列$I_{k_1}$至少有两个元素。在这种情况下，令$\beta$为$I$的第一个元素(也是$I_{k_1}$的)，令$I^{\prime}$为去除它的第一个元素$\beta$后的序列；$I^{\prime}_{k_1}$为$I_{k_1}$去除$\beta$后的序列，并且令$I^{\prime}_{k_i}=I_{k_i},i=2,\cdots,p$。序列$I^{\prime}$有$n-1$个元素，因此将归纳假设应用到$I^{\prime}$和$I^{\prime}_{k_i}$，我们得到：</p>
-<script type="math/tex; mode=display">
-\sum_{\alpha\in I^{\prime}}a_{\alpha} = \sum_{k\in K}\left(\sum_{\alpha\in I^{\prime}_k}a_{\alpha}\right) = \left(\sum_{\alpha\in I^{\prime}_{k_1}}a_{\alpha}\right)+\sum_{j\in J}\left(\sum_{\alpha\in I_j}a_{\alpha}\right)</script><p>如果我们把左边加到$\alpha_{\beta}$上，通过定义我们得到：</p>
-<script type="math/tex; mode=display">
-\sum_{\alpha\in I}a_{\alpha}</script><p>如果我们把右边加到$a_{\beta}$上，使用结合性和索引和的定义：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a_{\beta}+\left(\left(\sum_{\alpha \in I_{k_{1}}^{\prime}} a_{\alpha}\right)+\left(\sum_{j \in J}\left(\sum_{\alpha \in I_{j}} a_{\alpha}\right)\right)\right) \\
-&=\left(a_{\beta}+\left(\sum_{\alpha \in I_{k_{1}}^{\prime}} a_{\alpha}\right)\right)+\left(\sum_{j \in J}\left(\sum_{\alpha \in I_{j}} a_{\alpha}\right)\right) \\
-&=\left(\sum_{\alpha \in I_{k_{1}}} a_{\alpha}\right)+\left(\sum_{j \in J}\left(\sum_{\alpha \in I_{j}} a_{\alpha}\right)\right)=\sum_{k \in K}\left(\sum_{\alpha \in I_{k}} a_{\alpha}\right)
-\end{aligned}</script><p>得证。<br>如果$I=(1,\cdots,n)$，我们用$\sum_{i=1}^n$代替$\sum_{i\in I}a_i$。因为$+$是结合的，上述性质证明和$\sum_{i\in I}a_i$与元素的分组无关，这说明了符号$a_1+\cdots+a_n$的正确性(没有括号)。<br>如果我们假设我们$A$上的结合的二元运算符是交换的，那么我们可以证明和$\sum_{i\in I}a_i$不依赖于索引集$I$的顺序。</p>
-
+          <p>来自机器学习中的线性代数第一章：《向量空间、基、线性映射》</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/31/Linear-algebra-in-cv/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -934,10 +416,16 @@ a_{\beta}+\left(\left(\sum_{\alpha \in I_{k_{1}}^{\prime}} a_{\alpha}\right)+\le
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-31 16:22:23 / 修改时间：16:34:45" itemprop="dateCreated datePublished" datetime="2021-10-31T16:22:23+08:00">2021-10-31</time>
+              <time title="创建时间：2021-10-31 16:22:23" itemprop="dateCreated datePublished" datetime="2021-10-31T16:22:23+08:00">2021-10-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-22 15:23:24" itemprop="dateModified" datetime="2021-12-22T15:23:24+08:00">2021-12-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -959,34 +447,15 @@ a_{\beta}+\left(\left(\sum_{\alpha \in I_{k_{1}}^{\prime}} a_{\alpha}\right)+\le
     <div class="post-body" itemprop="articleBody">
 
       
-          
-
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;"><iframe src="//player.bilibili.com/player.html?aid=933642480&bvid=BV1YT4y1o727&cid=428541775&page=2" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
-height: 100%; left: 0; top: 0;"> </iframe></div>
-
-
-<h2 id="认识时间复杂度"><a href="#认识时间复杂度" class="headerlink" title="认识时间复杂度"></a>认识时间复杂度</h2><p>常数时间的操作：一个操作如果跟数据量没有关系，每次都是固定时间内完成的操作，叫做常数操作。<br>时间复杂度为一个算法流程中，常数操作数量的质量，常用$O$来表示。具体来说，只要高阶项，不要低阶项，也不要高阶项的系数。剩下的部分记为$f(N)$，那么时间复杂度为$O(f(N))$。</p>
-<h2 id="对数器"><a href="#对数器" class="headerlink" title="对数器"></a>对数器</h2><p>有一个你想要测的方法$a$<br>实现一个绝对正确但是复杂度不好的方法$b$<br>实现一个随机样本产生器<br>实现比对的方法<br>把方法$a$和方法$b$比对很多次来验证方法$a$是否正确<br>如果有一个样本使得比对出错，打印样本分析是哪个方法出错<br>当样本数量很多时比对测试仍然正确，可以确定方法$a$已经正确</p>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>先比较1和2位置的数，如果1大于2则位置交换，再比较2和3位置的数，以此类推，每进行一次都将最大的数放在最后一位；第二次循环的时候就不用管最后一位了，以此类推。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bubble</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> end = arr.length-<span class="number">1</span>; end &gt; <span class="number">0</span>; end--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; end; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[i] &gt; arr[i+<span class="number">1</span>]) &#123;</span><br><span class="line">                    swap(arr, i, i+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>我们首先从0开始到$N-1$，找最小的数的下标并与$0$位置的数交换，只有再从$1$开始，找到从$1$到$N-1$的最小数的下标与$1$交换，以此类推。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Selection</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length-<span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> minindex = i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i; j &lt; arr.length; j++) &#123;</span><br><span class="line">                minindex = arr[j] &lt; arr[minindex] ? j : minindex;</span><br><span class="line">            &#125;</span><br><span class="line">            swap(arr, i, minindex);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>我们首先认为第$0$位置的数是自己排好的，然后再看$0\sim1$位置的数，如果$0$位置的数大于$1$位置的数则交换，现在$0\sim1$位置的数是排好的，之后看$0\sim2$位置的数，用$2$位置与$1$位置的数比较，$1$位置数大于$2$位置数交换，否则不交换；以此类推。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InsertionSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i-<span class="number">1</span>; j&gt;=<span class="number">0</span> &amp;&amp; arr[j] &gt; arr[j + <span class="number">1</span>]; j--) &#123;</span><br><span class="line">                swap(arr, j, j+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>现在假设我们用递归函数来返回数组的最大值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetMaxRe</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMax</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (L==R) &#123;</span><br><span class="line">            <span class="keyword">return</span> arr[L];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = (L+R)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> maxLeft = getMax(arr, L, mid);</span><br><span class="line">        <span class="keyword">int</span> maxRight = getMax(arr, mid+<span class="number">1</span>, R);</span><br><span class="line">        <span class="keyword">return</span> Math.max(maxLeft, maxRight);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">        System.out.println(getMax(arr, <span class="number">0</span>, arr.length-<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>时间复杂度为$O(N\log N)$，额外空间复杂度为$O(N)$。<br>步骤：先将样本分为左右两个部分，分别排好序再后外排。<br>所以其时间复杂度公式为：</p>
-<script type="math/tex; mode=display">
-T(N) = 2T(N/2) + O(N)</script><p>因为两边排完序后还要进行外排，外排需要遍历所有$N$个数据，所以其复杂度为$O(N)$。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MergeSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sortProcess</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (L==R) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = (L+R)/<span class="number">2</span>;</span><br><span class="line">        sortProcess(arr, L, mid);</span><br><span class="line">        sortProcess(arr, mid+<span class="number">1</span>, R);</span><br><span class="line">        merge(arr, L, mid, R);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> mid, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] help = <span class="keyword">new</span> <span class="keyword">int</span>[R - L + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> p1 = L;</span><br><span class="line">        <span class="keyword">int</span> p2 = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(p1 &lt;= mid &amp;&amp; p2 &lt;= R) &#123;</span><br><span class="line">            help[i++] = arr[p1] &lt; arr[p2] ? arr[p1++] : arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p1&lt;=mid) &#123;</span><br><span class="line">            help[i++] = arr[p1++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p2&lt;=R) &#123;</span><br><span class="line">            help[i++] = arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; help.length; i++) &#123;</span><br><span class="line">            arr[L+i] = help[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<h2 id="小和问题"><a href="#小和问题" class="headerlink" title="小和问题"></a>小和问题</h2><p>再一个数组中，每一个数左边必当前数小的数累加起来，叫做这个数的小和。求一个数组的小和。</p>
-<p>例子：<br>[1,3,4,2,5]<br>1的左边比1小的数，没有；<br>3的左边比1小的数，1；<br>4的左边比4小的数，1、3；<br>2的左边比2小的数，1；<br>5的左边比5小的数，1、3、4、2；<br>所以小和为$1+1+3+1+1+3+4+2=16$</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmallSum</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">smallSum</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mergeSort(arr, <span class="number">0</span>, arr.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l==r) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = (r+l)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> mergeSort(arr, l, mid) + mergeSort(arr, mid+<span class="number">1</span>, r) + merge(arr, l, mid, r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> l, <span class="keyword">int</span> m, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] help = <span class="keyword">new</span> <span class="keyword">int</span>[r - l + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> p1 = l;</span><br><span class="line">        <span class="keyword">int</span> p2 = m+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (p1 &lt;= m &amp;&amp; p2 &lt;= r) &#123;</span><br><span class="line">            res += arr[p1] &lt; arr[p2] ? (r-p2+<span class="number">1</span>)*arr[p1] : <span class="number">0</span>;</span><br><span class="line">            help[i++] = arr[p1] &lt; arr[p2] ? arr[p1++] : arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (p1&lt;=m) &#123;</span><br><span class="line">            help[i++] = arr[p1++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p2&lt;=r) &#123;</span><br><span class="line">            help[i++] = arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; help.length; i++) &#123;</span><br><span class="line">            arr[l+i] = help[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在我们的代码中我们写<code>m = (l+r)/2</code>，这样的话可能会溢出，所以我们可以将其写为<code>m = l + (r-l)/2</code>，这样就不会溢出了，另外除以$2$的操作我们还可以写为位运算的形式，位运算要比算数运算快，<code>a/2 = a&gt;&gt;1</code>，相当于右移一位。所以<code>l+(r-l)/2 = l+(r-l)&gt;&gt;1</code>。</p>
-</blockquote>
-<h2 id="逆序对问题"><a href="#逆序对问题" class="headerlink" title="逆序对问题"></a>逆序对问题</h2><p>在一个数组中，左边的数如果比右边的数大，则这两个数构成一个逆序对，请打印所有的逆序对。<br>相当于是求右边有多少数比他小。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InversePair</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">inversePair</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        sortProcess(arr, <span class="number">0</span>, arr.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sortProcess</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (L==R) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = (L+R)/<span class="number">2</span>;</span><br><span class="line">        sortProcess(arr, L, mid);</span><br><span class="line">        sortProcess(arr, mid+<span class="number">1</span>, R);</span><br><span class="line">        merge(arr, L, mid, R);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> mid, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] help = <span class="keyword">new</span> <span class="keyword">int</span>[R - L + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> p1 = L;</span><br><span class="line">        <span class="keyword">int</span> p2 = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(p1 &lt;= mid &amp;&amp; p2 &lt;= R) &#123;</span><br><span class="line">            res = arr[p1] &gt; arr[p2] ? (R-p2+<span class="number">1</span>) : <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;res;k++)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;[&quot;</span>+arr[p1]+<span class="string">&quot; &quot;</span>+arr[p2+k]+<span class="string">&quot;]&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            help[i++] = arr[p1] &gt; arr[p2] ? arr[p1++] : arr[p2++];</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p1&lt;=mid) &#123;</span><br><span class="line">            help[i++] = arr[p1++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p2&lt;=R) &#123;</span><br><span class="line">            help[i++] = arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; help.length; i++) &#123;</span><br><span class="line">            arr[L+i] = help[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">5</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">7</span>&#125;;</span><br><span class="line">        inversePair(arr);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <p>算法算法算法！！！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/31/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1039,7 +508,7 @@ T(N) = 2T(N/2) + O(N)</script><p>因为两边排完序后还要进行外排，�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-20 19:13:26" itemprop="dateModified" datetime="2021-09-20T19:13:26+08:00">2021-09-20</time>
+                <time title="修改时间：2021-12-22 15:25:02" itemprop="dateModified" datetime="2021-12-22T15:25:02+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1062,188 +531,15 @@ T(N) = 2T(N/2) + O(N)</script><p>因为两边排完序后还要进行外排，�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h2><p>线性代数是研究有限维向量空间上的线性映射的学科。在线性代数中，如果研究复数和实数，会出现更好的定理和更多的洞察力。因此我们将从介绍复数和它们的基本概念开始。</p>
-<p>我们将平面和平凡空间(ordinary space)的例子推广到$\mathbb{R}^n$和$\mathbb{C}^n$，然后我们将它们推广到向量空间的概念。</p>
-<p>然后我们的下一个主题是子空间，它对于向量空间来说所扮演的角色等同于子集对于集合所扮演的角色。最后我们看一下子空间的和(等同于子集的并集)和子空间的直和(相当于不相交子集的并集)。</p>
-<h3 id="mathbb-R-n-and-mathbb-C-n"><a href="#mathbb-R-n-and-mathbb-C-n" class="headerlink" title="$\mathbb{R}^n$ and $\mathbb{C}^n$"></a>$\mathbb{R}^n$ and $\mathbb{C}^n$</h3><h4 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h4><p>定义</p>
-<p>一个复数就是一个有序数对$(a,b)$，其中$a,b\in \mathbb{R}$，不过我们将其写作$a+bi$。所有复数的集合表示为$\mathbb{C} = \{a+bi:a,b\in \mathbb{R}\}$。</p>
-<h4 id="复数运算的性质"><a href="#复数运算的性质" class="headerlink" title="复数运算的性质"></a>复数运算的性质</h4><p>交换律</p>
-<script type="math/tex; mode=display">
-\alpha + \beta = \beta + \alpha,\alpha\beta = \beta\alpha,\forall \alpha,\beta\in \mathbb{C}</script><p>结合律</p>
-<script type="math/tex; mode=display">
-(\alpha+\beta)+\lambda = \alpha+(\beta+\lambda),(\alpha\beta)\lambda=\alpha(\beta\lambda),\forall\alpha,\beta\in \mathbb{C}</script><p>单位元</p>
-<script type="math/tex; mode=display">
-\lambda+0=\lambda,\lambda1=\lambda,\forall \lambda\in \mathbb{C}</script><p>加法逆元</p>
-<p>对于任何$\alpha\in \mathbb{C}$，存在唯一一个$\beta\in \mathbb{C}$，使得$\alpha+\beta=0$。</p>
-<p>乘法逆元</p>
-<p>对于任何$\alpha\in \mathbb{C}$，存在唯一的$\beta\in \mathbb{C}$使得$\alpha\beta=1$。</p>
-<p>分配律</p>
-<script type="math/tex; mode=display">
-\lambda(\alpha+\beta) = \lambda\alpha+\lambda\beta,\forall \lambda,\alpha,\beta\in \mathbb{C}</script><hr>
-<h4 id="定义：-alpha-，减法，-1-alpha-，除法"><a href="#定义：-alpha-，减法，-1-alpha-，除法" class="headerlink" title="定义： $-\alpha$，减法，$1/\alpha$，除法"></a>定义： $-\alpha$，减法，$1/\alpha$，除法</h4><p>$\alpha,\beta\in \mathbb{C}$</p>
-<ul>
-<li>令$-\alpha$表示$\alpha$的加法逆元。因此$-\alpha$是满足$\alpha+(-\alpha)=0$的唯一复数。</li>
-<li>减法：$\mathbb{C}$上的减法定义为：$\beta-\alpha=\beta+(-\alpha)$</li>
-<li>对于$\alpha\neq 0$，令$1/\alpha$表示$\alpha$的乘法逆元。因此$1/\alpha$为满足$\alpha(1/\alpha)=1$的唯一复数。</li>
-<li>$\mathbb{C}$上的除法定义为：$\beta/\alpha=\beta(1/\alpha)$。</li>
-</ul>
-<hr>
-<p>用$\mathbb{F}$表示$\mathbb{R}$或者$\mathbb{C}$。对于$\alpha\in \mathbb{F}$并且$m$为正数，我们定义$\alpha^m$来表示$\alpha$连乘$m$次：</p>
-<script type="math/tex; mode=display">
-\alpha^{m}=\underbrace{\alpha \cdots \alpha}_{m \text { times }}</script><p>很显然$(\alpha^m)^n=\alpha^{mn}$并且$(\alpha\beta)^m=\alpha^m\beta^m, \forall \alpha,\beta\in \mathbb{F}$。</p>
-<hr>
-<h4 id="定义：列表-list-，长度-length"><a href="#定义：列表-list-，长度-length" class="headerlink" title="定义：列表(list)，长度(length)"></a>定义：列表(list)，长度(length)</h4><p>假设$n$是一个非负整数。长度为$n$的列表是一个被括号包围用逗号分隔的$n$元有序数对。长度为$n$的列表如下：</p>
-<script type="math/tex; mode=display">
-（x_1,\cdots,x_n)</script><p>两个列表是相等的当且仅当它们长度相等并且在相同的位置有相同的元素。</p>
-<blockquote>
-<p>长度无限的不能称为列表</p>
-</blockquote>
-<p>长度为零的列表像这样：$()$。我们将其当作列表以免不必要的例外情况。</p>
-<h4 id="定义：-mathbb-F-n"><a href="#定义：-mathbb-F-n" class="headerlink" title="定义：$\mathbb{F}^n$"></a>定义：$\mathbb{F}^n$</h4><p>$\mathbb{F}^n$是所有元素来自$\mathbb{F}$的$n$元有序数对的集合：</p>
-<script type="math/tex; mode=display">
-\mathbb{F}=\{(x_1,\cdots,x_n):x_j\in \mathbb{F},\forall j=1,\cdots,n\}</script><h4 id="mathbb-F-n-上的加法"><a href="#mathbb-F-n-上的加法" class="headerlink" title="$\mathbb{F}^n$上的加法"></a>$\mathbb{F}^n$上的加法</h4><p>$\mathbb{F}^n$上的加法定义为相对应的元素相加：</p>
-<script type="math/tex; mode=display">
-(x_1,\cdots,x_n) + (y_1,\cdots,y_n) = (x_1+y_1,\cdots,x_n+y_n)</script><h4 id="mathbb-F-n-上加法的交换律"><a href="#mathbb-F-n-上加法的交换律" class="headerlink" title="$\mathbb{F}^n$上加法的交换律"></a>$\mathbb{F}^n$上加法的交换律</h4><p>如果$x,y\in \mathbb{F}^n$，则$x+y = y+x$</p>
-<p>证明：假设$x=(x_1,\cdots,x_n)$和$y=(y_1,\cdots,y_n)$。</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-x + y &= (x_1,\cdots,x_n)+(y_1,\cdots,y_n)\\
-&= (x_1+y_1,\cdots,x_n+y_n)\\
-&= (y_1+x_1,\cdots,y_n+x_n)\\
-&= (y_1,\cdots,y_n) + (x_1,\cdots,x_n)\\
-&= y+x
-\end{aligned}</script><h4 id="定义-0"><a href="#定义-0" class="headerlink" title="定义 $0$"></a>定义 $0$</h4><p>令$0$表示长度为$n$并且元素全部为$0$的列表：</p>
-<script type="math/tex; mode=display">
-0 = (0,\cdots,0)</script><h4 id="mathbb-F-上的加法逆元"><a href="#mathbb-F-上的加法逆元" class="headerlink" title="$\mathbb{F}$上的加法逆元"></a>$\mathbb{F}$上的加法逆元</h4><p>对于$x\in \mathbb{F}^n$，$x$的加法逆元，表示为$-x$，为向量$-x \in \mathbb{F}^n$使得</p>
-<script type="math/tex; mode=display">
-x + (-x) = 0</script><p>换句话说，如果$x = (x_1,\cdots,x_n)$，则$-x = (-x_1,\cdots,-x_n)$。</p>
-<h4 id="mathbb-F-上的数乘"><a href="#mathbb-F-上的数乘" class="headerlink" title="$\mathbb{F}$上的数乘"></a>$\mathbb{F}$上的数乘</h4><p>数字$\lambda$和$\mathbb{F}^n$中向量的乘法通过用$\lambda$乘以$\mathbb{F}^n$中的每一个元素来完成。</p>
-<script type="math/tex; mode=display">
-\lambda(x_1,\cdots,x_n) = (\lambda x_1,\cdots,\lambda x_n)</script><p>在这里$\lambda\in \mathbb{F}$并且$(x_1,\cdots,x_n)\in \mathbb{F}^n$.</p>
-<h3 id="向量空间的定义"><a href="#向量空间的定义" class="headerlink" title="向量空间的定义"></a>向量空间的定义</h3><p>定义向量空间的动机来自于$\mathbb{F}^n$中的加法和标量乘法的性质：加法是可交换的、结合的并且有单位元。每个元素也都有加法逆元。标量乘法具有结合律。加法和数乘通过分配律相联系。</p>
-<p>我们把向量空间定义为在$\mathbb{V}$上具有加法和数乘的集合$\mathbb{V}$，该集合具有上面段落提到的性质。</p>
-<h4 id="加法、数乘"><a href="#加法、数乘" class="headerlink" title="加法、数乘"></a>加法、数乘</h4><p>集合$\mathbb{V}$上的数乘是将元素$u+v\in \mathbb{V}$分配给每对元素$u,v\in \mathbb{V}$的函数。</p>
-<p>集合$\mathbb{V}$上的数乘是将元素$\lambda v\in \mathbb{V}$分配给每一个$\lambda \in \mathbb{F}$和每一个$v\in \mathbb{V}$的函数。</p>
-<p>现在我们准备好给向量空间一个正式的定义。</p>
-<h4 id="定义：向量空间"><a href="#定义：向量空间" class="headerlink" title="定义：向量空间"></a>定义：向量空间</h4><p>向量空间是具有$\mathbb{V}$上加法和$\mathbb{V}$上数乘的集合$\mathbb{V}$，使得其满足以下性质：</p>
-<ul>
-<li>交换律：$u+v = v+u,\forall u,v\in \mathbb{V}$</li>
-<li>结合律：$(u+v)+w = u+(v+w)$和$(ab)v = a(bv),\forall u,v,w\in \mathbb{V}\text{ and }a,b\in \mathbb{F}$</li>
-<li>加法单位元：存在一个元素$0\in \mathbb{V}$使得$v+0=v,\forall v\in \mathbb{V}$</li>
-<li>加法逆元：对于任意的$v\in \mathbb{V}$，存在$w\in \mathbb{V}$，使得$v+w=0$</li>
-<li>乘法单位元：$1v=v,\forall v\in \mathbb{V}$</li>
-<li>分配律：$a(u+v)=au+av$和$(a+b)v=av+bv,\forall a,b\in \mathbb{F}\text{ and }u,v\in\mathbb{V}$</li>
-</ul>
-<h4 id="向量、点"><a href="#向量、点" class="headerlink" title="向量、点"></a>向量、点</h4><p>向量空间的元素被称为向量或点。</p>
-<p>向量空间的数乘依赖于$\mathbb{F}$。因当我们想要精确时，我们将会说$\mathbb{V}$是$\mathbb{F}$上的向量空间而不是说$\mathbb{V}$是向量空间。</p>
-<h4 id="实向量空间、虚向量空间"><a href="#实向量空间、虚向量空间" class="headerlink" title="实向量空间、虚向量空间"></a>实向量空间、虚向量空间</h4><p>$\mathbb{R}$上的向量空间被称为实向量空间。</p>
-<p>$\mathbb{C}$上的向量空间被称为复向量空间。</p>
-<h4 id="mathbb-F-S"><a href="#mathbb-F-S" class="headerlink" title="$\mathbb{F}^S$"></a>$\mathbb{F}^S$</h4><p>如果$S$为一个集合，则$\mathbb{F}^S$表示从$S$到$\mathbb{F}$的函数的集合。</p>
-<p>对于$f,g\in \mathbb{F}^S$，和$f+g\in \mathbb{F}^S$是定义为</p>
-<script type="math/tex; mode=display">
-(f+g)(x) = f(x) + g(x)</script><p>的函数，对于任何$x\in S$。</p>
-<p>对于$\lambda \in \mathbb{F}$和$f\in \mathbb{F}^S$，乘积$\lambda f\in \mathbb{F}^S$是定义为</p>
-<script type="math/tex; mode=display">
-(\lambda f)(x) = \lambda f(x)</script><p>对于所有$x\in S$。</p>
-<p>作为上面定义的一个例子，如果$S$是区间$[0,1]$并且$\mathbb{F} = \mathbb{R}$，则$\mathbb{R}^{[0,1]}$是区间$[0,1]$上的实值函数。</p>
-<p>$\mathbb{F}^S$是向量空间：</p>
-<ul>
-<li>如果$S$是一个非空集合，则$\mathbb{F}^S$(有上面定义的加法和数乘运算)是$\mathbb{F}$上的向量空间。</li>
-<li>$\mathbb{F}^S$的加法单位元为函数：$0:S\rightarrow \mathbb{F}$定义为：$0(x)=0,\forall x\in S$</li>
-<li>对于$f \in \mathbb{F}^S$，$f$的加法逆元为函数$-f$：$S\rightarrow \mathbb{F}$定义为：$(-f)(x)=-f(x),\forall x \in S$</li>
-</ul>
-<blockquote>
-<p>我们之前定义的$\mathbb{F}^n$也可以看作是向量空间$\mathbb{F}^S$的一个特例，我们可以认为$\mathbb{F}^n$是从$\{1,2,\cdots,n\}$到$\mathbb{F}$的函数，即将$\mathbb{F}^n$看作$\mathbb{F}^{\{1,2,\cdots,n\}}$。我的理解是例如$n=2$，则$\mathbb{F}^2$可以看作从$\{1,2\}$到$\mathbb{F}$的函数，当取$1$时从$\mathbb{F}$中取一个数，等于$2$时再从$\mathbb{F}$中取一个数。</p>
-</blockquote>
-<h4 id="加法单位元的唯一性"><a href="#加法单位元的唯一性" class="headerlink" title="加法单位元的唯一性"></a>加法单位元的唯一性</h4><p>一个向量空间有唯一的加法逆元。</p>
-<p>证明：假设$0$和$0^{\prime}$都是一些向量空间$\mathbb{V}$的加法单位元。则：</p>
-<script type="math/tex; mode=display">
-0^{\prime} = 0^{\prime} + 0 = 0+ 0^{\prime} = 0</script><p>因此$0^{\prime} = 0$，证明$\mathbb{V}$只有一个加法单位元。</p>
-<h4 id="加法逆元的唯一性"><a href="#加法逆元的唯一性" class="headerlink" title="加法逆元的唯一性"></a>加法逆元的唯一性</h4><p>在向量空间的每一个元素都有唯一的加法逆元。</p>
-<p>证明：假设$\mathbb{V}$是一个向量空间。令$v\in \mathbb{V}$。假设$w$和$w^{\prime}$都是$v$的逆。则：</p>
-<script type="math/tex; mode=display">
-w = w +0 = w+(v+w^{\prime}) = (w+v)+w^{\prime} = 0+w^{\prime}=w^{\prime}</script><p>因此$w = w^{\prime}$，即只有一个加法逆元。</p>
-<h4 id="v-w-v"><a href="#v-w-v" class="headerlink" title="$-v,w-v$"></a>$-v,w-v$</h4><p>令$v,w\in \mathbb{V}$。则</p>
-<ul>
-<li>$-v$表示$v$的加法逆元</li>
-<li>$w-v$定义为$w+(-v)$</li>
-</ul>
-<h4 id="数字-0-乘以一个向量"><a href="#数字-0-乘以一个向量" class="headerlink" title="数字$0$乘以一个向量"></a>数字$0$乘以一个向量</h4><p>$0v=0,\forall v\in \mathbb{V}$</p>
-<p>证明：</p>
-<script type="math/tex; mode=display">
-0v = (0+0)v = 0v + 0v</script><p>两边同时加上$0v$的逆元，得到$0=0v$。</p>
-<h4 id="数字乘以向量-0"><a href="#数字乘以向量-0" class="headerlink" title="数字乘以向量$0$"></a>数字乘以向量$0$</h4><p>$a0=0$对于任何$a\in \mathbb{F}$。</p>
-<p>证明：$a\in \mathbb{F}$，我们有</p>
-<script type="math/tex; mode=display">
-a0 = a(0+0)=a0+a0</script><p>两边同时加上$a0$的加法逆元，即可得到$0=a0$。</p>
-<h4 id="数字-1-乘以一个向量"><a href="#数字-1-乘以一个向量" class="headerlink" title="数字$-1$乘以一个向量"></a>数字$-1$乘以一个向量</h4><p>$(-1)v=-v$对于任意$v\in \mathbb{V}$。</p>
-<p>证明：对于$v\in \mathbb{V}$，我们有：</p>
-<script type="math/tex; mode=display">
-v + (-1)v = 1v+(-1)v = (1+(-1))v = 0v = 0</script><p>因此$(-1)v$是$v$的加法逆元。</p>
-<h3 id="子空间"><a href="#子空间" class="headerlink" title="子空间"></a>子空间</h3><p>$V$的子集$U$被称为是子空间如果$U$也是向量空间。</p>
-<blockquote>
-<p>一些数学家使用属于线性子空间来描述子空间。</p>
-</blockquote>
-<h4 id="子空间条件"><a href="#子空间条件" class="headerlink" title="子空间条件"></a>子空间条件</h4><p>子集$U$是$V$的子空间当且仅当$U$满足下列三个条件：</p>
-<ul>
-<li>加法单位元：$0\in U$</li>
-<li>加法封闭：$u,w\in U\rightarrow u+w\in U$</li>
-<li>数乘封闭：$a\in \mathbb{F},u\in U\rightarrow au\in U$</li>
-</ul>
-<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>如果$b\in \mathbb{F}$，则：</p>
-<script type="math/tex; mode=display">
-\{(x_1,x_2,x_3,x_4)\}\in \mathbb{F}^4:x_3=5x_4+b</script><p>为$\mathbb{F}^4$的子空间，当且仅当$b=0$。</p>
-<hr>
-<p>区间$[0,1]$上的连续实值函数的几何是$\mathbb{R}^{[0,1]}$的子空间。</p>
-<hr>
-<p>$\mathbb{R}$上的可导实值函数的集合是$\mathbb{R}^{\mathbb{R}}$的子空间。</p>
-<hr>
-<p>使$f^{\prime}(2)=b$成立的在区间$(0,3)$上的实值可导函数$f$的集合是$\mathbb{R}^{(0,3)}$的子空间，当且仅当$b=0$。</p>
-<hr>
-<p>所有极限为0的复数序列的集合是$\mathbb{C}^{\infty}$的子空间。</p>
-<hr>
-<blockquote>
-<p>很容易发现$\{0\}$是$\mathbb{V}$的最小的子空间，$\mathbb{V}$是$\mathbb{V}$最大的子空间。</p>
-</blockquote>
-<h4 id="子集的和"><a href="#子集的和" class="headerlink" title="子集的和"></a>子集的和</h4><p>假设$U_1,\cdots,U_m$是$V$的子集。$U_1,\cdots,U_m$的和，表示为$U_1+\cdots+U_m$，是$U_1,\cdots,U_m$的所有可能的元素和的集合。更具体地：</p>
-<script type="math/tex; mode=display">
-U_1+\cdots+U_m = \{u_1+\cdots+u_m:u_1\in U_1,\cdots,u_m\in U_m\}</script><h4 id="Sum-of-subspaces-is-the-smallest-containing-subspace"><a href="#Sum-of-subspaces-is-the-smallest-containing-subspace" class="headerlink" title="Sum of subspaces is the smallest containing subspace"></a>Sum of subspaces is the smallest containing subspace</h4><p>假设$U_1,\cdots,U_m$是$V$的子空间。则$U_1+\cdots+U_m$是$V$包含$U_1,\cdots,U_m$的最小子空间。</p>
-<p>证明：</p>
-<p>很容易发现$0\in U_1+\cdots+U_m$并且$U_1+\cdots+U_m$对加法和数乘法封闭。因此它为子空间。</p>
-<p>显然，$U_1,\cdots,U_m$都包含在$U_1+\cdots+U_m$中。相反地，$V$的每个包含$U_1,\cdots,U_m$的子空间都包含$U_1+\cdots+U_m$，因此$U_1+\cdots+U_m$是包含$U_1,\cdots,U_m$的$V$的最小的子空间。</p>
-<h4 id="直和"><a href="#直和" class="headerlink" title="直和"></a>直和</h4><p>假设$U_1,\cdots,U_m$是$V$的子空间。$U_1+\cdots+U_m$的每一个元素都可以被写为以下形式：</p>
-<script type="math/tex; mode=display">
-u_1+\cdots+u_m</script><p>其中$u_j$在$U_j$里。我们可能对$U_1+\cdots+U_m$中每一个元素都可以用唯一一种上述形式表示的例子感兴趣。这种情况非常重要以至于我们给它一个特殊的名字：直和。</p>
-<hr>
-<p>定义：直和</p>
-<p>假设$U_1,\cdots,U_m$是$V$的子空间</p>
-<ul>
-<li>和$U_1+\cdots+U_m$被称为直和如果$U_1+\cdots+U_m$的每一个元素可以唯一地表示为$u_1+\cdots+u_m$，其中每一个$u_j$在$U_j$内。</li>
-<li>如果$U_1+\cdots+U_m$是直和，则$U_1\oplus \cdots \oplus U_m$表示$U_1+\cdots+U_m$，用符号$\oplus$来表示这是直和。</li>
-</ul>
-<h4 id="直和的条件"><a href="#直和的条件" class="headerlink" title="直和的条件"></a>直和的条件</h4><p>假设$U_1,\cdots,U_m$是$V$的子空间。则$U_1+\cdots+U_m$是直和当且仅当将$0$写为一个和$u_1+\cdots+u_m$的唯一形式是让每一个$u_j$等于$0$，其中$u_j$位于$U_j$中。</p>
-<p>证明：</p>
-<p>首先假设$U_1+\cdots+U_m$是一个直和。则直和的定义意味着将$0$写为$u_1+\cdots+u_m$的和的唯一形式是通过使每个$u_j$等于零。</p>
-<p>现在假设将零写为$u_1+\cdots+u_m$的唯一形式是令每一个$u_j$等于零。为了证明$U_1+\cdots+U_m$是一个直和，令$v\in U_1+\cdots+U_m$。我们可以写为</p>
-<script type="math/tex; mode=display">
-v = u_1+\cdots+u_m</script><p>为了证明这种表示是唯一的，假设我们有</p>
-<script type="math/tex; mode=display">
-v = v_1+\cdots+v_m</script><p>将两个方程相减，我们有</p>
-<script type="math/tex; mode=display">
-0 = (u_1-v_1)+\cdots+(u_m-v_m)</script><p>因此$u_1=v_1,\cdots,u_m=v_m$。</p>
-<p>证毕。</p>
-<h4 id="两个子空间的直和"><a href="#两个子空间的直和" class="headerlink" title="两个子空间的直和"></a>两个子空间的直和</h4><p>假设$U$和$W$是$V$的子空间。则$U+W$是直和当且仅当$U\cap W = \{0\}$。</p>
-<p>证明</p>
-<p>首先假设$U+W$是直和。如果$v\in U\cap W$，则$0 = v+(-v)$，其中$v\in U, -v\in W$。</p>
-<blockquote>
-<p>注：这一步是因为$v\in U\cap W$，则$v\in U\text{且} v\in W$，所以$-v \in W$。</p>
-</blockquote>
-<p>通过$0$的唯一的作为$U$中向量和$V$中向量的和表示方式，我们有$v=0$。因此$U\cap W = \{0\}$，这完成了一个方向的证明。</p>
-<p>为了证明另一个方向，现在假设$U\cap W = \{0\}$。为了证明$U+W$是直和，假设$u\in U, w\in W$，并且：</p>
-<script type="math/tex; mode=display">
-0 = u+w</script><p>为了完成证明，我们只需要证明$u=w=0$。上面的方程意味着$u = -w\in W$。因此$u \in U\cap W$。所以$u=0$，这也意味着$w=0$，得证。</p>
-<p>证毕。</p>
-
+          <p>线性代数应该这样学！！！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1296,7 +592,7 @@ v = v_1+\cdots+v_m</script><p>将两个方程相减，我们有</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-26 20:50:37" itemprop="dateModified" datetime="2021-11-26T20:50:37+08:00">2021-11-26</time>
+                <time title="修改时间：2021-12-22 15:20:55" itemprop="dateModified" datetime="2021-12-22T15:20:55+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1319,216 +615,15 @@ v = v_1+\cdots+v_m</script><p>将两个方程相减，我们有</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Gaussian-mixture-models-and-the-EM-algorithm"><a href="#Gaussian-mixture-models-and-the-EM-algorithm" class="headerlink" title="Gaussian mixture models and the EM algorithm"></a>Gaussian mixture models and the EM algorithm</h2><p>我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。</p>
-<h3 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h3><p>假设我们有有编号的人$i=1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到的标签$C_i\in \{\operatorname{M,F}\}$表示人的性别。在这了，小写字母$c$代表”class”。我们也假设两组具有相同的已知方差$\sigma^2$，但不同的未知均值$\mu_M$和$\mu_F$。类标签符合伯努利分布：</p>
-<script type="math/tex; mode=display">
-p_{C_i}(c_i) = q^{\mathbb{1}(c_i=M)}(1-q)^{\mathbb{1}(c_i=F)}</script><p>我们也假设$q$是已知的。为了简化符号，我们令$\pi_M=q$和$\pi_F=1-q$，因此我们可以写作：</p>
-<script type="math/tex; mode=display">
-p_{C_i}(c_i) = \prod_{c\in \{M,F\}}\pi_c^{\mathbb{1}(c_i=c)}</script><p>每一类的条件分布都为高斯分布：</p>
-<script type="math/tex; mode=display">
-p_{Y_i|C_i}(y_i|c_i) = \prod_c\mathcal{N}(y_i;\mu_c,\sigma^2)^{\mathbb{1}(c_i=c)}</script><h3 id="Parameter-estimation-a-first-attempt"><a href="#Parameter-estimation-a-first-attempt" class="headerlink" title="Parameter estimation: a first attempt"></a>Parameter estimation: a first attempt</h3><p>假设我们观测到独立同分布的身高$Y_1=y_1,\cdots,Y_n=y_n$，并且我们想要去找到参数$\mu_M,\mu_F$的极大似然估计。这是一个非监督问题：我们不知道我们数据的性别标签，但是我们想根据这些标签学习参数。</p>
-<p>根据上文提到的模型设计，计算所有数据点$P_{Y_1,\cdots,Y_n}$的联合密度，以$\mu_M,\mu_F,\sigma,q$表示。取$\log$后计算$\log$似然，然后对$\mu_M$进行求导。为什么优化这么困难？</p>
-<p>我们先对单个数据点$Y_i=y_i$求密度：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P_{Y_i}(y_i) &= \sum_{c_i}p_{C_i}(c_i)p_{Y_i|C_i}(y_i|c_i)\\
-&= \sum_{c_i}(\pi_c\mathcal{N}(y_i;\mu_C,\sigma^2))^{\mathbb{1}(c_i=c)}\\
-&= q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2)
-\end{aligned}</script><p>现在，所有观测的联合分布为</p>
-<script type="math/tex; mode=display">
-P_{Y_1^n}(y_1^n) = \prod_{i=1}^n(q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>则$\log$似然函数为：</p>
-<script type="math/tex; mode=display">
-\ln p_{Y_1^n}(y_1^n) = \sum_{i=1}^n\ln(\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2) + \pi_F\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>我们已经遇到了一个问题，和的形式阻止我们将$\log$应用于内部的正态分布密度函数。通过对称性，我们只需要看其中一个均值，另一个将遵循相同的过程。在我们深入区分之前，我们注意到：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{d}{d\mu}\mathcal{N}(x;\mu,\sigma^2) &= \frac{d}{d\mu}[\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}]\\
-&= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{-(x-\mu)^2}{2\sigma^2}}\cdot\frac{2(x-\mu)}{2\sigma^2}\\
-&= \mathcal{N}(x;\mu,\sigma^2)\cdot\frac{(x-\mu)}{\sigma^2}
-\end{aligned}</script><p>对数似然函数对$\mu_M$进行求导，得</p>
-<blockquote id="fn_1">
-<sup>1</sup>. $\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0$<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
-<script type="math/tex; mode=display">
-\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0</script><p>对于这个表达式我们无法求解。</p>
-<h3 id="Using-hidden-variables-and-the-EM-Algorithm"><a href="#Using-hidden-variables-and-the-EM-Algorithm" class="headerlink" title="Using hidden variables and the EM Algorithm"></a>Using hidden variables and the EM Algorithm</h3><p>退一步，什么会使这个计算容易。如果我们知道隐变量$C_i$的值，则对参数们做最大似然估计就会很容易：我们将会取所有$C_i=M$的点用来估计$\mu_M$，然后对所有$C_i=F$的点重复此过程来估计$\mu_F$。受此启发，我们尝试计算给定观测下$C_i$的分布。我们将从贝叶斯规则开始：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-p_{C_i|Y_i}(c_i|y_i) &= \frac{p_{Y_i|C_i}(y_i|c_i)p_{C_i}(c_i)}{p_{Y_i}(y_i)}\\
-&= \frac{\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(c=c_i)}}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(c_i)
-\end{aligned}</script><p>我们看一下$C_i=M$的后验概率：</p>
-<script type="math/tex; mode=display">
-p_{C_i|Y_i}(M|y_i) = \frac{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(M)</script><p>这个看起来很熟悉，这是式<sup><a href="#fn_1" id="reffn_1">1</a></sup>中的一部分，我们可以将式<sup><a href="#fn_1" id="reffn_1">1</a></sup>用$q_{C_i}$重写，并且假定其跟$\mu_M$无关</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^nq_{C_i}(M)\frac{y_i-\mu_M}{\sigma^2}=0\\
-\mu_M = \frac{\sum_{i=1}^nq_{C_i}(M)y_i}{\sum_{i=1}^nq_{C_i}(M)}</script><p>这样就看起来好多了：$\mu_M$是身高的加权平均值，其中每个身高都根据该人是男性的可能性进行加权。</p>
-<p>因此现在我们形成了一个循环，如果我们知道参数我们将会很容易计算出$C_1^n$的后验概率，并且如果我们知道后验概率我们将很容易地估计出参数，这就陷入了死循环。这就暗示了以下策略，我们可以固定一个来求解另一个。这种方法通常被称为<code>EM</code>算法。它的工作原理大致如下：</p>
-<ul>
-<li>首先，我们固定参数(在这种情况下为高斯分布的均值$\mu_M$和$\mu_F$)并且求解隐变量的后验分布(在这种情况下记为$q_{C_i}$)。</li>
-<li>之后，我们固定隐变量的后验分布，利用隐变量的期望值来最优化参数。</li>
-<li>重复两个步骤直到收敛。</li>
-</ul>
-<h3 id="The-EM-Algorithm-a-more-formal-look"><a href="#The-EM-Algorithm-a-more-formal-look" class="headerlink" title="The EM Algorithm: a more formal look"></a>The EM Algorithm: a more formal look</h3><p>正如我们将在几个短步骤中展示的那样，EM算法实际上是最大化对数似然的下限(换句话说，每一步都保证改进我们的答案直到收敛)。</p>
-<p>假设我们观测到了随机变量$Y$。现在假设我们也有一些隐变量$C$并且$Y$依赖于$C$。我们可以说$C$和$Y$的分布中有一些我们不知道的参数$\theta$，并且我们有兴趣找到它们。</p>
-<p>在我们上一个例子中，我们观测到有隐变量(性别)$C=\{C_1,\cdots,C_n\}$的身高变量$Y=\{Y_1,\cdots,Y_n\}$，并且$Y$和$C$是独立同分布的，我们的参数是$\mu_M$和$\mu_F$。</p>
-<p>在我们真正推导算法之前，我们需要一个关键结论：<code>Jensen&#39;s inequation</code>(琴声不等式)。在这个例子中我们需要的琴声不等式的特例：</p>
-<script type="math/tex; mode=display">
-\log(\mathbb{E}[X])\ge \mathbb{E}[\log(X)]</script><p>下图是关于琴声不等式的几何直观：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png" alt=""></p>
-<blockquote>
-<p>琴声不等式的特例说明：对于任何随机变量$X$，$\mathbb{E}[\log X]\le\log\mathbb{E}[X]$。令$X$的PDF为红色的曲线。令$Z=\log X$。中间和右边的图展示了怎么构建$Z$的PDF(蓝色曲线)：因为$\log$，与$X$的PDF相比，它倾向于更小的值。$\log\mathbb{E}(X)$是由中间黑色曲线或$\mathbb{E}(Z)$给出的点。但是，$\mathbb{E}[\log X]$或者$\mathbb{E}[Z]$，将始终较小(或至少永远不会较大)因为对数挤压了分布较大的一端(其中$Z$比较大)并拉伸了较小的一端(其中$Z$较小)。</p>
-<p>关于琴声不等式</p>
-<p>对于一个实函数$\phi(x)$，在区间$I$内它是凸的($\frac{d^2\phi(x)}{d^2x}&gt;0, \forall x\in I$)，那么它满足下面关系：</p>
-<script type="math/tex; mode=display">
-\phi(\sum_{i=1}^Np_ix_i)\le \sum_{i=1}^Np_i\phi(x_i)</script><p>其中$p_i\ge0,\sum_{i=1}^Np_i=1$，且$x_i\in I,(i=1,\cdots,N)$。</p>
-<p><strong>证明</strong>：令$A=\sum_{i=1}^Np_ix_i$，显然$A\in I$。取</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S &= \sum_{i=1}^N\phi(x_i) - \phi(A)\\
-&= \sum_{i=1}^Np_i[\phi(x_i)-\phi(A)]\\
-&= \sum_{i=1}^N p_i\int_A^{x_i}\phi^{\prime}(x)dx
-\end{aligned}</script><p>若$A\le x_i$，因为$\phi^{\prime}(x)$在区间$I$上是递增的，所以</p>
-<script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx\ge \phi^{\prime}(A)(x_i-A)</script><p>若$A_i&gt;x_i$，则</p>
-<script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx = -\int_{x_i}^A\phi^{\prime}(x)dx\ge-(A-x_i)\phi(A) = (x_i-A)\phi^{\prime}(A)</script><p>所以：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S &\ge \sum_{i=1}^Np_i\phi^{\prime}(A)(x_i-A)\\
-&= \phi^{\prime}(A)[\sum_{i=1}^Np_i(x_i-A)]\\
-&= \phi^{\prime}(A)(A-A)\\
-&=0
-\end{aligned}</script><p>证毕。</p>
-</blockquote>
-<p>在本文中，求期望相当于加权平均，而$\ln(x)$的二阶导小于$0$，故与上文提到的不等式符号相反。</p>
-<h4 id="The-EM-Algorithm"><a href="#The-EM-Algorithm" class="headerlink" title="The EM Algorithm"></a>The EM Algorithm</h4><p>我们想要去最大化似然函数。我们通过边缘化$C$来计算对数似然函数：</p>
-<script type="math/tex; mode=display">
-\log p_Y(y;\theta) = \log\left(\sum_cp_{Y,C}(y,c)\right)</script><p>我们现在也遭受了困境，我们无法对和取对数。如果我们交换它们的顺序不是更好吗？对，期望是一种特殊的求和，并且琴声不等式可以让我们互换它们如果我们有期望的话。因此，我们将要引进一个隐变量$C$的新的分布$q_C$：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \log p_{Y}(y ; \theta) & \\ \left.\text { (Marginalizing over } C \text { and introducing } q_{C}(c) / q_{C}(c)\right) &=\log \left(\sum_{c} q_{C}(c) \frac{p_{Y, C}(y, c ; \theta)}{q_{C}(c)}\right) \\ \text { (Rewriting as an expectation) } &=\log \left(\mathbb{E}_{q_{C}}\left[\frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right]\right) \\ \text { (Using Jensen's inequality) } & \geq \mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right](2) \\ \text { Using definition of conditional probability } &=\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right](3) \end{aligned}</script><p>现在我们有可以很容易优化的$\log p_Y(y;\theta)$的下界了。因为我们已经引入了$q_C$，我们想要在$\theta$和$q_C$上实施最大化。</p>
-<p>我们将使用(2)和(3)分别进行优化。首先先用(2)寻找最好的参数：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right] = \mathbb{E}_{q_C}[\log p_{Y, C}(y, C ; \theta)] - \mathbb{E}_{q_C}[\log q_C(C)]</script><p>因为$q_C$不依赖于$\theta$，因此我们可以只优化第一项：</p>
-<script type="math/tex; mode=display">
-\widehat{\theta} \leftarrow \underset{\theta}{\operatorname{argmax}} \mathbb{E}_{q_{C}}\left[\log p_{Y, C}(y, C ; \theta)\right]</script><p>这被称作<code>M-step</code>：<code>M</code>代表最大化，因为我们正在最大化参数。现在，我们用(3)来找到最好的$q_C$：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]=\mathbb{E}_{q_{C}}\left[\log p_{Y}(y ; \theta)\right]+\mathbb{E}_{q_{C}}\left[\log \frac{p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]</script><p>第一项不依赖于$c$，并且第二项看起来像KL散度：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&= \log p_Y(y;\theta) - \mathbb{E}_{q_C}[\log\frac{q_C(C)}{p_{C|Y}(C|y;\theta)}]\\
-&= \log p_Y(y;\theta) - D(q_C(\cdot)||p_{C|Y}(\cdot|y;\theta))
-\end{aligned}</script><p>因此，当最大化上述值时，我们想要最小化KL散度。KL散度总是大于等于零，当两个分布完全一样时取零。因此，最优化的$q_C$即为$p_{C|Y}(c|y;\theta)$：</p>
-<script type="math/tex; mode=display">
-\hat{q}_C(c) \leftarrow p_{C|Y}(c|y;\theta)</script><p>这被称为<code>E-step</code>：<code>E</code>代表期望，因为我们正在计算$q_C$以便我们可以将其用于期望值。</p>
-<h4 id="The-algorithm"><a href="#The-algorithm" class="headerlink" title="The algorithm"></a>The algorithm</h4><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png" alt=""></p>
-<blockquote>
-<p>信息熵可以表达数据的信息量大小，是信息处理的一个非常重要的概念。对于离散型随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = \mathrm{E}_{x\sim p(x)}[-\log p(x)] = -\sum_{i=1}^n p(x)\log p(x)</script><p>对于连续性随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = E_{x\sim p(x)}[-\log p(x)] = -\int p(x)\log p(x)dx</script><p>接下来我们来说一下相对熵，又被称为KL散度或信息散度，是两个概率分布差异的非对称度量。在信息论中，相对熵等价于两个概率分布的信息熵的插值，若其中一个概率分布为真实分布，另一个为理论分布，则此时相对熵等于交叉熵与真实分布的信息熵之差，表示使用理论分布拟合真实分布时产生的信息损耗。公式为：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i) - p(x_i)\log q(x_i)]</script><p>上面的$p(x_i)$为真实事件的概率分布，$q(x_i)$为理论拟合出来的该事件的概率分布。当拟合出来的事件概率分布跟真实的一模一样时，相对熵等于零，而拟合出来不一样时，相对熵大于零。</p>
-<p>最后我们来证明一下相对熵公式只有在$p(x_i)$等于$q(x_i)$的时候等于$0$，其他时候大于$0$。</p>
-<p>要证：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\ge 0</script><p>即证：</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le 0</script><p>又$\ln(x)\le x-1$，当且仅当$x=1$时等号成立</p>
-<p>故</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le \sum_{i=1}^Np(x_i)(\frac{q(x_i)}{p(x_i)}-1) = \sum_{i=1}^N[p(x_i)-q(x_i)]=0</script><p>上面式子中$=$只在$p(x_i)=q(x_i)$时成立。</p>
-</blockquote>
-<h3 id="Example-Applying-the-general-algorithm-to-GMMS"><a href="#Example-Applying-the-general-algorithm-to-GMMS" class="headerlink" title="Example: Applying the general algorithm to GMMS"></a>Example: Applying the general algorithm to GMMS</h3><p>现在，让我们重现看一下关于身高的GMM模型，看看我们如何应用这两个步骤。我们有观测变量$Y=\{Y_1,\cdots,Y_n\}$和隐变量$C=\{C_1,\cdots,C_n\}$。对于<code>E-Step</code>，我们计算后验概率$p_{C|Y}(c|y)$，之前已经计算过了。对于<code>M-Step</code>，我们得去计算联合概率：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{E}_{q_C}[\ln p_{Y,C}(y,C)] &= \mathbb{E}[\ln p_{Y|C}(y|C)p_C(C)]\\
-&= \mathbb{E}_{q_C}\left[\ln \prod_{i=1}^n\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(C_i=c)}\right]\\
-&= \mathbb{E}_{q_C}\left[\sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{1}(C_i=c)(\ln\pi_c+\ln\mathcal{N}(y_i;\mu_c,\sigma^2))\right]\\
-&= \sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]\left(\ln\pi_c + \ln\frac{1}{\sigma\sqrt{2\pi}}-\frac{(y_i-\mu_c)^2}{2\sigma^2}\right)
- \end{aligned}</script><p>$\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]$是$C_i$为$c$的概率。现在我们对$\mu_M$求导：</p>
-<script type="math/tex; mode=display">
-\frac{d}{d \mu_{M}} \mathbb{E}_{q_{C}}\left[\ln p_{Y \mid C}(y \mid C) p_{C}(C)\right]=\sum_{i=1}^{n} q_{C_{i}}(M)\left(\frac{y_{i}-\mu_{M}}{\sigma^{2}}\right)=0</script><p>得：</p>
-<script type="math/tex; mode=display">
-\mu_{M}=\frac{\sum_{i=1}^{n} q_{C_{i}}(M) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(M)}</script><p>同理可得：</p>
-<script type="math/tex; mode=display">
-\mu_{F}=\frac{\sum_{i=1}^{n} q_{C_{i}}(F) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(F)}</script>
-      
-    </div>
-
-    
-    
-    
-	
-	
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
-      <meta itemprop="name" content="HFC">
-      <meta itemprop="description" content="留一份不足，可得无限美好">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="独自赏晴雨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/11/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">贝叶斯数据分析</a>
-        </h2>
-
-        <div class="post-meta">
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-11 07:43:01" itemprop="dateCreated datePublished" datetime="2021-08-11T07:43:01+08:00">2021-08-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-19 22:23:02" itemprop="dateModified" datetime="2021-12-19T22:23:02+08:00">2021-12-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">贝叶斯机器学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>当初为什么要用英文写笔记？？<br><div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Bayesian_Data_Analysis.pdf" data-height="500px"></div></p>
-
+          <p>EM算法、GMM</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1581,7 +676,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-12 17:21:37" itemprop="dateModified" datetime="2021-09-12T17:21:37+08:00">2021-09-12</time>
+                <time title="修改时间：2021-12-22 15:24:25" itemprop="dateModified" datetime="2021-12-22T15:24:25+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1605,8 +700,14 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 
       
           <p>微分方程学习笔记</p>
-<div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Differential_equation.pdf" data-height="500px"></div>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/09/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1659,7 +760,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-12 17:21:05" itemprop="dateModified" datetime="2021-09-12T17:21:05+08:00">2021-09-12</time>
+                <time title="修改时间：2021-12-22 15:22:41" itemprop="dateModified" datetime="2021-12-22T15:22:41+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1682,9 +783,15 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>学习数值分析的笔记</p>
-<div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Numerical_analysis.pdf" data-height="500px"></div>
-
+          <p>数值分析笔记</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/30/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1737,7 +844,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-12 17:20:36" itemprop="dateModified" datetime="2021-09-12T17:20:36+08:00">2021-09-12</time>
+                <time title="修改时间：2021-12-22 15:24:15" itemprop="dateModified" datetime="2021-12-22T15:24:15+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1760,9 +867,15 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>自己学习统计学习基础的笔记。</p>
-<div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/ESLII.pdf" data-height="500px"></div>
-
+          <p>自己学习统计学习基础的笔记：好难好难好难！！！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/28/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%B2%BE%E8%A6%81%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1820,10 +933,9 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
     <span class="toggle-line toggle-line-middle"></span>
     <span class="toggle-line toggle-line-last"></span>
   </div>
-
   <aside class="sidebar">
     <div class="sidebar-inner">
-
+	
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
           文章目录
@@ -1832,12 +944,11 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
           站点概览
         </li>
       </ul>
-
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
       </div>
       <!--/noindex-->
-
+	
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="HFC"
@@ -1850,7 +961,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1899,6 +1010,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
   </div>
 
       </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=346089&auto=1&height=66"></iframe>
 
     </div>
   </aside>
@@ -1959,23 +1071,6 @@ $(document).ready(function() {
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
 </div>
 
 

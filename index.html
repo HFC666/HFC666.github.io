@@ -83,9 +83,6 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="独自赏晴雨" type="application/atom+xml">
-<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
-<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
-<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -263,7 +260,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-20 22:44:56" itemprop="dateModified" datetime="2021-12-20T22:44:56+08:00">2021-12-20</time>
+                <time title="修改时间：2021-12-22 14:49:17" itemprop="dateModified" datetime="2021-12-22T14:49:17+08:00">2021-12-22</time>
               </span>
 
           
@@ -277,11 +274,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-    <div id="aplayer-DyRVpFnx" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="346089" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
-    ></div>
-<h2 id="2022要达到的知识体系"><a href="#2022要达到的知识体系" class="headerlink" title="2022要达到的知识体系"></a>2022要达到的知识体系</h2><p><img src="https://hfcouc.work/gif/index.gif" alt=""></p>
+          <h2 id="2022要达到的知识体系"><a href="#2022要达到的知识体系" class="headerlink" title="2022要达到的知识体系"></a>2022要达到的知识体系</h2><p><img src="https://hfcouc.work/gif/index.gif" alt=""></p>
 
       
     </div>
@@ -327,10 +320,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-21 22:12:55 / 修改时间：22:14:19" itemprop="dateCreated datePublished" datetime="2021-12-21T22:12:55+08:00">2021-12-21</time>
+              <time title="创建时间：2021-12-21 22:12:55" itemprop="dateCreated datePublished" datetime="2021-12-21T22:12:55+08:00">2021-12-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-22 15:13:51" itemprop="dateModified" datetime="2021-12-22T15:13:51+08:00">2021-12-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -352,153 +351,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>以下主要参考李航老师《统计学习方法》</p>
-<p>决策树学习的三个阶段</p>
-<ol>
-<li>特征选择</li>
-<li>决策树的生成</li>
-<li>决策树的修剪</li>
-</ol>
-<h3 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h3><p>特征选择的准则时信息增益或信息增益比。</p>
-<h4 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h4><p>我们先介绍熵的定义。设$X$是一个取有限个值的离散随机变量，其概率分布为：</p>
-<script type="math/tex; mode=display">
-P(X=x_i)=p_i,i=1,2,\cdots,n</script><p>则随机变量$X$的熵的定义为</p>
-<script type="math/tex; mode=display">
-H(X) = -\sum_{i=1}^np_i\log p_i</script><p>若$p_i=0$，我们定义$0\log0=0$。对数若以$2$为底，单位为比特，以$e$为底，单位为纳特。熵只与$X$的分布有关而与$X$的取值无关，因此我们将$X$的熵记作$H(p)$，即</p>
-<script type="math/tex; mode=display">
-H(p) =-\sum_{i=1}^np_i\log p_i</script><p>熵越大，随机变量的不确定性就越大。从定义可验证：</p>
-<script type="math/tex; mode=display">
-0\le H(p)\le \log n</script><p>设有随机变量$(X,Y)$，其联合概率密度分布为：</p>
-<script type="math/tex; mode=display">
-P(X=x_i,Y=y_j) = p_{ij},\quad i=1,2,\cdots,n;\quad j=1,2,\cdots,m</script><p>条件熵$H(Y|X)$表示在已知随机变量$X$的条件下随机变量$Y$的不确定性。随机变量$X$给定的条件下随机变量$Y$的条件熵$H(Y|X)$，定义为$X$给定条件下$Y$的条件概率分布的熵对$X$的数学期望</p>
-<script type="math/tex; mode=display">
-H(Y|X) = \sum_{i=1}^n p_iH(Y|X=x_i)</script><p>这里，$p_i = P(X=x_i),i=1,2,\cdots,n$。</p>
-<p>信息增益表示得知特征$X$的信息而使得类$Y$的信息不确定性减少的程度。</p>
-<p>定义(信息增益)：特征$A$对训练数据$D$的信息增益$g(D,A)$，定义为集合$D$的经验熵$H(D)$与特征$A$给定条件下$D$的经验条件熵$H(D|A)$之差，即</p>
-<script type="math/tex; mode=display">
-g(D,A) = H(D)-H(D|A)</script><p>一般地，熵$H(Y)$与条件熵$H(Y|X)$之差称为互信息。决策树学习中的信息增益等价于训练数据集中类与特征的互信息。</p>
-<p>设训练数据集为$D$，$|D|$表示其样本容量，即样本个数。设有$K$个类$C_k,k=1,2,\cdots,K$，$|C_k|$为属于类$C_k$的样本数。设特征$A$有$n$个不同的取值$\{a_1,a_2,\cdots,a_n\}$，根据特征$A$的取值将$D$划分为$n$个子集$D_1,D_2,\cdots,D_n$，$|D_i|$表示$D_i$的样本数。记子集$D_i$中属于类$C_k$的样本集合为$D_{ik}$，即$D_{ik}=D_i\cap C_k$。</p>
-<p>信息增益的算法：</p>
-<p>输入：训练数据集$D$和特征$A$</p>
-<p>输出：特征$A$对训练数据集$D$的信息增益$g(D,A)$</p>
-<ol>
-<li>计算数据集的经验熵$H(D)$：<script type="math/tex">H(D)=-\sum_{k=1}^K\frac{|C_k|}{|D|}\log_2\frac{|C_k|}{|D|}</script></li>
-<li>计算特征$A$对数据集$D$的经验条件熵$H(D|A)$：<script type="math/tex">H(D|A)=\sum_{i=1}^n\frac{|D_i|}{D}H(D_i)=-\sum_{i=1}^n\frac{|D_i|}{|D|}\sum_{k=1}^K\frac{|D_{ik}|}{|D_i|}\log2\frac{|D_{ik}|}{|D_i|}</script></li>
-<li>计算信息增益：<script type="math/tex">g(D,A)=H(D)-H(D|A)</script></li>
-</ol>
-<h4 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h4><p>以信息增益作为划分训练数据集的特征，存在偏向于选择取值的较多的特征的问题，使用信息增益比可以对这一问题进行校正。</p>
-<p>定义(信息增益)：特征$A$对训练数据集$D$信息增益比$g_R(D,A)$定义为其信息增益$g(D,A)$与训练数据集$D$关于特征$A$的值的熵$H_A(D)$之比，即</p>
-<script type="math/tex; mode=display">
-g_R(D,A) = \frac{g(D,A)}{H_A(D)}</script><p>。</p>
-<h3 id="决策树的生成"><a href="#决策树的生成" class="headerlink" title="决策树的生成"></a>决策树的生成</h3><h4 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h4><p>输入：训练数据集$D$，特征值阈值$\epsilon$</p>
-<p>输出：决策树$T$</p>
-<ol>
-<li>若$D$中所有实例属于同一类$C_k$，则$T$为单节点树，并将类$C_k$作为该结点的类标记，返回$T$；</li>
-<li>若$A=\varnothing$，则$T$为单结点树，并将$D$中实例树最大的类$C_k$作为该结点的类标记，返回$T$；</li>
-<li>否则，计算$A$中各特征值对$D$的信息增益，选择信息增益最大的特征$A_g$；</li>
-<li>如果$A_g$的信息增益小于阈值$\epsilon$，则置$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$</li>
-<li>否则，对$A_g$的每一可能值$a_i$，依$A_g=a_i$将$D$分割为若干非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子节点构成数$T$，返回$T$；</li>
-<li>对第$i$个子结点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用步骤1到5，得到子树$T_i$，返回$T_i$。</li>
-</ol>
-<p>ID3算法只有数的生成，所以该算法生成的树容易产生过拟合。</p>
-<h4 id="C4-5的生成算法"><a href="#C4-5的生成算法" class="headerlink" title="C4.5的生成算法"></a>C4.5的生成算法</h4><p>与ID3算法的差别仅在于使用信息增益比来选择特征。</p>
-<ol>
-<li>若$D$中所有实例属于同一类$C_k$，则$T$为单节点树，并将类$C_k$作为该结点的类标记，返回$T$；</li>
-<li>若$A=\varnothing$，则$T$为单结点树，并将$D$中实例树最大的类$C_k$作为该结点的类标记，返回$T$；</li>
-<li>否则，计算$A$中各特征值对$D$的信息增益比，选择信息增益比最大的特征$A_g$；</li>
-<li>如果$A_g$的信息增益比小于阈值$\epsilon$，则置$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$</li>
-<li>否则，对$A_g$的每一可能值$a_i$，依$A_g=a_i$将$D$分割为若干非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子节点构成数$T$，返回$T$；</li>
-<li>对第$i$个子结点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用步骤1到5，得到子树$T_i$，返回$T_i$。</li>
-</ol>
-<h3 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h3><p>决策树的剪枝往往通过极小化决策树整体的损失函数来实现。设数$T$的叶结点个数为$|T|$，$t$是数$T$的叶结点，该结点有$N_t$个样本点，其中$k$类的样本点有$N_{tk}$个，$H_t(T)$为叶结点$t$上的经验熵，$\alpha\ge0$为超参数，则决策树学习的损失函数可以定义为</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(T) = \sum_{t=1}^{|T|}N_tH_t(T)+\alpha|T|</script><p>其中经验熵为：</p>
-<script type="math/tex; mode=display">
-H_t(T) = -\sum_k\frac{N_{tk}}{N_t}\log\frac{N_{tk}}{N_t}</script><p>在损失函数中，常将右端的第一项记作：</p>
-<script type="math/tex; mode=display">
-C(T) =\sum_{t=1}^{|T|}N_tH_t(T) = -\sum_{t=1}^{|T|}\sum_{k=1}^K\frac{N_{tk}}{N_t}\log\frac{N_{tk}}{N_t}</script><p>这时有：</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(T) = C(T)+\alpha|T|</script><p>算法(数的剪枝算法)</p>
-<p>输入：生成算法产生的整个数$T$，参数$\alpha$</p>
-<p>输出：修剪后的子树$T_{\alpha}$</p>
-<ol>
-<li>计算每个结点的经验熵。</li>
-<li>递归地从数地叶结点向上回缩。设一组叶结点回缩到其父结点之前与之后的整体数分别为$T_B$和$T_A$，其对应的损失函数分别是$C_{\alpha}(T_B)$与$C_{\alpha}(T_A)$，其对应的损失函数值分别是$C_{\alpha}(T_B)$与$C_{\alpha}(T_A)$，如果<script type="math/tex">C_{\alpha}(T_A)\le C_{\alpha}(T_B)</script>，则进行剪枝，即将父结点变为新的叶结点。</li>
-<li>返回2，直至不能继续为止，得到损失函数最小的子树$T_{\alpha}$。</li>
-</ol>
-<h3 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h3><p>分类与回归树(classfication and regression tree, CART)。</p>
-<p>决策树就是递归地构建二叉决策树的过程。对回归树用平方误差最小化准则，对分类树用基尼系数最小化准则，进行特征选择，生成二叉树。</p>
-<h4 id="回归树的生成"><a href="#回归树的生成" class="headerlink" title="回归树的生成"></a>回归树的生成</h4><p>假设$X$和$Y$分别为输入和输出变量，并且$Y$是连续变量，给定训练数据集</p>
-<script type="math/tex; mode=display">
-D= \{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}</script><p>考虑如何生成回归树。</p>
-<p>假设树将输入空间划分为$M$个单元$R_1,R_2,\cdots,R_M$，并且在每个单元$R_m$上有一个固定的输出值$c_m$，于是回归树模型可表示为：</p>
-<script type="math/tex; mode=display">
-f(x) = \sum_{m=1}^Mc_mI(x\in R_m)</script><p>当输入空间的划分确定时，可以用平方误差$\sum_{x_i\in R_m}(y_i-f(x_i))^2$来表示回归树对于训练数据的预测误差，求解每个单元上的最优输出值。易知：</p>
-<script type="math/tex; mode=display">
-\hat{c}_m = \operatorname{ave}(y_i|x_i\in R_m)</script><p>问题是怎么对输入空间进行划分。我们采用启发式的方法，选择第$j$个变量$x^{(j)}$和它的取值$s$，作为切分变量和切分点，并定义两个区域：</p>
-<script type="math/tex; mode=display">
-R_1(j,s) = \{x|x^{(j)}\le s\}\quad\text{和}R_2(j,s) = \{x|x^{(j)}>s\}</script><p>然后寻找最优切分点和最优切分变量：</p>
-<script type="math/tex; mode=display">
-\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]</script><p>对于固定输入变量$j$可以找到最优切分点$s$</p>
-<script type="math/tex; mode=display">
-\hat{c}_1 = \operatorname{ave}(y_i|x_i\in R_1(j,s))\quad\text{和}\quad \hat{c}_2 = \operatorname{ave}(y_i|x_i\in R_2(j,s))\quad</script><p>算法为：</p>
-<p>输入：训练数据集$D$</p>
-<p>输出：回归树$f(x)$</p>
-<p>在训练数据集中所在的输入空间中，递归地将每个区域划分为两个子区域并决定每个子区域上的输出值，构建二叉决策树：</p>
-<ol>
-<li><p>选择最优切分变量$j$和切分点$s$，求解：</p>
-<script type="math/tex; mode=display">
-\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]</script><p>遍历变量$j$，对固定的切分变量$j$扫描切分点$s$，选择使上式达到最小值的对$(j,s)$。</p>
-</li>
-<li><p>对选定的对$(j,s)$划分区域并决定相应的输出值</p>
-<script type="math/tex; mode=display">
-\begin{gathered}
-R_{1}(j, s)=\left\{x \mid x^{(j)} \leqslant s\right\}, \quad R_{2}(j, s)=\left\{x \mid x^{(j)}>s\right\} \\
-\hat{c}_{m}=\frac{1}{N_{m}} \sum_{x_{i} \in R_{m}(j, s)} y_{i}, \quad x \in R_{m}, \quad m=1,2
-\end{gathered}</script></li>
-<li><p>继续对两个子区域调用步骤1，2，直到满足停止条件。</p>
-</li>
-<li><p>将输入空间划分为$M$个区域$R_1,R_2,\cdots,R_M$，生成决策树：</p>
-<script type="math/tex; mode=display">
-f(x) = \sum_{m=1}^M\hat{c}_mI(x\in R_m)</script></li>
-</ol>
-<h4 id="分类树的生成"><a href="#分类树的生成" class="headerlink" title="分类树的生成"></a>分类树的生成</h4><p>分类树用基尼指数选择最优特征，同时决定该特征的最优二值切分点。</p>
-<p>定义(基尼系数)：分类问题中，假设有$K$个类，样本点属于第$k$类的概率为$p_k$，则概率分布的基尼指数定义为：</p>
-<script type="math/tex; mode=display">
-\operatorname{Gini}(p) = \sum_{k=1}^Kp_k(1-p_k) = 1-\sum_{k=1}^Kp_k^2</script><p>对于二分类问题，若样本点属于第$1$个类的概率为$p$，则概率分布的基尼指数为：</p>
-<script type="math/tex; mode=display">
-\operatorname{Gini}(p) = 2p(1-p)</script><p>对于给定样本集合$D$，其基尼指数为：</p>
-<script type="math/tex; mode=display">
-\operatorname{Gini}(D) = 1-\sum_{k=1}^K\left(\frac{|C_k|}{|D|}\right)^2</script><p>基尼系数越大，样本集合的不确定性越大。</p>
-<p>如果样本集合$D$根据特征$A$是否取某一可能值$a$被分割成$D_1$和$D_2$两部分，即</p>
-<script type="math/tex; mode=display">
-D_1=\{(x,y)\in D|A(x)=a\},\quad D_2=D-D_1</script><p>则在特征$A$的条件下，集合$D$的基尼指数定义为</p>
-<script type="math/tex; mode=display">
-\operatorname{Gini}(D,A) = \frac{|D_1|}{|D|}\operatorname{Gini}(D_1)+\frac{|D_2|}{|D|}\operatorname{Gini}(D_2)</script><p>算法(CART生成算法)</p>
-<p>输入：训练数据集$D$，停止计算的条件</p>
-<p>输出：CART决策树</p>
-<ol>
-<li>设结点的训练数据集为$D$，计算现有特征对该数据集的基尼系数。此时，对于每一个特征$A$，对其可能取的每个值$a$，根据样本点$A=a$的测试为”是”或”否”将$D$分割成$D_1$和$D_2$两个部分，计算$A=a$时的基尼指数。</li>
-<li>在所有可能的特征$A$以及它们所有可能的切分点$a$中，选择基尼指数最小的特征及其对应的切分点作为最优特征与最优切分点。依最优特征与最优切分点，从现结点生成两个子结点，将训练数据集依特征分配到两个子结点中去。</li>
-<li>对两个子结点递归地调用1，2，直到满足终止条件。</li>
-<li>生成CART决策树。</li>
-</ol>
-<h4 id="CART剪枝"><a href="#CART剪枝" class="headerlink" title="CART剪枝"></a>CART剪枝</h4><p>CART剪枝算法由两步组成：首先从生成算法产生的决策树$T_0$低端开始不断剪枝，直到$T_0$的根结点，形成一个子树序列$\{T_0,T_1,\cdots,T_n\}$；然后通过交叉验证法在独立的验证数据集上对子树序列进行测试，从中选择最优子树。</p>
-<p>可以利用递归的方法对数进行剪枝。将$\alpha$从小增大，$0=\alpha_0&lt;\alpha_1&lt;\cdots&lt;\alpha_n&lt;+\infty$，产生一系列的区间$[\alpha_i,\alpha_{i+1}),i=0,1,\cdots,n$的最优子树序列$\{T_0,T_1,\cdots,T_n\}$，序列中的子树是嵌套的。</p>
-<p>具体地，从整体树$T_0$开始剪枝。对$T_0$的任意内部结点$t$，以$t$为单结点数的损失函数是：</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(t) = C(t) + \alpha</script><p>以$t$为根结点的子树$T_t$的损失函数是：</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(T_t) = C(T_t)+\alpha|T_t|</script><p>当$\alpha=0$及$\alpha$充分小时，有不等式</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(T_t)<C_{\alpha}(t)</script><p>当$\alpha$增大时，不等式反向。只要$\alpha=\frac{C(t)-C(T_t)}{|T_t|-1}$，$T_t$与$t$有相同的损失函数值，而$t$的结点少，因此$t$比$T_t$更可取，对$T_t$进行剪枝。</p>
-<p>为此，对$T_0$中每一内部结点$t$，计算</p>
-<script type="math/tex; mode=display">
-g(t) = \frac{C(t)-C(T_t)}{|T_t|-1}</script><p>它表示剪枝后整体损失函数减少的程度。在$T_0$中剪去$g(t)$最小的$T_t$，将得到的子树作为$T_1$，同时将最小的$g(t)$设为$\alpha_1$。==$T_1$为区间$[\alpha_1,\alpha_2)$的最优子树。==（不知道为什么。）</p>
-<blockquote>
-<p>算法实现等到有空再更新吧，现在想好好休息休息了。</p>
-</blockquote>
-
+          <p>以下主要参考李航老师《统计学习方法》</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -551,7 +412,7 @@ g(t) = \frac{C(t)-C(T_t)}{|T_t|-1}</script><p>它表示剪枝后整体损失函�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-20 16:54:14" itemprop="dateModified" datetime="2021-12-20T16:54:14+08:00">2021-12-20</time>
+                <time title="修改时间：2021-12-22 15:21:39" itemprop="dateModified" datetime="2021-12-22T15:21:39+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -574,258 +435,15 @@ g(t) = \frac{C(t)-C(T_t)}{|T_t|-1}</script><p>它表示剪枝后整体损失函�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="数列极限"><a href="#数列极限" class="headerlink" title="数列极限"></a>数列极限</h3><h4 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h4><p>定义(数列极限)。设$\{a_n\}$为数列，$A\in \mathbb{R}$.如果任给$\epsilon&gt;0$,都存在正整数$N(\epsilon)$，使得当$n&gt;N$时，有</p>
-<script type="math/tex; mode=display">
-    |a_n-A|<\epsilon</script><p>则称$\{a_n\}$以$A$为极限，或称$\{a_n\}$收敛于$A$，记为</p>
-<script type="math/tex; mode=display">
-    \lim_{n\rightarrow\infty}a_n=A\text{ 或 }a_n\rightarrow A(n\rightarrow \infty)</script><p>当然我们也可以用$\epsilon-N$语言给出数列$\{a_n\}$不以$A$为极限的定义：如果存在$\epsilon_0&gt;0$，使得任给正数$N$，均存在$n_0&gt;N$满足不等式$|a_{n_0}-A|\ge\epsilon_0$，则$\{a_n\}$不以$A$为极限。</p>
-<p>命题：如果数列$\{a_n\}$有极限，则其极限是唯一的。</p>
-<p>定理(夹逼定理).设$\{a_n\},\{b_n\},\{c_n\}$均为数列，且</p>
-<script type="math/tex; mode=display">
-    a_n\le b_n\le c_n,\forall n\ge N_0</script><p>其中$N_0$为一整数，如果</p>
-<script type="math/tex; mode=display">
-    \lim_{n\rightarrow\infty}a_n=A=\lim_{n\rightarrow\infty}c_n</script><p>则$\lim_{n\rightarrow\infty}b_n=A$。</p>
-<p>例题：<br>考虑无限循环小数$A=0.99999\cdots$，问：$A$是否小于$1$？<br>解：我们可以将$A$视为一列有限小数$\{a_n\}$的极限，其中$a_n = 0.99\cdots9(n\text{个}9)$。由于：</p>
-<script type="math/tex; mode=display">
-    |a_n-1| = 10^{-n}</script><p>根据夹逼定理</p>
-<script type="math/tex; mode=display">
-a_n\le A\le 1</script><p>而</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}a_n=1</script><p>所以</p>
-<script type="math/tex; mode=display">
-A=1</script><p>例：<br>设$0&lt;\alpha&lt;1$，证明$\lim_{n\rightarrow\infty}[(n+1)^{\alpha}-n^{\alpha}]=0$<br>证明：当$n\ge1$时，有</p>
-<script type="math/tex; mode=display">
-    \begin{aligned}
-        0<(n+1)^{\alpha}-n^{\alpha} &= n^{\alpha}[(1+\frac{1}{n})^{\alpha}-1]\\
-        &\le n^{\alpha}[(1+\frac{1}{n})-1]=\frac{1}{n^{1-\alpha}}
-    \end{aligned}</script><p>根据夹逼定理我们有$\lim_{n\rightarrow\infty}[(n+1)^{\alpha}-n^{\alpha}]=0$。</p>
-<p>例：设$\alpha&gt;0,a&gt;1$，则$\lim_{n\rightarrow\infty}\frac{n^{\alpha}}{a^n}=0$</p>
-<p>思路：由于分子分母同时含有$n$，因此我们很难进行判断，我们想要做的是根据放缩消去一个$n$，而留下的$n$很容易处理，因此我们对$a^n$进行放缩处理。<br>我们记$a^{\frac{1}{\alpha}}=1+\beta,\beta&gt;0$。由于$n&gt;1$，有</p>
-<script type="math/tex; mode=display">
-(1+\beta)^n = 1 + n\beta+\frac{1}{2}n(n-1)\beta^2+\cdots+\beta^n>\frac{1}{2}n(n-1)\beta^2</script><p>故</p>
-<script type="math/tex; mode=display">
-0<\frac{n^{\alpha}}{a^n} = \left[\frac{n}{(1+\beta)^n}\right]^{\alpha} < \left[\frac{2}{(n-1)\beta^2}\right]^\alpha</script><p>由夹逼原理可知$\lim_{n\rightarrow\infty}\frac{n^{\alpha}}{a^n}=0$。</p>
-<p>例：证明$\lim_{n\rightarrow\infty}\frac{1}{\sqrt[n]{n!}}=0$</p>
-<p>注意到当$1\le k\le n$时$(k-1)(n-k)\ge0$，从而$k(n-k+1)\ge n$，我们就有：</p>
-<script type="math/tex; mode=display">
-    (n!)^2 = (1\cdot n)(2(n-1))\cdots(k(n-k+1))\cdots(n\cdot1)\ge n^n,\forall n\ge1</script><p>因此</p>
-<script type="math/tex; mode=display">
-    0<\frac{1}{\sqrt[n]{n!}}\le\frac{1}{\sqrt{n}},\forall n\ge1</script><p>由夹逼原理可得：$\lim_{n\rightarrow\infty}\frac{1}{\sqrt[n]{n!}}=0$</p>
-<p>例：证明$\lim_{n\rightarrow\infty}\sqrt[n]{n}=1$<br>证明：记$\sqrt[n]{n}=1+\alpha_n$，当$n&gt;1$时，</p>
-<script type="math/tex; mode=display">
-    n = (1+\alpha_n)^n=1+n\alpha_n+\frac{1}{2}n(n-1)\alpha_n^2+\cdots+\alpha_n^n > \frac{1}{2}n(n-1)\alpha_n^2</script><p>从而有估计</p>
-<script type="math/tex; mode=display">
-0<\alpha_n<\sqrt{\frac{2}{n-1}}</script><p>因此，当$n&gt;1$时，有</p>
-<script type="math/tex; mode=display">
-1<\sqrt[n]{n} = 1+\alpha_n<1+\sqrt{\frac{2}{n-1}}</script><p>由夹逼原理即得：$\lim_{n\rightarrow\infty}\sqrt[n]{n}=1$。</p>
-<p>下面两个为比较重要的例题：</p>
-<p>设$\lim_{n\rightarrow\infty}a_n=A$，证明$\lim_{n\rightarrow\infty}\frac{a_1+a_2+\cdots+a_n}{n}=A$。<br>证明：任给$\epsilon&gt;0$，因为$\lim_{n\rightarrow\infty}a_n=A$，故存在$N_0$，使得当$n&gt;N_0$时，有</p>
-<script type="math/tex; mode=display">
-    |a_n-A|<\frac{\epsilon}{2}</script><p>令</p>
-<script type="math/tex; mode=display">
-N>\max\{N_0,2\epsilon^{-1}|a_1+\cdots+a_{N_0}-N_0A|\}</script><p>则当$n&gt;N$时，有</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\left|\frac{a_{1}+\cdots+a_{n}}{n}-A\right|=\left|\frac{a_{1}+\cdots+a_{N_{0}}-N_{0} A}{n}+\frac{\left(a_{N_{0}+1}-A\right)+\cdots+\left(a_{n}-A\right)}{n}\right| \\
-
-&\leqslant \frac{\left|a_{1}+\cdots+a_{N_{0}}-N_{0} A\right|}{n}+\frac{\left|a_{N_{0}+1}-A\right|+\cdots+\left|a_{n}-A\right|}{n} \\
-
-&\leqslant \frac{\left|a_{1}+\cdots+a_{N_{0}}-N_{0} A\right|}{n}+\frac{n-N_{0}}{n} \frac{\varepsilon}{2} \\
-
-&<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon
-
-\end{aligned}</script><p>这说明：$\lim_{n\rightarrow\infty}\frac{a_1+a_2+\cdots+a_n}{n}=A$。</p>
-<p>我们再来证明一个跟这个差不多的例题：</p>
-<p>$\lim_{n\rightarrow\infty}a_n=A$，则$\sqrt[n]{a_1\cdots a_n}=A$。</p>
-<p>证明：</p>
-<p>我们可以取对数利用上面那个题的结论即可证明。</p>
-<p>例：<strong>任何实数都是某个有理数列的极限</strong>。<br>证明：设$A$为实数。如果$A$为有理数，则令$a_n=A(n\ge1)$即可。如果$A$为无理数，令</p>
-<script type="math/tex; mode=display">
-a_n = \frac{[nA]}{n},\forall n\ge1</script><p>其中$[x]$表示不超过$x$的最大整数，因此$a_n$都是有理数。因为$A$不是有理数，故：</p>
-<script type="math/tex; mode=display">
-nA-1<[nA]<nA,\forall n\ge1</script><p>即</p>
-<script type="math/tex; mode=display">
-A-\frac{1}{n}<a_n=\frac{[nA]}{n}<A,\forall n\ge1</script><p>由夹逼定律可知$\lim_{n\rightarrow\infty} a_n=A$</p>
-<h4 id="数列极限的基本性质"><a href="#数列极限的基本性质" class="headerlink" title="数列极限的基本性质"></a>数列极限的基本性质</h4><p>命题(有界性)：设数列$\{a_n\}$收敛，则$\{a_n\}$有界<br>由此命题立知，无界数列必定发散。如果$\{a_n\}$发散到$+\infty$，则称$\{a_n\}$发散到$\infty$，记为</p>
-<script type="math/tex; mode=display">
-    \lim_{n\rightarrow\infty}a_n=\infty,\text{ 或}a_n\rightarrow\infty(n\rightarrow\infty)</script><p>命题(绝对值性质)。设数列$\{a_n\}$收敛到$A$，则$\{|a_n|\}$收敛到$|A|$。</p>
-<p>推论：数列$\{a_n\}$收敛到$0$当且仅当$|a_n|$收敛到$0$；数列$\{a_n\}$收敛到$A$当且仅当$|a_n-A|$收敛到$0$。</p>
-<p>命题(保序性质)。设数列$\{a_n\}$收敛到$A$，$\{b_n\}$收敛到$B$，则有</p>
-<ol>
-<li>如果存在$N_0$，当$n&gt;N_0$时$a_n\ge b_n$，则$A\ge B$。</li>
-<li>反之，如果$A&gt;B$，则存在$N$，使得当$n&gt;N$时$a_n&gt;b_n$。</li>
-</ol>
-<p>推论：设$\lim_{n\rightarrow\infty}a_n=A$，如果$A\neq0$，则存在$N$，使得当$n&gt;N$时，有</p>
-<script type="math/tex; mode=display">
-    \frac{1}{2}|A|<|a_n|<\frac{3}{2}|A|</script><p>例：设$q&gt;1$，则$\lim_{n\rightarrow\infty}\frac{\log_qn}{n}=0$<br>解：任给$\epsilon&gt;0$，利用之前的结论，有</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}\sqrt[n]{n}=1<q^{\epsilon}</script><p>由极限的保序性质，存在$N$，当$n&gt;N$时，有</p>
-<script type="math/tex; mode=display">
-    \sqrt[n]{n}<q^{\epsilon}</script><p>即</p>
-<script type="math/tex; mode=display">
-    \frac{\log_qn}{n}<\epsilon,\forall n>N</script><p>这说明：$\lim_{n\rightarrow\infty}a_n=A$.</p>
-<p>命题(四则运算)。设数列$\{a_n\}$收敛到$A$，$\{b_n\}$收敛到$B$，则有：</p>
-<ol>
-<li>$\{\alpha a_n+\beta b_n\}$收敛到$\alpha A+\beta B$，其中$\alpha,\beta$为常数</li>
-<li>$\{a_nb_n\}$收敛到$AB$</li>
-<li>当$B\neq0$时，$\{a_n/b_n\}$收敛到$A/B$</li>
-</ol>
-<p>下面我们引入数列的子列的概念，并研究数列的极限和其子列的极限之间的关系，设</p>
-<script type="math/tex; mode=display">
-    a_1,a_2,\cdots,a_n,\cdots</script><p>是数列，如果</p>
-<script type="math/tex; mode=display">
-    1\le n_1<n_2<\cdots<n_k<\cdots</script><p>是一列严格递增的正整数，则称数列</p>
-<script type="math/tex; mode=display">
-    a_{n_1},a_{n_2},\cdots,a_{n_k},\cdots</script><p>为原数列$\{a_n\}$的子列，记为$\{a_{n_k}\}$。两个特殊的子列$\{a_{2k}\}$和$\{a_{2k-1}\}$分别为偶子列和奇子列。</p>
-<p>命题</p>
-<ol>
-<li>设$\{a_n\}$收敛到$A$，则它的任何子列$\{a_{n_k}\}$也收敛到$A$</li>
-<li>如果$\{a_n\}$的偶子列与奇子列收敛到$A$，则$\{a_n\}$也收敛到$A$</li>
-</ol>
-<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>设$\lim_{n\rightarrow \infty}(a_{n+1}-a_n)=A$，则$\lim_{n\rightarrow\infty}\frac{a_n}{n}=A$</p>
-<script type="math/tex; mode=display">
-\frac{a_n}{n} = \frac{a_1+(a_2-a_1)+(a_3-a_2)+\cdots+(a_n-a_{n-1})}{n}</script><p>因为$\lim_{n\rightarrow \infty}(a_{n+1}-a_n)=A$，利用已知例题的结论即可证明得到。</p>
-<p>设$\lim_{n\rightarrow\infty}a_n=A$，证明：</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}\frac{1}{n^2}(a_1+2a_2+\cdots+na_n)=\frac{1}{2}A</script><p>对上式变换得到</p>
-<script type="math/tex; mode=display">
-\frac{1}{n^2}(a_1+2a_2+\cdots+na_n) = \sum_{i=1}^n\frac{i(a_i-A)}{n^2}+\frac{n(n+1)}{2n^2}A</script><p>这样就好证明了：</p>
-<p>因为：</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}\frac{i}{n}=0\quad\lim_{n\rightarrow\infty}(a_i-A)=0\Rightarrow\lim_{n\rightarrow\infty}\frac{i(a_i-A)}{n}=0</script><p>所以：</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow0}\sum_{i=1}^n\frac{i(a_i-A)}{n^2}=0</script><p>有因为：</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow0}\frac{n(n+1)}{2n^2}A=\frac{1}{2}A</script><p>得证。</p>
-<h4 id="单调数列的极限"><a href="#单调数列的极限" class="headerlink" title="单调数列的极限"></a>单调数列的极限</h4><p>确定原理：非空数集如果有上界则必有上确界，如果有下界则必有下确界。</p>
-<p>设$\{a_n\}$为实数列，如果</p>
-<script type="math/tex; mode=display">
-a_1\le a_2\le\cdots\le a_n\le \cdots</script><p>则称$\{a_n\}$是单调递增序列，当上式中的$\le$号换成$&lt;$时称$\{a_n\}$是严格单调递增的。</p>
-<p>定理(单调数列的极限)：设$\{a_n\}$为单调数列</p>
-<ol>
-<li>如果$\{a_n\}$为单调递增的数列，则$\lim_{n\rightarrow\infty}a_n=\sup\{a_k|k\ge1\}$</li>
-<li>如果$\{a_n\}$为单调递减序列，则$\lim_{n\rightarrow\infty}a_n=\inf\{a_k|k\ge1\}$</li>
-</ol>
-<p>证明：记$M=\sup\{a_k|k\ge1\}$，先考虑$M$有限的情形。任给$\epsilon&gt;0$，存在$a_N$，使得</p>
-<script type="math/tex; mode=display">
-M-\epsilon<a_N\le M</script><p>因为$\{a_n\}$是单调递增序列，故当$n&gt;N$时</p>
-<script type="math/tex; mode=display">
-M-\epsilon<a_N\le a_n\le M<M+\epsilon</script><p>由数列的极限定义可知：</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}a_n=M=\sup\{a_k|k\ge1\}</script><p>如果$M=+\infty$，则任给$A&gt;0$，由上确界的定义，存在$a_N$，使得$a_N&gt;A$。由于$\{a_n\}$是单调递增序列，故当$n&gt;N$时有$a_n\ge a_N&gt;A$，从而</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}a_n=+\infty=\sup\{a_k|k\ge1\}</script><p>由上面的推理我们也可以得到：单调有界的数列必有极限。</p>
-<p>任何收敛数列都有单调的收敛子列。</p>
-<p>例：设$a_1&gt;0,a_{n+1}=\frac{1}{2}(a_n+\frac{1}{a_n}),n\ge1$。研究数列$\{a_n\}$的极限。</p>
-<p>对于$a_n&gt;0,\forall n\ge1$。我们有：</p>
-<script type="math/tex; mode=display">
-a_{n+1} = \frac{1}{2}(a_n+\frac{1}{a_n})\ge\frac{1}{2}\cdot2(a_n\cdot\frac{1}{a_n})=1</script><p>故我们有：</p>
-<script type="math/tex; mode=display">
-a_{n+1} = \frac{1}{2}(a_n+\frac{1}{a_n})\le\frac{1}{2}(a_n+a_n)=a_n</script><p>所以单调递减，而又有下界。因此收敛，记其极限为$A$，则$A\ge1$。另一方面：</p>
-<script type="math/tex; mode=display">
-A = \lim_{n\rightarrow\infty}a_{n+1}=\lim_{n\rightarrow\infty}\frac{1}{2}(a_n+\frac{1}{a_n}) = \frac{1}{2}(A+\frac{1}{A})</script><p>故$A=1$.</p>
-<p>我们现在讨论几个重要的极限：</p>
-<script type="math/tex; mode=display">
-a_n = (1+\frac{1}{n})^n, b_n = (1+\frac{1}{n})^{n+1},n\ge1</script><blockquote>
-<p>详细证明过程见49页</p>
-</blockquote>
-<p>我们可以证明$\{a_n\}$单调递增，$\{b_n\}$单调递减。两者均收敛于$e$。</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}b_n = \lim_{n\rightarrow\infty}a_n(1+\frac{1}{n})=\lim_{n\rightarrow\infty}a_n=e</script><p>我们可以得到下述重要的不等式：</p>
-<script type="math/tex; mode=display">
-\left(1+\frac{1}{n}\right)^{n}<\left(1+\frac{1}{n+1}\right)^{n+1}<e<\left(1+\frac{1}{n+1}\right)^{n+2}<\left(1+\frac{1}{n}\right)^{n+1}, \quad \forall n \geqslant 1</script><p>我们令$c_n=1+\frac{1}{2}+\cdots+\frac{1}{n}-\ln n$，可以证明$\{c_n\}$收敛，其极限为$\gamma$，称为Euler常数，计算表明</p>
-<script type="math/tex; mode=display">
-\gamma = 0.5772156649\cdots</script><p>下面，我们利用单调数列来研究一般的有界数列。设$\{a_n\}$为有界数列，我们要研究它的收敛性。我们不知道$a_n$是否逐渐趋于某个数，一个好的想法就是取考虑$n$很大时$\{a_n\}$中最大的最小的项，看看它们是否相近。当然，最大和最小项不一定存在，但是我们可以利用上确界和下确界来分别代替它们。为此，令：</p>
-<script type="math/tex; mode=display">
-\underline{a}_{n}=\inf \left\{a_{k} \mid k \geqslant n\right\}, \quad \bar{a}_{n}=\sup \left\{a_{k} \mid k \geqslant n\right\}</script><p>$\{\underline{a}_n\}$和$\{\bar{a}_n\}$分别是单调递增和单调递减的序列，且：</p>
-<script type="math/tex; mode=display">
-\underline{a}_n\le a_n\le \bar{a}_n</script><p>单调数列$\{\underline{a}_n\}$和$\{\bar{a}_n\}$的极限分别称为$\{a_n\}$的<strong>下极限</strong>和<strong>上极限</strong>，记为：</p>
-<script type="math/tex; mode=display">
-\varliminf_{n \rightarrow \infty} a_{n}=\lim _{n \rightarrow \infty} \underline{a}_{n}, \quad \varlimsup_{n \rightarrow \infty} a_{n}=\lim _{n \rightarrow \infty} \bar{a}_{n}</script><p>定理：设$\{a_n\}$为有界数列，则下列命题等价：</p>
-<ol>
-<li>$\{a_n\}$收敛</li>
-<li>$\{a_n\}$的上极限和下极限相等</li>
-<li>$\lim_{n\rightarrow\infty}(\bar{a}_n-\underline{a}_n)=0$</li>
-</ol>
-<p>命题：设$\{a_n\},\{b_n\}$为有界数列</p>
-<ol>
-<li>如果存在$N_0$，当$n&gt;N_0$时$a_n\ge b_n$，则<script type="math/tex">\varliminf_{n \rightarrow \infty} a_{n} \geqslant \varliminf_{n \rightarrow \infty} b_{n}, \quad \varlimsup_{n \rightarrow \infty} a_{n} \geqslant \varlimsup_{n \rightarrow \infty} b_{n}</script></li>
-<li><script type="math/tex; mode=display">\overline{\lim}_{n\rightarrow\infty}(a_n+b_n)\le\bar{\lim}_{n\rightarrow\infty}a_n+\bar{\lim}_{n\rightarrow\infty}b_n</script></li>
-</ol>
-<p>设$a_n&gt;0,a_n\rightarrow A(n\rightarrow \infty)$。记$b_n = \sqrt[n]{a_1a_2\cdots a_n}$，则</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}b_n=A</script><p>由已知条件，任取$\epsilon&gt;0$，则存在$N$，当$n&gt;N$时，</p>
-<script type="math/tex; mode=display">
-0<a_n<A+\epsilon</script><p>于是当$n&gt;N$时，有</p>
-<script type="math/tex; mode=display">
-b_n\le\sqrt[n]{a_1a_2\cdots a_N}(A+\epsilon)^{\frac{n-N}{n}} = \sqrt[n]{a_1a_2\cdots a_N(A+\epsilon)^{-N}}(A+\epsilon)</script><p>令$n\rightarrow\infty$，得</p>
-<script type="math/tex; mode=display">
-\overline{\lim}_{n\rightarrow\infty}\le A+\epsilon</script><p>同理可证</p>
-<script type="math/tex; mode=display">
-\underline{\lim}_{n\rightarrow\infty}b_n\ge A-\epsilon</script><p>因为$\epsilon$是任取的，从而必有</p>
-<script type="math/tex; mode=display">
-\varlimsup_{n \rightarrow \infty} b_{n}=A=\varliminf_{n \rightarrow \infty} b_{n}</script><p>这说明$\{b_n\}$收敛到$A$。</p>
-<h4 id="Cauchy准则"><a href="#Cauchy准则" class="headerlink" title="Cauchy准则"></a>Cauchy准则</h4><p>定义：设$\{a_n\}$为数列，如果任给$\epsilon&gt;0$，均存在$N=N(\epsilon)$，当$m,n&gt;N$时，有</p>
-<script type="math/tex; mode=display">
-|a_m-a_n|<\epsilon</script><p>则$\{a_n\}$为Cauchy数列或基本列。</p>
-<p>例：对于$n\ge1$，定义</p>
-<script type="math/tex; mode=display">
-a_n =1+\frac{1}{2}+\cdots+\frac{1}{n}</script><p>则$\{a_n\}$不是Cauchy列。</p>
-<p>证明：对于$n\ge1$，我们有：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a_{2n}-a_n &= \frac{1}{n+1}+\cdots+\frac{1}{2n}\\&\ge\frac{1}{2n}+\cdots+\frac{1}{2n}=n\frac{1}{2n}=\frac{1}{2} 
-\end{aligned}</script><p>由此定义即知$\{a_n\}$不是Cauchy数列。</p>
-<p>命题：Cauchy数列必是有界数列。</p>
-<p>证明：按定义，取$\epsilon=1$，则存在$N$，当$m,n&gt;N$时，有</p>
-<script type="math/tex; mode=display">
-|a_m-a_n|<1</script><p>令$M=\max\{|a_k|+1|1\le k\le N+1\}$，则当$n\le N$时显然$|a_n|\le M$；而当$n&gt;N$时，有：</p>
-<script type="math/tex; mode=display">
-|a_n|\le |a_n-a_{N+1}|+|a_{N+1}|<1+|a_{N+1}|\le M</script><p>说明$\{a_n\}$是有界数列。</p>
-<p>定理(Cauchy准则)：$\{a_n\}$为Cauchy数列当且仅当它是收敛的。</p>
-<p>证明：</p>
-<p>充分性：设$\{a_n\}$收敛到$A$。则任给$\epsilon&gt;0$，存在$N$，当$n&gt;N$时，有：</p>
-<script type="math/tex; mode=display">
-|a_n-A|<\frac{1}{2}\epsilon</script><p>因此，当$m,n&gt;N$时，有</p>
-<script type="math/tex; mode=display">
-|a_m-a_n|\le |a_m-A|+|A-a_n|<\frac{1}{2}\epsilon+\frac{1}{2}\epsilon = \epsilon</script><p>这说明$\{a_n\}$为Cauchy数列。</p>
-<p>必要性：设$\{a_n\}$为Cauchy数列，由上面的命题可知$\{a_n\}$是有界数列，记$A$为其上极限。我们来说明$\{a_n\}$收敛到$A$。</p>
-<p>事实上，由于$\{a_n\}$为Cauchy数列，任给$\epsilon&gt;0$，存在$N$，当$m,n&gt;N$时，有</p>
-<script type="math/tex; mode=display">
-|a_m-a_n|<\frac{1}{2}\epsilon</script><p>即</p>
-<script type="math/tex; mode=display">
--\frac{1}{2}\epsilon<a_m-a_n<\frac{1}{2}\epsilon,\forall m,n>N</script><p>在上式中令$m\rightarrow\infty$，利用上极限的保序性，得</p>
-<script type="math/tex; mode=display">
--\frac{1}{2}\epsilon\le \overline{\lim_{m\rightarrow\infty}}a_m-a_n\le\frac{1}{2}\epsilon,\forall n>N</script><p>即</p>
-<script type="math/tex; mode=display">
-|A-a_n|\le\frac{1}{2}\epsilon<\epsilon,\forall n>N</script><p>这说明，$\{a_n\}$收敛到$A$。</p>
-<p>例：</p>
-<p>设数列$\{a_n\}$满足，存在正数$M$，对于一个$n$都有：</p>
-<script type="math/tex; mode=display">
-A_n = |a_2-a_1|+|a_3-a_2|+\cdots+|a_{n}-a_{n-1}|\le M</script><p>证明数列$\{a_n\}$是Cauchy数列，从而是收敛的。</p>
-<p>证明：</p>
-<script type="math/tex; mode=display">
-A_{n+1}-A_n=|a_{n+1}-a_{n}|\ge0</script><p>所以数列$A_n$为递增数列，又因为$0\le A_n \le M$，故$A_n$单调有界，所以数列$A_n$一定有极限(收敛)。因为$A_n$是收敛的，那么它一定是cauthy数列，根据cauthy收敛准则：$\forall \epsilon&gt;0,\exists N$当$m,n&gt;N$时，有：</p>
-<script type="math/tex; mode=display">
-|A_{m}-A_{n}|<\epsilon</script><p>因为</p>
-<script type="math/tex; mode=display">
-\epsilon>|A_m-A_n| = |a_{n+1}-a_n|+\cdots + |a_m-a_{m-1}|\ge |a_{m}-a_{n}|</script><p>故$a_n$为Cauchy序列，故$a_n$收敛。</p>
-<h4 id="Stolz公式"><a href="#Stolz公式" class="headerlink" title="Stolz公式"></a>Stolz公式</h4><p>引理：设$b_k&gt;0(1\le k\le n)$，且</p>
-<script type="math/tex; mode=display">
-m\le \frac{a_k}{b_k}\le M,\forall 1\le k\le n</script><p>则有</p>
-<script type="math/tex; mode=display">
-m\le \frac{a_1+a_2+\cdots+a_n}{b_1+b_2+\cdots+b_n}\le M</script><p>定理(Stolz公式之一)：设$\{x_n\},\{y_n\}$为数列，且$\{y_n\}$严格单调地趋于$+\infty$，如果</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}\frac{x_n-x_{n-1}}{y_n-y_{n-1}}=A</script><p>则</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}\frac{x_n}{y_n}=A</script><blockquote>
-<p>证明见课本60页</p>
-</blockquote>
-<p>定理(Stolz公式之二)：设数列$\{y_n\}$严格单调递减趋于$0$，数列$\{x_n\}$也收敛到$0$，如果：</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}\frac{x_n-x_{n-1}}{y_n-y_{n-1}}=A</script><p>则</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow\infty}\frac{x_n}{y_n}=A</script>
+          <p>梅加强老师《数学分析》</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/19/%E6%9E%81%E9%99%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -878,7 +496,7 @@ m\le \frac{a_1+a_2+\cdots+a_n}{b_1+b_2+\cdots+b_n}\le M</script><p>定理(Stolz�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-19 13:29:05" itemprop="dateModified" datetime="2021-12-19T13:29:05+08:00">2021-12-19</time>
+                <time title="修改时间：2021-12-22 15:25:50" itemprop="dateModified" datetime="2021-12-22T15:25:50+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -901,153 +519,15 @@ m\le \frac{a_1+a_2+\cdots+a_n}{b_1+b_2+\cdots+b_n}\le M</script><p>定理(Stolz�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h2><h3 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h3><script type="math/tex; mode=display">
-f(x) = w^Tx+b</script><h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>对于一元变量：<br>线性回归试图学得</p>
-<script type="math/tex; mode=display">
-f\left(x_{i}\right)=w x_{i}+b, \text { 使得 } f\left(x_{i}\right) \simeq y_{i}</script><p>对于多元变量：<br>我们令$\hat{w}=(w;b)$，相应地，把数据集$D$表示为一个$m\times(d+1)$大小的矩阵$\mathrm{X}$，即</p>
-<script type="math/tex; mode=display">
-\mathbf{X}=\left(\begin{array}{ccccc}
-
-x_{11} & x_{12} & \ldots & x_{1 d} & 1 \\
-
-x_{21} & x_{22} & \ldots & x_{2 d} & 1 \\
-
-\vdots & \vdots & \ddots & \vdots & \vdots \\
-
-x_{m 1} & x_{m 2} & \ldots & x_{m d} & 1
-
-\end{array}\right)=\left(\begin{array}{cc}
-
-x_{1}^{T} & 1 \\
-
-x_{2}^{T} & 1 \\
-
-\vdots & \vdots \\
-
-x_{m}^{T} & 1
-
-\end{array}\right)</script><p>我们有</p>
-<script type="math/tex; mode=display">
-\hat{w}^\star = \arg_{\hat{w}}\min(y-\mathrm{X}\hat{w})^T(y-\mathrm{X}\hat{w})</script><p>令$E_{\hat{w}}=(y-\mathrm{X}\hat{w})^T(y-\mathrm{X}\hat{w})$，对$\hat{w}$求导得到：</p>
-<script type="math/tex; mode=display">
-\frac{\partial E_{\hat{w}}}{\partial\hat{w}} = 2\mathrm{X}^T(\mathrm{X}\hat{w}-y)</script><p>当$\mathrm{X}^T\mathrm{X}$为满秩矩阵或正定矩阵时，我们有</p>
-<script type="math/tex; mode=display">
-\hat{w}^\star = (\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^Ty</script><p>更一般地，考虑单调可微函数$g(\cdot)$，令</p>
-<script type="math/tex; mode=display">
-y = g^{-1}(w^Tx+b)</script><p>这样的模型称为”广义线性模型”。</p>
-<h3 id="对数几率回归"><a href="#对数几率回归" class="headerlink" title="对数几率回归"></a>对数几率回归</h3><script type="math/tex; mode=display">
-y = \frac{1}{1+e^{-(w^Tx+b)}}</script><p>变化得</p>
-<script type="math/tex; mode=display">
-\ln\frac{y}{1-y} = w^Tx+b</script><p>若将$y$视为样本$x$作为正例的可能性，则$1-y$是其反例的可能性，两者的比值：</p>
-<script type="math/tex; mode=display">
-\frac{y}{1-y}</script><p>称为几率，反映了$x$作为正例的相对可能性。</p>
-<p>我们令</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-p(y=1|x) &= \frac{e^{w^Tx+b}}{1+e^{w^Tx+b}}\\
-p(y=0|x)&=\frac{1}{1+e^{w^Tx+b}}
-\end{aligned}</script><p>我们采用最大似然法来估计$w$和$b$：</p>
-<script type="math/tex; mode=display">
-\ell(w,b) = \sum_{i=1}^m\ln p(y_i|x_i;w,b)</script><p>我们令$\beta=(w;b),\hat{x} = (x;1)$，即$w^Tx+b=\beta^T\hat{x}$，令$p_1(\hat{x};\beta)=p(y=1|\hat{x};\beta),p_0(\hat{x};\beta)=p(y=0|\hat{x};\beta)=1-p_1(\hat{x};\beta)$<br>我们将似然项写为</p>
-<script type="math/tex; mode=display">
-p(y_i|x_i;w,b) = p_1(\hat{x}_i;\beta)^{y_i}p_0(\hat{x}_i;\beta)^{1-y_i}</script><p>代入似然函数，我们得</p>
-<script type="math/tex; mode=display">
-\ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\left(-y_{i} \boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_{i}+\ln \left(1+e^{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{\alpha}}_{i}}\right)\right)</script><p>最小化似然函数可以用<strong>梯度下降法</strong>和<strong>牛顿法</strong>。</p>
-<p>牛顿法<br>根据二阶泰勒展开我们有：</p>
-<script type="math/tex; mode=display">
-f(x+\Delta x) = f(x) - \Delta x^T\nabla f + \Delta x^T\nabla^2f\Delta x</script><p>对其进行求导，</p>
-<script type="math/tex; mode=display">
--\nabla f + 2\Delta x\nabla^2 f=0</script><p>使导数为零得</p>
-<script type="math/tex; mode=display">
-\Delta x = \nabla^2f^{-1}\nabla f</script><p>所以以牛顿法为例，其第$t+1$轮迭代解的更新公式为：</p>
-<script type="math/tex; mode=display">
-\beta^{t+1}=\beta^{t}-\left(\frac{\partial^{2} \ell(\beta)}{\partial \beta \partial \beta^{\mathrm{T}}}\right)^{-1} \frac{\partial \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}}</script><h3 id="LDA判别分析"><a href="#LDA判别分析" class="headerlink" title="LDA判别分析"></a>LDA判别分析</h3><p>LDA的思想非常朴素：给定训练例集，设法将样例投影到一条直线，使得同类样例的投影点尽可能接近、异类样例的投影点尽可能远离。</p>
-<p><img src="https://static01.imgkr.com/temp/4b179e7140244df5ad861570daec95ae.png" alt=""></p>
-<p>给定数据集$D=\{(x_i,y_i)\}_{i=1}^m,y_i\in \{0,1\}$。令$X_i,\mu_i,\Sigma_i$分别表示第$i\in \{0,1\}$类示例的集合、均值向量、协方差矩阵。若将数据投影到直线$w$上，则两类样本的中心再直线上的投影分别为$w^T\mu_0$和$w^T\mu_1$，若将所有的点都投影到直线上，则两类样本的协方差分别为$w^T\Sigma_0w$和$w^T\Sigma_1 w$。</p>
-<p>欲使同类样例的投影点尽可能接近，可以让$w^T\Sigma_0w+w^T\Sigma_1w$尽可能小；而欲使异类样例的投影点尽可能原理，可以使$||w^T\mu_0-w^T\mu_1||_2^2$尽可能大，同时考虑两者得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-J &= \frac{||w^T\mu_0-w^T\mu_1||_2^2}{w^T\Sigma_0w+w^T\Sigma_1w}\\
-&= \frac{w^T(\mu_0-\mu_1)(\mu_0-\mu_1)^Tw}{w^T(\Sigma_0+\Sigma_1)w}
-\end{aligned}</script><p>定义”类内散度矩阵”</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S_w &= \Sigma_0+\Sigma_1\\
-&= \sum_{x\in X_0}(x-\mu_0)(x-\mu_0)^T+\sum_{x\in X_1}(x-\mu_1)(x-\mu_1)^T
-\end{aligned}</script><p>以及类间散度矩阵：</p>
-<script type="math/tex; mode=display">
-S_b = (\mu_0-\mu_1)(\mu_0-\mu_1)^T</script><p>则可以重写为：</p>
-<script type="math/tex; mode=display">
-J = \frac{w^TS_bw}{w^TS_ww}</script><p>这就是LDA欲最大化得目标，即$S_b$与$S_w$的广义瑞利熵。</p>
-<p>如何求解$w$呢？我们发现，如果将$w$乘以常数$\alpha$，则分子分母上的$\alpha$约去，所以最优解与$\alpha$的长度无关而与其方向有关。所以我们令$w^TS_ww=1$($S_w$为常数)。则上式等价于：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\min_w&\quad -w^TS_bw\\
-\operatorname{s.t.}&\quad w^TS_ww=1
-\end{aligned}</script><p>根据拉格朗日乘子法，我们有：</p>
-<script type="math/tex; mode=display">
-L(w,\lambda) = -w^TS_bw+\lambda(w^TS_ww-1)</script><p>对其求导得：</p>
-<script type="math/tex; mode=display">
--2S_bw+2\lambda S_ww=0</script><p>即</p>
-<script type="math/tex; mode=display">
-S_bw = \lambda S_ww</script><p>由于我们想要求解的只有$w$，而$\lambda$这个拉格朗日乘子具体取多少值都无所谓，于是我们任意设定$\lambda$来配合我们求解$w$。我们注意到：</p>
-<script type="math/tex; mode=display">
-S_bw = (\mu_0-\mu_1)(\mu_0-\mu_1)^Tw</script><p>如果我们令$\lambda$恒等于$(\mu_0-\mu_1)^Tw$，那么上式即可改写为：</p>
-<script type="math/tex; mode=display">
-S_bw = \lambda(\mu_0-\mu_1)</script><p>代入得：</p>
-<script type="math/tex; mode=display">
-w = S_w^{-1}(\mu_0-\mu_1)</script><p>考虑到数值稳定性，在实践中通常是对$S_w$进行奇异值分解，即$S_w^{-1}=U\Sigma V^T$，然后得$S_w^{-1}=V\Sigma^{-1}U^T$。</p>
-<p>可以将LDA推广到多分类任务中。假定存在$N$个类，且第$i$类示例数为$m_i$，总样本数为$m$。我们先定义”全局散度矩阵”：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S_t &= S_b+S_w\\
-&= \sum_{i=1}^m(x_i-\mu)(x_i-\mu)^T
-\end{aligned}</script><p>其中$\mu$是所有示例的均值向量。将类内散度矩阵$S_w$定义为每个类别的散度矩阵之和，即</p>
-<script type="math/tex; mode=display">
-S_w=\sum_{i=1}^NS_{w_i}</script><p>其中</p>
-<script type="math/tex; mode=display">
-S_{w_i} = \sum_{x\in X_i}(x-\mu_i)(x-\mu_i)^T</script><p>我们可以推得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbf{S}_{b} &=\mathbf{S}_{t}-\mathbf{S}_{w} \\
-&=\sum_{i=1}^{m}\left(\boldsymbol{x}_{i}-\boldsymbol{\mu}\right)\left(\boldsymbol{x}_{i}-\boldsymbol{\mu}\right)^{\mathrm{T}}-\sum_{i=1}^{N} \sum_{\boldsymbol{x} \in X_{i}}\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)^{\mathrm{T}} \\
-&=\sum_{i=1}^{N}\left(\sum_{\boldsymbol{x} \in X_{i}}\left((\boldsymbol{x}-\boldsymbol{\mu})(\boldsymbol{x}-\boldsymbol{\mu})^{\mathrm{T}}-\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)^{\mathrm{T}}\right)\right) \\
-&=\sum_{i=1}^{N}\left(\sum_{\boldsymbol{x} \in X_{i}}\left((\boldsymbol{x}-\boldsymbol{\mu})\left(\boldsymbol{x}^{\mathrm{T}}-\boldsymbol{\mu}^{\mathrm{T}}\right)-\left(\boldsymbol{x}-\boldsymbol{\mu}_{i}\right)\left(\boldsymbol{x}^{\mathrm{T}}-\boldsymbol{\mu}_{i}^{\mathrm{T}}\right)\right)\right) \\
-&=\sum_{i=1}^{N}\left(\sum_{\boldsymbol{x} \in X_{i}}\left(\boldsymbol{x} \boldsymbol{x}^{\mathrm{T}}-\boldsymbol{x} \boldsymbol{\mu}^{\mathrm{T}}-\boldsymbol{\mu} \boldsymbol{x}^{\mathrm{T}}+\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}-\boldsymbol{x} \boldsymbol{x}^{\mathrm{T}}+\boldsymbol{x} \boldsymbol{\mu}_{i}^{\mathrm{T}}+\boldsymbol{\mu}_{i} \boldsymbol{x}^{\mathrm{T}}-\boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right)\right) \\
-&=\sum_{i=1}^{N}\left(\sum_{\boldsymbol{x} \in X_{i}}\left(-\boldsymbol{x} \boldsymbol{\mu}^{\mathrm{T}}-\boldsymbol{\mu} \boldsymbol{x}^{\mathrm{T}}+\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\boldsymbol{x} \boldsymbol{\mu}_{i}^{\mathrm{T}}+\boldsymbol{\mu}_{i} \boldsymbol{x}^{\mathrm{T}}-\boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right)\right) \\
-&=\sum_{i=1}^{N}\left(-\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{x} \boldsymbol{\mu}^{\mathrm{T}}-\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{\mu} \boldsymbol{x}^{\mathrm{T}}+\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{x} \boldsymbol{\mu}_{i}^{\mathrm{T}}+\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{\mu}_{i} \boldsymbol{x}^{\mathrm{T}}-\sum_{\boldsymbol{x} \in X_{i}} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right) \\
-&=\sum_{i=1}^{N}\left(-m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}^{\mathrm{T}}-m_{i} \boldsymbol{\mu} \boldsymbol{\mu}_{i}^{\mathrm{T}}+m_{i} \boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}+m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}-m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right) \\
-&=\sum_{i=1}^{N}\left(-m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}^{\mathrm{T}}-m_{i} \boldsymbol{\mu} \boldsymbol{\mu}_{i}^{\mathrm{T}}+m_{i} \boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+m_{i} \boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right) \\
-&=\sum_{i=1}^{N} m_{i}\left(-\boldsymbol{\mu}_{i} \boldsymbol{\mu}^{\mathrm{T}}-\boldsymbol{\mu} \boldsymbol{\mu}_{i}^{\mathrm{T}}+\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\boldsymbol{\mu}_{i} \boldsymbol{\mu}_{i}^{\mathrm{T}}\right) \\
-&=\sum_{i=1}^{N} m_{i}\left(\boldsymbol{\mu}_{i}-\boldsymbol{\mu}\right)\left(\boldsymbol{\mu}_{i}-\boldsymbol{\mu}\right)^{\mathrm{T}}
-\end{aligned}</script><p>即</p>
-<script type="math/tex; mode=display">
-S_b=\sum_{i=1}^{N} m_{i}\left(\boldsymbol{\mu}_{i}-\boldsymbol{\mu}\right)\left(\boldsymbol{\mu}_{i}-\boldsymbol{\mu}\right)^{\mathrm{T}}</script><p>我们常用的是实现目标：</p>
-<script type="math/tex; mode=display">
-\max_W\frac{\operatorname{tr}(W^TS_bW)}{\operatorname{tr}(W^TS_wW)}</script><p>此公式是二维情况下的推广形式，证明如下：设$W = (w_1,w_2,\cdots,w_i,\cdots,w_{N-1})\in \mathbb{R}^{d\times(N-1)}$，其中$w_i\in \mathbb{R}^{d\times 1}$为$d$行$1$列的列向量，则</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-\operatorname{tr}(W^TS_bW) = \sum_{i=1}^{N-1}w_i^TS_bw_i\\
-\operatorname{tr}(W^TS_wW)=\sum_{i=1}^{N-1}w_i^TS_wW_i
-\end{cases}</script><p>所以上述实现目标可以变形为：</p>
-<script type="math/tex; mode=display">
-\max_W\frac{\sum_{i=1}^{N-1}w_i^TS_bw_i}{\sum_{i=1}^{N-1}w_i^TS_wW_i}</script><p>可以看出是对二分类结果的推广。</p>
-<p>上式可以通过如下方式求解：</p>
-<script type="math/tex; mode=display">
-S_bW = \lambda S_wW</script><p>这个问题与上面二维的时候大致一样，我们也固定分母为$1$，那么优化问题就等价于：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\min_W\quad&-\operatorname{tr}(W^TS_bW)\\
-\operatorname{s.t.}\quad&\operatorname{tr}(W^TS_wW)=1
-\end{aligned}</script><p>应用拉格朗日乘子法，上述优化问题的拉格朗日函数为：</p>
-<script type="math/tex; mode=display">
-L(W,\lambda) =-\operatorname{tr}(W^TS_bW)+\lambda(\operatorname{tr}(W^TS_wW)-1)</script><p>根据矩阵求导公式：</p>
-<script type="math/tex; mode=display">
-\frac{\partial}{\partial X}\operatorname{tr}(X^TBX) = (B+B^T)X</script><p>对上式求导令导数等于$0$，得：</p>
-<script type="math/tex; mode=display">
-S_b W = \lambda S_wW</script><p>那么$W$为$S_w^{-1}S_b$的$N-1$个最大广义特征值所对应的特征向量组成的矩阵。</p>
-<p>如果将$W$视为一个投影矩阵，则多分类LDA将样本投影到$N-1$维空间，$N-1$通常远小于数据原有的属性数。并且在投影的过程中使用了类别的信息，故LDA也常用来降维。</p>
-
+          <p>最小二乘法永不为奴！！！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1092,10 +572,16 @@ S_b W = \lambda S_wW</script><p>那么$W$为$S_w^{-1}S_b$的$N-1$个最大广义
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-18 23:00:20 / 修改时间：23:06:12" itemprop="dateCreated datePublished" datetime="2021-12-18T23:00:20+08:00">2021-12-18</time>
+              <time title="创建时间：2021-12-18 23:00:20" itemprop="dateCreated datePublished" datetime="2021-12-18T23:00:20+08:00">2021-12-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-22 15:22:25" itemprop="dateModified" datetime="2021-12-22T15:22:25+08:00">2021-12-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1117,166 +603,15 @@ S_b W = \lambda S_wW</script><p>那么$W$为$S_w^{-1}S_b$的$N-1$个最大广义
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="实数与极限"><a href="#实数与极限" class="headerlink" title="实数与极限"></a>实数与极限</h2><p>我们先复习一下函数(映射)的概念，假设有两个集合$X$和$Y$，我们定义一个对应法则$f$，记为$X\xrightarrow{f}Y$，使得对于$\forall x\in X,x\xrightarrow{f}y\in Y$。则$X$为定义域，$Y$为到达域。<br>下面我们引入一个记号$f(X):=\{y\in Y|\exists x(\left(x\in X)\wedge(y=f(x))\right)\}$，称为值域。<br>我们微积分研究的对象：$X\xrightarrow{f}Y\subset \mathbb{R}^n$，其中$f$为可微函数。</p>
-<h3 id="实数的基本公理"><a href="#实数的基本公理" class="headerlink" title="实数的基本公理"></a>实数的基本公理</h3><p>加法公理：</p>
-<ul>
-<li>$\exists$零元$0$，使得$0+x=x+0=x$</li>
-<li>$\exists$负元$-x$，使得$x+(-x)=(-x)+x=0$</li>
-<li>结合律：$\forall x,y,z\in \mathbb{R}$，使得$(x+y)+z=x+(y+z)$</li>
-</ul>
-<p>集合$G$上存在加法运算，且满足上述三条加法公理，则说明$G$为一个群。</p>
-<ul>
-<li>交换律：对于$\forall x,y\in R,x+y=y+x$</li>
-</ul>
-<p>如果运算还满足交换律，则群成为交换群(阿贝尔群)。</p>
-<p>乘法公理：</p>
-<ul>
-<li>单位元(中性元)：$1\in \mathbb{R}-0$，$\forall x\in \mathbb{R},x\cdot1=1\cdot x=x$</li>
-<li>$\forall x\in\mathbb{R}-0,\exists x^{-1}\in\mathbb{R},x^{-1}\cdot x=x\cdot x^{-1}=1$</li>
-<li>$\forall x,y,z\in\mathbb{R},(x\cdot y)\cdot z = x\cdot(y\cdot z)$</li>
-<li>$\forall x,y\in\mathbb{R},x\cdot y = y\cdot x$</li>
-</ul>
-<p>则$\mathbb{R}-0$关于乘法构成一个群。</p>
-<p>有了加法和乘法，我们就可以定义加法和乘法的附加公理(分配律)：</p>
-<script type="math/tex; mode=display">
-\forall x,y,z\in \mathbb{R},z\cdot(x+y) = (x+y)\cdot z = x\cdot z + y\cdot z</script><p>域<br>如果集合上定义了满足上述公理的$+$和$\cdot$运算以及结合律，则该集合为域(代数域)。</p>
-<p>序公理：我们在集合上定义一个不等关系$\le$，使得$\forall x,y\in\mathbb{R},(x\le y)\vee(y\le x)$</p>
-<ul>
-<li>$\forall x\in \mathbb{R},x\le x$</li>
-<li>$(x\le y)\wedge(y\le x)\Rightarrow(x=y)$</li>
-<li>$(x\le y)\wedge(y\le z)\Rightarrow (x\le z)$</li>
-<li>$(x\le y)\vee (y\le x)$</li>
-</ul>
-<p>加法和序也存在附加公理：</p>
-<script type="math/tex; mode=display">
-(x\le y)\Rightarrow (x+z)\le (y+z)</script><p>乘法与序也存在附加公理：</p>
-<script type="math/tex; mode=display">
-(0\le x)\wedge(0\le y)\Rightarrow (0\le xy)</script><p>如果集合$X$上存在不等关系$\le$，满足上述公理的前三条，我们称$X$为一个偏序集，如果还满足第四条，我们称他为线性的序集。</p>
-<p>完备性公理(连续性公理)：给定集合$X,Y\subset \mathbb{R}$，使得$\forall x\in X,\forall y \in Y,x\le y$，则$\exists c\in \mathbb{R}$满足$x\le c\le y,\forall x\in X,\forall y\in Y$。</p>
-<p>给定一个集合，满足加法公理、乘法公理，定义了一个满足序公理的序关系，满足完备性公理，则成为是实数集的一个具体实现。</p>
-<p>如十进制的小数是$\mathbb{R}$的一个实现，还有数轴。</p>
-<h3 id="实数运算的代数性质"><a href="#实数运算的代数性质" class="headerlink" title="实数运算的代数性质"></a>实数运算的代数性质</h3><p>我们首先研究加法。<br>首先我们证明$\mathbb{R}$上存在唯一的加法零元。<br>证明：假设存在两个加法零元$0_1,0_2$，则</p>
-<script type="math/tex; mode=display">
-0_1 = 0_1+0_2 = 0_2+0_1=0_2</script><p>所以$0_1=0_2$，所以存在唯一的加法零元。</p>
-<p>下面证明$\forall x\in \mathbb{R},\exists$唯一的负元。<br>证明：假设存在两个负元$x_1,x_2$，则</p>
-<script type="math/tex; mode=display">
-x_1 = x_1 + 0 = x_1 + (x+x_2) = (x_1+x)+x_2 = 0+x_2 = x_2</script><p>所以存在唯一的负元。</p>
-<p>紧接着证明方程$a+x=b$有唯一解$x = b + (-a) = b-a$<br>证明：因为$a\in \mathbb{R}$，所以$\exists!$唯一负元$-a$。</p>
-<script type="math/tex; mode=display">
-(a+x=b)\Rightarrow((-a)+a+x=(-a)+b) \Rightarrow x = b + (-a) = b-a</script><p>下面我们研究乘法。<br>首先我们需要证明$\mathbb{R}$上存在唯一的$1$<br>证明：假设存在两个单位元$1_1,1_2$，则</p>
-<script type="math/tex; mode=display">
-1_1  = 1_1\cdot 1_2 = 1_2\cdot 1_1 = 1_2</script><p>下面我们证明$\forall x\in\mathbb{R}-0,\exists!$逆元$x^{-1}$<br>证明：假设存在两个逆元$x_1,x_2$，则</p>
-<script type="math/tex; mode=display">
-x_1 = x_1\cdot 1 = x_1\cdot(x\cdot x_2) = (x_1\cdot x)\cdot x_2 = x_2</script><p>所以$x_1=x_2$</p>
-<p>紧接着我们证明$\forall a\in \mathbb{R}-0,a\cdot x=b$存在唯一的解$x = b\cdot a^{-1} = a^{-1}\cdot b$。<br>证明：因为$a\in \mathbb{R}-0$，所以存在唯一的逆元$a^{-1}$，所以</p>
-<script type="math/tex; mode=display">
-(a\cdot x = b)\Rightarrow (a^{-1}\cdot(a\cdot x) = a^{-1}\cdot b)\Rightarrow (x = a^{-1}\cdot b)</script><p>下面我们证明加法与乘法相联系的公理的推论<br>$\forall x\in \mathbb{R},x\cdot 0 = 0$<br>证明：<br>$x\cdot 0 =x\cdot(0+0) = x\cdot 0+x\cdot 0$，两边同时加上逆元$-x\cdot 0$，得$0 = x\cdot 0$。</p>
-<p>$x\in\mathbb{R}-0\Rightarrow x^{-1}\neq0$<br>证明：若$x^{-1}=0\Rightarrow x\cdot x^{-1} = x\cdot 0 = 0$，得$1=0$，矛盾。</p>
-<p>$x\cdot y=0\Rightarrow(x=0)\vee(y=0)$<br>证明：设$y\neq 0$，所以$y^{-1}\neq 0$，所以</p>
-<script type="math/tex; mode=display">
-(x\cdot y = 0)\Rightarrow(x\cdot y\cdot y^{-1} = 0\cdot y^{-1}=0)\Rightarrow x = 0</script><p>同理可证当$x\neq0$时$y=0$。</p>
-<p>$-x = -1\cdot x$<br>证明：<br>$x + (-1\cdot x) = 1\cdot x + -1\cdot x = (1+(-1))\cdot x = 0\cdot x = 0$<br>所以$-1\cdot x$为$x$的逆元，所以$-x = -1\cdot x$。</p>
-<p>$(-1)\cdot (-x)=x$<br>证明：我们只需证明$(-1)\cdot(-x)$为$-x$的逆元即可。</p>
-<script type="math/tex; mode=display">
-(-1)\cdot(-x) + (-x) = ((-1)+1)\cdot(-x) = 0\cdot (-x) = 0</script><p>得证。</p>
-<p>$(-x)\cdot(-x)=x\cdot x$<br>证明：</p>
-<script type="math/tex; mode=display">
-(-x)\cdot (-x) = ((-1)\cdot x)\cdot(-x) = (x\cdot (-1))\cdot(-x) = x\cdot((-1)\cdot(-x)) = x\cdot x</script><p>下面我们研究序公理的推论</p>
-<p>$x\le y$若$x\neq y$，则记作$x&lt;y$，称为严格不等式。<br>那么对于$x,y\in\mathbb{R}$，$x&lt;y,x=y,y&lt;x$只有一个成立。</p>
-<p>下面我们证明：</p>
-<ul>
-<li>$(x&lt;y)\wedge(y\le z)\Rightarrow x&lt;z$</li>
-<li>$(x\le y)\wedge(y&lt;z)\Rightarrow x&lt;z$</li>
-</ul>
-<p>我们证明第一个，第二个与其类似：</p>
-<script type="math/tex; mode=display">
-(x<y)\wedge(y\le z)\Rightarrow((x\neq y)\wedge(x\le y)\wedge (y\le z))\Rightarrow((x\neq y)\wedge(x\le z))</script><p>若$x=z$，我们有$(x&lt;y)\wedge(y\le x)\Rightarrow(x\neq y)\wedge(x\le y)\wedge(y\le x)\Rightarrow(x\neq y)\wedge(x=y)$，矛盾。所以$x\neq z$，所以$x&lt;z$。</p>
-<h3 id="序公理与加法公理以及乘法公理的推论"><a href="#序公理与加法公理以及乘法公理的推论" class="headerlink" title="序公理与加法公理以及乘法公理的推论"></a>序公理与加法公理以及乘法公理的推论</h3><h4 id="序公理和加法公理"><a href="#序公理和加法公理" class="headerlink" title="序公理和加法公理"></a>序公理和加法公理</h4><p>我们需要证明以下定理：</p>
-<ol>
-<li>$(x&gt;y)\Rightarrow (x+z&gt;y+z)$</li>
-<li>$(x&gt;0)\Rightarrow (-x&lt;0)$</li>
-<li>$(x&gt;y)\wedge(z\ge w)\Rightarrow (x+z)&gt;(y+w)$</li>
-<li>$(x\ge y)\wedge (z&gt;w)\Rightarrow (x+z)&gt;(y+w)$</li>
-</ol>
-<p>下面我们开始证明：</p>
-<p>第一个：</p>
-<script type="math/tex; mode=display">
-(x>y)\Rightarrow (x\ge y)\Rightarrow (x+z\ge y+z)</script><p>所以我们只需要证明$(x+z\neq y+z)$，即证明$x\neq y$，所以得证。</p>
-<p>第二个：</p>
-<script type="math/tex; mode=display">
-(x>0)\Rightarrow (x+(-x)>0+(-x))\Rightarrow (0>-x)</script><p>得证。</p>
-<p>第三个和第四个证明一个即可：</p>
-<script type="math/tex; mode=display">
-((x>y)\wedge(z\ge w))\Rightarrow ((x+z>y+z)\wedge(z+y\ge w+y))\Rightarrow ((x>y)>(y+w))</script><p>得证。</p>
-<h4 id="序公理与乘法公理"><a href="#序公理与乘法公理" class="headerlink" title="序公理与乘法公理"></a>序公理与乘法公理</h4><ol>
-<li>$(x&gt;0)\wedge(y&gt;0)\Rightarrow (xy&gt;0)$</li>
-<li>$(x<0)\wedge(y<0)\Rightarrow (xy>0)$</li>
-<li>$(x&gt;0)\wedge(y&lt;0)\Rightarrow (xy&lt;0)$</li>
-<li>$(x&gt;y)\wedge(z&gt; 0)\Rightarrow(xz&gt;yz)$</li>
-<li>$(x&gt;y)\wedge(z&lt; 0)\Rightarrow(xz&lt;yz)$</li>
-</ol>
-<p>我们先证明第一条：</p>
-<script type="math/tex; mode=display">
-(x>0)\wedge(y>0)\Rightarrow (x\ge 0)\wedge(y\ge0)\Rightarrow xy\ge 0</script><p>所以我们至于要证明$xy\neq0$，根据之前的定理我们知道$(xy=0)\Rightarrow(x=0)\vee(y=0)$，而我们条件中$x,y$都不等于$0$，所以得证。</p>
-<p>第二条：</p>
-<script type="math/tex; mode=display">
-((x<0)\wedge(y<0))\Rightarrow((-x>0)\wedge(-y>0))\Rightarrow(-x)\cdot(-y)>0\Rightarrow(xy)>0</script><p>第三条与第二条思路相同，不在赘述。</p>
-<p>下面证明第四条：</p>
-<script type="math/tex; mode=display">
-((x>y)\wedge(z>0))\Rightarrow((x-y>0)\wedge(z>0))\Rightarrow((x-y)z>0)\Rightarrow(xz-yz)>0\Rightarrow xz>yz</script><p>第五条类似。</p>
-<p>下面我们证明$1&gt;0$：</p>
-<p>我们知道$1&gt;0,1=0,1&lt;0$之中只能有一个成立，我们已经知道$1\neq 0$。所以我们假设$1&lt;0$，那我们有：</p>
-<script type="math/tex; mode=display">
-(1<0)\wedge(1<0)\Rightarrow(1\cdot1>0)\Rightarrow 1>0</script><p>互相矛盾，所以$1&gt;0$。</p>
-<p>下面我们再证明：</p>
-<ol>
-<li>$(0<x)\Rightarrow(x^{-1}>0)$</li>
-<li>$(0&lt;x&lt;y)\Rightarrow(0&lt;y^{-1}&lt;x^{-1})$</li>
-</ol>
-<p>我们先证明第一条：</p>
-<p>我们假设$x^{-1}&lt;0$，则</p>
-<script type="math/tex; mode=display">
-(0<x)\wedge(x^{-1}<0)\Rightarrow (x\cdot x^{-1})<0\Rightarrow 1<0</script><p>矛盾，得证。</p>
-<p>第二条：</p>
-<script type="math/tex; mode=display">
-(0<x<y)\Rightarrow(y^{-1}>0)\wedge(x>0)\Rightarrow(x\cdot y^{-1}>0)\Rightarrow(y^{-1}>x^{-1})</script><p>得证。</p>
-<p>下面我们讨论正数和负数：</p>
-<p>所有大于零的数为正数，如果$x$为正数，则$x^{-1}$也为正数。</p>
-<p>负数：小于零的数为负数。</p>
-<h3 id="完备性公理与数集上下确界的存在性"><a href="#完备性公理与数集上下确界的存在性" class="headerlink" title="完备性公理与数集上下确界的存在性"></a>完备性公理与数集上下确界的存在性</h3><p>定义：$X\subset \mathbb{R}$，若$\exists c\in \mathbb{R},\forall x\in X,x\le c$，则称$X$上有界集合，称$c$为$X$的上界；若$\forall x\in X,x\ge c$，则称$X$下有界集合，称$c$为$X$的下界。</p>
-<p>定义(有界集)：既上有界也下有界。即$\exists c_1,c_2\in \mathbb{R}$使得$\forall x\in X,c_1&lt;x&lt;c_2$。</p>
-<p>定义(最大元、极大元)：集合$X\subset\mathbb{R}$，若$\exists a\in X$使得$\forall x\in X,x\le a$。称$a$为$X$的最大元。即：</p>
-<script type="math/tex; mode=display">
-\max X := (a\in X)\wedge(\forall x\in X,x\le a)</script><p>定义(最小元、极小元)：</p>
-<script type="math/tex; mode=display">
-\min X:= ((a\in X)\wedge (\forall x\in X,x\ge a))</script><p>定义(上确界)：上界当中的最小元，记为$\sup X$</p>
-<script type="math/tex; mode=display">
-(\sup X=s):= (\forall x\in X,x\le s)\wedge (\forall s^{\prime}<s,\exists x^{\prime}\in X,x^{\prime}>s^{\prime})</script><p>定义(下确界)：下界当中的最大元，记为$\inf X$。</p>
-<script type="math/tex; mode=display">
-(\inf X=s):= (\forall x\in X,x\ge s)\wedge (\forall s^{\prime}>s,\exists x^{\prime}\in X,x^{\prime}<s^{\prime})</script><p>例：$[0,1)$的的上确界为$1$。</p>
-<p>因为$\forall x\in [0,1),x \le1$，并且$\forall a<1$，我们有$\frac{1+a}{2}\in [0,1)$，但是$\frac{1+a}{2}>a$。</p>
-<p>则如果一个集合存在一个最大元，那么它必为上确界；存在最小元，那么它必为下确界。</p>
-<p>那么什么时候存在上确界和下确界呢？</p>
-<p>上确界引理：若$X$为有上确界非空集合，则$X$有唯一的上确界。</p>
-<p>证明：</p>
-<p>我们关于上确界还有一个定义：</p>
-<script type="math/tex; mode=display">
-\sup X := \min \{c|\forall x\in X,x\le c\}</script><p>由此可以看出上确界就是上界集合中的最小元。我们首先证明唯一性，假设有两个上确界$c_1,c_2$，因为上确界是上界集合中的最小元，所以我们有$c_1\le c_2,c_2\le c_1$，所以$c_1=c_2$。所以如果存在上确界的话，上确界就是唯一的。</p>
-<p>下面我们证明存在上确界。</p>
-<p>我们设$Y=\{y:\forall x\in X,x\le y\}$，由此可以看出$y$为$X$的上界集合，因为$X$有上界，所以$Y$非空。所以我们就有$\forall x\in X,\forall y\in Y,x\le y$。根据完备性公理，$\exists x\in \mathbb{R}$，使得$\forall x\in X,\forall y\in Y,x\le c\le y$，由此我们可以推出$c\in Y$，并且$c$为$Y$的最小元，所以上确界存在。</p>
-<p>得证。</p>
-<p>下确界的证明类似。</p>
-<h3 id="完备性公理相关的基本引理"><a href="#完备性公理相关的基本引理" class="headerlink" title="完备性公理相关的基本引理"></a>完备性公理相关的基本引理</h3><p>定义(序列)：如果函数$f:\mathbb{N}\rightarrow X$，则称$f(n)$为序列。记作：</p>
-<script type="math/tex; mode=display">
-x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果$\forall n\in \mathbb{N},X_{i}\supset X_{i+1}$，则称其为集列套。</p>
-<p>闭区间套引理：若闭区间套$I_1\supset I_1\supset I_3\supset \cdots$，存在$c\in \mathbb{R}$使得$c\in I_i,\forall i\in \mathbb{N}$。如果对于$\forall \epsilon &gt;0, \exists I_n$使得$|I_n|&lt;\epsilon$，则$c$唯一。</p>
-<p>证明：</p>
-<p>记$I_n=[a_i,b_i]$，$\forall I_n=[a_n,b_n],I_m=[a_m,b_m]$，我们都有$a_n\le b_m$。我们令$X=\{a_n\},Y=\{b_n\}$。所以对于$\forall a_n\in X,\forall b_m\in Y$，我们都有$a_n\le b_m$，根据完备性定理：$\exists c\in \mathbb{R}$，使得$\forall a_n\in X,\forall b_m\in Y$，都有$a_n\le c\le b_m$，我们取$m=n$，则$a_n\le c\le b_n$，即$c\in I_n$。则存在性就证明完了。</p>
-<p>若$c_1&lt;c_2\in I_n$，则$a_n\le c_1&lt;c_2\le b_n$，则$c_2-c_1&lt; b_n-a_n=|I_n|$，我们取$\epsilon = \frac{c_2-c_1}{2}$，则不存在这样的$I_n$。得证。</p>
-<p>定义：如果$S=\{X\}$，即$S$为集合的集合，令$Y\subset \bigcup_{X\in S}X$，则称$S$为$Y$的一个覆盖。这就说明：$\forall y\in Y,\exists X\in S$使得$y\in X$。</p>
-<p>有限覆盖引理：如果$I=[a,b],I\subset \bigcup U_n$，其中$U_n=[\alpha_n,\beta_n)$，则$\exists U_1\cdots U_k$使得$I\subset \bigcup_{i=1}^k U_i$。</p>
-<p>证明感觉没怎么看懂，等之后再补上。主要是运用反证法。</p>
-
+          <p>卓里奇永远的神！！！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1329,7 +664,7 @@ x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-18 23:07:01" itemprop="dateModified" datetime="2021-12-18T23:07:01+08:00">2021-12-18</time>
+                <time title="修改时间：2021-12-22 15:19:43" itemprop="dateModified" datetime="2021-12-22T15:19:43+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1352,657 +687,15 @@ x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="随机过程与卡尔曼滤波"><a href="#随机过程与卡尔曼滤波" class="headerlink" title="随机过程与卡尔曼滤波"></a>随机过程与卡尔曼滤波</h2><p>随机过程：$x_1,x_2,\cdots,x_n$是随机变量，但是不相互独立（无法做随机试验）。</p>
-<p>随机实验：</p>
-<ol>
-<li>在相同条件下，试验可以重复进行（独立性）</li>
-<li>一次试验，结果不确定，所有可能的结果已知</li>
-<li>试验之前，试验结果预先未知</li>
-</ol>
-<p>随机过程中独立性不存在，我们无法对概率进行赋值。</p>
-<p>补充：大数定律</p>
-<p>假设我们进行抛硬币试验：$P(正) = \frac{1}{2}, P(反) = \frac{1}{2}$，抛硬币，试验可重复进行。</p>
-<p>由大数定律，设$n$为试验次数，$\mu$为正面朝上的次数。</p>
-<p>大数定律：在$n$次独立的试验中，对于任意正数$\epsilon$，有</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow \infty}P(|\frac{\mu}{n}-P_1|<\epsilon)=1</script><p>当$n\rightarrow \infty$时，$\frac{\mu}{n}$依概率收敛于$P_1$。</p>
-<p>但是对于一个随机过程来说，$x_1,\cdots,x_n$不独立。</p>
-<p>例如：股票、分子的扩散、温度的变化都属于随机过程。</p>
-<p>下面我们继续研究随机过程：假设随机过程$x_1,x_2,\cdots,x_n$不相互独立，但是我们能找到它们之间的关系，如：</p>
-<script type="math/tex; mode=display">
-x_k = f(x_{k-1})\\
-p(x_k) = f(p(x_{k-1}))</script><p>但是这样也是不够的，因为我们只知道它们之间的关系，还是不知道它们的概率，因此我们需要一个初值条件：</p>
-<p>$p(x_1) = ?$   初值的选取</p>
-<p>有的随机过程的初值可以做随机试验，故可以确定初值，如随机游走：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-x_k &= x_{k-1} + D\\
-D &\sim \begin{cases}
-P(\text{往前走1米}) = \frac{1}{2}\\
-P(\text{往后走1米}) = \frac{1}{2}
-\end{cases}
-\end{aligned}</script><p>在这个随机过程中，我们可以人为规定初值$P(x_0=0)=1$。</p>
-<p>有的初值不可以做随机试验，只能使用主观概率。</p>
-<p>随机过程：$x_1,x_2,\cdots,x_n$</p>
-<p>我们已经找到它们之间的关系：$x_k = f(x_{k-1})$，</p>
-<p>我们选取不同的初值$p(x_1)$，不同的初值（主观概率）可能会导致不同的结果。</p>
-<p>这是我们不想要的结果，我们想尽可能削弱主观概率的差距。</p>
-<p>我们通过引用外部的观测（证据、信息）来对主观概率进行修正：</p>
-<script type="math/tex; mode=display">
-\text{主观概率}\xrightarrow{\text{外部观测}}\text{相对客观的概率}</script><p>主观概率可称为先验概率（先于实验的概率）</p>
-<p>相对客观的概率又称为后验概率（实验之后的概率）</p>
-<h2 id="贝叶斯滤波的三大概率"><a href="#贝叶斯滤波的三大概率" class="headerlink" title="贝叶斯滤波的三大概率"></a>贝叶斯滤波的三大概率</h2><p>先验概率</p>
-<p>后验概率</p>
-<p>我们用$X,Y$表示随机变量，$x,y$表示随机变量的取值，代表随机试验一个可能的结果。</p>
-<p>离散：$P(X=x) = P_x$</p>
-<p>连续：$P(X&lt;x)=\int_{-\infty}^x\frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}dt$</p>
-<p>条件概率：</p>
-<p>离散：$P(X= x|Y=y) = \frac{P(X=x,Y=y)}{P(Y=y)}$</p>
-<p>连续：$P(X&lt;x|Y=y) = \int_{-\infty}^x\frac{f(x,y)}{f(y)}dx$</p>
-<p>我们现在讲一下第三个概率，我们用一个例子来讲解一下</p>
-<p>温度：今天多少度？</p>
-<p>首先我们要给一个先验概率分布，比如：</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-P(T=10) = 0.8\\
-P(T=11) = 0.2
-\end{cases}</script><p>其次，用温度计测一下温度：$T_m = 10.3$，但是温度计也有误差，所以温度计的测量值也存在一个概率分布</p>
-<p>最后我们根据贝叶斯公式计算后验概率分布：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(T=10|T_m=10.3) = \frac{P(T_m=10.3|T=10)P(T=10)}{P(T_m=10.3)}\\
-P(T=11|T_m=10.3) = \frac{P(T_m=10.3|T=11)P(T=11)}{P(T_m=10.3)}\\
-\end{aligned}</script><p>而概率$P(T_m=10.3|T=10)$和$P(T_m=10.3|T=11)$被称为似然概率：代表观测的准确度。</p>
-<p>观察上面两个公式，我们发现还有一个概率$P(T_m = 10.3)$，在很多教程上对这个概率大都一笔带过：$P(T_m=10.3)$与$T$无关，所以$P(T=10|T_m=10.3)=\eta P(T_m=10.3|T=10)P(T=10)$</p>
-<p>但是$T_m$和$T$真的是无关的吗？其实不是，这就涉及到独立、无关和无影响几个概念了。</p>
-<p>根据全概率公式，我们有：</p>
-<script type="math/tex; mode=display">
-P(T_m=10.3) = P(T_m = 10.3|T=10)P(T=10)+ P(T_m=10.3|T=11)P(T=11)</script><p>$P(T_m=10.3)$与$T$的取值无关，但是与$T$的分布律有关。</p>
-<p>因为$T=10,T=11$代表随机试验的一个结果，结果不会影响到分布律，</p>
-<p>所以$P(T_m=10.3)$与$T$的取值无关。</p>
-<p>但为什么$P(T_m=10.3)$是一个常数呢？这是因为$T$的分布律及我们的先验概率，他是我们事先给定的，而似然概率表示传感器的精度，是传感器固有的性质，也是给定好的。所以根据全概率公式，$P(T_m=10.3)$为常数。</p>
-<p>所以：</p>
-<script type="math/tex; mode=display">
-P(T=10|T_m=10.3)=\eta P(T_m=10.3|T=10)P(T=10)\\
-P(T=11|T_m=10.3)=\eta P(T_m=10.3|T=11)P(T=11)</script><p>那我么如何算$\eta$呢？</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\sum(\text{后验概率}) &= \eta\sum\text{似然概率}\cdot\text{先验概率}\\
-\sum\text{后验概率}&=1\\
-\eta &= \frac{1}{\sum\text{似然概率}\cdot\text{先验概率}}
-\end{aligned}</script><p>对似然概率的一些解释：</p>
-<p>似然：likelihood 表示可能性，相似、像，源于最大似然估计</p>
-<p>表示：哪个原因最可能（最像）导致了结果</p>
-<p>例：A班  99男1女    B班  99女1男</p>
-<p>先随机抽取一个班，再从此班级中抽出一个人进行观测，结果是女生，此女生最像是从B班中抽出。</p>
-<script type="math/tex; mode=display">
-P(\text{状态}|\text{观测}) = \eta P(\text{观测}|\text{状态})P(\text{状态})</script><p>我们通常把观测作为果，将状态作为因，后验概率即为由结果推原因，即观测最有可能导致什么的状态，而似然概率为由原因推理结果，即我这样的观测最有可能是什么样的状态导致的。</p>
-<p>后验分布：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(\text{状态1}|\text{观测})\\
-P(\text{状态2}|\text{观测})
-\end{aligned}</script><p>似然概率</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(\text{观测}|\text{状态1})\\
-P(\text{观测}|\text{状态2})
-\end{aligned}</script><p>关于独立和函数关系的一些说明：独立未必没有函数关系：$Y = f(X)$，$Y$与$X$可能独立，也可能不独立。</p>
-<p>例：</p>
-<p>必然事件：$Y = X+1$，$P(X=1)=1,P(Y=2)=1,P(X=1,Y=2) = P(X=1)*P(Y=2)=1$，所以$X$和$Y$相互独立。</p>
-<p>随机事件：设有一个正态概率分布$N(\mu,\sigma^2),(\mu, \sigma)$未知，从此分布中，抽取$n$个独立的样本，$X_1,\cdots,X_n$，则$X_1,\cdots,X_n$独立同分布，则随机变量</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\bar{X} &= \frac{X_1+X_2+\cdots+X_n}{n}\\
-S^2 &= \frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2
-\end{aligned}</script><p>相互独立</p>
-<h2 id="连续变量的贝叶斯公式"><a href="#连续变量的贝叶斯公式" class="headerlink" title="连续变量的贝叶斯公式"></a>连续变量的贝叶斯公式</h2><p>离散：</p>
-<script type="math/tex; mode=display">
-P(X=x|Y=y) = \frac{P(Y=y|X=x)}{P(Y=y)}</script><p>如果将此公式直接推广到连续变量上</p>
-<script type="math/tex; mode=display">
-P(X<x|Y=y) = \frac{P(Y=y|X<x)P(X<x)}{P(Y=y)}</script><p>显然这样是没有意义的。</p>
-<p>所以贝叶斯公式无法直接运用于连续随机变量。</p>
-<p>化积分为求和：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(X<x) &= \sum_{u = -\infty}^xP(X=u)\\
-P(X<x|Y=y) &= \sum_{u = -\infty}^xP(X=u|Y=y)\\
-&=\sum_{u=-\infty}^x\frac{P(Y=y|X=u)P(X=u)}{P(Y=y)}\\
-&=\lim_{\epsilon\rightarrow 0}\sum_{u = -\infty}^x\frac{P(y<Y<y+\epsilon|X=u)P(u<X<u+\epsilon)}{P(y<Y<y+\epsilon)}\\
-&=\lim_{\epsilon\rightarrow \infty}\sum_{u = -\infty}^x \frac{(f_{Y|X}(\zeta_1|u)\epsilon)(f_X(\zeta_2)\epsilon)}{f_Y(\zeta_3)\epsilon}\\
-&= \lim_{\epsilon\rightarrow 0}\sum_{u=-\infty}^x \frac{f_{Y|X}(y|u)f_X(u)}{f_Y(y)}\epsilon\\
-&=\int_{-\infty}^x\frac{f_{Y|X}(y|u)f_X(u)}{f_Y(y)}du\\
-&=\int_{-\infty}^x\frac{f_{Y|X}(y|x)f_X(x)}{f_Y(y)}dx\\
-&\zeta_1 \in (y,y+\epsilon),\zeta_2\in(u,u+\epsilon),\zeta_3\in(y,y+\epsilon)
-\end{aligned}</script><p>这就是连续随机变量的贝叶斯公式</p>
-<script type="math/tex; mode=display">
-P(X<x|Y=y) = \int_{-\infty}^x\frac{f_{Y|X}(y|x)f_X(x)}{f_Y(y)}dx</script><p>我们将$P(X&lt;x|Y=y)$的概率密度函数写为：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(X<x|Y=y) &= \int_{-\infty}^xf_{X|Y}(x|y)dx\\
-&\Rightarrow f_{X|Y}(x|y) = \frac{f_{Y|X}(y|x)f_X(x)}{f_Y(y)}
-\end{aligned}</script><p>又因为</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_Y(y) &= \int_{-\infty}^{+\infty}f(y,x)dx\\
-&=\int_{-\infty}^{+\infty}f_{Y|X}(y|x)f(x)dx \equiv C
-\end{aligned}</script><p>所以，令</p>
-<script type="math/tex; mode=display">
-\eta = \frac{1}{\int_{-\infty}^{+\infty}f_{Y|X}(y|x)f_X(x)dx}</script><p>所以</p>
-<script type="math/tex; mode=display">
-f_{X|Y}(x|y) = \eta f_{Y|X}(y|x)f_X(x)</script><h2 id="似然概率与狄拉克函数"><a href="#似然概率与狄拉克函数" class="headerlink" title="似然概率与狄拉克函数"></a>似然概率与狄拉克函数</h2><p>$X$：状态   $Y$：观测</p>
-<p>例：测温度</p>
-<p>我们的先验概率分布为：$f_X(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{(x-10)^2}{2}}$，倾向于认为$X = 10$。</p>
-<p>观测：$y = 9$</p>
-<p>假设$\epsilon$为一个足够小的数，则</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_{Y|X}(y|x)\cdot \epsilon &= P(y<Y<y+\epsilon|X=x)\\
-f_{Y|X}(y|x) &= \lim_{\epsilon \rightarrow\infty}\frac{P(y<Y<y+\epsilon|X=x)}{\epsilon}
-\end{aligned}</script><p>例：温度计精度为$\pm0.2$，当真实值$=x$，$y = x\pm 0.2$</p>
-<p>$P(x-0.2<Y<x+0.2|X=x)$较大，以及$P(Y<x-0.2\text{或}Y>x+0.2|X=x)$较小。</p>
-<p>例</p>
-<script type="math/tex; mode=display">
-P(x-0.2<Y<x+0.2|X=x) = 1 \Rightarrow \int_{y = x-0.2}^{y = x+0.2}f_{Y|X}(y|x)dy = 1</script><p>但是似然概率在每一点的概率我们并不知道，因为传感器只会给我们一些精度的指标，所以可能需要我们自己假设似然模型。</p>
-<p>似然模型：</p>
-<p>等可能型：$f_Y(y|x)=C$，即符合均匀分布。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal1.jpg" alt=""></p>
-<script type="math/tex; mode=display">
-f_{Y|X}(y|x) = \begin{cases}
-2.5&\quad& |y-x|\le0.2\\
-0&\quad&|y-x|>0.2
-\end{cases}</script><p>阶梯型</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal2.jpg" alt=""></p>
-<p>阶梯型的推广：直方图型</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal3.jpg" alt=""></p>
-<p>正态分布</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/4.jpg" alt=""></p>
-<p>再继续讨论上文提到的温度的例子：</p>
-<p>测温度，先验：</p>
-<script type="math/tex; mode=display">
-f_X(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{(x-10)^2}{2}}</script><p>观测$y=9$，似然</p>
-<script type="math/tex; mode=display">
-f_{Y|X}(y|x) = \frac{1}{\sqrt{2\pi}\cdot0.2}e^{-\frac{(9-x)^2}{2\cdot0.2^2}}</script><p>后验：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_{X|Y}(x|9) &= \eta\frac{1}{2\pi\cdot 0.2}e^{-\frac{1}{2}[(x-10)^2+\frac{(9-x)^2}{0.2^2}]}\\
-\eta &= (\int_{-\infty}^{+\infty}(\frac{1}{2\pi\cdot0.2}e^{-\frac{1}{2}[(x-10)^2+\frac{(9-x)^2}{0.2^2}]})dx)^{-1}
-\end{aligned}</script><p>经计算的</p>
-<script type="math/tex; mode=display">
-f_{X|Y}(x|9) = \frac{1}{\sqrt{2\pi}0.038}e^{-\frac{(x-9.0385)^2}{2\cdot(0.038)^2}}\sim N(9.0385,0.038^2)</script><p>由计算可得：</p>
-<p>先验：$N(10,1)$    似然：$N(9,0.2^2)$    后验：$N(9.0385, 0.038^2)$</p>
-<p>由结果可得，方差显著降低，不确定性减小，所以称为滤波</p>
-<p>重要定理：</p>
-<p>若</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_X(x)&\sim N(\mu_1, \sigma_1^2)\\
-f_{Y|X}(y|x)&\sim N(\mu_2,\sigma_2^2)
-\end{aligned}</script><p>则：</p>
-<script type="math/tex; mode=display">
-f_{X|Y}(x|y)\sim N(\frac{\sigma_1^2}{\sigma_1^2+\sigma_2^2}\mu_2 + \frac{\sigma_2^2}{\sigma_1^2+\sigma_2^2}\mu_1, \frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2})</script><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal5.jpg" alt=""></p>
-<p>下面我们来看一下狄拉克函数：$\delta(x)$</p>
-<script type="math/tex; mode=display">
-f_{Y|X}(y|x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y-x)^2}{2\sigma^2}}</script><p>当$\sigma\rightarrow 0$时，$f_{Y|X}(y-x) = \delta(y-x)$</p>
-<script type="math/tex; mode=display">
-\delta(x) = \begin{cases}
-0&\quad& x\neq 0\\
-\infty&\quad&x=0
-\end{cases}</script><script type="math/tex; mode=display">
-\begin{aligned}
-\int_{-\infty}^{+\infty}\delta(x)dx &= 1\\
-\int_{-\infty}^{+\infty}f(x)\delta(x)dx &= f(0)
-\end{aligned}</script><p>$\delta(x)$实质上为必然事件的概率密度。</p>
-<p>设其分布函数为$H(x)$</p>
-<p>则</p>
-<script type="math/tex; mode=display">
-H(x) = \begin{cases}
-1&\quad& x\ge 0\\
-0&\quad& x<0
-\end{cases}</script><p>则：$\delta(x) = \frac{d}{dx}H(x)$</p>
-<p>推论：</p>
-<ol>
-<li>$\int_a^b\delta(x)dx=1, a&lt;0&lt;b$</li>
-<li>$\int_a^bf(x)\delta(x)dx = f(0), a&lt;0&lt;b$</li>
-<li>$\int_c^df(x)\delta(x-a)dx = f(a),c&lt;a&lt;d$</li>
-</ol>
-<p>例：</p>
-<p>先验：$N(\mu,\sigma^2)$</p>
-<p>观测：$y=0$，似然：$\delta(10-x)$</p>
-<p>后验：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_{X|Y}(x|y) &= \eta\cdot \delta(10-x)\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\\
-\eta &= \frac{1}{\int_{-\infty}^{\infty}\delta(10-x)\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx}\\
-&=\frac{1}{\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(10-\mu)^2}{2\sigma^2}}}
-\end{aligned}</script><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal6.jpg" alt=""></p>
-<h2 id="随机过程的贝叶斯滤波"><a href="#随机过程的贝叶斯滤波" class="headerlink" title="随机过程的贝叶斯滤波"></a>随机过程的贝叶斯滤波</h2><p>随机过程<img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal7.jpg" alt=""></p>
-<p>有一个初值$X_0$，有$k$个观测值$y_1,y_2,\cdots,y_k$</p>
-<p>这种问题怎么处理？</p>
-<ol>
-<li>所有$X_0\sim X_k$的先验概率都依靠猜<ol>
-<li>缺点：过于依赖观测，放弃了预测信息，虽然说如果观测很准的话最后得到的结果也没问题，但是会丢失掉一部分信息。</li>
-<li>比如：$X_k = 2X_{k-1}+Q_k$和$X_k = X_{k-1}^2+Q_k$这两个过程，如果先验概率都依赖于猜，那么它的结果就消失了，这两个随机过程就相当于一个随机过程了。</li>
-</ol>
-</li>
-<li>只有$X_0$的概率是猜的，$X_1,\cdots,X_k$的先验概率是递推的。</li>
-</ol>
-<p>怎么做：通过状态方程，观测方程。（建模）</p>
-<p>状态方程：$X_k$与$X_{k-1}$是什么关系</p>
-<p>假设：$X_k = \frac{1}{2}gt^2+Q$</p>
-<p>对$X_k$进行泰勒展开，得到：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-X_k &= \frac{1}{2}gt^2 + Q\\
-&=X_{k-1} + \dot{X_{k-1}}(t_k-t_{k-1}) + Q\\
-&=X_{k-1} + gt(t_k-t_{k-1}) + Q
-\end{aligned}</script><p>但是很多的随机过程不等写出这样精确的状态方程，比如：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal8.jpg" alt=""></p>
-<p>这时候我们可以将状态方程写作：</p>
-<script type="math/tex; mode=display">
-X_k = X_{k-1} + Q\quad Q\sim N(0,1000)</script><p>将方差设的大一点，得到一个比较粗糙的状态方程。</p>
-<p>状态方程，反映了$X_k$与$X_{k-1}$之间的关系，$X_k = f(X_{k-1})+Q_k$，$Q_k$为预测噪声。</p>
-<p>观测方程：反映了状态是如何引起传感器的读数</p>
-<p>如测温度：</p>
-<p>状态：温度， 观测：温度，$Y_k = X_{k} + R_k$</p>
-<p>或是测位移：</p>
-<p> 状态：位移，观测：角度，$Y_k = \arcsin{X_k} + R_k$</p>
-<p>观测方程：$Y_k = h(X_k)+R_k$，$R_k$：观测噪声。</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-X_k &=& f(X_{k-1}) + Q_k\Rightarrow\text{随机过程}\\
-Y_k &=& h(X_k) + R_k\Rightarrow\text{观测}
-\end{cases}</script><p>那么问题来了，我们怎么递推？</p>
-<p>设$X_k = 2X_{k-1}$，无$Q_k$，无观测</p>
-<p>首先$X_0\sim N(0,1)$(猜的)</p>
-<p>$X_1 = 2X_0\sim N(0, 2^2)$</p>
-<p>$X_2 = 2X_1 \sim N(0,2^4)$方差越来越大，不是我们想要的结果，故这种递推方式是不对的。</p>
-<p>真正的递推：</p>
-<p>$X_0 \sim N(0,1) \xrightarrow{\text{预测步}}X_1^-\sim N(0, 2^2) \xrightarrow{\text{更新步}\text{(运用观测}y_1=0)}X_1^+\sim N(0,0.8)\xrightarrow{\text{再预测}}X_2^-$</p>
-<p>更新步也成为后验步，运用观测值进行后验估计。</p>
-<p>之后再以此类推</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal.jpg" alt=""></p>
-<p>总的来说就是分两步：</p>
-<ol>
-<li>预测步：$\text{上一时刻的后验}\xrightarrow{\text{状态方程}}\text{这一时刻的先验}$</li>
-<li>更新步：$\text{这一时刻的先验}\xrightarrow{观测方程}\text{这一时刻的后验/下一时刻的先验}$</li>
-</ol>
-<p>那么我们具体应该怎么做？</p>
-<p>贝叶斯滤波算法的推导：</p>
-<p>我们现在已经有的东西（原料）：</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-X_k &=& f(X_{k-1})+Q_k\\
-Y_k &=& h(X_k) + R_k
-\end{cases}</script><p>其中：$X_k,X_{k-1},Y_k,Q_k,R_k$都是随机变量</p>
-<p><strong>假设：$X_0,Q_1,\cdots,Q_k,R_1,\cdots,R_k$相互独立</strong></p>
-<p>有观测值：$y_1,y_2,\cdots,y_k$</p>
-<p>设初值$X_0$的<code>pdf</code>：$f_0(x)$，$Q_k$的<code>pdf</code>$f_{Q_k}(x)$，$R_k$的<code>pdf</code>：$f_{R_k}(x)$</p>
-<p><strong>重要定理：条件概率里的条件可以做逻辑推导</strong></p>
-<p>例：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(X=1|Y=2,Z=3) &= P(X+Y=3|Y=2,Z=3) = P(X+Y=3|Y=Z+1,Z-Y=1)\\
-&\neq P(X+Y=3|Z=3)\\
-&\neq P(X=1|X+Y=3,Z=3)
-\end{aligned}</script><p>即条件概率里的条件可以作为已知量。</p>
-<p>预测步：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(X_1 < x) &= \sum_{u = -\infty}^xP(X_1=u)\\
-P(X_1 = u) &= \sum_{v = -\infty}^{+\infty}P(X_1 = u|X_0=v)P(X_0 = v)\\
-&=\sum_{v = -\infty}^{+\infty} P(X_1 - f(X_0) = u-f(v)|X_0=v)P(X_0=v)\\
-&=\sum_{v=-\infty}^{+\infty}P(Q_1 = u-f(v)|X_0=v)P(X_0=v)\\
-&\text{之前我们已经假设过}Q_1\text{和}X_0\text{相互独立，所以}P(Q_1=u-f(v)|X_0=v) = P(Q_1 = u-f(v))\\\text{，但是这只对}Q_1\text{和}X_0\text{成立，要想递推我们需证明}Q_k\text{与}X_{k-1}\text{相互独立}\\
-&\sum_{v = -\infty}^{+\infty}P(Q_1 = u-f(v))P(X_0=v)\\
-&=\lim_{\epsilon\rightarrow0}\sum_{v = -\infty}^{+\infty}f_{Q_1}(u-f(v))\epsilon f_0(v)\epsilon\\
-&=\lim_{\epsilon\rightarrow0}\int_{-\infty}^{+\infty}f_{Q_1}(u-f(v))f_0(v)dv\cdot \epsilon
-\end{aligned}</script><p>所以</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(X_1<x) &= \sum_{u = -\infty}^{x}P(X_1=u)\\
-&= \sum_{u = -\infty}^x\lim_{\epsilon\rightarrow 0}\int_{-\infty}^{+\infty}f_{Q_1}(u-f(v))f_0(v)dv\cdot\epsilon\\
-&=\int_{-\infty}^x\int_{-\infty}^{+\infty}f_{Q_1}(u-f(v))f_0(v)dvdu
-\end{aligned}</script><p>那么$x_1$的先验概率分布为</p>
-<script type="math/tex; mode=display">
-f_1^-(x) = \frac{d}{dx}(P(X_1<x)) = \int_{-\infty}^{+\infty}f_{Q_1}(x-f(v))f_0(v)dv</script><p>下面我们看更新步：</p>
-<p>观测：$Y_1 = y_1$</p>
-<p>似然概率：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_{Y_1|X_1}(y_1|x) &= \lim_{\epsilon\rightarrow 0}\frac{P(y_1<Y_1<y_1+\epsilon|X_1=x)}{\epsilon}\\
-&=\lim_{\epsilon\rightarrow 0} \frac{P(y_1-h(x)<Y_1-h(x)<y_1-h(x)+\epsilon|X_1=x)}{\epsilon}\\
-&=\lim_{\epsilon\rightarrow 0} \frac{P(y_1-h(x)<Y_1-h(x)<y_1-h(x)+\epsilon|X_1=x)}{\epsilon}\\
-&=\lim_{\epsilon\rightarrow 0} \frac{P(y_1-h(x)<R_1<y_1-h(x)+\epsilon)}{\epsilon}\\
-&\text{需要证明}R_1\text{与}X_1相互独立\\
-&=f_{R_1}[y_1-h(x)]
-\end{aligned}</script><p>所以</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_1^+(x) &= \eta f_{R_1}[y_1-h(x)]f_1^-(x)\\
-\eta &= (\int_{-\infty}^{+\infty}f_{R_1}[y_1-h(x)]f_1^-(x)dx)^{-1}
-\end{aligned}</script><p>总结一下：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_0(x) \rightarrow f_1^-(x) &= \int_{-\infty}^{+\infty}f_{Q_1}[x-f(v)]f_0(v)dv \rightarrow f_1^+(x) = \eta f_{R_1}[y_1-h(x)]f_1^-(x)\rightarrow \\
-f_2^-(x) &= \int_{-\infty}^{+\infty}f_{Q_2}[x-f(v)]f_1^+(v)dv\rightarrow f_2^+(x) = \eta f_{R_2}[y_2-h(x)]f_2^-(x)
-\end{aligned}</script><p>最后还有两个小尾巴：$Q_k$与$X_{k-1}$独立， $X_k$与$R_k$独立</p>
-<p>证明：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal10.jpg" alt=""></p>
-<p>完整算法</p>
-<p>设初值：$X_0$的<code>pdf</code> $f_0(x)$</p>
-<p>预测步：$f_k^-(x) = \int_{-\infty}^{+\infty}f_{Q_k}[x-f(v)]f^+_{k-1}(v)dv$</p>
-<p>更新步：$f_1^+(x) = \eta f_{R_1}[y_1-h(x)]f_1^-(x)\\<br>\eta = (\int_{-\infty}^{+\infty}f_{R_1}[y_1-h(x)]f_1^-(x)dx)^{-1}$</p>
-<p>但是到这里算法还没有完结，因为到现在我们得到的才是概率密度函数，而不是我们想要的状态。</p>
-<p>我们对概率密度函数求期望：</p>
-<script type="math/tex; mode=display">
-\hat{x_k^+} = \int_{-\infty}^{+\infty}xf_k^+(x)dx</script><p>贝叶斯滤波的缺点：</p>
-<p>大都情况下都需要算积分，大多数情况下无解析解。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal11.jpg" alt=""></p>
-<p>直方图滤波指的是把复杂的函数分为一个一个小的区间，类似于直方图。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal12.jpg" alt=""></p>
-<h2 id="卡尔曼滤波"><a href="#卡尔曼滤波" class="headerlink" title="卡尔曼滤波"></a>卡尔曼滤波</h2><p>卡尔曼滤波的假设：</p>
-<p>$f(X_{k}) = F\cdot X_{k-1}, h(X_k) = H\cdot X_k$，$F,H$均为常数，即状态方程和观测方程都为线性方程。</p>
-<p>$Q\sim N(0, Q), R\sim N(0,R)$，即$f_Q(x) = (2\pi Q)^{-1/2}e^{-\frac{x^2}{2Q}}, f_R(x) = (2\pi R)^{-1/2}e^{-\frac{x^2}{2R}}$</p>
-<p>即观测误差和预测误差呈方差为$0$的正态分布。</p>
-<p>设$X_{k-1}^+\sim N(\mu_{k-1}^+, \sigma_{k-1}^+)$</p>
-<p>预测步：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_k^-(x) &= \int_{-\infty}^{+\infty}f_Q[x-f(v)]f_{k-1}^+(v)dv\\
-&=\int_{-\infty}^{+\infty}(2\pi Q)^{-1/2}e^{-\frac{(x-F\cdot v)^2}{2Q}}\cdot(2\pi \sigma_{k-1}^+)^{1/2}e^{-\frac{(v-\mu_{k-1}^+)^2}{2\sigma_{k-1}^+}}dv\\
-&\sim N(F\cdot \mu_{k-1}^+, F^2\cdot\sigma_{k-1}^++Q)
-\end{aligned}</script><p>这一步的证明可以用 </p>
-<ol>
-<li>Mathematica 来证明。</li>
-<li>复变函数  留数定理</li>
-<li>傅里叶变换  卷积</li>
-</ol>
-<p>下面我们利用傅里叶变换和卷积的性质来证明：</p>
-<script type="math/tex; mode=display">
-X_k = FX_{k-1} + Q_k\quad X_{k-1}\text{与}Q_k\text{独立}</script><script type="math/tex; mode=display">
-X_{k-1} \sim N(\mu_{k-1}^+, \sigma_{k-1}^+)\quad FX_{k-1}\sim N(F\mu_{k-1}^+, F^2\mu_{k-1}^+)\quad Q_k\sim N(0, Q)</script><p>因为$X_{k-1}\text{与}Q_k\text{独立}$，而$X_k$为这两个随机变量相加，因此$X_k$的概率密度函数实际上是$FX_{k-1}$与$Q_k$的卷积。</p>
-<p>由傅里叶变换的性质，我们有：</p>
-<script type="math/tex; mode=display">
-h = f*g\quad G(h) = G(f)\cdot G(g)</script><p>进行傅里叶变换</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-FX_{k-1} &\xrightarrow{F.T}g_1(t) = e^{iF\mu_{k-1}^+t-\frac{F^2\sigma_{k-1}^+}{2}t^2}\\
-Q_k&\xrightarrow{F.T}g_2(t) = e^{-\frac{Q}{2}t^2}\\
-g_1(t)g_2(t) &= e^{iF\mu_{k-1}^+t-\frac{F^2\sigma_{k-1}^++Q}{2}t^2}\xrightarrow{I.F.T}N(F\mu_{k-1}^+, F^2\sigma_{k-1}^++Q)
-\end{aligned}</script><p>正态分布的傅里叶变换为：</p>
-<script type="math/tex; mode=display">
-N(\mu,\sigma^2)\xrightarrow{F.T} e^{i\mu t-\frac{\sigma^2}{2}t^2}</script><p>设$f_k^-(x)\sim N(\mu_k^-, \sigma_k^-)$</p>
-<p>我们有</p>
-<ol>
-<li>$\mu_k^- = F\mu_{k-1}^+$</li>
-<li>$\sigma_k^- = F^2\sigma_{k-1}^++Q$</li>
-</ol>
-<p>预测步完成</p>
-<p>更新步</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_k^-(x)&\sim N(\mu_k^-, \sigma_k^-)\\
-f_k^+ (x) &= \eta f_R(y_k-H\cdot x)\cdot f_k^-(x)\\
-&=\eta (2\pi R)^{-\frac{1}{2}}e^{-\frac{(y_k-H\cdot x)^2}{2R}}\cdot(2\pi \sigma_k^-)^{-\frac{1}{2}}e^{-\frac{(x-\mu_k^-)^2}{2\sigma_k^-}}\\
-\eta &= [\int_{-\infty}^{+\infty}(2\pi R)^{-\frac{1}{2}}e^{-\frac{(y_k-H\cdot x)^2}{2R}}\cdot(2\pi \sigma_k^-)^{-\frac{1}{2}}e^{-\frac{(x-\mu_k^-)^2}{2\sigma_k^-}}dx]^{-1}
-\end{aligned}</script><p>由数学软件计算可得：</p>
-<script type="math/tex; mode=display">
-X_k^+\sim N(\frac{H\sigma_k^-y_k+R\mu_k^-}{H^2\sigma_k^-+R}, \frac{R\sigma_k^-}{H^2\sigma_k^-+R})</script><p>$X_k^+\sim N(\mu_k^+, \sigma_k^+)$，则</p>
-<ol>
-<li><script type="math/tex; mode=display">
-\mu_k^+ = \frac{H\sigma_k^-}{H^2\sigma_k^-+R}(y_k-H\mu_k^-)+\mu_k^-</script></li>
-</ol>
-<ol>
-<li><script type="math/tex; mode=display">
-\sigma_k^- = (1-\frac{H^2\sigma_k^-}{H^2\sigma_k^-+R})\sigma_k^-</script></li>
-</ol>
-<ol>
-<li>我们观察上面两个公式都有一个共同的因子，我们称之为卡尔曼增益$K$<script type="math/tex; mode=display">
-K = \frac{H\sigma_k^-}{H^2\sigma_k^-+R}</script></li>
-</ol>
-<p>这就是卡尔曼滤波的$5$个公式。</p>
-<p>我们现在研究一下卡尔曼增益的性质</p>
-<script type="math/tex; mode=display">
-K = \frac{H}{H^2+R/\sigma_k^-}</script><p>当$R&gt;&gt;\sigma_k^-, k\rightarrow 0, \mu_k^+ = \mu_k^- + k(y_k-H\cdot\mu_k^-) = \mu_k^-$，相信预测</p>
-<p>当$R&lt;&lt;\sigma_k^-, k\rightarrow\frac{1}{H}, \mu_k^+=\mu_k^-+\frac{y_k}{H}-\mu_k^- = \frac{y_k}{H}$，相信观测</p>
-<p>矩阵形式的卡尔曼滤波</p>
-<p>$\mu_k\rightarrow \vec{\mu_k},\sigma_k\rightarrow \Sigma_k$，$F,H$皆为矩阵。</p>
-<p>类推：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\vec{\mu_k^-} &= F\cdot\vec{\mu_{k-1}^+}\\
-\Sigma_k^- &= F\Sigma_{k-1}^+F^T+Q\\
-K &= \Sigma_k^-H^T(H\Sigma_k^-H^T+R)^{-1}\\
-\vec{\mu_k^+} &= \vec{\mu_k^-}+K(\vec{y_k}-H\vec{\mu_k^-})\\
-\Sigma_k^+ &= (I-KH)\Sigma_k^-
-\end{aligned}</script><p>矩阵形式的推导可以阅读《概率机器人》。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal13.jpg" alt=""></p>
-<p>其实马尔可夫假设和观测独立假设可以由我们的已知条件推出，没有必要给出。</p>
-<p>证明若</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-X_k = f(X_{k-1})+Q_k\\
-Y_k = h(X_k) + R_k
-\end{cases},X_0,Q_1,\cdots,Q_k,R_1,\cdots,R_k\text{独立}</script><p>，则</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(X_k = x_k|X_{k-1} = x_{k-1},X_{k-2} &= x_{k-2},\cdots,X_0=x_0) = P(X_k=x_k|X_{k-1}=x_{k-1})\quad\text{马尔可夫假设}\\
-P(Y_k = y_k|X_k = x_k,X_{k-1}=x_{k-1},\cdots,X_0=x_0) &= P(Y_k=y_k|X_k=x_k)\quad\text{观测独立}
-\end{aligned}</script><p>证明：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal14.jpg" alt=""></p>
-<p><img src="D:/joplin/joplin/贝叶斯滤波与卡尔曼滤波/image/15.jpg" alt=""></p>
-<p>观测独立性假设同理。</p>
-<h2 id="从零开始码出卡尔曼滤波代码"><a href="#从零开始码出卡尔曼滤波代码" class="headerlink" title="从零开始码出卡尔曼滤波代码"></a>从零开始码出卡尔曼滤波代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%%%%kalman filter</span></span><br><span class="line"><span class="comment">%X(K) = F*X(K-1)+Q</span></span><br><span class="line"><span class="comment">%Y(K) = H*X(K)+R</span></span><br><span class="line"><span class="comment">%%% 第一个问题，生成一段随机信号，并滤波</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%生成一段时间t</span></span><br><span class="line">t = <span class="number">0.1</span>:<span class="number">0.01</span>:<span class="number">1</span>;</span><br><span class="line">L = <span class="built_in">length</span>(t);</span><br><span class="line"><span class="comment">%生成真实信号x，以及观测y</span></span><br><span class="line"><span class="comment">%生成信号，设x=t^2</span></span><br><span class="line">x = t.^<span class="number">2</span>;</span><br><span class="line">y = x + normrnd(<span class="number">0</span>,<span class="number">0.1</span>,<span class="number">1</span>, L);</span><br><span class="line"><span class="comment">% 绘制信号和观测数据</span></span><br><span class="line"><span class="comment">% plot(t, x, t, y)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%%%%%%%滤波算法</span></span><br><span class="line"><span class="comment">%%%预测方程观测方程怎么写</span></span><br><span class="line"><span class="comment">%观测方程好写Y(K) = X(K)+R R~N(0,1)</span></span><br><span class="line"><span class="comment">%预测方程不好写，在这里，可以猜一猜是线性增长，信号是杂乱无章的，怎么办？</span></span><br><span class="line"><span class="comment">%模型一，最粗糙的建模</span></span><br><span class="line"><span class="comment">%X(K) = X(K-1)+Q</span></span><br><span class="line"><span class="comment">%Y(K) = X(K) + R</span></span><br><span class="line"><span class="comment">%猜Q~N(0,1)</span></span><br><span class="line"></span><br><span class="line">F1 = <span class="number">1</span>;</span><br><span class="line">H1 = <span class="number">1</span>;</span><br><span class="line">Q1 = <span class="number">1</span>;</span><br><span class="line">R1 = <span class="number">1</span>;</span><br><span class="line"><span class="comment">%初始化x(k)+</span></span><br><span class="line">Xplus1 = <span class="built_in">zeros</span>(<span class="number">1</span>, L);</span><br><span class="line"></span><br><span class="line"><span class="comment">%设置一个初值，假设Xplus1(1)~N(0.01, 0.01^2)</span></span><br><span class="line">Xplus1(<span class="number">1</span>) = <span class="number">0.01</span>;</span><br><span class="line">Pplus1 = <span class="number">0.01</span>^<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">%%%卡尔曼滤波算法</span></span><br><span class="line"><span class="comment">%X(K)- = F*X(K-1)+</span></span><br><span class="line"><span class="comment">%P(K)- = F*P(K-1)+*F&#x27;+Q</span></span><br><span class="line"><span class="comment">%K = P(K)-*H&#x27;*inv(H*P(K)-*H&#x27;+R)</span></span><br><span class="line"><span class="comment">%X(K)+=X(K)-+K*(y(k)-H*X(k)-)</span></span><br><span class="line"><span class="comment">%P(K)+=(1-K*H)*P(K)-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:L</span><br><span class="line">    Xminus1 = F1*Xplus1(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    Pminus1 = F1*Pplus1*F1+Q1;</span><br><span class="line">    K1 = (Pminus1*H1)/(H1*Pminus1*H1+R1);</span><br><span class="line">    Xplus1(<span class="built_in">i</span>) = Xminus1+K1*(y(<span class="built_in">i</span>)-H1*Xminus1);</span><br><span class="line">    Pplus1 = (<span class="number">1</span>-K1*H1)*Pminus1;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% plot(t, y, t, Xplus1);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%%%模型二</span></span><br><span class="line"><span class="comment">%X(K)=X(K-1)+X&#x27;(K-1)*dt + X&quot;(K-1)*dt^2*(1/2!)+Q2</span></span><br><span class="line"><span class="comment">%Y(K)=X(K)+R R~N(0,1)</span></span><br><span class="line"><span class="comment">%此时状态变量X=[X(K) X&#x27;(K) X&quot;(K)]T(列向量)</span></span><br><span class="line"><span class="comment">%Y(K)=H*X+R  H = [1 0 0](行向量)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%预测方程</span></span><br><span class="line"><span class="comment">%X(K) = X(K-1) + X&#x27;(K-1)*dt + X&quot;(K-1)*dt^2*(1/2!)+Q2</span></span><br><span class="line"><span class="comment">%X(K)&#x27; = 0*X(K-1)+X&#x27;(K-1)+X&quot;(K-1)*dt+Q3</span></span><br><span class="line"><span class="comment">%X(K)&quot; = 0*X(K-1) + 0*X&#x27;(K-1) + X&quot;(K-1) + Q4</span></span><br><span class="line"><span class="comment">% F = [1 dt 0.5*dt^2</span></span><br><span class="line"><span class="comment">%      0  1    dt</span></span><br><span class="line"><span class="comment">%      0  0    1</span></span><br><span class="line"><span class="comment">% H = [1 0 0]</span></span><br><span class="line"><span class="comment">% Q = [Q2 0 0 </span></span><br><span class="line"><span class="comment">%      0 Q3 0</span></span><br><span class="line"><span class="comment">%      0 0 Q4]</span></span><br><span class="line"></span><br><span class="line">dt = t(<span class="number">2</span>)-t(<span class="number">1</span>);</span><br><span class="line">F2 = [<span class="number">1</span> dt <span class="number">0.5</span>*dt^<span class="number">2</span>;<span class="number">0</span> <span class="number">1</span> dt;<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>];</span><br><span class="line">H2 = [<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>];</span><br><span class="line">Q2 = [<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>; <span class="number">0</span> <span class="number">0.01</span> <span class="number">0</span>; <span class="number">0</span> <span class="number">0</span> <span class="number">0.0001</span>];</span><br><span class="line">R2 = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">%%%设置初值</span></span><br><span class="line">Xplus2 = <span class="built_in">zeros</span>(<span class="number">3</span>, L);</span><br><span class="line">Xplus2(<span class="number">1</span>, <span class="number">1</span>) = <span class="number">0.1</span>^<span class="number">2</span>;</span><br><span class="line">Xplus2(<span class="number">2</span>, <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">Xplus2(<span class="number">3</span>, <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">Pplus2 = [<span class="number">0.01</span>, <span class="number">0</span>, <span class="number">0</span>; <span class="number">0</span>, <span class="number">0.01</span>, <span class="number">0</span>; <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.0001</span>];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:L</span><br><span class="line">    Xminus2 = F2*Xplus2(:,<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    Pminus2 = F2*Pplus2*F2&#x27;+Q2;</span><br><span class="line">    </span><br><span class="line">    K2 = (Pminus2*H2&#x27;)*inv(H2*Pminus2*H2&#x27;+R2);</span><br><span class="line">    Xplus2(:,<span class="built_in">i</span>) = Xminus2 + K2*(y(<span class="built_in">i</span>)-H2*Xminus2);</span><br><span class="line">    Pplus2 = (<span class="built_in">eye</span>(<span class="number">3</span>)-K2*H2)*Pminus2;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(t, y, t, Xplus2(<span class="number">1</span>,:))</span><br></pre></td></tr></table></figure>
-<h2 id="粒子滤波"><a href="#粒子滤波" class="headerlink" title="粒子滤波"></a>粒子滤波</h2><p>应用最广泛，原理很复杂，术语最多。</p>
-<p>从贝叶斯滤波开始：</p>
-<p>$X_k = f(X_{k-1})+Q_k$</p>
-<p>$Y_k = h(X_k)+R_k$</p>
-<p>$X_0,Q_1,Q_2,\cdots,Q_k,R_1,R_2,\cdots,R_k$互相独立</p>
-<p>$Q_1,Q_2,\cdots,Q_k,R_1,R_2,\cdots,R_k$满足正态分布</p>
-<p>粒子滤波适用于静态环境、动态可预测环境，如电池电量估算，视频跟踪，封闭环境导航。</p>
-<p>下面再复习一下贝叶斯滤波的几个公式：</p>
-<p>初值：$X_0\xrightarrow{pdf}f_0^+$</p>
-<p>预测：$f_k^-(x) = \int_{-\infty}^{+\infty}f_Q[x-f(v)]f_{k-1}^+(v)dv$</p>
-<p>更新：$f_k^+(x) = \eta f_R[y_k-h(x)]f_k^-(x)\quad \eta = (\int_{-\infty}^{+\infty}f_R[y_k-h(x)]f_k^-(x)dx)^{-1}$</p>
-<p>估计：$\hat{x_k^+} = \int_{-\infty}^{+\infty}xf_k^+(x)dx$</p>
-<p>缺点：无穷积分，一般无解析解。</p>
-<p>由大数定律引发的遐想</p>
-<p>大数定律：设$X$为随机变量，$E(X)$存在，对$X$做$n$次随机试验，结果记为$x_1,x_2,x_3,\cdots,x_n$，则有</p>
-<script type="math/tex; mode=display">
-\lim_{n\rightarrow \infty}P(|\frac{1}{n}\sum_{i}x_i-E(X)|<\epsilon)=1</script><p>暗示了什么？当$n$足够大时，$\frac{1}{n}\sum_{i}x_i\approx E(X)$</p>
-<script type="math/tex; mode=display">
-E(x) = \int_{-\infty}^{+\infty}xf(x)dx\Rightarrow \lim_{n\rightarrow \infty}\frac{1}{n}\sum_ix_i = \int_{-\infty}^{+\infty}xf(x)dx</script><p>我们用到$\delta$函数：</p>
-<script type="math/tex; mode=display">
-\delta(x) \Rightarrow \int_c^df(x)\delta(x-a)dx = f(a)\quad a\in(c,d)</script><p>可得</p>
-<script type="math/tex; mode=display">
-x_1 = \int_{-\infty}^{+\infty}x\delta(x-x_1)dx,x_2 = \int_{-\infty}^{+\infty}x\delta(x-x_2)dx,\cdots,x_n = \int_{-\infty}^{+\infty}x\delta(x-x_n)dx</script><p>所以</p>
-<script type="math/tex; mode=display">
-\frac{1}{n}\sum_ix_i = \frac{1}{n}\int_{-\infty}^{+\infty}x\sum_i\delta(x-x_i)dx = \int_{-\infty}^{+\infty}xf(x)dx</script><p>$f(x)$为$X$的<code>pdf</code></p>
-<p>由此可以看出，当$n\rightarrow \infty$时，$f(x)\approx \frac{1}{n}\sum_{i}\delta(x-x_i)$，好积分。</p>
-<p>大数定律暗示了可以用一堆粒子来近似概率密度，这就是粒子滤波。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal16.jpg" alt=""></p>
-<p>由此可以看出，虽然其概率密度函数不是很想，但是其<strong>分布函数</strong>的图像很相像，标准正态分布在原点处的概率最大，分布函数导数值最大，对应于采样的函数其采的点数量越多，也就越陡峭。</p>
-<p>缺点：需要大量粒子，如何用少量粒子表示<code>pdf</code></p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal17.jpg" alt=""></p>
-<p>当我们用上文提到的方法时，当遇到较大的导数值时，由于我们的粒子每次只走$1/n$，所以需要大量的粒子来将我们的函数值抬上去，但是如果我们给粒子赋予权重，在导数较大的位置的粒子赋予较高的权重，那么就能用较少的粒子来近似。</p>
-<p>$f(x)\approx \frac{1}{n}\sum_i\delta(x-x_i) = \sum_i\frac{1}{n}\delta(x-x_i)$，每个粒子的权重都是$1/n$</p>
-<p>我们改进后的</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f(x) &= \sum_iw_i\delta(x-x_i)\\
-\sum_iw_i&=1
-\end{aligned}</script><p>粒子的位置和权重完全决定了<code>cdf</code>，也就决定了<code>pdf</code></p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal18.jpg" alt=""></p>
-<p>$x_i$是从$f(x_i)$采样出来的，$x_i$的位置天然满足概率分布的规律：<img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal19.jpg" style="zoom:50%;" /></p>
-<p>$w_i$如何分配？</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal20.jpg" alt="">原则，<code>pdf</code>大的$w_i$高</p>
-<p>如</p>
-<script type="math/tex; mode=display">
-w_i = \frac{f(x_i)}{f(x_1)+f(x_2)+f(x_3)}</script><p>按比例分配，满足归一化$\sum w_i=1$</p>
-<p>也可以$w_i = \frac{1}{n}$，但是$n$要足够大($50$个以上)</p>
-<p>也可以综合：$n$大，$w_i = \frac{f(x_i)}{\sum_if(x_i)}$</p>
-<p>贝叶斯滤波：$X_0$的<code>pdf</code>为$f_0(x)$，在$f_0(x)$中采了$n$个样本（怎么采样？）</p>
-<p>采样很难，我们先假设$X_0$是一个正态分布，利用Matlab可以进行采样</p>
-<p>设采集的样本为$x_0^{(1)},x_0^{(2)},\cdots,x_0^{(n)}$</p>
-<p>设$f_0(x) = \sum_iw_0^{(i)}\delta(x-x_0^{(i)}),w_0^{(i)}$可以为$1/n$，也可以按照比例分配。</p>
-<p>则</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_1^-(x) &= \int_{-\infty}^{+\infty}f_Q[x-f(v)]dv = \sum_iw_if_Q[x-f(x_0^{(i)})]\\
-f_1^+(x) &= \eta f_R[y-h(x)]f_1^-(x)
-\end{aligned}</script><p>那么我们的粒子哪里去了呢？</p>
-<p>我们得到的$f_1^+(x)$和$f_1^-(x)$都没有了$\delta(x)$函数，无法进行积分。</p>
-<p>因为我们由$f_1^+(x)$到$f_2^-(x)$还需要计算无穷积分，即还需要对概率密度函数进行采样。</p>
-<p>但是对概率密度函数进行采样是一件很难的事情，我们可以再对$f_1^+(x)$进行采样，但是采样的过程非常耗时。</p>
-<p>通过$f_1^-(x)$生成一堆粒子，理论上$f_1^-(x) = \sum_i w_if_Q[x-f(x_0^{(i)})]$也可以采样，也可以计算出新的$w$，但是速度太慢。</p>
-<p>怎么办？$\Rightarrow f_Q[x-f(x_0)^{(i)}]$，假设$Q$为正态分布。</p>
-<p>$f_Q[x-f(x_0^{(i)})] = (2\pi Q)^{-\frac{1}{2}}e^{-\frac{[x-f(x_0)^{(i)}]^2}{2Q}}\sim N(f(x_0^{(i)}),Q)$</p>
-<script type="math/tex; mode=display">
-N(f(x_0^{(i)}, Q)\xrightarrow{F.T} e^{if(x_0^{(i)})t-\frac{Q}{2}t^2}</script><p>我们对一个相对较为复杂的概率密度函数进行傅里叶变换，将其分解为一系列较为简单的概率密度函数。</p>
-<p>例如，正态分布函数</p>
-<script type="math/tex; mode=display">
-N(f(x_0^{(i)}, Q)\xrightarrow{F.T} e^{if(x_0^{(i)})t-\frac{Q}{2}t^2} = e^{if(x_0^{(i)})t}\cdot e^{-\frac{Q}{2}t^2}</script><p>我们对其两个因子进行傅里叶逆变换</p>
-<script type="math/tex; mode=display">
-e^{if(x_0^{(i)})t}\xrightarrow{i.F.T} \delta(x-f(x_0^{(i)}))\quad \int_{-\infty}^{+\infty}\delta(x-f(x_0^{(i)}))e^{ixt} = e^{if(x_0^{(i)})t}\\</script><script type="math/tex; mode=display">
-e^{-\frac{Q}{2}t^2}\xrightarrow{i.F.T} N(0,Q)</script><p>$\delta(x-f(x_0^{(i)}))$是必然事件$X_0 = f(x_0^{(i)})$的<code>pdf</code></p>
-<p>$N(0,Q)$为$Q$的<code>pdf</code></p>
-<p>定理：若$X$的<code>pdf</code>为$f$，$Y$的<code>pdf</code>为$g$，$X,Y$独立，则$Z = X+Y$的$pdf$为$f*g$</p>
-<p>设$Z$的<code>pdf</code>为$h$，则$h = f*g$。</p>
-<p>卷积性质：设$G$为傅里叶变换，$G^{-1}$为傅里叶逆变换。</p>
-<p>则$G(h) = G(f)\cdot G(g)$</p>
-<p>设$A$的<code>pdf</code>$f_A=f_Q[x-f(x_0^{(i)})], G(f_A)=e^{if(x_0^{(i)})t}\cdot e^{-\frac{Q}{2}t^2}$</p>
-<p>而$G^{-1}(e^{if(x_0^{(i)})t}) = \delta(x-f(x_0^{(i)}))$</p>
-<p>$G^{-1}(e^{-\frac{Q}{2}t^2}) = (2\pi Q)^{-1/2}e^{-\frac{x^2}{2Q}}$</p>
-<p>设$X$的<code>pdf</code>为$f_X = \delta(x-f(x_0^{(i)}))$，$Y$的<code>pdf</code>为$f_Y = (2\pi Q)^{-1/2}e^{-\frac{x^2}{2Q}}$</p>
-<p>$G(f_A) = G(f_x)\cdot G(f_Y)\Rightarrow A+X+Y$</p>
-<p>$X$为必然事件，$Y\sim N(0, Q)$，$X,Y$独立</p>
-<p>如何生成粒子：$f_1^-(x)=\sum_i w_0^{(i)}f_Q[x-f(x_0^{(i)})]$</p>
-<p>对于每一个$f_Q[x-f(x_0^{(i)})]$可以看作是一个必然事件$X=f(x_0^{(i)})$与一个随机数$Y\sim N(0,Q)$叠加</p>
-<p>$f_1^-(x)$粒子$x_1^{-(1)},x_1^{-(2)},\cdots,x_1^{-(n)}$</p>
-<p>$x_1^{-(i)} = f(x_0^{(i)})+v$，$v\sim N(0,Q)$</p>
-<p>例：$X_1 = 2X_0+Q,Q\sim N(0,1)$</p>
-<p>设$X_0\sim N(0,1)$</p>
-<p>样本$x_0^{(1)}=0, x_0^{(2)}=0.1, x_0^{(3)}=0.1$</p>
-<p>$x_1^{-(i)} = f(x_0^{(i)})+v$</p>
-<p>$x_1^{-(0)}=0\cdot2+0.12 = 0.12, x_1^{-(1)} = 2\cdot0.1+0.08=0.28, x_1^{-(2)} = 2\cdot -0.1+0.3 = 0.1$</p>
-<p>$f_1^-(x) = \sum_i^n w_0^{(i)}f_Q[x-f(x_0^{(i)})]$，对于每一个$f_Q[x-f(x_0^{(i)})]$，生成一个粒子即可。</p>
-<p>此时，$x_1^{-(i)} = f(x_0^{(i)})+Q$，本质是改变了粒子的位置，并未改变粒子的权重。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal21.jpg" alt=""></p>
-<p>下面我们讲一下粒子滤波算法</p>
-<ol>
-<li><p>设初值$X_0\sim N(\mu, \sigma^2)$</p>
-</li>
-<li><p>生成$X_0$的样本$x_0^{(1)},\cdots,x_0^{(n)}$</p>
-</li>
-<li><p>生成$X_0$样本对应的权重$w_0^{(i)}$，可以都为$1/n$，也可以为$\frac{f(x_0^{(i)})}{\sum_if(x_0)^{(i)}}$，$f(x)$为$X_0$的<code>pdf</code></p>
-</li>
-<li><p>生成$X_1^-$的样本，$x_1^{-(i)} = f(x_0^{(i)})+Q$，$Q\sim N(0, Q)$</p>
-</li>
-<li><p>$f_1^-(x) = \sum_i w_0^{(i)}\delta(x-x_1^{-(i)})$，此时改变了粒子的位置，但是没有改变权重</p>
-</li>
-<li><p>预测步结束</p>
-</li>
-<li><p>观测到了一个数据$y_1$</p>
-</li>
-<li><script type="math/tex; mode=display">
-\begin{aligned}
-f_1^+(x) &= \eta f_R[y_1-h(x)]f_1^-(x) = \sum_{i=1}^n\eta f_R[y_1-h(x)]w_0^{(i)}\delta(x-x_1^{-(i)})\\
-&=\sum_{i=1}^n\eta f_R[y_1-h(x_1^{-(i)})]w_0^{(i)}\delta(x-x_1^{-(i)})
-\end{aligned}</script><p>设$w_1^{(i)} = f_R[y_1-h(x_1^{-(i)})]w_0^{(i)}$，所以$f_1^+(x) = \sum_{i=1}^n w_1^{(i)}\delta(x-x_1^{-(i)})$，更新步并未改变粒子的位置，但是改变了粒子的权重。</p>
-</li>
-<li><script type="math/tex; mode=display">
-\eta = (\sum_iw_1^{(i)})^{-1},\text{归一化}</script></li>
-</ol>
-<p>因为在更新步里并没有改变粒子，所以我们统一把粒子都命名为$x_1^{(i)}$</p>
-<p>下面我们给出一个完整的粒子滤波算法</p>
-<ol>
-<li>给初值$X_0\sim N(\mu, \sigma^2)$</li>
-<li>生成$x_0^{(i)},w_0^{(i)} = 1/n$</li>
-<li>预测步，生成$x_1^{(i)} = f(x_0^{(i)})+v, v\sim N(0,Q)$</li>
-<li>更新步，设观测值为$y_1$，生成$w_1^{(i)} = f_R[y-h(x_1^{(i)})]w_0^{(i)}$</li>
-<li>将$w_1^{(i)}$归一化，$w_1^{(i)} = \frac{w_1^{(i)}}{\sum w_1^{(i)}}$</li>
-<li>此时，得新的权重$w_1^{(i)}$</li>
-<li>再由预测步生成$x_2^{(i)} = f(x_1^{(i)})+v$</li>
-<li>再由更新步产生$w_2^{(i)} = f_R[y_2-h(x_2^{(i)})]w_1^{i}$</li>
-<li>将$w_2^{(i)}$归一化，$w_2^{(i)} = \frac{w_2^{(i)}}{\sum w_2^{(i)}}$</li>
-<li>如此递推</li>
-</ol>
-<p>粒子滤波如何求期望和方差呢？</p>
-<p>$f(x) = \sum_{i=1}^n w_i\delta(x-x_i)$</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\hat{x_k^+}  &=\int_{-\infty}^{+\infty}\sum_{i=1}^nxw_i\delta(x-x_i)dx=\sum_{i=1}^n w_ix_i\\
-D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+\infty}xf(x))^2 \\
-&=\sum_{i=1}^n(w_ix_i^2) - (\hat{x_k^+})^2
-\end{aligned}</script><h2 id="重采样"><a href="#重采样" class="headerlink" title="重采样"></a>重采样</h2><p>重采样是为了解决粒子退化问题：只有少数粒子具有较高的权重，大量粒子权重极低。</p>
-<p>那么导致粒子退化的原因是什么？</p>
-<ol>
-<li>粒子的数量不能太多</li>
-<li>$w_k^{(i)} = f_R[y_k-h(x_k^{(i)})]w_{k-1}^{(i)},f_R[y_k-h(x_k^{(i)})]=(2\pi R)^{1/2}e^{-\frac{[y_k-h(x_k^{(i)})]^2}{2R}}$为$e^{-\alpha x^2}$型函数，导致权重下降地非常快。</li>
-</ol>
-<p>如</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal22.jpg" alt=""></p>
-<p>如果有多个粒子的权重较大，这是比较好的情况：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal23.jpg" alt=""></p>
-<p>但是若只有一个粒子的权重很大，这种情况就很差了</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal24.jpg" alt=""></p>
-<p>还有一种更坏的情况</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal25.jpg" alt=""></p>
-<p><img src="D:/joplin/joplin/贝叶斯滤波与卡尔曼滤波/image/26.jpg" alt=""></p>
-<p>所以为了解决粒子退化的问题，重采样应运而生。</p>
-<p>粒子退步$\rightarrow$更新失败(是这一步还是下一步？)，是下一步</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal27.jpg" alt=""></p>
-<p>当前步的更新发挥作用$\rightarrow$粒子退化$\rightarrow$下一步更新失效</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal28.jpg" alt=""></p>
-<p>重采样算法步骤</p>
-<p>假设有$4$个粒子，其中$x_1,w_1=0.1、x_2,w_2 = 0.1、x_3, w_3 = 0.7、x_4,w_4 = 0.1$</p>
-<p>我们按照权重在坐标轴上划分范围：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal29.jpg" alt=""></p>
-<p>每个区间为$(0,w_1),(w_1,w_1+w_2),\cdots,(\sum_{i-1}w_{i-1},\sum_iw_i)$</p>
-<p>生成一个随机数$a,a\sim U(0,1)$，看$a$落在哪一个区间上就把对应的粒子复制。</p>
-<p>之后将所有的粒子权重都设为$1/n$</p>
-<p>重采样有一定减弱粒子退化的能力</p>
-<p>重采样必然会导致粒子多样性丧失，$N = \frac{1}{\sum w_i^2}$，$N$越小，退化越严重</p>
-<p>重采样必然减慢粒子滤波的速度。</p>
-<h2 id="粒子滤波代码"><a href="#粒子滤波代码" class="headerlink" title="粒子滤波代码"></a>粒子滤波代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% x(i) = sin(x(i-1))+5*x(i-1)/(x(i-1)^2+1)+Q</span></span><br><span class="line"><span class="comment">% y(i) = x(i)^2 + R</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 状态值与观测值</span></span><br><span class="line">t = <span class="number">0.01</span>:<span class="number">0.01</span>:<span class="number">1</span>;</span><br><span class="line">x = <span class="built_in">zeros</span>(<span class="number">1</span>, <span class="number">100</span>);</span><br><span class="line">y = <span class="built_in">zeros</span>(<span class="number">1</span>, <span class="number">100</span>);</span><br><span class="line"><span class="comment">% 给初值</span></span><br><span class="line">x(<span class="number">1</span>) = <span class="number">0.1</span>;</span><br><span class="line">y(<span class="number">1</span>) = <span class="number">0.01</span>^<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 生成真实数据与观测数据</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:<span class="number">100</span></span><br><span class="line">    x(<span class="built_in">i</span>) = <span class="built_in">sin</span>(x(<span class="built_in">i</span><span class="number">-1</span>)) + <span class="number">5</span> * x(<span class="built_in">i</span><span class="number">-1</span>) / (x(<span class="built_in">i</span><span class="number">-1</span>)^<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">    y(<span class="built_in">i</span>) = x(<span class="built_in">i</span>)^<span class="number">3</span> + normrnd(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% plot(t, x, t, y)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 设粒子集合</span></span><br><span class="line">n = <span class="number">100</span>;</span><br><span class="line">xold = <span class="built_in">zeros</span>(<span class="number">1</span>, n);</span><br><span class="line">xnew = <span class="built_in">zeros</span>(<span class="number">1</span>, n);</span><br><span class="line">xplus = <span class="built_in">zeros</span>(<span class="number">1</span>, <span class="number">100</span>); <span class="comment">% xplus用于存放滤波值，就是每一次后验概率的期望</span></span><br><span class="line">w = <span class="built_in">zeros</span>(<span class="number">1</span>, n);</span><br><span class="line"><span class="comment">% 设置x0(i)，可以直接在正态分布中采样，如果对初值有自信，也可以让所有粒子都相同</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">    xold(<span class="built_in">i</span>) = <span class="number">0.1</span>;</span><br><span class="line">    w(<span class="built_in">i</span>) = <span class="number">1</span>/n;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:<span class="number">100</span></span><br><span class="line">    <span class="comment">% 预测步，由x0推出x1</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">        xold(<span class="built_in">j</span>) = <span class="built_in">sin</span>(xold(<span class="built_in">j</span>)) + <span class="number">5</span> * xold(<span class="built_in">j</span>)/(xold(<span class="built_in">j</span>)^<span class="number">2</span>+<span class="number">1</span>) + normrnd(<span class="number">0</span>,<span class="number">0.1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">% 预测步完毕</span></span><br><span class="line">    <span class="comment">% 更新步</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">        w(<span class="built_in">j</span>) = <span class="built_in">exp</span>(-((y(<span class="built_in">i</span>)-xold(<span class="built_in">j</span>)^<span class="number">3</span>)^<span class="number">2</span>/(<span class="number">2</span>*<span class="number">1</span>)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">% 归一化</span></span><br><span class="line">    w = w/sum(w);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 重采样</span></span><br><span class="line">    c = cumsum(w);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">        a = unifrnd(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:n</span><br><span class="line">            <span class="keyword">if</span> (a&lt;c(k))</span><br><span class="line">                xnew(<span class="built_in">j</span>) = xold(k);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    xold = xnew;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:n</span><br><span class="line">        w(<span class="built_in">j</span>) = <span class="number">1</span>/n;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    xplus(<span class="built_in">i</span>) =sum(xnew)/n;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">plot</span>(t, x, t, xplus);</span><br></pre></td></tr></table></figure>
-<h2 id="粒子滤波拾遗：采样方法与预测方程"><a href="#粒子滤波拾遗：采样方法与预测方程" class="headerlink" title="粒子滤波拾遗：采样方法与预测方程"></a>粒子滤波拾遗：采样方法与预测方程</h2><p>采样方法：如何在复杂<code>pdf</code>上采样</p>
-<p>预测方程：$X = f(t)$，怎么由$X=f(t)\Rightarrow X_k=F(X_{k-1})$(高精度)</p>
-<p>正态分布和均匀分布的概率密度函数很好采样：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal30.jpg" alt=""></p>
-<p><img src="D:/joplin/joplin/贝叶斯滤波与卡尔曼滤波/image/31.jpg" alt=""></p>
-<p>采样粒子的特点：<code>pdf</code>大的粒子多，<code>pdf</code>小的粒子少</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal32.jpg" alt=""></p>
-<p>也可以通过对正态分布去掉一些粒子来实现</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal33.jpg" alt=""></p>
-<p>怎么去掉</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal34.jpg" alt="">高<code>pdf</code>的地方有更大的概率保留，低<code>pdf</code>的地方有更大的概率去掉，类似于重采样。</p>
-<p>对于一个复杂的<code>pdf</code>：<img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal35.jpg" alt=""></p>
-<ol>
-<li>均匀分布生成粒子</li>
-<li>取一个直线$M$，使得$M\ge f(x)$</li>
-<li><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal36.jpg" alt="">，如图，我们对于生成的每一个粒子，做”审判”，生成一个随机数$a\sim U(0,M)$，看$a$落在哪个区间，若$a\in (0, f(x_i))$，则保留，反之舍弃。</li>
-</ol>
-<p>也可以从正态分布开始生成粒子：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal37.jpg" alt=""></p>
-<p>但是前两种算法都无法控制粒子的数量，我们改进算法为接受-拒绝采样法</p>
-<p>待采样$f(x)$，容易采样的$g(x)$，$g(x)$又被称为建议分布。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal38.jpg" alt=""></p>
-<ol>
-<li>找到$M$，使得$Mg(x)\ge f(x)$</li>
-<li>在$g(x)$上采样一个粒子$x_1$</li>
-<li>生成一个$a\sim U(0, Mg(x_1))$，若$a\in (0, f(x_1))$保留，反之则拒绝</li>
-<li>重复</li>
-</ol>
-<p>那么什么样的提议分布是好的呢？</p>
-<p>首先$Mg(x)$拒绝率越低，效率越高，提议分布越好</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal39.jpg" alt=""></p>
-<p>提议分布也应尽可能要与$f(x)$形状逼近，越相似，拒绝率越低</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal40.jpg" alt=""></p>
-<p>位置也要尽可能相似</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/kal41.jpg" alt=""></p>
-<p>预测方程的写法可以参考数值分析。</p>
-
+          <p>贝叶斯大法好！卡尔曼滤波yyds！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/16/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -2047,10 +740,16 @@ D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-11 23:14:11 / 修改时间：23:16:38" itemprop="dateCreated datePublished" datetime="2021-12-11T23:14:11+08:00">2021-12-11</time>
+              <time title="创建时间：2021-12-11 23:14:11" itemprop="dateCreated datePublished" datetime="2021-12-11T23:14:11+08:00">2021-12-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-22 15:21:49" itemprop="dateModified" datetime="2021-12-22T15:21:49+08:00">2021-12-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -2073,8 +772,14 @@ D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+
 
       
           <p><strong>开个新坑</strong></p>
-<div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Number_theory.pdf" data-height="500px"></div>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/11/%E6%95%B0%E8%AE%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -2127,7 +832,7 @@ D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-11 23:15:54" itemprop="dateModified" datetime="2021-12-11T23:15:54+08:00">2021-12-11</time>
+                <time title="修改时间：2021-12-22 15:25:15" itemprop="dateModified" datetime="2021-12-22T15:25:15+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2150,7 +855,15 @@ D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+
     <div class="post-body" itemprop="articleBody">
 
       
-          <div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Random_Processes.pdf" data-height="500px"></div>
+          <p>随机过程随机过</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/10/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -2203,7 +916,7 @@ D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-13 22:53:32" itemprop="dateModified" datetime="2021-12-13T22:53:32+08:00">2021-12-13</time>
+                <time title="修改时间：2021-12-22 15:20:13" itemprop="dateModified" datetime="2021-12-22T15:20:13+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2227,8 +940,14 @@ D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+
 
       
           <p>最近一次更新：根据梅老师的课更新了一下无信息先验。</p>
-<div class="pdfobject-container" data-target="https://hfcouc.work/pdfs/Bayesian.pdf" data-height="500px"></div>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/05/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -2273,10 +992,16 @@ D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-04 07:35:54 / 修改时间：07:40:38" itemprop="dateCreated datePublished" datetime="2021-12-04T07:35:54+08:00">2021-12-04</time>
+              <time title="创建时间：2021-12-04 07:35:54" itemprop="dateCreated datePublished" datetime="2021-12-04T07:35:54+08:00">2021-12-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-22 15:17:43" itemprop="dateModified" datetime="2021-12-22T15:17:43+08:00">2021-12-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -2298,110 +1023,15 @@ D(X) &= E(X^2) - [E(X)]^2 = \int_{-\infty}^{+\infty}x^2f(x)dx-(\int_{-\infty}^{+
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="蒙特卡洛方法"><a href="#蒙特卡洛方法" class="headerlink" title="蒙特卡洛方法"></a>蒙特卡洛方法</h2><h3 id="MC实质：随机抽样"><a href="#MC实质：随机抽样" class="headerlink" title="MC实质：随机抽样"></a>MC实质：随机抽样</h3><p>为什么要抽样？</p>
-<p>假设我们有关于$x$的一个正态分布的概率密度：</p>
-<script type="math/tex; mode=display">
-f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)</script><p>我们很容易得到其期望。但是如果我们要求$g(x)$的期望，我们要用到：</p>
-<script type="math/tex; mode=display">
-E(g(X)) = \int_{-\infty}^{+\infty}f(x)g(x)dx</script><p>如果$g(x)=x^2$，那么我们将很难求得其期望值，那么我们应该怎么办呢？我们可以抽取样本$X$，然后计算$g(X)$，进而计算其平均：</p>
-<script type="math/tex; mode=display">
-E(g(X)) = \frac{1}{N}\sum_{i=1}^Ng(x_i)</script><p>但是给定我们一个分布，我们怎么求得符合这个分布的样本值呢？</p>
-<p>我们可以对概率密度函数进行积分，得到累积分布函数：</p>
-<script type="math/tex; mode=display">
-F(x) = \int_{-\infty}^xf(t)dt</script><p>累计分布函数为递增函数，其值域为$[0,1]$，因此我们可以在$[0,1]$上均匀采样，假设采样的值为$y\in[0,1]$，则求$x = F^{-1}(y)$即为我们抽样的点。</p>
-<p>但是$F(x)$真的可求吗？对于复杂的$f(x)$，$F(x)$可能不好求，于是就有下面的取舍采样法：</p>
-<p>对于复杂的概率密度函数$f(x)$，我们可以找到一个简单的可求累积分布函数的概率密度函数$q(x)$，对于常数$m$，都有$mq(x)\ge f(x)$。这样我们可以求得$q(x)$的累计分布函数$Q(x)$，在$Q(x)$上进行采样。假设采的样本为$x_i$，则：</p>
-<ul>
-<li>以概率$P = \frac{f(x)}{mq(x)}$接受</li>
-<li>以概率$1-P$拒绝</li>
-</ul>
-<p>但是合适的$q(x)$好找吗？其实在高维情况下并不好找。</p>
-<p>于是我们便有了马尔科夫链蒙特卡洛采样</p>
-<h3 id="MCMC"><a href="#MCMC" class="headerlink" title="MCMC"></a>MCMC</h3><p>假设状态序列为：$x_{t-2},x_{t-1},x_t,x_{t+1},x_{t+2}$，则</p>
-<script type="math/tex; mode=display">
-P(x_{t+1}|\cdots,x_{t-2},x_{t-1},x_t) = P(x_{t+1}|x_t)</script><p>我们有一个状态转移矩阵$P$，表示各个状态之间的转移概率。</p>
-<p>马尔科夫链有一个好的性质，就是其初始概率分布乘以状态转移矩阵$P$多次后会收敛达到==稳定的概率分布==。</p>
-<p>所以假设我们的概率分布为$\pi^0,\pi^1,\cdots,\pi^m$，假设经过$m$步后收敛，那么在$m$步之后我们都有：$\pi P = \pi$。</p>
-<p>那我们如何找到这个$P$呢？</p>
-<p>我们采用一个更强的条件来找$P$，即细致平衡条件：</p>
-<script type="math/tex; mode=display">
-\pi(i)P(i,j) = \pi(j)P(j,i)</script><p>有细致平衡条件可以推出$\pi P = \pi$，但是反过来不一定成立。</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^\infty \pi(i)P(i,j) = \sum_{i=1}^\infty\pi(j)P(j,i) = \pi(j)\sum_{i=1}^\infty P(j,i) = \pi(j)</script><p>由此可以推出$\pi P = \pi$。</p>
-<p>但是是不是所有的$Q$都满足这个条件呢？显然不是，对任意$Q$，有</p>
-<script type="math/tex; mode=display">
-\pi(i)Q(i,j)\neq \pi(j)Q(j,i)</script><p>既然随便一个矩阵$Q$不行，那么我们引入$\alpha$，使得</p>
-<script type="math/tex; mode=display">
-\pi(i)Q(i,j)\alpha(i,j) = \pi(j)Q(j,i)\alpha(j,i)</script><p>很容易得到，使得这个等式成立的$\alpha$为：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\alpha(i,j) &= \pi(j)Q(j,i)\\
-\alpha(j,i) &= \pi(i)Q(i,j)
-\end{aligned}</script><p>由此可以将$\alpha(i,j)$看作是一个概率，$\alpha\in [0,1]$。</p>
-<p>则</p>
-<script type="math/tex; mode=display">
-P(i,j) = Q(i,j)\alpha(i,j)</script><blockquote>
-<p>在这里我有个疑问，如果$\alpha(i,j)\in [0,1]$，那么这个式子是不太可能成立的，因为$P(i,j)\le Q(i,j)$，且两者都为概率函数，所以上式应该为：$P(i,j) = mQ(i,j)\alpha(i,j),m&gt;1$。这就与接受-拒绝采样差不多了。</p>
-</blockquote>
-<h3 id="Metropolis-Hastings采样"><a href="#Metropolis-Hastings采样" class="headerlink" title="Metropolis-Hastings采样"></a>Metropolis-Hastings采样</h3><p>因为$\alpha$的值通常较小，我们用Metropolis-Hastings采样算法来解决这个问题：</p>
-<p>核心的公式仍然没变：</p>
-<script type="math/tex; mode=display">
-\pi(i)Q(i,j)\alpha(i,j) = \pi(j)Q(j,i)\alpha(j,i)</script><p>只是我让两边的$\alpha$值同时扩大相同的倍数，等式仍然成立，直到其中一侧的$\alpha$值扩大为了$1$。</p>
-<p>假设右边的大一点，原来是：</p>
-<script type="math/tex; mode=display">
-\pi_iQ(i,j)\times 0.01 = \pi_jQ(j,i)\times 0.05</script><p>现在是：</p>
-<script type="math/tex; mode=display">
-\pi_iQ(i,j)\times 0.2 = \pi_jQ(j,i)\times 1</script><p>这样我们的接受率实际是做了如下改进，即：</p>
-<script type="math/tex; mode=display">
-\alpha(i,j) = \min\{\frac{\pi(j)Q(j,i)}{\pi(i)Q(i,j)},1\}</script><p>很多时候，我们选择的马尔科夫链状态转移矩阵如果是对称的，即满足$Q(i,j)=Q(j,i)$，这时我们的接受率可以进一步化简：</p>
-<script type="math/tex; mode=display">
-\alpha(i,j) = \min\{\frac{\pi(j)}{\pi(i)}\}</script><h4 id="例"><a href="#例" class="headerlink" title="例"></a>例</h4><p>假设目标平稳分布是一个均值为$10$，标准差为$5$的正态分布，而选择的马尔科夫链状态转移矩阵$Q(i,j)$的条件转移概率是以$i$为均值，方差为$1$的正态分布在位置$j$的值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> norm</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">norm_dist_prob</span>(<span class="params">theta</span>):</span></span><br><span class="line">    y = norm.pdf(theta, loc=<span class="number">10</span>, scale=<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line">T = <span class="number">5000</span></span><br><span class="line">pi = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(T)]</span><br><span class="line">sigma = <span class="number">1</span></span><br><span class="line">t = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> t &lt; T-<span class="number">1</span>:</span><br><span class="line">    t = t + <span class="number">1</span></span><br><span class="line">    pi_star = norm.rvs(loc=pi[t-<span class="number">1</span>], scale=sigma, size=<span class="number">1</span>, random_state=<span class="literal">None</span>)</span><br><span class="line">    alpha = <span class="built_in">min</span>(<span class="number">1</span>, norm_dist_prob(pi_star[<span class="number">0</span>]) / norm_dist_prob(pi[t-<span class="number">1</span>]))</span><br><span class="line">    </span><br><span class="line">    u = random.uniform(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> u &lt; alpha:</span><br><span class="line">        pi[t] = pi_star[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pi[t] = pi[t-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">plt.scatter(pi, norm.pdf(pi, loc=<span class="number">10</span>, scale=<span class="number">5</span>),label=<span class="string">&#x27;Target Distribution&#x27;</span>, c= <span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">num_bins = <span class="number">50</span></span><br><span class="line">plt.hist(pi, num_bins, density=<span class="number">1</span>, facecolor=<span class="string">&#x27;green&#x27;</span>, alpha=<span class="number">0.7</span>,label=<span class="string">&#x27;Samples Distribution&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p>再假设目标平稳是一个$a = 2.37, b =0.627$的$\beta$分布，而选择的马尔可夫转移矩阵$Q(i,j)$的条件概率是以$i$为均值，方差为$1$的正态分布在位置$i$的值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> beta</span><br><span class="line">a, b = <span class="number">2.31</span>, <span class="number">0.627</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">beta_dist_prob</span>(<span class="params">theta</span>):</span></span><br><span class="line">    y = beta(<span class="number">2.31</span>, <span class="number">0.627</span>).pdf(theta)</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line">T = <span class="number">5000</span></span><br><span class="line">pi = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(T)]</span><br><span class="line">sigma = <span class="number">1</span></span><br><span class="line">t = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> t &lt; T-<span class="number">1</span>:</span><br><span class="line">    t = t + <span class="number">1</span></span><br><span class="line">    pi_star = norm.rvs(loc=pi[t-<span class="number">1</span>], scale=sigma, size=<span class="number">1</span>, random_state=<span class="literal">None</span>)</span><br><span class="line">    alpha = <span class="built_in">min</span>(<span class="number">1</span>, beta_dist_prob(pi_star[<span class="number">0</span>]) / beta_dist_prob(pi[t-<span class="number">1</span>]))</span><br><span class="line">    </span><br><span class="line">    u = random.uniform(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> u &lt; alpha:</span><br><span class="line">        pi[t] = pi_star[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pi[t] = pi[t - <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">plt.scatter(pi, beta(<span class="number">2.31</span>, <span class="number">0.627</span>).pdf(pi),label=<span class="string">&#x27;Target Distribution&#x27;</span>, c= <span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">num_bins = <span class="number">50</span></span><br><span class="line">plt.hist(pi, num_bins, density=<span class="number">1</span>, facecolor=<span class="string">&#x27;green&#x27;</span>, alpha=<span class="number">0.7</span>,label=<span class="string">&#x27;Samples Distribution&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<h3 id="吉布斯采样"><a href="#吉布斯采样" class="headerlink" title="吉布斯采样"></a>吉布斯采样</h3><p>M-H采样在高维时计算时间较长，算法效率较低。而且，很多时候我们甚至很难求出目标的各特征维度联合分布，但是可以方便求出各个特征之间的条件概率分布。所以我们希望对条件概率分布进行抽样，得到样本的序列。</p>
-<p>对于二维概率密度函数：</p>
-<p><img src="https://static01.imgkr.com/temp/7b4a4951c849420390f5190505229c78.png" alt=""></p>
-<p>假设我们取两个点$A$和$B$，我们有</p>
-<script type="math/tex; mode=display">
-\pi(A) = \pi(x_1,y_1) = \pi(x_1)\pi(y_1|x_1),
-\pi(B) = \pi(x_1,y_2) = \pi(x_1)\pi(y_2|x_1)</script><p>变化一下，得：</p>
-<script type="math/tex; mode=display">
-\pi(A)\pi(y_2|x_1) = \pi(x_1)\pi(y_1|x_1)\pi(y_2|x_1),
-\pi(B)\pi(y_1|x_1) = \pi(x_1)\pi(y_2|x_1)\pi(y_1|x_1)</script><p>所以</p>
-<script type="math/tex; mode=display">
-\pi(A)\pi(y_2|x_1) = \pi(B)\pi(y_1|x_1)</script><p>这与细致平衡条件非常相像：</p>
-<p>我们令$\pi(y_2|x_1)$为状态转移概率$P(A\rightarrow B)$。</p>
-<p>则</p>
-<script type="math/tex; mode=display">
-\pi(A)P(A\rightarrow B) = \pi(B)P(B\rightarrow A)</script><p>假设我们有第三个点$C$：</p>
-<p>则同理</p>
-<script type="math/tex; mode=display">
-\pi(A)\pi(y_1|x_2) = \pi(C)\pi(y_1|x_1)</script><p>即</p>
-<script type="math/tex; mode=display">
-\pi(A)P(A\rightarrow C) = \pi(C)P(C\rightarrow A)</script><p>那么对于所有$A^{\prime}$都有：</p>
-<script type="math/tex; mode=display">
-\pi(A)P(A\rightarrow A^{\prime}) = \pi(A)P(A^{\prime}\rightarrow A)</script><p><img src="https://static01.imgkr.com/temp/c09972e12900423281c5fcad2216d535.png" alt=""></p>
-<p>因为我们的状态转移矩阵$P(A\rightarrow B)=\pi(y_2|x_1)$已知，因此我们不存在拒绝采样的问题。</p>
-<p>但是我们前面的推理都是基于有一个坐标相等，如果每个坐标都不想等怎么办？</p>
-<p><img src="https://static01.imgkr.com/temp/2b8c1e58ea604756b4836abb3331502d.png" alt=""></p>
-<p>如上图的$D$点，我们规定：</p>
-<script type="math/tex; mode=display">
-P(A\rightarrow D)=0</script><p>即我们只允许在<strong>平行坐标轴</strong>上采样。</p>
-<p>吉布斯采样步骤：</p>
-<ul>
-<li>给定平稳分布$\pi(x_1,x_2)$</li>
-<li>$t=0$随机产生一个初始状态$(x_1^{(0)},x_2^{(0)})$</li>
-<li>从条件概率分布$P(x_2|x_1^{(0)})$中采样$(x_1^{(0)},x_2^{(1)})$</li>
-<li>从条件概率分布$P(x_1|x_2^{(1)})$中采样$(x_1^{(1)},x_2^{(1)})$</li>
-<li>不停轮换坐标轴，采取指定数量样本为止</li>
-</ul>
-<h4 id="例-1"><a href="#例-1" class="headerlink" title="例"></a>例</h4><p>假设我们要采样的是一个二维正态分布$N(\mu,\Sigma)$，其中：$\mu=(\mu_1,\mu_2) = (5,-1),\Sigma=\left(\begin{array}{cc} \sigma_{1}^{2} &amp; \rho \sigma_{1} \sigma_{2} \\ \rho \sigma_{1} \sigma_{2} &amp; \sigma_{2}^{2} \end{array}\right)=\left(\begin{array}{ll} 1 &amp; 1 \\ 1 &amp; 4\end{array}\right)$。</p>
-<p>首先要求得：采样过程中需要的状态转移条件分布：</p>
-<script type="math/tex; mode=display">
-P(x_1|x_2) = N(\mu_1+\rho\sigma_1/\sigma_2(x_2-\mu_2),(1-\rho^2)\sigma_1^2),
-P(x_2|x_1) = N(\mu_2+\rho\sigma_2/\sigma_1(x_1-\mu_1),(1-\rho^2)\sigma_2^2)</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> beta</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> norm</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> multivariate_normal</span><br><span class="line"></span><br><span class="line">samplesource = multivariate_normal(mean=[<span class="number">5</span>,-<span class="number">1</span>], cov=[[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">1</span>,<span class="number">4</span>]])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">p_ygivenx</span>(<span class="params">x, m1, m2, s1, s2</span>):</span></span><br><span class="line">    <span class="keyword">return</span> (random.normalvariate(m2+<span class="number">0.5</span>*s2/s1*(x-m1), math.sqrt(<span class="number">1</span>-<span class="number">0.5</span>**<span class="number">2</span>)*s2))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">p_xgiveny</span>(<span class="params">y, m1, m2, s1, s2</span>):</span></span><br><span class="line">    <span class="keyword">return</span> (random.normalvariate(m1+<span class="number">0.5</span>*s1/s2*(y-m2), math.sqrt(<span class="number">1</span>-<span class="number">0.5</span>**<span class="number">2</span>)*s1))</span><br><span class="line"></span><br><span class="line">N = <span class="number">5000</span></span><br><span class="line">K = <span class="number">50</span></span><br><span class="line">x_res = []</span><br><span class="line">y_res = []</span><br><span class="line">z_res = []</span><br><span class="line">m1 = <span class="number">5</span></span><br><span class="line">m2 = -<span class="number">1</span></span><br><span class="line">s1 = <span class="number">1</span></span><br><span class="line">s2 = <span class="number">2</span></span><br><span class="line">y = m2</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">        x = p_xgiveny(y, m1, m2, s1, s2)   <span class="comment">#y给定得到x的采样</span></span><br><span class="line">        y = p_ygivenx(x, m1, m2, s1, s2)   <span class="comment">#x给定得到y的采样</span></span><br><span class="line">        z = samplesource.pdf([x,y])</span><br><span class="line">        x_res.append(x)</span><br><span class="line">        y_res.append(y)</span><br><span class="line">        z_res.append(z)</span><br><span class="line"></span><br><span class="line">num_bins = <span class="number">50</span></span><br><span class="line">plt.scatter(x_res, norm.pdf(x_res, loc=<span class="number">5</span>, scale=<span class="number">1</span>),label=<span class="string">&#x27;Target Distribution x&#x27;</span>, c= <span class="string">&#x27;green&#x27;</span>)</span><br><span class="line">plt.scatter(y_res, norm.pdf(y_res, loc=-<span class="number">1</span>, scale=<span class="number">2</span>),label=<span class="string">&#x27;Target Distribution y&#x27;</span>, c= <span class="string">&#x27;orange&#x27;</span>)</span><br><span class="line">plt.hist(x_res, num_bins, density=<span class="number">1</span>, facecolor=<span class="string">&#x27;Cyan&#x27;</span>, alpha=<span class="number">0.5</span>,label=<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">plt.hist(y_res, num_bins, density=<span class="number">1</span>, facecolor=<span class="string">&#x27;magenta&#x27;</span>, alpha=<span class="number">0.5</span>,label=<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Histogram&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
+          <p>抽样、抽样还是抽样。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/04/MCMC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -2459,10 +1089,9 @@ P(x_2|x_1) = N(\mu_2+\rho\sigma_2/\sigma_1(x_1-\mu_1),(1-\rho^2)\sigma_2^2)</scr
     <span class="toggle-line toggle-line-middle"></span>
     <span class="toggle-line toggle-line-last"></span>
   </div>
-
   <aside class="sidebar">
     <div class="sidebar-inner">
-
+	
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
           文章目录
@@ -2471,12 +1100,11 @@ P(x_2|x_1) = N(\mu_2+\rho\sigma_2/\sigma_1(x_1-\mu_1),(1-\rho^2)\sigma_2^2)</scr
           站点概览
         </li>
       </ul>
-
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
       </div>
       <!--/noindex-->
-
+	
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="HFC"
@@ -2489,7 +1117,7 @@ P(x_2|x_1) = N(\mu_2+\rho\sigma_2/\sigma_1(x_1-\mu_1),(1-\rho^2)\sigma_2^2)</scr
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2538,6 +1166,7 @@ P(x_2|x_1) = N(\mu_2+\rho\sigma_2/\sigma_1(x_1-\mu_1),(1-\rho^2)\sigma_2^2)</scr
   </div>
 
       </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=346089&auto=1&height=66"></iframe>
 
     </div>
   </aside>
@@ -2598,23 +1227,6 @@ $(document).ready(function() {
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
 </div>
 
 

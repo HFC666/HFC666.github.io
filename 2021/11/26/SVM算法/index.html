@@ -28,12 +28,12 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="支持向量机(SVM)线性模型线性可分训练集一个训练数据集线性可分是指：$\{(x_i,y_i)\}_{i&#x3D;1\sim N},\exists(w,b)$，使对$\forall i&#x3D;1\sim N$，有  若$y_i&#x3D;+1$，则$w^Tx_i+b\ge0$ 若$y_i&#x3D;-1$，则$w^Tx_i+b&lt;0$  即$y_i[w^Tx_i+b]\ge0$(公式1) 对于线性可分的数据集，我们需要划一条线">
+  <meta name="description" content="数学在机器学习中的完美呈现：支持向量机永垂不朽！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SVM算法">
 <meta property="og:url" content="https://www.hfcouc.work/2021/11/26/SVM%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="支持向量机(SVM)线性模型线性可分训练集一个训练数据集线性可分是指：$\{(x_i,y_i)\}_{i&#x3D;1\sim N},\exists(w,b)$，使对$\forall i&#x3D;1\sim N$，有  若$y_i&#x3D;+1$，则$w^Tx_i+b\ge0$ 若$y_i&#x3D;-1$，则$w^Tx_i+b&lt;0$  即$y_i[w^Tx_i+b]\ge0$(公式1) 对于线性可分的数据集，我们需要划一条线">
+<meta property="og:description" content="数学在机器学习中的完美呈现：支持向量机永垂不朽！">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://static01.imgkr.com/temp/bf661c3ba75549abacf5b4e9dde0e254.png">
 <meta property="og:image" content="https://static01.imgkr.com/temp/51e3dc9f3d9847298c80f36fc1d22328.png">
@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://static01.imgkr.com/temp/c0bcf66b2ef143ae9b7e93f699654ddb.png">
 <meta property="og:image" content="https://static01.imgkr.com/temp/fb18fa3a67f14d0eaecf9214ecf952ec.png">
 <meta property="article:published_time" content="2021-11-26T12:48:20.000Z">
-<meta property="article:modified_time" content="2021-12-21T14:13:23.745Z">
+<meta property="article:modified_time" content="2021-12-22T07:18:41.913Z">
 <meta property="article:author" content="HFC">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
@@ -266,7 +266,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-21 22:13:23" itemprop="dateModified" datetime="2021-12-21T22:13:23+08:00">2021-12-21</time>
+                <time title="修改时间：2021-12-22 15:18:41" itemprop="dateModified" datetime="2021-12-22T15:18:41+08:00">2021-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,13 +279,6 @@
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
 
         </div>
       </header>
@@ -296,7 +289,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="支持向量机-SVM"><a href="#支持向量机-SVM" class="headerlink" title="支持向量机(SVM)"></a>支持向量机(SVM)</h2><h3 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h3><h4 id="线性可分训练集"><a href="#线性可分训练集" class="headerlink" title="线性可分训练集"></a>线性可分训练集</h4><p>一个训练数据集线性可分是指：$\{(x_i,y_i)\}_{i=1\sim N},\exists(w,b)$，使对$\forall i=1\sim N$，有</p>
+        <p>数学在机器学习中的完美呈现：支持向量机永垂不朽！</p>
+<span id="more"></span>
+<h2 id="支持向量机-SVM"><a href="#支持向量机-SVM" class="headerlink" title="支持向量机(SVM)"></a>支持向量机(SVM)</h2><h3 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h3><h4 id="线性可分训练集"><a href="#线性可分训练集" class="headerlink" title="线性可分训练集"></a>线性可分训练集</h4><p>一个训练数据集线性可分是指：$\{(x_i,y_i)\}_{i=1\sim N},\exists(w,b)$，使对$\forall i=1\sim N$，有</p>
 <ul>
 <li>若$y_i=+1$，则$w^Tx_i+b\ge0$</li>
 <li>若$y_i=-1$，则$w^Tx_i+b&lt;0$</li>
@@ -754,10 +749,9 @@ E_i^{new} = \sum_{S}y_ja_jK(x_i,x_j)+b^{new}-y_i</script><p>其中，$S$是所�
     <span class="toggle-line toggle-line-middle"></span>
     <span class="toggle-line toggle-line-last"></span>
   </div>
-
   <aside class="sidebar">
     <div class="sidebar-inner">
-
+	
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
           文章目录
@@ -766,13 +760,12 @@ E_i^{new} = \sum_{S}y_ja_jK(x_i,x_j)+b^{new}-y_i</script><p>其中，$S$是所�
           站点概览
         </li>
       </ul>
-
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-SVM"><span class="nav-number">1.</span> <span class="nav-text">支持向量机(SVM)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">线性模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86%E8%AE%AD%E7%BB%83%E9%9B%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">线性可分训练集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86"><span class="nav-number">1.2.</span> <span class="nav-text">非线性可分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">非线性问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E9%97%AE%E9%A2%98%E5%92%8C%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">原问题和对偶问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.1.</span> <span class="nav-text">原问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.2.</span> <span class="nav-text">对偶问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E9%97%AE%E9%A2%98%E5%92%8C%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98%E8%A7%A3%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.4.3.</span> <span class="nav-text">原问题和对偶问题解的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3SVM"><span class="nav-number">1.5.</span> <span class="nav-text">利用对偶问题求解SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMO%E7%AE%97%E6%B3%95"><span class="nav-number">1.6.</span> <span class="nav-text">SMO算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92%E7%9A%84%E6%B1%82%E8%A7%A3%E8%BF%87%E7%A8%8B"><span class="nav-number">1.6.1.</span> <span class="nav-text">两个变量二次规划的求解过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%90%AF%E5%8F%91%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="nav-number">1.6.2.</span> <span class="nav-text">变量的启发式选择</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
-
+	
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="HFC"
@@ -785,7 +778,7 @@ E_i^{new} = \sum_{S}y_ja_jK(x_i,x_j)+b^{new}-y_i</script><p>其中，$S$是所�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -834,6 +827,7 @@ E_i^{new} = \sum_{S}y_ja_jK(x_i,x_j)+b^{new}-y_i</script><p>其中，$S$是所�
   </div>
 
       </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=346089&auto=1&height=66"></iframe>
 
     </div>
   </aside>
@@ -894,23 +888,6 @@ $(document).ready(function() {
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
 </div>
 
 
