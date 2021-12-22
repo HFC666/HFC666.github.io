@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.hfcouc.work/photos/index.html</loc>
+    
+    <lastmod>2021-12-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.hfcouc.work/resources/index.html</loc>
+    
+    <lastmod>2021-12-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.hfcouc.work/2021/10/31/Linear-algebra-in-cv/</loc>
+    
+    <lastmod>2021-12-22</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.hfcouc.work/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/</loc>
     
     <lastmod>2021-12-22</lastmod>
@@ -107,13 +128,6 @@
   </url>
   
   <url>
-    <loc>https://www.hfcouc.work/2021/10/31/Linear-algebra-in-cv/</loc>
-    
-    <lastmod>2021-12-22</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.hfcouc.work/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/</loc>
     
     <lastmod>2021-12-22</lastmod>
@@ -149,13 +163,6 @@
   </url>
   
   <url>
-    <loc>https://www.hfcouc.work/gallery/index.html</loc>
-    
-    <lastmod>2021-08-22</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.hfcouc.work/cinemas/index.html</loc>
     
     <lastmod>2021-08-22</lastmod>
@@ -185,13 +192,6 @@
   
   <url>
     <loc>https://www.hfcouc.work/tags/index.html</loc>
-    
-    <lastmod>2021-07-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.hfcouc.work/resources/index.html</loc>
     
     <lastmod>2021-07-13</lastmod>
     
