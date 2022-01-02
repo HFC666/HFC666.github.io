@@ -36,7 +36,7 @@
 <meta property="og:description" content="之前的HMM都是在离散观测的条件下，现在我们研究一下观测值连续时的HMM。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-30T13:23:41.000Z">
-<meta property="article:modified_time" content="2021-12-30T13:26:39.208Z">
+<meta property="article:modified_time" content="2022-01-02T09:51:00.447Z">
 <meta property="article:author" content="HFC">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
@@ -259,10 +259,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-30 21:23:41 / 修改时间：21:26:39" itemprop="dateCreated datePublished" datetime="2021-12-30T21:23:41+08:00">2021-12-30</time>
+              <time title="创建时间：2021-12-30 21:23:41" itemprop="dateCreated datePublished" datetime="2021-12-30T21:23:41+08:00">2021-12-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-02 17:51:00" itemprop="dateModified" datetime="2022-01-02T17:51:00+08:00">2022-01-02</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -328,7 +334,18 @@ b_j(o_t) = p_j(o_t|\theta_j) = \sum_{k=1}^Kc_j^{(k)}p_j^{(k)}(o_t|\theta_j^{(k)}
 \hat{c}_j^{(k)} = \frac{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)}{\sum_{l=1}^K\sum_{t=1}^T\alpha_t(j,l)\beta_t(j,l)}</script><p>$\hat{m}_j^{(k)},\sigma^{2^{(k)}}_j$与之前相似，为：</p>
 <script type="math/tex; mode=display">
 \hat{m}_j^{(k)} = \frac{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)o_t}{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)}</script><script type="math/tex; mode=display">
-\hat{\sigma}_j^{2^{(k)}} =\frac{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)(o_t-\hat{m}_j^{(k)})^2}{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)}</script>
+\hat{\sigma}_j^{2^{(k)}} =\frac{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)(o_t-\hat{m}_j^{(k)})^2}{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)}</script><h2 id="多变量HMM"><a href="#多变量HMM" class="headerlink" title="多变量HMM"></a>多变量HMM</h2><p>假设我们的概率密度函数是多元正态分布：</p>
+<script type="math/tex; mode=display">
+f(\mathrm{X}) = \frac{1}{\sqrt{(2\pi)^k}|\Sigma|^{\frac{1}{2}}}\exp\left(-\frac{1}{2}(\mathrm{x-\mu})^T\Sigma^{-1}(\mathrm{x-\mu})\right)</script><p>那么我们的概率计算也会发生相应的改变。</p>
+<p>在优化过程中$a$和$\pi$仍然不变：</p>
+<script type="math/tex; mode=display">
+\hat{a}_{ij} = \frac{\sum_{t=1}^{T-1}\alpha_t(i)\beta_{t+1}(j)a_{ij}p_j(o_{t+1}|\theta_j)}{\sum_{t=1}^{T-1}\alpha_t(i)\beta_t(i)}</script><script type="math/tex; mode=display">
+\hat{\pi}_i = \frac{\alpha_1(i)\beta_1(i)}{\sum_{i}^N\alpha_1(i)\beta_1(i)}</script><p>$\hat{m}$也大致相同，但是$o_t$变成了向量：</p>
+<script type="math/tex; mode=display">
+\hat{m}_j = \frac{\sum_{t=1}^T\alpha_t(j)\beta_t(j)o_t}{\sum_{t=1}^T\alpha_t(j)\beta_t(j)}</script><p>$\hat{\Sigma}$也大致相同：</p>
+<script type="math/tex; mode=display">
+\hat{\Sigma}_j=\frac{\sum_{t=1}^T\alpha_t(j)\beta_t(j)(o_t-\hat{m}_j)(o_t-\hat{m})^T}{\sum_{t=1}^T\alpha_t(j)\beta_t(j)}</script><p>如果是混合多变量HMM，那么有上面的混合HMM相似。</p>
+
     </div>
 
     
@@ -425,7 +442,10 @@ b_j(o_t) = p_j(o_t|\theta_j) = \sum_{k=1}^Kc_j^{(k)}p_j^{(k)}(o_t|\theta_j^{(k)}
     <a href="/2021/12/23/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="prev" title="神经网络">
       <i class="fa fa-chevron-left"></i> 神经网络
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/02/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/" rel="next" title="条件随机场">
+      条件随机场 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -487,7 +507,7 @@ b_j(o_t) = p_j(o_t|\theta_j) = \sum_{k=1}^Kc_j^{(k)}p_j^{(k)}(o_t|\theta_j^{(k)}
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E8%A7%82%E6%B5%8B%E4%B8%8B%E7%9A%84HMM"><span class="nav-number">1.</span> <span class="nav-text">连续观测下的HMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88HMM"><span class="nav-number">2.</span> <span class="nav-text">混合HMM</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E8%A7%82%E6%B5%8B%E4%B8%8B%E7%9A%84HMM"><span class="nav-number">1.</span> <span class="nav-text">连续观测下的HMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88HMM"><span class="nav-number">2.</span> <span class="nav-text">混合HMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%8F%98%E9%87%8FHMM"><span class="nav-number">3.</span> <span class="nav-text">多变量HMM</span></a></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
@@ -502,7 +522,7 @@ b_j(o_t) = p_j(o_t|\theta_j) = \sum_{k=1}^Kc_j^{(k)}p_j^{(k)}(o_t|\theta_j^{(k)}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -570,7 +590,7 @@ b_j(o_t) = p_j(o_t|\theta_j) = \sum_{k=1}^Kc_j^{(k)}p_j^{(k)}(o_t|\theta_j^{(k)}
 <div class="copyright">
   
   &copy; Tue Jul 13 2021 08:00:00 GMT+0800 (GMT+08:00) – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

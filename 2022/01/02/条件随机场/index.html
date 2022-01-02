@@ -28,20 +28,29 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="以下主要参考李航老师《统计学习方法》">
+  <meta name="description" content="条件随机场感觉比HMM要难，虽然我看完了一遍，但是有些地方感觉还是云里雾里的，之后可能还得更详细的阅读。另外条件随机场需要由标注的数据，另外其参数设置也较复杂，实际应用中可能比较难。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="决策树">
-<meta property="og:url" content="https://www.hfcouc.work/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
+<meta property="og:title" content="条件随机场">
+<meta property="og:url" content="https://www.hfcouc.work/2022/01/02/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="以下主要参考李航老师《统计学习方法》">
+<meta property="og:description" content="条件随机场感觉比HMM要难，虽然我看完了一遍，但是有些地方感觉还是云里雾里的，之后可能还得更详细的阅读。另外条件随机场需要由标注的数据，另外其参数设置也较复杂，实际应用中可能比较难。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-21T14:12:55.000Z">
-<meta property="article:modified_time" content="2021-12-30T13:26:03.828Z">
+<meta property="og:image" content="https://static01.imgkr.com/temp/0157b60e0d0d4391aeeaf10e3624b754.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/a96d06aa1b7e405a95da3179f24e0853.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/b4f4591ebb7446308706ef437ed0407d.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/2e42113a75c2446bb147e07c1398155a.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/e9bb6fbfe0d44673ab0437234f980389.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/855b90da142e483abda8bf92a8da86bd.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/d80727609dc342fd89101cc7d7d079be.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/0242442061844f8f8f51a69be9c8f7b3.png">
+<meta property="article:published_time" content="2022-01-02T09:26:55.000Z">
+<meta property="article:modified_time" content="2022-01-02T09:51:50.627Z">
 <meta property="article:author" content="HFC">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static01.imgkr.com/temp/0157b60e0d0d4391aeeaf10e3624b754.png">
 
-<link rel="canonical" href="https://www.hfcouc.work/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/01/02/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/">
 
 
 <script id="page-configurations">
@@ -54,7 +63,7 @@
   };
 </script>
 
-  <title>决策树 | 独自赏晴雨</title>
+  <title>条件随机场 | 独自赏晴雨</title>
   
 
 
@@ -236,7 +245,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/01/02/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
@@ -249,7 +258,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          决策树
+          条件随机场
         </h1>
 
         <div class="post-meta">
@@ -259,16 +268,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-12-21 22:12:55" itemprop="dateCreated datePublished" datetime="2021-12-21T22:12:55+08:00">2021-12-21</time>
+              <time title="创建时间：2022-01-02 17:26:55 / 修改时间：17:51:50" itemprop="dateCreated datePublished" datetime="2022-01-02T17:26:55+08:00">2022-01-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-30 21:26:03" itemprop="dateModified" datetime="2021-12-30T21:26:03+08:00">2021-12-30</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -290,153 +293,221 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>以下主要参考李航老师《统计学习方法》</p>
+        <p>条件随机场感觉比HMM要难，虽然我看完了一遍，但是有些地方感觉还是云里雾里的，之后可能还得更详细的阅读。另外条件随机场需要由标注的数据，另外其参数设置也较复杂，实际应用中可能比较难。</p>
 <span id="more"></span>
-<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>决策树学习的三个阶段</p>
+<h2 id="条件随机场"><a href="#条件随机场" class="headerlink" title="条件随机场"></a>条件随机场</h2><h3 id="HMM-VS-MEMM"><a href="#HMM-VS-MEMM" class="headerlink" title="HMM VS MEMM"></a>HMM VS MEMM</h3><p><img src="https://static01.imgkr.com/temp/0157b60e0d0d4391aeeaf10e3624b754.png" alt=""></p>
+<p>HMM两大假设：</p>
 <ol>
-<li>特征选择</li>
-<li>决策树的生成</li>
-<li>决策树的修剪</li>
+<li>齐次一阶马尔可夫假设：齐次指的是状态转移矩阵不变，与时间无关；一次指的是每一时刻的状态只与前一时刻的状态有关：$P(y_t|y_{1:t-1},x_{1:t-1})=P(y_t|y_{t-1})$</li>
+<li>观测独立假设：$P(x_t|y_{1:t},x_{1:t-1})=P(x_t|y_t)$</li>
 </ol>
-<h3 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h3><p>特征选择的准则时信息增益或信息增益比。</p>
-<h4 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h4><p>我们先介绍熵的定义。设$X$是一个取有限个值的离散随机变量，其概率分布为：</p>
+<p>HMM是一个生成模型，其建模对象是$P(X,Y|\lambda)$。</p>
+<p><img src="https://static01.imgkr.com/temp/a96d06aa1b7e405a95da3179f24e0853.png" alt=""></p>
 <script type="math/tex; mode=display">
-P(X=x_i)=p_i,i=1,2,\cdots,n</script><p>则随机变量$X$的熵的定义为</p>
-<script type="math/tex; mode=display">
-H(X) = -\sum_{i=1}^np_i\log p_i</script><p>若$p_i=0$，我们定义$0\log0=0$。对数若以$2$为底，单位为比特，以$e$为底，单位为纳特。熵只与$X$的分布有关而与$X$的取值无关，因此我们将$X$的熵记作$H(p)$，即</p>
-<script type="math/tex; mode=display">
-H(p) =-\sum_{i=1}^np_i\log p_i</script><p>熵越大，随机变量的不确定性就越大。从定义可验证：</p>
-<script type="math/tex; mode=display">
-0\le H(p)\le \log n</script><p>设有随机变量$(X,Y)$，其联合概率密度分布为：</p>
-<script type="math/tex; mode=display">
-P(X=x_i,Y=y_j) = p_{ij},\quad i=1,2,\cdots,n;\quad j=1,2,\cdots,m</script><p>条件熵$H(Y|X)$表示在已知随机变量$X$的条件下随机变量$Y$的不确定性。随机变量$X$给定的条件下随机变量$Y$的条件熵$H(Y|X)$，定义为$X$给定条件下$Y$的条件概率分布的熵对$X$的数学期望</p>
-<script type="math/tex; mode=display">
-H(Y|X) = \sum_{i=1}^n p_iH(Y|X=x_i)</script><p>这里，$p_i = P(X=x_i),i=1,2,\cdots,n$。</p>
-<p>信息增益表示得知特征$X$的信息而使得类$Y$的信息不确定性减少的程度。</p>
-<p>定义(信息增益)：特征$A$对训练数据$D$的信息增益$g(D,A)$，定义为集合$D$的经验熵$H(D)$与特征$A$给定条件下$D$的经验条件熵$H(D|A)$之差，即</p>
-<script type="math/tex; mode=display">
-g(D,A) = H(D)-H(D|A)</script><p>一般地，熵$H(Y)$与条件熵$H(Y|X)$之差称为互信息。决策树学习中的信息增益等价于训练数据集中类与特征的互信息。</p>
-<p>设训练数据集为$D$，$|D|$表示其样本容量，即样本个数。设有$K$个类$C_k,k=1,2,\cdots,K$，$|C_k|$为属于类$C_k$的样本数。设特征$A$有$n$个不同的取值$\{a_1,a_2,\cdots,a_n\}$，根据特征$A$的取值将$D$划分为$n$个子集$D_1,D_2,\cdots,D_n$，$|D_i|$表示$D_i$的样本数。记子集$D_i$中属于类$C_k$的样本集合为$D_{ik}$，即$D_{ik}=D_i\cap C_k$。</p>
-<p>信息增益的算法：</p>
-<p>输入：训练数据集$D$和特征$A$</p>
-<p>输出：特征$A$对训练数据集$D$的信息增益$g(D,A)$</p>
-<ol>
-<li>计算数据集的经验熵$H(D)$：<script type="math/tex">H(D)=-\sum_{k=1}^K\frac{|C_k|}{|D|}\log_2\frac{|C_k|}{|D|}</script></li>
-<li>计算特征$A$对数据集$D$的经验条件熵$H(D|A)$：<script type="math/tex">H(D|A)=\sum_{i=1}^n\frac{|D_i|}{D}H(D_i)=-\sum_{i=1}^n\frac{|D_i|}{|D|}\sum_{k=1}^K\frac{|D_{ik}|}{|D_i|}\log2\frac{|D_{ik}|}{|D_i|}</script></li>
-<li>计算信息增益：<script type="math/tex">g(D,A)=H(D)-H(D|A)</script></li>
-</ol>
-<h4 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h4><p>以信息增益作为划分训练数据集的特征，存在偏向于选择取值的较多的特征的问题，使用信息增益比可以对这一问题进行校正。</p>
-<p>定义(信息增益)：特征$A$对训练数据集$D$信息增益比$g_R(D,A)$定义为其信息增益$g(D,A)$与训练数据集$D$关于特征$A$的值的熵$H_A(D)$之比，即</p>
-<script type="math/tex; mode=display">
-g_R(D,A) = \frac{g(D,A)}{H_A(D)}</script><p>。</p>
-<h3 id="决策树的生成"><a href="#决策树的生成" class="headerlink" title="决策树的生成"></a>决策树的生成</h3><h4 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h4><p>输入：训练数据集$D$，特征值阈值$\epsilon$</p>
-<p>输出：决策树$T$</p>
-<ol>
-<li>若$D$中所有实例属于同一类$C_k$，则$T$为单节点树，并将类$C_k$作为该结点的类标记，返回$T$；</li>
-<li>若$A=\varnothing$，则$T$为单结点树，并将$D$中实例树最大的类$C_k$作为该结点的类标记，返回$T$；</li>
-<li>否则，计算$A$中各特征值对$D$的信息增益，选择信息增益最大的特征$A_g$；</li>
-<li>如果$A_g$的信息增益小于阈值$\epsilon$，则置$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$</li>
-<li>否则，对$A_g$的每一可能值$a_i$，依$A_g=a_i$将$D$分割为若干非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子节点构成数$T$，返回$T$；</li>
-<li>对第$i$个子结点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用步骤1到5，得到子树$T_i$，返回$T_i$。</li>
-</ol>
-<p>ID3算法只有数的生成，所以该算法生成的树容易产生过拟合。</p>
-<h4 id="C4-5的生成算法"><a href="#C4-5的生成算法" class="headerlink" title="C4.5的生成算法"></a>C4.5的生成算法</h4><p>与ID3算法的差别仅在于使用信息增益比来选择特征。</p>
-<ol>
-<li>若$D$中所有实例属于同一类$C_k$，则$T$为单节点树，并将类$C_k$作为该结点的类标记，返回$T$；</li>
-<li>若$A=\varnothing$，则$T$为单结点树，并将$D$中实例树最大的类$C_k$作为该结点的类标记，返回$T$；</li>
-<li>否则，计算$A$中各特征值对$D$的信息增益比，选择信息增益比最大的特征$A_g$；</li>
-<li>如果$A_g$的信息增益比小于阈值$\epsilon$，则置$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$</li>
-<li>否则，对$A_g$的每一可能值$a_i$，依$A_g=a_i$将$D$分割为若干非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子节点构成数$T$，返回$T$；</li>
-<li>对第$i$个子结点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用步骤1到5，得到子树$T_i$，返回$T_i$。</li>
-</ol>
-<h3 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h3><p>决策树的剪枝往往通过极小化决策树整体的损失函数来实现。设数$T$的叶结点个数为$|T|$，$t$是数$T$的叶结点，该结点有$N_t$个样本点，其中$k$类的样本点有$N_{tk}$个，$H_t(T)$为叶结点$t$上的经验熵，$\alpha\ge0$为超参数，则决策树学习的损失函数可以定义为</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(T) = \sum_{t=1}^{|T|}N_tH_t(T)+\alpha|T|</script><p>其中经验熵为：</p>
-<script type="math/tex; mode=display">
-H_t(T) = -\sum_k\frac{N_{tk}}{N_t}\log\frac{N_{tk}}{N_t}</script><p>在损失函数中，常将右端的第一项记作：</p>
-<script type="math/tex; mode=display">
-C(T) =\sum_{t=1}^{|T|}N_tH_t(T) = -\sum_{t=1}^{|T|}\sum_{k=1}^K\frac{N_{tk}}{N_t}\log\frac{N_{tk}}{N_t}</script><p>这时有：</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(T) = C(T)+\alpha|T|</script><p>算法(数的剪枝算法)</p>
-<p>输入：生成算法产生的整个数$T$，参数$\alpha$</p>
-<p>输出：修剪后的子树$T_{\alpha}$</p>
-<ol>
-<li>计算每个结点的经验熵。</li>
-<li>递归地从数地叶结点向上回缩。设一组叶结点回缩到其父结点之前与之后的整体数分别为$T_B$和$T_A$，其对应的损失函数分别是$C_{\alpha}(T_B)$与$C_{\alpha}(T_A)$，其对应的损失函数值分别是$C_{\alpha}(T_B)$与$C_{\alpha}(T_A)$，如果<script type="math/tex">C_{\alpha}(T_A)\le C_{\alpha}(T_B)</script>，则进行剪枝，即将父结点变为新的叶结点。</li>
-<li>返回2，直至不能继续为止，得到损失函数最小的子树$T_{\alpha}$。</li>
-</ol>
-<h3 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h3><p>分类与回归树(classfication and regression tree, CART)。</p>
-<p>决策树就是递归地构建二叉决策树的过程。对回归树用平方误差最小化准则，对分类树用基尼系数最小化准则，进行特征选择，生成二叉树。</p>
-<h4 id="回归树的生成"><a href="#回归树的生成" class="headerlink" title="回归树的生成"></a>回归树的生成</h4><p>假设$X$和$Y$分别为输入和输出变量，并且$Y$是连续变量，给定训练数据集</p>
-<script type="math/tex; mode=display">
-D= \{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}</script><p>考虑如何生成回归树。</p>
-<p>假设树将输入空间划分为$M$个单元$R_1,R_2,\cdots,R_M$，并且在每个单元$R_m$上有一个固定的输出值$c_m$，于是回归树模型可表示为：</p>
-<script type="math/tex; mode=display">
-f(x) = \sum_{m=1}^Mc_mI(x\in R_m)</script><p>当输入空间的划分确定时，可以用平方误差$\sum_{x_i\in R_m}(y_i-f(x_i))^2$来表示回归树对于训练数据的预测误差，求解每个单元上的最优输出值。易知：</p>
-<script type="math/tex; mode=display">
-\hat{c}_m = \operatorname{ave}(y_i|x_i\in R_m)</script><p>问题是怎么对输入空间进行划分。我们采用启发式的方法，选择第$j$个变量$x^{(j)}$和它的取值$s$，作为切分变量和切分点，并定义两个区域：</p>
-<script type="math/tex; mode=display">
-R_1(j,s) = \{x|x^{(j)}\le s\}\quad\text{和}R_2(j,s) = \{x|x^{(j)}>s\}</script><p>然后寻找最优切分点和最优切分变量：</p>
-<script type="math/tex; mode=display">
-\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]</script><p>对于固定输入变量$j$可以找到最优切分点$s$</p>
-<script type="math/tex; mode=display">
-\hat{c}_1 = \operatorname{ave}(y_i|x_i\in R_1(j,s))\quad\text{和}\quad \hat{c}_2 = \operatorname{ave}(y_i|x_i\in R_2(j,s))\quad</script><p>算法为：</p>
-<p>输入：训练数据集$D$</p>
-<p>输出：回归树$f(x)$</p>
-<p>在训练数据集中所在的输入空间中，递归地将每个区域划分为两个子区域并决定每个子区域上的输出值，构建二叉决策树：</p>
-<ol>
-<li><p>选择最优切分变量$j$和切分点$s$，求解：</p>
-<script type="math/tex; mode=display">
-\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]</script><p>遍历变量$j$，对固定的切分变量$j$扫描切分点$s$，选择使上式达到最小值的对$(j,s)$。</p>
-</li>
-<li><p>对选定的对$(j,s)$划分区域并决定相应的输出值</p>
-<script type="math/tex; mode=display">
-\begin{gathered}
-R_{1}(j, s)=\left\{x \mid x^{(j)} \leqslant s\right\}, \quad R_{2}(j, s)=\left\{x \mid x^{(j)}>s\right\} \\
-\hat{c}_{m}=\frac{1}{N_{m}} \sum_{x_{i} \in R_{m}(j, s)} y_{i}, \quad x \in R_{m}, \quad m=1,2
-\end{gathered}</script></li>
-<li><p>继续对两个子区域调用步骤1，2，直到满足停止条件。</p>
-</li>
-<li><p>将输入空间划分为$M$个区域$R_1,R_2,\cdots,R_M$，生成决策树：</p>
-<script type="math/tex; mode=display">
-f(x) = \sum_{m=1}^M\hat{c}_mI(x\in R_m)</script></li>
-</ol>
-<h4 id="分类树的生成"><a href="#分类树的生成" class="headerlink" title="分类树的生成"></a>分类树的生成</h4><p>分类树用基尼指数选择最优特征，同时决定该特征的最优二值切分点。</p>
-<p>定义(基尼系数)：分类问题中，假设有$K$个类，样本点属于第$k$类的概率为$p_k$，则概率分布的基尼指数定义为：</p>
-<script type="math/tex; mode=display">
-\operatorname{Gini}(p) = \sum_{k=1}^Kp_k(1-p_k) = 1-\sum_{k=1}^Kp_k^2</script><p>对于二分类问题，若样本点属于第$1$个类的概率为$p$，则概率分布的基尼指数为：</p>
-<script type="math/tex; mode=display">
-\operatorname{Gini}(p) = 2p(1-p)</script><p>对于给定样本集合$D$，其基尼指数为：</p>
-<script type="math/tex; mode=display">
-\operatorname{Gini}(D) = 1-\sum_{k=1}^K\left(\frac{|C_k|}{|D|}\right)^2</script><p>基尼系数越大，样本集合的不确定性越大。</p>
-<p>如果样本集合$D$根据特征$A$是否取某一可能值$a$被分割成$D_1$和$D_2$两部分，即</p>
-<script type="math/tex; mode=display">
-D_1=\{(x,y)\in D|A(x)=a\},\quad D_2=D-D_1</script><p>则在特征$A$的条件下，集合$D$的基尼指数定义为</p>
-<script type="math/tex; mode=display">
-\operatorname{Gini}(D,A) = \frac{|D_1|}{|D|}\operatorname{Gini}(D_1)+\frac{|D_2|}{|D|}\operatorname{Gini}(D_2)</script><p>算法(CART生成算法)</p>
-<p>输入：训练数据集$D$，停止计算的条件</p>
-<p>输出：CART决策树</p>
-<ol>
-<li>设结点的训练数据集为$D$，计算现有特征对该数据集的基尼系数。此时，对于每一个特征$A$，对其可能取的每个值$a$，根据样本点$A=a$的测试为”是”或”否”将$D$分割成$D_1$和$D_2$两个部分，计算$A=a$时的基尼指数。</li>
-<li>在所有可能的特征$A$以及它们所有可能的切分点$a$中，选择基尼指数最小的特征及其对应的切分点作为最优特征与最优切分点。依最优特征与最优切分点，从现结点生成两个子结点，将训练数据集依特征分配到两个子结点中去。</li>
-<li>对两个子结点递归地调用1，2，直到满足终止条件。</li>
-<li>生成CART决策树。</li>
-</ol>
-<h4 id="CART剪枝"><a href="#CART剪枝" class="headerlink" title="CART剪枝"></a>CART剪枝</h4><p>CART剪枝算法由两步组成：首先从生成算法产生的决策树$T_0$低端开始不断剪枝，直到$T_0$的根结点，形成一个子树序列$\{T_0,T_1,\cdots,T_n\}$；然后通过交叉验证法在独立的验证数据集上对子树序列进行测试，从中选择最优子树。</p>
-<p>可以利用递归的方法对数进行剪枝。将$\alpha$从小增大，$0=\alpha_0&lt;\alpha_1&lt;\cdots&lt;\alpha_n&lt;+\infty$，产生一系列的区间$[\alpha_i,\alpha_{i+1}),i=0,1,\cdots,n$的最优子树序列$\{T_0,T_1,\cdots,T_n\}$，序列中的子树是嵌套的。</p>
-<p>具体地，从整体树$T_0$开始剪枝。对$T_0$的任意内部结点$t$，以$t$为单结点数的损失函数是：</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(t) = C(t) + \alpha</script><p>以$t$为根结点的子树$T_t$的损失函数是：</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(T_t) = C(T_t)+\alpha|T_t|</script><p>当$\alpha=0$及$\alpha$充分小时，有不等式</p>
-<script type="math/tex; mode=display">
-C_{\alpha}(T_t)<C_{\alpha}(t)</script><p>当$\alpha$增大时，不等式反向。只要$\alpha=\frac{C(t)-C(T_t)}{|T_t|-1}$，$T_t$与$t$有相同的损失函数值，而$t$的结点少，因此$t$比$T_t$更可取，对$T_t$进行剪枝。</p>
-<p>为此，对$T_0$中每一内部结点$t$，计算</p>
-<script type="math/tex; mode=display">
-g(t) = \frac{C(t)-C(T_t)}{|T_t|-1}</script><p>它表示剪枝后整体损失函数减少的程度。在$T_0$中剪去$g(t)$最小的$T_t$，将得到的子树作为$T_1$，同时将最小的$g(t)$设为$\alpha_1$。==$T_1$为区间$[\alpha_1,\alpha_2)$的最优子树。==（不知道为什么。）</p>
+\begin{aligned}
+P(X,Y|\lambda) &= P(x_{1:T},y_{1:T}|\lambda)\\
+&= P(x_T|x_{1:T-1},y_{1:T})P(y_T|y_{1:T-1},x_{1:T-1})P(y_{1:T-1},x_{1:T-1})\\
+&= P(x_T|y_T)P(y_T|y_{T-1})P(y_{1:T-1},x_{1:T-1})\\
+&\vdots\\
+&= \pi(y_1)P(x_1|y_1)\prod_{t=2}^{T}P(x_i|y_i)P(y_i|y_{i-1})
+\end{aligned}</script><p>MEMM打破了HMM的观测独立假设，如下图：</p>
+<p><img src="https://static01.imgkr.com/temp/b4f4591ebb7446308706ef437ed0407d.png" alt=""></p>
+<p>这时一个V型结构，<code>head-to-head</code>，在给定$Y_{t-1}$的条件下它们就不独立了。</p>
 <blockquote>
-<p>算法实现等到有空再更新吧，现在想好好休息休息了。</p>
+<p>对于一个有向无环图，我们可以这样判断它的结点之间的关系：</p>
+<p>形式一：<code>head-to-head</code></p>
+<p><img src="https://static01.imgkr.com/temp/2e42113a75c2446bb147e07c1398155a.png" alt=""></p>
+<p>在<strong>$c$未知的情况下，$a,b$是阻断的，是独立的，而在$c$已知的情况下，$a,b$是连通的，不独立。</strong>表示为：</p>
+<script type="math/tex; mode=display">
+P(abc) = P(a)P(b)P(c|ab)</script><p>形式二：<code>tail-to-tail</code></p>
+<p><img src="https://static01.imgkr.com/temp/e9bb6fbfe0d44673ab0437234f980389.png" alt=""></p>
+<p>在<strong>$c$给定的条件下，$a,b$是被阻断的，是独立的</strong>，表示为</p>
+<script type="math/tex; mode=display">
+P(abc) = P(a)P(c|a)P(b|ac) = P(a)P(c|a)P(b|c)</script><p>形式三：<code>head-to-tail</code></p>
+<p><img src="https://static01.imgkr.com/temp/855b90da142e483abda8bf92a8da86bd.png" alt=""></p>
+<p>在<strong>$c$给定的情况下，$a,b$是被阻断的，是独立的，</strong>表示为：</p>
+<script type="math/tex; mode=display">
+P(abc) = P(a)P(c|a)P(b|c)</script></blockquote>
+<p>MEMM对应于第一种情况，而HMM对应于第二种情况。</p>
+<p>MEMM为判别模型，其是对条件概率建模：</p>
+<script type="math/tex; mode=display">
+P(Y|X,\lambda) = \prod_{t=1}^TP(y_t|y_{t-1},x_{1:T},\lambda)</script><h3 id="MEMM-VS-CRF"><a href="#MEMM-VS-CRF" class="headerlink" title="MEMM VS CRF"></a>MEMM VS CRF</h3><p>MEMM会造成标注偏差问题。</p>
+<blockquote>
+<p>具体的我也没搞懂</p>
 </blockquote>
+<p>解决这个问题的方法是将有向图转换为了无向图：</p>
+<p><img src="https://static01.imgkr.com/temp/d80727609dc342fd89101cc7d7d079be.png" alt=""></p>
+<h3 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h3><p>条件随机场：</p>
+<ul>
+<li>条件：判别模型$P(Y|X)$</li>
+<li>随机场：无向图模型</li>
+</ul>
+<p>定义(条件随机场)：设$X$与$Y$是随机变量，$P(Y|X)$是在给定$X$的条件下$Y$的条件概率分布。若随机变量$Y$构成一个由无向图$G=(V,E)$表示的马尔可夫随机场，即</p>
+<script type="math/tex; mode=display">
+P(Y_v|X,Y_w,w\neq v) = P(Y_v|X,Y_w,w\sim v)</script><p>对任意结点$v$成立，则称条件概率分布$P(Y|X)$为条件随机场。式中$w\sim v$表示在图$G=(V,E)$中结点$v$有边连接的所有结点$w$，$w\neq v$表示结点$v$以外的所有结点。</p>
+<p>在定义中并没有要求$X$和$Y$具有相同的结构。现实中，一般假设$X$和$Y$具有相同的图结构。我们在这里考虑的无向图为线性图，即</p>
+<script type="math/tex; mode=display">
+G = (V=\{1,2,\cdots,n\},E = \{(i,i+1)\}),\quad i=1,2,\cdots,n-1</script><p>在此情况下，$X=(X_1,X_2,\cdots,X_n),Y=(Y_1,Y_2,\cdots,Y_n)$，最大团是相邻两个结点的集合。</p>
+<p><img src="https://static01.imgkr.com/temp/0242442061844f8f8f51a69be9c8f7b3.png" alt=""></p>
+<blockquote>
+<p>$X$和$Y$有相同的图结构的线性链条条件随机场</p>
+</blockquote>
+<p>定义(线性链条件随机场)：设$X=(X_1,X_2,\cdots,X_n),Y=(Y_1,Y_2,\cdots,Y_n)$均为线性链表示的随机变量序列，若在给定随机变量序列$X$的条件下，随机变量序列$Y$的条件概率分布$P(Y|X)$构成条件随机场，即满足马尔可夫性</p>
+<script type="math/tex; mode=display">
+P(Y_i|X,Y_1,\cdots,Y_{i-1},Y_{i+1},\cdots,Y_n) = P(Y_i|X,Y_{i-1},Y_{i+1})\quad i=1,2,\cdots,n</script><p>在$i=1,n$时只考虑单边。</p>
+<h4 id="条件随机场的参数化形式"><a href="#条件随机场的参数化形式" class="headerlink" title="条件随机场的参数化形式"></a>条件随机场的参数化形式</h4><p>定义(线性链条件随机场的参数化形式)：设$P(Y|X)$为线性链条件随机场，则在随机变量$X$取值为$x$的条件下，随机变量$Y$取值为$y$的条件概率具有如下形式：</p>
+<script type="math/tex; mode=display">
+p(y|x) = \frac{1}{Z(x)}\exp\left(\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i)\right)</script><p>其中</p>
+<script type="math/tex; mode=display">
+Z(x)=\sum_y\exp\left(\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i)\right)</script><p>式中，$t_k$和$s_l$是特征函数，$\lambda_k$和$\mu_l$是对应的权值。$Z(x)$是规范化因子，求和是在所有可能的输出序列上进行的。</p>
+<p>$t_k$是定义在边上的特征函数，称为转移特征，依赖于当前和前一个位置；$s_l$是定义在结点的特征函数，称为状态特征，依赖于当前位置。$t_k$和$s_l$都依赖于位置，是局部特征函数。通常，特征函数$t_k$和$s_l$取值为$1$或$0$；当满足特征条件时取值为$1$，否则为$0$。条件随机场完全由特征函数$t_k,s_l$和对应的权值$\lambda_k,\mu_l$确定。</p>
+<h4 id="条件随机场的简化形式"><a href="#条件随机场的简化形式" class="headerlink" title="条件随机场的简化形式"></a>条件随机场的简化形式</h4><p>为了简便起见，首先将转移特征和状态特征及其权值用统一的符号表示。设有$K_1$个转移特征，$K_2$个状态特征，$K=K_1+K_2$，记</p>
+<script type="math/tex; mode=display">
+f_k(y_{i-1},y_i,x,i) = \begin{cases}
+t_k(y_{i-1},y_i,x,i),\quad &k=1,2,\cdots,K_1\\
+s_l(y_i,x,i),&k=K_1+l;l=1,2,\cdots,K_2
+\end{cases}</script><p>然后，对转移与状态特征在各个位置$i$求和，记作</p>
+<script type="math/tex; mode=display">
+f_k(y,x)=\sum_{i=1}^nf_k(y_{i-1},y_i,x,i),\quad k=1,2,\cdots,K</script><p>用$w_k$表示特征$f_k(y,x)$的权值，即</p>
+<script type="math/tex; mode=display">
+w_k = \begin{cases}
+\lambda_k,\quad &k=1,2,\cdots,K_1\\
+\mu_l,&k=K_1+l;l=1,2,\cdots,K_2
+\end{cases}</script><p>于是我们的条件随机场简化为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(y|x) &= \frac{1}{Z(x)}\exp\sum_{k=1}^Kw_kf_k(y,x)\\
+Z(x)&= \sum_y\exp\sum_{k=1}^Kw_kf_k(y,x)
+\end{aligned}</script><p>若以$w$表示权重向量，即</p>
+<script type="math/tex; mode=display">
+w = (w_1,w_2,\cdots,w_K)^T</script><p>以$F(y,x)$表示全局特征向量，即</p>
+<script type="math/tex; mode=display">
+F(y,x) = (f_1(y,x),f_2(y,x),\cdots,f_K(y,x))^T</script><p>则条件随机场可以写成向量$w$与$F(y,x)$的内积形式：</p>
+<script type="math/tex; mode=display">
+P_w(y|x) = \frac{\exp(w\bullet F(y,x))}{Z_m(x)}</script><p>其中</p>
+<script type="math/tex; mode=display">
+Z_w(x) = \sum_y\exp(w\bullet F(y,x))</script><h4 id="条件随机场的矩阵形式"><a href="#条件随机场的矩阵形式" class="headerlink" title="条件随机场的矩阵形式"></a>条件随机场的矩阵形式</h4><p>对观测序列$x$的每一个位置$i=1,2,\cdots,n+1$，由于$y_{i-1}$和$y_i$在$m$个标记中取值，可以定义一个$m$阶矩阵随机变量</p>
+<script type="math/tex; mode=display">
+M_i(x) = [M_i(y_{i-1},y_i|x)]</script><p>矩阵随机变量的元素为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+M_i(y_{i-1},y_i|x)&= \exp(W_i(y_{i-1},y_i|x))\\
+W_i(y_{i-1},y_i|x)&= \sum_{k=1}^Kw_kf_k(y_{i-1},y_i,x,i)
+\end{aligned}</script><p>这样，给定观测序列$x$，相应标记序列$y$的非规范概率可以通过该序列$n+1$个矩阵的适当元素的乘积$\prod_{i=1}^{n+1}M_i(y_{i-1},y_i|x)$表示。于是，条件概率$P_w(y|x)$是</p>
+<script type="math/tex; mode=display">
+P_w(y|x) = \frac{1}{Z_w(x)}\prod_{i=1}^{n+1}M_i(y_{i-1},y_i|x)</script><p>其中，$Z_w(x)$为规范化因子，是$n+1$个矩阵的乘积的元素，即</p>
+<script type="math/tex; mode=display">
+Z_w(x) = [M_1(x)M_2(x)\cdots M_{n+1}(x)]_{\operatorname{start,stop}}</script><p>注意，$y_0=\operatorname{start}$与$y_{n+1}=\operatorname{stop}$表示开始状态和终止状态，规范化因子$Z_w(x)$是以$\operatorname{start}$为起点$\operatorname{stop}$为终点通过状态的所有路径$y_1y_2\cdots y_n$的非规范化概率$\prod_{i=1}^{n+1}M_i(y_{i-1},y_i|x)$之和。</p>
+<h4 id="CRF要解决的问题"><a href="#CRF要解决的问题" class="headerlink" title="CRF要解决的问题"></a>CRF要解决的问题</h4><ul>
+<li>学习问题：求解参数：$\hat{\theta}=\arg\max\prod_{i=1}^NP(y^{(i)}|x^{(i)})$</li>
+<li>推断</li>
+</ul>
+<p>我们先讲推断问题：我们现在是假定参数已经学习好了，然后我们求解边缘概率：$P(y_t=i|x)$。</p>
+<h4 id="推断"><a href="#推断" class="headerlink" title="推断"></a>推断</h4><h5 id="前向-后向算法"><a href="#前向-后向算法" class="headerlink" title="前向-后向算法"></a>前向-后向算法</h5><p>对每个指标$i=0,1,\cdots,n+1$，定义前向向量$\alpha_i(x)$：</p>
+<script type="math/tex; mode=display">
+\alpha_0(y|x) = \begin{cases}
+1,\quad &y=\operatorname{start}\\
+0,&\text{否则}
+\end{cases}</script><p>递推公式为：</p>
+<script type="math/tex; mode=display">
+\alpha_i^T(y_i|x) = \alpha_{i-1}^T(y_{i-1}|x)[M_i(y_{i-1},y_i|x)],\quad i=1,2,\cdots,n+1</script><p>又可以表示为</p>
+<script type="math/tex; mode=display">
+\alpha_i^T(x) = \alpha_{i-1}^T(x)M_i(x)</script><p>因为$y_i$可取的值有$m$个，所以$\alpha_i(x)$是$m$维列向量。</p>
+<p>同样，对每个指标$i=0,1,\cdots,n+1$，定义后向向量$\beta_i(x)$：</p>
+<script type="math/tex; mode=display">
+\beta_{n+1}(y_{n+1}|x)=\begin{cases}
+1,\quad &y_{n+1}=\text{stop}\\
+0,&\text{否则}
+\end{cases}</script><script type="math/tex; mode=display">
+\beta_i(y_i|x) = [M_{i+1}(y_i,y_{i+1}|x)]\beta_{i+1}(y_{i+1}|x)</script><p>又可以表示为：</p>
+<script type="math/tex; mode=display">
+\beta_i(x) = M_{i+1}(x)\beta_{i+1}(x)</script><h5 id="概率计算"><a href="#概率计算" class="headerlink" title="概率计算"></a>概率计算</h5><p>按照前向-后向向量的定义，很容易计算出标记序列在位置$i$是标记$y_i$的条件概率和在位置$i-1$与$i$是标记$y_{i-1}$和$y_i$的条件概率：</p>
+<script type="math/tex; mode=display">
+P(Y_i=y_i|x) = \frac{\alpha_i^T(y_i|x)\beta_i(y_i|x)}{Z(x)}</script><script type="math/tex; mode=display">
+P(Y_{i-1}=y_{i-1},Y_i=y_i|x) = \frac{\alpha_{i-1}^T(y_{i-1}|x)M_i(y_{i-1},y_i|x)\beta_i(y_i|x)}{Z(x)}</script><p>其中</p>
+<script type="math/tex; mode=display">
+Z(x)=\alpha_n^T(x)\textbf{1} = \textbf{1}\beta_1(x)</script><h5 id="期望值的计算"><a href="#期望值的计算" class="headerlink" title="期望值的计算"></a>期望值的计算</h5><p>利用前向-后向向量，可以计算特征函数关于联合分布$P(X,Y)$和条件分布$P(Y|X)$的数学期望。</p>
+<p>特征函数$f_k$关于条件分布$P(Y|X)$的数学期望是</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+E_{P(Y|X)}[f_k] &= \sum_yP(y|x)f_k(y,x)\\
+&=\sum_{i=1}^{n+1}\sum_{y_{i-1}y_i}f_k(y_{i-1},y_i,x,i)\frac{\alpha_{i-1}^T(y_{i-1}|x)M_i(y_{i-1},y_i|x)\beta_i(y_i|x)}{Z(x)}
+\end{aligned}</script><p>其中</p>
+<script type="math/tex; mode=display">
+Z(x) = \alpha_n^T(x)\textbf{1}</script><p>假设经验分布为$\tilde{P}(X)$，特征函数$f_k$关于联合分布$P(X,Y)$的数学期望是</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+E_{P(X, Y)}\left[f_{k}\right] &=\sum_{x, y} P(x, y) \sum_{i=1}^{n+1} f_{k}\left(y_{i-1}, y_{i}, x, i\right) \\
+&=\sum_{x} \tilde{P}(x) \sum_{y} P(y \mid x) \sum_{i=1}^{n+1} f_{k}\left(y_{i-1}, y_{i}, x, i\right) \\
+&=\sum_{x} \tilde{P}(x) \sum_{i=1}^{n+1} \sum_{y_{i-1} y_{i}} f_{k}\left(y_{i-1}, y_{i}, x, i\right) \frac{\alpha_{i-1}^{\mathrm{T}}\left(y_{i-1} \mid x\right) M_{i}\left(y_{i-1}, y_{i} \mid x\right) \beta_{i}\left(y_{i} \mid x\right)}{Z(x)}
+\end{aligned}</script><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4><p>在这里我们用如下向量表示条件随机场：</p>
+<script type="math/tex; mode=display">
+p(y|x) = \frac{1}{Z(x,\lambda,\eta)}\exp\left(\sum_{t=1}^T\left[\lambda^Tf(y_{t_{t-1}},y_t,x)+\eta^Tg(y_t,x)\right]\right)</script><p>这里一个$x$对应于一个样本，一个样本就对应于一个序列。</p>
+<p>所以我们要优化的对象为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\arg\max_{\lambda,\eta}\log\prod_{i=1}^NP(y^{(i)}|x^{(i)}) &= \arg\max_{\lambda,\eta}\sum_{i=1}^N\log P(y^{(i)}|x^{(i)})\\
+&=\arg\max_{\lambda,\eta}\sum_{i=1}^N\left(-\log Z(x^{(i)},\lambda,\eta)+\sum_{t=1}^T\left[\lambda^Tf(y_{t-1}^{(i)},y_t^{(i)},x^{(i)})+\eta^Tg(y_t^{(i)},x^{(i)})\right]\right)\\
+&= \arg\max_{\lambda,\eta}L(\lambda,\eta,x^{(i)})
+\end{aligned}</script><p>由于条件随机场是一个有监督的学习问题，所以我们知道$x,y$的值，对上述的式子我们可以采用梯度上升的方法求解，求解$\nabla_\lambda L,\nabla_\eta L$。</p>
+<p>我们有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\nabla_\lambda L&= \sum_{i=1}^N\left(\sum_{t=1}^Tf(y_{t-1}^{(i)},y_t^{(i)},x^{(i)})\right)-\nabla_\lambda\log Z(x^{(i)},\lambda,\eta)
+\end{aligned}</script><p>而$\nabla_\lambda\log Z(x^{(i)},\lambda,\eta)$为<code>log-partition function</code>，它的导数为：</p>
+<script type="math/tex; mode=display">
+\mathbb{E}_y\left[\sum_{t=1}^Tf(y_{t-1},y_t,x^{(i)})\right]</script><blockquote>
+<p>下面我们来看一下<code>log-partition function</code>的求导：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p(x;\theta) &= \exp\left(\theta^T\phi(x)-\Psi(\theta)\right)\\
+&=\frac{\exp\left(\theta^T\phi(x)\right)}{\exp(\Psi(\theta))}
+\end{aligned}</script><p>而我们的</p>
+<script type="math/tex; mode=display">
+\Psi(\theta) = \log\sum_x\exp(\theta^T\phi(x))</script><p>相当于归一化因子。</p>
+<p>我们对归一化因子的对数求导，即我们问题中的$\log Z(x^{(i)},\lambda,\eta)$求导，得</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial \Psi}{\partial \theta_{k}} &=\frac{\sum_{x} \exp \left\{\boldsymbol{\theta}^{T} \boldsymbol{\phi}(\boldsymbol{x})\right\} \phi_{k}(\boldsymbol{x})}{\sum_{x} \exp \left\{\boldsymbol{\theta}^{T} \boldsymbol{\phi}(\boldsymbol{x})\right\}} \\
+&=\frac{\sum_{x} \exp \left\{\boldsymbol{\theta}^{T} \boldsymbol{\phi}(\boldsymbol{x})\right\} \phi_{k}(\boldsymbol{x})}{\exp \Psi(\boldsymbol{\theta})} \\
+&=\sum_{\boldsymbol{x}} \exp \left\{\boldsymbol{\theta}^{T} \boldsymbol{\phi}(\boldsymbol{x})-\Psi(\boldsymbol{\theta})\right\} \phi_{k}(x) \\
+&=\sum_{\boldsymbol{x}} p(\boldsymbol{x} ; \boldsymbol{\theta}) \phi_{k}(\boldsymbol{x}) \\
+&=\mathbb{E}\left\{\phi_{k}(\boldsymbol{X})\right\} .
+\end{aligned}</script><p>即与我们上面得结果相同。</p>
+</blockquote>
+<p>所以</p>
+<script type="math/tex; mode=display">
+\nabla_\lambda L= \sum_{i=1}^N\left(\sum_{t=1}^Tf(y_{t-1}^{(i)},y_t^{(i)},x^{(i)})\right) -\mathbb{E}_y\left[\sum_{t=1}^Tf(y_{t-1},y_t,x^{(i)})\right]</script><p>而期望的求法我们在上文中已经解决了。</p>
+<h3 id="条件随机场的预测算法"><a href="#条件随机场的预测算法" class="headerlink" title="条件随机场的预测算法"></a>条件随机场的预测算法</h3><p>我们要找出使得$P_w(y|x)$最大的$y$。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+y^\star &= \arg\max_y P_w(y|x)\\
+&= \arg\max_y\frac{\exp(w\bullet F(y,x))}{Z_w(x)}\\
+&= \arg\max_y\exp(w\bullet F(y,x))\\
+&= \arg\max_y(w\bullet F(y,x))
+\end{aligned}</script><p>于是，条件随机场的预测问题称为求非规范化概率的最优路径问题：</p>
+<script type="math/tex; mode=display">
+\max_y(w\bullet F(y,x))</script><p>这里，路径表示标记序列。其中</p>
+<script type="math/tex; mode=display">
+w = (w_1,w_2,\cdots,w_K)^T</script><script type="math/tex; mode=display">
+F(y,x) = (f_1(y,x),f_2(y,x),\cdots,f_K(y,x))^T</script><script type="math/tex; mode=display">
+f_k(y,x) = \sum_{i=1}^nf_k(y_{i-1},y_i,x,i),\quad k=1,2,\cdots,K</script><p>为了求解最优路径，我们求解下式：</p>
+<script type="math/tex; mode=display">
+\max_y\sum_{i=1}^nw\bullet F_i(y_{i-1},y_i,x)</script><p>其中</p>
+<script type="math/tex; mode=display">
+F_i(y_{i-1},y_i,x) = (f_1(y_{i-1},y_i,x,i),f_2(y_{i-1},y_i,x,i),\cdots,f_K(y_{i-1},y_i,x,i))^T</script><p>是局部特征向量。</p>
+<p>下面我们用维比特算法。首先求出位置$1$的各个标记$j=1,2,\cdots,m$的非规范化概率：</p>
+<script type="math/tex; mode=display">
+\delta_1(j) = w\bullet F_1(y_0=\operatorname{start},y_1=j,x),\quad j=1,2,\cdots,m</script><p>一般地，由递推公式，求出到位置$i$的各个标记$l=1,2,\cdots,m$的非规范化概率的最大值，同时记录非规范化概率最大值的路径</p>
+<script type="math/tex; mode=display">
+\delta_i(l) = \max_{1\le j\le m}\{\delta_{i-1}(j)+w\bullet F_i(y_{i-1}=j,y_i=l,x)\},l=1,2,\cdots,m</script><script type="math/tex; mode=display">
+\Psi_i(l) = \arg\max_{1\le j\le m}\{\delta_{i-1}(j)+w\bullet F_i(y_{i-1}=j,y_i=l,x)\},l=1,2,\cdots,m</script><p>直到$i=n$时终止。这时求得非规范化概率的最大值为</p>
+<script type="math/tex; mode=display">
+\max_y(w\bullet F(y,x)) = \max_{i\le j\le m}\delta_n(j)</script><p>及最优路径的终点</p>
+<script type="math/tex; mode=display">
+y_n^\star = \arg\max_{1\le j\le m}\delta_n(j)</script><p>由此最优路径返回</p>
+<script type="math/tex; mode=display">
+y_i^\star=\Psi_{i+1}(y^\star_{i+1}),\quad i=n-1,n-2,\cdots,1</script><p>求得最优路径$y^\star = (y_1^\star,y_2^\star,\cdots,y^\star_n)^T$。</p>
 
     </div>
 
@@ -482,7 +553,7 @@ g(t) = \frac{C(t)-C(T_t)}{|T_t|-1}</script><p>它表示剪枝后整体损失函�
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2021/12/21/%E5%86%B3%E7%AD%96%E6%A0%91/" title="决策树">https://www.hfcouc.work/2021/12/21/决策树/</a>
+    <a href="https://www.hfcouc.work/2022/01/02/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/" title="条件随机场">https://www.hfcouc.work/2022/01/02/条件随机场/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -531,13 +602,10 @@ g(t) = \frac{C(t)-C(T_t)}{|T_t|-1}</script><p>它表示剪枝后整体损失函�
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/19/%E6%9E%81%E9%99%90/" rel="prev" title="极限">
-      <i class="fa fa-chevron-left"></i> 极限
+    <a href="/2021/12/30/%E8%BF%9E%E7%BB%AD%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E4%B8%8B%E7%9A%84HMM/" rel="prev" title="连续观测数据下的HMM">
+      <i class="fa fa-chevron-left"></i> 连续观测数据下的HMM
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/23/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="next" title="神经网络">
-      神经网络 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -599,7 +667,7 @@ g(t) = \frac{C(t)-C(T_t)}{|T_t|-1}</script><p>它表示剪枝后整体损失函�
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-number">1.1.</span> <span class="nav-text">特征选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A"><span class="nav-number">1.1.1.</span> <span class="nav-text">信息增益</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E6%AF%94"><span class="nav-number">1.1.2.</span> <span class="nav-text">信息增益比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">1.2.</span> <span class="nav-text">决策树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ID3%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">ID3算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C4-5%E7%9A%84%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">C4.5的生成算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E5%89%AA%E6%9E%9D"><span class="nav-number">1.3.</span> <span class="nav-text">决策树的剪枝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CART%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">CART算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E6%A0%91%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">1.4.1.</span> <span class="nav-text">回归树的生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E6%A0%91%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">1.4.2.</span> <span class="nav-text">分类树的生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CART%E5%89%AA%E6%9E%9D"><span class="nav-number">1.4.3.</span> <span class="nav-text">CART剪枝</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">条件随机场</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HMM-VS-MEMM"><span class="nav-number">1.1.</span> <span class="nav-text">HMM VS MEMM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MEMM-VS-CRF"><span class="nav-number">1.2.</span> <span class="nav-text">MEMM VS CRF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CRF"><span class="nav-number">1.3.</span> <span class="nav-text">CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA%E7%9A%84%E5%8F%82%E6%95%B0%E5%8C%96%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.3.1.</span> <span class="nav-text">条件随机场的参数化形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA%E7%9A%84%E7%AE%80%E5%8C%96%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.3.2.</span> <span class="nav-text">条件随机场的简化形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA%E7%9A%84%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.3.3.</span> <span class="nav-text">条件随机场的矩阵形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CRF%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.4.</span> <span class="nav-text">CRF要解决的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E6%96%AD"><span class="nav-number">1.3.5.</span> <span class="nav-text">推断</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E5%90%91-%E5%90%8E%E5%90%91%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">前向-后向算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E8%AE%A1%E7%AE%97"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">概率计算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%9F%E6%9C%9B%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">期望值的计算</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.3.6.</span> <span class="nav-text">学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA%E7%9A%84%E9%A2%84%E6%B5%8B%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">条件随机场的预测算法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
