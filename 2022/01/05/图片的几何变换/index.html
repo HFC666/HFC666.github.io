@@ -28,20 +28,25 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="卓里奇永远的神！！！">
+  <meta name="description" content="图像的空间域变换。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实数与极限">
-<meta property="og:url" content="https://www.hfcouc.work/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="图像的几何变换">
+<meta property="og:url" content="https://www.hfcouc.work/2022/01/05/%E5%9B%BE%E7%89%87%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="卓里奇永远的神！！！">
+<meta property="og:description" content="图像的空间域变换。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-18T15:00:20.000Z">
-<meta property="article:modified_time" content="2021-12-22T07:22:25.414Z">
+<meta property="og:image" content="https://static01.imgkr.com/temp/57b93a78548f4b7495567ac1629c5440.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/18a1f0c5d579482ab4df31e2d4389e71.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/92766afdbe36417894b87ba6713b6633.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/dbf533512a5e42eba69c50c7406057b8.png">
+<meta property="article:published_time" content="2022-01-05T11:24:03.000Z">
+<meta property="article:modified_time" content="2022-01-05T11:28:51.432Z">
 <meta property="article:author" content="HFC">
-<meta property="article:tag" content="数学分析">
+<meta property="article:tag" content="数字图像处理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static01.imgkr.com/temp/57b93a78548f4b7495567ac1629c5440.png">
 
-<link rel="canonical" href="https://www.hfcouc.work/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/01/05/%E5%9B%BE%E7%89%87%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/">
 
 
 <script id="page-configurations">
@@ -54,7 +59,7 @@
   };
 </script>
 
-  <title>实数与极限 | 独自赏晴雨</title>
+  <title>图像的几何变换 | 独自赏晴雨</title>
   
 
 
@@ -236,7 +241,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/01/05/%E5%9B%BE%E7%89%87%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
@@ -249,7 +254,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          实数与极限
+          图像的几何变换
         </h1>
 
         <div class="post-meta">
@@ -259,23 +264,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-12-18 23:00:20" itemprop="dateCreated datePublished" datetime="2021-12-18T23:00:20+08:00">2021-12-18</time>
+              <time title="创建时间：2022-01-05 19:24:03 / 修改时间：19:28:51" itemprop="dateCreated datePublished" datetime="2022-01-05T19:24:03+08:00">2022-01-05</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-22 15:22:25" itemprop="dateModified" datetime="2021-12-22T15:22:25+08:00">2021-12-22</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
                 </span>
             </span>
 
@@ -290,167 +289,108 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>卓里奇永远的神！！！</p>
+        <p>图像的空间域变换。</p>
 <span id="more"></span>
-<h2 id="实数与极限"><a href="#实数与极限" class="headerlink" title="实数与极限"></a>实数与极限</h2><p>我们先复习一下函数(映射)的概念，假设有两个集合$X$和$Y$，我们定义一个对应法则$f$，记为$X\xrightarrow{f}Y$，使得对于$\forall x\in X,x\xrightarrow{f}y\in Y$。则$X$为定义域，$Y$为到达域。<br>下面我们引入一个记号$f(X):=\{y\in Y|\exists x(\left(x\in X)\wedge(y=f(x))\right)\}$，称为值域。<br>我们微积分研究的对象：$X\xrightarrow{f}Y\subset \mathbb{R}^n$，其中$f$为可微函数。</p>
-<h3 id="实数的基本公理"><a href="#实数的基本公理" class="headerlink" title="实数的基本公理"></a>实数的基本公理</h3><p>加法公理：</p>
+<h3 id="空间域运算"><a href="#空间域运算" class="headerlink" title="空间域运算"></a>空间域运算</h3><h4 id="代数运算"><a href="#代数运算" class="headerlink" title="代数运算"></a>代数运算</h4><h5 id="加法运算"><a href="#加法运算" class="headerlink" title="加法运算"></a>加法运算</h5><p>生成图像叠加效果：对于两个图像$f(x,y)$和$(x,y)$的均值有：</p>
+<script type="math/tex; mode=display">
+g(x,y) = \frac{1}{2}f(x,y)+\frac{1}{2}h(x,y)</script><p>会得到二次曝光的效果。推广这个公式为：</p>
+<script type="math/tex; mode=display">
+g(x,y)=\alpha f(x,y)+\beta h(x,y),\quad \alpha+\beta=1</script><p>我们可以得到各种图像合成的效果，也可以用于两张图片的衔接。</p>
+<h5 id="减法运算"><a href="#减法运算" class="headerlink" title="减法运算"></a>减法运算</h5><p>去除不需要的叠加性图案</p>
+<p>设背景图像为$b(x,y)$，前景背景混合图像$f(x,y)$</p>
+<script type="math/tex; mode=display">
+g(x,y) = f(x,y)-b(x,y)</script><p>$g(x,y)$为去除了背景的图像。电视制作的蓝屏技术就基于此。</p>
+<p>检测同一场景两幅图像之间的变化</p>
+<p>设时间$1$的图像为$T_1(x,y)$，时间$2$的图像为$T_2(x,y)$，则</p>
+<script type="math/tex; mode=display">
+g(x,y) = T_2(x,y)-T_1(x,y)</script><h5 id="乘法运算"><a href="#乘法运算" class="headerlink" title="乘法运算"></a>乘法运算</h5><p>乘法的定义：</p>
+<script type="math/tex; mode=display">
+C(x,y) = A(x,y)\times B(x,y)</script><p>主要应用：图像的局部显示(用二值蒙版图像与原图像做乘法)</p>
+<h4 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h4><p>求反、异或、或、与</p>
+<p>求反的定义：</p>
+<script type="math/tex; mode=display">
+g(x,y) = R-f(x,y)</script><p>$R$为$f(x,y)$的灰度级，求反图像</p>
+<p>与运算：</p>
+<script type="math/tex; mode=display">
+g(x,y) = f(x,y)\wedge h(x,y)</script><p>求两个图像交集</p>
+<h4 id="几何变换"><a href="#几何变换" class="headerlink" title="几何变换"></a>几何变换</h4><p>基本几何变换的定义：对于原图像$f(x,y)$，坐标变换函数</p>
+<script type="math/tex; mode=display">
+x^{\prime}=a(x,y); y^{\prime}=b(x,y)</script><p>唯一确定了几何变换：</p>
+<script type="math/tex; mode=display">
+g(x^{\prime},y^{\prime}) = f(a(x,y),b(x,y))</script><p>$g(x,y)$是目标图像。</p>
+<h5 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h5><script type="math/tex; mode=display">
+a(x,y) = x+x_0\quad b(x,y) = y+y_0</script><script type="math/tex; mode=display">
+\begin{bmatrix}
+a(x,y)\\b(x,y)\\1
+\end{bmatrix} 
+=
+\begin{bmatrix}
+1&0&x_0\\
+0&1&y_0\\
+0&0&1
+\end{bmatrix}\begin{bmatrix}
+x\\y\\1
+\end{bmatrix}</script><h5 id="放缩"><a href="#放缩" class="headerlink" title="放缩"></a>放缩</h5><script type="math/tex; mode=display">
+a(x,y)=cx\quad b(x,y) = dy</script><script type="math/tex; mode=display">
+\begin{bmatrix}
+a(x,y)\\b(x,y)\\1
+\end{bmatrix} 
+=
+\begin{bmatrix}
+c&0&0\\
+0&d&0\\
+0&0&1
+\end{bmatrix}\begin{bmatrix}
+x\\y\\1
+\end{bmatrix}</script><h5 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h5><script type="math/tex; mode=display">
+a(x,y) = x\cos(\theta)-y\sin(\theta)</script><script type="math/tex; mode=display">
+b(x,y) = x\sin(\theta)+y\cos(\theta)</script><script type="math/tex; mode=display">
+\begin{bmatrix}
+a(x,y)\\b(x,y)\\1
+\end{bmatrix} 
+=
+\begin{bmatrix}
+\cos(\theta)&-\sin(\theta)&0\\
+\sin(\theta)&\cos(\theta)&0\\
+0&0&1
+\end{bmatrix}\begin{bmatrix}
+x\\y\\1
+\end{bmatrix}</script><p>证明过程如下：</p>
+<p><img src="https://static01.imgkr.com/temp/57b93a78548f4b7495567ac1629c5440.png" alt=""></p>
+<h5 id="其他几何变换"><a href="#其他几何变换" class="headerlink" title="其他几何变换"></a>其他几何变换</h5><p><img src="https://static01.imgkr.com/temp/18a1f0c5d579482ab4df31e2d4389e71.png" alt=""></p>
+<h4 id="重采样"><a href="#重采样" class="headerlink" title="重采样"></a>重采样</h4><p>最近邻法：取最近的点。</p>
+<p>特点：</p>
 <ul>
-<li>$\exists$零元$0$，使得$0+x=x+0=x$</li>
-<li>$\exists$负元$-x$，使得$x+(-x)=(-x)+x=0$</li>
-<li>结合律：$\forall x,y,z\in \mathbb{R}$，使得$(x+y)+z=x+(y+z)$</li>
+<li>简单快速</li>
+<li>灰度保真性好</li>
+<li>误差较大</li>
+<li>视觉特性较差</li>
+<li>马赛克效应</li>
 </ul>
-<p>集合$G$上存在加法运算，且满足上述三条加法公理，则说明$G$为一个群。</p>
-<ul>
-<li>交换律：对于$\forall x,y\in R,x+y=y+x$</li>
-</ul>
-<p>如果运算还满足交换律，则群成为交换群(阿贝尔群)。</p>
-<p>乘法公理：</p>
-<ul>
-<li>单位元(中性元)：$1\in \mathbb{R}-0$，$\forall x\in \mathbb{R},x\cdot1=1\cdot x=x$</li>
-<li>$\forall x\in\mathbb{R}-0,\exists x^{-1}\in\mathbb{R},x^{-1}\cdot x=x\cdot x^{-1}=1$</li>
-<li>$\forall x,y,z\in\mathbb{R},(x\cdot y)\cdot z = x\cdot(y\cdot z)$</li>
-<li>$\forall x,y\in\mathbb{R},x\cdot y = y\cdot x$</li>
-</ul>
-<p>则$\mathbb{R}-0$关于乘法构成一个群。</p>
-<p>有了加法和乘法，我们就可以定义加法和乘法的附加公理(分配律)：</p>
+<p>双线性插值(一阶插值)：根据四个相邻点的灰度值，分别在$x$和$y$方向上进行两次插值。插值可以根据距离的远近进行加权，一般采用双曲抛物面方程进行插值：</p>
 <script type="math/tex; mode=display">
-\forall x,y,z\in \mathbb{R},z\cdot(x+y) = (x+y)\cdot z = x\cdot z + y\cdot z</script><p>域<br>如果集合上定义了满足上述公理的$+$和$\cdot$运算以及结合律，则该集合为域(代数域)。</p>
-<p>序公理：我们在集合上定义一个不等关系$\le$，使得$\forall x,y\in\mathbb{R},(x\le y)\vee(y\le x)$</p>
-<ul>
-<li>$\forall x\in \mathbb{R},x\le x$</li>
-<li>$(x\le y)\wedge(y\le x)\Rightarrow(x=y)$</li>
-<li>$(x\le y)\wedge(y\le z)\Rightarrow (x\le z)$</li>
-<li>$(x\le y)\vee (y\le x)$</li>
-</ul>
-<p>加法和序也存在附加公理：</p>
+f(x,y) = ax+by+cxy+d</script><p>将四个点代入可得：</p>
 <script type="math/tex; mode=display">
-(x\le y)\Rightarrow (x+z)\le (y+z)</script><p>乘法与序也存在附加公理：</p>
+\begin{aligned}
+a &= f(1,0)-f(0,0)\\
+b&= f(0,1)-f(0,0)\\
+c&= f(1,1)+f(0,0)-f(0,1)-f(1,0)\\
+d&=f(0,0)
+\end{aligned}</script><p><img src="https://static01.imgkr.com/temp/92766afdbe36417894b87ba6713b6633.png" alt=""></p>
+<p>高阶插值：</p>
+<p>利用三次多项式来近似理论上的最佳插值函数$\operatorname{sinc}(x)$：</p>
 <script type="math/tex; mode=display">
-(0\le x)\wedge(0\le y)\Rightarrow (0\le xy)</script><p>如果集合$X$上存在不等关系$\le$，满足上述公理的前三条，我们称$X$为一个偏序集，如果还满足第四条，我们称他为线性的序集。</p>
-<p>完备性公理(连续性公理)：给定集合$X,Y\subset \mathbb{R}$，使得$\forall x\in X,\forall y \in Y,x\le y$，则$\exists c\in \mathbb{R}$满足$x\le c\le y,\forall x\in X,\forall y\in Y$。</p>
-<p>给定一个集合，满足加法公理、乘法公理，定义了一个满足序公理的序关系，满足完备性公理，则成为是实数集的一个具体实现。</p>
-<p>如十进制的小数是$\mathbb{R}$的一个实现，还有数轴。</p>
-<h3 id="实数运算的代数性质"><a href="#实数运算的代数性质" class="headerlink" title="实数运算的代数性质"></a>实数运算的代数性质</h3><p>我们首先研究加法。<br>首先我们证明$\mathbb{R}$上存在唯一的加法零元。<br>证明：假设存在两个加法零元$0_1,0_2$，则</p>
+S(x) = \begin{cases}
+1-2|x|^2+|x|^3&|x|<1\\
+4-8|x|+5|x|^2-|x|^3&1\le |x|\le 2\\
+0&|x|>2
+\end{cases}</script><p>由此形成常用的三次卷积插值算法，又称为三次内插法，两次立方法、CC插值法等。</p>
+<p>其形状为：</p>
+<p><img src="https://static01.imgkr.com/temp/dbf533512a5e42eba69c50c7406057b8.png" alt=""></p>
+<p>对于待插值的像素点$(x,y)$，取其附近的$4\times 4$邻域点$(x_i,y_j),i,j=0,1,2,3$按如下公式进行插值计算：</p>
 <script type="math/tex; mode=display">
-0_1 = 0_1+0_2 = 0_2+0_1=0_2</script><p>所以$0_1=0_2$，所以存在唯一的加法零元。</p>
-<p>下面证明$\forall x\in \mathbb{R},\exists$唯一的负元。<br>证明：假设存在两个负元$x_1,x_2$，则</p>
-<script type="math/tex; mode=display">
-x_1 = x_1 + 0 = x_1 + (x+x_2) = (x_1+x)+x_2 = 0+x_2 = x_2</script><p>所以存在唯一的负元。</p>
-<p>紧接着证明方程$a+x=b$有唯一解$x = b + (-a) = b-a$<br>证明：因为$a\in \mathbb{R}$，所以$\exists!$唯一负元$-a$。</p>
-<script type="math/tex; mode=display">
-(a+x=b)\Rightarrow((-a)+a+x=(-a)+b) \Rightarrow x = b + (-a) = b-a</script><p>下面我们研究乘法。<br>首先我们需要证明$\mathbb{R}$上存在唯一的$1$<br>证明：假设存在两个单位元$1_1,1_2$，则</p>
-<script type="math/tex; mode=display">
-1_1  = 1_1\cdot 1_2 = 1_2\cdot 1_1 = 1_2</script><p>下面我们证明$\forall x\in\mathbb{R}-0,\exists!$逆元$x^{-1}$<br>证明：假设存在两个逆元$x_1,x_2$，则</p>
-<script type="math/tex; mode=display">
-x_1 = x_1\cdot 1 = x_1\cdot(x\cdot x_2) = (x_1\cdot x)\cdot x_2 = x_2</script><p>所以$x_1=x_2$</p>
-<p>紧接着我们证明$\forall a\in \mathbb{R}-0,a\cdot x=b$存在唯一的解$x = b\cdot a^{-1} = a^{-1}\cdot b$。<br>证明：因为$a\in \mathbb{R}-0$，所以存在唯一的逆元$a^{-1}$，所以</p>
-<script type="math/tex; mode=display">
-(a\cdot x = b)\Rightarrow (a^{-1}\cdot(a\cdot x) = a^{-1}\cdot b)\Rightarrow (x = a^{-1}\cdot b)</script><p>下面我们证明加法与乘法相联系的公理的推论<br>$\forall x\in \mathbb{R},x\cdot 0 = 0$<br>证明：<br>$x\cdot 0 =x\cdot(0+0) = x\cdot 0+x\cdot 0$，两边同时加上逆元$-x\cdot 0$，得$0 = x\cdot 0$。</p>
-<p>$x\in\mathbb{R}-0\Rightarrow x^{-1}\neq0$<br>证明：若$x^{-1}=0\Rightarrow x\cdot x^{-1} = x\cdot 0 = 0$，得$1=0$，矛盾。</p>
-<p>$x\cdot y=0\Rightarrow(x=0)\vee(y=0)$<br>证明：设$y\neq 0$，所以$y^{-1}\neq 0$，所以</p>
-<script type="math/tex; mode=display">
-(x\cdot y = 0)\Rightarrow(x\cdot y\cdot y^{-1} = 0\cdot y^{-1}=0)\Rightarrow x = 0</script><p>同理可证当$x\neq0$时$y=0$。</p>
-<p>$-x = -1\cdot x$<br>证明：<br>$x + (-1\cdot x) = 1\cdot x + -1\cdot x = (1+(-1))\cdot x = 0\cdot x = 0$<br>所以$-1\cdot x$为$x$的逆元，所以$-x = -1\cdot x$。</p>
-<p>$(-1)\cdot (-x)=x$<br>证明：我们只需证明$(-1)\cdot(-x)$为$-x$的逆元即可。</p>
-<script type="math/tex; mode=display">
-(-1)\cdot(-x) + (-x) = ((-1)+1)\cdot(-x) = 0\cdot (-x) = 0</script><p>得证。</p>
-<p>$(-x)\cdot(-x)=x\cdot x$<br>证明：</p>
-<script type="math/tex; mode=display">
-(-x)\cdot (-x) = ((-1)\cdot x)\cdot(-x) = (x\cdot (-1))\cdot(-x) = x\cdot((-1)\cdot(-x)) = x\cdot x</script><p>下面我们研究序公理的推论</p>
-<p>$x\le y$若$x\neq y$，则记作$x&lt;y$，称为严格不等式。<br>那么对于$x,y\in\mathbb{R}$，$x&lt;y,x=y,y&lt;x$只有一个成立。</p>
-<p>下面我们证明：</p>
-<ul>
-<li>$(x&lt;y)\wedge(y\le z)\Rightarrow x&lt;z$</li>
-<li>$(x\le y)\wedge(y&lt;z)\Rightarrow x&lt;z$</li>
-</ul>
-<p>我们证明第一个，第二个与其类似：</p>
-<script type="math/tex; mode=display">
-(x<y)\wedge(y\le z)\Rightarrow((x\neq y)\wedge(x\le y)\wedge (y\le z))\Rightarrow((x\neq y)\wedge(x\le z))</script><p>若$x=z$，我们有$(x&lt;y)\wedge(y\le x)\Rightarrow(x\neq y)\wedge(x\le y)\wedge(y\le x)\Rightarrow(x\neq y)\wedge(x=y)$，矛盾。所以$x\neq z$，所以$x&lt;z$。</p>
-<h3 id="序公理与加法公理以及乘法公理的推论"><a href="#序公理与加法公理以及乘法公理的推论" class="headerlink" title="序公理与加法公理以及乘法公理的推论"></a>序公理与加法公理以及乘法公理的推论</h3><h4 id="序公理和加法公理"><a href="#序公理和加法公理" class="headerlink" title="序公理和加法公理"></a>序公理和加法公理</h4><p>我们需要证明以下定理：</p>
-<ol>
-<li>$(x&gt;y)\Rightarrow (x+z&gt;y+z)$</li>
-<li>$(x&gt;0)\Rightarrow (-x&lt;0)$</li>
-<li>$(x&gt;y)\wedge(z\ge w)\Rightarrow (x+z)&gt;(y+w)$</li>
-<li>$(x\ge y)\wedge (z&gt;w)\Rightarrow (x+z)&gt;(y+w)$</li>
-</ol>
-<p>下面我们开始证明：</p>
-<p>第一个：</p>
-<script type="math/tex; mode=display">
-(x>y)\Rightarrow (x\ge y)\Rightarrow (x+z\ge y+z)</script><p>所以我们只需要证明$(x+z\neq y+z)$，即证明$x\neq y$，所以得证。</p>
-<p>第二个：</p>
-<script type="math/tex; mode=display">
-(x>0)\Rightarrow (x+(-x)>0+(-x))\Rightarrow (0>-x)</script><p>得证。</p>
-<p>第三个和第四个证明一个即可：</p>
-<script type="math/tex; mode=display">
-((x>y)\wedge(z\ge w))\Rightarrow ((x+z>y+z)\wedge(z+y\ge w+y))\Rightarrow ((x>y)>(y+w))</script><p>得证。</p>
-<h4 id="序公理与乘法公理"><a href="#序公理与乘法公理" class="headerlink" title="序公理与乘法公理"></a>序公理与乘法公理</h4><ol>
-<li>$(x&gt;0)\wedge(y&gt;0)\Rightarrow (xy&gt;0)$</li>
-<li>$(x<0)\wedge(y<0)\Rightarrow (xy>0)$</li>
-<li>$(x&gt;0)\wedge(y&lt;0)\Rightarrow (xy&lt;0)$</li>
-<li>$(x&gt;y)\wedge(z&gt; 0)\Rightarrow(xz&gt;yz)$</li>
-<li>$(x&gt;y)\wedge(z&lt; 0)\Rightarrow(xz&lt;yz)$</li>
-</ol>
-<p>我们先证明第一条：</p>
-<script type="math/tex; mode=display">
-(x>0)\wedge(y>0)\Rightarrow (x\ge 0)\wedge(y\ge0)\Rightarrow xy\ge 0</script><p>所以我们至于要证明$xy\neq0$，根据之前的定理我们知道$(xy=0)\Rightarrow(x=0)\vee(y=0)$，而我们条件中$x,y$都不等于$0$，所以得证。</p>
-<p>第二条：</p>
-<script type="math/tex; mode=display">
-((x<0)\wedge(y<0))\Rightarrow((-x>0)\wedge(-y>0))\Rightarrow(-x)\cdot(-y)>0\Rightarrow(xy)>0</script><p>第三条与第二条思路相同，不在赘述。</p>
-<p>下面证明第四条：</p>
-<script type="math/tex; mode=display">
-((x>y)\wedge(z>0))\Rightarrow((x-y>0)\wedge(z>0))\Rightarrow((x-y)z>0)\Rightarrow(xz-yz)>0\Rightarrow xz>yz</script><p>第五条类似。</p>
-<p>下面我们证明$1&gt;0$：</p>
-<p>我们知道$1&gt;0,1=0,1&lt;0$之中只能有一个成立，我们已经知道$1\neq 0$。所以我们假设$1&lt;0$，那我们有：</p>
-<script type="math/tex; mode=display">
-(1<0)\wedge(1<0)\Rightarrow(1\cdot1>0)\Rightarrow 1>0</script><p>互相矛盾，所以$1&gt;0$。</p>
-<p>下面我们再证明：</p>
-<ol>
-<li>$(0<x)\Rightarrow(x^{-1}>0)$</li>
-<li>$(0&lt;x&lt;y)\Rightarrow(0&lt;y^{-1}&lt;x^{-1})$</li>
-</ol>
-<p>我们先证明第一条：</p>
-<p>我们假设$x^{-1}&lt;0$，则</p>
-<script type="math/tex; mode=display">
-(0<x)\wedge(x^{-1}<0)\Rightarrow (x\cdot x^{-1})<0\Rightarrow 1<0</script><p>矛盾，得证。</p>
-<p>第二条：</p>
-<script type="math/tex; mode=display">
-(0<x<y)\Rightarrow(y^{-1}>0)\wedge(x>0)\Rightarrow(x\cdot y^{-1}>0)\Rightarrow(y^{-1}>x^{-1})</script><p>得证。</p>
-<p>下面我们讨论正数和负数：</p>
-<p>所有大于零的数为正数，如果$x$为正数，则$x^{-1}$也为正数。</p>
-<p>负数：小于零的数为负数。</p>
-<h3 id="完备性公理与数集上下确界的存在性"><a href="#完备性公理与数集上下确界的存在性" class="headerlink" title="完备性公理与数集上下确界的存在性"></a>完备性公理与数集上下确界的存在性</h3><p>定义：$X\subset \mathbb{R}$，若$\exists c\in \mathbb{R},\forall x\in X,x\le c$，则称$X$上有界集合，称$c$为$X$的上界；若$\forall x\in X,x\ge c$，则称$X$下有界集合，称$c$为$X$的下界。</p>
-<p>定义(有界集)：既上有界也下有界。即$\exists c_1,c_2\in \mathbb{R}$使得$\forall x\in X,c_1&lt;x&lt;c_2$。</p>
-<p>定义(最大元、极大元)：集合$X\subset\mathbb{R}$，若$\exists a\in X$使得$\forall x\in X,x\le a$。称$a$为$X$的最大元。即：</p>
-<script type="math/tex; mode=display">
-\max X := (a\in X)\wedge(\forall x\in X,x\le a)</script><p>定义(最小元、极小元)：</p>
-<script type="math/tex; mode=display">
-\min X:= ((a\in X)\wedge (\forall x\in X,x\ge a))</script><p>定义(上确界)：上界当中的最小元，记为$\sup X$</p>
-<script type="math/tex; mode=display">
-(\sup X=s):= (\forall x\in X,x\le s)\wedge (\forall s^{\prime}<s,\exists x^{\prime}\in X,x^{\prime}>s^{\prime})</script><p>定义(下确界)：下界当中的最大元，记为$\inf X$。</p>
-<script type="math/tex; mode=display">
-(\inf X=s):= (\forall x\in X,x\ge s)\wedge (\forall s^{\prime}>s,\exists x^{\prime}\in X,x^{\prime}<s^{\prime})</script><p>例：$[0,1)$的的上确界为$1$。</p>
-<p>因为$\forall x\in [0,1),x \le1$，并且$\forall a<1$，我们有$\frac{1+a}{2}\in [0,1)$，但是$\frac{1+a}{2}>a$。</p>
-<p>则如果一个集合存在一个最大元，那么它必为上确界；存在最小元，那么它必为下确界。</p>
-<p>那么什么时候存在上确界和下确界呢？</p>
-<p>上确界引理：若$X$为有上确界非空集合，则$X$有唯一的上确界。</p>
-<p>证明：</p>
-<p>我们关于上确界还有一个定义：</p>
-<script type="math/tex; mode=display">
-\sup X := \min \{c|\forall x\in X,x\le c\}</script><p>由此可以看出上确界就是上界集合中的最小元。我们首先证明唯一性，假设有两个上确界$c_1,c_2$，因为上确界是上界集合中的最小元，所以我们有$c_1\le c_2,c_2\le c_1$，所以$c_1=c_2$。所以如果存在上确界的话，上确界就是唯一的。</p>
-<p>下面我们证明存在上确界。</p>
-<p>我们设$Y=\{y:\forall x\in X,x\le y\}$，由此可以看出$y$为$X$的上界集合，因为$X$有上界，所以$Y$非空。所以我们就有$\forall x\in X,\forall y\in Y,x\le y$。根据完备性公理，$\exists x\in \mathbb{R}$，使得$\forall x\in X,\forall y\in Y,x\le c\le y$，由此我们可以推出$c\in Y$，并且$c$为$Y$的最小元，所以上确界存在。</p>
-<p>得证。</p>
-<p>下确界的证明类似。</p>
-<h3 id="完备性公理相关的基本引理"><a href="#完备性公理相关的基本引理" class="headerlink" title="完备性公理相关的基本引理"></a>完备性公理相关的基本引理</h3><p>定义(序列)：如果函数$f:\mathbb{N}\rightarrow X$，则称$f(n)$为序列。记作：</p>
-<script type="math/tex; mode=display">
-x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果$\forall n\in \mathbb{N},X_{i}\supset X_{i+1}$，则称其为集列套。</p>
-<p>闭区间套引理：若闭区间套$I_1\supset I_1\supset I_3\supset \cdots$，存在$c\in \mathbb{R}$使得$c\in I_i,\forall i\in \mathbb{N}$。如果对于$\forall \epsilon &gt;0, \exists I_n$使得$|I_n|&lt;\epsilon$，则$c$唯一。</p>
-<p>证明：</p>
-<p>记$I_n=[a_i,b_i]$，$\forall I_n=[a_n,b_n],I_m=[a_m,b_m]$，我们都有$a_n\le b_m$。我们令$X=\{a_n\},Y=\{b_n\}$。所以对于$\forall a_n\in X,\forall b_m\in Y$，我们都有$a_n\le b_m$，根据完备性定理：$\exists c\in \mathbb{R}$，使得$\forall a_n\in X,\forall b_m\in Y$，都有$a_n\le c\le b_m$，我们取$m=n$，则$a_n\le c\le b_n$，即$c\in I_n$。则存在性就证明完了。</p>
-<p>若$c_1&lt;c_2\in I_n$，则$a_n\le c_1&lt;c_2\le b_n$，则$c_2-c_1&lt; b_n-a_n=|I_n|$，我们取$\epsilon = \frac{c_2-c_1}{2}$，则不存在这样的$I_n$。得证。</p>
-<p>定义：如果$S=\{X\}$，即$S$为集合的集合，令$Y\subset \bigcup_{X\in S}X$，则称$S$为$Y$的一个覆盖。这就说明：$\forall y\in Y,\exists X\in S$使得$y\in X$。</p>
-<p>有限覆盖引理：如果$I=[a,b],I\subset \bigcup U_n$，其中$U_n=[\alpha_n,\beta_n)$，则$\exists U_1\cdots U_k$使得$I\subset \bigcup_{i=1}^k U_i$。</p>
-<p>证明感觉没怎么看懂，等之后再补上。主要是运用反证法。</p>
+f(x,y) = \sum_{i=0}^3\sum_{j=0}^3f(x_i,y_j)W(x-x_i)W(y-y_j)</script><p>matlab写的旋转后双线性插值采样代码：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">img</span> = <span class="title">rotate</span><span class="params">(image, theta)</span></span></span><br><span class="line"><span class="comment">% 对图片进行旋转，采用二次线性插值</span></span><br><span class="line">[m,n] = <span class="built_in">size</span>(image);</span><br><span class="line">A = [<span class="built_in">cos</span>(theta) -<span class="built_in">sin</span>(theta)  <span class="number">0</span></span><br><span class="line">     <span class="built_in">sin</span>(theta) <span class="built_in">cos</span>(theta)   <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>          <span class="number">0</span>            <span class="number">1</span></span><br><span class="line">];</span><br><span class="line">x = repelem(<span class="number">1</span>:n,<span class="number">1</span>,m);</span><br><span class="line">y = <span class="built_in">repmat</span>(<span class="number">1</span>:m,<span class="number">1</span>,n);</span><br><span class="line">z = <span class="built_in">ones</span>([<span class="number">1</span>,m*n]);</span><br><span class="line">position = [x;y;z];</span><br><span class="line">position_n = A*position;</span><br><span class="line">new_x = position_n(<span class="number">1</span>,:);</span><br><span class="line">new_y = position_n(<span class="number">2</span>,:);</span><br><span class="line">m_max = <span class="built_in">ceil</span>(<span class="built_in">max</span>(new_y));</span><br><span class="line">m_min = <span class="built_in">floor</span>(<span class="built_in">min</span>(new_y));</span><br><span class="line">n_max = <span class="built_in">ceil</span>(<span class="built_in">max</span>(new_x));</span><br><span class="line">n_min = <span class="built_in">floor</span>(<span class="built_in">min</span>(new_x));</span><br><span class="line">m_n = m_max-m_min+<span class="number">1</span>;</span><br><span class="line">n_n = n_max-n_min+<span class="number">1</span>;</span><br><span class="line">img = <span class="built_in">zeros</span>([m_n, n_n]);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:m_n</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n_n</span><br><span class="line">        posi = A\[<span class="built_in">j</span>+n_min<span class="number">-1</span>;<span class="built_in">i</span>+m_min<span class="number">-1</span>;<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> <span class="number">1</span>&lt;posi(<span class="number">1</span>)&amp;&amp;posi(<span class="number">1</span>)&lt;n &amp;&amp; <span class="number">1</span>&lt;posi(<span class="number">2</span>)&amp;&amp;posi(<span class="number">2</span>)&lt;m</span><br><span class="line">            <span class="comment">% 根据双曲抛物面方程进行插值：</span></span><br><span class="line">            a = image(<span class="built_in">floor</span>(posi(<span class="number">2</span>)),<span class="built_in">ceil</span>(posi(<span class="number">1</span>))) - image(<span class="built_in">floor</span>(posi(<span class="number">2</span>)),<span class="built_in">floor</span>(posi(<span class="number">1</span>)));</span><br><span class="line">            b = image(<span class="built_in">ceil</span>(posi(<span class="number">2</span>)),<span class="built_in">floor</span>(posi(<span class="number">1</span>))) - image(<span class="built_in">floor</span>(posi(<span class="number">2</span>)),<span class="built_in">floor</span>(posi(<span class="number">1</span>)));</span><br><span class="line">            c = image(<span class="built_in">ceil</span>(posi(<span class="number">2</span>)),<span class="built_in">ceil</span>(posi(<span class="number">1</span>))) + image(<span class="built_in">floor</span>(posi(<span class="number">2</span>)),<span class="built_in">floor</span>(posi(<span class="number">1</span>))) - image(<span class="built_in">ceil</span>(posi(<span class="number">2</span>)),<span class="built_in">floor</span>(posi(<span class="number">1</span>)))-image(<span class="built_in">floor</span>(posi(<span class="number">2</span>)),<span class="built_in">ceil</span>(posi(<span class="number">1</span>)));</span><br><span class="line">            d = image(<span class="built_in">floor</span>(posi(<span class="number">2</span>)),<span class="built_in">floor</span>(posi(<span class="number">1</span>)));</span><br><span class="line">            img(<span class="built_in">i</span>,<span class="built_in">j</span>) = (posi(<span class="number">1</span>)-<span class="built_in">floor</span>(posi(<span class="number">1</span>)))*a + (posi(<span class="number">2</span>)-<span class="built_in">floor</span>(posi(<span class="number">2</span>)))*b + c*(posi(<span class="number">1</span>)-<span class="built_in">floor</span>(posi(<span class="number">1</span>)))*(posi(<span class="number">2</span>)-<span class="built_in">floor</span>(posi(<span class="number">2</span>)))+d;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">img = img/<span class="number">255</span>;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -496,7 +436,7 @@ x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2021/12/18/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" title="实数与极限">https://www.hfcouc.work/2021/12/18/数学分析/</a>
+    <a href="https://www.hfcouc.work/2022/01/05/%E5%9B%BE%E7%89%87%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/" title="图像的几何变换">https://www.hfcouc.work/2022/01/05/图片的几何变换/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -536,7 +476,7 @@ x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag"># 数学分析</a>
+              <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"># 数字图像处理</a>
           </div>
 
         
@@ -545,13 +485,10 @@ x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/16/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" rel="prev" title="贝叶斯滤波与卡尔曼滤波">
-      <i class="fa fa-chevron-left"></i> 贝叶斯滤波与卡尔曼滤波
+    <a href="/2022/01/04/%E5%90%91%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="prev" title="向量微积分第一周学习笔记">
+      <i class="fa fa-chevron-left"></i> 向量微积分第一周学习笔记
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/18/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" rel="next" title="线性模型">
-      线性模型 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -613,7 +550,7 @@ x_n:= f(n)</script><p>定义(集列套)：对于$X_i\subset \mathbb{R}$，如果
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90"><span class="nav-number">1.</span> <span class="nav-text">实数与极限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%85%AC%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">实数的基本公理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%95%B0%E8%BF%90%E7%AE%97%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">实数运算的代数性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%8F%E5%85%AC%E7%90%86%E4%B8%8E%E5%8A%A0%E6%B3%95%E5%85%AC%E7%90%86%E4%BB%A5%E5%8F%8A%E4%B9%98%E6%B3%95%E5%85%AC%E7%90%86%E7%9A%84%E6%8E%A8%E8%AE%BA"><span class="nav-number">1.3.</span> <span class="nav-text">序公理与加法公理以及乘法公理的推论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%85%AC%E7%90%86%E5%92%8C%E5%8A%A0%E6%B3%95%E5%85%AC%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">序公理和加法公理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%85%AC%E7%90%86%E4%B8%8E%E4%B9%98%E6%B3%95%E5%85%AC%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">序公理与乘法公理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%A4%87%E6%80%A7%E5%85%AC%E7%90%86%E4%B8%8E%E6%95%B0%E9%9B%86%E4%B8%8A%E4%B8%8B%E7%A1%AE%E7%95%8C%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">完备性公理与数集上下确界的存在性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%A4%87%E6%80%A7%E5%85%AC%E7%90%86%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BC%95%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">完备性公理相关的基本引理</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E5%9F%9F%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">空间域运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.</span> <span class="nav-text">代数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.1.</span> <span class="nav-text">加法运算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.2.</span> <span class="nav-text">减法运算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.3.</span> <span class="nav-text">乘法运算</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">1.2.</span> <span class="nav-text">逻辑运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">几何变换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B9%B3%E7%A7%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">平移</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%94%BE%E7%BC%A9"><span class="nav-number">1.3.2.</span> <span class="nav-text">放缩</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%8B%E8%BD%AC"><span class="nav-number">1.3.3.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2"><span class="nav-number">1.3.4.</span> <span class="nav-text">其他几何变换</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E9%87%87%E6%A0%B7"><span class="nav-number">1.4.</span> <span class="nav-text">重采样</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
