@@ -28,20 +28,20 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="之前的HMM都是在离散观测的条件下，现在我们研究一下观测值连续时的HMM。">
+  <meta name="description" content="Coursera贝叶斯统计第一周学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="连续观测数据下的HMM">
-<meta property="og:url" content="https://www.hfcouc.work/2021/12/30/%E8%BF%9E%E7%BB%AD%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E4%B8%8B%E7%9A%84HMM/index.html">
+<meta property="og:title" content="贝叶斯数据分析第一周-统计模型">
+<meta property="og:url" content="https://www.hfcouc.work/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%80%E5%91%A8/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="之前的HMM都是在离散观测的条件下，现在我们研究一下观测值连续时的HMM。">
+<meta property="og:description" content="Coursera贝叶斯统计第一周学习笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-30T13:23:41.000Z">
-<meta property="article:modified_time" content="2022-01-02T09:51:00.447Z">
+<meta property="article:published_time" content="2022-03-02T09:01:00.000Z">
+<meta property="article:modified_time" content="2022-03-02T09:13:16.828Z">
 <meta property="article:author" content="HFC">
-<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="贝叶斯数据分析">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://www.hfcouc.work/2021/12/30/%E8%BF%9E%E7%BB%AD%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E4%B8%8B%E7%9A%84HMM/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%80%E5%91%A8/">
 
 
 <script id="page-configurations">
@@ -54,7 +54,7 @@
   };
 </script>
 
-  <title>连续观测数据下的HMM | 独自赏晴雨</title>
+  <title>贝叶斯数据分析第一周-统计模型 | 独自赏晴雨</title>
   
 
 
@@ -236,7 +236,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/12/30/%E8%BF%9E%E7%BB%AD%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E4%B8%8B%E7%9A%84HMM/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%80%E5%91%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
@@ -249,7 +249,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          连续观测数据下的HMM
+          贝叶斯数据分析第一周-统计模型
         </h1>
 
         <div class="post-meta">
@@ -259,23 +259,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-12-30 21:23:41" itemprop="dateCreated datePublished" datetime="2021-12-30T21:23:41+08:00">2021-12-30</time>
+              <time title="创建时间：2022-03-02 17:01:00 / 修改时间：17:13:16" itemprop="dateCreated datePublished" datetime="2022-03-02T17:01:00+08:00">2022-03-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-02 17:51:00" itemprop="dateModified" datetime="2022-01-02T17:51:00+08:00">2022-01-02</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">贝叶斯机器学习</span></a>
                 </span>
             </span>
 
@@ -290,61 +284,121 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>之前的HMM都是在离散观测的条件下，现在我们研究一下观测值连续时的HMM。</p>
+        <p>Coursera贝叶斯统计第一周学习笔记</p>
 <span id="more"></span>
-<h2 id="连续观测下的HMM"><a href="#连续观测下的HMM" class="headerlink" title="连续观测下的HMM"></a>连续观测下的HMM</h2><p>在连续观测下，观测$o_t$是联系变量，矩阵$B$被概率密度函数代替。在给定状态$s_j$下的观测$o_t$的概率密度函数为：</p>
+<h2 id="统计模型"><a href="#统计模型" class="headerlink" title="统计模型"></a>统计模型</h2><p>统计模型是用来模拟或近似数据生成的过程。</p>
+<p>贝叶斯统计中的三个重要组成部分：</p>
+<ul>
+<li>先验</li>
+<li>似然</li>
+<li>后验</li>
+</ul>
+<p>关于分册模型，我们看之前讲过的一个例子：</p>
+<p>假设</p>
 <script type="math/tex; mode=display">
-b_j(o_t) = p_j(o_t|\theta_j)</script><p>现在HMM的参数$\lambda=(a_{ij},\theta_j,\pi_j)$被称为连续观测HMM。</p>
-<p>现在在连续的情况下，我们的前向概率变为：</p>
+y_i|\mu,\sigma^2\sim \mathrm{N}(\mu,\sigma^2)</script><script type="math/tex; mode=display">
+\mu|\sigma^2\sim \mathrm{N}(\mu_0,\frac{\sigma^2}{w_0})</script><script type="math/tex; mode=display">
+\sigma^2\sim \Gamma^{-1}(\nu_0,\beta_0)</script><p>那么我们的联合概率分布可以写为：</p>
 <script type="math/tex; mode=display">
-\alpha_1(i) = \pi_ip_i(o_1|\theta_i)</script><script type="math/tex; mode=display">
-\alpha_{t+1}(j) = \left(\sum_{i=1}^N a_{ij}\alpha_t(i)\right)p_j(o_{t+1}|\theta_j)</script><p>我们的后向概率为：</p>
+\begin{aligned}
+p(y_1,\cdots,y_n,\mu,\sigma^2) &= p(y_1,\cdots,p_n|\mu,\sigma^2)p(\mu|\sigma^2)p(\sigma^2)\\
+&=\prod_{i=1}^n\left[\mathrm{N}(y_i|\mu,\sigma^2)\right]\times \mathrm{N}(\mu|\mu_0,\frac{\sigma^2}{w_0})\times \Gamma^{-1}(\sigma^2|\nu_0,\beta_0)\\
+&\propto p(\mu,\sigma^2|y_1,\cdots,y_n)
+\end{aligned}</script><h3 id="常见的概率分布"><a href="#常见的概率分布" class="headerlink" title="常见的概率分布"></a>常见的概率分布</h3><h4 id="离散"><a href="#离散" class="headerlink" title="离散"></a>离散</h4><h5 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h5><script type="math/tex; mode=display">
+X\sim \operatorname{Uniform}(N)</script><script type="math/tex; mode=display">
+P(X=x|N) = 1/N,x = 1,2,\cdots,N</script><script type="math/tex; mode=display">
+\mathrm{E}[X] = \frac{N+1}{2}</script><script type="math/tex; mode=display">
+\operatorname{Var}[X] = \frac{N^2-1}{12}</script><h5 id="伯努利分布"><a href="#伯努利分布" class="headerlink" title="伯努利分布"></a>伯努利分布</h5><script type="math/tex; mode=display">
+X\sim \operatorname{Bern}(p)</script><script type="math/tex; mode=display">
+P(X=x|p) = p^x(1-p)^{1-x},x=0,1</script><script type="math/tex; mode=display">
+\mathrm{E}[X] = p</script><script type="math/tex; mode=display">
+\operatorname{Var}[X] = p(1-p)</script><h5 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h5><script type="math/tex; mode=display">
+Y\sim \operatorname{Binom}(n,p)</script><script type="math/tex; mode=display">
+P(Y=y|n,p) = C_n^pp^y(1-p)^{n-y}</script><script type="math/tex; mode=display">
+\mathrm{E}[Y] = np</script><script type="math/tex; mode=display">
+\operatorname{Var} = np(1-p)</script><h5 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h5><p>泊松分布主要用来计数。参数$\lambda&gt;0$是我们期望观察到我们正在计数的事物的比率。</p>
 <script type="math/tex; mode=display">
-\beta_T(i)=1\quad i=1,\cdots,N</script><script type="math/tex; mode=display">
-\beta_t(i) = \sum_{j=1}^Na_{ij}p_j(o_{t+1}|\theta_j)\beta_{t+1}(j)</script><p>我们有：</p>
+X\sim \operatorname{Pois}(\lambda)</script><script type="math/tex; mode=display">
+P(X=x|\lambda) = \frac{\lambda^x\exp(-\lambda)}{x!}</script><script type="math/tex; mode=display">
+\mathrm{E}[X] = \lambda</script><script type="math/tex; mode=display">
+\operatorname{Var}[X] = \lambda</script><h5 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h5><p>指的是在达到成功时的失败的次数。</p>
 <script type="math/tex; mode=display">
-P(O|\lambda) = \sum_{i}^N\alpha_t(i)\beta_t(i)</script><p>但是它的学习算法发生了改变。我们现在是要估计$\hat{\lambda} = (\hat{\alpha}_{ij},\hat{\theta}_j,\hat{\pi}_j)$，计算$\hat{\alpha}_{ij}$和$\hat{\pi}_j$的公式不变，为：</p>
+X\sim \operatorname{Geo}(p)</script><script type="math/tex; mode=display">
+P(X=x|p) = p(1-p)^x</script><script type="math/tex; mode=display">
+\mathrm{E}[X] = \frac{1-p}{p}</script><h5 id="负二项分布"><a href="#负二项分布" class="headerlink" title="负二项分布"></a>负二项分布</h5><p>是对几何分布的推广，指的是在达到$r$次成功时失败的次数。</p>
 <script type="math/tex; mode=display">
-\hat{a}_{ij} = \frac{\sum_{t=1}^{T-1}\alpha_t(i)\beta_{t+1}(j)a_{ij}p_j(o_{t+1}|\theta_j)}{\sum_{t=1}^{T-1}\alpha_t(i)\beta_t(i)}</script><script type="math/tex; mode=display">
-\hat{\pi}_i = \frac{\alpha_1(i)\beta_1(i)}{\sum_{i}^N\alpha_1(i)\beta_1(i)}</script><p>但是$o_t$为连续变量，所以对于确定的$o_t$其概率为$0$。所以我们必须在其$\epsilon$邻域内计算其概率，$\epsilon$事先指定为一个很小的数值。如果$p_j(o_t|\theta_j)$为正态分布，那么计算其$\epsilon$邻域内的概率将非常容易：</p>
+Y\sim \operatorname{NegBinom}(r,p)</script><script type="math/tex; mode=display">
+P(Y=y|r,p) = C_{r+y-1}^yp^r(1-p)^y</script><script type="math/tex; mode=display">
+\mathrm{E}[Y] = \frac{r(1-p)}{p}</script><script type="math/tex; mode=display">
+\operatorname{Var}[Y] = \frac{r(1-p)}{p^2}</script><h5 id="多项式分布"><a href="#多项式分布" class="headerlink" title="多项式分布"></a>多项式分布</h5><p>为二项分布的推广，有$k$中结果，第$k$个结果出现$x_k$次，出现的概率为$p_k$。</p>
 <script type="math/tex; mode=display">
-\int_{o_t-\epsilon}^{o_t+\epsilon}p_j(o|\theta_j)do = \Phi\left(\frac{o_t+\epsilon-m_j}{\sigma_j}\right) - \Phi\left(\frac{o_t-\epsilon-m_j}{\sigma_j}\right)</script><p>下面我们就需要求解$\hat{\theta}$，我们有：</p>
+f(x_1,\cdots,x_k|p_1,\cdots,p_k) = \frac{n!}{x_1!\cdots x_k!}p^{x_1}\cdots p^{x_k}</script><h4 id="连续"><a href="#连续" class="headerlink" title="连续"></a>连续</h4><h5 id="均匀分布-1"><a href="#均匀分布-1" class="headerlink" title="均匀分布"></a>均匀分布</h5><script type="math/tex; mode=display">
+X\sim \operatorname{Uniform}(a,b)</script><script type="math/tex; mode=display">
+f(x|a,b) = \frac{1}{b-a}I_{\{a\le x\le b\}}</script><script type="math/tex; mode=display">
+\mathrm{E}[X] = \frac{a+b}{2}</script><script type="math/tex; mode=display">
+\operatorname{Var}[X] = \frac{(b-a)^2}{12}</script><h5 id="Beta"><a href="#Beta" class="headerlink" title="Beta"></a>Beta</h5><script type="math/tex; mode=display">
+X\sim \operatorname{Beta}(\alpha,\beta)</script><script type="math/tex; mode=display">
+f(x|\alpha,\beta) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}I_{\{0<x<1\}}</script><script type="math/tex; mode=display">
+\mathrm{E}[X] = \frac{\alpha}{\alpha+\beta}</script><script type="math/tex; mode=display">
+\operatorname{Var}[X] = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}</script><h5 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h5><p>指数分布常用来对随机事件之间的等待时间进行建模。</p>
 <script type="math/tex; mode=display">
-\hat{\theta}=\arg\max_{\theta}\sum_{t=1}^T\sum_{i=1}^N\log p_i(o_t|\theta_i)\alpha_t(i)\beta_t(i)</script><p>对于一个确定的$\theta_j$，上式变为：</p>
+X\sim \operatorname{Exp}(\lambda)</script><script type="math/tex; mode=display">
+f(x|\lambda) = \lambda e^{-\lambda x}I_{\{x\ge0\}}</script><script type="math/tex; mode=display">
+\mathrm{E}[X] = \frac{1}{\lambda}</script><script type="math/tex; mode=display">
+\operatorname{Var}[X] = \frac{1}{\lambda^2}</script><h5 id="双指数分布"><a href="#双指数分布" class="headerlink" title="双指数分布"></a>双指数分布</h5><p>是指数分布的推广，可以取负数。</p>
 <script type="math/tex; mode=display">
-\hat{\theta}_j = \arg\max_{\theta_j}\sum_{t=1}^T\log p_j(o_t|\theta_j)\alpha_t(j)\beta_t(j)</script><p>如果是正态分布，我们有：</p>
+X\sim \operatorname{DExp}(\lambda)</script><script type="math/tex; mode=display">
+f(x|\mu,\tau) = \frac{\tau}{2}e^{-\tau|x-\mu|}</script><script type="math/tex; mode=display">
+\mathrm{E}[X] = \mu</script><script type="math/tex; mode=display">
+\operatorname{Var}[X] = \frac{1}{2\tau^2}</script><h5 id="Gamma"><a href="#Gamma" class="headerlink" title="Gamma"></a>Gamma</h5><p>当$X_1,X_2,\cdots,X_n$是相继的事件之间的等待时间，$n$个事件总的等待时间$Y = \sum_{i=1}^n X_i$将服从shape参数$\alpha=n$，rate参数$\beta=\lambda$的Gamma分布。</p>
 <script type="math/tex; mode=display">
-p_j(o_t|\theta_j) = \frac{1}{\sqrt{2\pi\sigma_j^2}}\exp\left(-\frac{1}{2}\frac{(o_t-m_j)^2}{\sigma_j^2}\right)</script><p>对$m_j$求导使导数为$0$我们有：</p>
+Y\sim \operatorname{Gamma}(\alpha,\beta)</script><script type="math/tex; mode=display">
+f(y|\alpha,\beta) = \frac{\beta^\alpha}{\Gamma(\alpha)}y^{\alpha-1}e^{-\beta y}I_{y\ge 0}</script><script type="math/tex; mode=display">
+\mathrm{E}[Y]=\frac{\alpha}{\beta}</script><script type="math/tex; mode=display">
+\operatorname{Var}[Y] = \frac{\alpha}{\beta^2}</script><blockquote>
 <script type="math/tex; mode=display">
-\hat{m}_j = \frac{\sum_{t=1}^T\alpha_t(j)\beta_t(j)o_t}{\sum_{t=1}^T\alpha_t(j)\beta_t(j)}</script><p>同时对$\sigma_j^2$求导令其导数为零我们有：</p>
+\Gamma(n)=(n-1)!</script></blockquote>
+<h5 id="Inverse-Gamma"><a href="#Inverse-Gamma" class="headerlink" title="Inverse-Gamma"></a>Inverse-Gamma</h5><p>当$X\sim \operatorname{Gamma}(\alpha,\beta)$，随机变量$Y=1/X\sim \operatorname{Inverse-Gamma}(\alpha,\beta)$，其中</p>
 <script type="math/tex; mode=display">
-\hat{\sigma}_j^2 =\frac{\sum_{t=1}^T\alpha_t(j)\beta_t(j)(o_t-\hat{m}_j)^2}{\sum_{t=1}^T\alpha_t(j)\beta_t(j)}</script><h2 id="混合HMM"><a href="#混合HMM" class="headerlink" title="混合HMM"></a>混合HMM</h2><p>假设我们观测数据的概率密度函数为$K$个概率密度函数的混合，即：</p>
+f(y) = \frac{\beta^\alpha}{\Gamma(\alpha)}y^{-(\alpha+1)}\exp\left(-\frac{\beta}{y}\right)I_{\{y>0\}}</script><script type="math/tex; mode=display">
+\mathrm{E}(Y) = \frac{\beta}{\alpha-1}</script><h5 id="t"><a href="#t" class="headerlink" title="t"></a>t</h5><p>如果我们有正态分布数据。我们易得：</p>
 <script type="math/tex; mode=display">
-b_j(o_t) = p_j(o_t|\theta_j) = \sum_{k=1}^Kc_j^{(k)}p_j^{(k)}(o_t|\theta_j^{(k)})</script><p>其中$c_j^{(k)}$为非负归一化权重，$0\le c_j^{(k)}\le 1$使得</p>
+\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim \mathrm{N}(0,1)</script><p>但是我们可能不知道$\sigma$的值。我们用$S = \sqrt{\sum_{i}(X_i-\bar{X})^2/(n-1)}$来代替他，这就是自由度$\nu=n-1$的$t$分布。</p>
 <script type="math/tex; mode=display">
-\sum_{k=1}^Kc_j^{(k)}=1</script><p>这里优化的策略采用的是将混合分布拆成多个分布，每个对于一个优化的HMM对象(看了好久终于看懂了，这是因为当$x_1,x_2\in [0,1]$时，我们有$\log(x_1+x_2)\ge \log(x_1x_2)$)。</p>
-<p>相较于之前，我们有：</p>
+Y\sim t_{\nu}</script><script type="math/tex; mode=display">
+f(y) = \frac{\Gamma(\frac{\nu+1}{2})}{\Gamma(\frac{\nu}{2})\sqrt{\nu\pi}}\left(1+\frac{y^2}{\nu}\right)^{-\frac{\nu+1}{2}}</script><script type="math/tex; mode=display">
+\mathrm{E}[Y] = 0 \text{ if }\nu>1</script><script type="math/tex; mode=display">
+\operatorname{Var}[Y] = \frac{\nu}{\nu-2}\text{ if }\nu>2</script><h5 id="Dirichlet"><a href="#Dirichlet" class="headerlink" title="Dirichlet"></a>Dirichlet</h5><p>当似然函数为多项式分布时，Dirichlet分布是共轭的：</p>
 <script type="math/tex; mode=display">
-\alpha_{t+1}(j,k) = \left(\sum_{i=1}^n\alpha_t(i,k)a_{ij}\right)\int_{o_t+1-\epsilon}^{o_t+1+\epsilon}c_j^{(k)}p_j^{(k)}(o|\theta_j^{(k)})do</script><script type="math/tex; mode=display">
-\beta_t(i,k)=\sum_{j=1}^na_{ij}\left(\int_{o_t+1-\epsilon}^{o_t+1+\epsilon}c_j^{(k)}p_j^{(k)}(o|\theta_j^{(k)})do\right)\beta_{t+1}(j,k)</script><p>优化过程中$a,\pi$不变：</p>
+f(y_1,y_2,\cdots,y_K|\alpha_1,\alpha_2,\cdots,\alpha_K) = \frac{\Gamma(\sum_{k=1}^K\alpha_k)}{\prod_{k=1}^K\Gamma(\alpha_k)}\cdot p_1^{\alpha_1-1}\cdot p_2^{\alpha_2-1}\cdots  p_K^{\alpha_K-1}</script><h3 id="蒙特卡洛估计"><a href="#蒙特卡洛估计" class="headerlink" title="蒙特卡洛估计"></a>蒙特卡洛估计</h3><h4 id="蒙特卡洛积分"><a href="#蒙特卡洛积分" class="headerlink" title="蒙特卡洛积分"></a>蒙特卡洛积分</h4><p>假设我们有函数$h(\theta)$，则其期望为</p>
 <script type="math/tex; mode=display">
-\hat{\alpha}_{ij} = \frac{\sum_{t=1}^{T-1}\alpha_t(i)\beta_{t+1}(j)a_{ij}p_j(o_{t+1}|\theta_j)}{\sum_{t=1}^{T-1}\alpha_t(i)\beta_t(i)}</script><script type="math/tex; mode=display">
-\hat{\pi}_i = \frac{\alpha_1(i)\beta_1(i)}{\sum_{i}^N\alpha_1(i)\beta_1(i)}</script><p>优化$c$得：</p>
+\mathrm{E}[h(\theta)] = \int h(\theta)p(\theta)d\theta \approx \frac{1}{m}\sum_{i=1}^m h(\theta_i)</script><p>下面看一个例子：</p>
+<p>假设$h(\theta)=I_{\theta&lt;5}(\theta)$，则</p>
 <script type="math/tex; mode=display">
-\hat{c}_j^{(k)} = \frac{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)}{\sum_{l=1}^K\sum_{t=1}^T\alpha_t(j,l)\beta_t(j,l)}</script><p>$\hat{m}_j^{(k)},\sigma^{2^{(k)}}_j$与之前相似，为：</p>
+\begin{aligned}
+\mathrm{E}(h(\theta))&= \int_0^\infty I_{\theta<5}(\theta)p(\theta)d\theta\\
+&= \int_0^51\cdot p(\theta)d\theta\\
+&=\Pr[0< \theta <5]\\
+&\approx \frac{1}{m}\sum_{i=1}^mI_{\theta<5}(\theta)
+\end{aligned}</script><p>所以可以用出现在$(0,5)$之间的样本比例来近似在此区间的概率。</p>
+<h4 id="蒙特卡洛误差"><a href="#蒙特卡洛误差" class="headerlink" title="蒙特卡洛误差"></a>蒙特卡洛误差</h4><p>根据中心极限定理，我们知道：</p>
 <script type="math/tex; mode=display">
-\hat{m}_j^{(k)} = \frac{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)o_t}{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)}</script><script type="math/tex; mode=display">
-\hat{\sigma}_j^{2^{(k)}} =\frac{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)(o_t-\hat{m}_j^{(k)})^2}{\sum_{t=1}^T\alpha_t(j,k)\beta_t(j,k)}</script><h2 id="多变量HMM"><a href="#多变量HMM" class="headerlink" title="多变量HMM"></a>多变量HMM</h2><p>假设我们的概率密度函数是多元正态分布：</p>
+\bar{\theta}\sim \mathrm{N}(\mathrm{E}(\theta),\frac{\operatorname{Var}(\theta)}{m})</script><p>我们用样本方差来估计$\operatorname{Var}(\theta)$，我们知道总体方差的无偏估计为：</p>
 <script type="math/tex; mode=display">
-f(\mathrm{X}) = \frac{1}{\sqrt{(2\pi)^k}|\Sigma|^{\frac{1}{2}}}\exp\left(-\frac{1}{2}(\mathrm{x-\mu})^T\Sigma^{-1}(\mathrm{x-\mu})\right)</script><p>那么我们的概率计算也会发生相应的改变。</p>
-<p>在优化过程中$a$和$\pi$仍然不变：</p>
+\hat{\operatorname{Var}}(\theta) = \frac{1}{m-1}\sum_{i=1}^m(\theta_i-\bar{\theta})^2</script><p>则</p>
 <script type="math/tex; mode=display">
-\hat{a}_{ij} = \frac{\sum_{t=1}^{T-1}\alpha_t(i)\beta_{t+1}(j)a_{ij}p_j(o_{t+1}|\theta_j)}{\sum_{t=1}^{T-1}\alpha_t(i)\beta_t(i)}</script><script type="math/tex; mode=display">
-\hat{\pi}_i = \frac{\alpha_1(i)\beta_1(i)}{\sum_{i}^N\alpha_1(i)\beta_1(i)}</script><p>$\hat{m}$也大致相同，但是$o_t$变成了向量：</p>
+\sqrt{\frac{\hat{\operatorname{Var}(\theta)}}{m}} = \text{standard error}</script><p>为蒙特卡洛误差。</p>
+<p>假设有分层模型：</p>
 <script type="math/tex; mode=display">
-\hat{m}_j = \frac{\sum_{t=1}^T\alpha_t(j)\beta_t(j)o_t}{\sum_{t=1}^T\alpha_t(j)\beta_t(j)}</script><p>$\hat{\Sigma}$也大致相同：</p>
-<script type="math/tex; mode=display">
-\hat{\Sigma}_j=\frac{\sum_{t=1}^T\alpha_t(j)\beta_t(j)(o_t-\hat{m}_j)(o_t-\hat{m})^T}{\sum_{t=1}^T\alpha_t(j)\beta_t(j)}</script><p>如果是混合多变量HMM，那么有上面的混合HMM相似。</p>
+y|\phi\sim \operatorname{Bin}(10,\phi)</script><script type="math/tex; mode=display">
+\phi\sim \operatorname{Beta}(2,2)</script><p>我们需要根据联合分布$p(y,\theta)=p(\theta|\phi)p(\phi)$来产生数据。我们可以根据以下步骤生成数据：</p>
+<ol>
+<li>从Beta分布中生成数据$\phi_i$</li>
+<li>在给定$\phi_i$的条件下生成$y_i^\star\sim \operatorname{Bin}(10,\phi)$</li>
+</ol>
+<p>这样就生成了独立的样本$(y_i,\phi_i)$。这种采样让边缘化更加简单，若按照以往，我们需要对联合概率分布进行积分，将$\phi$积分消去后得到边缘分布再对$y$采样，但是现在我们只需要忽略掉样本中的$\phi$即可，将$y_i$视为从其边缘分布采样得到的。</p>
+<p>想了一下这就是<strong>吉布斯采样</strong>。:clap::clap:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们用上节课提到的例子</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机数种子</span></span><br><span class="line">set.seed(<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 样本数</span></span><br><span class="line">m &lt;- 10000</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数</span></span><br><span class="line">a &lt;- 2.0</span><br><span class="line">b &lt;- 1.0 / <span class="number">3.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 采样</span></span><br><span class="line">theta &lt;- rgamma(n=m, shape = a, rate = b)</span><br><span class="line"></span><br><span class="line">hist(theta, freq = <span class="literal">FALSE</span>)</span><br><span class="line"></span><br><span class="line">curve(dgamma(x, shape = a, rate = b), col=<span class="string">&quot;blue&quot;</span>, add = <span class="literal">TRUE</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们可以估计其期望</span></span><br><span class="line">mean(theta)  </span><br><span class="line"><span class="comment"># 真实的期望为a / b</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以估计其方差</span></span><br><span class="line">var(theta)</span><br><span class="line"><span class="comment"># 真实的方差为a / b^2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们也可以用来估计其他的参数，比如theta&lt;5的概率</span></span><br><span class="line">ind &lt;- theta &lt; <span class="number">5</span></span><br><span class="line">mean(ind)</span><br><span class="line"><span class="comment"># 我们用pgamma函数计算真实值</span></span><br><span class="line">pgamma(q = <span class="number">5.0</span>, shape = a, rate = b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们也可以计算其90%分位数</span></span><br><span class="line">quantile(theta, probs = <span class="number">0.9</span>)</span><br><span class="line"><span class="comment"># 真实值通过qgamma函数计算</span></span><br><span class="line">qgamma(p=<span class="number">0.9</span>, shape = a, rate = b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面看我们之前举的分层模型的例子</span></span><br><span class="line">m &lt;- 1e5</span><br><span class="line">phi &lt;- rbeta(m, shape1 = <span class="number">2.0</span>, shape2 = <span class="number">2.0</span>)</span><br><span class="line">y &lt;- rbinom(m, size = <span class="number">10</span>, prob = phi)</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -390,7 +444,7 @@ f(\mathrm{X}) = \frac{1}{\sqrt{(2\pi)^k}|\Sigma|^{\frac{1}{2}}}\exp\left(-\frac{
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2021/12/30/%E8%BF%9E%E7%BB%AD%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E4%B8%8B%E7%9A%84HMM/" title="连续观测数据下的HMM">https://www.hfcouc.work/2021/12/30/连续观测数据下的HMM/</a>
+    <a href="https://www.hfcouc.work/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%80%E5%91%A8/" title="贝叶斯数据分析第一周-统计模型">https://www.hfcouc.work/2022/03/02/贝叶斯数据分析第一周/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -430,7 +484,7 @@ f(\mathrm{X}) = \frac{1}{\sqrt{(2\pi)^k}|\Sigma|^{\frac{1}{2}}}\exp\left(-\frac{
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag"># 贝叶斯数据分析</a>
           </div>
 
         
@@ -439,12 +493,12 @@ f(\mathrm{X}) = \frac{1}{\sqrt{(2\pi)^k}|\Sigma|^{\frac{1}{2}}}\exp\left(-\frac{
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/23/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="prev" title="神经网络">
-      <i class="fa fa-chevron-left"></i> 神经网络
+    <a href="/2022/01/05/%E5%9B%BE%E7%89%87%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/" rel="prev" title="图像的几何变换">
+      <i class="fa fa-chevron-left"></i> 图像的几何变换
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/01/02/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/" rel="next" title="条件随机场">
-      条件随机场 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="next" title="贝叶斯数据分析第二周-采样方法">
+      贝叶斯数据分析第二周-采样方法 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -507,7 +561,7 @@ f(\mathrm{X}) = \frac{1}{\sqrt{(2\pi)^k}|\Sigma|^{\frac{1}{2}}}\exp\left(-\frac{
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E8%A7%82%E6%B5%8B%E4%B8%8B%E7%9A%84HMM"><span class="nav-number">1.</span> <span class="nav-text">连续观测下的HMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88HMM"><span class="nav-number">2.</span> <span class="nav-text">混合HMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%8F%98%E9%87%8FHMM"><span class="nav-number">3.</span> <span class="nav-text">多变量HMM</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">统计模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83"><span class="nav-number">1.1.</span> <span class="nav-text">常见的概率分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3"><span class="nav-number">1.1.1.</span> <span class="nav-text">离散</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">均匀分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%88%86%E5%B8%83"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">伯努利分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">二项分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">泊松分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">几何分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B4%9F%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">负二项分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%88%86%E5%B8%83"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">多项式分布</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD"><span class="nav-number">1.1.2.</span> <span class="nav-text">连续</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">均匀分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Beta"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Beta</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">指数分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%8C%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">双指数分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Gamma"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">Gamma</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Inverse-Gamma"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">Inverse-Gamma</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#t"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">t</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dirichlet"><span class="nav-number">1.1.2.8.</span> <span class="nav-text">Dirichlet</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.2.</span> <span class="nav-text">蒙特卡洛估计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">蒙特卡洛积分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E8%AF%AF%E5%B7%AE"><span class="nav-number">1.2.2.</span> <span class="nav-text">蒙特卡洛误差</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
@@ -709,59 +763,6 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 

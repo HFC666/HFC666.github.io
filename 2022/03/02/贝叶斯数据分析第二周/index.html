@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <meta name="google-site-verification" content="U-yOiB98PNsowxlO4rY3Zc43lFlfBRiIxhp4pQPMRW4" /> 
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="Coursera贝叶斯统计第一周学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贝叶斯数据分析第二周-采样方法">
+<meta property="og:url" content="https://www.hfcouc.work/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%BA%8C%E5%91%A8/index.html">
+<meta property="og:site_name" content="独自赏晴雨">
+<meta property="og:description" content="Coursera贝叶斯统计第一周学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://static01.imgkr.com/temp/d8f150dff9f64e9a8990a9c7c807bfd0.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/a17c3fedd89944ad87cad9d10835067f.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/ce2e97df9a4d40cf993e91c68718f27c.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/d644d2a3edd8434884e861f1f8aa0717.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/987ac99478704339b4018abdfd543f7a.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/65092d69de2946f9b3fdbd7c00b6ddea.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/256220abc1914c9faf63d5a0e2c9c9ba.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/7e891bcfd129407fa7e4fc96147cff61.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/8469da465d81475ca225f314830da20b.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/c6c48f26167b46fb81f9f878b7c2643e.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/63546d9e120f4d9995d1563e3c9eed35.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/448eff5804354950ab8f32a86900884d.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/92cc83b7959d48b5a684e5fc84da94f6.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/804a2f8c5243411aa31b7044fe8f360f.png">
+<meta property="article:published_time" content="2022-03-02T09:01:09.000Z">
+<meta property="article:modified_time" content="2022-03-02T09:13:23.836Z">
+<meta property="article:author" content="HFC">
+<meta property="article:tag" content="贝叶斯数据分析">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static01.imgkr.com/temp/d8f150dff9f64e9a8990a9c7c807bfd0.png">
+
+<link rel="canonical" href="https://www.hfcouc.work/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%BA%8C%E5%91%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>贝叶斯数据分析第二周-采样方法 | 独自赏晴雨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+    <script type="text/javascript" src="https://unpkg.com/minigrid@3.1.1/dist/minigrid.min.js"></script>
+  <link rel="stylesheet" href="/photos/photos.css">
+  <script type="text/javascript" src="/photos/photo.js"></script>
+<link rel="alternate" href="/atom.xml" title="独自赏晴雨" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+	<a target="_blank" rel="noopener" href="https://github.com//HFC666" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">独自赏晴雨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>相册</a>
+
+  </li>
+        <li class="menu-item menu-item-note">
+
+    <a href="/note" rel="section"><i class="fa fa-book fa-fw"></i>笔记</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/ss" rel="section"><i class="fa fa-sticky-note fa-fw"></i>说说</a>
+
+  </li>
+        <li class="menu-item menu-item-bangumis">
+
+    <a href="/bangumis" rel="section"><i class="fa fa-headphones fa-fw"></i>追番</a>
+
+  </li>
+        <li class="menu-item menu-item-cinemas">
+
+    <a href="/cinemas" rel="section"><i class="fa fa-headphones fa-fw"></i>追剧</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%BA%8C%E5%91%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
+      <meta itemprop="name" content="HFC">
+      <meta itemprop="description" content="留一份不足，可得无限美好">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独自赏晴雨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          贝叶斯数据分析第二周-采样方法
+        </h1>
+
+        <div class="post-meta">
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-02 17:01:09 / 修改时间：17:13:23" itemprop="dateCreated datePublished" datetime="2022-03-02T17:01:09+08:00">2022-03-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">贝叶斯机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Coursera贝叶斯统计第一周学习笔记</p>
+<span id="more"></span>
+<h3 id="Metropolis-Hastings"><a href="#Metropolis-Hastings" class="headerlink" title="Metropolis-Hastings"></a>Metropolis-Hastings</h3><p>假设我们的目标分布为$g(\theta)$，我们从$q(\theta)$中采样：M-H采样其步骤为：</p>
+<ol>
+<li>选择一个初始值$\theta_0$</li>
+<li>对于$i=1,\cdots,m$，重复<ol>
+<li>从分布$\theta^\star\sim q(\theta^\star|\theta_{i-1})$中采样</li>
+<li>计算<script type="math/tex">\alpha = \frac{g(\theta^\star)q(\theta_{i-1}|\theta^\star)}{g(\theta_{i-1})q(\theta^\star|\theta_{i-1})}</script>，当$q$为对称的分布时(如正态分布)，则$\alpha = \frac{g(\theta^\star)}{g(\theta_{i-1})}$</li>
+<li>若$\alpha\ge 1$，则接受$\theta^\star$，并把$\theta_i$设置为$\theta^\star$；若$0&lt;\alpha&lt;1$，则以概率$\alpha$接受$\theta^\star$并将$\theta_i$设置为$\theta^\star$，同时以$1-\alpha$的概率拒绝$\theta^\star$并且将$\theta_i$设置为$\theta_{i-1}$。</li>
+</ol>
+</li>
+</ol>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>假设我们的后验分布为：</p>
+<script type="math/tex; mode=display">
+p(\mu|y_1,\cdots,y_n)\propto \frac{\exp[n(\overline{y}\mu-\mu^2/2)]}{1+\mu^2}</script><p>为了数值稳定性，我们计算上述分布的对数：</p>
+<script type="math/tex; mode=display">
+\log(g(\mu)) = n(\overline{y}\mu-\mu^2/2) - \log(1+\mu^2)</script><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">lg &lt;- <span class="keyword">function</span>(mu ,n ,ybar) &#123;</span><br><span class="line">  mu2 &lt;- mu^<span class="number">2</span></span><br><span class="line">  n * (ybar * mu - mu2 / <span class="number">2.0</span>) - <span class="built_in">log</span>(<span class="number">1.0</span> + mu2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mh &lt;- <span class="keyword">function</span>(n, ybar, n_iter, mu_init, cand_sd) &#123;</span><br><span class="line">  mu_out &lt;- numeric(n_iter)</span><br><span class="line">  accept &lt;- 0</span><br><span class="line">  mu_now = mu_init</span><br><span class="line">  lg_now = lg(mu=mu_now, n=n, ybar=ybar)</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:n_iter) &#123;</span><br><span class="line">    mu_cand &lt;- rnorm(<span class="number">1</span>, mean = mu_now, sd = cand_sd)</span><br><span class="line">    </span><br><span class="line">    lg_cand &lt;- lg(mu = mu_cand, n = n, ybar = ybar)</span><br><span class="line">    lalpha &lt;- lg_cand - lg_now</span><br><span class="line">    alpha &lt;- <span class="built_in">exp</span>(lalpha)</span><br><span class="line">    </span><br><span class="line">    u &lt;- runif(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> (u &lt; alpha) &#123;</span><br><span class="line">      mu_now &lt;- mu_cand</span><br><span class="line">      accept &lt;- accept + <span class="number">1</span></span><br><span class="line">      lg_now &lt;- lg_cand</span><br><span class="line">    &#125;</span><br><span class="line">    mu_out[i] &lt;- mu_now</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">list</span>(mu=mu_out, accept=accept/n_iter)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据</span></span><br><span class="line">y &lt;- <span class="built_in">c</span>(<span class="number">1.2</span>, <span class="number">1.4</span>, -<span class="number">0.5</span>, <span class="number">0.3</span>, <span class="number">0.9</span>, <span class="number">2.3</span>, <span class="number">1.0</span>, <span class="number">0.1</span>, <span class="number">1.3</span>, <span class="number">1.9</span>)</span><br><span class="line"></span><br><span class="line">ybar &lt;- mean(y)</span><br><span class="line">n&lt;- <span class="built_in">length</span>(y)</span><br><span class="line"></span><br><span class="line">hist(y, freq=<span class="literal">FALSE</span>, xlim=<span class="built_in">c</span>(-<span class="number">1.0</span>, <span class="number">3.0</span>))</span><br><span class="line">points(y, <span class="built_in">rep</span>(<span class="number">0.0</span>, n))</span><br><span class="line">points(ybar, <span class="number">0.0</span>, pch=<span class="number">19</span>)</span><br><span class="line">curve(dt(x, df=<span class="number">1</span>), lty=<span class="number">2</span>, add=<span class="literal">TRUE</span>) <span class="comment"># 我们的先验为t分布，绘制先验分布</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MH采样</span></span><br><span class="line">set.seed(<span class="number">43</span>)</span><br><span class="line"><span class="comment"># 一般cand_sd即方差越大，接受率越小，而方差过小，每次移动的步伐太短，需要很长时间才能走遍后验分布。</span></span><br><span class="line">post &lt;- mh(n = n, ybar = ybar, n_iter = <span class="number">1e3</span>, mu_init = <span class="number">0.0</span>, cand_sd = <span class="number">3</span>)</span><br><span class="line">str(post)</span><br><span class="line"></span><br><span class="line">library(coda)</span><br><span class="line">traceplot(as.mcmc(post$mu))</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/d8f150dff9f64e9a8990a9c7c807bfd0.png" alt=""></p>
+<p>如果我们设置的初始值不当，如：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">post &lt;- mh(n = n, ybar = ybar, n_iter = <span class="number">1e3</span>, mu_init = <span class="number">30.0</span>, cand_sd = <span class="number">3</span>)</span><br><span class="line">str(post)</span><br><span class="line"></span><br><span class="line">library(coda)</span><br><span class="line">traceplot(as.mcmc(post$mu))</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/a17c3fedd89944ad87cad9d10835067f.png" alt=""></p>
+<p>可以看到经过多次迭代后才达到平稳分布，我们需要删除之前未达到平稳的样本。</p>
+<h3 id="JAGS"><a href="#JAGS" class="headerlink" title="JAGS"></a>JAGS</h3><p>JAGS为一个用于MCMC的工具。我们下面看如何使用JAGS：</p>
+<p>假设我们的模型为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&y_{i} \mid \mu \stackrel{\mathrm{iid}}{\sim} \mathrm{N}(\mu, 1), \quad i=1, \ldots, n \\
+&\mu \sim \mathrm{t}(0,1,1)
+\end{aligned}</script><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">library(rjags)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Specify the model</span></span><br><span class="line">mod_string &lt;- <span class="string">&quot;model &#123;</span></span><br><span class="line"><span class="string">  for (i in 1:n) &#123;</span></span><br><span class="line"><span class="string">    y[i] ~ dnorm(mu, 1.0/sig2)</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">  mu ~ dt(0.0, 1.0/1.0, 1)</span></span><br><span class="line"><span class="string">  sig2 = 1.0</span></span><br><span class="line"><span class="string">&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Set up the model</span></span><br><span class="line">set.seed(<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">y &lt;- <span class="built_in">c</span>(<span class="number">1.2</span>, <span class="number">1.4</span>, -<span class="number">0.5</span>, <span class="number">0.3</span>, <span class="number">0.9</span>, <span class="number">2.3</span>, <span class="number">1.0</span>, <span class="number">0.1</span>, <span class="number">1.3</span>, <span class="number">1.9</span>)</span><br><span class="line">n &lt;- <span class="built_in">length</span>(y)</span><br><span class="line"></span><br><span class="line">data_jags &lt;- <span class="built_in">list</span>(y=y, n=n)</span><br><span class="line">params &lt;- <span class="built_in">c</span>(<span class="string">&quot;mu&quot;</span>)</span><br><span class="line"></span><br><span class="line">inits = <span class="keyword">function</span>() &#123;</span><br><span class="line">  inits &lt;- <span class="built_in">list</span>(<span class="string">&quot;mu&quot;</span>=<span class="number">0.0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mod &lt;- jags.model(textConnection(mod_string), data = data_jags, inits = inits)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. Run the MCMC sampler</span></span><br><span class="line"></span><br><span class="line">update(mod, <span class="number">500</span>) <span class="comment"># 先迭代500次，达到平稳分布</span></span><br><span class="line"></span><br><span class="line">mod_sim &lt;- coda.samples(model = mod, variable.names = params, n.iter = <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. Post processing</span></span><br><span class="line">library(coda)</span><br><span class="line">plot(mod_sim)</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/ce2e97df9a4d40cf993e91c68718f27c.png" alt=""></p>
+<h3 id="Gibbs-Sampling"><a href="#Gibbs-Sampling" class="headerlink" title="Gibbs Sampling"></a>Gibbs Sampling</h3><p>假设我们的后验分布为$p(\theta,\phi|y)$，Gibbs采样的算法为：</p>
+<ol>
+<li>初始$\theta_0,\phi_0$</li>
+<li>对于$i=1,\cdots,m$，重复：<ol>
+<li>使用$\phi_{i-1}$产生$\theta_i\sim p(\theta|\phi_{i-1},y)$</li>
+<li>使用$\theta_i$产生$\phi_i\sim p(\phi|\theta_i,y)$</li>
+</ol>
+</li>
+</ol>
+<p>例子：</p>
+<p>假设我们有如下模型：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+y_i|\mu,\sigma^2&\stackrel{\mathrm{iid}}{\sim} \mathcal{N}(\mu,\sigma^2)\\
+\mu&\sim \mathcal{N}(\mu_0,\sigma_0^2)\\
+\sigma^2&\sim \operatorname{IG}(\nu_0,\beta_0)
+\end{aligned}</script><p>我们的联合概率分布为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&p\left(\mu, \sigma^{2} \mid y_{1}, \ldots, y_{n}\right) \propto p\left(y_{1}, \ldots, y_{n} \mid \mu_{1} \sigma^{2}\right) p(\mu) p\left(\sigma^{2}\right)\\
+&=\prod_{i=1}^{n}\left[N\left(y_{i} \mid \mu, \sigma^{2}\right)\right] N\left(\mu \mid \mu_{0}, \sigma_{0}^{2}\right) I G\left(\sigma^{2} \mid \nu_{0}, \beta_{0}\right)\\
+&=\prod_{i=1}^{n}\left[\frac{1}{\sqrt{2 \pi \sigma^{2}}} \exp \left(-\frac{1}{2 \sigma^{2}}\left(y_{i}-\mu^{n}\right)\right)\right] \frac{1}{\sqrt{2 \pi \sigma_{0}^{2}}} \exp \left(-\frac{1}{2 \sigma_{0}^{2}}\left(\mu-\mu_{0}\right)^{2}\right) \frac{\beta_{0}^{\nu_{0}}}{\Gamma\left(N_{0}\right)}\left(\sigma_{0}^{-(\nu_0+1)} \exp \left(\frac{-\beta_{0}}{\sigma^{2}}\right)\right.\\
+&\propto\left(\sigma^{2}\right)^{-\frac{n}{2}} \exp \left[-\frac{1}{2 \sigma^{2}} \sum_{i=1}^{n}\left(y_{i}-\mu\right)^{2}\right] \exp \left[-\frac{1}{2 \sigma_{0}^{2}}\left(\mu-\mu_{0}\right)^{2}\right]\left(\sigma^{2}\right)^{-\left(\nu_{0}+1\right)} \exp \left[\frac{-\beta_{0}}{\sigma^{2}}\right]
+\end{aligned}</script><p>下面我们计算其条件概率作为转移概率：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p\left(\mu \mid \sigma^{2}, y_{1}, \ldots, y_{n}\right) & \propto P\left(\mu, \sigma^{2} \mid y_{1}, \ldots, y_{n}\right) \\
+& \propto \exp \left[-\frac{1}{2 \sigma^{2}} \sum_{i=1}^{n}\left(y_{i}-\mu\right)^{2}\right] \exp \left[-\frac{1}{2 \sigma_{0}^{2}}\left(\mu-\mu_{0}\right)^{2}\right] \\
+&=\exp \left[-\frac{1}{2}\left(\frac{\sum\left(y_{i}-\mu\right)^{2}}{\sigma^{2}}+\frac{\left(\mu-\mu_{0}\right)^{2}}{\sigma_{0}^{2}}\right)\right] \\
+& \propto N\left(\mu \mid \frac{n \bar{y} / \sigma^{2}+\mu_{0} / \sigma_{0}^{2}}{n / \sigma^{2}+1 / \sigma_{0}^{2}}, \frac{1}{n / \sigma^{2}+1 / \sigma_{0}^{2}}\right)
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+p\left(\sigma^{2} \mid \mu, y_{1}, \ldots, y_{n}\right) & \propto p\left(\mu, \sigma^{2} \mid y_{1}, \ldots, y_{n}\right) \\
+& \propto\left(\sigma^{2}\right)^{-\frac{n}{2}} \exp \left[-\frac{1}{2 \sigma^{2}} \Sigma\left(y_{i}-\mu\right)^{2}\right]\left(\sigma^{2}\right)^{-\left(\nu_{0}+1\right)} \exp \left[\frac{-\beta_{0}}{\sigma^{2}}\right] \\
+&=\left(\sigma^{2}\right)^{-\left(\nu_{0}+\frac{n}{2}+1\right)} \exp \left[-\frac{1}{\sigma^{2}}\left(\beta_{0}+\frac{\sum_{1=1}^{n}\left(y_{i}-\mu\right)^{2}}{2}\right)\right] \\
+& \propto I G\left(\sigma^{2} \mid \nu_{0}+\frac{n}{2}, \beta_{0}+\frac{\sum_{i=1}^{n}\left(y_{i}-\mu\right)^{2}}{2}\right)
+\end{aligned}</script><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">update_mu = <span class="keyword">function</span>(n, ybar, sig2, mu_0, sig2_0) &#123;</span><br><span class="line">  sig2_1 = <span class="number">1.0</span> / (n / sig2 + <span class="number">1.0</span> / sig2_0)</span><br><span class="line">  mu_1 = sig2_1 * (n * ybar / sig2 + mu_0 / sig2_0)</span><br><span class="line">  rnorm(n=<span class="number">1</span>, mean=mu_1, sd=<span class="built_in">sqrt</span>(sig2_1))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">update_sig2 = <span class="keyword">function</span>(n, y, mu, nu_0, beta_0) &#123;</span><br><span class="line">  nu_1 = nu_0 + n / <span class="number">2.0</span></span><br><span class="line">  sumsq = <span class="built_in">sum</span>( (y - mu)^<span class="number">2</span> ) <span class="comment"># vectorized</span></span><br><span class="line">  beta_1 = beta_0 + sumsq / <span class="number">2.0</span></span><br><span class="line">  out_gamma = rgamma(n=<span class="number">1</span>, shape=nu_1, rate=beta_1) <span class="comment"># rate for gamma is shape for inv-gamma</span></span><br><span class="line">  <span class="number">1.0</span> / out_gamma <span class="comment"># reciprocal of a gamma random variable is distributed inv-gamma</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gibbs = <span class="keyword">function</span>(y, n_iter, init, prior) &#123;</span><br><span class="line">  ybar = mean(y)</span><br><span class="line">  n = <span class="built_in">length</span>(y)</span><br><span class="line">  </span><br><span class="line">  <span class="comment">## initialize</span></span><br><span class="line">  mu_out = numeric(n_iter)</span><br><span class="line">  sig2_out = numeric(n_iter)</span><br><span class="line">  </span><br><span class="line">  mu_now = init$mu</span><br><span class="line">  </span><br><span class="line">  <span class="comment">## Gibbs sampler</span></span><br><span class="line">  <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:n_iter) &#123;</span><br><span class="line">    sig2_now = update_sig2(n=n, y=y, mu=mu_now, nu_0=prior$nu_0, beta_0=prior$beta_0)</span><br><span class="line">    mu_now = update_mu(n=n, ybar=ybar, sig2=sig2_now, mu_0=prior$mu_0, sig2_0=prior$sig2_0)</span><br><span class="line">    </span><br><span class="line">    sig2_out[i] = sig2_now</span><br><span class="line">    mu_out[i] = mu_now</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  cbind(mu=mu_out, sig2=sig2_out)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">y = <span class="built_in">c</span>(<span class="number">1.2</span>, <span class="number">1.4</span>, -<span class="number">0.5</span>, <span class="number">0.3</span>, <span class="number">0.9</span>, <span class="number">2.3</span>, <span class="number">1.0</span>, <span class="number">0.1</span>, <span class="number">1.3</span>, <span class="number">1.9</span>)</span><br><span class="line">ybar = mean(y)</span><br><span class="line">n = <span class="built_in">length</span>(y)</span><br><span class="line"></span><br><span class="line"><span class="comment">## prior</span></span><br><span class="line">prior = <span class="built_in">list</span>()</span><br><span class="line">prior$mu_0 = <span class="number">0.0</span></span><br><span class="line">prior$sig2_0 = <span class="number">1.0</span></span><br><span class="line">prior$n_0 = <span class="number">2.0</span> <span class="comment"># prior effective sample size for sig2</span></span><br><span class="line">prior$s2_0 = <span class="number">1.0</span> <span class="comment"># prior point estimate for sig2</span></span><br><span class="line">prior$nu_0 = prior$n_0 / <span class="number">2.0</span> <span class="comment"># prior parameter for inverse-gamma</span></span><br><span class="line">prior$beta_0 = prior$n_0 * prior$s2_0 / <span class="number">2.0</span> <span class="comment"># prior parameter for inverse-gamma</span></span><br><span class="line"></span><br><span class="line">hist(y, freq=<span class="literal">FALSE</span>, xlim=<span class="built_in">c</span>(-<span class="number">1.0</span>, <span class="number">3.0</span>)) <span class="comment"># histogram of the data</span></span><br><span class="line">curve(dnorm(x=x, mean=prior$mu_0, sd=<span class="built_in">sqrt</span>(prior$sig2_0)), lty=<span class="number">2</span>, add=<span class="literal">TRUE</span>) <span class="comment"># prior for mu</span></span><br><span class="line">points(y, <span class="built_in">rep</span>(<span class="number">0</span>,n), pch=<span class="number">1</span>) <span class="comment"># individual data points</span></span><br><span class="line">points(ybar, <span class="number">0</span>, pch=<span class="number">19</span>) <span class="comment"># sample mean</span></span><br><span class="line"></span><br><span class="line">set.seed(<span class="number">53</span>)</span><br><span class="line"></span><br><span class="line">init = <span class="built_in">list</span>()</span><br><span class="line">init$mu = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">post = gibbs(y=y, n_iter=<span class="number">1e3</span>, init=init, prior=prior)</span><br><span class="line"></span><br><span class="line">library(<span class="string">&quot;coda&quot;</span>)</span><br><span class="line">plot(as.mcmc(post))</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/d644d2a3edd8434884e861f1f8aa0717.png" alt=""></p>
+<h3 id="Assessing-Convergence"><a href="#Assessing-Convergence" class="headerlink" title="Assessing Convergence"></a>Assessing Convergence</h3><h4 id="trace-plots"><a href="#trace-plots" class="headerlink" title="trace plots"></a>trace plots</h4><p>trace plots可以展示样本迭代的过程，下面就是一个很可能收敛的链的例子：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">61</span>)</span><br><span class="line">post0 &lt;- mh(n=n, ybar=ybar, n_iter=<span class="number">10e3</span>, mu_init=<span class="number">0.0</span>, cand_sd=<span class="number">0.9</span>)</span><br><span class="line">coda::traceplot(as.mcmc(post0$mu[-<span class="built_in">c</span>(<span class="number">1</span>:<span class="number">500</span>)]))</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/987ac99478704339b4018abdfd543f7a.png" alt=""></p>
+<p>如果链是平稳的，它就不应该有长期的趋势。链的平均值应该大致相平。不应该像下面的例子那样徘徊：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">61</span>)</span><br><span class="line">post1 &lt;- mh(n=n, ybar=ybar, n_iter=<span class="number">1e3</span>, mu_init=<span class="number">0.0</span>, cand_sd=<span class="number">0.04</span>)</span><br><span class="line">coda::traceplot(as.mcmc(post1$mu[-<span class="built_in">c</span>(<span class="number">1</span>:<span class="number">500</span>)]))</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，我们应该迭代更多次：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">61</span>)</span><br><span class="line">post2 = mh(n=n, ybar=ybar, n_iter=<span class="number">100e3</span>, mu_init=<span class="number">0.0</span>, cand_sd=<span class="number">0.04</span>)</span><br><span class="line">coda::traceplot(as.mcmc(post2$mu))</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/65092d69de2946f9b3fdbd7c00b6ddea.png" alt=""></p>
+<h4 id="Monte-Carlo-effective-sample-size"><a href="#Monte-Carlo-effective-sample-size" class="headerlink" title="Monte Carlo effective sample size"></a>Monte Carlo effective sample size</h4><p>我们所观察的这两条链之间的一个主要区别是每条链的自相关程度。这里的自相关程度指的是与之前样本之间的关系：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">coda::autocorr.plot(as.mcmc(post0$mu))</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/256220abc1914c9faf63d5a0e2c9c9ba.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">coda::autocorr.diag(as.mcmc(post0$mu))</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##             [,1]</span></span><br><span class="line"><span class="comment">## Lag 0  1.0000000</span></span><br><span class="line"><span class="comment">## Lag 1  0.9850078</span></span><br><span class="line"><span class="comment">## Lag 5  0.9213126</span></span><br><span class="line"><span class="comment">## Lag 10 0.8387333</span></span><br><span class="line"><span class="comment">## Lag 50 0.3834563</span></span><br></pre></td></tr></table></figure>
+<p>自相关很重要，因为它告诉我们在马尔科夫链中有多少信息可用。从高度相关的马尔可夫链中抽样1000次迭代所得到的关于平稳分布的信息，要比我们从平稳分布中独立抽取的1000个样本所得到的信息少。</p>
+<p>自相关是计算蒙特卡洛有效样本的一个重要组成。蒙特卡洛有效样本指的是你需要从平稳分布抽取的样本的数量，使这些样本包含的信息与你的马尔科夫链包含的信息相同。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">coda::effectiveSize(as.mcmc(post2$mu))</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##    var1 </span></span><br><span class="line"><span class="comment">## 373.858</span></span><br></pre></td></tr></table></figure>
+<p>讲样本减少至自相关系数为$0$。这将会给你近似的独立样本。这些样本的数量近似于有效样本。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">coda::autocorr.plot(as.mcmc(post2$mu), lag.max=<span class="number">500</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/7e891bcfd129407fa7e4fc96147cff61.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">thin_interval = <span class="number">400</span> <span class="comment"># how far apart the iterations are for autocorrelation to be essentially 0.</span></span><br><span class="line">thin_indx = seq(from=thin_interval, to=<span class="built_in">length</span>(post2$mu), by=thin_interval)</span><br><span class="line">head(thin_indx)</span><br><span class="line"></span><br><span class="line">post2mu_thin = post2$mu[thin_indx]</span><br><span class="line">traceplot(as.mcmc(post2$mu))</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/8469da465d81475ca225f314830da20b.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">traceplot(as.mcmc(post2mu_thin))</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/c6c48f26167b46fb81f9f878b7c2643e.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">coda::autocorr.plot(as.mcmc(post2mu_thin), lag.max=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/63546d9e120f4d9995d1563e3c9eed35.png" alt=""></p>
+<p>检查链的蒙特卡罗有效样本大小通常是一个好主意。如果你所寻求的只是一个后验均值估计，那么几百到几千的有效样本量就足够了。然而，如果你想创建一个$95\%$的后验区间，你可能需要成千上万的有效样本来产生分布外边缘的可靠估计。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">raftery.diag(as.mcmc(post0$mu))</span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">## Quantile (q) = 0.025</span></span><br><span class="line"><span class="comment">## Accuracy (r) = +/- 0.005</span></span><br><span class="line"><span class="comment">## Probability (s) = 0.95 </span></span><br><span class="line"><span class="comment">##                                        </span></span><br><span class="line"><span class="comment">##  Burn-in  Total Lower bound  Dependence</span></span><br><span class="line"><span class="comment">##  (M)      (N)   (Nmin)       factor (I)</span></span><br><span class="line"><span class="comment">##  12       13218 3746         3.53</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">raftery.diag(as.mcmc(post0$mu), q=<span class="number">0.005</span>, r=<span class="number">0.001</span>, s=<span class="number">0.95</span>)</span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">## Quantile (q) = 0.005</span></span><br><span class="line"><span class="comment">## Accuracy (r) = +/- 0.001</span></span><br><span class="line"><span class="comment">## Probability (s) = 0.95 </span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">## You need a sample size of at least 19112 with these values of q, r and s</span></span><br></pre></td></tr></table></figure>
+<h4 id="Burn-in"><a href="#Burn-in" class="headerlink" title="Burn-in"></a>Burn-in</h4><p>我们还看到了链的初值如何影响链的收敛速度。如果我们的初始值离后验分布的大部分很远，那么这条链可能需要一段时间才能到达那里。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">62</span>)</span><br><span class="line">post3 &lt;- mh(n=n, ybar=ybar, n_iter=<span class="number">500</span>, mu_init=<span class="number">10.0</span>, cand_sd=<span class="number">0.3</span>)</span><br><span class="line">coda::traceplot(as.mcmc(post3$mu))s</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/448eff5804354950ab8f32a86900884d.png" alt=""></p>
+<p>显然，前100次左右的迭代不能反映平稳分布的结果，因此在我们使用这个链进行蒙特卡罗估计之前，应该抛弃它们。这就是所谓的burn-in期。</p>
+<h3 id="Multiple-chains-Gelman-Rubin"><a href="#Multiple-chains-Gelman-Rubin" class="headerlink" title="Multiple chains, Gelman-Rubin"></a>Multiple chains, Gelman-Rubin</h3><p>如果我们想要更确信我们已经收敛到真正的平稳分布，我们可以模拟多个链，每个链有不同的初始值。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">61</span>)</span><br><span class="line"></span><br><span class="line">nsim = <span class="number">500</span></span><br><span class="line">post1 = mh(n=n, ybar=ybar, n_iter=nsim, mu_init=<span class="number">15.0</span>, cand_sd=<span class="number">0.4</span>)</span><br><span class="line">post1$accpt</span><br><span class="line"></span><br><span class="line">post2 = mh(n=n, ybar=ybar, n_iter=nsim, mu_init=-<span class="number">5.0</span>, cand_sd=<span class="number">0.4</span>)</span><br><span class="line">post2$accpt</span><br><span class="line"></span><br><span class="line">post3 = mh(n=n, ybar=ybar, n_iter=nsim, mu_init=<span class="number">7.0</span>, cand_sd=<span class="number">0.1</span>)</span><br><span class="line">post3$accpt</span><br><span class="line"></span><br><span class="line">post4 = mh(n=n, ybar=ybar, n_iter=nsim, mu_init=<span class="number">23.0</span>, cand_sd=<span class="number">0.5</span>)</span><br><span class="line">post4$accpt</span><br><span class="line"></span><br><span class="line">post5 = mh(n=n, ybar=ybar, n_iter=nsim, mu_init=-<span class="number">17.0</span>, cand_sd=<span class="number">0.4</span>)</span><br><span class="line">post5$accpt</span><br><span class="line"></span><br><span class="line">pmc = mcmc.list(as.mcmc(post1$mu), as.mcmc(post2$mu), </span><br><span class="line">                as.mcmc(post3$mu), as.mcmc(post4$mu), as.mcmc(post5$mu))</span><br><span class="line">str(pmc)</span><br><span class="line"></span><br><span class="line"><span class="comment">## List of 5</span></span><br><span class="line"><span class="comment">##  $ :Class &#x27;mcmc&#x27;  atomic [1:500] 14.8 14 14 13.8 13.8 ...</span></span><br><span class="line"><span class="comment">##   .. ..- attr(*, &quot;mcpar&quot;)= num [1:3] 1 500 1</span></span><br><span class="line"><span class="comment">##  $ :Class &#x27;mcmc&#x27;  atomic [1:500] -5 -5 -5 -5 -4.89 ...</span></span><br><span class="line"><span class="comment">##   .. ..- attr(*, &quot;mcpar&quot;)= num [1:3] 1 500 1</span></span><br><span class="line"><span class="comment">##  $ :Class &#x27;mcmc&#x27;  atomic [1:500] 7 7 7 6.94 6.94 ...</span></span><br><span class="line"><span class="comment">##   .. ..- attr(*, &quot;mcpar&quot;)= num [1:3] 1 500 1</span></span><br><span class="line"><span class="comment">##  $ :Class &#x27;mcmc&#x27;  atomic [1:500] 23 21.9 21.9 21.8 21.8 ...</span></span><br><span class="line"><span class="comment">##   .. ..- attr(*, &quot;mcpar&quot;)= num [1:3] 1 500 1</span></span><br><span class="line"><span class="comment">##  $ :Class &#x27;mcmc&#x27;  atomic [1:500] -17 -17 -16.9 -16.2 -15.7 ...</span></span><br><span class="line"><span class="comment">##   .. ..- attr(*, &quot;mcpar&quot;)= num [1:3] 1 500 1</span></span><br><span class="line"><span class="comment">##  - attr(*, &quot;class&quot;)= chr &quot;mcmc.list&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">coda::traceplot(pmc)</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/92cc83b7959d48b5a684e5fc84da94f6.png" alt=""></p>
+<p>我们可以用格尔曼和鲁宾的诊断来支持我们的视觉结果。这个诊断统计量计算链内的可变性，并将其与链间的可变性进行比较。如果所有的链都趋同于平稳分布，链之间的变异应该相对较小，诊断报告的潜在尺度缩减因子应该接近于1。如果这些值远远大于1，那么我们就会得出结论，这些链还没有收敛。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">coda::gelman.diag(pmc)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Potential scale reduction factors:</span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">##      Point est. Upper C.I.</span></span><br><span class="line"><span class="comment">## [1,]       1.01       1.02</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">coda::gelman.plot(pmc)</span><br></pre></td></tr></table></figure>
+<p><img src="https://static01.imgkr.com/temp/804a2f8c5243411aa31b7044fe8f360f.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">nburn = <span class="number">1000</span> <span class="comment"># remember to discard early iterations</span></span><br><span class="line">post0$mu_keep = post0$mu[-<span class="built_in">c</span>(<span class="number">1</span>:<span class="number">1000</span>)]</span><br><span class="line">summary(as.mcmc(post0$mu_keep))</span><br><span class="line"></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">## Iterations = 1:9000</span></span><br><span class="line"><span class="comment">## Thinning interval = 1 </span></span><br><span class="line"><span class="comment">## Number of chains = 1 </span></span><br><span class="line"><span class="comment">## Sample size per chain = 9000 </span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">## 1. Empirical mean and standard deviation for each variable,</span></span><br><span class="line"><span class="comment">##    plus standard error of the mean:</span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">##           Mean             SD       Naive SE Time-series SE </span></span><br><span class="line"><span class="comment">##       0.889449       0.304514       0.003210       0.006295 </span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">## 2. Quantiles for each variable:</span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">##   2.5%    25%    50%    75%  97.5% </span></span><br><span class="line"><span class="comment">## 0.2915 0.6825 0.8924 1.0868 1.4890</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+	
+	
+      <div>
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      </div>
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="HFC 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="HFC 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HFC
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.hfcouc.work/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%BA%8C%E5%91%A8/" title="贝叶斯数据分析第二周-采样方法">https://www.hfcouc.work/2022/03/02/贝叶斯数据分析第二周/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag"># 贝叶斯数据分析</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="prev" title="贝叶斯数据分析第一周-统计模型">
+      <i class="fa fa-chevron-left"></i> 贝叶斯数据分析第一周-统计模型
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MzYxNS8zMDA4OA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+	
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Metropolis-Hastings"><span class="nav-number">1.</span> <span class="nav-text">Metropolis-Hastings</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAGS"><span class="nav-number">2.</span> <span class="nav-text">JAGS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gibbs-Sampling"><span class="nav-number">3.</span> <span class="nav-text">Gibbs Sampling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assessing-Convergence"><span class="nav-number">4.</span> <span class="nav-text">Assessing Convergence</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#trace-plots"><span class="nav-number">4.1.</span> <span class="nav-text">trace plots</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Monte-Carlo-effective-sample-size"><span class="nav-number">4.2.</span> <span class="nav-text">Monte Carlo effective sample size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Burn-in"><span class="nav-number">4.3.</span> <span class="nav-text">Burn-in</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multiple-chains-Gelman-Rubin"><span class="nav-number">5.</span> <span class="nav-text">Multiple chains, Gelman-Rubin</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HFC"
+      src="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
+  <p class="site-author-name" itemprop="name">HFC</p>
+  <div class="site-description" itemprop="description">留一份不足，可得无限美好</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HFC666" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HFC666" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/hfc@stu.ouc.edu.cn" title="E-Mail → hfc@stu.ouc.edu.cn"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/bu-yu-que-zhi-xin-43-35" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;bu-yu-que-zhi-xin-43-35" rel="noopener" target="_blank"><i class="fab fa-gratipay fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_44777424" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_44777424" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="https:&#x2F;&#x2F;www.bilibili.com&#x2F;" rel="noopener" target="_blank">哔哩哔哩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qsctech.github.io/zju-icicles/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CS.html" title="https:&#x2F;&#x2F;qsctech.github.io&#x2F;zju-icicles&#x2F;%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CS.html" rel="noopener" target="_blank">人工智能课程</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+	  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=347597&auto=1&height=66"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Tue Jul 13 2021 08:00:00 GMT+0800 (GMT+08:00) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HFC</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+  
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+    <script src="/js/cursor/cherry.js"></script>
