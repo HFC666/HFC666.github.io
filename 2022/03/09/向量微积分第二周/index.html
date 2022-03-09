@@ -28,23 +28,20 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="EM算法、GMM">
+  <meta name="description" content="劳模接着第二章。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高斯混合模型和EM算法">
-<meta property="og:url" content="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="向量微积分第二周">
+<meta property="og:url" content="https://www.hfcouc.work/2022/03/09/%E5%90%91%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%AC%E4%BA%8C%E5%91%A8/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="EM算法、GMM">
+<meta property="og:description" content="劳模接着第二章。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png">
-<meta property="article:published_time" content="2021-08-31T15:24:15.000Z">
-<meta property="article:modified_time" content="2021-12-22T07:20:55.092Z">
+<meta property="article:published_time" content="2022-03-09T11:49:49.000Z">
+<meta property="article:modified_time" content="2022-03-09T11:50:58.833Z">
 <meta property="article:author" content="HFC">
-<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="向量微积分">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png">
 
-<link rel="canonical" href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/03/09/%E5%90%91%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%AC%E4%BA%8C%E5%91%A8/">
 
 
 <script id="page-configurations">
@@ -57,7 +54,7 @@
   };
 </script>
 
-  <title>高斯混合模型和EM算法 | 独自赏晴雨</title>
+  <title>向量微积分第二周 | 独自赏晴雨</title>
   
 
 
@@ -239,7 +236,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/03/09/%E5%90%91%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%AC%E4%BA%8C%E5%91%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
@@ -252,7 +249,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          高斯混合模型和EM算法
+          向量微积分第二周
         </h1>
 
         <div class="post-meta">
@@ -262,23 +259,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-08-31 23:24:15" itemprop="dateCreated datePublished" datetime="2021-08-31T23:24:15+08:00">2021-08-31</time>
+              <time title="创建时间：2022-03-09 19:49:49 / 修改时间：19:50:58" itemprop="dateCreated datePublished" datetime="2022-03-09T19:49:49+08:00">2022-03-09</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-22 15:20:55" itemprop="dateModified" datetime="2021-12-22T15:20:55+08:00">2021-12-22</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -293,141 +284,118 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>EM算法、GMM</p>
+        <p>劳模接着第二章。</p>
 <span id="more"></span>
-<h2 id="Gaussian-mixture-models-and-the-EM-algorithm"><a href="#Gaussian-mixture-models-and-the-EM-algorithm" class="headerlink" title="Gaussian mixture models and the EM algorithm"></a>Gaussian mixture models and the EM algorithm</h2><p>我们使用简写符号$X_1^n$来表示$X_1,X_2,\cdots,X_n$，相似地，$x_1^n$表示$x_1,x_2,\cdots,x_n$。</p>
-<h3 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h3><p>假设我们有有编号的人$i=1,\cdots,n$。我们观察表示每个人的身高的随机变量$Y_i\in \mathbb{R}$，同时假设有一个观测不到的标签$C_i\in \{\operatorname{M,F}\}$表示人的性别。在这了，小写字母$c$代表”class”。我们也假设两组具有相同的已知方差$\sigma^2$，但不同的未知均值$\mu_M$和$\mu_F$。类标签符合伯努利分布：</p>
+<h3 id="偏导数"><a href="#偏导数" class="headerlink" title="偏导数"></a>偏导数</h3><p>假设我们有函数$f=f(x,y)$，我们定义其关于$x$的偏导数：</p>
 <script type="math/tex; mode=display">
-p_{C_i}(c_i) = q^{\mathbb{1}(c_i=M)}(1-q)^{\mathbb{1}(c_i=F)}</script><p>我们也假设$q$是已知的。为了简化符号，我们令$\pi_M=q$和$\pi_F=1-q$，因此我们可以写作：</p>
+\frac{\partial f}{\partial x} = \lim_{h\rightarrow 0}\frac{f(x+h,y)-f(x,y)}{h}</script><p>我们也可以定义多阶偏导数，如二阶偏导数</p>
 <script type="math/tex; mode=display">
-p_{C_i}(c_i) = \prod_{c\in \{M,F\}}\pi_c^{\mathbb{1}(c_i=c)}</script><p>每一类的条件分布都为高斯分布：</p>
+\frac{\partial^2{f}}{\partial{x^2}},\frac{\partial^2{f}}{\partial{y^2}},\frac{\partial^2{f}}{\partial{x}\partial{y}} = \frac{\partial^2{f}}{\partial{y}\partial{x}}</script><p>偏导数一个应用就是泰勒展开，函数$f(x,y)$在$(0,0)$处的泰勒展开为：</p>
 <script type="math/tex; mode=display">
-p_{Y_i|C_i}(y_i|c_i) = \prod_c\mathcal{N}(y_i;\mu_c,\sigma^2)^{\mathbb{1}(c_i=c)}</script><h3 id="Parameter-estimation-a-first-attempt"><a href="#Parameter-estimation-a-first-attempt" class="headerlink" title="Parameter estimation: a first attempt"></a>Parameter estimation: a first attempt</h3><p>假设我们观测到独立同分布的身高$Y_1=y_1,\cdots,Y_n=y_n$，并且我们想要去找到参数$\mu_M,\mu_F$的极大似然估计。这是一个非监督问题：我们不知道我们数据的性别标签，但是我们想根据这些标签学习参数。</p>
-<p>根据上文提到的模型设计，计算所有数据点$P_{Y_1,\cdots,Y_n}$的联合密度，以$\mu_M,\mu_F,\sigma,q$表示。取$\log$后计算$\log$似然，然后对$\mu_M$进行求导。为什么优化这么困难？</p>
-<p>我们先对单个数据点$Y_i=y_i$求密度：</p>
+f(x,y)=f(0,0) + f_x(0)(x-0)+f_y(0)(y-0)+\frac{1}{2}(f_{xx}(0)(x-0)^2+f_{yy}(0)(y-0)^2+2f_{xy}(0,0)(x-0)(y-0))+\cdots</script><p>也可以将其写为矩阵的形式。</p>
+<h4 id="链式法则"><a href="#链式法则" class="headerlink" title="链式法则"></a>链式法则</h4><p>假设函数$f=f(x,y)$。</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-P_{Y_i}(y_i) &= \sum_{c_i}p_{C_i}(c_i)p_{Y_i|C_i}(y_i|c_i)\\
-&= \sum_{c_i}(\pi_c\mathcal{N}(y_i;\mu_C,\sigma^2))^{\mathbb{1}(c_i=c)}\\
-&= q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2)
-\end{aligned}</script><p>现在，所有观测的联合分布为</p>
+df &= f(x+dx,y+dy)-f(x,y)\\
+&= [f(x+dx,y+dy)-f(x,y+dy)]+[f(x,y+dy)-f(x,y)]\\
+&=\frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy
+\end{aligned}</script><p>这里因为$dy$很小，可以假设$y+dy=y$。</p>
+<p>所以如果我们有函数$f=f(x(t),y(t))$，则</p>
 <script type="math/tex; mode=display">
-P_{Y_1^n}(y_1^n) = \prod_{i=1}^n(q\mathcal{N}(y_i;\mu_M,\sigma^2) + (1-q)\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>则$\log$似然函数为：</p>
+\frac{df}{dt} = \frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}</script><p>这就是链式法则。</p>
+<h4 id="Triple-Product-Rule"><a href="#Triple-Product-Rule" class="headerlink" title="Triple Product Rule"></a>Triple Product Rule</h4><p>假设我们有变量$x,y,z$，它们之间有关系：$f(x,y,z)=0$。</p>
+<p>所以我们有</p>
 <script type="math/tex; mode=display">
-\ln p_{Y_1^n}(y_1^n) = \sum_{i=1}^n\ln(\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2) + \pi_F\mathcal{N}(y_i;\mu_F,\sigma^2))</script><p>我们已经遇到了一个问题，和的形式阻止我们将$\log$应用于内部的正态分布密度函数。通过对称性，我们只需要看其中一个均值，另一个将遵循相同的过程。在我们深入区分之前，我们注意到：</p>
+x = x(y,z),\quad z = z(x,y)</script><p>所以我们有</p>
+<script type="math/tex; mode=display">
+dx = \frac{\partial x}{\partial y}dy + \frac{\partial x}{\partial z}dz</script><script type="math/tex; mode=display">
+dz = \frac{\partial z}{\partial x}dx+\frac{\partial z}{\partial y}dy</script><p>将$dz$代入，我们可得：</p>
+<script type="math/tex; mode=display">
+\left(1-\frac{\partial x}{\partial z}\frac{\partial z}{\partial x}\right)dx = \left(\frac{\partial x}{\partial y}+\frac{\partial x}{\partial z}\frac{\partial z}{\partial y}\right)dy</script><p>我们可以认为$x,y$是独立的，二者可以任意变化，但是$z$随着两者变化。所以两个系数都必须等于$0$，即</p>
+<script type="math/tex; mode=display">
+\frac{\partial x}{\partial z}\frac{\partial z}{\partial x}=1</script><p>和</p>
+<script type="math/tex; mode=display">
+\frac{\partial x}{\partial y}\frac{\partial y}{\partial z}\frac{\partial z}{\partial x}=-1</script><h3 id="Del-运算符"><a href="#Del-运算符" class="headerlink" title="Del 运算符"></a>Del 运算符</h3><h4 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h4><p>假设我们有函数$f=f(x,y,z)$。则</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\frac{d}{d\mu}\mathcal{N}(x;\mu,\sigma^2) &= \frac{d}{d\mu}[\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}]\\
-&= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{-(x-\mu)^2}{2\sigma^2}}\cdot\frac{2(x-\mu)}{2\sigma^2}\\
-&= \mathcal{N}(x;\mu,\sigma^2)\cdot\frac{(x-\mu)}{\sigma^2}
-\end{aligned}</script><p>对数似然函数对$\mu_M$进行求导，得</p>
-<blockquote id="fn_1">
-<sup>1</sup>. $\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0$<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
+df &= \frac{\partial f}{\partial x}dx+\frac{\partial f}{\partial y}dy + \frac{\partial f}{\partial z}dz\\
+&=\left(\frac{\partial f}{\partial x}\vec{i}+\frac{\partial f}{\partial y}\vec{j}+\frac{\partial f}{\partial z}\vec{k}\right)\cdot(dx\vec{i}+dy\vec{j}+dz\vec{k})\\
+&= \vec{\nabla}f\cdot d\vec{r}
+\end{aligned}</script><p>我们看到当$d\vec{r}$与梯度同向时函数值变化最大，所以沿着梯度的方向函数值变化最大。</p>
+<p>我们定义<code>del</code>运算符：</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^n\frac{1}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)}\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)\frac{y_i-\mu_M}{\sigma^2}=0</script><p>对于这个表达式我们无法求解。</p>
-<h3 id="Using-hidden-variables-and-the-EM-Algorithm"><a href="#Using-hidden-variables-and-the-EM-Algorithm" class="headerlink" title="Using hidden variables and the EM Algorithm"></a>Using hidden variables and the EM Algorithm</h3><p>退一步，什么会使这个计算容易。如果我们知道隐变量$C_i$的值，则对参数们做最大似然估计就会很容易：我们将会取所有$C_i=M$的点用来估计$\mu_M$，然后对所有$C_i=F$的点重复此过程来估计$\mu_F$。受此启发，我们尝试计算给定观测下$C_i$的分布。我们将从贝叶斯规则开始：</p>
+\vec{\nabla} = \frac{\partial }{\partial x}\vec{i} + \frac{\partial}{\partial y}\vec{j}+\frac{\partial}{\partial z}\vec{k}</script><p>梯度就是一个标量函数$f$与$\vec{\nabla}$运算符作用后的结果。</p>
+<h4 id="Diverganece-散度"><a href="#Diverganece-散度" class="headerlink" title="Diverganece(散度)"></a>Diverganece(散度)</h4><p>假设我们有向量函数</p>
+<script type="math/tex; mode=display">
+\vec{u} = u_1(x,y,z)\vec{i}+u_2(x,y,z)\vec{j}+u_3(x,y,z)\vec{k}</script><p>散度为向量函数与$\vec{\nabla}$运算符的内积。</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-p_{C_i|Y_i}(c_i|y_i) &= \frac{p_{Y_i|C_i}(y_i|c_i)p_{C_i}(c_i)}{p_{Y_i}(y_i)}\\
-&= \frac{\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(c=c_i)}}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(c_i)
-\end{aligned}</script><p>我们看一下$C_i=M$的后验概率：</p>
+\vec{\nabla}\cdot \vec{u} &= 
+\left(\frac{\partial }{\partial x}\vec{i} + \frac{\partial}{\partial y}\vec{j}+\frac{\partial}{\partial z}\vec{k}\right)\cdot (u_1\vec{i}+u_2\vec{j}+u_3\vec{k})\\
+&=\frac{\partial u_1}{\partial x} + \frac{\partial u_2}{\partial y}+\frac{\partial u_3}{\partial z}
+\end{aligned}</script><h4 id="Curl-旋度"><a href="#Curl-旋度" class="headerlink" title="Curl(旋度)"></a>Curl(旋度)</h4><p>假设我们有向量函数</p>
 <script type="math/tex; mode=display">
-p_{C_i|Y_i}(M|y_i) = \frac{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)}{\pi_M\mathcal{N}(y_i;\mu_M,\sigma^2)+\pi_F\mathcal{N}(y_i;\mu_F,\sigma^2)} = q_{C_i}(M)</script><p>这个看起来很熟悉，这是式<sup><a href="#fn_1" id="reffn_1">1</a></sup>中的一部分，我们可以将式<sup><a href="#fn_1" id="reffn_1">1</a></sup>用$q_{C_i}$重写，并且假定其跟$\mu_M$无关</p>
+\vec{u} = u_1(x,y,z)\vec{i}+u_2(x,y,z)\vec{j}+u_3(x,y,z)\vec{k}</script><p>旋度为<code>del</code>运算符与$\vec{u}$的叉乘，即</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^nq_{C_i}(M)\frac{y_i-\mu_M}{\sigma^2}=0\\
-\mu_M = \frac{\sum_{i=1}^nq_{C_i}(M)y_i}{\sum_{i=1}^nq_{C_i}(M)}</script><p>这样就看起来好多了：$\mu_M$是身高的加权平均值，其中每个身高都根据该人是男性的可能性进行加权。</p>
-<p>因此现在我们形成了一个循环，如果我们知道参数我们将会很容易计算出$C_1^n$的后验概率，并且如果我们知道后验概率我们将很容易地估计出参数，这就陷入了死循环。这就暗示了以下策略，我们可以固定一个来求解另一个。这种方法通常被称为<code>EM</code>算法。它的工作原理大致如下：</p>
-<ul>
-<li>首先，我们固定参数(在这种情况下为高斯分布的均值$\mu_M$和$\mu_F$)并且求解隐变量的后验分布(在这种情况下记为$q_{C_i}$)。</li>
-<li>之后，我们固定隐变量的后验分布，利用隐变量的期望值来最优化参数。</li>
-<li>重复两个步骤直到收敛。</li>
-</ul>
-<h3 id="The-EM-Algorithm-a-more-formal-look"><a href="#The-EM-Algorithm-a-more-formal-look" class="headerlink" title="The EM Algorithm: a more formal look"></a>The EM Algorithm: a more formal look</h3><p>正如我们将在几个短步骤中展示的那样，EM算法实际上是最大化对数似然的下限(换句话说，每一步都保证改进我们的答案直到收敛)。</p>
-<p>假设我们观测到了随机变量$Y$。现在假设我们也有一些隐变量$C$并且$Y$依赖于$C$。我们可以说$C$和$Y$的分布中有一些我们不知道的参数$\theta$，并且我们有兴趣找到它们。</p>
-<p>在我们上一个例子中，我们观测到有隐变量(性别)$C=\{C_1,\cdots,C_n\}$的身高变量$Y=\{Y_1,\cdots,Y_n\}$，并且$Y$和$C$是独立同分布的，我们的参数是$\mu_M$和$\mu_F$。</p>
-<p>在我们真正推导算法之前，我们需要一个关键结论：<code>Jensen&#39;s inequation</code>(琴声不等式)。在这个例子中我们需要的琴声不等式的特例：</p>
+\vec{\nabla}\times \vec{u} = \det\begin{bmatrix}
+\vec{i}&\vec{j}&\vec{k}\\
+\frac{\partial}{\partial x}&\frac{\partial}{\partial y}&\frac{\partial}{\partial z}\\
+u_1&u_2&u_3
+\end{bmatrix}</script><p>很容易证明，我们有</p>
 <script type="math/tex; mode=display">
-\log(\mathbb{E}[X])\ge \mathbb{E}[\log(X)]</script><p>下图是关于琴声不等式的几何直观：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM.png" alt=""></p>
+\vec{\nabla}\times (\vec{\nabla}f)=0</script><p>和</p>
+<script type="math/tex; mode=display">
+\vec{\nabla}\cdot (\vec{\nabla}\times \vec{u})=0</script><h3 id="Laplacian运算符"><a href="#Laplacian运算符" class="headerlink" title="Laplacian运算符"></a>Laplacian运算符</h3><p>拉普拉斯运算符表示为：</p>
+<script type="math/tex; mode=display">
+\nabla^2 = \vec{\nabla}\cdot\vec{\nabla} = \frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z}</script><p>作用于标量域：</p>
+<script type="math/tex; mode=display">
+\nabla^2f = \frac{\partial^2f}{\partial x^2}+\frac{\partial^2f}{\partial y^2}+\frac{\partial^2f}{\partial z}</script><p>作用于向量域：</p>
+<script type="math/tex; mode=display">
+\nabla^2\vec{u} = \nabla^2u_1\vec{i}+\nabla^2u_2\vec{j}+\nabla^2u_3\vec{k}</script><h3 id="向量微积分代数"><a href="#向量微积分代数" class="headerlink" title="向量微积分代数"></a>向量微积分代数</h3><h4 id="Vector-derivative-identities"><a href="#Vector-derivative-identities" class="headerlink" title="Vector derivative identities"></a>Vector derivative identities</h4><ol>
+<li>$\nabla\times \nabla f=0$</li>
+<li>$\nabla\cdot(\nabla\times u)=0$</li>
+<li>$\nabla \times(\nabla \times u) =\nabla(\nabla \cdot u)-\nabla^{2} u$</li>
+<li>$\nabla \cdot(f u) =u \cdot \nabla f+f \nabla \cdot u$</li>
+<li>$\nabla \times(f u) =\nabla f \times u+f \nabla \times u$</li>
+<li>$\nabla(u \cdot v) =(u \cdot \nabla) v+(v \cdot \nabla) u+u \times(\nabla \times v)+v \times(\nabla \times u)$</li>
+<li>$\nabla \cdot(u \times v) =v \cdot(\nabla \times u)-u \cdot(\nabla \times v)$</li>
+<li>$\nabla \times(u \times v) =u(\nabla \cdot v)-v(\nabla \cdot u)+(v \cdot \nabla) u-(u \cdot \nabla) v$</li>
+</ol>
 <blockquote>
-<p>琴声不等式的特例说明：对于任何随机变量$X$，$\mathbb{E}[\log X]\le\log\mathbb{E}[X]$。令$X$的PDF为红色的曲线。令$Z=\log X$。中间和右边的图展示了怎么构建$Z$的PDF(蓝色曲线)：因为$\log$，与$X$的PDF相比，它倾向于更小的值。$\log\mathbb{E}(X)$是由中间黑色曲线或$\mathbb{E}(Z)$给出的点。但是，$\mathbb{E}[\log X]$或者$\mathbb{E}[Z]$，将始终较小(或至少永远不会较大)因为对数挤压了分布较大的一端(其中$Z$比较大)并拉伸了较小的一端(其中$Z$较小)。</p>
-<p>关于琴声不等式</p>
-<p>对于一个实函数$\phi(x)$，在区间$I$内它是凸的($\frac{d^2\phi(x)}{d^2x}&gt;0, \forall x\in I$)，那么它满足下面关系：</p>
+<p>注：这里的$u,v$都是向量，运算</p>
 <script type="math/tex; mode=display">
-\phi(\sum_{i=1}^Np_ix_i)\le \sum_{i=1}^Np_i\phi(x_i)</script><p>其中$p_i\ge0,\sum_{i=1}^Np_i=1$，且$x_i\in I,(i=1,\cdots,N)$。</p>
-<p><strong>证明</strong>：令$A=\sum_{i=1}^Np_ix_i$，显然$A\in I$。取</p>
+u\cdot \nabla = u_1\frac{\partial}{\partial x_1}+u_2\frac{\partial}{\partial x_2}+u_3\frac{\partial}{\partial x_3}</script><p>作用于标量域上为：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-S &= \sum_{i=1}^N\phi(x_i) - \phi(A)\\
-&= \sum_{i=1}^Np_i[\phi(x_i)-\phi(A)]\\
-&= \sum_{i=1}^N p_i\int_A^{x_i}\phi^{\prime}(x)dx
-\end{aligned}</script><p>若$A\le x_i$，因为$\phi^{\prime}(x)$在区间$I$上是递增的，所以</p>
+u\cdot \nabla f = u_1\frac{\partial f}{\partial x_1}+u_2\frac{\partial f}{\partial x_2}+u_3\frac{\partial f}{\partial x_3}</script><p>作用于向量域上为：</p>
 <script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx\ge \phi^{\prime}(A)(x_i-A)</script><p>若$A_i&gt;x_i$，则</p>
+(u \cdot \nabla) v=\left(u \cdot \nabla v_{1}\right) i+\left(u \cdot \nabla v_{2}\right) j+\left(u \cdot \nabla v_{3}\right) k</script></blockquote>
+<p>在证明之前我们需要以下结论：</p>
 <script type="math/tex; mode=display">
-\int_A^{x_i}\phi^{\prime}(x)dx = -\int_{x_i}^A\phi^{\prime}(x)dx\ge-(A-x_i)\phi(A) = (x_i-A)\phi^{\prime}(A)</script><p>所以：</p>
+(\vec{\nabla}\times\vec{u})_i = \epsilon_{ijk}\frac{\partial u_k}{\partial x_j}</script><script type="math/tex; mode=display">
+\nabla\cdot \vec{u} = \frac{\partial u_i}{\partial x_i}</script><script type="math/tex; mode=display">
+\delta_{ij}u_j = u_i</script><p>我们证明一下第7条</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-S &\ge \sum_{i=1}^Np_i\phi^{\prime}(A)(x_i-A)\\
-&= \phi^{\prime}(A)[\sum_{i=1}^Np_i(x_i-A)]\\
-&= \phi^{\prime}(A)(A-A)\\
-&=0
-\end{aligned}</script><p>证毕。</p>
-</blockquote>
-<p>在本文中，求期望相当于加权平均，而$\ln(x)$的二阶导小于$0$，故与上文提到的不等式符号相反。</p>
-<h4 id="The-EM-Algorithm"><a href="#The-EM-Algorithm" class="headerlink" title="The EM Algorithm"></a>The EM Algorithm</h4><p>我们想要去最大化似然函数。我们通过边缘化$C$来计算对数似然函数：</p>
-<script type="math/tex; mode=display">
-\log p_Y(y;\theta) = \log\left(\sum_cp_{Y,C}(y,c)\right)</script><p>我们现在也遭受了困境，我们无法对和取对数。如果我们交换它们的顺序不是更好吗？对，期望是一种特殊的求和，并且琴声不等式可以让我们互换它们如果我们有期望的话。因此，我们将要引进一个隐变量$C$的新的分布$q_C$：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \log p_{Y}(y ; \theta) & \\ \left.\text { (Marginalizing over } C \text { and introducing } q_{C}(c) / q_{C}(c)\right) &=\log \left(\sum_{c} q_{C}(c) \frac{p_{Y, C}(y, c ; \theta)}{q_{C}(c)}\right) \\ \text { (Rewriting as an expectation) } &=\log \left(\mathbb{E}_{q_{C}}\left[\frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right]\right) \\ \text { (Using Jensen's inequality) } & \geq \mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right](2) \\ \text { Using definition of conditional probability } &=\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right](3) \end{aligned}</script><p>现在我们有可以很容易优化的$\log p_Y(y;\theta)$的下界了。因为我们已经引入了$q_C$，我们想要在$\theta$和$q_C$上实施最大化。</p>
-<p>我们将使用(2)和(3)分别进行优化。首先先用(2)寻找最好的参数：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y, C}(y, C ; \theta)}{q_{C}(C)}\right] = \mathbb{E}_{q_C}[\log p_{Y, C}(y, C ; \theta)] - \mathbb{E}_{q_C}[\log q_C(C)]</script><p>因为$q_C$不依赖于$\theta$，因此我们可以只优化第一项：</p>
-<script type="math/tex; mode=display">
-\widehat{\theta} \leftarrow \underset{\theta}{\operatorname{argmax}} \mathbb{E}_{q_{C}}\left[\log p_{Y, C}(y, C ; \theta)\right]</script><p>这被称作<code>M-step</code>：<code>M</code>代表最大化，因为我们正在最大化参数。现在，我们用(3)来找到最好的$q_C$：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{q_{C}}\left[\log \frac{p_{Y}(y ; \theta) p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]=\mathbb{E}_{q_{C}}\left[\log p_{Y}(y ; \theta)\right]+\mathbb{E}_{q_{C}}\left[\log \frac{p_{C \mid Y}(C \mid y ; \theta)}{q_{C}(C)}\right]</script><p>第一项不依赖于$c$，并且第二项看起来像KL散度：</p>
+\vec{\nabla}\cdot(\vec{u}\times\vec{v})&=\frac{\partial}{\partial x_i}(\epsilon_{ijk}u_jv_k)\\
+&=\epsilon_{ijk}\frac{\partial u_j}{\partial x_i}v_k + \epsilon_{ijk}u_j\frac{\partial v_k}{\partial x_i}\\
+&=v_k\epsilon_{kij}\frac{\partial u_j}{\partial x_i} - u_j\epsilon_{jik}\frac{\partial v_k}{\partial x_i}\\
+&= \vec{v}\cdot(\vec{\nabla}\times \vec{u})-\vec{u}\times (\vec{\nabla}\times\vec{v})
+\end{aligned}</script><p>下面证明一下第$4$条：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-&= \log p_Y(y;\theta) - \mathbb{E}_{q_C}[\log\frac{q_C(C)}{p_{C|Y}(C|y;\theta)}]\\
-&= \log p_Y(y;\theta) - D(q_C(\cdot)||p_{C|Y}(\cdot|y;\theta))
-\end{aligned}</script><p>因此，当最大化上述值时，我们想要最小化KL散度。KL散度总是大于等于零，当两个分布完全一样时取零。因此，最优化的$q_C$即为$p_{C|Y}(c|y;\theta)$：</p>
-<script type="math/tex; mode=display">
-\hat{q}_C(c) \leftarrow p_{C|Y}(c|y;\theta)</script><p>这被称为<code>E-step</code>：<code>E</code>代表期望，因为我们正在计算$q_C$以便我们可以将其用于期望值。</p>
-<h4 id="The-algorithm"><a href="#The-algorithm" class="headerlink" title="The algorithm"></a>The algorithm</h4><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EM_a.png" alt=""></p>
-<blockquote>
-<p>信息熵可以表达数据的信息量大小，是信息处理的一个非常重要的概念。对于离散型随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = \mathrm{E}_{x\sim p(x)}[-\log p(x)] = -\sum_{i=1}^n p(x)\log p(x)</script><p>对于连续性随机变量，信息熵公式如下：</p>
-<script type="math/tex; mode=display">
-H(p) = H(X) = E_{x\sim p(x)}[-\log p(x)] = -\int p(x)\log p(x)dx</script><p>接下来我们来说一下相对熵，又被称为KL散度或信息散度，是两个概率分布差异的非对称度量。在信息论中，相对熵等价于两个概率分布的信息熵的插值，若其中一个概率分布为真实分布，另一个为理论分布，则此时相对熵等于交叉熵与真实分布的信息熵之差，表示使用理论分布拟合真实分布时产生的信息损耗。公式为：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i) - p(x_i)\log q(x_i)]</script><p>上面的$p(x_i)$为真实事件的概率分布，$q(x_i)$为理论拟合出来的该事件的概率分布。当拟合出来的事件概率分布跟真实的一模一样时，相对熵等于零，而拟合出来不一样时，相对熵大于零。</p>
-<p>最后我们来证明一下相对熵公式只有在$p(x_i)$等于$q(x_i)$的时候等于$0$，其他时候大于$0$。</p>
-<p>要证：</p>
-<script type="math/tex; mode=display">
-D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\ge 0</script><p>即证：</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le 0</script><p>又$\ln(x)\le x-1$，当且仅当$x=1$时等号成立</p>
-<p>故</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^Np(x_i)\log\frac{q(x_i)}{p(x_i)}\le \sum_{i=1}^Np(x_i)(\frac{q(x_i)}{p(x_i)}-1) = \sum_{i=1}^N[p(x_i)-q(x_i)]=0</script><p>上面式子中$=$只在$p(x_i)=q(x_i)$时成立。</p>
-</blockquote>
-<h3 id="Example-Applying-the-general-algorithm-to-GMMS"><a href="#Example-Applying-the-general-algorithm-to-GMMS" class="headerlink" title="Example: Applying the general algorithm to GMMS"></a>Example: Applying the general algorithm to GMMS</h3><p>现在，让我们重现看一下关于身高的GMM模型，看看我们如何应用这两个步骤。我们有观测变量$Y=\{Y_1,\cdots,Y_n\}$和隐变量$C=\{C_1,\cdots,C_n\}$。对于<code>E-Step</code>，我们计算后验概率$p_{C|Y}(c|y)$，之前已经计算过了。对于<code>M-Step</code>，我们得去计算联合概率：</p>
+\nabla \cdot(f u) &=\frac{\partial}{\partial x_{i}}\left(f u_{i}\right) \\
+&=\frac{\partial f}{\partial x_{i}} u_{i}+f \frac{\partial u_{i}}{\partial x_{i}} \\
+&=u \cdot \nabla f+f \nabla \cdot u
+\end{aligned}</script><p>证明一下第三条：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\mathbb{E}_{q_C}[\ln p_{Y,C}(y,C)] &= \mathbb{E}[\ln p_{Y|C}(y|C)p_C(C)]\\
-&= \mathbb{E}_{q_C}\left[\ln \prod_{i=1}^n\prod_{c\in \{M,F\}}(\pi_c\mathcal{N}(y_i;\mu_c,\sigma^2))^{\mathbb{1}(C_i=c)}\right]\\
-&= \mathbb{E}_{q_C}\left[\sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{1}(C_i=c)(\ln\pi_c+\ln\mathcal{N}(y_i;\mu_c,\sigma^2))\right]\\
-&= \sum_{i=1}^n\sum_{c\in \{M,F\}}\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]\left(\ln\pi_c + \ln\frac{1}{\sigma\sqrt{2\pi}}-\frac{(y_i-\mu_c)^2}{2\sigma^2}\right)
- \end{aligned}</script><p>$\mathbb{E}_{q_C}[\mathbb{1}(C_i=c)]$是$C_i$为$c$的概率。现在我们对$\mu_M$求导：</p>
-<script type="math/tex; mode=display">
-\frac{d}{d \mu_{M}} \mathbb{E}_{q_{C}}\left[\ln p_{Y \mid C}(y \mid C) p_{C}(C)\right]=\sum_{i=1}^{n} q_{C_{i}}(M)\left(\frac{y_{i}-\mu_{M}}{\sigma^{2}}\right)=0</script><p>得：</p>
-<script type="math/tex; mode=display">
-\mu_{M}=\frac{\sum_{i=1}^{n} q_{C_{i}}(M) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(M)}</script><p>同理可得：</p>
-<script type="math/tex; mode=display">
-\mu_{F}=\frac{\sum_{i=1}^{n} q_{C_{i}}(F) y_{i}}{\sum_{i=1}^{n} q_{C_{i}}(F)}</script>
+\left[\nabla \times(\nabla \times u)\right]_{i} &=\epsilon_{i j k} \frac{\partial}{\partial x_{j}}\left(\epsilon_{k l m} \frac{\partial u_{m}}{\partial x_{l}}\right) \\
+&=\epsilon_{i j k} \epsilon_{k l m} \frac{\partial^{2} u_{m}}{\partial x_{j} \partial x_{l}} \\
+&=\epsilon_{k i j} \epsilon_{k l m} \frac{\partial^{2} u_{m}}{\partial x_{j} \partial x_{l}} \\
+&=\left(\delta_{i l} \delta_{j m}-\delta_{i m} \delta_{j l}\right) \frac{\partial^{2} u_{m}}{\partial x_{j} \partial x_{l}} \\
+&=\frac{\partial^{2} u_{j}}{\partial x_{j} \partial x_{i}}-\frac{\partial^{2} u_{i}}{\partial x_{j} \partial x_{j}} \\
+&=[\nabla(\nabla \cdot u)]_{i}-\left[\nabla^{2} u\right]_{i}
+\end{aligned}</script>
     </div>
 
     
@@ -472,7 +440,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2021/08/31/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E5%92%8CEM%E7%AE%97%E6%B3%95/" title="高斯混合模型和EM算法">https://www.hfcouc.work/2021/08/31/高斯混合模型和EM算法/</a>
+    <a href="https://www.hfcouc.work/2022/03/09/%E5%90%91%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%AC%E4%BA%8C%E5%91%A8/" title="向量微积分第二周">https://www.hfcouc.work/2022/03/09/向量微积分第二周/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -512,7 +480,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E5%90%91%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="tag"># 向量微积分</a>
           </div>
 
         
@@ -521,13 +489,10 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/09/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" rel="prev" title="微分方程">
-      <i class="fa fa-chevron-left"></i> 微分方程
+    <a href="/2022/03/02/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="prev" title="贝叶斯数据分析第二周-采样方法">
+      <i class="fa fa-chevron-left"></i> 贝叶斯数据分析第二周-采样方法
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/09/12/%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" rel="next" title="线性代数应该这样学：线性空间">
-      线性代数应该这样学：线性空间 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -589,7 +554,7 @@ D_{\operatorname{KL}}(p||q) = \sum_{i=1}^N[p(x_i)\log p(x_i)-p(x_i)\log q(x_i)]\
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gaussian-mixture-models-and-the-EM-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Gaussian mixture models and the EM algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-model"><span class="nav-number">1.1.</span> <span class="nav-text">The model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-estimation-a-first-attempt"><span class="nav-number">1.2.</span> <span class="nav-text">Parameter estimation: a first attempt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-hidden-variables-and-the-EM-Algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">Using hidden variables and the EM Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-EM-Algorithm-a-more-formal-look"><span class="nav-number">1.4.</span> <span class="nav-text">The EM Algorithm: a more formal look</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-EM-Algorithm"><span class="nav-number">1.4.1.</span> <span class="nav-text">The EM Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-algorithm"><span class="nav-number">1.4.2.</span> <span class="nav-text">The algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-Applying-the-general-algorithm-to-GMMS"><span class="nav-number">1.5.</span> <span class="nav-text">Example: Applying the general algorithm to GMMS</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E5%AF%BC%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">偏导数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">1.1.</span> <span class="nav-text">链式法则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Triple-Product-Rule"><span class="nav-number">1.2.</span> <span class="nav-text">Triple Product Rule</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Del-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">Del 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6"><span class="nav-number">2.1.</span> <span class="nav-text">梯度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Diverganece-%E6%95%A3%E5%BA%A6"><span class="nav-number">2.2.</span> <span class="nav-text">Diverganece(散度)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Curl-%E6%97%8B%E5%BA%A6"><span class="nav-number">2.3.</span> <span class="nav-text">Curl(旋度)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Laplacian%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.</span> <span class="nav-text">Laplacian运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86%E4%BB%A3%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">向量微积分代数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vector-derivative-identities"><span class="nav-number">4.1.</span> <span class="nav-text">Vector derivative identities</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
