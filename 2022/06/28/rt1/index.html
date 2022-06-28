@@ -28,19 +28,26 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="new Artitalk({     appId: &#39;rgr3D6dkv0TJmFRY07jU1QpH-MdYXbMMI&#39;, &#x2F;&#x2F; Your LeanCloud appId     appKey: &#39;Ec9l4kepQw06eNqbOlmz6Mp0&#39; &#x2F;&#x2F; Your LeanCloud appKey })">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ss">
-<meta property="og:url" content="https://www.hfcouc.work/ss/index.html">
+  <meta name="description" content="The Golem of Prague golem为魔像，为一个非常强大的机器人，但是它只会听从人的命令，没有自主思考的能力。因此人类必须给他设置非常具体的命令，否则可能会对人类造成伤害。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Statistical Rethinking:Chapter1">
+<meta property="og:url" content="https://www.hfcouc.work/2022/06/28/rt1/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="new Artitalk({     appId: &#39;rgr3D6dkv0TJmFRY07jU1QpH-MdYXbMMI&#39;, &#x2F;&#x2F; Your LeanCloud appId     appKey: &#39;Ec9l4kepQw06eNqbOlmz6Mp0&#39; &#x2F;&#x2F; Your LeanCloud appKey })">
+<meta property="og:description" content="The Golem of Prague golem为魔像，为一个非常强大的机器人，但是它只会听从人的命令，没有自主思考的能力。因此人类必须给他设置非常具体的命令，否则可能会对人类造成伤害。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-21T15:39:27.000Z">
-<meta property="article:modified_time" content="2021-08-21T15:53:38.647Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt1_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt1_2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt1_3.jpg">
+<meta property="article:published_time" content="2022-06-28T09:47:59.000Z">
+<meta property="article:modified_time" content="2022-06-28T09:57:21.940Z">
 <meta property="article:author" content="HFC">
+<meta property="article:tag" content="概率编程">
+<meta property="article:tag" content="贝叶斯统计">
+<meta property="article:tag" content="Statistical Rethinking">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt1_1.png">
 
-<link rel="canonical" href="https://www.hfcouc.work/ss/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/06/28/rt1/">
 
 
 <script id="page-configurations">
@@ -48,13 +55,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>ss | 独自赏晴雨
-</title>
+  <title>Statistical Rethinking:Chapter1 | 独自赏晴雨</title>
   
 
 
@@ -213,52 +219,197 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">ss
-</h1>
-
-<div class="post-meta">
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/06/28/rt1/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
+      <meta itemprop="name" content="HFC">
+      <meta itemprop="description" content="留一份不足，可得无限美好">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独自赏晴雨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Statistical Rethinking:Chapter1
+        </h1>
+
+        <div class="post-meta">
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-28 17:47:59 / 修改时间：17:57:21" itemprop="dateCreated datePublished" datetime="2022-06-28T17:47:59+08:00">2022-06-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">书籍阅读</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="The-Golem-of-Prague"><a href="#The-Golem-of-Prague" class="headerlink" title="The Golem of Prague"></a>The Golem of Prague</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt1_1.png" alt=""></p>
+<p><code>golem</code>为魔像，为一个非常强大的机器人，但是它只会听从人的命令，没有自主思考的能力。因此人类必须给他设置非常具体的命令，否则可能会对人类造成伤害。</p>
+<span id="more"></span>
+<h3 id="Statistical-golems"><a href="#Statistical-golems" class="headerlink" title="Statistical golems"></a>Statistical golems</h3><p>统计家也制造魔像。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt1_2.jpg" alt=""></p>
+<blockquote>
+<p>统计家制造的魔像，非常强大，但也同样需要人类的指导。缺乏灵活性，在需要创造性的区域无法应用。</p>
+</blockquote>
+<h3 id="Statistical-rethinking"><a href="#Statistical-rethinking" class="headerlink" title="Statistical rethinking"></a>Statistical rethinking</h3><p>很多人认为统计推断的目标是检验无效假设。但这是不正确的，我们有以下两个理由：</p>
+<ol>
+<li>假设不是模型。假设和不同种类的模型之间的关系是复杂的。许多模型对应同一个假设，许多假设对应一个模型。这使得严格的证伪变得不可能。</li>
+<li>测量很重要。即使我们认为数据证伪了模型，另一位观察者也会争论我们的方法和措施。他们不相信数据。有时他们是对的。</li>
+</ol>
+<h4 id="Hypotheses-are-not-models"><a href="#Hypotheses-are-not-models" class="headerlink" title="Hypotheses are not models"></a>Hypotheses are not models</h4><p>当我们试图证伪一个假设时，我们必须使用某种模型，但是我们不能仅仅通过一个模型来证明假设是错误的。</p>
+<p>我们看一个关于进化的例子，有人认为进化是中性的，而有人不这么认为，所有存在两个假设。同一个假设可能导致不同的过程的模型，而同一个过程模型会引出不同的统计模型，同一个统计模型也可能对应于不同的过程模型和假设，因此证伪非常复杂。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt1_3.jpg" alt=""></p>
+<h4 id="Measurement-matters"><a href="#Measurement-matters" class="headerlink" title="Measurement matters"></a>Measurement matters</h4><p>首先观测是存在误差的，而且有的测量非常复杂容易出现误差。</p>
+<p>其次假设并不一定是离散的，现实生活中的很多假设都是连续的，例如$80\%$的天鹅都是白色的，对我们证伪来说非常困难。</p>
+<h3 id="Three-tools-for-golem-engineering"><a href="#Three-tools-for-golem-engineering" class="headerlink" title="Three tools for golem engineering"></a>Three tools for golem engineering</h3><h4 id="Bayesian-data-analysis"><a href="#Bayesian-data-analysis" class="headerlink" title="Bayesian data analysis"></a>Bayesian data analysis</h4><p>贝叶斯统计用随机型来描述不确定性，更详细的将在第二章讲述。</p>
+<h4 id="Multilevel-models"><a href="#Multilevel-models" class="headerlink" title="Multilevel models"></a>Multilevel models</h4><p>使用多级模型有四个典型且互补的原因：</p>
+<ol>
+<li>调整重复抽样的估计值。当不止一个观察来自同一个人、地点或时间时，传统的单级模型可能会误导我们。</li>
+<li>调整抽样不平衡的估计值。当某些个体、地点或时间的采样次数多于其他人时，我们也可能会被单级模型误导。</li>
+<li>研究变异。如果我们的研究问题包括数据中个人或其他群体之间的变化，那么多层次模型将有很大帮助，因为它们明确地模拟了变化。</li>
+<li>避免平均。学者们经常对一些数据进行预平均，以构建用于回归分析的变量。这可能很危险，因为平均会消除变化。因此，它制造了虚假的信念。多级模型允许我们保留原始预平均值中的不确定性，同时仍使用平均值进行预测。</li>
+</ol>
+<h4 id="Model-comparison-and-information-criteria"><a href="#Model-comparison-and-information-criteria" class="headerlink" title="Model comparison and information criteria"></a>Model comparison and information criteria</h4><p>最著名的信息准则是 AIC，即 Akaike (ah-kah-ee-kay) 信息准则。AIC 及其同类被称为“信息”标准，因为它们从信息论中发展出对模型准确性的度量。我们可以用起来比较模型的好坏。</p>
+
+    </div>
+
+    
+    
+    
+	
+	
+      <div>
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
 </div>
-
-</header>
-
+      </div>
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
       
-      
-      
-      <div class="post-body">
-          <script type="text/javascript" src="https://unpkg.com/artitalk"></script>
-<div id="artitalk_main"></div>
-<script>
-new Artitalk({
-    appId: 'rgr3D6dkv0TJmFRY07jU1QpH-MdYXbMMI', // Your LeanCloud appId
-    appKey: 'Ec9l4kepQw06eNqbOlmz6Mp0' // Your LeanCloud appKey
-})
-</script>
-
-
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="HFC 微信支付">
+        <p>微信支付</p>
       </div>
       
-      
-      
-    </div>
-    
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="HFC 支付宝">
+        <p>支付宝</p>
+      </div>
 
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HFC
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.hfcouc.work/2022/06/28/rt1/" title="Statistical Rethinking:Chapter1">https://www.hfcouc.work/2022/06/28/rt1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A6%82%E7%8E%87%E7%BC%96%E7%A8%8B/" rel="tag"># 概率编程</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/" rel="tag"># 贝叶斯统计</a>
+              <a href="/tags/Statistical-Rethinking/" rel="tag"># Statistical Rethinking</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/28/Turing/" rel="prev" title="Turing:a language for flexible probabilistic inference">
+      <i class="fa fa-chevron-left"></i> Turing:a language for flexible probabilistic inference
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
     
-    
-    
+  </article>
+  
+  
+  
+
 
 
           </div>
@@ -312,6 +463,7 @@ new Artitalk({
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Golem-of-Prague"><span class="nav-number">1.</span> <span class="nav-text">The Golem of Prague</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistical-golems"><span class="nav-number">1.1.</span> <span class="nav-text">Statistical golems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistical-rethinking"><span class="nav-number">1.2.</span> <span class="nav-text">Statistical rethinking</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hypotheses-are-not-models"><span class="nav-number">1.2.1.</span> <span class="nav-text">Hypotheses are not models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Measurement-matters"><span class="nav-number">1.2.2.</span> <span class="nav-text">Measurement matters</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Three-tools-for-golem-engineering"><span class="nav-number">1.3.</span> <span class="nav-text">Three tools for golem engineering</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bayesian-data-analysis"><span class="nav-number">1.3.1.</span> <span class="nav-text">Bayesian data analysis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multilevel-models"><span class="nav-number">1.3.2.</span> <span class="nav-text">Multilevel models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Model-comparison-and-information-criteria"><span class="nav-number">1.3.3.</span> <span class="nav-text">Model comparison and information criteria</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
@@ -510,6 +662,59 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
