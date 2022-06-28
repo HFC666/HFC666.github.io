@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.hfcouc.work/2022/06/28/Turing/</loc>
+    
+    <lastmod>2022-06-28</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.hfcouc.work/2022/06/22/HMC/</loc>
     
-    <lastmod>2022-06-22</lastmod>
+    <lastmod>2022-06-28</lastmod>
     
   </url>
   
@@ -95,15 +102,29 @@
 
   <url>
     <loc>https://www.hfcouc.work/</loc>
-    <lastmod>2022-06-22</lastmod>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://www.hfcouc.work/tags/%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2022-06-22</lastmod>
+    <loc>https://www.hfcouc.work/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2022-06-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hfcouc.work/tags/%E6%A6%82%E7%8E%87%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2022-06-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hfcouc.work/tags/Julia/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -111,8 +132,8 @@
 
   
   <url>
-    <loc>https://www.hfcouc.work/categories/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2022-06-22</lastmod>
+    <loc>https://www.hfcouc.work/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
