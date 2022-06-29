@@ -28,26 +28,30 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="Turing: a language for flexible probabilistic inference 文章链接：http:&#x2F;&#x2F;proceedings.mlr.press&#x2F;v84&#x2F;ge18b.html?ref&#x3D;https:&#x2F;&#x2F;githubhelp.com">
+  <meta name="description" content="Small Worlds and Large Worlds 当初麦哲伦进行环球航行的时候，错误地认为地球比实际要小，他认为地球的周长只有$30000$km而不是$40000$km。麦哲伦的大小世界提供了模型与现实的对比。小世界是模型自成一体的逻辑世界，在这个小世界里我们根据自己的认知对模型做出一系列假设并且能够验证模型的逻辑。假设小世界是对现实世界的准确描述，没有替代模型可以更好地利用数据中的信息">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Turing:a language for flexible probabilistic inference">
-<meta property="og:url" content="https://www.hfcouc.work/2022/06/28/Turing/index.html">
+<meta property="og:title" content="Statistical Rethinking:Chapter2">
+<meta property="og:url" content="https://www.hfcouc.work/2022/06/29/rt2/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="Turing: a language for flexible probabilistic inference 文章链接：http:&#x2F;&#x2F;proceedings.mlr.press&#x2F;v84&#x2F;ge18b.html?ref&#x3D;https:&#x2F;&#x2F;githubhelp.com">
+<meta property="og:description" content="Small Worlds and Large Worlds 当初麦哲伦进行环球航行的时候，错误地认为地球比实际要小，他认为地球的周长只有$30000$km而不是$40000$km。麦哲伦的大小世界提供了模型与现实的对比。小世界是模型自成一体的逻辑世界，在这个小世界里我们根据自己的认知对模型做出一系列假设并且能够验证模型的逻辑。假设小世界是对现实世界的准确描述，没有替代模型可以更好地利用数据中的信息">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://static01.imgkr.com/temp/9ce5f3b2581549b8b89e6c9cdf7ebea5.png">
-<meta property="og:image" content="http://static01.imgkr.com/temp/679a0f1dc05a4456ae7ee80183c63582.jpg">
-<meta property="og:image" content="http://static01.imgkr.com/temp/99d803e553514e089858f61d913babd1.jpg">
-<meta property="og:image" content="http://static01.imgkr.com/temp/095ae7d0d5a54a33960b6cd2162133bc.jpg">
-<meta property="article:published_time" content="2022-06-28T02:32:40.000Z">
-<meta property="article:modified_time" content="2022-06-28T02:40:23.041Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_4.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_5.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_6.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_7.jpeg">
+<meta property="article:published_time" content="2022-06-29T01:30:27.000Z">
+<meta property="article:modified_time" content="2022-06-29T01:33:09.911Z">
 <meta property="article:author" content="HFC">
 <meta property="article:tag" content="概率编程">
-<meta property="article:tag" content="Julia">
+<meta property="article:tag" content="贝叶斯统计">
+<meta property="article:tag" content="Statistical Rethinking">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://static01.imgkr.com/temp/9ce5f3b2581549b8b89e6c9cdf7ebea5.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_1.png">
 
-<link rel="canonical" href="https://www.hfcouc.work/2022/06/28/Turing/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/06/29/rt2/">
 
 
 <script id="page-configurations">
@@ -60,7 +64,7 @@
   };
 </script>
 
-  <title>Turing:a language for flexible probabilistic inference | 独自赏晴雨</title>
+  <title>Statistical Rethinking:Chapter2 | 独自赏晴雨</title>
   
 
 
@@ -227,7 +231,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/06/28/Turing/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/06/29/rt2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static01.imgkr.com/temp/b0194f7014084f2a95d260aa060f0333.jpg">
@@ -240,7 +244,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Turing:a language for flexible probabilistic inference
+          Statistical Rethinking:Chapter2
         </h1>
 
         <div class="post-meta">
@@ -252,7 +256,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-06-28 10:32:40 / 修改时间：10:40:23" itemprop="dateCreated datePublished" datetime="2022-06-28T10:32:40+08:00">2022-06-28</time>
+              <time title="创建时间：2022-06-29 09:30:27 / 修改时间：09:33:09" itemprop="dateCreated datePublished" datetime="2022-06-29T09:30:27+08:00">2022-06-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,7 +264,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">文献阅读</span></a>
+                  <a href="/categories/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">书籍阅读</span></a>
                 </span>
             </span>
 
@@ -275,100 +279,52 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Turing-a-language-for-flexible-probabilistic-inference"><a href="#Turing-a-language-for-flexible-probabilistic-inference" class="headerlink" title="Turing: a language for flexible probabilistic inference"></a>Turing: a language for flexible probabilistic inference</h2><blockquote>
-<p>文章链接：<a target="_blank" rel="noopener" href="http://proceedings.mlr.press/v84/ge18b.html?ref=https://githubhelp.com">http://proceedings.mlr.press/v84/ge18b.html?ref=https://githubhelp.com</a></p>
-</blockquote>
-<p><img src="http://static01.imgkr.com/temp/9ce5f3b2581549b8b89e6c9cdf7ebea5.png" alt=""></p>
+        <h2 id="Small-Worlds-and-Large-Worlds"><a href="#Small-Worlds-and-Large-Worlds" class="headerlink" title="Small Worlds and Large Worlds"></a>Small Worlds and Large Worlds</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_1.png" alt=""></p>
+<p>当初麦哲伦进行环球航行的时候，错误地认为地球比实际要小，他认为地球的周长只有$30000$km而不是$40000$km。麦哲伦的大小世界提供了模型与现实的对比。小世界是模型自成一体的逻辑世界，在这个小世界里我们根据自己的认知对模型做出一系列假设并且能够验证模型的逻辑。假设小世界是对现实世界的准确描述，没有替代模型可以更好地利用数据中的信息并支持更好的决策。</p>
+<p>大世界是现实世界，可能存在很多我们小世界中没有考虑的事件，模型是对现实世界的不完整表示。</p>
 <span id="more"></span>
-<h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>在概率模型中，我们关注的一般是$p(\theta\mid y,\gamma)$，其中$\theta$为参数，$y$为观测数据，$\gamma$为一些确定了的超参数。</p>
-<h4 id="Models-as-computer-programs"><a href="#Models-as-computer-programs" class="headerlink" title="Models as computer programs"></a>Models as computer programs</h4><p>最早的概率编程语言为BUGS，可以追溯到20世纪90年代。下面展示了概率程序的一般结构。</p>
-<p>输入：数据$y$和超参数$\gamma$</p>
-<p>步骤1：定义全局参数：</p>
-<script type="math/tex; mode=display">
-\theta^{\text{global}}\sim p(\cdot\mid \gamma)</script><p>步骤2：对于每一个观测$y_n$，定义(局部)隐变量并计算似然：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\theta_n^{\text{local}}&\sim p\left(\cdot\mid\theta_{1:n-1}^{\text{local}},\theta^{\text{global}},\gamma\right)\\
-y_n&\sim p\left(\cdot\mid \theta_{1:n}^{\text{local}},\theta^{\text{global}},\gamma\right)
-\end{aligned}</script><p>其中$n=1,2,\cdots,N$。</p>
-<p>参数分为两类：$\theta_n^{\text{local}}$表示对于观测$y_n$的模型参数，如混合高斯模型中$y_n$属于哪个高斯分布的参数，而$\theta^{\text{global}}$表示全局变量。</p>
-<h4 id="Inference-for-probabilistic-programs"><a href="#Inference-for-probabilistic-programs" class="headerlink" title="Inference for probabilistic programs"></a>Inference for probabilistic programs</h4><p>概率程序只有在与高效的推理引擎相结合时才能发挥其灵活性潜力。为了解释概率编程中推理如何工作，我们考虑以下具有$K$个状态的HMM例子：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\pi_k&\sim \text{Dir}(\theta)\\
-\phi_k&\sim p(\gamma)\\
-z_t\mid z_{t-1}&\sim \text{Cat}(\cdot\mid \pi_{z_{t-1}})\\
-y_t\mid z_t&\sim h(\cdot\mid \phi_{z_t})
-\end{aligned}</script><p>其中$k = 1,2,\cdots,K$，$t = 1,\cdots,N$。</p>
-<p>具有以下三个步骤的高效 Gibbs 采样器通常用于贝叶斯推理：</p>
-<ul>
-<li>Step 1: Sample $z_{1: T} \sim z_{1: T} \mid \phi_{1: K}, \pi_{1: K}, y_{1: T} ;$</li>
-<li>Step 2: Sample $\phi_{k} \sim \phi_{k} \mid z_{1: T}, y_{1: T}, \gamma$;</li>
-<li>Step 3: Sample $\pi_{k} \sim \pi_{k} \mid z_{1: T}, \theta(k=1, \ldots, K)$.</li>
-</ul>
-<h4 id="Computation-graph-based-inference"><a href="#Computation-graph-based-inference" class="headerlink" title="Computation graph based inference"></a>Computation graph based inference</h4><p>对概率程序进行建模的一大挑战是构建模型变量之间的计算图。对于一些编程语言，在推理之前概率图模型就已经生成，但是当程序中存在随机分支时就会出现问题，在这种情况下，我们不得不求助于其他推理方法。</p>
-<h3 id="Composable-MCMC-inference"><a href="#Composable-MCMC-inference" class="headerlink" title="Composable MCMC inference"></a>Composable MCMC inference</h3><p>我们提出的可组合推理方法利用了HMC算法和粒子吉布斯(PG)算法。为了描述所提出的概率程序方法，我们利用潜在狄利克雷分配(LDA)的例子。</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@model</span> lda(K ,M, N, w, d, beta, alpha) = <span class="keyword">begin</span></span><br><span class="line">    theta = <span class="built_in">Vector</span>&#123;<span class="built_in">Vector</span>&#123;<span class="built_in">Real</span>&#125;&#125;(M)</span><br><span class="line">    <span class="keyword">for</span> m = <span class="number">1</span>:M</span><br><span class="line">        theta[m] ~ Dirichlet(alpha)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    phi = <span class="built_in">Vector</span>&#123;<span class="built_in">Vector</span>&#123;<span class="built_in">Real</span>&#125;&#125;(K)</span><br><span class="line">    <span class="keyword">for</span> k = <span class="number">1</span>:K</span><br><span class="line">        phi[k] ~ Dirichlet(beta)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    z = tzeros(<span class="built_in">Int</span>, N)</span><br><span class="line">    <span class="keyword">for</span> n = <span class="number">1</span>:N</span><br><span class="line">        z[n] ~ Categorical(theta[d[n]])</span><br><span class="line">        w[n] ~ Categorical(phi[z[n]])</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>其中变量$\phi,\theta,z$表示模型参数，变量$K,M,N,d,\beta,\alpha$表示超参数，$w$表示观测数据。</p>
-<p>一旦定义了模型，提供数据和执行推理就很直观了。</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model = lda(K, V, M, N, w, d, beta, alpha)</span><br><span class="line">sample(model, engine)</span><br></pre></td></tr></table></figure>
-<p><code>engine</code>是我们想要使用的MCMC引擎。例如，如果要应用例子吉布斯采样，我们可以：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spl = PG(n, m)</span><br><span class="line">sample(model, spl)</span><br></pre></td></tr></table></figure>
-<p>这将会用含有$m$个粒子的PG进行$n$次迭代。</p>
-<p>我们也可以对不同的参数采用不同的采样器：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spl2 = Gibbs(<span class="number">1000</span>, PG(<span class="number">10</span>,<span class="number">2</span>,:z), HMC(<span class="number">2</span>, <span class="number">0.1</span>, <span class="number">1</span>, <span class="number">5</span>, :phi,:theta))</span><br></pre></td></tr></table></figure>
-<p>上述采样引擎<code>spl2</code>将参数分割为两部分，每个部分采用不同的采样方法，值得注意的是，分布的两个部分不需要是互斥的。</p>
-<h4 id="A-family-of-MCMC-operators"><a href="#A-family-of-MCMC-operators" class="headerlink" title="A family of MCMC operators"></a>A family of MCMC operators</h4><p><img src="http://static01.imgkr.com/temp/679a0f1dc05a4456ae7ee80183c63582.jpg" alt=""></p>
+<h3 id="The-garden-of-forking-data"><a href="#The-garden-of-forking-data" class="headerlink" title="The garden of forking data"></a>The garden of forking data</h3><p>给定数据，能够用更多的方式产生数据的解释更可靠(概率更大)。</p>
+<h4 id="Counting-possibilities"><a href="#Counting-possibilities" class="headerlink" title="Counting possibilities"></a>Counting possibilities</h4><p>考虑下面的例子，假设有个袋子里有$4$个球，球的颜色为蓝色和白色，我们有放回地取三个球，得到的结果为<strong>蓝白蓝</strong>。袋子里的球和对应于产生该结果的方式如下表所示：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_2.jpg" alt=""></p>
+<p>所以我们推测袋子里的球为第四种的可能性较大。</p>
+<h4 id="Using-prior-information"><a href="#Using-prior-information" class="headerlink" title="Using prior information"></a>Using prior information</h4><p>我们也可以结合先验信息。假设我们又从袋子里抽出来一个球为蓝色，那么我们上面得到的结果就可以作为先验来进行推测，与现在的结果进行相乘，得到的结果如下图：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_3.jpg" alt=""></p>
 <blockquote>
-<p>Supported Monte Carlo algorithms in Turing</p>
+<p>第一列每中假设为产生新数据的方式，第二列为之前的结果作为先验。</p>
 </blockquote>
-<h3 id="Implementation-and-Experiments"><a href="#Implementation-and-Experiments" class="headerlink" title="Implementation and Experiments"></a>Implementation and Experiments</h3><h4 id="The-Turing-library"><a href="#The-Turing-library" class="headerlink" title="The Turing library"></a>The Turing library</h4><p>Turing为Julia的一个包。因为Turing为一般的Julia程序，因此它可以利用Julia中丰富的数值和统计库。</p>
-<h5 id="Efficient-particle-Gibbs-implementation"><a href="#Efficient-particle-Gibbs-implementation" class="headerlink" title="Efficient particle Gibbs implementation"></a>Efficient particle Gibbs implementation</h5><p>我们使用协程来实现粒子 Gibbs。协程可以看作是函数的泛化，具有可以在多个点暂停和恢复的特性。</p>
-<h5 id="Automatic-differentiation"><a href="#Automatic-differentiation" class="headerlink" title="Automatic differentiation"></a>Automatic differentiation</h5><p>HMC在采样的过程需要梯度，当给定定义$\log p(\theta\mid z_{1:N},\gamma)$的计算程序时，这些梯度可以通过自动微分(AD)自动获得。为了简便和高效，我们率先使用了一种称为向量模式的前向微分技术。向量模式前向微分背后的主要概念是多维对偶数，其在标量函数上的行为定义为：</p>
+<h4 id="From-counts-to-probability"><a href="#From-counts-to-probability" class="headerlink" title="From counts to probability"></a>From counts to probability</h4><p>我们可以将之间的计算转为概率，还是之前的例子，变为：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_4.jpg" alt=""></p>
+<blockquote>
+<p>$p$为蓝色的比例。</p>
+</blockquote>
+<p>计算方法为：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ways &lt;- <span class="built_in">c</span>(<span class="number">0</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>)</span><br><span class="line">ways/<span class="built_in">sum</span>(ways)</span><br><span class="line">&gt; <span class="number">0.00</span> <span class="number">0.15</span> <span class="number">0.40</span> <span class="number">0.45</span> <span class="number">0.00</span></span><br></pre></td></tr></table></figure>
+<h3 id="Building-a-model"><a href="#Building-a-model" class="headerlink" title="Building a  model"></a>Building a  model</h3><p>假设我们要估计地球上海洋所占的比例，假设我们在地球上随机抽样得到的结果为<code>WLWWWLWLW</code>。我们利用上面提到的方法对其进行推断：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_5.jpg" alt=""></p>
+<h3 id="Components-of-the-model"><a href="#Components-of-the-model" class="headerlink" title="Components of the model"></a>Components of the model</h3><h4 id="Likelihood"><a href="#Likelihood" class="headerlink" title="Likelihood"></a>Likelihood</h4><p>首先是似然，似然指的是在给定参数情况下数据的合理性(发生的可能性)。</p>
+<h4 id="Prior"><a href="#Prior" class="headerlink" title="Prior"></a>Prior</h4><p>对于我们想要贝叶斯估计的每个参数，我们需要为其提供先验。先验也为一个概率分布，可以是之前数据得到的参数的概率分布或是我们自己根据经验的概率分布。</p>
+<h4 id="Posterior"><a href="#Posterior" class="headerlink" title="Posterior"></a>Posterior</h4><p>再有了先验和似然后我们就可以计算后验：</p>
 <script type="math/tex; mode=display">
-f\left(\theta+\sum_{i=1}^D y_i\epsilon_i\right) = f(\theta) + f^{\prime}(\theta)\sum_{i=1}^Dy_i\epsilon_i</script><p>其中$\epsilon_i\epsilon_j=0,\text{for }i\neq j$。</p>
-<p>对于小模型，向量前向AD非常高效。但是对于大模型逆向模式的AD较为高效，因此Turing两种模式都存在。</p>
-<h5 id="Vectorized-random-variables"><a href="#Vectorized-random-variables" class="headerlink" title="Vectorized random variables"></a>Vectorized random variables</h5><p>Turing支持利用以下语法对独立同分布的变量进行矢量化采样：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rv = <span class="built_in">Vector</span>(<span class="number">10</span>)</span><br><span class="line">rv ~ [Normal(<span class="number">0</span>, <span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
-<h5 id="Constrained-random-variables"><a href="#Constrained-random-variables" class="headerlink" title="Constrained random variables"></a>Constrained random variables</h5><p>Turing支持约束的变量。主要由三种类型的约束：</p>
+\text { Posterior }=\frac{\text { Likelihood } \times \text { Prior }}{\text { Average Likelihood }}</script><h3 id="Making-the-model-go"><a href="#Making-the-model-go" class="headerlink" title="Making the model go"></a>Making the model go</h3><p>由于后验分布存在积分，我们有时无法直接对其进行计算，这时候就需要数值方法，我们主要介绍三种方法：</p>
 <ol>
-<li>有界的单变量。</li>
-<li>有简单约束的多维变量，如相加和为$1$。</li>
-<li>矩阵约束：例如协方差矩阵为半正定矩阵。</li>
+<li>网格近似</li>
+<li>二次逼近</li>
+<li>MCMC</li>
 </ol>
-<h5 id="MCMC-output-analysis"><a href="#MCMC-output-analysis" class="headerlink" title="MCMC output analysis"></a>MCMC output analysis</h5><p>在Turing中我们可以使用<code>describe</code>函数计算：</p>
+<h4 id="Grid-approximation"><a href="#Grid-approximation" class="headerlink" title="Grid approximation"></a>Grid approximation</h4><p>最简单的调节技术之一是网格近似。虽然大多数参数是连续的，能够取无限数量的值，但事实证明，我们可以通过仅考虑参数值的有限网格来实现对连续后验分布的极好近似。</p>
+<p>但是在大多数真实建模中，网格近似是不切实际的。原因是随着参数数量的增加，它的扩展性很差。所以在后面的章节中，网格近似将逐渐消失，取而代之的是其他更有效的技术。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># define grid</span></span><br><span class="line">p_grid &lt;- seq(from=<span class="number">0</span>, to=<span class="number">1</span>, length.out=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define prior</span></span><br><span class="line">prior = <span class="built_in">rep</span>(<span class="number">1</span>, <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># compute likelihood at each value in grid</span></span><br><span class="line">likelihood &lt;- dbinom(<span class="number">6</span>, size = <span class="number">9</span>, prob = p_grid)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># compute product of likelihood and prior</span></span><br><span class="line">unstd.posterior &lt;- likelihood * prior</span><br><span class="line"></span><br><span class="line"><span class="comment"># standardize the posterior, so it sums to 1</span></span><br><span class="line">posterior &lt;- unstd.posterior / <span class="built_in">sum</span>(unstd.posterior)</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot(p_grid, posterior, type = <span class="string">&quot;b&quot;</span>, xlab = <span class="string">&quot;probability of water&quot;</span>, ylab = <span class="string">&quot;posterior probability&quot;</span>)</span><br><span class="line">mtext(<span class="string">&quot;20 points&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_6.jpeg" alt=""></p>
+<h4 id="Quadratic-approximation"><a href="#Quadratic-approximation" class="headerlink" title="Quadratic approximation"></a>Quadratic approximation</h4><p>在一般的条件下，后验分布峰值附近的区域在形状上将接近高斯或正态分布。这意味着后验分布可以有用地近似为高斯分布。高斯分布很方便，因为它可以完全用两个数字来描述：中心的位置（均值）和分布（方差）。该方法分为两个步骤：</p>
 <ol>
-<li>均值</li>
-<li>标准差</li>
-<li>naive standard error</li>
-<li>蒙特卡洛标准误差</li>
-<li>有效样本数</li>
-<li>分位数</li>
+<li>找到后验分布的众数</li>
+<li>一旦找到后验的峰值，就必须估计峰值附近的曲率。该曲率足以计算整个后验分布的二次近似</li>
 </ol>
-<p>也可以使用<code>hpd</code>函数计算高后验概率区间，互相关<code>cor</code>，自相关<code>autocor</code>，状态空间变化率<code>changerate</code>和偏差信息准则<code>dic</code>等等。</p>
-<h4 id="Finding-the-right-inference-engine"><a href="#Finding-the-right-inference-engine" class="headerlink" title="Finding the right inference engine"></a>Finding the right inference engine</h4><p>下面我们将比较<code>NUTS</code>和<code>Gibbs(PG,HMC)</code>在不同的概率模型上。</p>
-<h5 id="Models-and-inference-engine-setup"><a href="#Models-and-inference-engine-setup" class="headerlink" title="Models and inference engine setup"></a>Models and inference engine setup</h5><p><strong>Stochastic Volatility Model</strong>：参数的集合为$\{\phi,\sigma,\mu,h_{1:N}\}$。所有这些参数对于目标分布来说都是可导的，因此NUTS算法是可用的：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mu &\sim \mathcal{C} \mathrm{a}(0,10)), \phi \sim \mathcal{U} \mathrm{n}(-1,1), \sigma \sim \mathcal{C} \mathrm{a}(0,5), \quad(\sigma>0) \\
-h_{1} & \sim \mathcal{N}\left(\mu, \sigma / \sqrt{1-\phi^{2}}\right), h_{n} \sim \mathcal{N}\left(\mu+\phi\left(h_{n-1}-\mu\right), \sigma\right) \\
-y_{n} & \sim \mathcal{N}\left(0, \exp \left(h_{n} / 2\right)\right) \quad(n=2,3, \ldots, N) .
-\end{aligned}</script><p>其中$\mathcal{C}\mathrm{a}$表示柯西分布。</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spl1 = NUTS(<span class="number">1e4</span>, <span class="number">1e3</span>, <span class="number">0.65</span>)</span><br><span class="line">spl2 = Gibbs(<span class="number">1e4</span>, PG(<span class="number">5</span>, <span class="number">1</span>, :h), NUTS(<span class="number">1</span>, <span class="number">1e3</span>, <span class="number">0.65</span>, :mu, :phi, :sigma))</span><br></pre></td></tr></table></figure>
-<p><strong>Gaussian Mixture Model</strong>：参数的集合为$\{z,\theta\}$，其中参数$\theta$是可导的，参数$z$不可以。为了运行NUTS算法，我们积分积掉$z$只对$\theta$采样：</p>
-<script type="math/tex; mode=display">
-\begin{array}{r}
-\mu=\left(\mu_{1: K}\right), \quad \sigma=\left(\sigma_{1: K}\right), \quad \pi=\left(p_{1: K}\right) \\
-z \sim \operatorname{Cat}(\pi), \quad \theta \sim \mathcal{N}\left(\mu_{z}, \sigma_{z}\right)
-\end{array}</script><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spl3 = NUTS(<span class="number">5e4</span>, <span class="number">1000</span>, <span class="number">0.65</span>)</span><br><span class="line">spl4 = Gibbs(<span class="number">5e4</span>, PG(<span class="number">5</span>, <span class="number">1</span>, :z), NUTS(<span class="number">5e2</span>, <span class="number">1e3</span>, <span class="number">0.65</span>, :theta))</span><br></pre></td></tr></table></figure>
-<h5 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h5><p><img src="http://static01.imgkr.com/temp/99d803e553514e089858f61d913babd1.jpg" alt=""></p>
-<blockquote>
-<p>上图为在GMM模型上trace plot，下图为联合分布的概率的对数的图，可以看到两个算法都达到了收敛，但是NUTS算法在某些对方被”困住了”。在下图更明显。</p>
-</blockquote>
-<p><img src="http://static01.imgkr.com/temp/095ae7d0d5a54a33960b6cd2162133bc.jpg" alt=""></p>
-<blockquote>
-<p>对具有$5$个混合的GMM采样的结果，可以更明显地看到NUTS算法被困住了，在图的上半部分只探索到了两个混合成分。</p>
-</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">library(rethinking)</span><br><span class="line">globe.qa &lt;- map(</span><br><span class="line">  alist(</span><br><span class="line">    w ~ dbinom(<span class="number">9</span>, p), <span class="comment">#likelihood</span></span><br><span class="line">    p ~ dunif(<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line">  ),</span><br><span class="line">  data = <span class="built_in">list</span>(w=<span class="number">6</span>)</span><br><span class="line">)</span><br><span class="line"><span class="comment"># display summary of quadratic approximation</span></span><br><span class="line">precis(globe.qa)</span><br><span class="line">&gt;  mean   sd <span class="number">5.5</span>% 94.5%</span><br><span class="line">p <span class="number">0.67</span> <span class="number">0.16</span> <span class="number">0.42</span>  <span class="number">0.92</span></span><br></pre></td></tr></table></figure>
+<p>我们与真实的后验进行比较：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># analytical calculation</span></span><br><span class="line">w &lt;- 6</span><br><span class="line">n &lt;- 9</span><br><span class="line">curve(dbeta(x, w+<span class="number">1</span>, n-w+<span class="number">1</span>), from = <span class="number">0</span>, to=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># quadratic approximation</span></span><br><span class="line">curve(dnorm(x, <span class="number">0.67</span>, <span class="number">0.16</span>), lty=<span class="number">2</span>, add = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt2_7.jpeg" alt=""></p>
 
     </div>
 
@@ -414,7 +370,7 @@ z \sim \operatorname{Cat}(\pi), \quad \theta \sim \mathcal{N}\left(\mu_{z}, \sig
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2022/06/28/Turing/" title="Turing:a language for flexible probabilistic inference">https://www.hfcouc.work/2022/06/28/Turing/</a>
+    <a href="https://www.hfcouc.work/2022/06/29/rt2/" title="Statistical Rethinking:Chapter2">https://www.hfcouc.work/2022/06/29/rt2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -455,7 +411,8 @@ z \sim \operatorname{Cat}(\pi), \quad \theta \sim \mathcal{N}\left(\mu_{z}, \sig
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E6%A6%82%E7%8E%87%E7%BC%96%E7%A8%8B/" rel="tag"># 概率编程</a>
-              <a href="/tags/Julia/" rel="tag"># Julia</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/" rel="tag"># 贝叶斯统计</a>
+              <a href="/tags/Statistical-Rethinking/" rel="tag"># Statistical Rethinking</a>
           </div>
 
         
@@ -464,13 +421,10 @@ z \sim \operatorname{Cat}(\pi), \quad \theta \sim \mathcal{N}\left(\mu_{z}, \sig
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/06/22/HMC/" rel="prev" title="文章A Conceptual Introduction to Hamiltonian Monte Carlo阅读笔记">
-      <i class="fa fa-chevron-left"></i> 文章A Conceptual Introduction to Hamiltonian Monte Carlo阅读笔记
+    <a href="/2022/06/28/rt1/" rel="prev" title="Statistical Rethinking:Chapter1">
+      <i class="fa fa-chevron-left"></i> Statistical Rethinking:Chapter1
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/06/28/rt1/" rel="next" title="Statistical Rethinking:Chapter1">
-      Statistical Rethinking:Chapter1 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -532,7 +486,7 @@ z \sim \operatorname{Cat}(\pi), \quad \theta \sim \mathcal{N}\left(\mu_{z}, \sig
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Turing-a-language-for-flexible-probabilistic-inference"><span class="nav-number">1.</span> <span class="nav-text">Turing: a language for flexible probabilistic inference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Background"><span class="nav-number">1.1.</span> <span class="nav-text">Background</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Models-as-computer-programs"><span class="nav-number">1.1.1.</span> <span class="nav-text">Models as computer programs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inference-for-probabilistic-programs"><span class="nav-number">1.1.2.</span> <span class="nav-text">Inference for probabilistic programs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Computation-graph-based-inference"><span class="nav-number">1.1.3.</span> <span class="nav-text">Computation graph based inference</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Composable-MCMC-inference"><span class="nav-number">1.2.</span> <span class="nav-text">Composable MCMC inference</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-family-of-MCMC-operators"><span class="nav-number">1.2.1.</span> <span class="nav-text">A family of MCMC operators</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation-and-Experiments"><span class="nav-number">1.3.</span> <span class="nav-text">Implementation and Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Turing-library"><span class="nav-number">1.3.1.</span> <span class="nav-text">The Turing library</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Efficient-particle-Gibbs-implementation"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Efficient particle Gibbs implementation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Automatic-differentiation"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Automatic differentiation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Vectorized-random-variables"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Vectorized random variables</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Constrained-random-variables"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">Constrained random variables</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MCMC-output-analysis"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">MCMC output analysis</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Finding-the-right-inference-engine"><span class="nav-number">1.3.2.</span> <span class="nav-text">Finding the right inference engine</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Models-and-inference-engine-setup"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Models and inference engine setup</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Results"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">Results</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Small-Worlds-and-Large-Worlds"><span class="nav-number">1.</span> <span class="nav-text">Small Worlds and Large Worlds</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-garden-of-forking-data"><span class="nav-number">1.1.</span> <span class="nav-text">The garden of forking data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Counting-possibilities"><span class="nav-number">1.1.1.</span> <span class="nav-text">Counting possibilities</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-prior-information"><span class="nav-number">1.1.2.</span> <span class="nav-text">Using prior information</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#From-counts-to-probability"><span class="nav-number">1.1.3.</span> <span class="nav-text">From counts to probability</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Building-a-model"><span class="nav-number">1.2.</span> <span class="nav-text">Building a  model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Components-of-the-model"><span class="nav-number">1.3.</span> <span class="nav-text">Components of the model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Likelihood"><span class="nav-number">1.3.1.</span> <span class="nav-text">Likelihood</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prior"><span class="nav-number">1.3.2.</span> <span class="nav-text">Prior</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Posterior"><span class="nav-number">1.3.3.</span> <span class="nav-text">Posterior</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Making-the-model-go"><span class="nav-number">1.4.</span> <span class="nav-text">Making the model go</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Grid-approximation"><span class="nav-number">1.4.1.</span> <span class="nav-text">Grid approximation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quadratic-approximation"><span class="nav-number">1.4.2.</span> <span class="nav-text">Quadratic approximation</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
