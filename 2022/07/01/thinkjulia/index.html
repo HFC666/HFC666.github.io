@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <meta name="google-site-verification" content="U-yOiB98PNsowxlO4rY3Zc43lFlfBRiIxhp4pQPMRW4" /> 
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="书籍网址：https:&#x2F;&#x2F;benlauwens.github.io&#x2F;ThinkJulia.jl&#x2F;latest&#x2F;book.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="书籍Thinking Julia前十章阅读笔记">
+<meta property="og:url" content="https://www.hfcouc.work/2022/07/01/thinkjulia/index.html">
+<meta property="og:site_name" content="独自赏晴雨">
+<meta property="og:description" content="书籍网址：https:&#x2F;&#x2F;benlauwens.github.io&#x2F;ThinkJulia.jl&#x2F;latest&#x2F;book.html">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimglf6.lf127.net%2Fimg%2FanBSb2NqdEc5dTlseXpNTWxpY0RWQ2NwUlAyVmFEa2lFSVo0TVM4WXNwSndDMUdvN3crMS9nPT0.jpg%3FimageView%26thumbnail%3D2160x0%26quality%3D90%26interlace%3D1%26type%3Djpg&refer=http%3A%2F%2Fimglf6.lf127.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659263087&t=d2faeee051aa3c102a86e173d74306ad">
+<meta property="article:published_time" content="2022-07-01T10:19:26.000Z">
+<meta property="article:modified_time" content="2022-07-01T11:07:54.435Z">
+<meta property="article:author" content="Han Fangcheng">
+<meta property="article:tag" content="Julia">
+<meta property="article:tag" content="编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimglf6.lf127.net%2Fimg%2FanBSb2NqdEc5dTlseXpNTWxpY0RWQ2NwUlAyVmFEa2lFSVo0TVM4WXNwSndDMUdvN3crMS9nPT0.jpg%3FimageView%26thumbnail%3D2160x0%26quality%3D90%26interlace%3D1%26type%3Djpg&refer=http%3A%2F%2Fimglf6.lf127.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659263087&t=d2faeee051aa3c102a86e173d74306ad">
+
+<link rel="canonical" href="https://www.hfcouc.work/2022/07/01/thinkjulia/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>书籍Thinking Julia前十章阅读笔记 | 独自赏晴雨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+    <script type="text/javascript" src="https://unpkg.com/minigrid@3.1.1/dist/minigrid.min.js"></script>
+  <link rel="stylesheet" href="/photos/photos.css">
+  <script type="text/javascript" src="/photos/photo.js"></script>
+<link rel="alternate" href="/atom.xml" title="独自赏晴雨" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+	<a target="_blank" rel="noopener" href="https://github.com//HFC666" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">独自赏晴雨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>相册</a>
+
+  </li>
+        <li class="menu-item menu-item-bangumis">
+
+    <a href="/bangumis" rel="section"><i class="fa fa-headphones fa-fw"></i>追番</a>
+
+  </li>
+        <li class="menu-item menu-item-cinemas">
+
+    <a href="/cinemas" rel="section"><i class="fa fa-headphones fa-fw"></i>追剧</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/01/thinkjulia/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
+      <meta itemprop="name" content="Han Fangcheng">
+      <meta itemprop="description" content="当你穿过了暴风雨，你就不再是原来那个人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独自赏晴雨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          书籍Thinking Julia前十章阅读笔记
+        </h1>
+
+        <div class="post-meta">
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-01 18:19:26 / 修改时间：19:07:54" itemprop="dateCreated datePublished" datetime="2022-07-01T18:19:26+08:00">2022-07-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">书籍阅读</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p align="center">
+    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimglf6.lf127.net%2Fimg%2FanBSb2NqdEc5dTlseXpNTWxpY0RWQ2NwUlAyVmFEa2lFSVo0TVM4WXNwSndDMUdvN3crMS9nPT0.jpg%3FimageView%26thumbnail%3D2160x0%26quality%3D90%26interlace%3D1%26type%3Djpg&refer=http%3A%2F%2Fimglf6.lf127.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659263087&t=d2faeee051aa3c102a86e173d74306ad" style="zoom: 100%;" />
+</p>
+
+<blockquote>
+<p>书籍网址：<a target="_blank" rel="noopener" href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html">https://benlauwens.github.io/ThinkJulia.jl/latest/book.html</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="The-Way-of-the-program"><a href="#The-Way-of-the-program" class="headerlink" title="The Way of the program"></a>The Way of the program</h2><h3 id="What-is-a-Program"><a href="#What-is-a-Program" class="headerlink" title="What is a Program?"></a>What is a Program?</h3><p>一个程序应该包括以下几部分：</p>
+<ul>
+<li>输入：从键盘、文件、网络或者其他设备中获取数据</li>
+<li>输出：将数据展示在屏幕上、或将其存储在文件中、将其发送到网络上等等</li>
+<li>数学：执行基本的数学运算，如加法乘法等</li>
+<li>条件执行：查看特定的条件并且运行适当的代码</li>
+<li>重复：重复地做一些动作，通常有一些变化</li>
+</ul>
+<h3 id="The-First-Program"><a href="#The-First-Program" class="headerlink" title="The First Program"></a>The First Program</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; println(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+<h3 id="Arithmetic-Operators"><a href="#Arithmetic-Operators" class="headerlink" title="Arithmetic Operators"></a>Arithmetic Operators</h3><p>符号<code>+</code>，<code>-</code>，<code>*</code>，<code>/</code>，<code>^</code>分别表示加法、减法、乘法、除法、幂运算。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="number">40</span> + <span class="number">2</span>         </span><br><span class="line"><span class="number">42</span>                    </span><br><span class="line">                      </span><br><span class="line">julia&gt; <span class="number">43</span> - <span class="number">1</span>         </span><br><span class="line"><span class="number">42</span>                    </span><br><span class="line">                      </span><br><span class="line">julia&gt; <span class="number">6</span> * <span class="number">7</span>          </span><br><span class="line"><span class="number">42</span>                    </span><br><span class="line">                      </span><br><span class="line">julia&gt; <span class="number">84</span> / <span class="number">2</span>         </span><br><span class="line"><span class="number">42.0</span>                  </span><br><span class="line">                      </span><br><span class="line">julia&gt; <span class="number">6</span> ^ <span class="number">2</span> + <span class="number">6</span>      </span><br><span class="line"><span class="number">42</span>                    </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意在除法中我们得到是$42.0$而不是$42$，后面我们会解释原因。</p>
+</blockquote>
+<h3 id="Values-and-Types"><a href="#Values-and-Types" class="headerlink" title="Values and Types"></a>Values and Types</h3><p>我们可以使用<code>typeof</code>函数来获取类型。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; typeof(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">Int64</span></span><br><span class="line"></span><br><span class="line">julia&gt; typeof(<span class="number">42.0</span>)</span><br><span class="line"><span class="built_in">Float64</span></span><br><span class="line"></span><br><span class="line">julia&gt; typeof(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line"><span class="built_in">String</span></span><br></pre></td></tr></table></figure>
+<h2 id="Variables-Expressions-and-Statements"><a href="#Variables-Expressions-and-Statements" class="headerlink" title="Variables, Expressions and Statements"></a>Variables, Expressions and Statements</h2><h3 id="Assignment-Statements"><a href="#Assignment-Statements" class="headerlink" title="Assignment Statements"></a>Assignment Statements</h3><p>使用<code>=</code>对变量进行赋值。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; n = <span class="number">17</span></span><br><span class="line"><span class="number">17</span></span><br></pre></td></tr></table></figure>
+<h3 id="Variable-Names"><a href="#Variable-Names" class="headerlink" title="Variable Names"></a>Variable Names</h3><p>命名可以采用字母、数字和<code>_</code>，但是数字不能在开头，也不能使用关键字。</p>
+<p>下面为<code>Julia</code>的关键字：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract type</span>    <span class="keyword">baremodule</span>   <span class="keyword">begin</span>      <span class="keyword">break</span>       <span class="keyword">catch</span></span><br><span class="line"><span class="keyword">const</span>            <span class="keyword">continue</span>     <span class="keyword">do</span>         <span class="keyword">else</span>        <span class="keyword">elseif</span></span><br><span class="line"><span class="keyword">end</span>              <span class="keyword">export</span>       <span class="keyword">finally</span>    <span class="keyword">for</span>         <span class="keyword">function</span></span><br><span class="line"><span class="keyword">global</span>           <span class="keyword">if</span>           <span class="keyword">import</span>     importall   <span class="keyword">in</span></span><br><span class="line"><span class="keyword">let</span>              <span class="keyword">local</span>        <span class="keyword">macro</span>      <span class="keyword">module</span>      <span class="keyword">mutable struct</span></span><br><span class="line"><span class="keyword">primitive type</span>   <span class="keyword">quote</span>        <span class="keyword">return</span>     <span class="keyword">try</span>         <span class="keyword">using</span></span><br><span class="line"><span class="keyword">struct</span>           <span class="keyword">where</span>        <span class="keyword">while</span></span><br></pre></td></tr></table></figure>
+<h3 id="Expressions-and-Statements"><a href="#Expressions-and-Statements" class="headerlink" title="Expressions and Statements"></a>Expressions and Statements</h3><p>表达式是值（values）、变量（variables）和符号（operators）的组合。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="number">42</span></span><br><span class="line"><span class="number">42</span></span><br><span class="line"></span><br><span class="line">julia&gt; n</span><br><span class="line"><span class="number">17</span></span><br><span class="line"></span><br><span class="line">julia&gt; n + <span class="number">25</span></span><br><span class="line"><span class="number">42</span></span><br></pre></td></tr></table></figure>
+<p>语句是具有效果的代码单位，例如创建变量或显示值。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; n = <span class="number">17</span></span><br><span class="line"><span class="number">17</span></span><br><span class="line"></span><br><span class="line">julia&gt; println(n)</span><br><span class="line"><span class="number">17</span></span><br></pre></td></tr></table></figure>
+<h3 id="Operator-Precedence"><a href="#Operator-Precedence" class="headerlink" title="Operator Precedence"></a>Operator Precedence</h3><p>括号优先级最高，其次是幂，之后是乘除法、加减法优先级最低。</p>
+<h3 id="String-Operations"><a href="#String-Operations" class="headerlink" title="String Operations"></a>String Operations</h3><p><code>*</code>表示字符串拼接，<code>^</code>表示字符串重复。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; first_str = <span class="string">&quot;throat&quot;</span></span><br><span class="line"><span class="string">&quot;throat&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; second_str = <span class="string">&quot;warbler&quot;</span></span><br><span class="line"><span class="string">&quot;warbler&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; first_str * second_str</span><br><span class="line"><span class="string">&quot;throatwarbler&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; <span class="string">&quot;Spam&quot;</span>^<span class="number">3</span></span><br><span class="line"><span class="string">&quot;SpamSpamSpam&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h3><p>注释用<code>#</code>。</p>
+<h3 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h3><p><code>Julia</code>中存在三种错误。</p>
+<ul>
+<li>语法错误(Syntax error)：语法指的是程序的结构和关于该结构的规则。如括号少一边。</li>
+<li>运行时错误(Runtime error)：指的是程序运行时出错，也被称为异常。</li>
+<li>语义错误(Semantic error)：这种错误程序会运行，但是得到的结果不是我们想要的。</li>
+</ul>
+<h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><h3 id="Function-Calls"><a href="#Function-Calls" class="headerlink" title="Function Calls"></a>Function Calls</h3><p>我们之前已经看到一个函数调用的例子：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; println(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+<p><code>Println()</code>是函数的名字，括号里面是函数的参数。</p>
+<p><code>Julia</code>提供一些类型转换的函数：</p>
+<p><code>parse</code>函数将字符串类型转为任何数字(number)类型</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; parse(<span class="built_in">Int64</span>, <span class="string">&quot;32&quot;</span>)</span><br><span class="line"><span class="number">32</span></span><br><span class="line"></span><br><span class="line">julia&gt; parse(<span class="built_in">Float64</span>, <span class="string">&quot;3.14159&quot;</span>)</span><br><span class="line"><span class="number">3.14159</span></span><br><span class="line"></span><br><span class="line">julia&gt; parse(<span class="built_in">Int64</span>, <span class="string">&quot;Hello&quot;</span>)</span><br><span class="line">ERROR: <span class="built_in">ArgumentError</span>: invalid base <span class="number">10</span> digit <span class="string">&#x27;H&#x27;</span> <span class="keyword">in</span> <span class="string">&quot;Hello&quot;</span></span><br></pre></td></tr></table></figure>
+<p><code>trunc</code>可以将字符串截断为整数：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; trunc(<span class="built_in">Int64</span>, <span class="number">3.9999</span>)</span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line">julia&gt; trunc(<span class="built_in">Int64</span>, -<span class="number">2.3</span>)</span><br><span class="line">-<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p><code>float</code>将整数转为浮点数：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; float(<span class="number">24</span>)</span><br><span class="line"><span class="number">24.0</span></span><br></pre></td></tr></table></figure>
+<p><code>string</code>将参数转换为字符串：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; string(<span class="number">32</span>)</span><br><span class="line"><span class="string">&quot;32&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; string(<span class="number">32.2</span>)</span><br><span class="line"><span class="string">&quot;32.2&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Adding-New-Functions"><a href="#Adding-New-Functions" class="headerlink" title="Adding New Functions"></a>Adding New Functions</h3><p>我们使用<code>function</code>定义函数，以<code>end</code>结束。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> printlyrics()</span><br><span class="line">    println(<span class="string">&quot;I&#x27;m a lumberjack, and I&#x27;m okay.&quot;</span>)</span><br><span class="line">    println(<span class="string">&quot;I sleep all night and I work all day.&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>我们也可以在函数中调用函数：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> repeatlyrics()</span><br><span class="line">    printlyrics()</span><br><span class="line">    printlyrics()</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 函数在运行前必须被定义。</p>
+</blockquote>
+<h3 id="Parameters-and-Arguments"><a href="#Parameters-and-Arguments" class="headerlink" title="Parameters and Arguments"></a>Parameters and Arguments</h3><p>下面我们定义一个含有参数的函数：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> printtwice(bruce)</span><br><span class="line">    println(bruce)</span><br><span class="line">    println(bruce)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>传入的参数可以是值(value)、表达式和变量。</p>
+<h3 id="Variables-and-Parameters-Are-Local"><a href="#Variables-and-Parameters-Are-Local" class="headerlink" title="Variables and Parameters Are Local"></a>Variables and Parameters Are Local</h3><p>函数的变量和参数是局部的。</p>
+<h3 id="Fruitful-Functions-and-Void-Functions"><a href="#Fruitful-Functions-and-Void-Functions" class="headerlink" title="Fruitful Functions and Void Functions"></a>Fruitful Functions and Void Functions</h3><p>有返回值的函数称为Fruitful Functions，没有返回值的函数称为Void Functions。没有返回值的函数的返回值为<code>nothing</code>，我们只能使用<code>show</code>函数打印。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; result = printtwice(<span class="string">&quot;Bing&quot;</span>)</span><br><span class="line">Bing</span><br><span class="line">Bing</span><br><span class="line">julia&gt; show(result)</span><br><span class="line"><span class="literal">nothing</span></span><br></pre></td></tr></table></figure>
+<p><code>nothing</code>的类型为<code>Nothing</code>：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; typeof(<span class="literal">nothing</span>)</span><br><span class="line"><span class="built_in">Nothing</span></span><br></pre></td></tr></table></figure>
+<h2 id="Case-Study-Interface-Design"><a href="#Case-Study-Interface-Design" class="headerlink" title="Case Study: Interface Design"></a>Case Study: Interface Design</h2><h3 id="Turtles"><a href="#Turtles" class="headerlink" title="Turtles"></a>Turtles</h3><p>我们使用下列命令下载所需要的包：</p>
+<p>首先在<code>REPL</code>下按<code>]</code>键调出包管理：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(v1<span class="number">.0</span>) pkg&gt; add https://github.com/BenLauwens/ThinkJulia.jl</span><br></pre></td></tr></table></figure>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="keyword">using</span> ThinkJulia</span><br><span class="line"></span><br><span class="line">julia&gt; 🐢 = Turtle()</span><br><span class="line">Luxor.Turtle(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="literal">true</span>, <span class="number">0.0</span>, (<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 输入：<code>🐢</code> (<strong><code>\:turtle: TAB</code></strong>)。</p>
+</blockquote>
+<p>一旦创建了一个乌龟，可以调用函数来让他移动。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@svg</span> <span class="keyword">begin</span></span><br><span class="line">    forward(🐢, <span class="number">100</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><code>@svg</code>关键字运行一个绘制SVG图片的宏。宏是Julia的一个重要但高级的特性。</p>
+<p>为了绘制直角，修改宏</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">🐢 = Turtle()</span><br><span class="line"><span class="meta">@svg</span> <span class="keyword">begin</span></span><br><span class="line">    forward(🐢, <span class="number">100</span>)</span><br><span class="line">    turn(🐢, -<span class="number">90</span>)</span><br><span class="line">    forward(🐢, <span class="number">100</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Simple-Repetition"><a href="#Simple-Repetition" class="headerlink" title="Simple Repetition"></a>Simple Repetition</h3><p>我们使用<code>for</code>循环来绘制一个正方形：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">🐢 = Turtle()</span><br><span class="line"><span class="meta">@svg</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">4</span></span><br><span class="line">        forward(🐢, <span class="number">100</span>)</span><br><span class="line">        turn(🐢, -<span class="number">90</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="Conditionals-and-Recursion"><a href="#Conditionals-and-Recursion" class="headerlink" title="Conditionals and Recursion"></a>Conditionals and Recursion</h2><h3 id="Floor-Division-and-Modulus"><a href="#Floor-Division-and-Modulus" class="headerlink" title="Floor Division and Modulus"></a>Floor Division and Modulus</h3><p><code>floor division</code>符号<code>÷</code> (<strong><code>\div TAB</code></strong>)，两个数字相除后得到整数。取余符号<code>%</code>得到余数。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; minutes = <span class="number">105</span>            </span><br><span class="line"><span class="number">105</span>                             </span><br><span class="line">                                </span><br><span class="line">julia&gt; hours = minutes÷<span class="number">60</span>       </span><br><span class="line"><span class="number">1</span>                               </span><br><span class="line">                                </span><br><span class="line">julia&gt; remainder = minutes % <span class="number">60</span> </span><br><span class="line"><span class="number">45</span>                              </span><br></pre></td></tr></table></figure>
+<h3 id="Boolean-Expressions"><a href="#Boolean-Expressions" class="headerlink" title="Boolean Expressions"></a>Boolean Expressions</h3><p>布尔表达式为结果为真或假的表达式。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x == y               <span class="comment"># x is equal to y</span></span><br><span class="line">x != y               <span class="comment"># x is not equal to y</span></span><br><span class="line">x ≠ y                <span class="comment"># (\ne TAB)</span></span><br><span class="line">x &gt; y                <span class="comment"># x is greater than y</span></span><br><span class="line">x &lt; y                <span class="comment"># x is less than y</span></span><br><span class="line">x &gt;= y               <span class="comment"># x is greater than or equal to y</span></span><br><span class="line">x ≥ y                <span class="comment"># (\ge TAB)</span></span><br><span class="line">x &lt;= y               <span class="comment"># x is less than or equal to y</span></span><br><span class="line">x ≤ y                <span class="comment"># (\le TAB)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Logical-Operators"><a href="#Logical-Operators" class="headerlink" title="Logical Operators"></a>Logical Operators</h3><p>与<code>&amp;&amp;</code></p>
+<p>或<code>||</code></p>
+<p>非<code>!</code></p>
+<p>其中<code>&amp;&amp;</code>的优先级高于<code>||</code>。</p>
+<h3 id="Conditional-Execution"><a href="#Conditional-Execution" class="headerlink" title="Conditional Execution"></a>Conditional Execution</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span></span><br><span class="line">    println(<span class="string">&quot;x is positive&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Alternative-Execution"><a href="#Alternative-Execution" class="headerlink" title="Alternative Execution"></a>Alternative Execution</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span></span><br><span class="line">    println(<span class="string">&quot;x is even&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    println(<span class="string">&quot;x is odd&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Chained-Conditionals"><a href="#Chained-Conditionals" class="headerlink" title="Chained Conditionals"></a>Chained Conditionals</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x &lt; y</span><br><span class="line">    println(<span class="string">&quot;x is less than y&quot;</span>)</span><br><span class="line"><span class="keyword">elseif</span> x &gt; y</span><br><span class="line">    println(<span class="string">&quot;x is greater than y&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    println(<span class="string">&quot;x and y are equal&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Nested-Conditionals"><a href="#Nested-Conditionals" class="headerlink" title="Nested Conditionals"></a>Nested Conditionals</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x == y</span><br><span class="line">    println(<span class="string">&quot;x and y are equal&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; y</span><br><span class="line">        println(<span class="string">&quot;x is less than y&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        println(<span class="string">&quot;x is greater than y&quot;</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span> &lt; x &lt; <span class="number">10</span></span><br><span class="line">    println(<span class="string">&quot;x is a positive single-digit number.&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h3><p>函数自己调用自己被称为递归。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> printn(s, n)</span><br><span class="line">    <span class="keyword">if</span> n ≤ <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    println(s)</span><br><span class="line">    printn(s, n-<span class="number">1</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Keyboard-Input"><a href="#Keyboard-Input" class="headerlink" title="Keyboard Input"></a>Keyboard Input</h3><p><code>Julia</code>提供内建函数<code>readline</code>来停止程序来等待用户输入一些东西，当用户键入<code>RETURN</code>或<code>ENTERN</code>时程序继续运行，<code>readline</code>以字符串的形式返回用户输入的内容。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; text = readline()</span><br><span class="line">What are you waiting <span class="keyword">for</span>?</span><br><span class="line"><span class="string">&quot;What are you waiting for?&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Fruitful-Functions"><a href="#Fruitful-Functions" class="headerlink" title="Fruitful Functions"></a>Fruitful Functions</h2><h3 id="Return-Values"><a href="#Return-Values" class="headerlink" title="Return Values"></a>Return Values</h3><p>函数具有返回值：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> area(radius)</span><br><span class="line">    a = <span class="literal">π</span> * radius^<span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>我们也可以省略<code>return</code>，默认最后一行为函数的返回值：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> area(radius)</span><br><span class="line">    <span class="literal">π</span> * radius^<span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Checking-Types"><a href="#Checking-Types" class="headerlink" title="Checking Types"></a>Checking Types</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> fact(n)</span><br><span class="line">    <span class="keyword">if</span> !(n <span class="keyword">isa</span> <span class="built_in">Int64</span>)</span><br><span class="line">        error(<span class="string">&quot;Factorial is only defined for integers.&quot;</span>)</span><br><span class="line">    <span class="keyword">elseif</span> n &lt; <span class="number">0</span></span><br><span class="line">        error(<span class="string">&quot;Factorial is not defined for negative integers.&quot;</span>)</span><br><span class="line">    <span class="keyword">elseif</span> n == <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> n * fact(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h2><h3 id="The-while-Statement"><a href="#The-while-Statement" class="headerlink" title="The while Statement"></a>The <code>while</code> Statement</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> countdown(n)</span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span></span><br><span class="line">        print(n, <span class="string">&quot; &quot;</span>)</span><br><span class="line">        n = n - <span class="number">1</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    println(<span class="string">&quot;Blastoff!&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h4 id="break"><a href="#break" class="headerlink" title="break"></a>break</h4><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line">    print(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line">    line = readline()</span><br><span class="line">    <span class="keyword">if</span> line == <span class="string">&quot;done&quot;</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    println(line)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">println(<span class="string">&quot;Done!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h4><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span></span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">3</span> == <span class="number">0</span></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    print(i, <span class="string">&quot; &quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="Strings"><a href="#Strings" class="headerlink" title="Strings"></a>Strings</h2><h3 id="Characters"><a href="#Characters" class="headerlink" title="Characters"></a>Characters</h3><p>一个字符用单引号<code>&#39;&#39;</code>包裹：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="string">&#x27;x&#x27;</span></span><br><span class="line"><span class="string">&#x27;x&#x27;</span>: ASCII/Unicode U+<span class="number">0078</span> (category Ll: Letter, lowercase)</span><br><span class="line">julia&gt; &#x27;🍌&#x27;</span><br><span class="line">&#x27;🍌&#x27;: Unicode U+<span class="number">01f34</span>c (category So: <span class="built_in">Symbol</span>, other)</span><br><span class="line">julia&gt; typeof(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line"><span class="built_in">Char</span></span><br></pre></td></tr></table></figure>
+<h3 id="A-String-Is-a-Sequence"><a href="#A-String-Is-a-Sequence" class="headerlink" title="A String Is a Sequence"></a>A String Is a Sequence</h3><p>我们可以对字符串进行索引：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; fruit = <span class="string">&quot;banana&quot;</span></span><br><span class="line"><span class="string">&quot;banana&quot;</span></span><br><span class="line">julia&gt; letter = fruit[<span class="number">1</span>]</span><br><span class="line"><span class="string">&#x27;b&#x27;</span>: ASCII/Unicode U+<span class="number">0062</span> (category Ll: Letter, lowercase)</span><br><span class="line">julia&gt; fruit[<span class="keyword">end</span>]</span><br><span class="line"><span class="string">&#x27;a&#x27;</span>: ASCII/Unicode U+<span class="number">0061</span> (category Ll: Letter, lowercase)</span><br></pre></td></tr></table></figure>
+<h3 id="length"><a href="#length" class="headerlink" title="length"></a><code>length</code></h3><p><code>length</code>返回字符串的长度：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; fruits = <span class="string">&quot;🍌 🍎 🍐&quot;</span></span><br><span class="line"><span class="string">&quot;🍌 🍎 🍐&quot;</span></span><br><span class="line">julia&gt; len = length(fruits)</span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>字符串是使用<code>UTF-8</code>进行编码的。<code>UTF-8</code>是一个可变宽度的编码，这意味着并非所有字符均以相同数量的字节编码。因此我们索引可能会出错。</p>
+<p>函数<code>sizeof</code>可以给出字符串的字节数：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; sizeof(<span class="string">&quot;🍌&quot;</span>)</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>这意味着<code>UTF-8</code>编码的字符串中的字节索引并不是并不总是一个字符的合理的索引：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; fruits[<span class="number">2</span>]</span><br><span class="line">ERROR: <span class="built_in">StringIndexError</span>(<span class="string">&quot;🍌 🍎 🍐&quot;</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Traversal"><a href="#Traversal" class="headerlink" title="Traversal"></a>Traversal</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">index = firstindex(fruits)</span><br><span class="line"><span class="keyword">while</span> index &lt;= sizeof(fruits)</span><br><span class="line">    letter = fruits[index]</span><br><span class="line">    println(letter)</span><br><span class="line">    <span class="keyword">global</span> index = nextind(fruits, index)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><code>nextind</code>返回下一个合理的索引；<code>prevind</code>查找前一个合理的索引。</p>
+<h3 id="String-Slices"><a href="#String-Slices" class="headerlink" title="String Slices"></a>String Slices</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; str = <span class="string">&quot;Julius Caesar&quot;</span>;</span><br><span class="line"></span><br><span class="line">julia&gt; str[<span class="number">1</span>:<span class="number">6</span>]</span><br><span class="line"><span class="string">&quot;Julius&quot;</span></span><br><span class="line">julia&gt; str[:]</span><br><span class="line"><span class="string">&quot;Julius Caesar&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Strings-Are-Immutable"><a href="#Strings-Are-Immutable" class="headerlink" title="Strings Are Immutable"></a>Strings Are Immutable</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; greeting = <span class="string">&quot;Hello, world!&quot;</span></span><br><span class="line"><span class="string">&quot;Hello, world!&quot;</span></span><br><span class="line">julia&gt; greeting[<span class="number">1</span>] = <span class="string">&#x27;J&#x27;</span></span><br><span class="line">ERROR: <span class="built_in">MethodError</span>: no method matching setindex!(::<span class="built_in">String</span>, ::<span class="built_in">Char</span>, ::<span class="built_in">Int64</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="String-Interpolation"><a href="#String-Interpolation" class="headerlink" title="String Interpolation"></a>String Interpolation</h3><p>使用符号<code>$</code>可以将表达式的值插入到字符串中：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; greet = <span class="string">&quot;Hello&quot;</span>  </span><br><span class="line"><span class="string">&quot;Hello&quot;</span>                 </span><br><span class="line">                        </span><br><span class="line">julia&gt; whom = <span class="string">&quot;World&quot;</span>   </span><br><span class="line"><span class="string">&quot;World&quot;</span>                 </span><br><span class="line"></span><br><span class="line">julia&gt; <span class="string">&quot;<span class="subst">$(greet)</span>, <span class="subst">$(whom)</span>!&quot;</span></span><br><span class="line"><span class="string">&quot;Hello, World!&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Searching"><a href="#Searching" class="headerlink" title="Searching"></a>Searching</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> find(word, letter)</span><br><span class="line">    index = firstindex(word)</span><br><span class="line">    <span class="keyword">while</span> index &lt;= sizeof(word)</span><br><span class="line">        <span class="keyword">if</span> word[index] == letter</span><br><span class="line">            <span class="keyword">return</span> index</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        index = nextind(word, index)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    -<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Looping-and-Counting"><a href="#Looping-and-Counting" class="headerlink" title="Looping and Counting"></a>Looping and Counting</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">&quot;banana&quot;</span></span><br><span class="line">counter = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> letter <span class="keyword">in</span> word</span><br><span class="line">    <span class="keyword">if</span> letter == <span class="string">&#x27;a&#x27;</span></span><br><span class="line">        <span class="keyword">global</span> counter = counter + <span class="number">1</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">println(counter)</span><br></pre></td></tr></table></figure>
+<h3 id="String-Library"><a href="#String-Library" class="headerlink" title="String Library"></a>String Library</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; uppercase(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line"><span class="string">&quot;HELLO, WORLD!&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; findfirst(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;banana&quot;</span>)</span><br><span class="line"><span class="number">2</span>:<span class="number">2</span></span><br><span class="line"></span><br><span class="line">julia&gt; findfirst(<span class="string">&quot;na&quot;</span>, <span class="string">&quot;banana&quot;</span>)</span><br><span class="line"><span class="number">3</span>:<span class="number">4</span></span><br><span class="line"></span><br><span class="line">julia&gt; findnext(<span class="string">&quot;na&quot;</span>, <span class="string">&quot;banana&quot;</span>, <span class="number">4</span>)</span><br><span class="line"><span class="number">5</span>:<span class="number">6</span></span><br></pre></td></tr></table></figure>
+<h3 id="The-∈-Operator"><a href="#The-∈-Operator" class="headerlink" title="The ∈ Operator"></a>The <code>∈</code> Operator</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="string">&#x27;a&#x27;</span> ∈ <span class="string">&quot;banana&quot;</span>    <span class="comment"># &#x27;a&#x27; in &quot;banana&quot;</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="String-Comparison"><a href="#String-Comparison" class="headerlink" title="String Comparison"></a>String Comparison</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">&quot;Pineapple&quot;</span></span><br><span class="line"><span class="keyword">if</span> word &lt; <span class="string">&quot;banana&quot;</span></span><br><span class="line">    println(<span class="string">&quot;Your word, <span class="subst">$(word)</span>, comes before banana.&quot;</span>)</span><br><span class="line"><span class="keyword">elseif</span> word &gt; <span class="string">&quot;banana&quot;</span></span><br><span class="line">    println(<span class="string">&quot;Your word, <span class="subst">$(word)</span>, comes after banana.&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    println(<span class="string">&quot;All right, bananas.&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">&gt; Your word, Pineapple, comes before banana.</span><br></pre></td></tr></table></figure>
+<h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p><code>Array</code>为<code>Julia</code>内置的数据结构。</p>
+<h3 id="An-Array-is-a-Sequence"><a href="#An-Array-is-a-Sequence" class="headerlink" title="An Array is a Sequence"></a>An Array is a Sequence</h3><p>数组中元素不一定要是同一种类型，最简单的创建数组的方法是用中括号<code>[]</code>：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&quot;spam&quot;</span>, <span class="number">2.0</span>, <span class="number">5</span>, [<span class="number">10</span>, <span class="number">20</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; cheeses = [<span class="string">&quot;Cheddar&quot;</span>, <span class="string">&quot;Edam&quot;</span>, <span class="string">&quot;Gouda&quot;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; numbers = [<span class="number">42</span>, <span class="number">123</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; empty = [];</span><br><span class="line"></span><br><span class="line">julia&gt; print(cheeses, <span class="string">&quot; &quot;</span>, numbers, <span class="string">&quot; &quot;</span>, empty)</span><br><span class="line">[<span class="string">&quot;Cheddar&quot;</span>, <span class="string">&quot;Edam&quot;</span>, <span class="string">&quot;Gouda&quot;</span>] [<span class="number">42</span>, <span class="number">123</span>] <span class="built_in">Any</span>[]</span><br></pre></td></tr></table></figure>
+<p>我们可以使用<code>typeof</code>来查看类型：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; typeof(cheeses)</span><br><span class="line"><span class="built_in">Array</span>&#123;<span class="built_in">String</span>,<span class="number">1</span>&#125;</span><br><span class="line">julia&gt; typeof(numbers)</span><br><span class="line"><span class="built_in">Array</span>&#123;<span class="built_in">Int64</span>,<span class="number">1</span>&#125;</span><br><span class="line">julia&gt; typeof(empty)</span><br><span class="line"><span class="built_in">Array</span>&#123;<span class="built_in">Any</span>,<span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>数组类型包含数组中元素的类型和维度。</p>
+<h3 id="Arrays-Are-Mutable"><a href="#Arrays-Are-Mutable" class="headerlink" title="Arrays Are Mutable"></a>Arrays Are Mutable</h3><p>数组是可变的：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; numbers[<span class="number">2</span>] = <span class="number">5</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line">julia&gt; print(numbers)</span><br><span class="line">[<span class="number">42</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="Traversing-an-Array"><a href="#Traversing-an-Array" class="headerlink" title="Traversing an Array"></a>Traversing an Array</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> cheese <span class="keyword">in</span> cheeses</span><br><span class="line">    println(cheese)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> []</span><br><span class="line">    println(<span class="string">&quot;This can never happens.&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Array-Slices"><a href="#Array-Slices" class="headerlink" title="Array Slices"></a>Array Slices</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; print(t[<span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">julia&gt; print(t[<span class="number">3</span>:<span class="keyword">end</span>])</span><br><span class="line">[<span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p><code>[:]</code>拷贝数组：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; print(t[:])</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="Array-Library"><a href="#Array-Library" class="headerlink" title="Array Library"></a>Array Library</h3><p><code>push!</code>向数组中添加元素：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; push!(t, <span class="string">&#x27;d&#x27;</span>);</span><br><span class="line"></span><br><span class="line">julia&gt; print(t)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p><code>append!</code>将第一个数组的元素放在第二个数组前面：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t1 = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; t2 = [<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; append!(t1, t2);</span><br><span class="line"></span><br><span class="line">julia&gt; print(t1)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p><code>sort!</code>排序，改变原数组，<code>sort</code>不改变原数组，带<code>!</code>的函数改变原来的数组。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = [<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; sort!(t);</span><br><span class="line"></span><br><span class="line">julia&gt; print(t)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>]</span><br><span class="line"></span><br><span class="line">julia&gt; t1 = [<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; t2 = sort(t1);</span><br><span class="line"></span><br><span class="line">julia&gt; print(t1)</span><br><span class="line">[<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;a&#x27;</span>]</span><br><span class="line">julia&gt; print(t2)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="Dot-Syntax"><a href="#Dot-Syntax" class="headerlink" title="Dot Syntax"></a>Dot Syntax</h3><p>函数前添加<code>.</code>是逐元素操作：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = uppercase.([<span class="string">&quot;abc&quot;</span>, <span class="string">&quot;def&quot;</span>, <span class="string">&quot;ghi&quot;</span>]);</span><br><span class="line"></span><br><span class="line">julia&gt; print(t)</span><br><span class="line">[<span class="string">&quot;ABC&quot;</span>, <span class="string">&quot;DEF&quot;</span>, <span class="string">&quot;GHI&quot;</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="Deleting-Inserting-Elements"><a href="#Deleting-Inserting-Elements" class="headerlink" title="Deleting (Inserting) Elements"></a>Deleting (Inserting) Elements</h3><p><code>splice!</code>删除返回元素：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; splice!(t, <span class="number">2</span>)</span><br><span class="line"><span class="string">&#x27;b&#x27;</span>: ASCII/Unicode U+<span class="number">0062</span> (category Ll: Letter, lowercase)</span><br><span class="line">julia&gt; print(t)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p><code>pop!</code>删除并返回最后一个元素：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; pop!(t)</span><br><span class="line"><span class="string">&#x27;c&#x27;</span>: ASCII/Unicode U+<span class="number">0063</span> (category Ll: Letter, lowercase)</span><br><span class="line">julia&gt; print(t)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p><code>popfirst!</code>删除返回第一个元素：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; popfirst!(t)</span><br><span class="line"><span class="string">&#x27;a&#x27;</span>: ASCII/Unicode U+<span class="number">0061</span> (category Ll: Letter, lowercase)</span><br><span class="line">julia&gt; print(t)</span><br><span class="line">[<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p><code>pushfirst!</code> and <code>push!</code>分别在第一位和最后一位插入数据。</p>
+<p><code>deleteat!</code>删除但不返回元素：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; print(deleteat!(t, <span class="number">2</span>))</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p> <code>insert!</code>在指定位置插入元素：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; print(insert!(t, <span class="number">2</span>, <span class="string">&#x27;x&#x27;</span>))</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-and-Strings"><a href="#Arrays-and-Strings" class="headerlink" title="Arrays and Strings"></a>Arrays and Strings</h3><p><code>collect</code>可以将字符串转为数组：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = collect(<span class="string">&quot;spam&quot;</span>);</span><br><span class="line"></span><br><span class="line">julia&gt; print(t)</span><br><span class="line">[<span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27;p&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;m&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p><code>split</code>可以将字符串按照分隔符分割为数组：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = split(<span class="string">&quot;spam-spam-spam&quot;</span>, <span class="string">&#x27;-&#x27;</span>);</span><br><span class="line"></span><br><span class="line">julia&gt; print(t)</span><br><span class="line"><span class="built_in">SubString</span>&#123;<span class="built_in">String</span>&#125;[<span class="string">&quot;spam&quot;</span>, <span class="string">&quot;spam&quot;</span>, <span class="string">&quot;spam&quot;</span>]</span><br></pre></td></tr></table></figure>
+<p><code>join</code>是<code>split</code>的逆运算，将数组转为字符串：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t = [<span class="string">&quot;pining&quot;</span>, <span class="string">&quot;for&quot;</span>, <span class="string">&quot;the&quot;</span>, <span class="string">&quot;fjords&quot;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; s = join(t, <span class="string">&#x27; &#x27;</span>)</span><br><span class="line"><span class="string">&quot;pining for the fjords&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Objects-and-Values"><a href="#Objects-and-Values" class="headerlink" title="Objects and Values"></a>Objects and Values</h3><p>一个对象是变量可以引用的东西。</p>
+<p>对于字符串：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; a = <span class="string">&quot;banana&quot;</span></span><br><span class="line"><span class="string">&quot;banana&quot;</span></span><br><span class="line">julia&gt; b = <span class="string">&quot;banana&quot;</span></span><br><span class="line"><span class="string">&quot;banana&quot;</span></span><br><span class="line">julia&gt; a ≡ b</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>对于数组：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; b = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; a ≡ b</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h3 id="Aliasing"><a href="#Aliasing" class="headerlink" title="Aliasing"></a>Aliasing</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; b = a;</span><br><span class="line"></span><br><span class="line">julia&gt; b ≡ a</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>变量与对象的关联称为引用。在这个例子中，有两个对同一个对象的引用。</p>
+<h3 id="Array-Arguments"><a href="#Array-Arguments" class="headerlink" title="Array Arguments"></a>Array Arguments</h3><p>当把一个数组传给函数时，函数得到数组的引用，函数会改变数组：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> deletehead!(t)</span><br><span class="line">    popfirst!(t)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">julia&gt; letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"></span><br><span class="line">julia&gt; deletehead!(letters);</span><br><span class="line"></span><br><span class="line">julia&gt; print(letters)</span><br><span class="line">[<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>函数<code>vcat</code>创建新的数组，不会改变原数组：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; t3 = vcat(t1, [<span class="number">4</span>]);</span><br><span class="line"></span><br><span class="line">julia&gt; print(t1)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">julia&gt; print(t3)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+<p>切片也会创建新数组，不会改变原数组：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> baddeletehead(t)</span><br><span class="line">    t = t[<span class="number">2</span>:<span class="keyword">end</span>]                <span class="comment"># WRONG!</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">julia&gt; t4 = baddeletehead(t3);</span><br><span class="line"></span><br><span class="line">julia&gt; print(t3)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">julia&gt; print(t4)</span><br><span class="line">[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+	
+	
+      <div>
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      </div>
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Han Fangcheng 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Han Fangcheng 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Han Fangcheng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.hfcouc.work/2022/07/01/thinkjulia/" title="书籍Thinking Julia前十章阅读笔记">https://www.hfcouc.work/2022/07/01/thinkjulia/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Julia/" rel="tag"># Julia</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/01/math/" rel="prev" title="B站课程Mathematica前三周">
+      <i class="fa fa-chevron-left"></i> B站课程Mathematica前三周
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MzYxNS8zMDA4OA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+	
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Way-of-the-program"><span class="nav-number">1.</span> <span class="nav-text">The Way of the program</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-a-Program"><span class="nav-number">1.1.</span> <span class="nav-text">What is a Program?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-First-Program"><span class="nav-number">1.2.</span> <span class="nav-text">The First Program</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arithmetic-Operators"><span class="nav-number">1.3.</span> <span class="nav-text">Arithmetic Operators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Values-and-Types"><span class="nav-number">1.4.</span> <span class="nav-text">Values and Types</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variables-Expressions-and-Statements"><span class="nav-number">2.</span> <span class="nav-text">Variables, Expressions and Statements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Assignment-Statements"><span class="nav-number">2.1.</span> <span class="nav-text">Assignment Statements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variable-Names"><span class="nav-number">2.2.</span> <span class="nav-text">Variable Names</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expressions-and-Statements"><span class="nav-number">2.3.</span> <span class="nav-text">Expressions and Statements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operator-Precedence"><span class="nav-number">2.4.</span> <span class="nav-text">Operator Precedence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Operations"><span class="nav-number">2.5.</span> <span class="nav-text">String Operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comments"><span class="nav-number">2.6.</span> <span class="nav-text">Comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debugging"><span class="nav-number">2.7.</span> <span class="nav-text">Debugging</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions"><span class="nav-number">3.</span> <span class="nav-text">Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Calls"><span class="nav-number">3.1.</span> <span class="nav-text">Function Calls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-New-Functions"><span class="nav-number">3.2.</span> <span class="nav-text">Adding New Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameters-and-Arguments"><span class="nav-number">3.3.</span> <span class="nav-text">Parameters and Arguments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variables-and-Parameters-Are-Local"><span class="nav-number">3.4.</span> <span class="nav-text">Variables and Parameters Are Local</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fruitful-Functions-and-Void-Functions"><span class="nav-number">3.5.</span> <span class="nav-text">Fruitful Functions and Void Functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Study-Interface-Design"><span class="nav-number">4.</span> <span class="nav-text">Case Study: Interface Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Turtles"><span class="nav-number">4.1.</span> <span class="nav-text">Turtles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Repetition"><span class="nav-number">4.2.</span> <span class="nav-text">Simple Repetition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditionals-and-Recursion"><span class="nav-number">5.</span> <span class="nav-text">Conditionals and Recursion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Floor-Division-and-Modulus"><span class="nav-number">5.1.</span> <span class="nav-text">Floor Division and Modulus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean-Expressions"><span class="nav-number">5.2.</span> <span class="nav-text">Boolean Expressions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logical-Operators"><span class="nav-number">5.3.</span> <span class="nav-text">Logical Operators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditional-Execution"><span class="nav-number">5.4.</span> <span class="nav-text">Conditional Execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alternative-Execution"><span class="nav-number">5.5.</span> <span class="nav-text">Alternative Execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chained-Conditionals"><span class="nav-number">5.6.</span> <span class="nav-text">Chained Conditionals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nested-Conditionals"><span class="nav-number">5.7.</span> <span class="nav-text">Nested Conditionals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recursion"><span class="nav-number">5.8.</span> <span class="nav-text">Recursion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Keyboard-Input"><span class="nav-number">5.9.</span> <span class="nav-text">Keyboard Input</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fruitful-Functions"><span class="nav-number">6.</span> <span class="nav-text">Fruitful Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Return-Values"><span class="nav-number">6.1.</span> <span class="nav-text">Return Values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Checking-Types"><span class="nav-number">6.2.</span> <span class="nav-text">Checking Types</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Iteration"><span class="nav-number">7.</span> <span class="nav-text">Iteration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-while-Statement"><span class="nav-number">7.1.</span> <span class="nav-text">The while Statement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#break"><span class="nav-number">7.1.1.</span> <span class="nav-text">break</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#continue"><span class="nav-number">7.1.2.</span> <span class="nav-text">continue</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strings"><span class="nav-number">8.</span> <span class="nav-text">Strings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Characters"><span class="nav-number">8.1.</span> <span class="nav-text">Characters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-String-Is-a-Sequence"><span class="nav-number">8.2.</span> <span class="nav-text">A String Is a Sequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#length"><span class="nav-number">8.3.</span> <span class="nav-text">length</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Traversal"><span class="nav-number">8.4.</span> <span class="nav-text">Traversal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Slices"><span class="nav-number">8.5.</span> <span class="nav-text">String Slices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strings-Are-Immutable"><span class="nav-number">8.6.</span> <span class="nav-text">Strings Are Immutable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Interpolation"><span class="nav-number">8.7.</span> <span class="nav-text">String Interpolation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Searching"><span class="nav-number">8.8.</span> <span class="nav-text">Searching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Looping-and-Counting"><span class="nav-number">8.9.</span> <span class="nav-text">Looping and Counting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Library"><span class="nav-number">8.10.</span> <span class="nav-text">String Library</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-%E2%88%88-Operator"><span class="nav-number">8.11.</span> <span class="nav-text">The ∈ Operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Comparison"><span class="nav-number">8.12.</span> <span class="nav-text">String Comparison</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arrays"><span class="nav-number">9.</span> <span class="nav-text">Arrays</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#An-Array-is-a-Sequence"><span class="nav-number">9.1.</span> <span class="nav-text">An Array is a Sequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-Are-Mutable"><span class="nav-number">9.2.</span> <span class="nav-text">Arrays Are Mutable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Traversing-an-Array"><span class="nav-number">9.3.</span> <span class="nav-text">Traversing an Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-Slices"><span class="nav-number">9.4.</span> <span class="nav-text">Array Slices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-Library"><span class="nav-number">9.5.</span> <span class="nav-text">Array Library</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dot-Syntax"><span class="nav-number">9.6.</span> <span class="nav-text">Dot Syntax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deleting-Inserting-Elements"><span class="nav-number">9.7.</span> <span class="nav-text">Deleting (Inserting) Elements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-and-Strings"><span class="nav-number">9.8.</span> <span class="nav-text">Arrays and Strings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objects-and-Values"><span class="nav-number">9.9.</span> <span class="nav-text">Objects and Values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Aliasing"><span class="nav-number">9.10.</span> <span class="nav-text">Aliasing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-Arguments"><span class="nav-number">9.11.</span> <span class="nav-text">Array Arguments</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Han Fangcheng"
+      src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
+  <p class="site-author-name" itemprop="name">Han Fangcheng</p>
+  <div class="site-description" itemprop="description">当你穿过了暴风雨，你就不再是原来那个人</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HFC666" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HFC666" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/hfc@stu.ouc.edu.cn" title="E-Mail → hfc@stu.ouc.edu.cn"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/bu-yu-que-zhi-xin-43-35" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;bu-yu-que-zhi-xin-43-35" rel="noopener" target="_blank"><i class="fab fa-gratipay fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_44777424" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_44777424" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="https:&#x2F;&#x2F;www.bilibili.com&#x2F;" rel="noopener" target="_blank">哔哩哔哩</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+	  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=346089&auto=1&height=66"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Tue Jul 13 2021 08:00:00 GMT+0800 (GMT+08:00) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Fangcheng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+    <script src="/js/cursor/cherry.js"></script>
