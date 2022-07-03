@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.hfcouc.work/2022/07/03/thinkjulia2/</loc>
+    
+    <lastmod>2022-07-03</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.hfcouc.work/2021/07/13/index/</loc>
     
     <lastmod>2022-07-01</lastmod>
@@ -137,7 +144,7 @@
 
   <url>
     <loc>https://www.hfcouc.work/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -145,49 +152,49 @@
   
   <url>
     <loc>https://www.hfcouc.work/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.hfcouc.work/tags/%E6%A6%82%E7%8E%87%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.hfcouc.work/tags/Julia/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.hfcouc.work/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.hfcouc.work/tags/Statistical-Rethinking/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.hfcouc.work/tags/Mathematica/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.hfcouc.work/tags/%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -196,21 +203,21 @@
   
   <url>
     <loc>https://www.hfcouc.work/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.hfcouc.work/categories/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.hfcouc.work/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2022-07-01</lastmod>
+    <lastmod>2022-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
