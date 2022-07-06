@@ -28,27 +28,25 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="Sampling the Imaginary">
+  <meta name="description" content="课程链接：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Tp411R7Sf?spm_id_from&#x3D;333.337.search-card.all.click&amp;vd_source&#x3D;6177c61c946280bb88c727585de76bc8">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Statistical Rethinking:Chapter3">
-<meta property="og:url" content="https://www.hfcouc.work/2022/06/29/rt3/index.html">
+<meta property="og:title" content="狄利克雷过程">
+<meta property="og:url" content="https://www.hfcouc.work/2022/07/06/BNP/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="Sampling the Imaginary">
+<meta property="og:description" content="课程链接：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Tp411R7Sf?spm_id_from&#x3D;333.337.search-card.all.click&amp;vd_source&#x3D;6177c61c946280bb88c727585de76bc8">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt3_1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt3_2.jpeg">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt3_3.jpeg">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt3_4.jpeg">
-<meta property="article:published_time" content="2022-06-29T06:55:16.000Z">
-<meta property="article:modified_time" content="2022-06-29T06:57:19.641Z">
+<meta property="og:image" content="https://img2.baidu.com/it/u=2682475456,642314187&fm=253&fmt=auto&app=138&f=JPEG?w=799&h=500">
+<meta property="og:image" content="d:/joplin/2022/2022/paper/BNP/DP.png">
+<meta property="og:image" content="d:/joplin/2022/2022/paper/BNP/1.png">
+<meta property="article:published_time" content="2022-07-06T02:17:50.000Z">
+<meta property="article:modified_time" content="2022-07-06T02:23:33.396Z">
 <meta property="article:author" content="Han Fangcheng">
-<meta property="article:tag" content="概率编程">
-<meta property="article:tag" content="贝叶斯统计">
-<meta property="article:tag" content="Statistical Rethinking">
+<meta property="article:tag" content="贝叶斯">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/rt3_1.png">
+<meta name="twitter:image" content="https://img2.baidu.com/it/u=2682475456,642314187&fm=253&fmt=auto&app=138&f=JPEG?w=799&h=500">
 
-<link rel="canonical" href="https://www.hfcouc.work/2022/06/29/rt3/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/07/06/BNP/">
 
 
 <script id="page-configurations">
@@ -61,7 +59,7 @@
   };
 </script>
 
-  <title>Statistical Rethinking:Chapter3 | 独自赏晴雨</title>
+  <title>狄利克雷过程 | 独自赏晴雨</title>
   
 
 
@@ -228,7 +226,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/06/29/rt3/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/06/BNP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
@@ -241,7 +239,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Statistical Rethinking:Chapter3
+          狄利克雷过程
         </h1>
 
         <div class="post-meta">
@@ -253,7 +251,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-06-29 14:55:16 / 修改时间：14:57:19" itemprop="dateCreated datePublished" datetime="2022-06-29T14:55:16+08:00">2022-06-29</time>
+              <time title="创建时间：2022-07-06 10:17:50 / 修改时间：10:23:33" itemprop="dateCreated datePublished" datetime="2022-07-06T10:17:50+08:00">2022-07-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -261,7 +259,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">书籍阅读</span></a>
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
                 </span>
             </span>
 
@@ -276,46 +274,118 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Sampling-the-Imaginary"><a href="#Sampling-the-Imaginary" class="headerlink" title="Sampling the Imaginary"></a>Sampling the Imaginary</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt3_1.png" alt=""></p>
+        <p align="center">
+    <img src="https://img2.baidu.com/it/u=2682475456,642314187&fm=253&fmt=auto&app=138&f=JPEG?w=799&h=500" style="zoom: 100%;" />
+</p>
+
+<blockquote>
+<p>课程链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Tp411R7Sf?spm_id_from=333.337.search-card.all.click&amp;vd_source=6177c61c946280bb88c727585de76bc8">https://www.bilibili.com/video/BV1Tp411R7Sf?spm_id_from=333.337.search-card.all.click&amp;vd_source=6177c61c946280bb88c727585de76bc8</a></p>
+</blockquote>
 <span id="more"></span>
-<h3 id="Sampling-from-a-grid-approximate"><a href="#Sampling-from-a-grid-approximate" class="headerlink" title="Sampling from a grid-approximate"></a>Sampling from a grid-approximate</h3><p>我们先用第二章的例子生成后验分布：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p_grid &lt;- seq(from=<span class="number">0</span>, to=<span class="number">1</span>, length.out=<span class="number">1000</span>)</span><br><span class="line">prior &lt;- <span class="built_in">rep</span>(<span class="number">1</span>, <span class="number">1000</span>)</span><br><span class="line">likelihood &lt;- dbinom(<span class="number">6</span>, size = <span class="number">9</span>, prob = p_grid)</span><br><span class="line">posterior &lt;- likelihood * prior</span><br><span class="line">posterior &lt;- posterior / <span class="built_in">sum</span>(posterior)</span><br></pre></td></tr></table></figure>
-<p>下面我们对后验进行抽样，抽取$10000$个样本：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sample</span></span><br><span class="line">samples &lt;- sample(p_grid, prob = posterior, size = <span class="number">1e4</span>, replace = <span class="literal">TRUE</span>)</span><br><span class="line"><span class="comment"># plot(samples)</span></span><br><span class="line">dens(samples)</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt3_2.jpeg" alt=""></p>
-<h3 id="Sampling-to-summarize"><a href="#Sampling-to-summarize" class="headerlink" title="Sampling to summarize"></a>Sampling to summarize</h3><p>对样本进行总结主要包含以下几个方面：</p>
-<ol>
-<li>定义边界的区间</li>
-<li>定义概率质量区间的问题</li>
-<li>点估计的问题</li>
-</ol>
-<h4 id="Intervals-of-defined-boundaries"><a href="#Intervals-of-defined-boundaries" class="headerlink" title="Intervals of defined boundaries"></a>Intervals of defined boundaries</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add up posterior probability where p &lt; 0.5</span></span><br><span class="line"><span class="built_in">sum</span>(posterior[p_grid &lt; <span class="number">0.5</span>])</span><br><span class="line">&gt; <span class="number">0.1718746</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># use samples</span></span><br><span class="line"><span class="built_in">sum</span>(samples &lt; <span class="number">0.5</span>) / <span class="number">1e4</span></span><br><span class="line">&gt; <span class="number">0.1731</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sum</span>(samples &gt; <span class="number">0.5</span> &amp; samples &lt; <span class="number">0.75</span>) / <span class="number">1e4</span></span><br><span class="line">&gt; <span class="number">0.6037</span></span><br></pre></td></tr></table></figure>
-<h4 id="Intervals-of-defined-mass"><a href="#Intervals-of-defined-mass" class="headerlink" title="Intervals of defined mass"></a>Intervals of defined mass</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">quantile(samples, <span class="number">0.8</span>)</span><br><span class="line">&gt;       <span class="number">80</span>% </span><br><span class="line">0.7597598 </span><br><span class="line"></span><br><span class="line">quantile(samples, c(0.1, 0.9))</span><br><span class="line">&gt;       10%       <span class="number">90</span>% </span><br><span class="line">0.4504505 0.8118118 </span><br></pre></td></tr></table></figure>
-<p>我们也可以通过<code>PI</code>和<code>HDPI</code>（highest posterior density interval ）函数计算给定概率质量的区间：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">p_grid &lt;- seq( from=<span class="number">0</span> , to=<span class="number">1</span> , length.out=<span class="number">1000</span> )</span><br><span class="line">prior &lt;- <span class="built_in">rep</span>(<span class="number">1</span>,<span class="number">1000</span>)</span><br><span class="line">likelihood &lt;- dbinom( <span class="number">3</span> , size=<span class="number">3</span> , prob=p_grid ) </span><br><span class="line">posterior &lt;- likelihood * prior</span><br><span class="line">posterior &lt;- posterior / <span class="built_in">sum</span>(posterior)</span><br><span class="line">samples &lt;- sample( p_grid , size=<span class="number">1e4</span> , replace=<span class="literal">TRUE</span> , prob=posterior )</span><br><span class="line"><span class="comment"># center</span></span><br><span class="line">PI(samples, prob = <span class="number">0.5</span>)</span><br><span class="line">&gt;       <span class="number">25</span>%       75% </span><br><span class="line"><span class="number">0.7067067</span> <span class="number">0.9321822</span> </span><br><span class="line"></span><br><span class="line">HPDI(samples, prob = <span class="number">0.5</span>)</span><br><span class="line">&gt;   |<span class="number">0.5</span>      <span class="number">0.5</span>| </span><br><span class="line"><span class="number">0.8428428</span> <span class="number">0.9979980</span> </span><br></pre></td></tr></table></figure>
-<p>一般情况下<code>PI</code>和<code>HDPI</code>的结果相差不大，但是当概率密度函数高度倾斜时其值会大不相同。</p>
-<h4 id="Point-estimates"><a href="#Point-estimates" class="headerlink" title="Point estimates"></a>Point estimates</h4><p>最大后验估计：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p_grid[which.max(posterior)]</span><br><span class="line">&gt; <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>也可以根据样本来计算众数：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chainmode(samples, adj=<span class="number">0.01</span>)</span><br><span class="line">&gt; <span class="number">0.9901787</span></span><br></pre></td></tr></table></figure>
-<p>或是均值和中位数</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mean(samples)</span><br><span class="line">median(samples)</span><br><span class="line">&gt; <span class="number">0.8015405</span></span><br><span class="line">&gt; <span class="number">0.8448448</span></span><br></pre></td></tr></table></figure>
-<p>那么描述后验估计用哪一个点呢？有时候我们采用损失函数还衡量点的好坏，但是损失函数的选择也会影响点的选择，如我们选择两个点之间距离的绝对值的差值作为损失函数，那么答案就是中位数。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loss &lt;- sapply(p_grid, <span class="keyword">function</span>(d) <span class="built_in">sum</span>(posterior*<span class="built_in">abs</span>(d-p_grid)))</span><br><span class="line">p_grid[which.min(loss)]</span><br><span class="line">&gt; <span class="number">0.8408408</span></span><br></pre></td></tr></table></figure>
-<p>可以看到与中位数非常接近。</p>
-<h3 id="Sampling-to-simulate-prediction"><a href="#Sampling-to-simulate-prediction" class="headerlink" title="Sampling to simulate prediction"></a>Sampling to simulate prediction</h3><h4 id="Dummy-data"><a href="#Dummy-data" class="headerlink" title="Dummy data"></a>Dummy data</h4><p>似然函数也可以用来产产生数据，例如我们之间的例子，我们的似然函数为：</p>
+<h2 id="狄利克雷过程"><a href="#狄利克雷过程" class="headerlink" title="狄利克雷过程"></a>狄利克雷过程</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>考虑下列问题，假设我们用高斯混合模型来做聚类。假设我们的数据为$x_1,x_2,\cdots,x_N$，那我们的似然函数的对数为：</p>
 <script type="math/tex; mode=display">
-\Pr(w\mid n,p) = \frac{n!}{w!(n-w)!}p^w(1-p)^{n-w}</script><p>例如计算投掷两次，分别有$0,1,2$次是水的概率，$p=0.7$。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dbinom(<span class="number">0</span>:<span class="number">2</span>, size = <span class="number">2</span>, prob = <span class="number">0.7</span>)</span><br><span class="line">&gt; <span class="number">0.09</span> <span class="number">0.42</span> <span class="number">0.49</span></span><br></pre></td></tr></table></figure>
-<p>产生数据：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rbinom(<span class="number">10</span>, size = <span class="number">2</span>, prob = <span class="number">0.7</span>)</span><br><span class="line">&gt; <span class="number">0</span> <span class="number">2</span> <span class="number">2</span> <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>让我们以$p=0.7$的概率投掷$9$次产生$100000$个数据：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dummy_w &lt;- rbinom(<span class="number">1e5</span>, size = <span class="number">9</span>, prob = <span class="number">0.7</span>)</span><br><span class="line">simplehist(dummy_w, xlab = <span class="string">&quot;dummy water count&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt3_3.jpeg" alt=""></p>
-<h4 id="Model-checking"><a href="#Model-checking" class="headerlink" title="Model checking"></a>Model checking</h4><p>现在我们的模型有两个不确定性，一个是$p$的不确定性，因为$p$存在一个后验分布，另一个是样本生成的不确定性，即使对于固定的$p$，样本的生成也是不确定的。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">w &lt;- rbinom(<span class="number">1e4</span>, size = <span class="number">9</span>, prob = samples)</span><br><span class="line">simplehist(w)</span><br></pre></td></tr></table></figure>
-<p>相当于我们先从$p$的后验分布中采样$p$，之后根据采样得到的$p$生成数据，得到的就是$p$的<strong>后验预测分布</strong>。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/rt3_4.jpeg" alt=""></p>
+\sum_{i=1}^N\log\sum_{l=1}^K\alpha_i\mathcal{N}(\mu_i,\sigma_i^2)</script><p>但是我们需要事先确定聚类的个数，但是在很多情况下聚类的个数并不是那么容易确定，我们需要从数据中学习到聚类的个数。一个方法是我们将聚类的数目$K$也作为一个参数，那么我们的参数$\theta = (K,\theta_1,\sigma_1,\cdots,\theta_K,\sigma_K)$。我们的优化问题变为：</p>
+<script type="math/tex; mode=display">
+\hat{\theta} = \arg\max_{\theta}\sum_{i=1}^N\log\sum_{l=1}^K\alpha_i\mathcal{N}(\mu_i,\sigma_i^2)</script><p>但是我们很容易发现当$K=N$，$\mu_i$为数据的值，$\sigma_i=0$的时候似然函数达到最大，即每一个数据都是一个类，这不是我们想要的。<br>我们的一个方法是假设每个数据$x_i$都来自于参数为$\theta_i$的一个分布，而$\theta_i\sim H(\theta)$，其中分布$H(\theta)$为连续分布，但是这样会参在新的问题：因为$H(\theta)$为连续分布，所以$P(\theta_i=\theta_j)=0,i\neq j$。所以这样每个数据来自的分布都不一样，又回到了之前提到的$K=N$的问题了。所以我们令$\theta$来自一个离散分布$G(\theta)$，而$G\sim \text{DP}(\alpha,H)$，其中DP表示狄利克雷过程，而$H$为之前的连续分布，$\alpha&gt;0$为常数，其反映$G$的离散程度，越大表示离散程度越小，当$\alpha\rightarrow0$时，$G$离散程度最大，为一个点；当$\alpha\rightarrow \infty$时，$G\approx H$。</p>
+<blockquote>
+<p>$H$也不一定是连续的，其被称为base measure。</p>
+</blockquote>
+<p>注意这里的$G$为一个random measure，我们每次从$\text{DP}(\alpha,H)$中采样得到的不是一个数值，而是一个分布。假设我们采集到的分布为：</p>
+<p><img src="D:\joplin\2022\2022\paper\BNP\DP.png" alt=""></p>
+<blockquote>
+<p>其中$G_1,G_2$为两次采样产生的分布，上面的棍子表示概率密度，其和为$1$。我们将其分为$a_1,a_2,\cdots,a_d$等$d$个区域，其中每个区域的总概率密度符合狄利克雷分布，即</p>
+<script type="math/tex; mode=display">
+(G(a_1),G(a_2),\cdots,G(a_d))\sim \text{Dir}(\alpha H(a_1),\alpha H(a_2),\cdots,\alpha H(a_d))</script><p>这就是狄利克雷过程的定义。</p>
+</blockquote>
+<p>关于狄利克雷分布：</p>
+<script type="math/tex; mode=display">
+P(x_1,\cdots,x_i,\cdots,x_K)\sim \text{Dir}(\alpha_1,\cdots,\alpha_i,\cdots,\alpha_K)</script><p>则</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}[x_i]  &= \frac{\alpha_i}{\sum_k \alpha_k}\\
+\text{Var}[x_i]&=\frac{\alpha_i(\sum_k\alpha_k-\alpha_i)}{(\sum_k\alpha_k)^2(\sum_{k}\alpha_k+1)}
+\end{aligned}</script><p>将其带入到狄利克雷过程中，得：</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[G[a_i]] = \frac{\alpha H(a_i)}{\sum_k\alpha H(a_k)} = H(a_i)</script><script type="math/tex; mode=display">
+\text{var}[G[a_i]] = \frac{\alpha H(a_i)(\alpha-\alpha H(a_i))}{\alpha^2(\alpha+1)} = \frac{H(a_i)(1-H(a_i))}{\alpha+1}</script><p>我们之前说过关于$\alpha$的性质。现在我们来看一下，均值(期望)与$\alpha$无关，当$\alpha\rightarrow \infty$是，方差趋近于$0$，这说明不管我们怎么划分，在每个$a_i$处，$G(a_i)=H(a_i)$，说明$G(x)=H(x)$，即$G(x)$是连续的是最不离散的版本；如果$\alpha=0$，则$\text{Var}=H(a_i)(1-H(a_i))$，这正是伯努利分布的方差，因此在每个划分上我们都可以用一根棍来表示它们(包括不划分)，这是最离散的版本。</p>
+<h3 id="Construction"><a href="#Construction" class="headerlink" title="Construction"></a>Construction</h3><p>那我们如何构建$G$呢？即如何从$H$中采样得到$G$呢？我们采用<code>stick-breaking construction</code>的方法来产生$G$。其构建方式为：</p>
+<ol>
+<li>从$H$中采样得到$\theta_1$，即$\theta_1\sim H$</li>
+<li>采样$\beta_1\sim\text{Beta}(1,\alpha)$</li>
+<li>权重$\pi_1=\beta_1$</li>
+<li>采样$\theta_2\sim H$</li>
+<li>采样$\beta_2\sim \text{Beta}(1,\alpha)$</li>
+<li>权重$\pi_2 = (1-\pi)\beta_2$<br>以此类推，这样权重$\pi_2$相当于是从取完$\pi_1$剩下的权重中取得。</li>
+</ol>
+<p>我们在看一下关于$\alpha$得一些内容，当$\alpha=0$时，$\mathbb{E}(\beta_i)=1,\text{Var}(\beta_i)=0$，所以一次就把权重全部采完，即只产生一个样本，对应于最离散的情况，而当$\alpha=\infty$时，$\mathbb{E}(\beta_i)=0$，相当于连续分布的情况。</p>
+<h3 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h3><p>下面我们再回顾一下。对于狄利克雷过程，有如下性质：</p>
+<script type="math/tex; mode=display">
+G\sim \text{DP}(\alpha,H)\Leftrightarrow (G(a_1),\cdots,G(a_n))\sim \text{DIR}(\alpha H(a_1),\cdots,\alpha H(a_n)),\quad \text{for any partitions }a_1,\cdots,a_n</script><p>总结之前讲过的，我们有：</p>
+<script type="math/tex; mode=display">
+G\sim \text{DP}(\alpha,H)</script><script type="math/tex; mode=display">
+\theta_1,\cdots,\theta_N\sim G</script><script type="math/tex; mode=display">
+X_i\sim F(\theta_i)</script><p>其图模型为：</p>
+<p><img src="D:\joplin\2022\2022\paper\BNP\1.png" alt=""></p>
+<p>下面我们研究一下$G$的后验分布$P(G\mid \theta_1,\cdots,\theta_N)$：</p>
+<script type="math/tex; mode=display">
+P(G\mid \theta_1,\cdots,\theta_N)\propto P(\theta_1,\cdots,\theta_N\mid G)P(G)</script><p>在研究之前我们先看一个关于狄利克雷分布和多项式分布的例子：<br>假设</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p_1,\cdots,p_N&\sim\text{DIR}(\alpha_1,\cdots,\alpha_N)\\
+n_1,\cdots,n_N&\sim\text{Mult}(p_1,\cdots,p_N)
+\end{aligned}</script><p>那么</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(p_1,\cdots,p_N\mid n_1,\cdots,n_N)&\propto\left(\frac{\Gamma(\sum_{i=1}^N\alpha_i)}{\prod_{i=1}^N\Gamma(\alpha_i)}\prod P_i^{\alpha_i-1}\right)\left(\frac{(\sum_{i=1}^Nn_i)!}{n_1!\cdots n_N!}\prod_{i=1}^NP_i^{n_i}\right)\\&\propto \prod_{i=1}^NP_i^{\alpha_i+n_i-1}\\ &= \text{DIR}(\alpha_1+n_1,\cdots,\alpha_N+n_N)
+\end{aligned}</script><h3 id="Posterior"><a href="#Posterior" class="headerlink" title="Posterior"></a>Posterior</h3><p>有了前面的指示，下面我们来看一下后验分布：<br>对于任何划分</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(G(a_1),\cdots,G(a_K)\mid \theta_1,\cdots,\theta_K)&\propto P(\theta_1,\cdots,\theta_K\mid G(a_1),\cdots,G(a_K))P(G)\\
+&=\text{Mult}(n_1,\cdots,n_K)\text{DIR}(\alpha H(a_1),\cdots,\alpha H(a_K))\\
+&= \text{Dir}(n_1+\alpha H(a_1),\cdots,n_K+\alpha H(a_K))\\
+&= \text{DP}\left(\alpha+n,\frac{\alpha H+\sum_{i=1}^K\delta_{\theta_i}}{\alpha+n}\right)
+\end{aligned}</script><p>其中$n=\sum_{i=1}^K n_i，G=\sum_{i=1}^\infty\pi_i\delta_{\theta_i}$。最后一步是怎么来的呢？<br>所以我们得到的后验分布为：</p>
+<script type="math/tex; mode=display">
+P(G(a_1),\cdots,G(a_K))\sim \text{Dir}(n_1+\alpha H(a_1),\cdots,n_K+\alpha H(a_K))</script><p>根据之前讲过的狄利克雷过程的性质，狄利克雷过程的第一个参数是对应的狄利克雷分布的测度和，而第二个参数为归一化后的一个概率分布，理解为狄利克雷分布的参数除以归一化系数。所以第一个参数为：$\sum_{i=1}^K n_i+\alpha H(a_i) = \alpha+n$，而第二个参数为$\frac{\alpha H+\sum_{i=1}^K\delta_{\theta_i}}{\alpha+n}$，其中$\alpha+n$为归一化参数，而分子$\sum_{i=1}^K\delta_{\theta_i}$实际上就是表示$n_i$。<br>我们再看一下得到的分布：</p>
+<script type="math/tex; mode=display">
+\frac{\alpha H+\sum_{i=1}^K\delta_{\theta_i}}{\alpha+n} = \frac{\alpha}{\alpha+n}H+\frac{\sum_{i=1}^K\delta_{\theta_i}}{\alpha+n}</script><p>为一个连续的分布加上一个离散的分布，这被称为<code>spike and slab</code>。</p>
+<h3 id="Predictive-distribution"><a href="#Predictive-distribution" class="headerlink" title="Predictive distribution"></a>Predictive distribution</h3><p>什么是预测分布呢？预测分布为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(X_i\mid X_{-i}) &= \int_w P(X_i,w\mid X_{-i})dw\\
+&= \int_w P(X_i\mid w,X_{-i})P(w\mid X_{-i})dw\\
+&= \int_wP(X_i\mid w)P(w\mid X_{-i})dw
+\end{aligned}</script><p>其中$X_{-i}$表示去除第$i$项后的$X$。<br>对于狄利克雷过程，我们想要求得的为：</p>
+<script type="math/tex; mode=display">
+P(\theta_i\mid \theta_{-i}) = \int_G P(\theta_i\mid G)P(G\mid \theta_{-i})dG</script><p>其中$\theta$为离散值，具有相同$\theta$值得数据表示属于同一类，我们可以用$Z$来表示属于哪一类。即计算$P(Z_i\mid Z_{-i})$。有多少类只与参数$\alpha$有关，而$\theta$的位置(值)则与$H$有关。</p>
+<p>我们下面计算：</p>
+<script type="math/tex; mode=display">
+P(Z_i=m\mid Z_{-i}) = \frac{P(Z_i=m,Z_{-i})}{P(Z_{-i})}</script><p>我们如何将其与狄利克雷过程结合起来呢？将其与狄利克雷过程结合起来很难，因为狄利克雷过程有无限多的项，我们可以假设其外$K$项，然后再将$K$取无穷。我们用如下方法：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(Z_i=m\mid Z_{-i}) &= \frac{P(Z_i=m,Z_{-i})}{P(Z_{-i})}\\
+&=\frac{\int_{P_1,\cdots,P_K}P(Z_i=m,Z_{-i}\mid P_1,\cdots,P_K)\text{DIR}(\alpha/K,\cdots,\alpha/K)dP}{\int_{P_1,\cdots,P_K}P(Z_{-i}\mid P_1,\cdots,P_K)\text{DIR}(\alpha/K,\cdots,\alpha/K)dP}
+\end{aligned}</script><p>关于积分的计算就用到我们之前的多项式分布和狄利克雷分布共轭的知识了：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\int_{p_1,\cdots,p_K}P(n_1,\cdots,n_K\mid p_1,\cdots,p_K)P(p_1,\cdots,p_K\mid \alpha_1,\cdots,\alpha_K)dP\\
+&=\frac{n!}{n_1!\cdots n_K!}\frac{\Gamma(\sum\alpha_i)}{\prod\Gamma(\alpha_i)}\int_{p_1,\cdots,p_K}\prod_{i=1}^K p_i^{n_i+\alpha_i-1}dp\\
+&=\frac{n!}{n_1!\cdots n_K!}\frac{\Gamma(\sum\alpha_i)}{\prod\Gamma(\alpha_i)}\frac{\prod\Gamma(\alpha_i+n_i)}{\Gamma(\sum\alpha_i+n)}
+\end{aligned}</script><p>我们将其应用到分子和分母上，首先定义符号：$n_{l,-i}$表示去除第$i$个数据后属于第$l$类的个数。我们知道第二项：</p>
+<script type="math/tex; mode=display">
+\frac{\Gamma(\sum\alpha_i)}{\prod\Gamma(\alpha_i)}</script><p>只与先验有关，所以分子分母都一样。</p>
+<p>我们先看第一项，因为在我们的情景下，即便类数相等，每个类的个数相等，但是相同个体不属于同一个类，这两种划分方法得到的第一项的值是相同的，但是在我们的情境下是不同的，所以第一项不应该存在。</p>
+<p>第三项代入为：</p>
+<script type="math/tex; mode=display">
+\frac{\Gamma(\alpha/K+n_{m,-i}+1)\prod_{l\neq i} \Gamma(\alpha/K+n_{l,-i})}{\Gamma(\alpha+n)}\cdot \frac{\Gamma(\alpha+n-1)}{\prod\Gamma(\sum_l \alpha/K+n_{l,-i})}</script><p>伽马函数具有如下性质：</p>
+<script type="math/tex; mode=display">
+\Gamma(x) = (x-1)\Gamma(x-1)</script><p>上式化简得到：</p>
+<script type="math/tex; mode=display">
+\frac{n_{m,-i}+\frac{\alpha}{K}}{n+\alpha-1}</script><p>当$K\rightarrow \infty$为</p>
+<script type="math/tex; mode=display">
+\frac{n_{m,-i}}{n+\alpha-1}</script><p>对$m$进行求和得到：</p>
+<script type="math/tex; mode=display">
+\sum_m\frac{n_{m,-i}}{n+\alpha-1} = \frac{n-1}{n+\alpha-1}\neq1</script><p>这与概率密度的定义不同，所以有$\frac{\alpha}{n+\alpha-1}$的概率属于新的一个类，这就是<strong>中国餐馆过程</strong>。</p>
 
     </div>
 
@@ -361,7 +431,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2022/06/29/rt3/" title="Statistical Rethinking:Chapter3">https://www.hfcouc.work/2022/06/29/rt3/</a>
+    <a href="https://www.hfcouc.work/2022/07/06/BNP/" title="狄利克雷过程">https://www.hfcouc.work/2022/07/06/BNP/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -401,9 +471,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%A6%82%E7%8E%87%E7%BC%96%E7%A8%8B/" rel="tag"># 概率编程</a>
-              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/" rel="tag"># 贝叶斯统计</a>
-              <a href="/tags/Statistical-Rethinking/" rel="tag"># Statistical Rethinking</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF/" rel="tag"># 贝叶斯</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
           </div>
 
         
@@ -412,13 +481,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/06/29/rt2/" rel="prev" title="Statistical Rethinking:Chapter2">
-      <i class="fa fa-chevron-left"></i> Statistical Rethinking:Chapter2
+    <a href="/2022/07/03/thinkjulia2/" rel="prev" title="书籍Thinking Julia后几章阅读笔记">
+      <i class="fa fa-chevron-left"></i> 书籍Thinking Julia后几章阅读笔记
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/07/01/math/" rel="next" title="B站课程Mathematica前三周">
-      B站课程Mathematica前三周 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -480,7 +546,7 @@
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sampling-the-Imaginary"><span class="nav-number">1.</span> <span class="nav-text">Sampling the Imaginary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sampling-from-a-grid-approximate"><span class="nav-number">1.1.</span> <span class="nav-text">Sampling from a grid-approximate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sampling-to-summarize"><span class="nav-number">1.2.</span> <span class="nav-text">Sampling to summarize</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Intervals-of-defined-boundaries"><span class="nav-number">1.2.1.</span> <span class="nav-text">Intervals of defined boundaries</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Intervals-of-defined-mass"><span class="nav-number">1.2.2.</span> <span class="nav-text">Intervals of defined mass</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Point-estimates"><span class="nav-number">1.2.3.</span> <span class="nav-text">Point estimates</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sampling-to-simulate-prediction"><span class="nav-number">1.3.</span> <span class="nav-text">Sampling to simulate prediction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Dummy-data"><span class="nav-number">1.3.1.</span> <span class="nav-text">Dummy data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Model-checking"><span class="nav-number">1.3.2.</span> <span class="nav-text">Model checking</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">狄利克雷过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Construction"><span class="nav-number">1.2.</span> <span class="nav-text">Construction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Property"><span class="nav-number">1.3.</span> <span class="nav-text">Property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Posterior"><span class="nav-number">1.4.</span> <span class="nav-text">Posterior</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Predictive-distribution"><span class="nav-number">1.5.</span> <span class="nav-text">Predictive distribution</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
