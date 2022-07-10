@@ -28,27 +28,22 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="A Conceptual Introduction to Hamiltonian Monte Carlo 文章链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1701.02434">
+  <meta name="description" content="Exponential Family Distribution  课程地址：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1QW411y7D3?spm_id_from&#x3D;333.337.search-card.all.click&amp;vd_source&#x3D;6177c61c946280bb88c727585de76bc8">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文章A Conceptual Introduction to Hamiltonian Monte Carlo阅读笔记">
-<meta property="og:url" content="https://www.hfcouc.work/2022/06/22/HMC/index.html">
+<meta property="og:title" content="指数分布族">
+<meta property="og:url" content="https://www.hfcouc.work/2022/07/10/EXP/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="A Conceptual Introduction to Hamiltonian Monte Carlo 文章链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1701.02434">
+<meta property="og:description" content="Exponential Family Distribution  课程地址：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1QW411y7D3?spm_id_from&#x3D;333.337.search-card.all.click&amp;vd_source&#x3D;6177c61c946280bb88c727585de76bc8">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/HMC1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/HMC2.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/HMC3.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/HMC4.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/HMC5.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/hmc6.jpg">
-<meta property="article:published_time" content="2022-06-22T09:51:00.000Z">
-<meta property="article:modified_time" content="2022-07-08T22:27:35.980Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EX1.png">
+<meta property="article:published_time" content="2022-07-10T12:03:45.000Z">
+<meta property="article:modified_time" content="2022-07-10T12:08:25.180Z">
 <meta property="article:author" content="Han Fangcheng">
-<meta property="article:tag" content="算法">
+<meta property="article:tag" content="概率论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/HMC1.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EX1.png">
 
-<link rel="canonical" href="https://www.hfcouc.work/2022/06/22/HMC/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/07/10/EXP/">
 
 
 <script id="page-configurations">
@@ -61,7 +56,7 @@
   };
 </script>
 
-  <title>文章A Conceptual Introduction to Hamiltonian Monte Carlo阅读笔记 | 独自赏晴雨</title>
+  <title>指数分布族 | 独自赏晴雨</title>
   
 
 
@@ -228,7 +223,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/06/22/HMC/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/10/EXP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
@@ -241,7 +236,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          文章A Conceptual Introduction to Hamiltonian Monte Carlo阅读笔记
+          指数分布族
         </h1>
 
         <div class="post-meta">
@@ -251,23 +246,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-06-22 17:51:00" itemprop="dateCreated datePublished" datetime="2022-06-22T17:51:00+08:00">2022-06-22</time>
+              <time title="创建时间：2022-07-10 20:03:45 / 修改时间：20:08:25" itemprop="dateCreated datePublished" datetime="2022-07-10T20:03:45+08:00">2022-07-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-09 06:27:35" itemprop="dateModified" datetime="2022-07-09T06:27:35+08:00">2022-07-09</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">文献阅读</span></a>
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
                 </span>
             </span>
 
@@ -282,135 +271,135 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="A-Conceptual-Introduction-to-Hamiltonian-Monte-Carlo"><a href="#A-Conceptual-Introduction-to-Hamiltonian-Monte-Carlo" class="headerlink" title="A Conceptual Introduction to Hamiltonian Monte Carlo"></a>A Conceptual Introduction to Hamiltonian Monte Carlo</h2><blockquote>
-<p>文章链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1701.02434">https://arxiv.org/abs/1701.02434</a></p>
+        <h2 id="Exponential-Family-Distribution"><a href="#Exponential-Family-Distribution" class="headerlink" title="Exponential Family Distribution"></a>Exponential Family Distribution</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EX1.png" alt=""></p>
+<blockquote>
+<p>课程地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1QW411y7D3?spm_id_from=333.337.search-card.all.click&amp;vd_source=6177c61c946280bb88c727585de76bc8">https://www.bilibili.com/video/BV1QW411y7D3?spm_id_from=333.337.search-card.all.click&amp;vd_source=6177c61c946280bb88c727585de76bc8</a></p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/HMC1.png" alt=""></p>
 <span id="more"></span>
-<h3 id="期望的计算"><a href="#期望的计算" class="headerlink" title="期望的计算"></a>期望的计算</h3><p>对于给定函数$f(q)$，我们在给定的$q$的分布$\pi (q)$上计算其期望：</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>指数分布族是可以写为如下形式的分布：</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{\pi}[f] = \int_{\mathcal{Q}}\pi(q)f(q)dq</script><p>一般情况下此积分的原函数得不到，因此我们采用蒙特卡洛的方法，在$\pi(q)$上对$q$进行采样，用下式计算期望：</p>
+P(x\mid \eta) = h(x)\exp\left(\eta^T\phi(x)-A(\eta)\right)</script><p>其中$\eta$为参数向量，$x\in \mathbb{R}^p$，$A(\eta)$为对数配分函数(log partition function)。</p>
+<p>下面我们解释一下<strong>配分函数</strong>，配分函数可以理解为<strong>归一化因子</strong>，例如我们在无向图模型中经常用到的：</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{\pi}[f]\approx \frac{1}{n}\sum_{i=1}^n f(q_i)\quad q_i\sim \pi(q)</script><p>但是我们如何在$\pi(q)$上进行采样呢？为了节省时间，我们一般选择在概率密度较高的位置进行采样，即在概率密度最高的邻域内进行采样。但是在高维情况下存在问题，假设我们在概率密度最高的$1/3$邻域内进行采样，当维度为$n$时，积分区域的体积为$(1/3)^n$，当$n$很大时趋近于$0$，因此对积分的贡献很小。而概率密度较小的地方由于概率密度趋近于$0$，对积分的贡献也不大。我们着重关注的应该是介于两者之间的区域，其对积分的贡献较大，成为典型集(typical set)。我们研究的重点在于如何在<strong>典型集上采样</strong>。</p>
-<h3 id="马尔可夫链蒙特卡洛方法"><a href="#马尔可夫链蒙特卡洛方法" class="headerlink" title="马尔可夫链蒙特卡洛方法"></a>马尔可夫链蒙特卡洛方法</h3><h4 id="理想状态"><a href="#理想状态" class="headerlink" title="理想状态"></a>理想状态</h4><p>利用马尔可夫链蒙特卡洛(MCMC)方法可以在典型集上进行采样。在理想状态下，MCMC的采样过程可以分为三个阶段：</p>
+P(X\mid \theta) = \frac{1}{Z}\hat{P}(X\mid \theta)</script><p>其中$\hat{P}(X\mid \theta)$是我们构造出来的分布，但是概率分布必须满足和为$1$，所以我们在前面添加归一化因子使得：</p>
+<script type="math/tex; mode=display">
+Z = \int_x \hat{P}(x\mid \theta)dx</script><p>可以看出$Z$与$X$无关，那为什么$A(\eta)$称为对数配分函数呢？这是因为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(x\mid \eta) &= h(x)\exp\left(\eta^T\phi(x)-A(\eta)\right)\\
+&= \frac{1}{\exp(A(\eta))}h(x)\exp(\eta^T\phi(x))
+\end{aligned}</script><p>所以$Z = \exp(A(\eta))\Rightarrow A(\eta)=\ln Z$，所以其被称为对数配分函数。</p>
+<p>其中$\phi(x)$为<strong>充分统计量</strong>。充分统计量指的是能够包含样本中所有信息的统计量。</p>
+<p>如对于数据$x_1,\cdots,x_N$，我们假设其服从于高斯分布，那么其充分统计量就为：</p>
+<script type="math/tex; mode=display">
+\phi(x) = \begin{bmatrix}\sum_{i=1}^Nx_i\\\sum_{i=1}^Nx_i^2\end{bmatrix}</script><p>因为有了这两个统计量我们就可以求出其<strong>均值</strong>和<strong>方差</strong>。</p>
+<p>在贝叶斯推断中我们常常遇到这样的问题：</p>
+<script type="math/tex; mode=display">
+P(Z\mid X) = \frac{P(X\mid Z)P(Z)}{\int_ZP(X\mid Z)P(Z)dZ}</script><p>有时候积分很难算出，即使积分算出了，$P(Z\mid X)$的形式可能很复杂，我们无法求解其期望和方差，这时候我们可以采用采样的方法(MCMC)或者通过变分推断来寻找接近$P(Z\mid X)$的概率分布$Q(X)$。</p>
+<p>但是指数族分布可以采用共轭的性质。</p>
+<p>指数族分布与广义线性模型，广义线性模型的重要组成部分为：</p>
 <ol>
-<li>从初始位置到典型集，此时偏差(bias)较大。</li>
-<li>进入典型集后，在典型集上进行探索，准确度迅速上升。</li>
-<li>继续在典型集上进行探索，准确度上升缓慢。</li>
+<li>线性组合，如$w^Tx$</li>
+<li>link function：为激活函数的逆函数</li>
+<li>指数族分布：$y\mid x\sim$指数族分布</li>
 </ol>
-<p>如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/HMC2.jpg" alt=""></p>
-<blockquote>
-<p>图(a)表示阶段1，图(b)表示阶段2，图(c)表示阶段3。</p>
-</blockquote>
-<p>当达到阶段3时，估计的结果符合大数定律：</p>
-<script type="math/tex; mode=display">
-\hat{f}^{\text{MCMC}}_N\sim \mathcal{N}(\mathbb{E}_{\pi}[f],\text{MCMC-SE})</script><p>其中蒙特卡洛误差为：</p>
-<script type="math/tex; mode=display">
-\text{MCMC-SE}\equiv \sqrt{\frac{\text{Var}_{\pi}[f]}{\text{ESS}}}</script><p>其中ESS为有效样本量，定义为：</p>
-<script type="math/tex; mode=display">
-\text{ESS} = \frac{N}{1+2\sum_{l=1}^\infty \rho_l}</script><p>其中$\rho_l$为之后$l$的自相关系数。</p>
-<h4 id="病态情况"><a href="#病态情况" class="headerlink" title="病态情况"></a>病态情况</h4><p>当典型集内存在高曲率区域时，会导致此区域无法被探索，造成偏差。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/HMC3.jpg" alt=""></p>
-<blockquote>
-<p>病态情况：其中绿色区域表示高曲率区域。存在三种情况：</p>
-<ol>
-<li>无法跨过此高曲率区域，仅在一侧进行采样。</li>
-<li>在高曲率区域周围震荡。</li>
-<li>可以跨过高区域区域，在整个典型集上进行采样。</li>
-</ol>
-</blockquote>
-<h4 id="Metropolis-Hastings采样"><a href="#Metropolis-Hastings采样" class="headerlink" title="Metropolis-Hastings采样"></a>Metropolis-Hastings采样</h4><p>一个较为简单的MCMC方法为M-H采样(Metropolis-Hastings采样)，在局部利用建议分布对目标分布进行近似，其分为两个步骤：</p>
-<ol>
-<li>在提议分布$\mathbb{Q}(q^\prime\mid q)$进行采样</li>
-<li>计算接受率<script type="math/tex">a(q^\prime\mid q) = \min\left(1,\frac{\mathbb{Q}(q\mid q^\prime)\pi(q^\prime)}{\mathbb{Q}(q^\prime\mid q)\pi(q)}\right)</script>，如果$a$大于生成的$0\sim1$之间的随机数，接受样本$q^\prime$，否则继续接受样本$q$。<br>但是M-H采样在高维情况下存在接受率过低的问题。</li>
-</ol>
-<h3 id="Hamiltonian-Monte-Carlo"><a href="#Hamiltonian-Monte-Carlo" class="headerlink" title="Hamiltonian Monte Carlo"></a>Hamiltonian Monte Carlo</h3><p>汉密尔顿蒙特卡洛(HMC)方法：我们可以利用典型集的形状的特征来进行采样。我们不再在典型集上随机移动，而是通过向量场的形式来指示移动的方向，使其高效地在典型集上移动。</p>
-<p>我们将概率系统类比于物理系统，典型集类似于行星绕地球旋转地轨道。对于行星，我们需要添加动量来抵消重力使行星正常围绕地球运动；类比于概率空间，我们需要添加动量来抵消梯度使马尔可夫链在典型集上采样。</p>
-<h4 id="相空间和汉密尔顿方程"><a href="#相空间和汉密尔顿方程" class="headerlink" title="相空间和汉密尔顿方程"></a>相空间和汉密尔顿方程</h4><p>我们需要引入动量参数来补充目标参数空间的每个维度：</p>
-<script type="math/tex; mode=display">
-q_n \rightarrow (q_n,p_n)</script><p>这样将$D$维空间拓展为了$2D$维的空间，我们就将目标参数空间拓展为了相空间。相空间上的联合分布成为典型分布(canonical distribution)：</p>
-<script type="math/tex; mode=display">
-\pi(q,p) = \pi(p\mid q)\pi(q)</script><p>这样我们对动量参数进行积分后很容易得到我们要采样的目标参数。</p>
-<p>我们将典型分布写为不变的汉密尔顿函数的形式：</p>
-<script type="math/tex; mode=display">
-\pi(q,p) = \exp^{-H(q,p)}</script><p>所以：</p>
+<p>概率图模型中非常重要的一组模型为无向图RBF，与指数族分布具有非常重要的关系。</p>
+<p>另外当分布为指数族分布时，变分推断可见极大地简化。</p>
+<h3 id="高斯分布的指数族形式"><a href="#高斯分布的指数族形式" class="headerlink" title="高斯分布的指数族形式"></a>高斯分布的指数族形式</h3><p>高斯分布的形式为：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-H(q,p) &= -\log\pi(p\mid q) - \log\pi(q)\\
-&\equiv K(p,q) + V(q)
-\end{aligned}</script><p>其中$K(p,q)$被称为动能，$V(q)$被称为势能。</p>
-<p>我们利用汉密尔顿方程来生成向量场：</p>
+P(x\mid\theta) &= \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x-\mu)^2\right)\quad \theta = (\mu,\sigma^2)\\
+&=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x^2-2\mu x+\mu^2)\right)\\
+&=\exp\left(\log(2\pi\sigma^2)^{-\frac{1}{2}}\right)\exp\left(-\frac{1}{2\sigma^2}\begin{pmatrix}-2\mu&1\end{pmatrix}\begin{pmatrix}x\\x^2\end{pmatrix}-\frac{\mu^2}{2\sigma^2}\right)\\
+&=\exp\left(\underbrace{\begin{pmatrix}\frac{\mu}{\sigma^2}&-\frac{1}{2\sigma^2}\end{pmatrix}}_{\eta^T}\cdot\underbrace{\begin{pmatrix}x\\x^2\end{pmatrix}}_{\phi(x)}-\underbrace{\left(\frac{\mu^2}{2\sigma^2}+\frac{1}{2}\log2\pi\sigma^2\right)}_{A(\eta)}\right)
+\end{aligned}</script><p>其中我们令$\eta_1=\frac{\mu}{\sigma^2},\eta_2=-\frac{1}{2\sigma^2}$。则$\sigma^2=-\frac{1}{2\eta_2},\mu=-\frac{\eta_1}{2\eta_2}$。代入$A(\eta)$，得：</p>
+<script type="math/tex; mode=display">
+A(\eta) = -\frac{\eta_1^2}{4\eta_2}+\frac{1}{2}\log\left(-\frac{\pi}{\eta_2}\right)</script><h3 id="对数配分函数与充分统计量的关系"><a href="#对数配分函数与充分统计量的关系" class="headerlink" title="对数配分函数与充分统计量的关系"></a>对数配分函数与充分统计量的关系</h3><p>我们之前提到过：</p>
+<script type="math/tex; mode=display">
+\exp(A(\eta)) = \int_x h(x)\exp(\eta^T\phi(x))dx</script><p>两边同时对$\eta$求导，得：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\frac{dq}{dt} &= + \frac{\partial H}{\partial p} = \frac{\partial K}{\partial p}\\
-\frac{dp}{dt} &= -\frac{\partial H}{\partial q} = -\frac{\partial K}{\partial q} - \frac{\partial V}{\partial q}
-\end{aligned}</script><p>所以汉密尔顿方程是不随时间发生改变的，因为：</p>
+\exp(A(\eta))\cdot A^\prime(\eta) &= \frac{\partial}{\partial \eta}(\int h(x)\exp(\eta^T\phi(x))dx)\\
+&= \int_xh(x)\exp(\eta^T\phi(x))\phi(x)dx
+\end{aligned}</script><p>两边同除以$A^\prime(\eta)$，得</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\frac{dH}{dt} &= \frac{\partial H}{\partial p}\frac{d p}{dt} + \frac{\partial H}{\partial q}\frac{d q}{dt}\\
-&= -\frac{\partial H}{\partial p}\frac{\partial H}{\partial q} + \frac{\partial H}{\partial q}\frac{\partial H}{\partial p}\\
-&=0
-\end{aligned}</script><h4 id="理想条件下的汉密尔顿转移"><a href="#理想条件下的汉密尔顿转移" class="headerlink" title="理想条件下的汉密尔顿转移"></a>理想条件下的汉密尔顿转移</h4><p>理想条件下的HMC可以分为3个步骤：</p>
-<ol>
-<li>从初始位置产生初始动量</li>
-<li>以此类推产生轨迹</li>
-<li>从相空间投影到参数空间</li>
-</ol>
-<h3 id="高效的HMC"><a href="#高效的HMC" class="headerlink" title="高效的HMC"></a>高效的HMC</h3><h4 id="相空间的几何形状"><a href="#相空间的几何形状" class="headerlink" title="相空间的几何形状"></a>相空间的几何形状</h4><p>汉密尔顿公式的性质使汉密尔顿方程的值始终保持不变。话句话说，每一个汉密尔顿轨迹都使一个能级：</p>
+A^\prime(\eta) &= \frac{\int_xh(x)\exp(\eta^T\phi(x))\phi(x)dx}{\exp(A(\eta))}\\
+&=\int_x \underbrace{h(x)\exp(\eta^T\phi(x)-A(\eta))}_{P(x\mid\eta)}\phi(x)dx\\
+&= \mathbb{E}_{P(x\mid\eta)}[\phi(x)]
+\end{aligned}</script><p>所以$A^\prime(\eta) = \mathbb{E}_{P(x\mid \eta)}[\phi(x)]$。</p>
+<p>同样地，我们也可以研究一下二阶导，对式子</p>
 <script type="math/tex; mode=display">
-H^{-1}(E) = \{q,p\mid H(q,p)=E\}</script><p>如下图所示，相空间可以被分解维汉密尔顿能级。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/HMC4.jpg" alt=""></p>
-<p>所以我们的采样过程可以分解为两个步骤，一个是在相同的能级上进行采样，一个是在不同的能级上进行跃迁，如下图：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/HMC5.jpg" alt=""></p>
-<blockquote>
-<p>深红色表示在相同的能级上进行采样，浅红色的表示在不同能级上进行跃迁。</p>
-</blockquote>
-<h4 id="对动能的优化"><a href="#对动能的优化" class="headerlink" title="对动能的优化"></a>对动能的优化</h4><p>欧几里得-高斯动能：</p>
+A^\prime(\eta) =\int_x \underbrace{h(x)\exp(\eta^T\phi(x)-A(\eta))}_{P(x\mid\eta)}\phi(x)dx</script><p>两边同时求导得：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\Delta(q,q^\prime) &= (q-q^\prime)^\top\cdot M\cdot(q-q^\prime)\\
-\Delta(p,p^\prime) &= (p-p^\prime)^\top\cdot M^{-1}\cdot(p-p^\prime)
-\end{aligned}</script><p>我们一般定义条件分布为：</p>
-<script type="math/tex; mode=display">
-\pi(p\mid q) = \mathcal{N}(p\mid 0,M)</script><p>这种特殊选择定义了欧几里得-高斯动能：</p>
-<script type="math/tex; mode=display">
-K(q,p) = \frac{1}{2}P^\top \cdot M^{-1}\cdot p + \frac{1}{2}\log|M|+\text{const}</script><p>黎曼-高斯动能函数：与欧几里得-高斯动能函数不同之处为协方差与位置有关：</p>
-<script type="math/tex; mode=display">
-\pi(p\mid q) = \mathcal{N}(p\mid 0,\Sigma(q))</script><p>定义了黎曼-高斯动能：</p>
-<script type="math/tex; mode=display">
-K(q,p) = \frac{1}{2}p^\top\cdot\Sigma^{-1}(q)\cdot p+\frac{1}{2}\log|\Sigma(q)| + \text{const}</script><h4 id="对积分时间的优化"><a href="#对积分时间的优化" class="headerlink" title="对积分时间的优化"></a>对积分时间的优化</h4><p>这里的积分时间指的是在某个特定能级上的探索时间(步数)。随着积分时间的增加，时间期望会收敛到空间期望。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/hmc6.jpg" alt=""></p>
-<blockquote>
-<p>图(a)：时间期望与空间期望的差值的绝对值随着积分时间的变化，可以看到到积分时间到达一定的程度后，增加积分时间对结果产生的影响并不大；图(b)：有效样本数随着积分时间的变化，与图(a)变化类似；图(c)：有效样本数/积分时间随着积分时间的变化，先增加后减小，存在最大值。</p>
-</blockquote>
-<p>当目标概率密度为：</p>
-<script type="math/tex; mode=display">
-\pi_\beta(q)\propto \exp(-|q|^\beta)</script><p>动能函数为欧几里得动能：</p>
-<script type="math/tex; mode=display">
-\pi(p\mid q) = \mathcal{N}(0,1)</script><p>最优积分时间与包含轨迹的能级的能量成比例：</p>
-<script type="math/tex; mode=display">
-T_{\text{optimal}}(q,p)\propto (H(q,p))^{\frac{2-\beta}{2\beta}}</script><h3 id="在实践中实现HMC"><a href="#在实践中实现HMC" class="headerlink" title="在实践中实现HMC"></a>在实践中实现HMC</h3><p>由于在绝大数情况下我们不能准确地求解哈密顿方程，必须采用数值求解的方法，但是数值求解的过程会累积误差，对我们的结果产生影响。</p>
-<h4 id="Symplectic-Integrators"><a href="#Symplectic-Integrators" class="headerlink" title="Symplectic Integrators"></a>Symplectic Integrators</h4><p>Symplectic Integrators(辛积分器)是一个强大的积分器，它产生的数值轨迹不会偏离精确的能级，而是在其附近震荡，即使在很长的积分时间内也是如此。</p>
+A^{\prime\prime}(\eta) &= \int_x \underbrace{h(x)\exp(\eta^T\phi(x)-A(\eta))}_{P(x\mid\eta)}(\phi(x)-A^{\prime}(\eta))\phi(x)dx\\
+&= \int_xP(x\mid\eta)(\phi(x)-\mathbb{E}_{P(x\mid\eta)}[\phi(x)])\phi(x)dx\\
+&= \int_x P(x\mid \eta)\phi(x)^2dx - \mathbb{E}_{P(x\mid\eta)}[\phi(x)])\int_xP(x\mid \eta)\phi(x)dx\\
+&= \mathbb{E}_{P(x\mid\eta)}[\phi(x)^2] - \left(\mathbb{E}_{P(x\mid \eta)}[\phi(x)]\right)^2\\
+&=\operatorname{Var}[\phi(x)]
+\end{aligned}</script><h3 id="极大似然估计与充分统计量"><a href="#极大似然估计与充分统计量" class="headerlink" title="极大似然估计与充分统计量"></a>极大似然估计与充分统计量</h3><p>假设我们的数据为：$D=\{x_1,x_2,\cdots,x_N\}$，所以我们有：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-&q_{0} \leftarrow q, p_{0} \leftarrow p \\
-&\text {for } 0 \leq n<\llcorner T / \epsilon\lrcorner \text { do } \\
-&\quad p_{n+\frac{1}{2}}  \leftarrow p_{n}-\frac{\epsilon}{2} \frac{\partial V}{\partial q}\left(q_{n}\right) \\
-&\quad q_{n+1}  \leftarrow q_{n}+\epsilon p_{n+\frac{1}{2}} \\
-&\quad p_{n+1} \leftarrow p_{n+\frac{1}{2}}-\frac{\epsilon}{2} \frac{\partial V}{\partial q}\left(q_{n+1}\right)\\
-&\text {end for. }
-\end{aligned}</script><h4 id="纠正辛积分器"><a href="#纠正辛积分器" class="headerlink" title="纠正辛积分器"></a>纠正辛积分器</h4><p>我们在每个能级上运行$L$步，取最后一个样本$(q_L,p_L)$，之后进行能级跃迁。因为我们是使用数值的方法，因此在同一个能级上采样上可能不能保持能量不变。因此我们借用M-H采样的思想来对样本进行进行接受-拒绝，因为在同一个能级上采样当确定初始点时采到的样本是固定的，所以：</p>
-<script type="math/tex; mode=display">
-\mathbb{Q}(q_0,p_0\mid q_L,p_L) = \mathbb{Q}(q_L,p_L\mid q_0,p_0)=1</script><p>其接受概率为：</p>
+\eta_{\text{mle}} &= \arg\max\log P(D\mid \eta)\\
+&=\arg\max \log\prod_{i=1}^N P(x_i\mid \eta)\\
+&=\arg\max \sum_{i=1}^N\log P(x_i\mid \eta)\\
+&=\arg\max\sum_{i=1}^N\log\left[h(x_i)\exp(\eta^T\phi(x_i)-A(\eta))\right]\\
+&= \arg\max\sum_{i=1}^N\left[\log h(x_i)+\eta^T\phi(x_i)-A(\eta)\right]\\
+&= \arg\max\sum_{i=1}^N(\eta^T\phi(x_i)-A(\eta))
+\end{aligned}</script><p>我们对其求导，得：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-a\left(q_{L},p_{L} \mid q_{0}, p_{0}\right) &=\min \left(1, \frac{\mathbb{Q}\left(q_{0}, p_{0} \mid q_{L},p_{L}\right) \pi\left(q_{L},p_{L}\right)}{\mathbb{Q}\left(q_{L},p_{L} \mid q_{0}, p_{0}\right) \pi\left(q_{0}, p_{0}\right)}\right) \\
+\frac{\partial}{\partial \eta}\left(\sum_{i=1}^N\eta^T\phi(x_i)-A(\eta)\right)&=\sum_{i=1}^N\frac{\partial}{\partial \eta}(\eta^T\phi(x_i)-A(\eta))\\
+&=\sum_{i=1}^N\phi(x_i)-A^{\prime}(\eta)\\
+&=\sum_{i=1}^N\phi(x_i)-NA^{\prime}(\eta)
+\end{aligned}</script><p>令导数等于$0$，得</p>
+<script type="math/tex; mode=display">
+A^{\prime}(\eta_{\text{mle}}) = \frac{1}{N}\sum_{i=1}^N\phi(x_i)</script><p>这样我们就可以求出$\eta_{\text{mle}}$，可以看出$\eta_{\text{mle}}$仅与$\phi(x)$有关，即确定了$\phi(x)$即确定了$\eta_{\text{mle}}$，即确定了分布，更加验证了$\phi(x)$充分统计量的结论。</p>
+<h3 id="最大熵角度"><a href="#最大熵角度" class="headerlink" title="最大熵角度"></a>最大熵角度</h3><p>假设一个事件发生的概率为$p$，其信息量为$-\log p$。熵的概念就是信息量关于分布本身的期望：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}_{p(x)}[-\log p] &= -\int_x p(x)\log p(x)dx\\
+&= -\sum_x p(x)\log p(x)
+\end{aligned}</script><p>最大熵的思想通俗来说就是等可能的，当我们对一个事件一无所知时，我们一般假设其是等可能的。下面看一个例子：</p>
+<p>我们用$H[P]$来表示熵：</p>
+<script type="math/tex; mode=display">
+H[p] = -\sum_x p(x)\log p(x)</script><p>我们假设$x$是离散的，$x$可以取值的个数为$K$，概率分别对应于$p_1,\cdots,p_K$，并且$\sum_{i=1}^K p_i=1$。所以其熵为：</p>
+<script type="math/tex; mode=display">
+H[p] = -\sum_{i=1}^K p_i\log (p_i)</script><p>我们令其最大，即变为了优化问题：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\min \sum_{i=1}^K p_i\log p_i\\
+&\text{s.t. }\sum_{i=1}^K p_i=1
+\end{aligned}</script><p>我们可以直接用拉格朗日乘子法进行求解，定义：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}(p,\lambda) = \sum_{i=1}^K p_i\log(p_i)+\lambda(1-\sum_{i=1}^Kp_i)</script><p>对$p_i$求导，得：</p>
+<script type="math/tex; mode=display">
+\frac{\partial \mathcal{L}(p,\lambda)}{\partial p_i} = \log(p_i)+p_i\cdot\frac{1}{p_i}-\lambda</script><p>所以：</p>
+<script type="math/tex; mode=display">
+p_i = \exp(\lambda-1)</script><p>对于每个$p_i$都是如此，所以$p_1=p_2=\cdots=p_K=\frac{1}{K}$，所以其为等可能的。</p>
+<p>最大熵原理：在满足既定事实的前提下，具有最大熵的分布即为我们想要的分布。在机器学习中，我们的既定事实即为数据，假设我们的数据为$D=\{x_1,\cdots,x_N\}$。</p>
+<p>在这里我们引入经验分布的概念，其是对已知样本的描述，其定义为：</p>
+<script type="math/tex; mode=display">
+\hat{p}(X=x) = \frac{\text{count}(x)}{N}</script><p>因为分布$\hat{p}$我们已经求出来了，所以对于$x$的任意函数$f(x)$向量，我们也能求其期望：</p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\hat{p}}[f(x)] = \Delta(\text{已知})</script><p>这个就是我们的<strong>已知约束</strong>。</p>
+<p>下面我们求满足上述约束的最大熵的分布，这就变成了优化问题：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\min \sum_x p(x)\log p(x)\\
+&\text{s.t. } \sum_x p(x)=1\\
+&\quad\quad \mathbb{E}_{\hat{p}} [f(x) ]= \mathbb{E}_p[f(x)] = \Delta
+\end{aligned}</script><p>定义拉格朗日乘子：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}(p,\lambda_0,\lambda) = \sum_x p(x)\log p(x) + \lambda_0(1-\sum_x p(x))+\lambda^T(\Delta-\mathbb{E}_p[f(x)])</script><p>对$p(x)$求导得：</p>
+<script type="math/tex; mode=display">
+\frac{\mathcal{L}}{\partial p(x)} =(\log p(x)+1)-\lambda_0-\lambda^T f(x)</script><p>令其等于$0$，得</p>
+<script type="math/tex; mode=display">
+\log p(x) = \lambda^T f(x) + \lambda_0-1</script><p>所以</p>
+<script type="math/tex; mode=display">
+p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族分布。</p>
 
-&=\min \left(1, \frac{\pi\left(q_{L},p_{L}\right)}{\pi\left(q_{0}, p_{0}\right)}\right) \\
-&=\min \left(1, \frac{\exp \left(-H\left(q_{L},p_{L}\right)\right)}{\exp \left(-H\left(q_{0}, p_{0}\right)\right)}\right) \\
-&=\min \left(1, \exp \left(-H\left(q_{L},p_{L}\right)+H\left(q_{0}, p_{0}\right)\right)\right)
-\end{aligned}</script>
     </div>
 
     
@@ -455,7 +444,7 @@ a\left(q_{L},p_{L} \mid q_{0}, p_{0}\right) &=\min \left(1, \frac{\mathbb{Q}\lef
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2022/06/22/HMC/" title="文章A Conceptual Introduction to Hamiltonian Monte Carlo阅读笔记">https://www.hfcouc.work/2022/06/22/HMC/</a>
+    <a href="https://www.hfcouc.work/2022/07/10/EXP/" title="指数分布族">https://www.hfcouc.work/2022/07/10/EXP/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -495,7 +484,7 @@ a\left(q_{L},p_{L} \mid q_{0}, p_{0}\right) &=\min \left(1, \frac{\mathbb{Q}\lef
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag"># 概率论</a>
           </div>
 
         
@@ -504,12 +493,12 @@ a\left(q_{L},p_{L} \mid q_{0}, p_{0}\right) &=\min \left(1, \frac{\mathbb{Q}\lef
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/13/index/" rel="prev" title="只争朝夕，不负韶华">
-      <i class="fa fa-chevron-left"></i> 只争朝夕，不负韶华
+    <a href="/2022/07/06/BNP/" rel="prev" title="狄利克雷过程">
+      <i class="fa fa-chevron-left"></i> 狄利克雷过程
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/06/28/Turing/" rel="next" title="Turing:a language for flexible probabilistic inference">
-      Turing:a language for flexible probabilistic inference <i class="fa fa-chevron-right"></i>
+    <a href="/2022/07/10/VBI/" rel="next" title="变分贝叶斯推断">
+      变分贝叶斯推断 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -572,7 +561,7 @@ a\left(q_{L},p_{L} \mid q_{0}, p_{0}\right) &=\min \left(1, \frac{\mathbb{Q}\lef
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Conceptual-Introduction-to-Hamiltonian-Monte-Carlo"><span class="nav-number">1.</span> <span class="nav-text">A Conceptual Introduction to Hamiltonian Monte Carlo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%9F%E6%9C%9B%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.</span> <span class="nav-text">期望的计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">马尔可夫链蒙特卡洛方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%90%86%E6%83%B3%E7%8A%B6%E6%80%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">理想状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%97%85%E6%80%81%E6%83%85%E5%86%B5"><span class="nav-number">1.2.2.</span> <span class="nav-text">病态情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Metropolis-Hastings%E9%87%87%E6%A0%B7"><span class="nav-number">1.2.3.</span> <span class="nav-text">Metropolis-Hastings采样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hamiltonian-Monte-Carlo"><span class="nav-number">1.3.</span> <span class="nav-text">Hamiltonian Monte Carlo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E7%A9%BA%E9%97%B4%E5%92%8C%E6%B1%89%E5%AF%86%E5%B0%94%E9%A1%BF%E6%96%B9%E7%A8%8B"><span class="nav-number">1.3.1.</span> <span class="nav-text">相空间和汉密尔顿方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%90%86%E6%83%B3%E6%9D%A1%E4%BB%B6%E4%B8%8B%E7%9A%84%E6%B1%89%E5%AF%86%E5%B0%94%E9%A1%BF%E8%BD%AC%E7%A7%BB"><span class="nav-number">1.3.2.</span> <span class="nav-text">理想条件下的汉密尔顿转移</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%95%88%E7%9A%84HMC"><span class="nav-number">1.4.</span> <span class="nav-text">高效的HMC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E7%A9%BA%E9%97%B4%E7%9A%84%E5%87%A0%E4%BD%95%E5%BD%A2%E7%8A%B6"><span class="nav-number">1.4.1.</span> <span class="nav-text">相空间的几何形状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E5%8A%A8%E8%83%BD%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">1.4.2.</span> <span class="nav-text">对动能的优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E7%A7%AF%E5%88%86%E6%97%B6%E9%97%B4%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">1.4.3.</span> <span class="nav-text">对积分时间的优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%AE%9E%E8%B7%B5%E4%B8%AD%E5%AE%9E%E7%8E%B0HMC"><span class="nav-number">1.5.</span> <span class="nav-text">在实践中实现HMC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Symplectic-Integrators"><span class="nav-number">1.5.1.</span> <span class="nav-text">Symplectic Integrators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A0%E6%AD%A3%E8%BE%9B%E7%A7%AF%E5%88%86%E5%99%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">纠正辛积分器</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Exponential-Family-Distribution"><span class="nav-number">1.</span> <span class="nav-text">Exponential Family Distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%E7%9A%84%E6%8C%87%E6%95%B0%E6%97%8F%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">高斯分布的指数族形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E9%85%8D%E5%88%86%E5%87%BD%E6%95%B0%E4%B8%8E%E5%85%85%E5%88%86%E7%BB%9F%E8%AE%A1%E9%87%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.</span> <span class="nav-text">对数配分函数与充分统计量的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1%E4%B8%8E%E5%85%85%E5%88%86%E7%BB%9F%E8%AE%A1%E9%87%8F"><span class="nav-number">1.4.</span> <span class="nav-text">极大似然估计与充分统计量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E7%86%B5%E8%A7%92%E5%BA%A6"><span class="nav-number">1.5.</span> <span class="nav-text">最大熵角度</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
