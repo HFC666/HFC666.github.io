@@ -36,9 +36,9 @@
 <meta property="og:description" content="A Tutorial on Bayesian Nonparametric Models         文章地址：https:&#x2F;&#x2F;www.sciencedirect.com&#x2F;science&#x2F;article&#x2F;abs&#x2F;pii&#x2F;S002224961100071X">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170401%2F66c0602968c0463c805dcd5ab16a87dc_th.jpeg&refer=http%3A%2F%2Fimg.mp.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660210656&t=6f0b4c7c45167ff59154a4b5ee75eb30">
-<meta property="og:image" content="https://www.hfcouc.work/2022/07/12/BN/IBP.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/IBP.jpg">
 <meta property="article:published_time" content="2022-07-12T09:31:16.000Z">
-<meta property="article:modified_time" content="2022-07-12T09:37:58.474Z">
+<meta property="article:modified_time" content="2022-07-12T09:54:16.508Z">
 <meta property="article:author" content="Han Fangcheng">
 <meta property="article:tag" content="贝叶斯">
 <meta property="article:tag" content="算法">
@@ -250,7 +250,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-12 17:31:16 / 修改时间：17:37:58" itemprop="dateCreated datePublished" datetime="2022-07-12T17:31:16+08:00">2022-07-12</time>
+              <time title="创建时间：2022-07-12 17:31:16 / 修改时间：17:54:16" itemprop="dateCreated datePublished" datetime="2022-07-12T17:31:16+08:00">2022-07-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -310,7 +310,7 @@ P(\mathrm{y\mid c}) = \int_{\theta}\left[\prod_{n=1}^NF(\mathrm{y}\mid\theta_{c_
 <p>利用无参贝叶斯模型，我们令数据自动确定隐语义的数目$K$。$Z$为一个二元矩阵，有有限多的行和无限多的列。</p>
 <p>与中国餐馆过程类似，$\mathrm{Z}$上的无限容量的分布也被赋予了一个有关烹饪的隐喻，被称为印度自助餐过程。一个顾客(维度)进入一个具有无限菜品的自主餐馆。顾客$m$选择菜品$k$的概率正比于他被之前顾客选择的次数$h_k$。当顾客考虑了所有之前采样过的菜肴($h_k&gt;0$)的菜肴时，他会额外采样之前从未采样过的$\operatorname{Poisson}(\alpha/N)$菜肴。当所有$M$个顾客都选完菜后，形成的二元矩阵$\mathrm{Z}$从IBP(Indian buffet process)中采样得到。</p>
 <p>与中国餐馆过程不同的是，中国餐馆过程每个观测只能选择一个隐语义，而印度自助餐过程每个观测的每个维度可以选择无数多个隐语义。如下图：</p>
-<p><img src="IBP.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/IBP.jpg" alt=""></p>
 <blockquote>
 <p>印度餐馆过程：IBP的生成过程，其中有序号的菱形代表顾客，与与它们相关的观测连接。大圆形表示菜品，与与它们相关的参数$\phi$相连。每个顾客选择多个菜品，并且每个顾客的观测为选择的菜品的参数的线性组合。</p>
 </blockquote>
