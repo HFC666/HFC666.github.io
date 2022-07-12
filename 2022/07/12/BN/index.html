@@ -28,22 +28,24 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="Exponential Family Distribution  课程地址：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1QW411y7D3?spm_id_from&#x3D;333.337.search-card.all.click&amp;vd_source&#x3D;6177c61c946280bb88c727585de76bc8">
+  <meta name="description" content="A Tutorial on Bayesian Nonparametric Models         文章地址：https:&#x2F;&#x2F;www.sciencedirect.com&#x2F;science&#x2F;article&#x2F;abs&#x2F;pii&#x2F;S002224961100071X">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指数分布族">
-<meta property="og:url" content="https://www.hfcouc.work/2022/07/10/EXP/index.html">
+<meta property="og:title" content="A tutorial on Bayesian nonparametric models">
+<meta property="og:url" content="https://www.hfcouc.work/2022/07/12/BN/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="Exponential Family Distribution  课程地址：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1QW411y7D3?spm_id_from&#x3D;333.337.search-card.all.click&amp;vd_source&#x3D;6177c61c946280bb88c727585de76bc8">
+<meta property="og:description" content="A Tutorial on Bayesian Nonparametric Models         文章地址：https:&#x2F;&#x2F;www.sciencedirect.com&#x2F;science&#x2F;article&#x2F;abs&#x2F;pii&#x2F;S002224961100071X">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EX1.png">
-<meta property="article:published_time" content="2022-07-10T12:03:45.000Z">
-<meta property="article:modified_time" content="2022-07-10T12:08:25.180Z">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170401%2F66c0602968c0463c805dcd5ab16a87dc_th.jpeg&refer=http%3A%2F%2Fimg.mp.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660210656&t=6f0b4c7c45167ff59154a4b5ee75eb30">
+<meta property="og:image" content="https://www.hfcouc.work/2022/07/12/BN/IBP.jpg">
+<meta property="article:published_time" content="2022-07-12T09:31:16.000Z">
+<meta property="article:modified_time" content="2022-07-12T09:37:58.474Z">
 <meta property="article:author" content="Han Fangcheng">
-<meta property="article:tag" content="概率论">
+<meta property="article:tag" content="贝叶斯">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EX1.png">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170401%2F66c0602968c0463c805dcd5ab16a87dc_th.jpeg&refer=http%3A%2F%2Fimg.mp.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660210656&t=6f0b4c7c45167ff59154a4b5ee75eb30">
 
-<link rel="canonical" href="https://www.hfcouc.work/2022/07/10/EXP/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/07/12/BN/">
 
 
 <script id="page-configurations">
@@ -56,7 +58,7 @@
   };
 </script>
 
-  <title>指数分布族 | 独自赏晴雨</title>
+  <title>A tutorial on Bayesian nonparametric models | 独自赏晴雨</title>
   
 
 
@@ -223,7 +225,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/10/EXP/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/12/BN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
@@ -236,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          指数分布族
+          A tutorial on Bayesian nonparametric models
         </h1>
 
         <div class="post-meta">
@@ -248,7 +250,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-10 20:03:45 / 修改时间：20:08:25" itemprop="dateCreated datePublished" datetime="2022-07-10T20:03:45+08:00">2022-07-10</time>
+              <time title="创建时间：2022-07-12 17:31:16 / 修改时间：17:37:58" itemprop="dateCreated datePublished" datetime="2022-07-12T17:31:16+08:00">2022-07-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +258,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+                  <a href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">文献阅读</span></a>
                 </span>
             </span>
 
@@ -271,134 +273,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Exponential-Family-Distribution"><a href="#Exponential-Family-Distribution" class="headerlink" title="Exponential Family Distribution"></a>Exponential Family Distribution</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EX1.png" alt=""></p>
+        <h2 id="A-Tutorial-on-Bayesian-Nonparametric-Models"><a href="#A-Tutorial-on-Bayesian-Nonparametric-Models" class="headerlink" title="A Tutorial on Bayesian Nonparametric Models"></a>A Tutorial on Bayesian Nonparametric Models</h2><p align="center">
+    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170401%2F66c0602968c0463c805dcd5ab16a87dc_th.jpeg&refer=http%3A%2F%2Fimg.mp.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660210656&t=6f0b4c7c45167ff59154a4b5ee75eb30" style="zoom: 100%;" />
+</p>
+
 <blockquote>
-<p>课程地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1QW411y7D3?spm_id_from=333.337.search-card.all.click&amp;vd_source=6177c61c946280bb88c727585de76bc8">https://www.bilibili.com/video/BV1QW411y7D3?spm_id_from=333.337.search-card.all.click&amp;vd_source=6177c61c946280bb88c727585de76bc8</a></p>
+<p>文章地址：<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S002224961100071X">https://www.sciencedirect.com/science/article/abs/pii/S002224961100071X</a></p>
 </blockquote>
 <span id="more"></span>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>指数分布族是可以写为如下形式的分布：</p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>统计模型的一个核心问题就是模型选择，怎样选择模型复杂度，如在聚类问题中选择聚类的数目等。贝叶斯无参模型通过让数据确定模型复杂度来跳过模型选择的步骤。比如说在传统的机器学习中如聚类中，我们需要事先确定聚类的数目，而贝叶斯无参模型会估计聚类的数目并允许未来的数据来自之前没有的类。</p>
+<p>一般我们进行贝叶斯推断时是对参数的后验分布进行推断，无参贝叶斯与其他贝叶斯模型显著的不同在于其隐藏结构是随着数据增长的。它的复杂度，如聚类的数目，是后验分布的一部分。这些参数无需实现给定，而是作为分析数据的一部分来确定。</p>
+<p>在本文中我们主要介绍两种模型，混合模型(mixture models)和隐语义模型(latent factor models)。贝叶斯无参混合模型，也被称为中国餐馆过程混合(或者狄利克雷过程混合)，从数据中推断聚类的个数并且随着数据的增长允许聚类数增长。</p>
+<p>隐语义模型将观察到的数据分解为潜在因素的线性组合。关于因子分布的不同假设会产生如因子分析、主成分分析、独立成分分析等等。印度自助餐过程隐语义模型通过数据推断因子的数量并且允许因子的数量随着新数据的加入而增加。</p>
+<h3 id="Mixture-models-and-clustering"><a href="#Mixture-models-and-clustering" class="headerlink" title="Mixture models and clustering"></a>Mixture models and clustering</h3><p>在一个混合模型中，每一个观测数据都假设属于一个类。</p>
+<h4 id="Finite-mixture-modeling"><a href="#Finite-mixture-modeling" class="headerlink" title="Finite mixture modeling"></a>Finite mixture modeling</h4><p>有限混合模型假设有$K$个类，每个类与参数$\theta_k$有关。每一个观测$y_n$都假设是首先通过$P(c_n)$来选择一个类$c_n$之后通过与参数$\theta_{c_n}$相对应的分布中产生观测，每一个参数对应一个分布$F(y_n\mid \theta_{c_n})$。</p>
+<p>贝叶斯混合模型引入了混合分布$P(c)$的先验和聚类参数的先验$\theta\sim G_0$。</p>
+<p>这个生成过程定义了关于观测、聚类分配(数据属于哪个类)和聚类参数的联合分布：</p>
 <script type="math/tex; mode=display">
-P(x\mid \eta) = h(x)\exp\left(\eta^T\phi(x)-A(\eta)\right)</script><p>其中$\eta$为参数向量，$x\in \mathbb{R}^p$，$A(\eta)$为对数配分函数(log partition function)。</p>
-<p>下面我们解释一下<strong>配分函数</strong>，配分函数可以理解为<strong>归一化因子</strong>，例如我们在无向图模型中经常用到的：</p>
+P(\mathrm{y,c},\theta) = \prod_{k=1}^K G_0(\theta_k)\prod_{n=1}^NF(Y_n\mid\theta_{c_n})P(c_n)</script><p>其中观测为$\mathrm{y} = \{y_1,\cdots,y_N\}$，聚类分配为$\mathrm{c}=\{c_1,\cdots,c_N\}$，聚类参数为$\theta=\{\theta_1,\cdots,\theta_K\}$。</p>
+<blockquote>
+<p>这里$N$个样本相乘是因为样本之间是独立同分布的，而$K$个$G_0(\theta_k)$相乘是因为每个$\theta_k$也是独立的。</p>
+</blockquote>
+<p>给定数据集，我们经常对聚类分配感兴趣，我们可以用贝叶斯公式计算它们：</p>
 <script type="math/tex; mode=display">
-P(X\mid \theta) = \frac{1}{Z}\hat{P}(X\mid \theta)</script><p>其中$\hat{P}(X\mid \theta)$是我们构造出来的分布，但是概率分布必须满足和为$1$，所以我们在前面添加归一化因子使得：</p>
+P(\mathrm{c}\mid\mathrm{y}) = \frac{P(\mathrm{y}\mid \mathrm{c})P(\mathrm{c})}{\sum_{\mathrm{c}}P(\mathrm{y}\mid\mathrm{c})P(\mathrm{c})}</script><p>其中似然函数可以通过对$\theta$积分得到：</p>
 <script type="math/tex; mode=display">
-Z = \int_x \hat{P}(x\mid \theta)dx</script><p>可以看出$Z$与$X$无关，那为什么$A(\eta)$称为对数配分函数呢？这是因为：</p>
+P(\mathrm{y\mid c}) = \int_{\theta}\left[\prod_{n=1}^NF(\mathrm{y}\mid\theta_{c_n})\prod_{k=1}^KG_0(\theta_k)\right]d\theta</script><p>后验分布是很难处理的，因为计算分母需要将每种分配方式进行求和。</p>
+<h4 id="The-Chinese-restaurant-process"><a href="#The-Chinese-restaurant-process" class="headerlink" title="The Chinese restaurant process"></a>The Chinese restaurant process</h4><p>见我的一篇博客(<a target="_blank" rel="noopener" href="https://hfcouc.work/2022/07/06/BNP/)。">https://hfcouc.work/2022/07/06/BNP/)。</a></p>
+<h3 id="Latent-factor-models-and-dimensionality-reduction"><a href="#Latent-factor-models-and-dimensionality-reduction" class="headerlink" title="Latent factor models and dimensionality reduction"></a>Latent factor models and dimensionality reduction</h3><p>混合模型假设每个数据都来自$K$个类中的一个。隐语义模型削弱了这一假设：每个观测受到$K$个分量的不同的影响。</p>
+<p>隐语义模型可以用来降维当分量的数目小于数据维度时。每个观察都与一个分量激活向量（潜在因子）相关联，该向量描述了每个分量对其贡献的程度，并且这个向量可以看作是观察本身的低维表示。</p>
+<p>非常著名的降维模型有因子分析(FA)，主成分分析(PCA)和独立成分分析(ICA)等，所有的都假设因子的数量$K$已经确定了。无参贝叶斯模型允许分量的数量随着数据的增长而增多。</p>
+<p>在经典的降维模型中，我们的观测数据一般为$N$个$M$维向量，$\mathrm{Y=\{y_1,\cdots,y_N\}}$。因此$\mathrm{Y}$每行表示一个数据。数据假设是从有噪声的隐语义的加权组合产生的：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-P(x\mid \eta) &= h(x)\exp\left(\eta^T\phi(x)-A(\eta)\right)\\
-&= \frac{1}{\exp(A(\eta))}h(x)\exp(\eta^T\phi(x))
-\end{aligned}</script><p>所以$Z = \exp(A(\eta))\Rightarrow A(\eta)=\ln Z$，所以其被称为对数配分函数。</p>
-<p>其中$\phi(x)$为<strong>充分统计量</strong>。充分统计量指的是能够包含样本中所有信息的统计量。</p>
-<p>如对于数据$x_1,\cdots,x_N$，我们假设其服从于高斯分布，那么其充分统计量就为：</p>
+\mathrm{y_n = Gx_n+\epsilon_n}</script><p>其中$\mathrm{G}$为$M\times K$的矩阵表示，表示隐语义$k$怎么影响观测维度$m$，$x_n$为一个$K$维向量表示每个隐语义的影响，其中$\epsilon_n$维独立高斯噪声向量。我们可以将其拓展为稀疏模型通过将$\mathrm{G}$进行分解，$\mathrm{G}_{mk}=z_{mk}w_{mk}$，其中$z_{mk}$是一个二元掩码(mask)变量指示因子$k$是否影响维度$m$，而$w_{ik}$为连续权重变量。这个有时被称为<code>spike and slab</code>模型因为$x_{mk}$的期望为一个在隐语义空间上的<code>slab</code>$P(w_{mk})$和在零的位置$P(z_{mk}=0)$的<code>spike</code>。</p>
+<p>我们使用贝叶斯的方法推理隐语义、掩码变量和权重。我们在它们上面定义先验并利用贝叶斯公式计算后验$P(\mathrm{G,Z,W\mid Y})$。</p>
+<p>利用无参贝叶斯模型，我们令数据自动确定隐语义的数目$K$。$Z$为一个二元矩阵，有有限多的行和无限多的列。</p>
+<p>与中国餐馆过程类似，$\mathrm{Z}$上的无限容量的分布也被赋予了一个有关烹饪的隐喻，被称为印度自助餐过程。一个顾客(维度)进入一个具有无限菜品的自主餐馆。顾客$m$选择菜品$k$的概率正比于他被之前顾客选择的次数$h_k$。当顾客考虑了所有之前采样过的菜肴($h_k&gt;0$)的菜肴时，他会额外采样之前从未采样过的$\operatorname{Poisson}(\alpha/N)$菜肴。当所有$M$个顾客都选完菜后，形成的二元矩阵$\mathrm{Z}$从IBP(Indian buffet process)中采样得到。</p>
+<p>与中国餐馆过程不同的是，中国餐馆过程每个观测只能选择一个隐语义，而印度自助餐过程每个观测的每个维度可以选择无数多个隐语义。如下图：</p>
+<p><img src="IBP.jpg" alt=""></p>
+<blockquote>
+<p>印度餐馆过程：IBP的生成过程，其中有序号的菱形代表顾客，与与它们相关的观测连接。大圆形表示菜品，与与它们相关的参数$\phi$相连。每个顾客选择多个菜品，并且每个顾客的观测为选择的菜品的参数的线性组合。</p>
+</blockquote>
+<p>现在回到我们的后验分布，我们想要对我们的隐语义矩阵进行推理：</p>
 <script type="math/tex; mode=display">
-\phi(x) = \begin{bmatrix}\sum_{i=1}^Nx_i\\\sum_{i=1}^Nx_i^2\end{bmatrix}</script><p>因为有了这两个统计量我们就可以求出其<strong>均值</strong>和<strong>方差</strong>。</p>
-<p>在贝叶斯推断中我们常常遇到这样的问题：</p>
-<script type="math/tex; mode=display">
-P(Z\mid X) = \frac{P(X\mid Z)P(Z)}{\int_ZP(X\mid Z)P(Z)dZ}</script><p>有时候积分很难算出，即使积分算出了，$P(Z\mid X)$的形式可能很复杂，我们无法求解其期望和方差，这时候我们可以采用采样的方法(MCMC)或者通过变分推断来寻找接近$P(Z\mid X)$的概率分布$Q(X)$。</p>
-<p>但是指数族分布可以采用共轭的性质。</p>
-<p>指数族分布与广义线性模型，广义线性模型的重要组成部分为：</p>
-<ol>
-<li>线性组合，如$w^Tx$</li>
-<li>link function：为激活函数的逆函数</li>
-<li>指数族分布：$y\mid x\sim$指数族分布</li>
-</ol>
-<p>概率图模型中非常重要的一组模型为无向图RBF，与指数族分布具有非常重要的关系。</p>
-<p>另外当分布为指数族分布时，变分推断可见极大地简化。</p>
-<h3 id="高斯分布的指数族形式"><a href="#高斯分布的指数族形式" class="headerlink" title="高斯分布的指数族形式"></a>高斯分布的指数族形式</h3><p>高斯分布的形式为：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-P(x\mid\theta) &= \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x-\mu)^2\right)\quad \theta = (\mu,\sigma^2)\\
-&=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x^2-2\mu x+\mu^2)\right)\\
-&=\exp\left(\log(2\pi\sigma^2)^{-\frac{1}{2}}\right)\exp\left(-\frac{1}{2\sigma^2}\begin{pmatrix}-2\mu&1\end{pmatrix}\begin{pmatrix}x\\x^2\end{pmatrix}-\frac{\mu^2}{2\sigma^2}\right)\\
-&=\exp\left(\underbrace{\begin{pmatrix}\frac{\mu}{\sigma^2}&-\frac{1}{2\sigma^2}\end{pmatrix}}_{\eta^T}\cdot\underbrace{\begin{pmatrix}x\\x^2\end{pmatrix}}_{\phi(x)}-\underbrace{\left(\frac{\mu^2}{2\sigma^2}+\frac{1}{2}\log2\pi\sigma^2\right)}_{A(\eta)}\right)
-\end{aligned}</script><p>其中我们令$\eta_1=\frac{\mu}{\sigma^2},\eta_2=-\frac{1}{2\sigma^2}$。则$\sigma^2=-\frac{1}{2\eta_2},\mu=-\frac{\eta_1}{2\eta_2}$。代入$A(\eta)$，得：</p>
-<script type="math/tex; mode=display">
-A(\eta) = -\frac{\eta_1^2}{4\eta_2}+\frac{1}{2}\log\left(-\frac{\pi}{\eta_2}\right)</script><h3 id="对数配分函数与充分统计量的关系"><a href="#对数配分函数与充分统计量的关系" class="headerlink" title="对数配分函数与充分统计量的关系"></a>对数配分函数与充分统计量的关系</h3><p>我们之前提到过：</p>
-<script type="math/tex; mode=display">
-\exp(A(\eta)) = \int_x h(x)\exp(\eta^T\phi(x))dx</script><p>两边同时对$\eta$求导，得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\exp(A(\eta))\cdot A^\prime(\eta) &= \frac{\partial}{\partial \eta}(\int h(x)\exp(\eta^T\phi(x))dx)\\
-&= \int_xh(x)\exp(\eta^T\phi(x))\phi(x)dx
-\end{aligned}</script><p>两边同除以$A^\prime(\eta)$，得</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-A^\prime(\eta) &= \frac{\int_xh(x)\exp(\eta^T\phi(x))\phi(x)dx}{\exp(A(\eta))}\\
-&=\int_x \underbrace{h(x)\exp(\eta^T\phi(x)-A(\eta))}_{P(x\mid\eta)}\phi(x)dx\\
-&= \mathbb{E}_{P(x\mid\eta)}[\phi(x)]
-\end{aligned}</script><p>所以$A^\prime(\eta) = \mathbb{E}_{P(x\mid \eta)}[\phi(x)]$。</p>
-<p>同样地，我们也可以研究一下二阶导，对式子</p>
-<script type="math/tex; mode=display">
-A^\prime(\eta) =\int_x \underbrace{h(x)\exp(\eta^T\phi(x)-A(\eta))}_{P(x\mid\eta)}\phi(x)dx</script><p>两边同时求导得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-A^{\prime\prime}(\eta) &= \int_x \underbrace{h(x)\exp(\eta^T\phi(x)-A(\eta))}_{P(x\mid\eta)}(\phi(x)-A^{\prime}(\eta))\phi(x)dx\\
-&= \int_xP(x\mid\eta)(\phi(x)-\mathbb{E}_{P(x\mid\eta)}[\phi(x)])\phi(x)dx\\
-&= \int_x P(x\mid \eta)\phi(x)^2dx - \mathbb{E}_{P(x\mid\eta)}[\phi(x)])\int_xP(x\mid \eta)\phi(x)dx\\
-&= \mathbb{E}_{P(x\mid\eta)}[\phi(x)^2] - \left(\mathbb{E}_{P(x\mid \eta)}[\phi(x)]\right)^2\\
-&=\operatorname{Var}[\phi(x)]
-\end{aligned}</script><h3 id="极大似然估计与充分统计量"><a href="#极大似然估计与充分统计量" class="headerlink" title="极大似然估计与充分统计量"></a>极大似然估计与充分统计量</h3><p>假设我们的数据为：$D=\{x_1,x_2,\cdots,x_N\}$，所以我们有：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\eta_{\text{mle}} &= \arg\max\log P(D\mid \eta)\\
-&=\arg\max \log\prod_{i=1}^N P(x_i\mid \eta)\\
-&=\arg\max \sum_{i=1}^N\log P(x_i\mid \eta)\\
-&=\arg\max\sum_{i=1}^N\log\left[h(x_i)\exp(\eta^T\phi(x_i)-A(\eta))\right]\\
-&= \arg\max\sum_{i=1}^N\left[\log h(x_i)+\eta^T\phi(x_i)-A(\eta)\right]\\
-&= \arg\max\sum_{i=1}^N(\eta^T\phi(x_i)-A(\eta))
-\end{aligned}</script><p>我们对其求导，得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{\partial}{\partial \eta}\left(\sum_{i=1}^N\eta^T\phi(x_i)-A(\eta)\right)&=\sum_{i=1}^N\frac{\partial}{\partial \eta}(\eta^T\phi(x_i)-A(\eta))\\
-&=\sum_{i=1}^N\phi(x_i)-A^{\prime}(\eta)\\
-&=\sum_{i=1}^N\phi(x_i)-NA^{\prime}(\eta)
-\end{aligned}</script><p>令导数等于$0$，得</p>
-<script type="math/tex; mode=display">
-A^{\prime}(\eta_{\text{mle}}) = \frac{1}{N}\sum_{i=1}^N\phi(x_i)</script><p>这样我们就可以求出$\eta_{\text{mle}}$，可以看出$\eta_{\text{mle}}$仅与$\phi(x)$有关，即确定了$\phi(x)$即确定了$\eta_{\text{mle}}$，即确定了分布，更加验证了$\phi(x)$充分统计量的结论。</p>
-<h3 id="最大熵角度"><a href="#最大熵角度" class="headerlink" title="最大熵角度"></a>最大熵角度</h3><p>假设一个事件发生的概率为$p$，其信息量为$-\log p$。熵的概念就是信息量关于分布本身的期望：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{E}_{p(x)}[-\log p] &= -\int_x p(x)\log p(x)dx\\
-&= -\sum_x p(x)\log p(x)
-\end{aligned}</script><p>最大熵的思想通俗来说就是等可能的，当我们对一个事件一无所知时，我们一般假设其是等可能的。下面看一个例子：</p>
-<p>我们用$H[P]$来表示熵：</p>
-<script type="math/tex; mode=display">
-H[p] = -\sum_x p(x)\log p(x)</script><p>我们假设$x$是离散的，$x$可以取值的个数为$K$，概率分别对应于$p_1,\cdots,p_K$，并且$\sum_{i=1}^K p_i=1$。所以其熵为：</p>
-<script type="math/tex; mode=display">
-H[p] = -\sum_{i=1}^K p_i\log (p_i)</script><p>我们令其最大，即变为了优化问题：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\min \sum_{i=1}^K p_i\log p_i\\
-&\text{s.t. }\sum_{i=1}^K p_i=1
-\end{aligned}</script><p>我们可以直接用拉格朗日乘子法进行求解，定义：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}(p,\lambda) = \sum_{i=1}^K p_i\log(p_i)+\lambda(1-\sum_{i=1}^Kp_i)</script><p>对$p_i$求导，得：</p>
-<script type="math/tex; mode=display">
-\frac{\partial \mathcal{L}(p,\lambda)}{\partial p_i} = \log(p_i)+p_i\cdot\frac{1}{p_i}-\lambda</script><p>所以：</p>
-<script type="math/tex; mode=display">
-p_i = \exp(\lambda-1)</script><p>对于每个$p_i$都是如此，所以$p_1=p_2=\cdots=p_K=\frac{1}{K}$，所以其为等可能的。</p>
-<p>最大熵原理：在满足既定事实的前提下，具有最大熵的分布即为我们想要的分布。在机器学习中，我们的既定事实即为数据，假设我们的数据为$D=\{x_1,\cdots,x_N\}$。</p>
-<p>在这里我们引入经验分布的概念，其是对已知样本的描述，其定义为：</p>
-<script type="math/tex; mode=display">
-\hat{p}(X=x) = \frac{\text{count}(x)}{N}</script><p>因为分布$\hat{p}$我们已经求出来了，所以对于$x$的任意函数$f(x)$向量，我们也能求其期望：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{\hat{p}}[f(x)] = \Delta(\text{已知})</script><p>这个就是我们的<strong>已知约束</strong>。</p>
-<p>下面我们求满足上述约束的最大熵的分布，这就变成了优化问题：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\min \sum_x p(x)\log p(x)\\
-&\text{s.t. } \sum_x p(x)=1\\
-&\quad\quad \mathbb{E}_{\hat{p}} [f(x) ]= \mathbb{E}_p[f(x)] = \Delta
-\end{aligned}</script><p>定义拉格朗日乘子：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}(p,\lambda_0,\lambda) = \sum_x p(x)\log p(x) + \lambda_0(1-\sum_x p(x))+\lambda^T(\Delta-\mathbb{E}_p[f(x)])</script><p>对$p(x)$求导得：</p>
-<script type="math/tex; mode=display">
-\frac{\mathcal{L}}{\partial p(x)} =(\log p(x)+1)-\lambda_0-\lambda^T f(x)</script><p>令其等于$0$，得</p>
-<script type="math/tex; mode=display">
-\log p(x) = \lambda^T f(x) + \lambda_0-1</script><p>所以</p>
-<script type="math/tex; mode=display">
-p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族分布。</p>
+P(\mathrm{X,W,Z}\mid \mathrm{Y})\propto P(\mathrm{Y\mid X,W,Z})P(\mathrm{X})P(\mathrm{W})P(\mathrm{Z})</script><p>精确的推理是很困难的因为归一化参数需要对所有可能的二元矩阵进行积分。</p>
+<h3 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h3><p>在BNP建模中最基本的计算问题是计算后验概率。下面我们只简单介绍几种计算方法。</p>
+<ul>
+<li>MCMC</li>
+<li>变分贝叶斯推断：见我的一篇博客(<a target="_blank" rel="noopener" href="https://hfcouc.work/2022/07/10/VBI/">https://hfcouc.work/2022/07/10/VBI/</a>)</li>
+</ul>
+<h3 id="Limitations-and-extensions"><a href="#Limitations-and-extensions" class="headerlink" title="Limitations and extensions"></a>Limitations and extensions</h3><p>我们前面介绍到的两种BNP只是最简单的两种，它们存在着很多限制，为了解决这些限制有很多上述模型的拓展。</p>
+<h4 id="Hierarchical-structure"><a href="#Hierarchical-structure" class="headerlink" title="Hierarchical structure"></a>Hierarchical structure</h4><p>第一个限制是关于分组数据的：我们如何捕捉一个群体中的共性和特性呢？比如说同一种动物既有共性也有自己的特性。解决这个问题的标准贝叶斯方法是基于层次模型，在这个模型中，个体由于来自同一群体的分布而被耦合在一起。在非参数的设定下发展出的模型为分层狄利克雷过程。</p>
+<h4 id="Time-series-models"><a href="#Time-series-models" class="headerlink" title="Time series models"></a>Time series models</h4><p>第二个限制是关于序列数据的：我们怎样才能捕捉到序列观察结果之间的依赖关系？关于这方面非常著名的是隐马尔可夫模型。无限隐马尔科夫模型提出了相同的序列结构，但采用了无限多的潜在类，无限隐马尔可夫模型为分层狄利克雷过程的一个特殊情况。<br>作为<code>HMM</code>（隐状态为离散的）的替代品，线性动态系统（也被称为自回归移动平均模型）假定隐状态是连续的，并根据线性高斯马尔可夫过程随时间演变。在一个切换的线性动态系统中，系统可以有许多动态模式；这使得边际转移分布可以是非线性的。有学者探索了切换线性动态系统的非参数变体，其中动态模式的数量是利用HDP先验从数据中推断出来的。</p>
+<h4 id="Spatial-models"><a href="#Spatial-models" class="headerlink" title="Spatial models"></a>Spatial models</h4><p>很多数据集上的依赖是在空间上的。如某种疾病在某个地方出现，在它附近的地方也可能出现。在BNP模型中捕获这种依赖关系的一种方法是使DP的基分布依赖于一个位置变量。</p>
 
     </div>
 
@@ -444,7 +371,7 @@ p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族�
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2022/07/10/EXP/" title="指数分布族">https://www.hfcouc.work/2022/07/10/EXP/</a>
+    <a href="https://www.hfcouc.work/2022/07/12/BN/" title="A tutorial on Bayesian nonparametric models">https://www.hfcouc.work/2022/07/12/BN/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -484,7 +411,8 @@ p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族�
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag"># 概率论</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF/" rel="tag"># 贝叶斯</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
           </div>
 
         
@@ -493,13 +421,10 @@ p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族�
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/06/BNP/" rel="prev" title="狄利克雷过程">
-      <i class="fa fa-chevron-left"></i> 狄利克雷过程
+    <a href="/2022/07/10/VBI/" rel="prev" title="变分贝叶斯推断">
+      <i class="fa fa-chevron-left"></i> 变分贝叶斯推断
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/07/10/VBI/" rel="next" title="变分贝叶斯推断">
-      变分贝叶斯推断 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -561,7 +486,7 @@ p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族�
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Exponential-Family-Distribution"><span class="nav-number">1.</span> <span class="nav-text">Exponential Family Distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%E7%9A%84%E6%8C%87%E6%95%B0%E6%97%8F%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">高斯分布的指数族形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E9%85%8D%E5%88%86%E5%87%BD%E6%95%B0%E4%B8%8E%E5%85%85%E5%88%86%E7%BB%9F%E8%AE%A1%E9%87%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.</span> <span class="nav-text">对数配分函数与充分统计量的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1%E4%B8%8E%E5%85%85%E5%88%86%E7%BB%9F%E8%AE%A1%E9%87%8F"><span class="nav-number">1.4.</span> <span class="nav-text">极大似然估计与充分统计量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E7%86%B5%E8%A7%92%E5%BA%A6"><span class="nav-number">1.5.</span> <span class="nav-text">最大熵角度</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Tutorial-on-Bayesian-Nonparametric-Models"><span class="nav-number">1.</span> <span class="nav-text">A Tutorial on Bayesian Nonparametric Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mixture-models-and-clustering"><span class="nav-number">1.2.</span> <span class="nav-text">Mixture models and clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Finite-mixture-modeling"><span class="nav-number">1.2.1.</span> <span class="nav-text">Finite mixture modeling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Chinese-restaurant-process"><span class="nav-number">1.2.2.</span> <span class="nav-text">The Chinese restaurant process</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Latent-factor-models-and-dimensionality-reduction"><span class="nav-number">1.3.</span> <span class="nav-text">Latent factor models and dimensionality reduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inference"><span class="nav-number">1.4.</span> <span class="nav-text">Inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Limitations-and-extensions"><span class="nav-number">1.5.</span> <span class="nav-text">Limitations and extensions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hierarchical-structure"><span class="nav-number">1.5.1.</span> <span class="nav-text">Hierarchical structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Time-series-models"><span class="nav-number">1.5.2.</span> <span class="nav-text">Time series models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spatial-models"><span class="nav-number">1.5.3.</span> <span class="nav-text">Spatial models</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
