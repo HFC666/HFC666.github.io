@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <meta name="google-site-verification" content="U-yOiB98PNsowxlO4rY3Zc43lFlfBRiIxhp4pQPMRW4" /> 
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="Linear Models">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Statistical Rethinking:Chapter1">
+<meta property="og:url" content="https://www.hfcouc.work/2022/07/14/rt4/index.html">
+<meta property="og:site_name" content="独自赏晴雨">
+<meta property="og:description" content="Linear Models">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/LM1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/LM2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/LM3.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/LM4.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/LM5.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/LM6.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/LM7.jpeg">
+<meta property="article:published_time" content="2022-07-14T03:28:53.000Z">
+<meta property="article:modified_time" content="2022-07-14T03:37:19.381Z">
+<meta property="article:author" content="Han Fangcheng">
+<meta property="article:tag" content="概率编程">
+<meta property="article:tag" content="贝叶斯统计">
+<meta property="article:tag" content="Statistical Rethinking">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/LM1.png">
+
+<link rel="canonical" href="https://www.hfcouc.work/2022/07/14/rt4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Statistical Rethinking:Chapter1 | 独自赏晴雨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+    <script type="text/javascript" src="https://unpkg.com/minigrid@3.1.1/dist/minigrid.min.js"></script>
+  <link rel="stylesheet" href="/photos/photos.css">
+  <script type="text/javascript" src="/photos/photo.js"></script>
+<link rel="alternate" href="/atom.xml" title="独自赏晴雨" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+	<a target="_blank" rel="noopener" href="https://github.com//HFC666" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">独自赏晴雨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>相册</a>
+
+  </li>
+        <li class="menu-item menu-item-bangumis">
+
+    <a href="/bangumis" rel="section"><i class="fa fa-headphones fa-fw"></i>追番</a>
+
+  </li>
+        <li class="menu-item menu-item-cinemas">
+
+    <a href="/cinemas" rel="section"><i class="fa fa-headphones fa-fw"></i>追剧</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/14/rt4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
+      <meta itemprop="name" content="Han Fangcheng">
+      <meta itemprop="description" content="当你穿过了暴风雨，你就不再是原来那个人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独自赏晴雨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Statistical Rethinking:Chapter1
+        </h1>
+
+        <div class="post-meta">
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-14 11:28:53 / 修改时间：11:37:19" itemprop="dateCreated datePublished" datetime="2022-07-14T11:28:53+08:00">2022-07-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">书籍阅读</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Linear-Models"><a href="#Linear-Models" class="headerlink" title="Linear Models"></a>Linear Models</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/LM1.png" alt=""></p>
+<span id="more"></span>
+<p>托勒密的地心说在一段时间内曾经占据天文学的统治地位。托勒密用轨道内的轨道即本轮(epicycles)来描述行星复杂的活动，如下图所示。虽然这个模型现在看来是错的，但是却具有很高的预测准确度。<br><img src="https://raw.githubusercontent.com/HFC666/image/master/img/LM2.jpg" alt=""><br>线性回归(Linear Regression)为应用统计的地心模型。与地心说一样，线性回归可以有效地描述各种各样的自然现象。但是如果我们用线性回归描述线性内部的原理结果，我们将很容易犯错误。即虽然可能会得到很好的预测，但是其内部的机制不一定正确。</p>
+<h3 id="Why-normal-distributions-are-normal"><a href="#Why-normal-distributions-are-normal" class="headerlink" title="Why normal distributions are normal"></a>Why normal distributions are normal</h3><h4 id="Normal-by-addition"><a href="#Normal-by-addition" class="headerlink" title="Normal by addition"></a>Normal by addition</h4><p>任何将来自同一分布的随机值相加的过程都会收敛到正态分布。这可以理解为产生此数据的源分布产生的数据为此数据的均值加上一个随机波动，随着数据数量的增多，随机波动逐渐互相抵消，均值处数据最多，得到正态分布。</p>
+<h4 id="Normal-by-multiplication"><a href="#Normal-by-multiplication" class="headerlink" title="Normal by multiplication"></a>Normal by multiplication</h4><p>下面是另一种方法来得到高斯分布。假设每年的增长率位于$1.0\sim 1.1$，经过$12$年，总增长率为：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">prod</span>(<span class="number">1</span> + runif(<span class="number">12</span>, <span class="number">0</span>, <span class="number">0.1</span>))</span><br></pre></td></tr></table></figure><br>那么总增长率的分布为什么？我们采$10000$个样绘制其概率分布：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">growth &lt;- replicate(<span class="number">10000</span>, <span class="built_in">prod</span>(<span class="number">1</span>+runif(<span class="number">12</span>,<span class="number">0</span>,<span class="number">0.1</span>)))</span><br><span class="line">dens(growth, norm.comp=<span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure><br>得到的结果如下：<br><img src="https://raw.githubusercontent.com/HFC666/image/master/img/LM3.jpeg" alt=""><br>可以看到近似正态分布。我们之前说过正态分布可以通过将随机波动相加得到，但是我们这里是相乘，为什么也会得到正态分布呢？<br>这是因为我们每次相乘的生长率很小，可以近似于加法，如：</p>
+<script type="math/tex; mode=display">
+1.1\times1.1=1.21=(1+0.1)(1+0.1)=1+0.2+0.01\approx 1.2</script><h4 id="Normal-by-log-multiplication"><a href="#Normal-by-log-multiplication" class="headerlink" title="Normal by log-multiplication"></a>Normal by log-multiplication</h4><p>相乘大的增长率不会产生高斯分布，但是它们的对数会产生高斯分布：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">log.big &lt;- replicate(<span class="number">10000</span>, <span class="built_in">log</span>(<span class="built_in">prod</span>(<span class="number">1</span>+runif(<span class="number">12</span>, <span class="number">0</span>, <span class="number">0.5</span>))))</span><br><span class="line">dens(log.big, norm.comp=<span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure><br><img src="https://raw.githubusercontent.com/HFC666/image/master/img/LM4.jpeg" alt=""></p>
+<h4 id="Using-Gaussian-distributions"><a href="#Using-Gaussian-distributions" class="headerlink" title="Using Gaussian distributions"></a>Using Gaussian distributions</h4><p>使用高斯分布主要有两个原因：一个是因为其在自然界中分布广泛，另一个原因是[[EXP]]，根据指数分布的性质，高斯分布作为指数分布的特例，具有最大熵(包含最少信息)。</p>
+<h3 id="A-language-for-describing-models"><a href="#A-language-for-describing-models" class="headerlink" title="A language for describing models"></a>A language for describing models</h3><p>统计模型一般采用下述方法表示：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+
+\text { outcome }_{i} & \sim \operatorname{Normal}\left(\mu_{i}, \sigma\right) \\
+
+\mu_{i} &=\beta \times \operatorname{predictor}{ }_{i} \\
+
+\beta & \sim \operatorname{Normal}(0,10) \\
+
+\sigma & \sim \operatorname{HalfCauchy}(0,1)
+
+\end{aligned}</script><h3 id="A-Gaussian-model-of-height"><a href="#A-Gaussian-model-of-height" class="headerlink" title="A Gaussian model of height"></a>A Gaussian model of height</h3><h4 id="The-data"><a href="#The-data" class="headerlink" title="The data"></a>The data</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data(<span class="string">&quot;Howell1&quot;</span>)</span><br><span class="line">d &lt;- Howell1</span><br><span class="line">d2 &lt;- d[d$age &gt;= <span class="number">18</span>,]</span><br></pre></td></tr></table></figure>
+<h4 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h4><p>假设我们的模型为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+h_i &\sim \text{Normal}(\mu,\sigma)\\
+\mu&\sim \text{Normal}(178, 20)\\
+\sigma&\sim \text{Uniform}(0,50)
+\end{aligned}</script><h4 id="Grid-approximation-of-the-posterior-distribution"><a href="#Grid-approximation-of-the-posterior-distribution" class="headerlink" title="Grid approximation of the posterior distribution"></a>Grid approximation of the posterior distribution</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mu.list &lt;- seq(from=<span class="number">140</span>, to=<span class="number">160</span>, length.out=<span class="number">200</span>)</span><br><span class="line">sigma.list &lt;- seq(from=<span class="number">4</span>, to=<span class="number">9</span>, length.out=<span class="number">200</span>)</span><br><span class="line">post &lt;- expand.grid(mu=mu.list, sigma=sigma.list)</span><br><span class="line">post$LL &lt;- sapply(<span class="number">1</span>:nrow(post), <span class="keyword">function</span>(i) <span class="built_in">sum</span>(</span><br><span class="line">  dnorm(d2$height, mean = post$mu[i], sd=post$sigma[i], <span class="built_in">log</span>=<span class="literal">TRUE</span>)</span><br><span class="line">))</span><br><span class="line">post$prod &lt;- post$LL + dnorm(post$mu, <span class="number">178</span>, <span class="number">20</span>, <span class="literal">TRUE</span>) + dunif(post$sigma, <span class="number">0</span>, <span class="number">50</span>, <span class="literal">TRUE</span>)</span><br><span class="line">post$prob &lt;- <span class="built_in">exp</span>(post$<span class="built_in">prod</span> - <span class="built_in">max</span>(post$<span class="built_in">prod</span>))</span><br></pre></td></tr></table></figure>
+<p>你可以对结果进行绘制：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">contour_xyz(post$mu, post$sigma, post$prob)</span><br></pre></td></tr></table></figure></p>
+<h4 id="Sampling-from-the-posterior"><a href="#Sampling-from-the-posterior" class="headerlink" title="Sampling from the posterior"></a>Sampling from the posterior</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sample.rows &lt;- sample(<span class="number">1</span>:nrow(post), size = <span class="number">1e4</span>, replace = <span class="literal">TRUE</span>, prob = post$prob)</span><br><span class="line">sample.mu &lt;- post$mu[sample.rows]</span><br><span class="line">sample.sigma &lt;- post$sigma[sample.rows]</span><br></pre></td></tr></table></figure>
+<p>绘制结果<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(sample.mu, sample.sigma, cex=<span class="number">0.5</span>, pch=<span class="number">16</span>, col=col.alpha(rangi2,<span class="number">0.1</span>))</span><br></pre></td></tr></table></figure></p>
+<h4 id="Fitting-the-model-with-map"><a href="#Fitting-the-model-with-map" class="headerlink" title="Fitting the model with map"></a>Fitting the model with <code>map</code></h4><p>下面我们利用二次逼近来对后验分布进行估计：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">flist &lt;- alist(</span><br><span class="line">  height ~ dnorm(mu, sigma),</span><br><span class="line">  mu ~ dnorm(<span class="number">178</span>, <span class="number">20</span>),</span><br><span class="line">  sigma ~ dunif(<span class="number">0</span>, <span class="number">50</span>)</span><br><span class="line">)</span><br><span class="line">m4.1 &lt;- map(flist, data = d2)</span><br><span class="line">precis(m4.1)</span><br><span class="line"></span><br><span class="line">        mean   sd   <span class="number">5.5</span>%  94.5%</span><br><span class="line">mu    <span class="number">154.61</span> <span class="number">0.41</span> <span class="number">153.95</span> <span class="number">155.27</span></span><br><span class="line">sigma   <span class="number">7.73</span> <span class="number">0.29</span>   <span class="number">7.27</span>   <span class="number">8.20</span></span><br></pre></td></tr></table></figure><br><code>map</code>通过像爬坡一样的方式来估计后验，它需要从一个初始位置开始。我们可以指定初始位置，一个好的初始位置位于最大后验概率(MAP)处：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start &lt;- <span class="built_in">list</span>(mu=mean(d2$height), sigma = sd(d2$height) )</span><br></pre></td></tr></table></figure><br>注意这里是<code>list</code>而不是<code>alist</code>，它们两者的区别是<code>list</code>会计算你放到其内部的代码，而<code>alist</code>不会。</p>
+<h4 id="Sampling-from-a-map-fit"><a href="#Sampling-from-a-map-fit" class="headerlink" title="Sampling from a map fit"></a>Sampling from a <code>map</code> fit</h4><p>二次逼近不止计算了每个参数的方差，还计算了它们之间的协方差，即协方差矩阵。<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vcov(m4.1)</span><br><span class="line"></span><br><span class="line">               mu       sigma</span><br><span class="line">mu    <span class="number">0.169740079</span> <span class="number">0.000217271</span></span><br><span class="line">sigma <span class="number">0.000217271</span> <span class="number">0.084906413</span></span><br></pre></td></tr></table></figure><br>我们可以用<code>extract.samples</code>函数进行抽样，其实质为对多元高斯进行抽样：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post &lt;- extract.samples(m4.1, n=<span class="number">1e4</span>)</span><br></pre></td></tr></table></figure><br>$\sigma$的分布可能不是正态分布，所以我们的二次逼近可能存在问题，但是我们可以假设$\sigma$的对数为正态分布，那么变为：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">m4.1_logsigma &lt;- map(</span><br><span class="line">  alist(</span><br><span class="line">    height ~ dnorm(mu, <span class="built_in">exp</span>(log_sigma)),</span><br><span class="line">    mu ~ dnorm(<span class="number">178</span>, <span class="number">20</span>),</span><br><span class="line">    log_sigma ~ dnorm(<span class="number">2</span>, <span class="number">10</span>)</span><br><span class="line">), data =d2)</span><br><span class="line"></span><br><span class="line">post &lt;- extract.samples(m4.1_logsigma)</span><br><span class="line">sigma &lt;- <span class="built_in">exp</span>(post$log_sigma)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Adding-a-predictor"><a href="#Adding-a-predictor" class="headerlink" title="Adding a predictor"></a>Adding a predictor</h3><h4 id="The-linear-model-strategy"><a href="#The-linear-model-strategy" class="headerlink" title="The linear model strategy"></a>The linear model strategy</h4><p>我们的模型为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+
+h_{i} & \sim \operatorname{Normal}\left(\mu_{i}, \sigma\right) \\
+
+\mu_{i} &=\alpha+\beta x_{i} \\
+
+\alpha & \sim \operatorname{Normal}(178,100) \\
+
+\beta & \sim \operatorname{Normal}(0,10) \\
+
+\sigma & \sim \operatorname{Uniform}(0,50)
+
+\end{aligned}</script><h4 id="Fitting-the-model"><a href="#Fitting-the-model" class="headerlink" title="Fitting the model"></a>Fitting the model</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">m4.3 &lt;- map(</span><br><span class="line">  alist(</span><br><span class="line">    height ~ dnorm(mu, sigma),</span><br><span class="line">    mu &lt;- a + b*weight,</span><br><span class="line">    a ~ dnorm(<span class="number">156</span>, <span class="number">100</span>),</span><br><span class="line">    b ~ dnorm(<span class="number">0</span>, <span class="number">10</span>),</span><br><span class="line">    sigma ~ dunif(<span class="number">0</span>,<span class="number">50</span>)</span><br><span class="line">  ),</span><br><span class="line">  data=d2</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>得到的结果如下：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">precis(m4.3)</span><br><span class="line"></span><br><span class="line">        mean   sd   <span class="number">5.5</span>%  94.5%</span><br><span class="line">a     <span class="number">113.89</span> <span class="number">1.91</span> <span class="number">110.85</span> <span class="number">116.94</span></span><br><span class="line">b       <span class="number">0.90</span> <span class="number">0.04</span>   <span class="number">0.84</span>   <span class="number">0.97</span></span><br><span class="line">sigma   <span class="number">5.07</span> <span class="number">0.19</span>   <span class="number">4.77</span>   <span class="number">5.38</span></span><br></pre></td></tr></table></figure><br>我们可以查看各个参数之间的相关系数：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">                  a             b         sigma</span><br><span class="line">a      <span class="number">1.0000000000</span> -<span class="number">0.9898830268</span>  <span class="number">0.0006161621</span></span><br><span class="line">b     -<span class="number">0.9898830268</span>  <span class="number">1.0000000000</span> -<span class="number">0.0005736179</span></span><br><span class="line">sigma  <span class="number">0.0006161621</span> -<span class="number">0.0005736179</span>  <span class="number">1.0000000000</span></span><br></pre></td></tr></table></figure><br>可以看出$a$与$b$几乎成负相关，这并不是我们想要的，我们可以采用下面的方法：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">d2$weight.c &lt;- d2$weight - mean(d2$weight)</span><br><span class="line"></span><br><span class="line">m4.4 &lt;- map(</span><br><span class="line">  alist(</span><br><span class="line">    height ~ dnorm(mu, sigma),</span><br><span class="line">    mu &lt;- a + b*weight.c,</span><br><span class="line">    a ~ dnorm(<span class="number">178</span>, <span class="number">100</span>),</span><br><span class="line">    b ~ dnorm(<span class="number">0</span>, <span class="number">10</span>),</span><br><span class="line">    sigma ~ dunif(<span class="number">0</span>, <span class="number">50</span>)</span><br><span class="line">  ),</span><br><span class="line">  data = d2</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">precis(m4.4)</span><br><span class="line">        mean   sd   <span class="number">5.5</span>%  94.5%</span><br><span class="line">a     <span class="number">154.60</span> <span class="number">0.27</span> <span class="number">154.17</span> <span class="number">155.03</span></span><br><span class="line">b       <span class="number">0.90</span> <span class="number">0.04</span>   <span class="number">0.84</span>   <span class="number">0.97</span></span><br><span class="line">sigma   <span class="number">5.07</span> <span class="number">0.19</span>   <span class="number">4.77</span>   <span class="number">5.38</span></span><br><span class="line"></span><br><span class="line">cov2cor(vcov(m4.4))</span><br><span class="line">                  a             b         sigma</span><br><span class="line">a      <span class="number">1.000000e+00</span> -<span class="number">1.630888e-11</span>  <span class="number">2.556226e-07</span></span><br><span class="line">b     -<span class="number">1.630888e-11</span>  <span class="number">1.000000e+00</span> -<span class="number">6.380061e-05</span></span><br><span class="line">sigma  <span class="number">2.556226e-07</span> -<span class="number">6.380061e-05</span>  <span class="number">1.000000e+00</span></span><br></pre></td></tr></table></figure><br>可以看到$a$和$b$的相关系数接近于零，这是因为$a$表示当体重为$0$时的身高，而变换后的体重均值为$0$，因为线性回归经过体重的均值、身高的均值这个点，而体重的均值为$0$，所以$a$就表示在体重为体重均值时身高的值，即身高的均值，所以与$b$无关。</p>
+<p>我们也可以绘制后验分布得到的结果：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot(height~weight, data=d2)</span><br><span class="line">abline(a=coef(m4.3)[<span class="string">&quot;a&quot;</span>], b=coef(m4.3)[<span class="string">&quot;b&quot;</span>])</span><br></pre></td></tr></table></figure><br><img src="https://raw.githubusercontent.com/HFC666/image/master/img/LM5.jpeg" alt=""><br>上图我们只是绘制了一条直线，对应于后验的均值。为了表达不确定性，我们可以对后验分布进行抽样。<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">post &lt;- extract.samples(m4.3, n=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">plot(d2$weight, d2$height, xlim=<span class="built_in">range</span>(d2$weight), ylim=<span class="built_in">range</span>(d2$height), col=rangi2, xlab=<span class="string">&quot;weight&quot;</span>, ylab=<span class="string">&quot;height&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">20</span>) &#123;</span><br><span class="line">  abline(a=post$a[i], b=post$b[i], col=col.alpha(<span class="string">&quot;black&quot;</span>, <span class="number">0.3</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><img src="https://raw.githubusercontent.com/HFC666/image/master/img/LM6.jpeg" alt=""><br>对于每个确定的<code>weight</code>，由于$a$和$b$都为高斯分布，所以生成的$\mu_i = a + b w_i$也服从高斯分布。我们可以使用link函数，link函数默认从后验分布中抽取$1000$个样本，对每个固定的weight根据这$1000$个样本计算其$\mu$的值。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mu &lt;- link(m4.3)</span><br><span class="line">str(mu)</span><br><span class="line"></span><br><span class="line"> num [<span class="number">1</span>:<span class="number">1000</span>, <span class="number">1</span>:<span class="number">352</span>] <span class="number">158</span> <span class="number">157</span> <span class="number">157</span> <span class="number">157</span> <span class="number">157</span> ...</span><br></pre></td></tr></table></figure>
+<p>生成的<code>mu</code>为一个矩阵，行表示从后验分布中抽取的样本，列表示数据的数目。<br>这样我们就可以绘制在某个确定weight值上$\mu$的分布：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">weight.seq &lt;- seq(from=<span class="number">25</span>, to=<span class="number">70</span>, by=<span class="number">1</span>)</span><br><span class="line">mu &lt;- link(m4.3, data = data.frame(weight=weight.seq))</span><br><span class="line">plot(height~weight, d2, type=<span class="string">&quot;n&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">100</span>) &#123;</span><br><span class="line">  points(weight.seq, mu[i,], pch=<span class="number">16</span>, col=col.alpha(rangi2, <span class="number">0.1</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><img src="https://raw.githubusercontent.com/HFC666/image/master/img/LM7.jpeg" alt=""><br>这样我们也可以计算关于$\mu$的分布的信息了：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mu.mean &lt;- apply(mu, <span class="number">2</span>, mean)</span><br><span class="line">mu.HPDI &lt;- apply(mu, <span class="number">2</span>, HPDI, prob=<span class="number">0.89</span>)</span><br><span class="line"></span><br><span class="line">plot( height ~ weight , data=d2 , col=col.alpha(rangi2,<span class="number">0.5</span>) )</span><br><span class="line">lines( weight.seq , mu.mean )</span><br><span class="line">shade( mu.HPDI , weight.seq )</span><br></pre></td></tr></table></figure><br>之前我们只是对平均高度$\mu$进行采样，现在我们生成真实的高度height。这意味着我们也将$\sigma$的不确定性结合在一起。<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sim.height &lt;- sim(m4.3, data = <span class="built_in">list</span>(weight=weight.seq))</span><br><span class="line">str(sim.height)</span><br><span class="line">height.PI &lt;- apply( sim.height , <span class="number">2</span> , PI , prob=<span class="number">0.89</span> )</span><br></pre></td></tr></table></figure><br>我们也可以绘制图：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plot(height~weight, d2, col=col.alpha(rangi2, <span class="number">0.5</span>))</span><br><span class="line">lines(weight.seq, mu.mean)</span><br><span class="line">shade(mu.HPDI, weight.seq,col=col.alpha(rangi2, <span class="number">0.5</span>))</span><br><span class="line">shade(height.PI, weight.seq,col=col.alpha(rangi2, <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>不知到为什么shade函数失效</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+	
+	
+      <div>
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      </div>
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Han Fangcheng 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Han Fangcheng 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Han Fangcheng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.hfcouc.work/2022/07/14/rt4/" title="Statistical Rethinking:Chapter1">https://www.hfcouc.work/2022/07/14/rt4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A6%82%E7%8E%87%E7%BC%96%E7%A8%8B/" rel="tag"># 概率编程</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/" rel="tag"># 贝叶斯统计</a>
+              <a href="/tags/Statistical-Rethinking/" rel="tag"># Statistical Rethinking</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/12/BN/" rel="prev" title="A tutorial on Bayesian nonparametric models">
+      <i class="fa fa-chevron-left"></i> A tutorial on Bayesian nonparametric models
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MzYxNS8zMDA4OA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+	
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Models"><span class="nav-number">1.</span> <span class="nav-text">Linear Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-normal-distributions-are-normal"><span class="nav-number">1.1.</span> <span class="nav-text">Why normal distributions are normal</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Normal-by-addition"><span class="nav-number">1.1.1.</span> <span class="nav-text">Normal by addition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Normal-by-multiplication"><span class="nav-number">1.1.2.</span> <span class="nav-text">Normal by multiplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Normal-by-log-multiplication"><span class="nav-number">1.1.3.</span> <span class="nav-text">Normal by log-multiplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-Gaussian-distributions"><span class="nav-number">1.1.4.</span> <span class="nav-text">Using Gaussian distributions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-language-for-describing-models"><span class="nav-number">1.2.</span> <span class="nav-text">A language for describing models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Gaussian-model-of-height"><span class="nav-number">1.3.</span> <span class="nav-text">A Gaussian model of height</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-data"><span class="nav-number">1.3.1.</span> <span class="nav-text">The data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-model"><span class="nav-number">1.3.2.</span> <span class="nav-text">The model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Grid-approximation-of-the-posterior-distribution"><span class="nav-number">1.3.3.</span> <span class="nav-text">Grid approximation of the posterior distribution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sampling-from-the-posterior"><span class="nav-number">1.3.4.</span> <span class="nav-text">Sampling from the posterior</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fitting-the-model-with-map"><span class="nav-number">1.3.5.</span> <span class="nav-text">Fitting the model with map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sampling-from-a-map-fit"><span class="nav-number">1.3.6.</span> <span class="nav-text">Sampling from a map fit</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-a-predictor"><span class="nav-number">1.4.</span> <span class="nav-text">Adding a predictor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-linear-model-strategy"><span class="nav-number">1.4.1.</span> <span class="nav-text">The linear model strategy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fitting-the-model"><span class="nav-number">1.4.2.</span> <span class="nav-text">Fitting the model</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Han Fangcheng"
+      src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
+  <p class="site-author-name" itemprop="name">Han Fangcheng</p>
+  <div class="site-description" itemprop="description">当你穿过了暴风雨，你就不再是原来那个人</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HFC666" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HFC666" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/hfc@stu.ouc.edu.cn" title="E-Mail → hfc@stu.ouc.edu.cn"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/bu-yu-que-zhi-xin-43-35" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;bu-yu-que-zhi-xin-43-35" rel="noopener" target="_blank"><i class="fab fa-gratipay fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_44777424" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_44777424" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="https:&#x2F;&#x2F;www.bilibili.com&#x2F;" rel="noopener" target="_blank">哔哩哔哩</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+	  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=4920727&auto=1&height=66"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Tue Jul 13 2021 08:00:00 GMT+0800 (GMT+08:00) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Fangcheng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+    <script src="/js/cursor/cherry.js"></script>
