@@ -28,24 +28,24 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="A Tutorial on Bayesian Nonparametric Models         文章地址：https:&#x2F;&#x2F;www.sciencedirect.com&#x2F;science&#x2F;article&#x2F;abs&#x2F;pii&#x2F;S002224961100071X">
+  <meta name="description" content="课程链接：https:&#x2F;&#x2F;ocw.mit.edu&#x2F;6-006S20">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A tutorial on Bayesian nonparametric models">
-<meta property="og:url" content="https://www.hfcouc.work/2022/07/12/BN/index.html">
+<meta property="og:title" content="算法导论课程第一周">
+<meta property="og:url" content="https://www.hfcouc.work/2022/07/19/alo1/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="A Tutorial on Bayesian Nonparametric Models         文章地址：https:&#x2F;&#x2F;www.sciencedirect.com&#x2F;science&#x2F;article&#x2F;abs&#x2F;pii&#x2F;S002224961100071X">
+<meta property="og:description" content="课程链接：https:&#x2F;&#x2F;ocw.mit.edu&#x2F;6-006S20">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170401%2F66c0602968c0463c805dcd5ab16a87dc_th.jpeg&refer=http%3A%2F%2Fimg.mp.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660210656&t=6f0b4c7c45167ff59154a4b5ee75eb30">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/IBP.jpg">
-<meta property="article:published_time" content="2022-07-12T09:31:16.000Z">
-<meta property="article:modified_time" content="2022-07-12T09:54:16.508Z">
+<meta property="og:image" content="https://img2.baidu.com/it/u=3208607819,4065748703&fm=253&fmt=auto&app=138&f=PNG?w=670&h=500">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/alo1.jpg">
+<meta property="article:published_time" content="2022-07-19T06:53:32.000Z">
+<meta property="article:modified_time" content="2022-07-19T07:00:15.303Z">
 <meta property="article:author" content="Han Fangcheng">
-<meta property="article:tag" content="贝叶斯">
 <meta property="article:tag" content="算法">
+<meta property="article:tag" content="编程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170401%2F66c0602968c0463c805dcd5ab16a87dc_th.jpeg&refer=http%3A%2F%2Fimg.mp.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660210656&t=6f0b4c7c45167ff59154a4b5ee75eb30">
+<meta name="twitter:image" content="https://img2.baidu.com/it/u=3208607819,4065748703&fm=253&fmt=auto&app=138&f=PNG?w=670&h=500">
 
-<link rel="canonical" href="https://www.hfcouc.work/2022/07/12/BN/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/07/19/alo1/">
 
 
 <script id="page-configurations">
@@ -58,7 +58,7 @@
   };
 </script>
 
-  <title>A tutorial on Bayesian nonparametric models | 独自赏晴雨</title>
+  <title>算法导论课程第一周 | 独自赏晴雨</title>
   
 
 
@@ -225,7 +225,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/12/BN/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/19/alo1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
@@ -238,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          A tutorial on Bayesian nonparametric models
+          算法导论课程第一周
         </h1>
 
         <div class="post-meta">
@@ -250,7 +250,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-12 17:31:16 / 修改时间：17:54:16" itemprop="dateCreated datePublished" datetime="2022-07-12T17:31:16+08:00">2022-07-12</time>
+              <time title="创建时间：2022-07-19 14:53:32 / 修改时间：15:00:15" itemprop="dateCreated datePublished" datetime="2022-07-19T14:53:32+08:00">2022-07-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,7 +258,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">文献阅读</span></a>
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
                 </span>
             </span>
 
@@ -273,59 +273,155 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="A-Tutorial-on-Bayesian-Nonparametric-Models"><a href="#A-Tutorial-on-Bayesian-Nonparametric-Models" class="headerlink" title="A Tutorial on Bayesian Nonparametric Models"></a>A Tutorial on Bayesian Nonparametric Models</h2><p align="center">
-    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170401%2F66c0602968c0463c805dcd5ab16a87dc_th.jpeg&refer=http%3A%2F%2Fimg.mp.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660210656&t=6f0b4c7c45167ff59154a4b5ee75eb30" style="zoom: 100%;" />
+        <p align="center">
+    <img src="https://img2.baidu.com/it/u=3208607819,4065748703&fm=253&fmt=auto&app=138&f=PNG?w=670&h=500" style="zoom: 100%;" />
 </p>
 
 <blockquote>
-<p>文章地址：<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S002224961100071X">https://www.sciencedirect.com/science/article/abs/pii/S002224961100071X</a></p>
+<p>课程链接：<a target="_blank" rel="noopener" href="https://ocw.mit.edu/6-006S20">https://ocw.mit.edu/6-006S20</a></p>
 </blockquote>
 <span id="more"></span>
-<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>统计模型的一个核心问题就是模型选择，怎样选择模型复杂度，如在聚类问题中选择聚类的数目等。贝叶斯无参模型通过让数据确定模型复杂度来跳过模型选择的步骤。比如说在传统的机器学习中如聚类中，我们需要事先确定聚类的数目，而贝叶斯无参模型会估计聚类的数目并允许未来的数据来自之前没有的类。</p>
-<p>一般我们进行贝叶斯推断时是对参数的后验分布进行推断，无参贝叶斯与其他贝叶斯模型显著的不同在于其隐藏结构是随着数据增长的。它的复杂度，如聚类的数目，是后验分布的一部分。这些参数无需实现给定，而是作为分析数据的一部分来确定。</p>
-<p>在本文中我们主要介绍两种模型，混合模型(mixture models)和隐语义模型(latent factor models)。贝叶斯无参混合模型，也被称为中国餐馆过程混合(或者狄利克雷过程混合)，从数据中推断聚类的个数并且随着数据的增长允许聚类数增长。</p>
-<p>隐语义模型将观察到的数据分解为潜在因素的线性组合。关于因子分布的不同假设会产生如因子分析、主成分分析、独立成分分析等等。印度自助餐过程隐语义模型通过数据推断因子的数量并且允许因子的数量随着新数据的加入而增加。</p>
-<h3 id="Mixture-models-and-clustering"><a href="#Mixture-models-and-clustering" class="headerlink" title="Mixture models and clustering"></a>Mixture models and clustering</h3><p>在一个混合模型中，每一个观测数据都假设属于一个类。</p>
-<h4 id="Finite-mixture-modeling"><a href="#Finite-mixture-modeling" class="headerlink" title="Finite mixture modeling"></a>Finite mixture modeling</h4><p>有限混合模型假设有$K$个类，每个类与参数$\theta_k$有关。每一个观测$y_n$都假设是首先通过$P(c_n)$来选择一个类$c_n$之后通过与参数$\theta_{c_n}$相对应的分布中产生观测，每一个参数对应一个分布$F(y_n\mid \theta_{c_n})$。</p>
-<p>贝叶斯混合模型引入了混合分布$P(c)$的先验和聚类参数的先验$\theta\sim G_0$。</p>
-<p>这个生成过程定义了关于观测、聚类分配(数据属于哪个类)和聚类参数的联合分布：</p>
-<script type="math/tex; mode=display">
-P(\mathrm{y,c},\theta) = \prod_{k=1}^K G_0(\theta_k)\prod_{n=1}^NF(Y_n\mid\theta_{c_n})P(c_n)</script><p>其中观测为$\mathrm{y} = \{y_1,\cdots,y_N\}$，聚类分配为$\mathrm{c}=\{c_1,\cdots,c_N\}$，聚类参数为$\theta=\{\theta_1,\cdots,\theta_K\}$。</p>
-<blockquote>
-<p>这里$N$个样本相乘是因为样本之间是独立同分布的，而$K$个$G_0(\theta_k)$相乘是因为每个$\theta_k$也是独立的。</p>
-</blockquote>
-<p>给定数据集，我们经常对聚类分配感兴趣，我们可以用贝叶斯公式计算它们：</p>
-<script type="math/tex; mode=display">
-P(\mathrm{c}\mid\mathrm{y}) = \frac{P(\mathrm{y}\mid \mathrm{c})P(\mathrm{c})}{\sum_{\mathrm{c}}P(\mathrm{y}\mid\mathrm{c})P(\mathrm{c})}</script><p>其中似然函数可以通过对$\theta$积分得到：</p>
-<script type="math/tex; mode=display">
-P(\mathrm{y\mid c}) = \int_{\theta}\left[\prod_{n=1}^NF(\mathrm{y}\mid\theta_{c_n})\prod_{k=1}^KG_0(\theta_k)\right]d\theta</script><p>后验分布是很难处理的，因为计算分母需要将每种分配方式进行求和。</p>
-<h4 id="The-Chinese-restaurant-process"><a href="#The-Chinese-restaurant-process" class="headerlink" title="The Chinese restaurant process"></a>The Chinese restaurant process</h4><p>见我的一篇博客(<a target="_blank" rel="noopener" href="https://hfcouc.work/2022/07/06/BNP/)。">https://hfcouc.work/2022/07/06/BNP/)。</a></p>
-<h3 id="Latent-factor-models-and-dimensionality-reduction"><a href="#Latent-factor-models-and-dimensionality-reduction" class="headerlink" title="Latent factor models and dimensionality reduction"></a>Latent factor models and dimensionality reduction</h3><p>混合模型假设每个数据都来自$K$个类中的一个。隐语义模型削弱了这一假设：每个观测受到$K$个分量的不同的影响。</p>
-<p>隐语义模型可以用来降维当分量的数目小于数据维度时。每个观察都与一个分量激活向量（潜在因子）相关联，该向量描述了每个分量对其贡献的程度，并且这个向量可以看作是观察本身的低维表示。</p>
-<p>非常著名的降维模型有因子分析(FA)，主成分分析(PCA)和独立成分分析(ICA)等，所有的都假设因子的数量$K$已经确定了。无参贝叶斯模型允许分量的数量随着数据的增长而增多。</p>
-<p>在经典的降维模型中，我们的观测数据一般为$N$个$M$维向量，$\mathrm{Y=\{y_1,\cdots,y_N\}}$。因此$\mathrm{Y}$每行表示一个数据。数据假设是从有噪声的隐语义的加权组合产生的：</p>
-<script type="math/tex; mode=display">
-\mathrm{y_n = Gx_n+\epsilon_n}</script><p>其中$\mathrm{G}$为$M\times K$的矩阵表示，表示隐语义$k$怎么影响观测维度$m$，$x_n$为一个$K$维向量表示每个隐语义的影响，其中$\epsilon_n$维独立高斯噪声向量。我们可以将其拓展为稀疏模型通过将$\mathrm{G}$进行分解，$\mathrm{G}_{mk}=z_{mk}w_{mk}$，其中$z_{mk}$是一个二元掩码(mask)变量指示因子$k$是否影响维度$m$，而$w_{ik}$为连续权重变量。这个有时被称为<code>spike and slab</code>模型因为$x_{mk}$的期望为一个在隐语义空间上的<code>slab</code>$P(w_{mk})$和在零的位置$P(z_{mk}=0)$的<code>spike</code>。</p>
-<p>我们使用贝叶斯的方法推理隐语义、掩码变量和权重。我们在它们上面定义先验并利用贝叶斯公式计算后验$P(\mathrm{G,Z,W\mid Y})$。</p>
-<p>利用无参贝叶斯模型，我们令数据自动确定隐语义的数目$K$。$Z$为一个二元矩阵，有有限多的行和无限多的列。</p>
-<p>与中国餐馆过程类似，$\mathrm{Z}$上的无限容量的分布也被赋予了一个有关烹饪的隐喻，被称为印度自助餐过程。一个顾客(维度)进入一个具有无限菜品的自主餐馆。顾客$m$选择菜品$k$的概率正比于他被之前顾客选择的次数$h_k$。当顾客考虑了所有之前采样过的菜肴($h_k&gt;0$)的菜肴时，他会额外采样之前从未采样过的$\operatorname{Poisson}(\alpha/N)$菜肴。当所有$M$个顾客都选完菜后，形成的二元矩阵$\mathrm{Z}$从IBP(Indian buffet process)中采样得到。</p>
-<p>与中国餐馆过程不同的是，中国餐馆过程每个观测只能选择一个隐语义，而印度自助餐过程每个观测的每个维度可以选择无数多个隐语义。如下图：</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/IBP.jpg" alt=""></p>
-<blockquote>
-<p>印度餐馆过程：IBP的生成过程，其中有序号的菱形代表顾客，与与它们相关的观测连接。大圆形表示菜品，与与它们相关的参数$\phi$相连。每个顾客选择多个菜品，并且每个顾客的观测为选择的菜品的参数的线性组合。</p>
-</blockquote>
-<p>现在回到我们的后验分布，我们想要对我们的隐语义矩阵进行推理：</p>
-<script type="math/tex; mode=display">
-P(\mathrm{X,W,Z}\mid \mathrm{Y})\propto P(\mathrm{Y\mid X,W,Z})P(\mathrm{X})P(\mathrm{W})P(\mathrm{Z})</script><p>精确的推理是很困难的因为归一化参数需要对所有可能的二元矩阵进行积分。</p>
-<h3 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h3><p>在BNP建模中最基本的计算问题是计算后验概率。下面我们只简单介绍几种计算方法。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本课程的目的是教你去解决计算问题，同时证明的解决方案是正确和搞笑的。<br>问题：</p>
 <ul>
-<li>MCMC</li>
-<li>变分贝叶斯推断：见我的一篇博客(<a target="_blank" rel="noopener" href="https://hfcouc.work/2022/07/10/VBI/">https://hfcouc.work/2022/07/10/VBI/</a>)</li>
+<li>从问题输入到正确输出的二元关系</li>
+<li>提供正确输出必须满足的条件</li>
+<li>非一般情况：<ul>
+<li>例子：在这个房间里，有生日一样的同学吗</li>
 </ul>
-<h3 id="Limitations-and-extensions"><a href="#Limitations-and-extensions" class="headerlink" title="Limitations and extensions"></a>Limitations and extensions</h3><p>我们前面介绍到的两种BNP只是最简单的两种，它们存在着很多限制，为了解决这些限制有很多上述模型的拓展。</p>
-<h4 id="Hierarchical-structure"><a href="#Hierarchical-structure" class="headerlink" title="Hierarchical structure"></a>Hierarchical structure</h4><p>第一个限制是关于分组数据的：我们如何捕捉一个群体中的共性和特性呢？比如说同一种动物既有共性也有自己的特性。解决这个问题的标准贝叶斯方法是基于层次模型，在这个模型中，个体由于来自同一群体的分布而被耦合在一起。在非参数的设定下发展出的模型为分层狄利克雷过程。</p>
-<h4 id="Time-series-models"><a href="#Time-series-models" class="headerlink" title="Time series models"></a>Time series models</h4><p>第二个限制是关于序列数据的：我们怎样才能捕捉到序列观察结果之间的依赖关系？关于这方面非常著名的是隐马尔可夫模型。无限隐马尔科夫模型提出了相同的序列结构，但采用了无限多的潜在类，无限隐马尔可夫模型为分层狄利克雷过程的一个特殊情况。<br>作为<code>HMM</code>（隐状态为离散的）的替代品，线性动态系统（也被称为自回归移动平均模型）假定隐状态是连续的，并根据线性高斯马尔可夫过程随时间演变。在一个切换的线性动态系统中，系统可以有许多动态模式；这使得边际转移分布可以是非线性的。有学者探索了切换线性动态系统的非参数变体，其中动态模式的数量是利用HDP先验从数据中推断出来的。</p>
-<h4 id="Spatial-models"><a href="#Spatial-models" class="headerlink" title="Spatial models"></a>Spatial models</h4><p>很多数据集上的依赖是在空间上的。如某种疾病在某个地方出现，在它附近的地方也可能出现。在BNP模型中捕获这种依赖关系的一种方法是使DP的基分布依赖于一个位置变量。</p>
+</li>
+<li>一般情况：<ul>
+<li>例子：给定任意$n$个学生，有没有生日相同的同学<br>算法</li>
+</ul>
+</li>
+<li>将每个输入映射到单个(确定)输出的过程</li>
+<li>算法解决了问题当对于每一个问题输入他都能返回正确的输出</li>
+<li>例子：一个解决生日匹配的算法<ul>
+<li>保存生日和姓名的记录(初始为空)</li>
+<li>以一种顺序采访每一位同学<ul>
+<li>如果生日存在在记录中，返回找到了匹配队</li>
+<li>否则将生日和姓名添加到记录中</li>
+</ul>
+</li>
+<li>返回空如果最后一个通过也没有匹配成功</li>
+</ul>
+</li>
+</ul>
+<p>正确性：</p>
+<ul>
+<li>程序/算法有固定的大小，所以如何证明其正确性</li>
+<li>对于小的输入，可以分析例子</li>
+<li>对于任意大的输入，算法必须是可以递归或循环的</li>
+<li>必须使用归纳(induction)</li>
+<li>例子：证明生日匹配算法的正确性<ul>
+<li>在$k$上归纳：记录的同学的人数</li>
+<li>假设(Hypothesis)：如果前$k$个存在匹配，在采访第$k+1$个学生之前返回匹配</li>
+<li>Base case：$k=0$时，$k$没有包含匹配</li>
+<li>假设归纳假设对于$k=k^\prime$成立，考虑$k^\prime+1$</li>
+<li>如果前$k^\prime$个存在一个匹配，那么在归纳之前就已经返回了</li>
+<li>如果前$k^\prime$没有匹配，因此如果前$k^\prime+1$个存在匹配，匹配包括$k^\prime+1$</li>
+<li>算法直接检查学生$k^\prime+1$在是否在前$k^\prime$出现</li>
+</ul>
+</li>
+</ul>
+<p>效率(Efficiency)：</p>
+<ul>
+<li>一个算法产生一个正确输出有多快<ul>
+<li>可以衡量时间，但是时间与机器的性能有关</li>
+<li>可以衡量具有固定时间操作的个数</li>
+<li>与输入大小有关系：越大说明需要更长时间</li>
+<li>是高效的如果是输入大小的多项式函数</li>
+<li>有些时候对于某个问题不存在高效的算法</li>
+</ul>
+</li>
+<li>渐进符号：忽略常数项和低阶项<ul>
+<li>上界$\mathcal{O}$，下界$\Omega$，严格界限$\Theta$</li>
+<li>以下时间估计基于<code>1GHz</code>单核机器上每个周期的一次操作</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{|c|c|c|c|c|c|c|c|}
+
+\hline \text { input } & \text { constant } & \text { logarithmic } & \text { linear } & \text { log-linear } & \text { quadratic } & \text { polynomial } & \text { exponential } \\
+
+\hline n & \Theta(1) & \Theta(\log n) & \Theta(n) & \Theta(n \log n) & \Theta\left(n^{2}\right) & \Theta\left(n^{c}\right) & 2^{\Theta\left(n^{c}\right)} \\
+
+\hline 1000 & 1 & \approx 10 & 1000 & \approx 10,000 & 1,000,000 & 1000^{c} & 2^{1000} \approx 10^{301} \\
+
+\hline \text { Time } & 1 n s & 10 n s & 1 \mu s & 10 \mu s & 1 m s & 10^{3 c-9} s & 10^{281} \text { millenia } \\
+
+\hline
+
+\end{array}</script><p>计算模型：</p>
+<ul>
+<li>说明可以在$\mathcal{O}(1)$时间内在机器上执行哪些操作</li>
+<li>这类模型被称为<code>Word-RAM</code></li>
+<li>Machine word：$w$位的一个块($w$为一个$w$-bit Word-RAM的字长)</li>
+<li>Memory：可以寻址的字长序列</li>
+<li>处理器支持很多常数时间的操作，在$\mathcal{O}(1)$字数<ul>
+<li>正数算数：$+,-,<em>,//,\%</em>$</li>
+<li>逻辑运算：<code>`&amp;&amp;，||，!，==，&lt;,&gt;,&lt;=,=&gt;</code></li>
+<li>比特算数：<code>&amp;,|,&lt;&lt;,&gt;&gt;</code></li>
+<li>给定word$a$，可以在读取地址$a$的字，写数据到地址$a$</li>
+</ul>
+</li>
+<li>内存地址必须可以访问在内存中的任何位置<ul>
+<li>需要$w\ge$表示最大内存地址的位数</li>
+<li>$32$位的最大为$4$GB内存，$64$位的最大为$16$EB</li>
+</ul>
+</li>
+</ul>
+<p>数据结构</p>
+<ul>
+<li>数据结构是存储无限值数据的一种方式，并支持一系列操作</li>
+<li>一系列操作的集合被称为接口(interface)<ul>
+<li>序列</li>
+<li>集合</li>
+</ul>
+</li>
+<li>数据结构可能使用不同的方法实现相同的接口</li>
+<li>例子：静态列表：固定长度，静态序列接口<ul>
+<li>StaticArray(n)：分配大小为$n$的静态数组以$\Theta(n)$的时间</li>
+<li>StaticArray.get_at(i)：返回索引为$i$的数据以$\Theta(1)$的时间</li>
+<li>StaticArray.set_at(i,x)：将索引为$i$的位置写入数据$x$以$\Theta(1)$的时间</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">birthday_match</span>(<span class="params">students</span>):</span></span><br><span class="line">	<span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">	Find a pair of students with the same birthday</span></span><br><span class="line"><span class="string">	Input: tuple of student(name, bday) tuples</span></span><br><span class="line"><span class="string">	Output: tuple of student names or None</span></span><br><span class="line"><span class="string">	&#x27;&#x27;&#x27;</span></span><br><span class="line">	n = <span class="built_in">len</span>(students)         <span class="comment">#O(1)</span></span><br><span class="line">	record = StaticArray(n)   <span class="comment"># O(n)</span></span><br><span class="line">	<span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(n):        <span class="comment"># n</span></span><br><span class="line">		(name1, bay1) = students[k] <span class="comment"># O(1)</span></span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):    <span class="comment"># k</span></span><br><span class="line">			(name2, bday2) = record.get_at(i)   <span class="comment">#O(1)</span></span><br><span class="line">			<span class="keyword">if</span> bday1 == bday2:       <span class="comment"># O(1)</span></span><br><span class="line">				<span class="keyword">return</span> (name1, name2)</span><br><span class="line">			record.set_at(k ,(name1, bday1))    <span class="comment"># O(1)</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p>时间复杂度为：</p>
+<script type="math/tex; mode=display">
+O(n) + \sum_{k=0}^{n-1}(O(1)+k\cdot O(1)) = O(n^2)</script><p>为$n$的多项式函数，所以该算法是高效的。</p>
+<h3 id="Asymptotic-Notation"><a href="#Asymptotic-Notation" class="headerlink" title="Asymptotic Notation"></a>Asymptotic Notation</h3><p>下面我们详细地说明一下渐进符号：<br>$O(f(n))$表示定义域为自然数满足下列性质的函数的集合：<br>$O$符号：非负函数$g(n)$属于$O(f(n))$当且仅当存在正实数$c$和正整数$n_0$使得对于所有的$n\ge n_0$都有$g(n)\le c\cdot f(n)$。<br>$\Omega$符号：非负函数$g(n)$属于$\Omega(f(n))$当且仅当存在正实数$c$和正整数$n_0$使得对于所有的$n\ge n_0$都有$c\cdot f(n)\le g(n)$。<br>$\Theta$符号：非复函数$g(n)$属于$\Theta(f(n))$当且仅当$g(n)\in O(f(n))\cap \Omega(f(n))$。</p>
+<h2 id="DATA-STRUCTURES-AND-DYNAMIC-ARRAYS"><a href="#DATA-STRUCTURES-AND-DYNAMIC-ARRAYS" class="headerlink" title="DATA STRUCTURES AND DYNAMIC ARRAYS"></a>DATA STRUCTURES AND DYNAMIC ARRAYS</h2><p>首先我们先区分一下接口(Interface(API/ADT))和数据结构(Data Structure)。<br>接口相当于是规范，他告诉我们可以存储什么样的数据，而数据结构会给你一个实际的表示(representation)来告诉你如何去存储数据。接口告诉我们支持什么样的操作，数据结构给我们实现这些操作的算法。你可以把结构理解为问题，而数据结构则是解决方案。</p>
+<p>我们将会讨论两类重要的接口：</p>
+<ul>
+<li>集合(set)</li>
+<li>序列(sequence)<br>我们也将会讨论两个主要的数据结构的工具：</li>
+<li>数组(arrays)</li>
+<li>基于指针的(pointer based)</li>
+</ul>
+<h3 id="Static-sequence-interface"><a href="#Static-sequence-interface" class="headerlink" title="Static sequence interface"></a>Static sequence interface</h3><p>static sequence interface：存储序列$x_0,x_1,\cdots,x_{n-1}$，并且支持以下操作：</p>
+<ul>
+<li>build(X)：对$X$中的元素创建一个新的数据结构</li>
+<li>len(X)：返回$X$的长度$n$</li>
+<li>iter_seq()：以序列的顺序输出$x_0,x_1,\cdots,x_{n-1}$</li>
+<li>get_at(i)：或者$X$中索引为$i$的$x_i$</li>
+<li>set_at(i,X)：将$x_i$设置为$x$<br>解决这一问题的数据结构我们称为static array：数组中的数据在内存中的存储是连续的。这就意味着当我们访问数组中的某个索引的元素就等价于访问内存中数据的初始位置加上元素在数组中内存的索引的位置。同时我们假设对数组数据访问花费的时间是常数（这要求机器的字节数(现在一般为$64$位，可以一次读取$2^{64}$字节的数据)$w\ge \log n$）。也就意味着我们在<code>get_at</code>、<code>len</code>和<code>set_at</code>操作花费的时间是$\mathcal{O}(1)$，而在<code>build</code>和<code>iter_seq</code>操作花费时间为$\mathcal{O}(n)$。<br>我们是如何创建静态数组的呢？有很多的内存分配模型(Memory allocation model)：在这里我们假设分配一个长度为$n$的数组耗费的时间为$\mathcal{O}(n)$，这样还可以得到我们消耗的空间为$\mathcal{O}(\text{time})$。</li>
+</ul>
+<h3 id="Dynamic-sequence-interface"><a href="#Dynamic-sequence-interface" class="headerlink" title="Dynamic sequence interface"></a>Dynamic sequence interface</h3><p>他是静态数组加上下面几个操作：</p>
+<ul>
+<li>insert_at(i,x)：在索引$i$处插入$x$，后面的以此后移</li>
+<li>deleta_at(i)：删除索引处$i$的数据，后面的依次前移</li>
+<li>insert_first(x)：将x插入第一个位置</li>
+<li>delete_first(x)：删除并返回第一个元素</li>
+<li>insert_last(x)：将x添加到最后一个位置</li>
+<li>delete_last(x)：删除并返回最后一个元素</li>
+</ul>
+<p>链表指的是前一个对象除了存储自己的数值外，还存储下一个对象的地址。静态数组指的是长度不会改变的数组。下面我们比较一下两者。<br>当我们在数组的第一个位置插入或删除元素时，静态列表需要所有的元素都向后或向前移动，耗费的时间复杂度为$\mathcal{O}(n)$，而由于静态数组的长度是不能变换的，所以在末尾添加元素需要我们将原有的数组重新复制一遍，耗费的时间复杂度为$\mathcal{O}(n)$；而链表在第一个位置插入元素只需要将头指针指向要插入的元素，将要插入的元素储存的地址指向原来的第一个元素的地址，删除第一个元素的话只需要将头指针指向第二个元素的地址，时间复杂度为$\mathcal{O}(1)$，但是当需要访问数据时，我们需要这个寻址，耗费的时间复杂度为$\mathcal{O}(n)$。<br>可以看出静态数组在非动态操作(查询元素等)的时间复杂度要比链表低，而链表的动态操作(插入、删除元素)的时间复杂度比较低，现在我们将两者擅长的操作结合在一起，即得到动态数组。</p>
+<h3 id="Dynamic-arrays"><a href="#Dynamic-arrays" class="headerlink" title="Dynamic arrays"></a>Dynamic arrays</h3><p>动态数组在Python中即为列表(list)。<br>动态数组放松了数组大小必须为$n$的约束，我们令数组的大小为$\Theta(n)\ge n$。<br>动态数组的头包含了数组的首地址、存储的数据的数量和数组的大小，当我们在数组最后插入元素时，如果数组的大小还够，直接在后面插入即可，但是如果此时数组的大小正好等于数组中元素的大小，我们需要重新分配一个数组，其大小为原来的$2$倍或者其他，也可以为原来的大小$+5$，但是当我们这样做时，我们需要每$5$次都重新分配一次内存，但是相比较于静态数组每一次都要重新分配一下内存还是好的。<br>假设我们有一个空的动态列表，我们每一次往里面加入元素，第一次加入一个我们将去大小扩充为$1$，第二次加入元素，我们将其大小扩充为$2$，第三次加入元素我们将其扩充为$4$，第四次加入不扩充，第五次加入元素扩充为$8$，这样以此类推，那么对于长度的$n$的数组我们花费的时间复杂度为：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{\log_2 n}2^i = \mathcal{O}(n)</script><p>可以看出其时间复杂度为线性的。我们将这种现象称为Amortization：如果任何$K$个操作耗费的时间复杂度$\le K\cdot T(n)$，那么每个操作的时间复杂度为$T(n)$。所以每次在最后面插入一个元素的时间复杂度为$\mathcal{O}(1)$。</p>
+<p>所以我们最终的结果为：<br><img src="https://raw.githubusercontent.com/HFC666/image/master/img/alo1.jpg" alt=""></p>
 
     </div>
 
@@ -371,7 +467,7 @@ P(\mathrm{X,W,Z}\mid \mathrm{Y})\propto P(\mathrm{Y\mid X,W,Z})P(\mathrm{X})P(\m
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2022/07/12/BN/" title="A tutorial on Bayesian nonparametric models">https://www.hfcouc.work/2022/07/12/BN/</a>
+    <a href="https://www.hfcouc.work/2022/07/19/alo1/" title="算法导论课程第一周">https://www.hfcouc.work/2022/07/19/alo1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -411,8 +507,8 @@ P(\mathrm{X,W,Z}\mid \mathrm{Y})\propto P(\mathrm{Y\mid X,W,Z})P(\mathrm{X})P(\m
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF/" rel="tag"># 贝叶斯</a>
               <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
           </div>
 
         
@@ -421,13 +517,10 @@ P(\mathrm{X,W,Z}\mid \mathrm{Y})\propto P(\mathrm{Y\mid X,W,Z})P(\mathrm{X})P(\m
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/10/VBI/" rel="prev" title="变分贝叶斯推断">
-      <i class="fa fa-chevron-left"></i> 变分贝叶斯推断
+    <a href="/2022/07/18/math2/" rel="prev" title="B站课程Mathematica剩余部分">
+      <i class="fa fa-chevron-left"></i> B站课程Mathematica剩余部分
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/07/14/rt4/" rel="next" title="Statistical Rethinking:Chapter4">
-      Statistical Rethinking:Chapter4 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -489,7 +582,7 @@ P(\mathrm{X,W,Z}\mid \mathrm{Y})\propto P(\mathrm{Y\mid X,W,Z})P(\mathrm{X})P(\m
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Tutorial-on-Bayesian-Nonparametric-Models"><span class="nav-number">1.</span> <span class="nav-text">A Tutorial on Bayesian Nonparametric Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mixture-models-and-clustering"><span class="nav-number">1.2.</span> <span class="nav-text">Mixture models and clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Finite-mixture-modeling"><span class="nav-number">1.2.1.</span> <span class="nav-text">Finite mixture modeling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Chinese-restaurant-process"><span class="nav-number">1.2.2.</span> <span class="nav-text">The Chinese restaurant process</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Latent-factor-models-and-dimensionality-reduction"><span class="nav-number">1.3.</span> <span class="nav-text">Latent factor models and dimensionality reduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inference"><span class="nav-number">1.4.</span> <span class="nav-text">Inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Limitations-and-extensions"><span class="nav-number">1.5.</span> <span class="nav-text">Limitations and extensions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hierarchical-structure"><span class="nav-number">1.5.1.</span> <span class="nav-text">Hierarchical structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Time-series-models"><span class="nav-number">1.5.2.</span> <span class="nav-text">Time series models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spatial-models"><span class="nav-number">1.5.3.</span> <span class="nav-text">Spatial models</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Asymptotic-Notation"><span class="nav-number">1.1.</span> <span class="nav-text">Asymptotic Notation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DATA-STRUCTURES-AND-DYNAMIC-ARRAYS"><span class="nav-number">2.</span> <span class="nav-text">DATA STRUCTURES AND DYNAMIC ARRAYS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-sequence-interface"><span class="nav-number">2.1.</span> <span class="nav-text">Static sequence interface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-sequence-interface"><span class="nav-number">2.2.</span> <span class="nav-text">Dynamic sequence interface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-arrays"><span class="nav-number">2.3.</span> <span class="nav-text">Dynamic arrays</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
