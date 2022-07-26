@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <meta name="google-site-verification" content="U-yOiB98PNsowxlO4rY3Zc43lFlfBRiIxhp4pQPMRW4" /> 
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="Overfitting, Regularization, and Information Criteria">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Statistical Rethinking:Chapter6">
+<meta property="og:url" content="https://www.hfcouc.work/2022/07/26/rt6/index.html">
+<meta property="og:site_name" content="独自赏晴雨">
+<meta property="og:description" content="Overfitting, Regularization, and Information Criteria">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/INT1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/INT2.jpg">
+<meta property="article:published_time" content="2022-07-26T08:12:41.000Z">
+<meta property="article:modified_time" content="2022-07-26T08:14:59.447Z">
+<meta property="article:author" content="Han Fangcheng">
+<meta property="article:tag" content="概率编程">
+<meta property="article:tag" content="贝叶斯统计">
+<meta property="article:tag" content="Statistical Rethinking">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/INT1.png">
+
+<link rel="canonical" href="https://www.hfcouc.work/2022/07/26/rt6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Statistical Rethinking:Chapter6 | 独自赏晴雨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+    <script type="text/javascript" src="https://unpkg.com/minigrid@3.1.1/dist/minigrid.min.js"></script>
+  <link rel="stylesheet" href="/photos/photos.css">
+  <script type="text/javascript" src="/photos/photo.js"></script>
+<link rel="alternate" href="/atom.xml" title="独自赏晴雨" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+	<a target="_blank" rel="noopener" href="https://github.com//HFC666" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">独自赏晴雨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>相册</a>
+
+  </li>
+        <li class="menu-item menu-item-bangumis">
+
+    <a href="/bangumis" rel="section"><i class="fa fa-headphones fa-fw"></i>追番</a>
+
+  </li>
+        <li class="menu-item menu-item-cinemas">
+
+    <a href="/cinemas" rel="section"><i class="fa fa-headphones fa-fw"></i>追剧</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/26/rt6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
+      <meta itemprop="name" content="Han Fangcheng">
+      <meta itemprop="description" content="当你穿过了暴风雨，你就不再是原来那个人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独自赏晴雨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Statistical Rethinking:Chapter6
+        </h1>
+
+        <div class="post-meta">
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-26 16:12:41 / 修改时间：16:14:59" itemprop="dateCreated datePublished" datetime="2022-07-26T16:12:41+08:00">2022-07-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">书籍阅读</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Overfitting-Regularization-and-Information-Criteria"><a href="#Overfitting-Regularization-and-Information-Criteria" class="headerlink" title="Overfitting, Regularization, and Information Criteria"></a>Overfitting, Regularization, and Information Criteria</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/INT1.png" alt=""></p>
+<span id="more"></span>
+<p>我们要应对两个问题：过拟合和欠拟合，过拟合一般采用正则化的方式进行解决，而欠拟合一般采用信息准则的方式。</p>
+<h3 id="The-problem-with-parameters"><a href="#The-problem-with-parameters" class="headerlink" title="The problem with parameters"></a>The problem with parameters</h3><p>我们前面提到增加相互关联的预测变量会对预测产生不好的影响，那添加不相关的预测会怎么样呢。添加不相互关联的预测也会对我们的模型造成影响，会使我们的模型对数据更敏感，从而造成过拟合。</p>
+<h4 id="More-parameters-always-improve-fit"><a href="#More-parameters-always-improve-fit" class="headerlink" title="More parameters always improve fit"></a>More parameters always improve fit</h4><p>我们考虑如下数据：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sppnames &lt;- <span class="built_in">c</span>(<span class="string">&quot;afarensis&quot;</span>, <span class="string">&quot;africanus&quot;</span>, <span class="string">&quot;habilis&quot;</span>, <span class="string">&quot;boisei&quot;</span>, <span class="string">&quot;rudolfensis&quot;</span>,</span><br><span class="line">              <span class="string">&quot;ergaster&quot;</span>, <span class="string">&quot;sapiens&quot;</span>)</span><br><span class="line">brainvolcc &lt;- <span class="built_in">c</span>(<span class="number">438</span>, <span class="number">452</span>, <span class="number">612</span>, <span class="number">521</span>, <span class="number">752</span>, <span class="number">871</span>, <span class="number">1350</span>)</span><br><span class="line">masskg &lt;- <span class="built_in">c</span>(<span class="number">37.0</span>, <span class="number">35.5</span>, <span class="number">34.5</span>, <span class="number">41.5</span>, <span class="number">55.5</span>, <span class="number">61.0</span>, <span class="number">53.5</span>)</span><br><span class="line">d &lt;- data.frame(species=sppnames, brain=brainvolcc, mass=masskg)</span><br></pre></td></tr></table></figure>
+<p>我们按照模型复杂度增加对其进行建模：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">m6.1 &lt;- lm(brain~mass, data = d)</span><br><span class="line">m6.2 &lt;- lm(brain~mass+I(mass^<span class="number">2</span>), data = d)</span><br><span class="line">m6.3 &lt;- lm( brain ~ mass + I(mass^<span class="number">2</span>) + I(mass^<span class="number">3</span>) , data=d )</span><br><span class="line">m6.4 &lt;- lm( brain ~ mass + I(mass^<span class="number">2</span>) + I(mass^<span class="number">3</span>) + I(mass^<span class="number">4</span>) ,</span><br><span class="line">            data=d )</span><br><span class="line">m6.5 &lt;- lm( brain ~ mass + I(mass^<span class="number">2</span>) + I(mass^<span class="number">3</span>) + I(mass^<span class="number">4</span>) +</span><br><span class="line">              I(mass^<span class="number">5</span>) , data=d )</span><br><span class="line">m6.6 &lt;- lm( brain ~ mass + I(mass^<span class="number">2</span>) + I(mass^<span class="number">3</span>) + I(mass^<span class="number">4</span>) +</span><br><span class="line">              I(mass^<span class="number">5</span>) + I(mass^<span class="number">6</span>) , data=d )</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/INT2.jpg" alt=""></p>
+<blockquote>
+<p>可以看到第6个模型可以精准拟合各个数据，但是却出现了脑容量为负数的情况，这肯定是错误的。</p>
+</blockquote>
+<h4 id="Too-few-parameters-hurts-too"><a href="#Too-few-parameters-hurts-too" class="headerlink" title="Too few parameters hurts, too"></a>Too few parameters hurts, too</h4><p>但是参数数量过少也是不行的，如：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m6.7 &lt;- lm( brain ~ <span class="number">1</span> , data=d )</span><br></pre></td></tr></table></figure>
+<p>得到的是一条水平线，预测效果也很差。<br>看模型是不是欠拟合也可以通过观察其是否对数据敏感，与过拟合对数据敏感相反，欠拟合对数据不敏感。</p>
+<h3 id="Information-theory-and-model-performance"><a href="#Information-theory-and-model-performance" class="headerlink" title="Information theory and model performance"></a>Information theory and model performance</h3><p>我们要估计的是<strong>样本外偏差</strong>。</p>
+<h4 id="Information-and-uncertainty"><a href="#Information-and-uncertainty" class="headerlink" title="Information and uncertainty"></a>Information and uncertainty</h4><p>信息是从学习结果中减少的不确定性。我们现在需要去衡量不确定性，而衡量不确定性的指标需要满足下列三个条件：</p>
+<ol>
+<li>需要是连续的</li>
+<li>需要随着可能事件种类的增加而增加</li>
+<li>是可加的</li>
+</ol>
+<p>满足上述三个条件我们使用熵来衡量不确定性：</p>
+<script type="math/tex; mode=display">
+H(p) = -\sum_i p_i\log(p_i)</script><h4 id="From-entropy-to-accuracy"><a href="#From-entropy-to-accuracy" class="headerlink" title="From entropy to accuracy"></a>From entropy to accuracy</h4><p>我们利用KL散度来衡量两个概率分布之间的距离：</p>
+<script type="math/tex; mode=display">
+D_{\text{KL}}(p,q) = \sum_i p_i(\log(p_i)-\log(q_i)) = \sum_i p_i\log\left(\frac{p_i}{q_i}\right)</script><p>相当于用$q$近似$p$的熵进去$q$本身的熵，为用$q$近似$p$引进的不确定性。</p>
+<h4 id="From-divergence-to-deviance"><a href="#From-divergence-to-deviance" class="headerlink" title="From divergence to deviance"></a>From divergence to deviance</h4><p>在计算KL散度时我们假设真实的概率分布我们是知道的，但是这与现实不符，如果我们知道真实的概率分布就没有必要进行下面的工作了。<br>但是我们没有必要知道真实的概率分布，对于候选分布我们只需要知道其$\mathbb{E}[\log(q)]$并进行比较即可，而将每个观察到的情况的对数概率相加就可以提供$\mathbb{E}[\log(q)]$的近似值，因此我们定义模型的偏差：</p>
+<script type="math/tex; mode=display">
+D(q) = -2\sum_i \log(q_i)</script><p>我们可以计算任何模型的偏差，通过最大后验估计得到的概率分布来计算每一个观测的概率，之后计算偏差。我们可以使用R语言的<code>logLik</code>函数：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m6.1 &lt;- lm(brain~mass, d)</span><br><span class="line">(-<span class="number">2</span>) * logLik(m6.1)</span><br></pre></td></tr></table></figure>
+<h4 id="From-deviance-to-out-of-sample"><a href="#From-deviance-to-out-of-sample" class="headerlink" title="From deviance to out-of-sample"></a>From deviance to out-of-sample</h4><p>散度也只是对样本内数据进行估计，随着模型复杂度的增加，样本内散度也会逐渐降低，这时候我们就需要引进训练集和测试集的概念：</p>
+<ol>
+<li>假设有一个大小为$N$的训练集</li>
+<li>在训练集上拟合模型，计算散度记为$D_{\text{train}}$</li>
+<li>假设另一组大小为$N$的样本通过同一种方法产生，称为测试数据。</li>
+<li>计算测试数据上的散度，记为$D_{\text{test}}$。</li>
+</ol>
+<h3 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h3><p>过拟合是因为我们的模型倾向于从训练数据中学习更多的东西，当我们的先验为平缓或趋于平缓的时候，模型认为任何的参数都是同等可能的，那么模型将会从数据中学习更多的数据。</p>
+<p>一种方法是添加怀疑的先验(skeptical prior)，它能降低从数据中学习的速率，最常见的先验是正则化先验。如下面的模型：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+
+y_{i} & \sim \operatorname{Normal}\left(\mu_{i}, \sigma\right) \\
+
+\mu_{i} &=\alpha+\beta x_{i} \\
+
+\alpha & \sim \operatorname{Normal}(0,100) \\
+
+\beta & \sim \operatorname{Normal}(0,1) \\
+
+\sigma & \sim \operatorname{Uniform}(0,10)
+
+\end{aligned}</script><p>对于上述模型，我们对于$\alpha$的先验是很平坦的，但是对于$\beta$的先验是很倾斜的，将$\beta$限制在某个范围。但是过于倾斜的正则先验也会对模型产生不好的效果，过于倾斜的先验会影响从数据中学到信息，从而导致欠拟合，为了防止此类问题发生，我们可以采用交叉验证的方式选取合适的先验。</p>
+<h3 id="Information-criteria"><a href="#Information-criteria" class="headerlink" title="Information criteria"></a>Information criteria</h3><p>赤池信息准则(Akaike information criterion)提供了一个非常简单的平均样本外偏差估计值：</p>
+<script type="math/tex; mode=display">
+\text{AIC} = D_{\text{train}}+2p</script><p>其中$p$为参数的数目，这个定义反映了训练和测试偏差之间的关系。<br>但是AIC的应用存在如下限制：</p>
+<ol>
+<li>先验必须是平坦的或者被似然的分量压制</li>
+<li>后验分布为近似多元分布</li>
+<li>样本大小$N$远大于参数数目$k$<br>因为平坦的先验一般是不好的先验，所以我们需要更一般的指标，DIC(Deviance Information Criterion)偏差信息准则允许信息丰富的先验，但是仍然假设后验分布为多元高斯分布并且$N\gg k$，WAIC(Widely Applicable Information Criterion)对后验分布的形状不存在任何假设。</li>
+</ol>
+<h4 id="DIC"><a href="#DIC" class="headerlink" title="DIC"></a>DIC</h4><p>DIC从训练偏差的后验分布中计算得出。因为我们的参数具有后验分布，所以通过参数计算出的偏差也存在后验分布。因此现在定义$D$为偏差的后验分布，令$\bar{D}$表示$D$的均值，定义$\hat{D}$为在后验均值处计算得到的偏差，也就是说我们计算参数的后验均值的，将得到的后验均值代入得到偏差$\hat{D}$。一旦我们计算完成，DIC定义为：</p>
+<script type="math/tex; mode=display">
+\text{DIC} = \bar{D}+(\bar{D}-\hat{D}) = \bar{D}+p_D</script><p>$p_D$类似于AIC中的参数数量，它是衡量模型在拟合训练样本方面的灵活性的“有效”参数数量。</p>
+<h4 id="WAIC"><a href="#WAIC" class="headerlink" title="WAIC"></a>WAIC</h4><p>WAIC的特点是他是逐点的，预测的不确定性在数据中被逐点考虑。定义$\Pr(y_i)$为训练数据$i$的平均似然，我们所有点的平均似然的对数相加：</p>
+<script type="math/tex; mode=display">
+\text{lppd} = \sum_{i=1}^N \log \Pr(y_i)</script><p>WAIC的第二个部分为有效参数数量$p_{\text{WAIC}}$。定义$V(y_i)$为在训练样本$i$的对数似然的方差，$p_{\text{WAIC}}$定义为：</p>
+<script type="math/tex; mode=display">
+p_{\text{WAIC}} = \sum_{i=1}^N V(y_i)</script><p>则WAIC定义为：</p>
+<script type="math/tex; mode=display">
+\text{WAIC} = -2(\text{lppd}-p_{\text{WAIC}})</script><p>因为WAIC需要将数据分割成独立的观测$i=1,\cdots,N$，在某些情况下很难定义，如在时间序列中。</p>
+<h3 id="Using-information-criteria"><a href="#Using-information-criteria" class="headerlink" title="Using information criteria"></a>Using information criteria</h3><h4 id="Model-comparison"><a href="#Model-comparison" class="headerlink" title="Model comparison"></a>Model comparison</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library(rethinking)</span><br><span class="line">data(milk)</span><br><span class="line">d &lt;- milk[complete.cases(milk),]</span><br><span class="line">d$neocortex &lt;- d$neocortex.perc / <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<p>这就做好的模型比较的第一步，保证各个模型使用的数据相同。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">a.start &lt;- mean(d$kcal.per.g)</span><br><span class="line">sigma.start &lt;- <span class="built_in">log</span>(sd(d$kcal.per.g))</span><br><span class="line"></span><br><span class="line">m6.11 &lt;- map(</span><br><span class="line">  alist(</span><br><span class="line">    kcal.per.g ~ dnorm(a, <span class="built_in">exp</span>(log.sigma))</span><br><span class="line">  ),</span><br><span class="line">  data = d, start=<span class="built_in">list</span>(a=a.start, log.sigma=sigma.start)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">m6.12 &lt;- map(</span><br><span class="line">  alist(</span><br><span class="line">    kcal.per.g ~ dnorm(mu, <span class="built_in">exp</span>(log.sigma)),</span><br><span class="line">    mu &lt;- a + bn*neocortex</span><br><span class="line">  ),</span><br><span class="line">  data = d, start=<span class="built_in">list</span>(a=a.start, bn=<span class="number">0</span>, log.sigma=sigma.start)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">m6.13 &lt;- map(</span><br><span class="line">  alist(</span><br><span class="line">    kcal.per.g ~ dnorm(mu, <span class="built_in">exp</span>(log.sigma)),</span><br><span class="line">    mu &lt;- a + bm*<span class="built_in">log</span>(mass)</span><br><span class="line">  ),</span><br><span class="line">  data=d, start=<span class="built_in">list</span>(a=a.start,bm=<span class="number">0</span>,log.sigma=sigma.start)</span><br><span class="line">)</span><br><span class="line">m6.14 &lt;- map(</span><br><span class="line">  alist(</span><br><span class="line">    kcal.per.g ~ dnorm(mu, <span class="built_in">exp</span>(log.sigma)),</span><br><span class="line">    mu &lt;- a + bn*neocortex + bm*<span class="built_in">log</span>(mass)</span><br><span class="line">  ),</span><br><span class="line">  data=d, start = <span class="built_in">list</span>(a=a.start, bn=<span class="number">0</span>, bm=<span class="number">0</span>, log.sigma=sigma.start)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>我们将集合WAIC和参数估计来对模型进行评估。</p>
+<h5 id="Comparing-WAIC-values"><a href="#Comparing-WAIC-values" class="headerlink" title="Comparing WAIC values"></a>Comparing WAIC values</h5><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WAIC(m6.14)</span><br><span class="line">       WAIC     lppd  penalty  std_err</span><br><span class="line"><span class="number">1</span> -<span class="number">15.06584</span> <span class="number">12.35506</span> <span class="number">4.822137</span> <span class="number">7.514096</span></span><br></pre></td></tr></table></figure>
+<p>我们也可以通过WAIC来对不同的模型进行比较：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">milk.models &lt;- compare(m6.11, m6.12, m6.13, m6.14)</span><br><span class="line"></span><br><span class="line">       WAIC   SE dWAIC  dSE pWAIC weight</span><br><span class="line">m6.14 -<span class="number">15.0</span> <span class="number">7.57</span>   <span class="number">0.0</span>   <span class="literal">NA</span>   <span class="number">4.8</span>   <span class="number">0.93</span></span><br><span class="line">m6.11  -<span class="number">8.3</span> <span class="number">4.66</span>   <span class="number">6.7</span> <span class="number">7.44</span>   <span class="number">1.8</span>   <span class="number">0.03</span></span><br><span class="line">m6.13  -<span class="number">7.4</span> <span class="number">5.82</span>   <span class="number">7.5</span> <span class="number">5.54</span>   <span class="number">3.3</span>   <span class="number">0.02</span></span><br><span class="line">m6.12  -<span class="number">6.1</span> <span class="number">4.35</span>   <span class="number">8.9</span> <span class="number">7.69</span>   <span class="number">3.0</span>   <span class="number">0.01</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>WAIC指的是每个模型的WAIC值，越小越好</li>
+<li>pWAIC指的是参数的有效个数，这为每个模型在拟合样本方面的灵活性提供了线索。</li>
+<li>dWAIC是每个WAIC与最低WAIC之间的差值。</li>
+<li>weight 是每个模型的 Akaike 权重。这些值是转换后的信息标准值。</li>
+<li>SE为WAIC估计的标准误差</li>
+<li>dSE是每个模型与排名靠前的模型之间WAIC 差异的标准误差，所以第一个是缺失的</li>
+</ul>
+<p>Akaike权重通过重新缩放来提供帮助，其公式为：</p>
+<script type="math/tex; mode=display">
+w_i = \frac{\exp(-\frac{1}{2}\text{dWAIC}_i)}{\sum_{j=1}^m\exp(-\frac{1}{2}\text{dWAIC}_j)}</script><p>dWAIC与得出的表的dWAIC意义相同。模型的权重是对模型对新数据做出最佳预测的概率的估计，以所考虑的模型集为条件。</p>
+<h5 id="Comparing-estimates"><a href="#Comparing-estimates" class="headerlink" title="Comparing estimates"></a>Comparing estimates</h5><p>比较估计值至少在两个主要方面有帮助。首先，对了解为什么一个或多个特定模型具有较低的 WAIC 值是有用的，其次，不管 WAIC 值如何，我们经常想知道某个参数的后验分布在模型中是否稳定。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">coeftab(m6.11,m6.12,m6.13,m6.14)</span><br><span class="line"></span><br><span class="line">          m6.11   m6.12   m6.13   m6.14  </span><br><span class="line">a            <span class="number">0.66</span>    <span class="number">0.35</span>    <span class="number">0.71</span>   -<span class="number">1.09</span></span><br><span class="line">log.sigma   -<span class="number">1.79</span>   -<span class="number">1.80</span>   -<span class="number">1.85</span>   -<span class="number">2.16</span></span><br><span class="line">bn             <span class="literal">NA</span>    <span class="number">0.45</span>      <span class="literal">NA</span>    <span class="number">2.79</span></span><br><span class="line">bm             <span class="literal">NA</span>      <span class="literal">NA</span>   -<span class="number">0.03</span>   -<span class="number">0.10</span></span><br><span class="line">nobs           <span class="number">17</span>      <span class="number">17</span>      <span class="number">17</span>      <span class="number">17</span></span><br></pre></td></tr></table></figure>
+<h4 id="Model-averaging"><a href="#Model-averaging" class="headerlink" title="Model averaging"></a>Model averaging</h4><p>我们之前已经知道当从模型中模拟预测时怎么保持参数的不确定性，现在我们有同样相似的问题，怎么保持模型的不确定性。为了回顾，我们生成并绘制具有最小WAIC的模型的反事实预测(counterfactual predictions )。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nc.seq &lt;- seq(from=<span class="number">0.5</span>,to=<span class="number">0.8</span>,length.out=<span class="number">30</span>) </span><br><span class="line">d.predict &lt;- <span class="built_in">list</span>(</span><br><span class="line">kcal.per.g = <span class="built_in">rep</span>(<span class="number">0</span>,<span class="number">30</span>), <span class="comment"># empty outcome </span></span><br><span class="line">neocortex = nc.seq, <span class="comment"># sequence of neocortex </span></span><br><span class="line">mass = <span class="built_in">rep</span>(<span class="number">4.5</span>,<span class="number">30</span>) <span class="comment"># average mass</span></span><br><span class="line">)</span><br><span class="line">pred.m6.14 &lt;- link( m6.14 , data=d.predict )</span><br><span class="line">mu &lt;- apply( pred.m6.14 , <span class="number">2</span> , mean )</span><br><span class="line">mu.PI &lt;- apply( pred.m6.14 , <span class="number">2</span> , PI )</span><br><span class="line"><span class="comment"># plot it all</span></span><br><span class="line">plot( kcal.per.g ~ neocortex , d , col=rangi2 ) </span><br><span class="line">lines( nc.seq , mu , lty=<span class="number">2</span> )</span><br><span class="line">lines( nc.seq , mu.PI[<span class="number">1</span>,] , lty=<span class="number">2</span> ) </span><br><span class="line">lines( nc.seq , mu.PI[<span class="number">2</span>,] , lty=<span class="number">2</span> )</span><br></pre></td></tr></table></figure>
+<p>下面我们计算添加模型平均后验预测，下面时步骤：</p>
+<ol>
+<li>计算每个模型的WAIC</li>
+<li>计算每个模型的权重</li>
+<li>计算每个模型的预测结果</li>
+<li>使用模型权重作为比例，将这些值组合成一个预测集合。</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">milk.ensemble &lt;- ensemble( m6.11 , m6.12 , m6.13 , m6.14 , data=d.predict )</span><br><span class="line">mu &lt;- apply( milk.ensemble$link , <span class="number">2</span> , mean )</span><br><span class="line">mu.PI &lt;- apply( milk.ensemble$link , <span class="number">2</span> , PI ) </span><br><span class="line">lines( nc.seq , mu )</span><br><span class="line">shade( mu.PI , nc.seq )</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+	
+	
+      <div>
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      </div>
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Han Fangcheng 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Han Fangcheng 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Han Fangcheng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.hfcouc.work/2022/07/26/rt6/" title="Statistical Rethinking:Chapter6">https://www.hfcouc.work/2022/07/26/rt6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A6%82%E7%8E%87%E7%BC%96%E7%A8%8B/" rel="tag"># 概率编程</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BB%9F%E8%AE%A1/" rel="tag"># 贝叶斯统计</a>
+              <a href="/tags/Statistical-Rethinking/" rel="tag"># Statistical Rethinking</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/26/alo2/" rel="prev" title="算法导论课程第二周">
+      <i class="fa fa-chevron-left"></i> 算法导论课程第二周
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MzYxNS8zMDA4OA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+	
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overfitting-Regularization-and-Information-Criteria"><span class="nav-number">1.</span> <span class="nav-text">Overfitting, Regularization, and Information Criteria</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-problem-with-parameters"><span class="nav-number">1.1.</span> <span class="nav-text">The problem with parameters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#More-parameters-always-improve-fit"><span class="nav-number">1.1.1.</span> <span class="nav-text">More parameters always improve fit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Too-few-parameters-hurts-too"><span class="nav-number">1.1.2.</span> <span class="nav-text">Too few parameters hurts, too</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Information-theory-and-model-performance"><span class="nav-number">1.2.</span> <span class="nav-text">Information theory and model performance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Information-and-uncertainty"><span class="nav-number">1.2.1.</span> <span class="nav-text">Information and uncertainty</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#From-entropy-to-accuracy"><span class="nav-number">1.2.2.</span> <span class="nav-text">From entropy to accuracy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#From-divergence-to-deviance"><span class="nav-number">1.2.3.</span> <span class="nav-text">From divergence to deviance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#From-deviance-to-out-of-sample"><span class="nav-number">1.2.4.</span> <span class="nav-text">From deviance to out-of-sample</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularization"><span class="nav-number">1.3.</span> <span class="nav-text">Regularization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Information-criteria"><span class="nav-number">1.4.</span> <span class="nav-text">Information criteria</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DIC"><span class="nav-number">1.4.1.</span> <span class="nav-text">DIC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WAIC"><span class="nav-number">1.4.2.</span> <span class="nav-text">WAIC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-information-criteria"><span class="nav-number">1.5.</span> <span class="nav-text">Using information criteria</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Model-comparison"><span class="nav-number">1.5.1.</span> <span class="nav-text">Model comparison</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Comparing-WAIC-values"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">Comparing WAIC values</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Comparing-estimates"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">Comparing estimates</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Model-averaging"><span class="nav-number">1.5.2.</span> <span class="nav-text">Model averaging</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Han Fangcheng"
+      src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
+  <p class="site-author-name" itemprop="name">Han Fangcheng</p>
+  <div class="site-description" itemprop="description">当你穿过了暴风雨，你就不再是原来那个人</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HFC666" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HFC666" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/hfc@stu.ouc.edu.cn" title="E-Mail → hfc@stu.ouc.edu.cn"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/bu-yu-que-zhi-xin-43-35" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;bu-yu-que-zhi-xin-43-35" rel="noopener" target="_blank"><i class="fab fa-gratipay fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_44777424" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_44777424" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="https:&#x2F;&#x2F;www.bilibili.com&#x2F;" rel="noopener" target="_blank">哔哩哔哩</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+	  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1904321665&auto=1&height=66"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Tue Jul 13 2021 08:00:00 GMT+0800 (GMT+08:00) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Fangcheng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+    <script src="/js/cursor/cherry.js"></script>
