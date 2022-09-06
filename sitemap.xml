@@ -9,6 +9,13 @@
   </url>
   
   <url>
+    <loc>https://www.hfcouc.work/2022/07/12/BN/</loc>
+    
+    <lastmod>2022-09-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.hfcouc.work/2022/07/26/rt6/</loc>
     
     <lastmod>2022-07-26</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://www.hfcouc.work/2022/07/14/rt4/</loc>
     
     <lastmod>2022-07-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.hfcouc.work/2022/07/12/BN/</loc>
-    
-    <lastmod>2022-07-12</lastmod>
     
   </url>
   
@@ -242,6 +242,13 @@
   </url>
   
   <url>
+    <loc>https://www.hfcouc.work/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/</loc>
+    <lastmod>2022-09-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hfcouc.work/tags/%E6%A6%82%E7%8E%87%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2022-09-06</lastmod>
     <changefreq>daily</changefreq>
@@ -250,13 +257,6 @@
   
   <url>
     <loc>https://www.hfcouc.work/tags/Julia/</loc>
-    <lastmod>2022-09-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hfcouc.work/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/</loc>
     <lastmod>2022-09-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
