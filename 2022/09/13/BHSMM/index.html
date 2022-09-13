@@ -28,22 +28,25 @@
     var CONFIG = {"hostname":"www.hfcouc.work","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="Exponential Family Distribution  课程地址：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1QW411y7D3?spm_id_from&#x3D;333.337.search-card.all.click&amp;vd_source&#x3D;6177c61c946280bb88c727585de76bc8">
+  <meta name="description" content="Bayesian Approximations to Hidden Semi-Markov Models         参考文献：  Bayesian Approximations to Hidden Semi-Markov Models for Telemetric Monitoring of Physical Activity Hidden Markov models with arbitr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指数分布族">
-<meta property="og:url" content="https://www.hfcouc.work/2022/07/10/EXP/index.html">
+<meta property="og:title" content="Bayesian Approximations to Hidden Semi-Markov Models">
+<meta property="og:url" content="https://www.hfcouc.work/2022/09/13/BHSMM/index.html">
 <meta property="og:site_name" content="独自赏晴雨">
-<meta property="og:description" content="Exponential Family Distribution  课程地址：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1QW411y7D3?spm_id_from&#x3D;333.337.search-card.all.click&amp;vd_source&#x3D;6177c61c946280bb88c727585de76bc8">
+<meta property="og:description" content="Bayesian Approximations to Hidden Semi-Markov Models         参考文献：  Bayesian Approximations to Hidden Semi-Markov Models for Telemetric Monitoring of Physical Activity Hidden Markov models with arbitr">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EX1.png">
-<meta property="article:published_time" content="2022-07-10T12:03:45.000Z">
-<meta property="article:modified_time" content="2022-07-10T12:08:25.180Z">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201901%2F28%2F20190128035909_ylzge.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665652235&t=45a1ebd0446dc8c63c38ef2d01fb2f7f">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/BHSMM1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/BHSMM2.jpg">
+<meta property="article:published_time" content="2022-09-13T09:07:15.000Z">
+<meta property="article:modified_time" content="2022-09-13T09:13:12.172Z">
 <meta property="article:author" content="Han Fangcheng">
-<meta property="article:tag" content="概率论">
+<meta property="article:tag" content="贝叶斯">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/EX1.png">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201901%2F28%2F20190128035909_ylzge.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665652235&t=45a1ebd0446dc8c63c38ef2d01fb2f7f">
 
-<link rel="canonical" href="https://www.hfcouc.work/2022/07/10/EXP/">
+<link rel="canonical" href="https://www.hfcouc.work/2022/09/13/BHSMM/">
 
 
 <script id="page-configurations">
@@ -56,7 +59,7 @@
   };
 </script>
 
-  <title>指数分布族 | 独自赏晴雨</title>
+  <title>Bayesian Approximations to Hidden Semi-Markov Models | 独自赏晴雨</title>
   
 
 
@@ -223,7 +226,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/10/EXP/">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/09/13/BHSMM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
@@ -236,7 +239,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          指数分布族
+          Bayesian Approximations to Hidden Semi-Markov Models
         </h1>
 
         <div class="post-meta">
@@ -248,7 +251,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-10 20:03:45 / 修改时间：20:08:25" itemprop="dateCreated datePublished" datetime="2022-07-10T20:03:45+08:00">2022-07-10</time>
+              <time title="创建时间：2022-09-13 17:07:15 / 修改时间：17:13:12" itemprop="dateCreated datePublished" datetime="2022-09-13T17:07:15+08:00">2022-09-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +259,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+                  <a href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">文献阅读</span></a>
                 </span>
             </span>
 
@@ -271,134 +274,110 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Exponential-Family-Distribution"><a href="#Exponential-Family-Distribution" class="headerlink" title="Exponential Family Distribution"></a>Exponential Family Distribution</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/EX1.png" alt=""></p>
+        <h2 id="Bayesian-Approximations-to-Hidden-Semi-Markov-Models"><a href="#Bayesian-Approximations-to-Hidden-Semi-Markov-Models" class="headerlink" title="Bayesian Approximations to Hidden Semi-Markov Models"></a>Bayesian Approximations to Hidden Semi-Markov Models</h2><p align="center">
+    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201901%2F28%2F20190128035909_ylzge.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665652235&t=45a1ebd0446dc8c63c38ef2d01fb2f7f" style="zoom: 100%;" />
+</p>
+
 <blockquote>
-<p>课程地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1QW411y7D3?spm_id_from=333.337.search-card.all.click&amp;vd_source=6177c61c946280bb88c727585de76bc8">https://www.bilibili.com/video/BV1QW411y7D3?spm_id_from=333.337.search-card.all.click&amp;vd_source=6177c61c946280bb88c727585de76bc8</a></p>
+<p>参考文献：</p>
+<ol>
+<li>Bayesian Approximations to Hidden Semi-Markov Models for Telemetric Monitoring of Physical Activity</li>
+<li>Hidden Markov models with arbitrary state dwell-time distributions</li>
+</ol>
 </blockquote>
 <span id="more"></span>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>指数分布族是可以写为如下形式的分布：</p>
-<script type="math/tex; mode=display">
-P(x\mid \eta) = h(x)\exp\left(\eta^T\phi(x)-A(\eta)\right)</script><p>其中$\eta$为参数向量，$x\in \mathbb{R}^p$，$A(\eta)$为对数配分函数(log partition function)。</p>
-<p>下面我们解释一下<strong>配分函数</strong>，配分函数可以理解为<strong>归一化因子</strong>，例如我们在无向图模型中经常用到的：</p>
-<script type="math/tex; mode=display">
-P(X\mid \theta) = \frac{1}{Z}\hat{P}(X\mid \theta)</script><p>其中$\hat{P}(X\mid \theta)$是我们构造出来的分布，但是概率分布必须满足和为$1$，所以我们在前面添加归一化因子使得：</p>
-<script type="math/tex; mode=display">
-Z = \int_x \hat{P}(x\mid \theta)dx</script><p>可以看出$Z$与$X$无关，那为什么$A(\eta)$称为对数配分函数呢？这是因为：</p>
+<h3 id="Modeling-Approach"><a href="#Modeling-Approach" class="headerlink" title="Modeling Approach"></a>Modeling Approach</h3><h4 id="Overview-of-Hidden-Markov-and-Semi-Markov-Models"><a href="#Overview-of-Hidden-Markov-and-Semi-Markov-Models" class="headerlink" title="Overview of Hidden Markov and Semi-Markov Models"></a>Overview of Hidden Markov and Semi-Markov Models</h4><p>对于马尔可夫模型，我们有</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-P(x\mid \eta) &= h(x)\exp\left(\eta^T\phi(x)-A(\eta)\right)\\
-&= \frac{1}{\exp(A(\eta))}h(x)\exp(\eta^T\phi(x))
-\end{aligned}</script><p>所以$Z = \exp(A(\eta))\Rightarrow A(\eta)=\ln Z$，所以其被称为对数配分函数。</p>
-<p>其中$\phi(x)$为<strong>充分统计量</strong>。充分统计量指的是能够包含样本中所有信息的统计量。</p>
-<p>如对于数据$x_1,\cdots,x_N$，我们假设其服从于高斯分布，那么其充分统计量就为：</p>
+&s_t\mid s_{t-1}\sim \gamma_{s_{t-1}}\\
+&y_t\mid s_t \sim f(\theta_{s_t})\quad t=1,\cdots,T
+\end{aligned}</script><p>其中$\gamma_{j}=(\gamma_{j1},\cdots,\gamma_{jK})$表示由状态$j$转移到其他状态的概率。根据马尔可夫链的性质我们很容易得到在状态$j$下停留时间$d$的概率为$p_j(d) = (1-\gamma_{jj})\gamma_{jj}^{d-1}$。</p>
+<p>更为灵活的框架为HSMM，他在HMM的基础上引入了一个持续时间变量。</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/BHSMM1.jpg" alt=""></p>
+<p>如图所示，每个超状态$z = (z_1,\cdots,z_S)$都与持续时间$d_s$和观测序列$y_s = (y_{t_s}^1,\cdots,y_{t_s}^2)$相关联，其中$t_s^1 = 1+\sum_{r&lt;s}d_r$并且$t_s^2 = t_s^1+d_s-1$为片段$s$的第一个和最后一个索引，并且$S$为片段的数量。这里，$d_s$表示$z_s$的长度。HSMM的生成机理可以被总结为：</p>
 <script type="math/tex; mode=display">
-\phi(x) = \begin{bmatrix}\sum_{i=1}^Nx_i\\\sum_{i=1}^Nx_i^2\end{bmatrix}</script><p>因为有了这两个统计量我们就可以求出其<strong>均值</strong>和<strong>方差</strong>。</p>
-<p>在贝叶斯推断中我们常常遇到这样的问题：</p>
-<script type="math/tex; mode=display">
-P(Z\mid X) = \frac{P(X\mid Z)P(Z)}{\int_ZP(X\mid Z)P(Z)dZ}</script><p>有时候积分很难算出，即使积分算出了，$P(Z\mid X)$的形式可能很复杂，我们无法求解其期望和方差，这时候我们可以采用采样的方法(MCMC)或者通过变分推断来寻找接近$P(Z\mid X)$的概率分布$Q(X)$。</p>
-<p>但是指数族分布可以采用共轭的性质。</p>
-<p>指数族分布与广义线性模型，广义线性模型的重要组成部分为：</p>
+\begin{aligned}
+&z_s\mid z_{s-1} \sim \pi_{z_{s-1}}\\
+&d_s\mid z_s \sim g(\lambda_{z_s})\\
+&y_s\mid z_s \sim f(\theta_{z_s}) \quad s = 1,\cdots,S
+\end{aligned}</script><p>其中$\pi_j = (\pi_{j1},\cdots,\pi_{jK})$为状态转移概率，其中$\pi_{jk} = p(z_t=k\mid z_{t-1}=j,z_t=j)$。注意$\pi_{jj}=0$，因为自我转移是禁止的。这里$g$表示以$\lambda_j$为参数的停留时间的分布族。但是这样导致了计算似然的负担，HSMM的计算复杂度为$\mathcal{O}(T^2K+TK^2)$，而HMM只有$\mathcal{O}(TK^2)$。</p>
+<h4 id="Approximations-to-Hidden-Semi-Markov-Models"><a href="#Approximations-to-Hidden-Semi-Markov-Models" class="headerlink" title="Approximations to Hidden Semi-Markov Models"></a>Approximations to Hidden Semi-Markov Models</h4><p>由于本文章中对此的描述不太详细，不容易理解，故找到本文章引用的源文章<strong>Hidden Markov models with arbitrary state dwell-time distributions</strong>来进行说明。</p>
+<p><strong>我们要做的是用HMM来近似HSMM</strong>，这样我们就可以利用HMM的技术来学习HSMM的参数，减少时间复杂度。</p>
+<p>下面我们规定一下符号：</p>
 <ol>
-<li>线性组合，如$w^Tx$</li>
-<li>link function：为激活函数的逆函数</li>
-<li>指数族分布：$y\mid x\sim$指数族分布</li>
+<li><p>原来的HSMM过程</p>
+<ol>
+<li>观察序列：$(X_t)_{t=1,\cdots,T}$，状态序列$(S_t)_{t=1,\cdots,T}$。</li>
+<li>$p_k$表示在状态$k(k\in \{1,\cdots,N\})$下的持续时间的概率密度函数，$F_k$表示其累积概率密度函数。</li>
+<li>定义状态转移矩阵$\mathrm{A}=\{a_{ij}\}$，其中$a_{ij}=\Pr(S_{t+1}=j\mid S_t=i,S_{t+1}\neq i),i,j=1,\cdots,N$，其中$\sum_ja_{ij}=1,a_{ii}=0$。</li>
 </ol>
-<p>概率图模型中非常重要的一组模型为无向图RBF，与指数族分布具有非常重要的关系。</p>
-<p>另外当分布为指数族分布时，变分推断可见极大地简化。</p>
-<h3 id="高斯分布的指数族形式"><a href="#高斯分布的指数族形式" class="headerlink" title="高斯分布的指数族形式"></a>高斯分布的指数族形式</h3><p>高斯分布的形式为：</p>
+</li>
+<li><p>用来近似HSMM的HMM：</p>
+<ol>
+<li>观测序列：$(X_t^\star)_{t=1,\cdots,T}$，状态序列$(S_t^\star)_{t=1,\cdots,T} \in \{1,2,\cdots,\sum_{i=1}^Nm_i\}$，其中$m_1,m_2,\cdots,m_N\in \mathbb{N},m_0 := 0$。</li>
+<li>状态聚合：$I_k = \{n\mid \sum_{i=0}^{k-1} m_i &lt; n \le \sum_{i=0}^k m_i\},k=1,\cdots,N$，并且定义$i_k^- := \min(I_k)$和$i_k^+ := \max(I_k)$，我们假设属于$I_k$的每个状态的取值的发射概率密度函数相同，并且与状态为$k$的HSMM的发射概率密度函数相同，即$\Pr^{X_t^\star\mid S_t^\star \in I_k} = \Pr^{X_t\mid S_t=k},t=1,\cdots,T,k=1,\cdots,N$。</li>
+</ol>
+</li>
+</ol>
+<p>我们定义$(S_t^\star)_{t=1,\cdots,T}$的状态转移矩阵为$\mathrm{B}=\{b_{ij}\}$，其中$b_{ij}=\Pr(S_{t+1}^\star\mid S_t^\star=i),i,j=1,\cdots,\sum_{i=1}^N m_i$，$\mathrm{B}$的结构为：</p>
+<script type="math/tex; mode=display">
+   \mathbf{B}=\left(\begin{array}{ccc}
+   \mathbf{B}_{11} & \cdots & \mathbf{B}_{1 N} \\
+   \vdots & \ddots & \vdots \\
+   \mathbf{B}_{N 1} & \cdots & \mathbf{B}_{N N}
+   \end{array}\right)</script><p>而$m_i\times m_i$的对角矩阵$B_{ii}(i=1,\cdots,N)$，对于$m_i\ge 2$，为：</p>
+<script type="math/tex; mode=display">
+   \mathbf{B}_{i i}:=\left(\begin{array}{c|cccc}
+   0 & 1-c_i(1) & 0 & \ldots & 0 \\
+   \vdots & 0 & \ddots & & \vdots \\
+   & \vdots & & & 0 \\
+   0 & 0 & \ldots & 0 & 1-c_i\left(m_i-1\right) \\
+   \hline 0 & 0 & \ldots & 0 & 1-c_i\left(m_i\right)
+   \end{array}\right)</script><p>对于$m_i=1$，我们定义$\mathrm{B_{ii}}:=1-c_i(1)$，并且$m_i\times m_j$的矩阵$\mathrm{B_{ij}}(i,j=1,\cdots,N,i\neq j)$为：</p>
+<script type="math/tex; mode=display">
+   \mathbf{B}_{i j}:=\left(\begin{array}{cccc}
+   a_{i j} c_i(1) & 0 & \ldots & 0 \\
+   a_{i j} c_i(2) & 0 & \cdots & 0 \\
+   \vdots & & & \\
+   a_{i j} c_i\left(m_i\right) & 0 & \ldots & 0
+   \end{array}\right)</script><p>这里，对于$r=1,2,3,\cdots$，我们有：</p>
+<script type="math/tex; mode=display">
+c_k(r):= \begin{cases}\frac{p_k(r)}{1-F_k(r-1)} & \text { for } F_k(r-1)<1 \\ 1 & \text { for } F_k(r-1)=1\end{cases}</script><p>函数$c_k$称为停留时间分布的<code>hazard rates</code>。注意矩阵$\mathrm{B}$确实为一个合格的状态转移矩阵，因为他的元素的取值范围为$[0,1]$，并且每一行的和为$1$。同时我们也有如下的性质成立：</p>
+<ol>
+<li>对于$i\neq j ,1\le i,j\le N$，$a_{ij}^\star = a_{ij}$。</li>
+<li>对于任何$k\in \{1,\cdots,N\}$，我们有：$p_k^{\star}(r)= \begin{cases}p_k(r) &amp; \text { for } r \leq m_k \\ p_k\left(m_k\right)\left(1-c_k\left(m_k\right)\right)^{r-m_k} &amp; \text { for } r&gt;m_k\end{cases}$，虽然当$r&gt;m_k$的时候$p^\star_k(r)\neq p_k(r)$，但是我们可以选择大的$m_k$使得两者近似相等。</li>
+</ol>
+<h3 id="Bayesian-Inference"><a href="#Bayesian-Inference" class="headerlink" title="Bayesian Inference"></a>Bayesian Inference</h3><p>我们对参数$\eta = \{(\pi_j,\lambda_j,\theta_j)\}_{j=1}^K$添加先验，先验为：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-P(x\mid\theta) &= \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x-\mu)^2\right)\quad \theta = (\mu,\sigma^2)\\
-&=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x^2-2\mu x+\mu^2)\right)\\
-&=\exp\left(\log(2\pi\sigma^2)^{-\frac{1}{2}}\right)\exp\left(-\frac{1}{2\sigma^2}\begin{pmatrix}-2\mu&1\end{pmatrix}\begin{pmatrix}x\\x^2\end{pmatrix}-\frac{\mu^2}{2\sigma^2}\right)\\
-&=\exp\left(\underbrace{\begin{pmatrix}\frac{\mu}{\sigma^2}&-\frac{1}{2\sigma^2}\end{pmatrix}}_{\eta^T}\cdot\underbrace{\begin{pmatrix}x\\x^2\end{pmatrix}}_{\phi(x)}-\underbrace{\left(\frac{\mu^2}{2\sigma^2}+\frac{1}{2}\log2\pi\sigma^2\right)}_{A(\eta)}\right)
-\end{aligned}</script><p>其中我们令$\eta_1=\frac{\mu}{\sigma^2},\eta_2=-\frac{1}{2\sigma^2}$。则$\sigma^2=-\frac{1}{2\eta_2},\mu=-\frac{\eta_1}{2\eta_2}$。代入$A(\eta)$，得：</p>
+&\pi_j\sim \text{Dir}(\alpha_0), (\theta_j,\lambda_j)\sim H\times G,\quad j=1,\cdots,K\\
+&z_t^\star\mid z_{t-1}^\star\sim \phi_{z_{t-1}^\star}\\
+&y_t^\star\mid z_t^\star \in A_j\sim f(\theta_j),\quad t=1,\cdots,T
+\end{aligned}</script><p>其图模型为：</p>
+<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/BHSMM2.jpg" alt=""></p>
+<blockquote>
+<p>状态转移矩阵$\phi_j$完全由$\pi_j$和$p(d_j=r\mid \lambda_j)$确定，因此他们不再是随机变量。</p>
+</blockquote>
+<p>$\eta$的后验分布有如下的形式：</p>
 <script type="math/tex; mode=display">
-A(\eta) = -\frac{\eta_1^2}{4\eta_2}+\frac{1}{2}\log\left(-\frac{\pi}{\eta_2}\right)</script><h3 id="对数配分函数与充分统计量的关系"><a href="#对数配分函数与充分统计量的关系" class="headerlink" title="对数配分函数与充分统计量的关系"></a>对数配分函数与充分统计量的关系</h3><p>我们之前提到过：</p>
+p(\eta\mid y)\propto \mathscr{L}(y\mid \eta) \times \left[\prod_{j=1}^K p(\pi_j)\times p(\lambda_j)\times p(\theta_j)\right]</script><p>其中$\mathscr{L}(\cdot)$表示模型的似然概率。因为我们已经将其构建为了HMM，所以我们就可以用HMM的方法来计算似然函数：</p>
 <script type="math/tex; mode=display">
-\exp(A(\eta)) = \int_x h(x)\exp(\eta^T\phi(x))dx</script><p>两边同时对$\eta$求导，得：</p>
+\mathscr{L}(y\mid \eta) = \pi_0^{\star'}P(y_1)\Phi P(y_2)\Phi\cdots\Phi P(y_{T-1})\Phi P(y_T)\mathrm{1}</script><p>其中$\bar{A}\times \bar{A}$的对角矩阵$\mathrm{P}(y)$定义为：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-\exp(A(\eta))\cdot A^\prime(\eta) &= \frac{\partial}{\partial \eta}(\int h(x)\exp(\eta^T\phi(x))dx)\\
-&= \int_xh(x)\exp(\eta^T\phi(x))\phi(x)dx
-\end{aligned}</script><p>两边同除以$A^\prime(\eta)$，得</p>
+\boldsymbol{P}(y)=\operatorname{diag}\{\underbrace{p\left(y \mid \theta_1\right), \ldots, p\left(y \mid \theta_1\right)}_{a_1 \text { times }}, \ldots, \underbrace{p\left(y \mid \theta_K\right) \ldots p\left(y \mid \theta_K\right)}_{a_K \text { times }}\}</script><h4 id="Hamiltonian-Monte-Carlo-No-U-Turn-Sampler-and-Stan-Modelling-Language"><a href="#Hamiltonian-Monte-Carlo-No-U-Turn-Sampler-and-Stan-Modelling-Language" class="headerlink" title="Hamiltonian Monte Carlo, No-U-Turn Sampler and Stan Modelling Language"></a>Hamiltonian Monte Carlo, No-U-Turn Sampler and Stan Modelling Language</h4><p>模型建立完成下面要采样了，由于我们的先验分布与似然分布不是共轭的，得到的后验不具有封闭形式，因此我们采用MCMC的方法对后验分布进行采样。</p>
+<p>HMC通过增加动量变量，根据汉密尔顿动力学在高维空间上进行高效的采样，但是步长的选择会影响HMC采样的结果。NUTS绕过了这个麻烦，它使用汉密尔顿动力学来构建采样轨迹，这些轨迹从采样器的当前值移开，直到产生<code>U-Turn</code>开始返回，从而最大程度地提高了轨迹的距离。</p>
+<p><code>stan</code>建模语言提供了一个概率编程的环境来实现NUTS采样。用户只需要提供模型的三个组成：</p>
+<ol>
+<li>采样器的输入：数据和先验超参数</li>
+<li>输出：需要的参数</li>
+<li>计算非归一化后验的步骤</li>
+</ol>
+<h4 id="Bridge-Sampling-Estimation-of-the-Marginal-Likelihood"><a href="#Bridge-Sampling-Estimation-of-the-Marginal-Likelihood" class="headerlink" title="Bridge Sampling Estimation of the Marginal Likelihood"></a>Bridge Sampling Estimation of the Marginal Likelihood</h4><p><code>bridge sampling</code>通过从两个不同分布的MC估计的比值来估计边缘分布，一个是后验分布另一个是合适的提议分布$q(\eta)$。边缘分布<code>bridge sampling</code>的估计为：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-A^\prime(\eta) &= \frac{\int_xh(x)\exp(\eta^T\phi(x))\phi(x)dx}{\exp(A(\eta))}\\
-&=\int_x \underbrace{h(x)\exp(\eta^T\phi(x)-A(\eta))}_{P(x\mid\eta)}\phi(x)dx\\
-&= \mathbb{E}_{P(x\mid\eta)}[\phi(x)]
-\end{aligned}</script><p>所以$A^\prime(\eta) = \mathbb{E}_{P(x\mid \eta)}[\phi(x)]$。</p>
-<p>同样地，我们也可以研究一下二阶导，对式子</p>
+p(\boldsymbol{y})=\frac{\mathbb{E}_{q(\boldsymbol{\eta})}[h(\boldsymbol{\eta}) \mathscr{L}(\boldsymbol{y} \mid \boldsymbol{\eta}) p(\boldsymbol{\eta})]}{\mathbb{E}_{p(\eta \mid y)}[h(\boldsymbol{\eta}) q(\boldsymbol{\eta})]} \approx \frac{\frac{1}{n_2} \sum_{j=1}^{n_2} h\left(\tilde{\boldsymbol{\eta}}^{(j)}\right) \mathscr{L}\left(\boldsymbol{y} \mid \tilde{\boldsymbol{\eta}}^{(j)}\right) p\left(\tilde{\boldsymbol{\eta}}^{(j)}\right)}{\frac{1}{n_1} \sum_{i=1}^{n_1} h\left(\overline{\boldsymbol{\eta}}^{(i)}\right) q\left(\overline{\boldsymbol{\eta}}^{(i)}\right)}</script><p>其中$h(\eta)$为一个选择合理的<code>bridge</code>函数，而$p(\eta)$表示先验分布的联合分布。</p>
+<h4 id="Comparable-Dwell-Priors"><a href="#Comparable-Dwell-Priors" class="headerlink" title="Comparable Dwell Priors"></a>Comparable Dwell Priors</h4><p>根据边缘分布来选择模型对先验分布非常敏感，因此我们需要选择好的先验分布。比如我们要从几何分布、负二项分布或者泊松分布中选择合适的分布来对持续时间进行建模。偏移的泊松分布为严格正的，均值为$\lambda_i+1$，方差为$\lambda_i$。在泊松分布分布和负二项分布中，参数$\lambda_j$的先验一般都是$\lambda_j\sim \text{Gamma}(a_{0j},b_{0j})$，其中$\mathbb{E}[\lambda_j]=a_{0j}/b_{0j}$并且方差$\text{Var}[\lambda_j]=a_{0j}/b_{0j}^2$。为了让所有模型都是可以比较的，我们将几何分布表示为持续时间为$\tau_j=1(1-\gamma_{jj})$，其中$\gamma_{jj}$为自我转移的概率。并且先验为$\gamma_j=(\gamma_{j1},\cdots,\gamma_{jK})\sim \text{Dirichlet}(v_j)$，其中$v_j=(v_{j1},\cdots,v_{jK})$并且$\beta_j=\sum_{i\neq j}v_{ij}$，并且有：</p>
 <script type="math/tex; mode=display">
-A^\prime(\eta) =\int_x \underbrace{h(x)\exp(\eta^T\phi(x)-A(\eta))}_{P(x\mid\eta)}\phi(x)dx</script><p>两边同时求导得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-A^{\prime\prime}(\eta) &= \int_x \underbrace{h(x)\exp(\eta^T\phi(x)-A(\eta))}_{P(x\mid\eta)}(\phi(x)-A^{\prime}(\eta))\phi(x)dx\\
-&= \int_xP(x\mid\eta)(\phi(x)-\mathbb{E}_{P(x\mid\eta)}[\phi(x)])\phi(x)dx\\
-&= \int_x P(x\mid \eta)\phi(x)^2dx - \mathbb{E}_{P(x\mid\eta)}[\phi(x)])\int_xP(x\mid \eta)\phi(x)dx\\
-&= \mathbb{E}_{P(x\mid\eta)}[\phi(x)^2] - \left(\mathbb{E}_{P(x\mid \eta)}[\phi(x)]\right)^2\\
-&=\operatorname{Var}[\phi(x)]
-\end{aligned}</script><h3 id="极大似然估计与充分统计量"><a href="#极大似然估计与充分统计量" class="headerlink" title="极大似然估计与充分统计量"></a>极大似然估计与充分统计量</h3><p>假设我们的数据为：$D=\{x_1,x_2,\cdots,x_N\}$，所以我们有：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\eta_{\text{mle}} &= \arg\max\log P(D\mid \eta)\\
-&=\arg\max \log\prod_{i=1}^N P(x_i\mid \eta)\\
-&=\arg\max \sum_{i=1}^N\log P(x_i\mid \eta)\\
-&=\arg\max\sum_{i=1}^N\log\left[h(x_i)\exp(\eta^T\phi(x_i)-A(\eta))\right]\\
-&= \arg\max\sum_{i=1}^N\left[\log h(x_i)+\eta^T\phi(x_i)-A(\eta)\right]\\
-&= \arg\max\sum_{i=1}^N(\eta^T\phi(x_i)-A(\eta))
-\end{aligned}</script><p>我们对其求导，得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{\partial}{\partial \eta}\left(\sum_{i=1}^N\eta^T\phi(x_i)-A(\eta)\right)&=\sum_{i=1}^N\frac{\partial}{\partial \eta}(\eta^T\phi(x_i)-A(\eta))\\
-&=\sum_{i=1}^N\phi(x_i)-A^{\prime}(\eta)\\
-&=\sum_{i=1}^N\phi(x_i)-NA^{\prime}(\eta)
-\end{aligned}</script><p>令导数等于$0$，得</p>
-<script type="math/tex; mode=display">
-A^{\prime}(\eta_{\text{mle}}) = \frac{1}{N}\sum_{i=1}^N\phi(x_i)</script><p>这样我们就可以求出$\eta_{\text{mle}}$，可以看出$\eta_{\text{mle}}$仅与$\phi(x)$有关，即确定了$\phi(x)$即确定了$\eta_{\text{mle}}$，即确定了分布，更加验证了$\phi(x)$充分统计量的结论。</p>
-<h3 id="最大熵角度"><a href="#最大熵角度" class="headerlink" title="最大熵角度"></a>最大熵角度</h3><p>假设一个事件发生的概率为$p$，其信息量为$-\log p$。熵的概念就是信息量关于分布本身的期望：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{E}_{p(x)}[-\log p] &= -\int_x p(x)\log p(x)dx\\
-&= -\sum_x p(x)\log p(x)
-\end{aligned}</script><p>最大熵的思想通俗来说就是等可能的，当我们对一个事件一无所知时，我们一般假设其是等可能的。下面看一个例子：</p>
-<p>我们用$H[P]$来表示熵：</p>
-<script type="math/tex; mode=display">
-H[p] = -\sum_x p(x)\log p(x)</script><p>我们假设$x$是离散的，$x$可以取值的个数为$K$，概率分别对应于$p_1,\cdots,p_K$，并且$\sum_{i=1}^K p_i=1$。所以其熵为：</p>
-<script type="math/tex; mode=display">
-H[p] = -\sum_{i=1}^K p_i\log (p_i)</script><p>我们令其最大，即变为了优化问题：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\min \sum_{i=1}^K p_i\log p_i\\
-&\text{s.t. }\sum_{i=1}^K p_i=1
-\end{aligned}</script><p>我们可以直接用拉格朗日乘子法进行求解，定义：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}(p,\lambda) = \sum_{i=1}^K p_i\log(p_i)+\lambda(1-\sum_{i=1}^Kp_i)</script><p>对$p_i$求导，得：</p>
-<script type="math/tex; mode=display">
-\frac{\partial \mathcal{L}(p,\lambda)}{\partial p_i} = \log(p_i)+p_i\cdot\frac{1}{p_i}-\lambda</script><p>所以：</p>
-<script type="math/tex; mode=display">
-p_i = \exp(\lambda-1)</script><p>对于每个$p_i$都是如此，所以$p_1=p_2=\cdots=p_K=\frac{1}{K}$，所以其为等可能的。</p>
-<p>最大熵原理：在满足既定事实的前提下，具有最大熵的分布即为我们想要的分布。在机器学习中，我们的既定事实即为数据，假设我们的数据为$D=\{x_1,\cdots,x_N\}$。</p>
-<p>在这里我们引入经验分布的概念，其是对已知样本的描述，其定义为：</p>
-<script type="math/tex; mode=display">
-\hat{p}(X=x) = \frac{\text{count}(x)}{N}</script><p>因为分布$\hat{p}$我们已经求出来了，所以对于$x$的任意函数$f(x)$向量，我们也能求其期望：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{\hat{p}}[f(x)] = \Delta(\text{已知})</script><p>这个就是我们的<strong>已知约束</strong>。</p>
-<p>下面我们求满足上述约束的最大熵的分布，这就变成了优化问题：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\min \sum_x p(x)\log p(x)\\
-&\text{s.t. } \sum_x p(x)=1\\
-&\quad\quad \mathbb{E}_{\hat{p}} [f(x) ]= \mathbb{E}_p[f(x)] = \Delta
-\end{aligned}</script><p>定义拉格朗日乘子：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}(p,\lambda_0,\lambda) = \sum_x p(x)\log p(x) + \lambda_0(1-\sum_x p(x))+\lambda^T(\Delta-\mathbb{E}_p[f(x)])</script><p>对$p(x)$求导得：</p>
-<script type="math/tex; mode=display">
-\frac{\mathcal{L}}{\partial p(x)} =(\log p(x)+1)-\lambda_0-\lambda^T f(x)</script><p>令其等于$0$，得</p>
-<script type="math/tex; mode=display">
-\log p(x) = \lambda^T f(x) + \lambda_0-1</script><p>所以</p>
-<script type="math/tex; mode=display">
-p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族分布。</p>
+\mathbb{E}\left[\tau_j\right]=\frac{v_{j j}+\beta_j-1}{\beta_j-1} \text { and } \operatorname{Var}\left[\tau_j\right]=\frac{\left(v_{j j}+\beta_j-1\right)\left(v_{j j}+\beta_j-2\right)}{\left(\beta_j-1\right)\left(\beta_j-2\right)}-\left(\frac{v_{j j}+\beta_j-1}{\beta_j-1}\right)^2</script><p>所以我们认为可比较的先验需要满足$\mathbb{E}[\tau_j]=\mathbb{E}[\lambda_j+1]$并且$\text{Var}[\tau_j] = \text{Var}[\lambda_j+1]$。</p>
 
     </div>
 
@@ -444,7 +423,7 @@ p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族�
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hfcouc.work/2022/07/10/EXP/" title="指数分布族">https://www.hfcouc.work/2022/07/10/EXP/</a>
+    <a href="https://www.hfcouc.work/2022/09/13/BHSMM/" title="Bayesian Approximations to Hidden Semi-Markov Models">https://www.hfcouc.work/2022/09/13/BHSMM/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -484,7 +463,8 @@ p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族�
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag"># 概率论</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF/" rel="tag"># 贝叶斯</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
           </div>
 
         
@@ -493,13 +473,10 @@ p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族�
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/06/BNP/" rel="prev" title="狄利克雷过程">
-      <i class="fa fa-chevron-left"></i> 狄利克雷过程
+    <a href="/2022/09/06/dataframe-julia/" rel="prev" title="A Complete Guide to Efficient Transformations of data frames">
+      <i class="fa fa-chevron-left"></i> A Complete Guide to Efficient Transformations of data frames
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/07/10/VBI/" rel="next" title="变分贝叶斯推断">
-      变分贝叶斯推断 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -561,7 +538,7 @@ p(x) = \exp\left(\lambda^T f(x) - (1-\lambda_0)\right)</script><p>为指数族�
       </ul>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Exponential-Family-Distribution"><span class="nav-number">1.</span> <span class="nav-text">Exponential Family Distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%E7%9A%84%E6%8C%87%E6%95%B0%E6%97%8F%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">高斯分布的指数族形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E9%85%8D%E5%88%86%E5%87%BD%E6%95%B0%E4%B8%8E%E5%85%85%E5%88%86%E7%BB%9F%E8%AE%A1%E9%87%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.</span> <span class="nav-text">对数配分函数与充分统计量的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1%E4%B8%8E%E5%85%85%E5%88%86%E7%BB%9F%E8%AE%A1%E9%87%8F"><span class="nav-number">1.4.</span> <span class="nav-text">极大似然估计与充分统计量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E7%86%B5%E8%A7%92%E5%BA%A6"><span class="nav-number">1.5.</span> <span class="nav-text">最大熵角度</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Approximations-to-Hidden-Semi-Markov-Models"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Approximations to Hidden Semi-Markov Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Modeling-Approach"><span class="nav-number">1.1.</span> <span class="nav-text">Modeling Approach</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Overview-of-Hidden-Markov-and-Semi-Markov-Models"><span class="nav-number">1.1.1.</span> <span class="nav-text">Overview of Hidden Markov and Semi-Markov Models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Approximations-to-Hidden-Semi-Markov-Models"><span class="nav-number">1.1.2.</span> <span class="nav-text">Approximations to Hidden Semi-Markov Models</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bayesian-Inference"><span class="nav-number">1.2.</span> <span class="nav-text">Bayesian Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hamiltonian-Monte-Carlo-No-U-Turn-Sampler-and-Stan-Modelling-Language"><span class="nav-number">1.2.1.</span> <span class="nav-text">Hamiltonian Monte Carlo, No-U-Turn Sampler and Stan Modelling Language</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bridge-Sampling-Estimation-of-the-Marginal-Likelihood"><span class="nav-number">1.2.2.</span> <span class="nav-text">Bridge Sampling Estimation of the Marginal Likelihood</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Comparable-Dwell-Priors"><span class="nav-number">1.2.3.</span> <span class="nav-text">Comparable Dwell Priors</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
       <div class="site-overview-wrap sidebar-panel">
