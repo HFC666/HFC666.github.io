@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170401%2F66c0602968c0463c805dcd5ab16a87dc_th.jpeg&refer=http%3A%2F%2Fimg.mp.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660210656&t=6f0b4c7c45167ff59154a4b5ee75eb30">
 <meta property="og:image" content="https://raw.githubusercontent.com/HFC666/image/master/img/IBP.jpg">
 <meta property="article:published_time" content="2022-07-12T09:31:16.000Z">
-<meta property="article:modified_time" content="2022-09-13T09:13:10.024Z">
+<meta property="article:modified_time" content="2022-09-20T02:22:29.650Z">
 <meta property="article:author" content="Han Fangcheng">
 <meta property="article:tag" content="贝叶斯">
 <meta property="article:tag" content="算法">
@@ -256,7 +256,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-13 17:13:10" itemprop="dateModified" datetime="2022-09-13T17:13:10+08:00">2022-09-13</time>
+                <time title="修改时间：2022-09-20 10:22:29" itemprop="dateModified" datetime="2022-09-20T10:22:29+08:00">2022-09-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -306,7 +306,7 @@ P(\mathrm{y,c},\theta) = \prod_{k=1}^K G_0(\theta_k)\prod_{n=1}^NF(Y_n\mid\theta
 P(\mathrm{c}\mid\mathrm{y}) = \frac{P(\mathrm{y}\mid \mathrm{c})P(\mathrm{c})}{\sum_{\mathrm{c}}P(\mathrm{y}\mid\mathrm{c})P(\mathrm{c})}</script><p>其中似然函数可以通过对$\theta$积分得到：</p>
 <script type="math/tex; mode=display">
 P(\mathrm{y\mid c}) = \int_{\theta}\left[\prod_{n=1}^NF(\mathrm{y}\mid\theta_{c_n})\prod_{k=1}^KG_0(\theta_k)\right]d\theta</script><p>后验分布是很难处理的，因为计算分母需要将每种分配方式进行求和。</p>
-<h4 id="The-Chinese-restaurant-process"><a href="#The-Chinese-restaurant-process" class="headerlink" title="The Chinese restaurant process"></a>The Chinese restaurant process</h4><p>见我的一篇博客(<a target="_blank" rel="noopener" href="https://hfcouc.work/2022/07/06/BNP/)。">https://hfcouc.work/2022/07/06/BNP/)。</a></p>
+<h4 id="The-Chinese-restaurant-process"><a href="#The-Chinese-restaurant-process" class="headerlink" title="The Chinese restaurant process"></a>The Chinese restaurant process</h4><p>见我的一篇博客(<a target="_blank" rel="noopener" href="https://hfcouc.work/2022/07/06/BNP/">https://hfcouc.work/2022/07/06/BNP/</a>)</p>
 <h3 id="Latent-factor-models-and-dimensionality-reduction"><a href="#Latent-factor-models-and-dimensionality-reduction" class="headerlink" title="Latent factor models and dimensionality reduction"></a>Latent factor models and dimensionality reduction</h3><p>混合模型假设每个数据都来自$K$个类中的一个。隐语义模型削弱了这一假设：每个观测受到$K$个分量的不同的影响。</p>
 <p>隐语义模型可以用来降维当分量的数目小于数据维度时。每个观察都与一个分量激活向量（潜在因子）相关联，该向量描述了每个分量对其贡献的程度，并且这个向量可以看作是观察本身的低维表示。</p>
 <p>非常著名的降维模型有因子分析(FA)，主成分分析(PCA)和独立成分分析(ICA)等，所有的都假设因子的数量$K$已经确定了。无参贝叶斯模型允许分量的数量随着数据的增长而增多。</p>
