@@ -301,6 +301,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/12/05/GP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
+      <meta itemprop="name" content="Han Fangcheng">
+      <meta itemprop="description" content="当你穿过了暴风雨，你就不再是原来那个人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独自赏晴雨">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/05/GP/" class="post-title-link" itemprop="url">GP</a>
+        </h2>
+
+        <div class="post-meta">
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-05 10:23:32 / 修改时间：10:29:15" itemprop="dateCreated datePublished" datetime="2022-12-05T10:23:32+08:00">2022-12-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">文献阅读</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Ship-trajectory-uncertainty-prediction-based-on-a-Gaussian-Process-model"><a href="#Ship-trajectory-uncertainty-prediction-based-on-a-Gaussian-Process-model" class="headerlink" title="Ship trajectory uncertainty prediction based on a Gaussian Process model"></a>Ship trajectory uncertainty prediction based on a Gaussian Process model</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/GPS.png" alt="高斯过程预测船舶轨迹"></p>
+
+      
+    </div>
+
+    
+    
+    
+	
+	
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/09/25/ResNet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -325,10 +396,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-25 12:42:14 / 修改时间：12:47:27" itemprop="dateCreated datePublished" datetime="2022-09-25T12:42:14+08:00">2022-09-25</time>
+              <time title="创建时间：2022-09-25 12:42:14" itemprop="dateCreated datePublished" datetime="2022-09-25T12:42:14+08:00">2022-09-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-05 10:31:05" itemprop="dateModified" datetime="2022-12-05T10:31:05+08:00">2022-12-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -357,30 +434,14 @@
 <blockquote>
 <p>文章地址：<a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html">https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html</a></p>
 </blockquote>
-<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>在早期的神经网络的研究中，人们发现随着神经网络的层数的增加，训练效果会越来越好。在理论上缺失如此，但是事实真是如此吗？随着神经网络的深度的增加，梯度爆炸和梯度消失的问题层出不穷。并且人们发现，随着神经网络深度的增加，训练误差会先降低后增加，着并不是因为过拟合造成的，因为是在训练集上的误差增加，如下图所示。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/RN1.jpg" alt=""></p>
-<p>这可能是因为较深的网络不太容易优化的缘故。</p>
-<blockquote>
-<p>由于神经网络在训练的时候采用的是梯度下降的方法，通过后向传播的方式对梯度进行相乘，所以会发成梯度消失和梯度爆炸等方面的问题。</p>
-<ul>
-<li>梯度消失：如果相乘的大部分梯度因子都小于$1$，那么到最后得到的梯度就会接近于$0$。</li>
-<li>梯度爆炸：如果相乘的大部分梯度因子都大于$1$，那么到最后得到的梯度就会非常大。</li>
-</ul>
-</blockquote>
-<p>我们想到的一种方法，如果我们将训练好的浅层神经网络作为前几层，然后增加恒等变换的层，那么这个组合起来的较深的神经网络最差的结果也不会比较浅的神经网络差。</p>
-<p>在本文中，我们提出了深度残差网络(deep residual learning)。我们将我们想要的映射表示为$\mathcal{H}(\mathrm{x})$，并且让堆叠的非线性层拟合(原神经网络层)映射$\mathcal{F} := \mathcal{H}(\mathrm{x})- \mathrm{x}$。则原始的映射变成了$\mathcal{F}(\mathrm{x})+\mathrm{x}$。</p>
-<p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/RN2.jpg" alt=""></p>
-<blockquote>
-<p>这里我们相当于跳过了一层，将一层的结果通过<code>short-cut</code>传到了它的下一层，其中$\mathcal{F}(\mathrm{x})$相当于按照之前的神经网络传递得到的值(理解为残差)，则应用激活函数前加上前二层(只有前第二层)的输入。</p>
-</blockquote>
-<h3 id="Deep-Residual-Learning"><a href="#Deep-Residual-Learning" class="headerlink" title="Deep Residual Learning"></a>Deep Residual Learning</h3><h4 id="Identity-Mapping-by-Shortcuts"><a href="#Identity-Mapping-by-Shortcuts" class="headerlink" title="Identity Mapping by Shortcuts"></a>Identity Mapping by Shortcuts</h4><p>我们将残差网络应用到一部分堆叠的层中，就如上图所展示的那样。在本文中我们将残差层定义为：</p>
-<script type="math/tex; mode=display">
-\mathrm{y} = \mathcal{F}(\mathrm{x},\{W_i\}) + \mathrm{x}</script><p>这里的$\mathrm{x},\mathrm{y}$分别指我们考虑的层数的输入和输出。$\mathcal{F}$表示我们要学习的残r差函数，在上图中，我们有：</p>
-<script type="math/tex; mode=display">
-\mathcal{F} = W_2\sigma(W_1\mathrm{x})</script><p>其中$\sigma$表示激活函数。在这里我们并没有增加任何额外的参数和计算复杂度。</p>
-<p>$\mathcal{F}$和$\mathrm{x}$的维度必须相同，如果不相同的，可以添加一个线性映射$W_s$：</p>
-<script type="math/tex; mode=display">
-\mathrm{y}  = \mathcal{F}(\mathrm{x},\{W_i\}) + W_s \mathrm{x}</script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/25/ResNet/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -990,90 +1051,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.hfcouc.work/2022/07/14/rt4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F17%2F20180517161524_3KNca.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659264207&t=3d15a378d08a1d4a57e3463cdbe4c159">
-      <meta itemprop="name" content="Han Fangcheng">
-      <meta itemprop="description" content="当你穿过了暴风雨，你就不再是原来那个人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="独自赏晴雨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/14/rt4/" class="post-title-link" itemprop="url">Statistical Rethinking:Chapter4</a>
-        </h2>
-
-        <div class="post-meta">
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-14 11:28:53" itemprop="dateCreated datePublished" datetime="2022-07-14T11:28:53+08:00">2022-07-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-16 17:39:33" itemprop="dateModified" datetime="2022-07-16T17:39:33+08:00">2022-07-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">书籍阅读</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Linear-Models"><a href="#Linear-Models" class="headerlink" title="Linear Models"></a>Linear Models</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/LM1.png" alt=""></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/14/rt4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-	
-	
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1142,7 +1119,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1155,7 +1132,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
