@@ -6,7 +6,7 @@
   <link href="https://www.hfcouc.work/atom.xml" rel="self"/>
   
   <link href="https://www.hfcouc.work/"/>
-  <updated>2022-12-05T02:29:15.002Z</updated>
+  <updated>2022-12-05T02:35:25.450Z</updated>
   <id>https://www.hfcouc.work/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>GP</title>
+    <title>高斯过程预测船舶轨迹</title>
     <link href="https://www.hfcouc.work/2022/12/05/GP/"/>
     <id>https://www.hfcouc.work/2022/12/05/GP/</id>
     <published>2022-12-05T02:23:32.000Z</published>
-    <updated>2022-12-05T02:29:15.002Z</updated>
+    <updated>2022-12-05T02:35:25.450Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Ship-trajectory-uncertainty-prediction-based-on-a-Gaussian-Process-model"><a href="#Ship-trajectory-uncertainty-prediction-based-on-a-Gaussian-Process-model" class="headerlink" title="Ship trajectory uncertainty prediction based on a Gaussian Process model"></a>Ship trajectory uncertainty prediction based on a Gaussian Process model</h2><p><img src="https://raw.githubusercontent.com/HFC666/image/master/img/GPS.png" alt="高斯过程预测船舶轨迹"></p>]]></content>
     
